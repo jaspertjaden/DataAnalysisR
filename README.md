@@ -1,6 +1,4 @@
-#Course title: Data Analysis with R for Social Scientists
-
-Test
+# Course title: Data Analysis with R for Social Scientists
 
 Level: Bachelor
 Structure: 90 min per week, 14 sessions
@@ -36,7 +34,7 @@ In-class: SOEP- teaching dataset
 Homework: tbd
 
  
-Syllabus
+## Syllabus - by week of instruction
 1.	Intro to seminar
 2.	Exploratory data anaylsis (EDA) - I (ggpot; gtsummary; x)
 •	load data
