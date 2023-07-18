@@ -1,5 +1,7 @@
 #Course title: Data Analysis with R for Social Scientists
 
+Test
+
 Level: Bachelor
 Structure: 90 min per week, 14 sessions
 Language: Englisch
