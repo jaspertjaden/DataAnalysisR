@@ -35,64 +35,73 @@ WHK: 3, 6, 9, 11 + Prep, review, and layout gitbook
 
 
 ## Syllabus - by week of instruction
-1.	Intro to seminar
-2.	Exploratory data anaylsis (EDA) - I (ggplot; gtsummary; x)
+1. Intro to seminar
+2. Exploratory data anaylsis (EDA)
   *	load data
   *	introduce WVS
   *	glimpse()
   *	skim()
   *	types of variables/ skalen
-•	univariate statistics (means, SDs, min, max)
-•	histograms
-•	boxplots
-•	bar graphs
-•	Scatterplots
-•	Kreuztabellen
-3.	EDA - II  -> in class exercise
-•	Markdown
-•	With own data: Students apply
-4.	Linear Regression - theory
-•	What is it?
-•	When and for what can it be used?
-• Formula (short)
-•	Assumptions (short)
-•	Interpretation of results?
-•	Mediation (maybe theory into DAG session and example into application?)
-•	Multiple outcomes
-5.	Linear Regression – application
-•	Incl. Short theory and DAG
-•	application with WVS data
-•	include: interpretation of regression table
-• Mediation; total + direct effect
-• maybe: regression diagnostics
-6.	Linear Regression - exercise
-•	In-class exercises with dataset we provide
-7.	Logistic Regression - theory
-•	What is it?
-•	kurz: Annahmen
-•	When and for what can it be use
-•	Interpretation of results?
-•	Mediation
-•	Multiple outcomes 
-8.	Logistic Regression - Application
-•	application with WVS data
+  *	univariate statistics (means, SDs, min, max)
+  * ggplot
+    *	histograms
+    *	boxplots
+    *	bar graphs
+    *	Scatterplots
+  * gtsummary
+    *	Kreuztabellen
+3. EDA - in class exercise
+  *	Markdown intro
+  *	With WVS/own data: Students apply EDA
+4. Linear Regression - theory
+  *	What is it?
+  *	When and for what can it be used?
+  * Formula (short)
+  *	Assumptions (short)
+  *	Interpretation of results
+  *	Mediation (maybe theory into DAG session and example into application?)
+  * Interactions?
+  *	Multiple outcomes
+5. Linear Regression – application
+  *	Incl. Short theory and DAG
+    *	application with WVS data
+  *	interpretation of regression table in practice
+  * Mediation
+    * total + direct effect
+  * maybe: regression diagnostics
+6. Linear Regression - exercise
+  *	With WVS/own data: Students apply Linear Regression
+7. Logistic Regression - theory
+  *	What is it?
+  *	When and for what can it be used?
+  * Formula (short)
+  *	Assumptions (short)
+  *	Interpretation of results
+  *	Mediation? (not as easy to do right)
+  *	Multiple outcomes
+  * Multinomial
+8. Logistic Regression - Application
+  *	Incl. Short theory and DAG
+    *	application with WVS data
+  *	interpretation of regression table in practice
+  * Mediation
+    * total + direct effect
+  * maybe: regression diagnostics
 9.	Logistic Regression - Exercise
-•	discussion of a-home exercises based on second dataset
+  *	With WVS/own data: Students apply Logistic Regression
 10.	Prediction/ Margins – theory and application
-•	predicted probabilities (at various covariate levels)
-•	marginal effects
-•	Outlook: 
+  *	predicted probabilities (at various covariate levels)
+  *	marginal effects
 11.	Prediction/ Margins – exercise 
-•	predicted probabilities (at various covariate levels)
-•	marginal effects
-•	Outlook: 
+  *	With WVS/own data: Students apply Logistic Regression
+    * Predict for Linear + Logistic Regressions from previous excercises 
 12.	Reporting/ Visualization
-•	formatted regression tables
-•	Publication-ready formatting/ labelling of visuals
-•	coefficient plots
+  *	formatted regression tables
+  *	Publication-ready formatting/ labelling of visuals
+  *	coefficient plots
 13.	Discussion of ideas for term papers
 14.	Outlook
-•	Machine learning
+  *	Machine learning
 
 
 Idea (Jakob): Maybe we can combine 13+14 (14 doesn't have to be that long?) and
@@ -101,3 +110,13 @@ that if we do want to include DAGs (I want to), we should give the ideas some
 space. Some DAG theory and examples and then we can start out with linear reg
 and use DAGs throughout
 
+* DAG session ideas
+  * Correlation does not equal Causation/Identification of effect(s) of interest
+  * DAGs in principle
+    * Indirect causal effect/Overcontrol Bias/Pipe
+    * Confounders/Fork
+    * Colliders
+  * Total/Direct effect
+    * Identification
+  * dagitty.net
+  
