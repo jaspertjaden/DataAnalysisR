@@ -37,11 +37,11 @@ WHK: 3, 6, 9, 11 + Prep, review, and layout gitbook
 ## Syllabus - by week of instruction
 1.	Intro to seminar
 2.	Exploratory data anaylsis (EDA) - I (ggplot; gtsummary; x)
-  •	load data
-  •	introduce WVS
-  •	glimpse()
-  •	skim()
-  •	types of variables/ skalen
+  *	load data
+  *	introduce WVS
+  *	glimpse()
+  *	skim()
+  *	types of variables/ skalen
 •	univariate statistics (means, SDs, min, max)
 •	histograms
 •	boxplots
