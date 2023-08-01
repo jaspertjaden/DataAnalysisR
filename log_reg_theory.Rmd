@@ -1,0 +1,40 @@
+# Session 7: Logistic Regression - Theory
+
+# Introduction
+
+## What is Linear Regression
+
+* Part of Generalized Linear Models
+
+## When and for what can it be used?
+
+* Categorical outcome variables
+* Predictors can be metric or categorical
+
+* Assumptions
+
+# Formal
+
+## Regression Formula
+
+* Logistic Regression
+  * show logistic function (shape)
+  * Link function
+  * show intercept + beta graphically
+  * How to get the coefficients
+    * super short: ML (graphically not how to solve); maybe leave out
+
+# Interpretation of results
+
+* Show example from WVS data (without the R code)
+
+# Maybes
+
+*	Mediation
+  * maybe to hard to do correctly
+  * khb package available?
+* Interactions
+  * similar problem to above
+*	Multiple outcomes
+  * maybe leave out
+* Multinomial logistic regression
