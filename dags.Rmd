@@ -1,0 +1,23 @@
+# Session X - DAGs
+
+* Before Linear Regression
+
+# Causality
+
+* Correlation does not equal Causation
+  * Examples
+* Identification of (causal) effect(s) of interest
+
+# DAGs
+
+* Indirect causal effect/Overcontrol Bias/Pipe
+* Confounders/Fork
+* Colliders
+* Each with individual examples
+  * Maybe one big example
+
+# Total/Direct effect
+
+* Identification
+
+# dagitty.net
