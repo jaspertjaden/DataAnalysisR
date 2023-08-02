@@ -1,0 +1,51 @@
+# Exloratory Data Analysis - I {#eda-1}
+Here goes some texts.
+
+
+## Load data
+Here goes some texts.
+
+
+## Introduce WVS
+Here goes some texts.
+
+
+## glimpse()
+Here goes some texts.
+
+
+## skim()
+Here goes some texts.
+
+
+## Types of Variables/ Skalen
+Here goes some texts.
+
+
+## Univaraite statistics (means, SDs, min, max)
+Here goes some texts.
+
+
+## ggplot
+Here goes some texts.
+
+### Histograms
+Here goes some texts.
+
+
+### Boxplots
+Here goes some texts.
+
+
+### Bar graphs
+Here goes some texts.
+
+
+### Scatterplots
+Here goes some texts.
+
+## gtsummary
+Here goes some texts.
+
+### Kreuztabellen
+Here goes some texts.

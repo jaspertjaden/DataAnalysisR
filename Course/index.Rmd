@@ -1,0 +1,47 @@
+--- 
+title: "Data Analysis with R for Social Scientists"
+author: "Jasper Dag Tjaden"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The HTML output format for this example is bookdown::gitbook,
+  set in the _output.yml file.
+link-citations: yes
+github-repo: jaspertjaden/DataAnalysisR
+---
+
+# Intro {-}
+
+This course offers an accessible and easy introduction to one of the fastest growing statistical packages used in social science and data science more generally.
+
+Please download the data used in the course [here](https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp). To find more about me, have a look at [my website](https://jaspertjaden.com). Also, feel free to watch me as I walk you through each lesson [here](https://www.youtube.com/playlist?list=PLr43hk2e3hFMg4tZdJsN0qzG5YkQB3A1c).
+
+**Overview over the Course :**
+
+- **[Week 1: Introduction to Seminar](#intro-sem)**
+- **[Week 2: Exploratory Data Analysis-I](#eda-1)**
+- **[Week 3: Exploratory Data Analysis-II](#eda-2)**
+- **[Week 4: Linear Regression-Theory](#lin-t)**
+- **[Week 5: Linear Regression-Applied](#lin-a)**
+- **[Week 6: Linear Regression-Exercises](#lin-e)**
+- **[Week 7: Logistic Regression-Theory](#log-t)**
+- **[Week 8: Logistic Regression-Applied](#log-a)**
+- **[Week 9: Logistic Regression-Exercises](#log-e)**
+- **[Week 10: Prediction or Margins-Theory](#pm-t)**
+- **[Week 11: Prediction or Margins-Exercises](#pm-e)**
+- **[Week 12: Reporting and Visualizing](#report-v)**
+- **[Week 13: Discussion of Ideas and term papers](#dis-paper)**
+- **[Week 14: Outlook](#out-look)**
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

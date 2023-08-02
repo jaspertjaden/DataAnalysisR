@@ -1,0 +1,19 @@
+# Linear Regression - Applied {#lin-a}
+
+## Incl. Short Theory and DAG
+Here goes some texts. 
+
+### Application with WVS data
+Here goes some texts.
+
+## Interpreation of regression tables in practice
+Here goes some texts. 
+
+## Mediation
+Here goes some texts. 
+
+### Total and Direct effect
+Here goes some texts.
+
+## Regressional Diagnostics
+(Maybe)

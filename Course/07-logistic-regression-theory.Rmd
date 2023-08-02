@@ -1,0 +1,27 @@
+# Logistic Regression - Theory {#log-t}
+
+## What is it?
+
+Here goes some texts. 
+
+## When and for what it can used?
+
+Here goes some texts.
+
+## Formula (short)
+Here goes some texts.
+
+## Assumptions (short)
+Here goes some texts.
+
+##Interpretation of results
+Here goes some texts.
+
+## Mediation
+Maybe theory into DAG session and example into application?
+
+
+## Multiple outcomes
+Here goes some texts.
+
+## Multinomial

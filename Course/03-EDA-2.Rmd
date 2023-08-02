@@ -1,0 +1,11 @@
+# Exloratory Data Analysis - II {#eda-2}
+Here goes some texts.
+
+## Markdown Introduction
+Here goes some texts.
+
+## Applying EDA(WVS/own data)
+Here goes some texts.
+
+
+
