@@ -1,27 +1,40 @@
 # Linear Regression - Theory {#lin-t}
 
-## What is it?
+## Introduction
 
-Here goes some texts. 
+## What is Linear Regression
 
-## When and for what it can used?
+## When and for what can it be used?
 
-Here goes some texts.
+* Metric outcome variables
+* Predictors can be metric or categorical
 
-## Formula (short)
-Here goes some texts.
+* Assumptions
 
-## Assumptions (short)
-Here goes some texts.
+## Formal
 
-##Interpretation of results
-Here goes some texts.
+## Regression Formula
 
-## Mediation
-Maybe theory into DAG session and example into application?
+* Simple Linear Regression
+  * show intercept + beta graphically
+  * How to get the coefficients
+    * super short: OLS (graphically not how to solve); maybe leave out
+* Multiple Linear Regression
+  * maybe also show graphically for 2 x (plane)
 
-## Interactions?
-Here goes some texts.
 
-## Multiple outcomes
-Here goes some texts.
+
+## Interpretation of results
+
+* Show example from WVS data (without the R code)
+
+## Maybes
+
+*	Mediation
+  * maybe theory into DAG session and example into application
+* Interactions
+  * maybe introduce here and apply next session
+  * maybe push it all into next session
+  * or leave out completely
+*	Multiple outcomes
+  * maybe leave out

@@ -1,19 +1,35 @@
 # Logistic Regression - Applied {#log-a}
 
-## Incl. Short Theory and DAG
-Here goes some texts. 
+## Example research question
 
-### Application with WVS data
-Here goes some texts.
+* Short theory
+  * DAG from this
+    * What do we have to control for to identify effect of interest?
 
-## Interpreation of regression tables in practice
-Here goes some texts. 
+## Application with WVS data
+
+## R Code
+
+* glm()
+  * family and link
+
+## Interpretation of regression table in practice
+
+* What are Logits?
+* Maybe: Odds Ratios
+
+## Regression Diagnostics (relatively short?)
 
 ## Mediation
-Here goes some texts. 
 
-### Total and Direct effect
-Here goes some texts.
+* total + direct effect
+  * use DAGs again
+  * apply with glm()
+  * Interpret results
+* But maybe leave out completely (see session 7)
 
-## Regressional Diagnostics
-(Maybe)
+## Maybes
+
+* Interactions
+  * In practice if introduced the week before
+  * Maybe also introduce and apply here

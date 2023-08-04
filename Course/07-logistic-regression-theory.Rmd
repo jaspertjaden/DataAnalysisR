@@ -1,27 +1,40 @@
 # Logistic Regression - Theory {#log-t}
 
-## What is it?
+## Introduction
 
-Here goes some texts. 
+## What is Linear Regression
 
-## When and for what it can used?
+* Part of Generalized Linear Models
 
-Here goes some texts.
+## When and for what can it be used?
 
-## Formula (short)
-Here goes some texts.
+* Categorical outcome variables
+* Predictors can be metric or categorical
 
-## Assumptions (short)
-Here goes some texts.
+* Assumptions
 
-##Interpretation of results
-Here goes some texts.
+## Formal
 
-## Mediation
-Maybe theory into DAG session and example into application?
+## Regression Formula
 
+* Logistic Regression
+  * show logistic function (shape)
+  * Link function
+  * show intercept + beta graphically
+  * How to get the coefficients
+    * super short: ML (graphically not how to solve); maybe leave out
 
-## Multiple outcomes
-Here goes some texts.
+## Interpretation of results
 
-## Multinomial
+* Show example from WVS data (without the R code)
+
+## Maybes
+
+*	Mediation
+  * maybe to hard to do correctly
+  * khb package available?
+* Interactions
+  * similar problem to above
+*	Multiple outcomes
+  * maybe leave out
+* Multinomial logistic regression
