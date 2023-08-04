@@ -37,4 +37,8 @@
   * similar problem to above
 *	Multiple outcomes
   * maybe leave out
+<<<<<<< Updated upstream
 * Multinomial logistic regression
+=======
+* Multinomial logistic regression
+>>>>>>> Stashed changes

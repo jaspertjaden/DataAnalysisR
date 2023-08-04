@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title> 12 Mediation | Data Analysis with R for Social Scientists</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content=" 12 Mediation | Data Analysis with R for Social Scientists" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="jaspertjaden/DataAnalysisR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content=" 12 Mediation | Data Analysis with R for Social Scientists" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Jasper Dag Tjaden" />
+
+
+<meta name="date" content="2023-08-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regression-diagnostics-relatively-short.html"/>
+<link rel="next" href="maybes-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Analysis with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Intro</a></li>
+<li class="chapter" data-level="1" data-path="intro-sem.html"><a href="intro-sem.html"><i class="fa fa-check"></i><b>1</b> Introduction to Seminar</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro-sem.html"><a href="intro-sem.html#a-section"><i class="fa fa-check"></i><b>1.1</b> A section</a>
+<ul>
+<li class="chapter" data-level="" data-path="intro-sem.html"><a href="intro-sem.html#an-unnumbered-section"><i class="fa fa-check"></i>An unnumbered section</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="eda-1.html"><a href="eda-1.html"><i class="fa fa-check"></i><b>2</b> Exloratory Data Analysis - I</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="eda-1.html"><a href="eda-1.html#load-data"><i class="fa fa-check"></i><b>2.1</b> Load data</a></li>
+<li class="chapter" data-level="2.2" data-path="eda-1.html"><a href="eda-1.html#introduce-wvs"><i class="fa fa-check"></i><b>2.2</b> Introduce WVS</a></li>
+<li class="chapter" data-level="2.3" data-path="eda-1.html"><a href="eda-1.html#glimpse"><i class="fa fa-check"></i><b>2.3</b> glimpse()</a></li>
+<li class="chapter" data-level="2.4" data-path="eda-1.html"><a href="eda-1.html#skim"><i class="fa fa-check"></i><b>2.4</b> skim()</a></li>
+<li class="chapter" data-level="2.5" data-path="eda-1.html"><a href="eda-1.html#types-of-variables-skalen"><i class="fa fa-check"></i><b>2.5</b> Types of Variables/ Skalen</a></li>
+<li class="chapter" data-level="2.6" data-path="eda-1.html"><a href="eda-1.html#univaraite-statistics-means-sds-min-max"><i class="fa fa-check"></i><b>2.6</b> Univaraite statistics (means, SDs, min, max)</a></li>
+<li class="chapter" data-level="2.7" data-path="eda-1.html"><a href="eda-1.html#ggplot"><i class="fa fa-check"></i><b>2.7</b> ggplot</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="eda-1.html"><a href="eda-1.html#histograms"><i class="fa fa-check"></i><b>2.7.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.7.2" data-path="eda-1.html"><a href="eda-1.html#boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Boxplots</a></li>
+<li class="chapter" data-level="2.7.3" data-path="eda-1.html"><a href="eda-1.html#bar-graphs"><i class="fa fa-check"></i><b>2.7.3</b> Bar graphs</a></li>
+<li class="chapter" data-level="2.7.4" data-path="eda-1.html"><a href="eda-1.html#scatterplots"><i class="fa fa-check"></i><b>2.7.4</b> Scatterplots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="eda-1.html"><a href="eda-1.html#gtsummary"><i class="fa fa-check"></i><b>2.8</b> gtsummary</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="eda-1.html"><a href="eda-1.html#kreuztabellen"><i class="fa fa-check"></i><b>2.8.1</b> Kreuztabellen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="eda-2.html"><a href="eda-2.html"><i class="fa fa-check"></i><b>3</b> Exloratory Data Analysis - II</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="eda-2.html"><a href="eda-2.html#markdown-introduction"><i class="fa fa-check"></i><b>3.1</b> Markdown Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="eda-2.html"><a href="eda-2.html#applying-edawvsown-data"><i class="fa fa-check"></i><b>3.2</b> Applying EDA(WVS/own data)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lin-t.html"><a href="lin-t.html"><i class="fa fa-check"></i><b>4</b> Linear Regression &amp; DAGS - Theory</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="lin-t.html"><a href="lin-t.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="lin-t.html"><a href="lin-t.html#what-is-linear-regression"><i class="fa fa-check"></i><b>4.2</b> What is Linear Regression</a></li>
+<li class="chapter" data-level="4.3" data-path="lin-t.html"><a href="lin-t.html#when-and-for-what-can-it-be-used"><i class="fa fa-check"></i><b>4.3</b> When and for what can it be used?</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="formal.html"><a href="formal.html"><i class="fa fa-check"></i><b>5</b> Formal</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="formal.html"><a href="formal.html#regression-formula"><i class="fa fa-check"></i><b>5.1</b> Regression Formula</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="interpretation-of-results.html"><a href="interpretation-of-results.html"><i class="fa fa-check"></i><b>6</b> Interpretation of results</a></li>
+<li class="chapter" data-level="7" data-path="maybes.html"><a href="maybes.html"><i class="fa fa-check"></i><b>7</b> Maybes</a></li>
+<li class="chapter" data-level="8" data-path="lin-a.html"><a href="lin-a.html"><i class="fa fa-check"></i><b>8</b> Linear Regression - Applied</a></li>
+<li class="chapter" data-level="9" data-path="example-research-question.html"><a href="example-research-question.html"><i class="fa fa-check"></i><b>9</b> Example research question</a></li>
+<li class="chapter" data-level="10" data-path="application-with-wvs-data.html"><a href="application-with-wvs-data.html"><i class="fa fa-check"></i><b>10</b> Application with WVS data</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="application-with-wvs-data.html"><a href="application-with-wvs-data.html#r-code"><i class="fa fa-check"></i><b>10.1</b> R Code</a></li>
+<li class="chapter" data-level="10.2" data-path="application-with-wvs-data.html"><a href="application-with-wvs-data.html#interpretation-of-regression-table-in-practice"><i class="fa fa-check"></i><b>10.2</b> Interpretation of regression table in practice</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="regression-diagnostics-relatively-short.html"><a href="regression-diagnostics-relatively-short.html"><i class="fa fa-check"></i><b>11</b> Regression Diagnostics (relatively short?)</a></li>
+<li class="chapter" data-level="12" data-path="mediation.html"><a href="mediation.html"><i class="fa fa-check"></i><b>12</b> Mediation</a></li>
+<li class="chapter" data-level="13" data-path="maybes-1.html"><a href="maybes-1.html"><i class="fa fa-check"></i><b>13</b> Maybes</a></li>
+<li class="chapter" data-level="14" data-path="lin-e.html"><a href="lin-e.html"><i class="fa fa-check"></i><b>14</b> Linear Regression - Exercises</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="lin-e.html"><a href="lin-e.html#application-of-linear-regression"><i class="fa fa-check"></i><b>14.1</b> Application of Linear Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="log-t.html"><a href="log-t.html"><i class="fa fa-check"></i><b>15</b> Logistic Regression - Theory</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="log-t.html"><a href="log-t.html#introduction-1"><i class="fa fa-check"></i><b>15.1</b> Introduction</a></li>
+<li class="chapter" data-level="15.2" data-path="log-t.html"><a href="log-t.html#what-is-linear-regression-1"><i class="fa fa-check"></i><b>15.2</b> What is Linear Regression</a></li>
+<li class="chapter" data-level="15.3" data-path="log-t.html"><a href="log-t.html#when-and-for-what-can-it-be-used-1"><i class="fa fa-check"></i><b>15.3</b> When and for what can it be used?</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="formal-1.html"><a href="formal-1.html"><i class="fa fa-check"></i><b>16</b> Formal</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="formal-1.html"><a href="formal-1.html#regression-formula-1"><i class="fa fa-check"></i><b>16.1</b> Regression Formula</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="interpretation-of-results-1.html"><a href="interpretation-of-results-1.html"><i class="fa fa-check"></i><b>17</b> Interpretation of results</a></li>
+<li class="chapter" data-level="18" data-path="maybes-2.html"><a href="maybes-2.html"><i class="fa fa-check"></i><b>18</b> Maybes</a></li>
+<li class="chapter" data-level="19" data-path="log-a.html"><a href="log-a.html"><i class="fa fa-check"></i><b>19</b> Logistic Regression - Applied</a></li>
+<li class="chapter" data-level="20" data-path="example-research-question-1.html"><a href="example-research-question-1.html"><i class="fa fa-check"></i><b>20</b> Example research question</a></li>
+<li class="chapter" data-level="21" data-path="application-with-wvs-data-1.html"><a href="application-with-wvs-data-1.html"><i class="fa fa-check"></i><b>21</b> Application with WVS data</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="application-with-wvs-data-1.html"><a href="application-with-wvs-data-1.html#r-code-1"><i class="fa fa-check"></i><b>21.1</b> R Code</a></li>
+<li class="chapter" data-level="21.2" data-path="application-with-wvs-data-1.html"><a href="application-with-wvs-data-1.html#interpretation-of-regression-table-in-practice-1"><i class="fa fa-check"></i><b>21.2</b> Interpretation of regression table in practice</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="regression-diagnostics-relatively-short-1.html"><a href="regression-diagnostics-relatively-short-1.html"><i class="fa fa-check"></i><b>22</b> Regression Diagnostics (relatively short?)</a></li>
+<li class="chapter" data-level="23" data-path="mediation-1.html"><a href="mediation-1.html"><i class="fa fa-check"></i><b>23</b> Mediation</a></li>
+<li class="chapter" data-level="24" data-path="maybes-3.html"><a href="maybes-3.html"><i class="fa fa-check"></i><b>24</b> Maybes</a></li>
+<li class="chapter" data-level="25" data-path="log-e.html"><a href="log-e.html"><i class="fa fa-check"></i><b>25</b> Logistic Regression - Exercises</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="log-e.html"><a href="log-e.html#application-of-logistic-regression"><i class="fa fa-check"></i><b>25.1</b> Application of Logistic Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="pm-t.html"><a href="pm-t.html"><i class="fa fa-check"></i><b>26</b> Prediction or Margins - Theory</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="pm-t.html"><a href="pm-t.html#predicted-probabilities"><i class="fa fa-check"></i><b>26.1</b> Predicted probabilities</a></li>
+<li class="chapter" data-level="26.2" data-path="pm-t.html"><a href="pm-t.html#marginal-effects"><i class="fa fa-check"></i><b>26.2</b> Marginal Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="pm-e.html"><a href="pm-e.html"><i class="fa fa-check"></i><b>27</b> Prediction or Margins - Exercises</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="pm-e.html"><a href="pm-e.html#application-of-regression"><i class="fa fa-check"></i><b>27.1</b> Application of Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="report-v.html"><a href="report-v.html"><i class="fa fa-check"></i><b>28</b> Reporting and Visualization</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="report-v.html"><a href="report-v.html#formatted-regression-tables"><i class="fa fa-check"></i><b>28.1</b> Formatted regression tables</a></li>
+<li class="chapter" data-level="28.2" data-path="report-v.html"><a href="report-v.html#publication-ready-formatting-labelling-of-visuals"><i class="fa fa-check"></i><b>28.2</b> Publication-ready formatting/ labelling of visuals</a></li>
+<li class="chapter" data-level="28.3" data-path="report-v.html"><a href="report-v.html#coefficient-plots"><i class="fa fa-check"></i><b>28.3</b> coefficient plots</a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="dis-paper.html"><a href="dis-paper.html"><i class="fa fa-check"></i><b>29</b> Discussion of ideas and term papers</a></li>
+<li class="chapter" data-level="30" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>30</b> Outlook</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="out-look.html"><a href="out-look.html#machine-learning"><i class="fa fa-check"></i><b>30.1</b> Machine Learning</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis with R for Social Scientists</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="mediation" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number"> 12</span> Mediation<a href="mediation.html#mediation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<ul>
+<li>total + direct effect
+<ul>
+<li>use DAGs again</li>
+<li>apply with lm()</li>
+<li>Interpret results</li>
+</ul></li>
+</ul>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regression-diagnostics-relatively-short.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="maybes-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-linear-regression-applied.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

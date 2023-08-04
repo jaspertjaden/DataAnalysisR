@@ -15,7 +15,11 @@
 
 ## Interpretation of regression table in practice
 
+<<<<<<< Updated upstream
 * What are Logits?
+=======
+* What are Logistics?
+>>>>>>> Stashed changes
 * Maybe: Odds Ratios
 
 ## Regression Diagnostics (relatively short?)
@@ -32,4 +36,8 @@
 
 * Interactions
   * In practice if introduced the week before
+<<<<<<< Updated upstream
   * Maybe also introduce and apply here
+=======
+  * Maybe also introduce and apply here
+>>>>>>> Stashed changes

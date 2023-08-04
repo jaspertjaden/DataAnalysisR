@@ -76,7 +76,15 @@
   pdfcreator={LaTeX via pandoc}}
 
 \title{Data Analysis with R for Social Scientists}
+<<<<<<< Updated upstream
 \author{Jakob Tures \& Jasper Tjaden}
+=======
+<<<<<<< HEAD
+\author{Jasper Dag Tjaden}
+=======
+\author{Jakob Tures \& Jasper Tjaden}
+>>>>>>> c05dcffc98789c802c90437072918e7ac1c0200f
+>>>>>>> Stashed changes
 \date{2023-08-04}
 
 \begin{document}
@@ -230,78 +238,179 @@ Here goes some texts.
 Here goes some texts.
 
 \hypertarget{lin-t}{%
-\chapter{Linear Regression - Theory}\label{lin-t}}
+\chapter{Linear Regression \& DAGS - Theory}\label{lin-t}}
 
-\hypertarget{what-is-it}{%
-\section{What is it?}\label{what-is-it}}
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
 
-Here goes some texts.
+\hypertarget{what-is-linear-regression}{%
+\section{What is Linear Regression}\label{what-is-linear-regression}}
 
-\hypertarget{when-and-for-what-it-can-used}{%
-\section{When and for what it can used?}\label{when-and-for-what-it-can-used}}
+\hypertarget{when-and-for-what-can-it-be-used}{%
+\section{When and for what can it be used?}\label{when-and-for-what-can-it-be-used}}
 
-Here goes some texts.
+\begin{itemize}
+\item
+  Metric outcome variables
+\item
+  Predictors can be metric or categorical
+\item
+  Assumptions
+\end{itemize}
 
-\hypertarget{formula-short}{%
-\section{Formula (short)}\label{formula-short}}
+\hypertarget{formal}{%
+\section{Formal}\label{formal}}
 
-Here goes some texts.
+\hypertarget{regression-formula}{%
+\section{Regression Formula}\label{regression-formula}}
 
-\hypertarget{assumptions-short}{%
-\section{Assumptions (short)}\label{assumptions-short}}
+\begin{itemize}
+\tightlist
+\item
+  Simple Linear Regression
 
-Here goes some texts.
+  \begin{itemize}
+  \tightlist
+  \item
+    show intercept + beta graphically
+  \item
+    How to get the coefficients
 
-\#\#Interpretation of results
-Here goes some texts.
+    \begin{itemize}
+    \tightlist
+    \item
+      super short: OLS (graphically not how to solve); maybe leave out
+    \end{itemize}
+  \end{itemize}
+\item
+  Multiple Linear Regression
 
-\hypertarget{mediation}{%
-\section{Mediation}\label{mediation}}
+  \begin{itemize}
+  \tightlist
+  \item
+    maybe also show graphically for 2 x (plane)
+  \end{itemize}
+\end{itemize}
 
-Maybe theory into DAG session and example into application?
+\hypertarget{interpretation-of-results}{%
+\section{Interpretation of results}\label{interpretation-of-results}}
 
-\hypertarget{interactions}{%
-\section{Interactions?}\label{interactions}}
+\begin{itemize}
+\tightlist
+\item
+  Show example from WVS data (without the R code)
+\end{itemize}
 
-Here goes some texts.
+\hypertarget{maybes}{%
+\section{Maybes}\label{maybes}}
 
-\hypertarget{multiple-outcomes}{%
-\section{Multiple outcomes}\label{multiple-outcomes}}
+\begin{itemize}
+\tightlist
+\item
+  Mediation
+\item
+  maybe theory into DAG session and example into application
+\item
+  Interactions
 
-Here goes some texts.
+  \begin{itemize}
+  \tightlist
+  \item
+    maybe introduce here and apply next session
+  \item
+    maybe push it all into next session
+  \item
+    or leave out completely
+  \end{itemize}
+\item
+  Multiple outcomes
+\item
+  maybe leave out
+\end{itemize}
 
 \hypertarget{lin-a}{%
 \chapter{Linear Regression - Applied}\label{lin-a}}
 
-\hypertarget{incl.-short-theory-and-dag}{%
-\section{Incl. Short Theory and DAG}\label{incl.-short-theory-and-dag}}
+\hypertarget{example-research-question}{%
+\section{Example research question}\label{example-research-question}}
 
-Here goes some texts.
+\begin{itemize}
+\tightlist
+\item
+  Short theory
+
+  \begin{itemize}
+  \tightlist
+  \item
+    DAG from this
+
+    \begin{itemize}
+    \tightlist
+    \item
+      What do we have to control for to identify effect of interest?
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{application-with-wvs-data}{%
-\subsection{Application with WVS data}\label{application-with-wvs-data}}
+\section{Application with WVS data}\label{application-with-wvs-data}}
 
-Here goes some texts.
+\hypertarget{r-code}{%
+\section{R Code}\label{r-code}}
 
-\hypertarget{interpreation-of-regression-tables-in-practice}{%
-\section{Interpreation of regression tables in practice}\label{interpreation-of-regression-tables-in-practice}}
+\begin{itemize}
+\tightlist
+\item
+  lm()
 
-Here goes some texts.
+  \begin{itemize}
+  \tightlist
+  \item
+    formula syntax
+  \end{itemize}
+\end{itemize}
 
-\hypertarget{mediation-1}{%
-\section{Mediation}\label{mediation-1}}
+\hypertarget{interpretation-of-regression-table-in-practice}{%
+\section{Interpretation of regression table in practice}\label{interpretation-of-regression-table-in-practice}}
 
-Here goes some texts.
+\hypertarget{regression-diagnostics-relatively-short}{%
+\section{Regression Diagnostics (relatively short?)}\label{regression-diagnostics-relatively-short}}
 
-\hypertarget{total-and-direct-effect}{%
-\subsection{Total and Direct effect}\label{total-and-direct-effect}}
+\hypertarget{mediation}{%
+\section{Mediation}\label{mediation}}
 
-Here goes some texts.
+\begin{itemize}
+\tightlist
+\item
+  total + direct effect
 
-\hypertarget{regressional-diagnostics}{%
-\section{Regressional Diagnostics}\label{regressional-diagnostics}}
+  \begin{itemize}
+  \tightlist
+  \item
+    use DAGs again
+  \item
+    apply with lm()
+  \item
+    Interpret results
+  \end{itemize}
+\end{itemize}
 
-(Maybe)
+\hypertarget{maybes-1}{%
+\section{Maybes}\label{maybes-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Interactions
+
+  \begin{itemize}
+  \tightlist
+  \item
+    In practice if introduced the week before
+  \item
+    Maybe also introduce and apply here
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{lin-e}{%
 \chapter{Linear Regression - Exercises}\label{lin-e}}
@@ -316,74 +425,189 @@ With WVS/own data: Students apply linear regression.
 \hypertarget{log-t}{%
 \chapter{Logistic Regression - Theory}\label{log-t}}
 
-\hypertarget{what-is-it-1}{%
-\section{What is it?}\label{what-is-it-1}}
+\hypertarget{introduction-1}{%
+\section{Introduction}\label{introduction-1}}
 
-Here goes some texts.
+\hypertarget{what-is-linear-regression-1}{%
+\section{What is Linear Regression}\label{what-is-linear-regression-1}}
 
-\hypertarget{when-and-for-what-it-can-used-1}{%
-\section{When and for what it can used?}\label{when-and-for-what-it-can-used-1}}
+\begin{itemize}
+\tightlist
+\item
+  Part of Generalized Linear Models
+\end{itemize}
 
-Here goes some texts.
+\hypertarget{when-and-for-what-can-it-be-used-1}{%
+\section{When and for what can it be used?}\label{when-and-for-what-can-it-be-used-1}}
 
-\hypertarget{formula-short-1}{%
-\section{Formula (short)}\label{formula-short-1}}
+\begin{itemize}
+\item
+  Categorical outcome variables
+\item
+  Predictors can be metric or categorical
+\item
+  Assumptions
+\end{itemize}
 
-Here goes some texts.
+\hypertarget{formal-1}{%
+\section{Formal}\label{formal-1}}
 
-\hypertarget{assumptions-short-1}{%
-\section{Assumptions (short)}\label{assumptions-short-1}}
+\hypertarget{regression-formula-1}{%
+\section{Regression Formula}\label{regression-formula-1}}
 
-Here goes some texts.
+\begin{itemize}
+\tightlist
+\item
+  Logistic Regression
 
-\#\#Interpretation of results
-Here goes some texts.
+  \begin{itemize}
+  \tightlist
+  \item
+    show logistic function (shape)
+  \item
+    Link function
+  \item
+    show intercept + beta graphically
+  \item
+    How to get the coefficients
 
-\hypertarget{mediation-2}{%
-\section{Mediation}\label{mediation-2}}
+    \begin{itemize}
+    \tightlist
+    \item
+      super short: ML (graphically not how to solve); maybe leave out
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
 
-Maybe theory into DAG session and example into application?
+\hypertarget{interpretation-of-results-1}{%
+\section{Interpretation of results}\label{interpretation-of-results-1}}
 
-\hypertarget{multiple-outcomes-1}{%
-\section{Multiple outcomes}\label{multiple-outcomes-1}}
+\begin{itemize}
+\tightlist
+\item
+  Show example from WVS data (without the R code)
+\end{itemize}
 
-Here goes some texts.
+\hypertarget{maybes-2}{%
+\section{Maybes}\label{maybes-2}}
 
-\hypertarget{multinomial}{%
-\section{Multinomial}\label{multinomial}}
+\begin{itemize}
+\tightlist
+\item
+  Mediation
+\item
+  maybe to hard to do correctly
+\item
+  khb package available?
+\item
+  Interactions
+
+  \begin{itemize}
+  \tightlist
+  \item
+    similar problem to above
+  \end{itemize}
+\item
+  Multiple outcomes
+\item
+  maybe leave out
+\item
+  Multinomial logistic regression
+\end{itemize}
 
 \hypertarget{log-a}{%
 \chapter{Logistic Regression - Applied}\label{log-a}}
 
-\hypertarget{incl.-short-theory-and-dag-1}{%
-\section{Incl. Short Theory and DAG}\label{incl.-short-theory-and-dag-1}}
+\hypertarget{example-research-question-1}{%
+\section{Example research question}\label{example-research-question-1}}
 
-Here goes some texts.
+\begin{itemize}
+\tightlist
+\item
+  Short theory
+
+  \begin{itemize}
+  \tightlist
+  \item
+    DAG from this
+
+    \begin{itemize}
+    \tightlist
+    \item
+      What do we have to control for to identify effect of interest?
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{application-with-wvs-data-1}{%
-\subsection{Application with WVS data}\label{application-with-wvs-data-1}}
+\section{Application with WVS data}\label{application-with-wvs-data-1}}
 
-Here goes some texts.
+\hypertarget{r-code-1}{%
+\section{R Code}\label{r-code-1}}
 
-\hypertarget{interpreation-of-regression-tables-in-practice-1}{%
-\section{Interpreation of regression tables in practice}\label{interpreation-of-regression-tables-in-practice-1}}
+\begin{itemize}
+\tightlist
+\item
+  glm()
 
-Here goes some texts.
+  \begin{itemize}
+  \tightlist
+  \item
+    family and link
+  \end{itemize}
+\end{itemize}
 
-\hypertarget{mediation-3}{%
-\section{Mediation}\label{mediation-3}}
+\hypertarget{interpretation-of-regression-table-in-practice-1}{%
+\section{Interpretation of regression table in practice}\label{interpretation-of-regression-table-in-practice-1}}
 
-Here goes some texts.
+\begin{itemize}
+\tightlist
+\item
+  What are Logits?
+\item
+  Maybe: Odds Ratios
+\end{itemize}
 
-\hypertarget{total-and-direct-effect-1}{%
-\subsection{Total and Direct effect}\label{total-and-direct-effect-1}}
+\hypertarget{regression-diagnostics-relatively-short-1}{%
+\section{Regression Diagnostics (relatively short?)}\label{regression-diagnostics-relatively-short-1}}
 
-Here goes some texts.
+\hypertarget{mediation-1}{%
+\section{Mediation}\label{mediation-1}}
 
-\hypertarget{regressional-diagnostics-1}{%
-\section{Regressional Diagnostics}\label{regressional-diagnostics-1}}
+\begin{itemize}
+\tightlist
+\item
+  total + direct effect
 
-(Maybe)
+  \begin{itemize}
+  \tightlist
+  \item
+    use DAGs again
+  \item
+    apply with glm()
+  \item
+    Interpret results
+  \end{itemize}
+\item
+  But maybe leave out completely (see session 7)
+\end{itemize}
+
+\hypertarget{maybes-3}{%
+\section{Maybes}\label{maybes-3}}
+
+\begin{itemize}
+\tightlist
+\item
+  Interactions
+
+  \begin{itemize}
+  \tightlist
+  \item
+    In practice if introduced the week before
+  \item
+    Maybe also introduce and apply here
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{log-e}{%
 \chapter{Logistic Regression - Exercises}\label{log-e}}

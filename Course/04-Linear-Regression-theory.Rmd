@@ -1,6 +1,31 @@
-# Linear Regression - Theory {#lin-t}
+# Linear Regression & DAGS - Theory {#lin-t}
 
 ## Introduction
+
+<<<<<<< Updated upstream
+## What is Linear Regression
+
+## When and for what can it be used?
+
+* Metric outcome variables
+* Predictors can be metric or categorical
+
+* Assumptions
+
+## Formal
+
+## Regression Formula
+
+* Simple Linear Regression
+  * show intercept + beta graphically
+  * How to get the coefficients
+    * super short: OLS (graphically not how to solve); maybe leave out
+* Multiple Linear Regression
+  * maybe also show graphically for 2 x (plane)
+
+
+
+=======
 
 ## What is Linear Regression
 
@@ -24,6 +49,7 @@
 
 
 
+>>>>>>> Stashed changes
 ## Interpretation of results
 
 * Show example from WVS data (without the R code)
@@ -37,4 +63,9 @@
   * maybe push it all into next session
   * or leave out completely
 *	Multiple outcomes
+<<<<<<< Updated upstream
   * maybe leave out
+=======
+  * maybe leave out
+  
+>>>>>>> Stashed changes
