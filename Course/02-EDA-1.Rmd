@@ -2,50 +2,340 @@
 Here goes some texts.
 
 
-## Load data
-Here goes some texts.
+## Objectives
+- Remember how to load and explore datasets in R
+- Conduct basic descriptive data analysis 
+- Undestand and visualize distribution of and relationship between variables
+
+## R functions covered this week
+- load()
+- read_excel()
+- str()
+- glimpse()
+- table()
+- summary()
+- mutate()
+- case_when()
+- ggplot()
+- corr ()
 
 
-## Introduce WVS
-Here goes some texts.
+## Why is EDA so important?
+
+  - every regression analyis is based on propoer EDA; EDA often used for "hypothesis generation. 
+  - help understand the data and issues in the data
+  - helps prepping data for regression
 
 
-## glimpse()
-Here goes some texts.
+## Importing data into R
+The first step of any data analysis is getting data into R. To get started, we first need to follow some preparatory steps
+
+1. In this course, we will use the World Values Survey (hyperlink). You need to first download the data and documentation and save them in a folder on your own computer. 
+2. Install R and Rstudio. If you don't already have R installed, here is a link to how it is done (hyperlink)
+3. In the folder which you will use for this class, create a new R project. You will see that all files appear in the buttom right window in R studio. 
+
+Now, Let's get started. 
+
+## Import data into R
+
+First, we need to install some packages.
+
+```{r install_packages}
+library("tidyverse")
+library("readxl")
+```
+
+# From CSV
+
+Now, let's import the WVS (Word Values Survey) 7 which you have downloaded and saved. The datafile is a CSV. To import data from CSV to R, we can use the read_delim() function. Make sure you name the correct sub-directory in case you saved the data a sub-folder of your project folder (which I have done).
+
+Note that you need to be careful to indicate the correct delimiter with CSV files otherwise R imports the data as just one row. The delimited splits the row up into cells and columns. Many times the delimiter is a "," other times it is a ";".
+
+```{r import_csv}
+wvs7 <- read_delim("DATA/World Values Survey/WVS-7/WVS_Cross-National_Wave_7_csv_v5_0.csv", delim = ",")
+```
+
+Great, the two dataframes should appear in your environment in the upper right side in R studio. 
+
+# from Stata (.dta)
+Some data online is only available in a Stata format. I have downloaded the WVF trend data as a Stata .dta file to show how to import it. We first need to load the "haven" package and then run read_dta(). This will take a while to load because the data is so big. Also, note that the main difference between Stata formats and R or csv data formats is that Stata handles labels of variables and values differently. 
 
 
-## skim()
-Here goes some texts.
+```{r import_stata}
+library(haven)
+wvs_trend <- read_dta("DATA/World Values Survey/WVS_EVS_trend/F00011410_WVS_Trend_1981_2022_stata_v3_0/WVS_trends_3_0.dta")
+```
+
+Let's take a quick look at these trend dataframe using str() funtion. The trend dataframe is the one we will be working with most. The str() function shows the number of rows (observations) and columns (variables). It also provides information on the name of each column, its type and an example of some of the values in each column.
+
+```{r firstlook}
+str(wvs_trend)
+```
+
+When you run the above, you notice that the dataframe is huge (~440.000 rows; 728 columns). Let's reduce them and save them in an R data format. This will make it quicker to load them next time we start a new session.
+
+## Change dataset
+
+We can use the select() function to kick out columns and the filter() function to kick out rows. First, we need to look at the codebook and the questionnaire to understand the what each variable refers to. 
+
+When using the select function, we will also rename the variables to make them more intuitive.
+
+Let's filter all years between 2012-2022. 
+
+Afterwards, we use the save() function to store the data as a .Rdata file and the write_excel() function to store the reduced dataset. This way we can simply load that one next time and save time.
+
+```{r select}
+wvs_trend_small <- wvs_trend_small %>%
+        select(
+              wave = S002,
+              year = S020,
+              country = S009,
+              sex = X001,
+              age = X003,
+              marital_status = X007,
+              children_num = X011,
+              education = X025,
+              employment_status = X028,
+              #occupation_isei = X036B,
+              urban = X050C,
+              important_family = A001,	
+              important_friends = A002,	
+              important_leisure = A003,	
+              important_politics = A004,
+              important_work = A005, 
+              important_religion = A006,	
+              life_satisfaction = A170) %>%
+  filter(
+    year>=2012
+  )
+
+save(wvs_trend_small, file ="DATA/World Values Survey/wvs_small.RData")
+load("DATA/World Values Survey/wvs_small.RData")
+
+```
+
+Last, we erase the other dataframes from our environment. 
+
+```{r}
+rm(wvs_trend, wvs7)
+```
 
 
-## Types of Variables/ Skalen
-Here goes some texts.
+## change variables
+
+-> more text here on important to check which type the variba
+
+```{r recode}
+table(wvs_trend_small$education)
+
+wvs_trend_small <- wvs_trend_small %>%
+  mutate(
+    edu_3 = 
+      case_when(
+        education <0 ~ NA_character_,
+        education %in% c(1,2,3) ~ "low",
+        education %in% c(2,5,6) ~ "middle",
+        education %in% c(7,8) ~ "high"
+      )
+  )
+
+```
+
+## combine with other data
+
+Let's get country level information, convert the name of the country into the standardized ISO2 codes and then merge them into our dataframe for every year and country 
+
+```{r, mergestuff}
+#install.packages("wbstats")
+library(wbstats)
+
+# define indicators
+my_indicators = c("pop" = "SP.POP.TOTL",
+                  "gdp" = "NY.GDP.PCAP.CD")
+
+# load data
+wb_data <- wb_data(my_indicators, start_date = 2012, end_date = 2022) %>%  mutate(year = date)
+
+wvs_trend_small <- wvs_trend_small %>%
+  mutate(iso2c = country)
 
 
-## Univaraite statistics (means, SDs, min, max)
-Here goes some texts.
+
+data <- merge(wvs_trend_small, wb_data, by = c("year", "iso2c"), all.x = T)
+
+save(data, file ="DATA/World Values Survey/data.RData")
+load("DATA/World Values Survey/data.RData")
+table(data$important_leisure)
+
+```
+
+Now, let's explore some packages which help us to explore the dataframe as a whole.
+Let's start with the DataExplorer package.
+
+```{r}
+#install.packages("DataExplorer")
+library(DataExplorer)
+
+# overview of types of variables and missingness
+introduce(data)
+
+# plots the info from above
+plot_intro(data)
+
+#plots percentages missing across variables
+plot_missing(data)
+
+# plots frequencies across variables
+plot_bar(data)
+```
+
+Now, let's try gtSummary for summary tables
+
+```{r}
+library(gtsummary)
+
+data %>% select(-contains("country"), -contains("iso")) %>% tbl_summary()
+
+```
+
+From looking at the summary, we see that some variables are not coded directly,
+or that they are in a format (character, numerical, factor) which we don't want.
+We need to do some recoding. 
+
+```{r}
+
+# set all negative values to NA
+data <- data %>%
+  mutate(across(everything(), function(x){replace(x, which(x<0), NA)}))
+
+data <- data %>%
+  mutate(
+    across(contains("important"), as.numeric))
+
+str(data)
 
 
-## ggplot
-Here goes some texts.
+data %>% select(-contains("country"), -contains("iso")) %>%
+  tbl_summary(
+    statistic = all_continuous() ~ c("{mean} ({min}, {max})"),
+    #type = all_continuous() ~ "continuous2",
+    missing= "no",
+    by = sex
+  )
 
-### Histograms
-Here goes some texts.
+str(data)
+
+# remaining issue: the "imporant_" vars are not displayed as numeric
+
+```
+
+Now, let's look at a correlation matrix between all numeric 
+variables in the dataset.
+
+```{r}
+#install.packages("corrr")
+library("corrr")
+data %>% select(where(is.numeric)) %>%
+  na.omit() %>%
+  correlate()
+corrplot(M, method="circle")
+
+## does not work yet
+
+```
 
 
-### Boxplots
-Here goes some texts.
+
+Remember that that you can also create summaries of dataframes manually. You simply select the variables you want to look at in a separate dataframe and then use the group_by() function in combination with the summarize() function to get frequencies for categorical variables or means/ medians etc. by different groupings. 
+```{r}
+
+# example with group_by and summarize here
+
+```
+
+### explore individual variables
+
+Now that we havea feeling for the whole dataframe. Let's zoom into specific variables of interest. 
+
+Let's assume we are really interested in how much people value "leisure time". The variable is called "important_leisure" and is coded from 1= "not at all" to 4= "very important".
+
+Let's see how it is distributed. 
+
+```{r}
+# to see stats in the console
+class(data$important_leisure)
+table(data$important_leisure)
+mean(data$important_leisure, na.rm = T)
+summary(data$important_leisure)
+
+# to visualize
+
+# frequencies
+data %>% ggplot() +
+  geom_bar(aes(y=important_leisure)) 
+
+# box plot
+data %>% ggplot() +
+  geom_boxplot(aes(y=important_leisure)) 
+  
+```
+
+Now let's see how the much people varies by sex, age and country. 
+
+```{r}
+# as tables
+library(janitor)
+data %>% tabyl(important_leisure, sex)
+data %>% tabyl(important_leisure, sex) %>%
+  adorn_percentages() %>%
+  adorn_pct_formatting(digits = 1)
+
+data %>% group_by(sex) %>%
+  summarise(mean = mean(important_leisure, na.rm=T))
+
+data %>% group_by(country.y) %>%
+  summarise(mean = mean(important_leisure, na.rm=T))
+
+# histograms
+
+#as plots
+data %>% group_by(country.y) %>%
+  summarise(mean = mean(important_leisure, na.rm=T)) %>%
+  ggplot() +
+  geom_bar(aes(x=reorder(country.y, mean), y=mean), stat="identity")
+
+data %>% ggplot() +
+  geom_point(aes(x=age, y=important_leisure))
+
+# not working as scatterplot
+class(data$age)
+cor(data$age, data$important_leisure,
+    use = "complete.obs",
+    method= c("pearson"))
 
 
-### Bar graphs
-Here goes some texts.
+```
 
 
-### Scatterplots
-Here goes some texts.
+Also do: 
+- richer country, less leisure time?
+- look at variation in GDP within continents
+- correlation between 
 
-## gtsummary
-Here goes some texts.
 
-### Kreuztabellen
-Here goes some texts.
+Next steps:
+- write up motivation part
+- should I include "pivot_wider"; "pivot_longer"?
+- more plots? More breakdowns?
+
+  
+  
+Exercises: 
+- have students find another interesting 1-2 variables and have them explore them. 
+- word questions
+
+
+
+
+
+

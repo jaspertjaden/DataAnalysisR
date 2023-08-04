@@ -9,3 +9,42 @@ All chapter sections start with a second-level (`##`) or higher heading followed
 ### An unnumbered section {-}
 
 Chapters and sections are numbered by default. To un-number a heading, add a `{.unnumbered}` or the shorter `{-}` at the end of the heading, like in this section.
+
+# Introduction
+
+Welcome to this course! In this course, you will learn how to analyse data using multiple regression in R. The course is aimed at undergraduate students who have completed the course "Intro to R for Social Scientists. 
+
+Why should I take this course?
+- What is regression?
+- WHat do you use it for?
+
+
+Objectives: 
+-
+-
+
+What is not covered:
+
+
+Prerequisites:
+- Basic knowledge of how to use R (data cleaning, management etc.) (include hyperlink to "Intro to R course")
+- Descriptive statistics
+- Data visualization using ggplot()
+
+Structure:
+
+1.	Intro to seminar
+2.	Exploratory data anaylsis (EDA) - I (ggpot; gtsummary; x)
+3.	EDA - II  -> in class exercise
+4.	Linear Regression - theory
+5.	Linear Regression – application
+6.	Linear Regression - exercise
+7.	Logistic Regression - theory
+8.	Logistic Regression - Application
+9.	Logistic Regression - Exercise
+10.	Prediction/ Margins – theory and application
+11.	Prediction/ Margins – exercise 
+12.	Reporting/ Visualization
+13.	Discussion of ideas for term papers
+14.	Outlook
+
