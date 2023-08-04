@@ -1,6 +1,6 @@
 --- 
 title: "Data Analysis with R for Social Scientists"
-author: "Jasper Dag Tjaden"
+author: "Jakob Tures & Jasper Tjaden"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
