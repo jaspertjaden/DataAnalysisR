@@ -8,12 +8,12 @@
 
 ## Application with WVS data
 
-## R Code
+### R Code
 
 * lm()
   * formula syntax
 
-## Interpretation of regression table in practice
+### Interpretation of regression table in practice
 
 ## Regression Diagnostics (relatively short?)
 
@@ -29,3 +29,8 @@
 * Interactions
   * In practice if introduced the week before
   * Maybe also introduce and apply here
+
+## Outlook
+
+* Alternative Packages
+* Packages that expand upon the ideas
