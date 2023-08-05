@@ -1,6 +1,10 @@
 # Session X - DAGs
 
 * Before Linear Regression
+* 2 main reasons to model
+  * understand causal effects -> DAGs
+  * predict -> later
+
 
 # Causality
 
