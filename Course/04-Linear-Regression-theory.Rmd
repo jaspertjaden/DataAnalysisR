@@ -11,22 +11,126 @@
 
 * Assumptions
 
-## Formal
+
+## Example data
+
+Let us imagine that we held a small survey and asked 200 imaginary students some
+questions on how they approached writing a seminar paper. In particular we asked
+them how much time they spent working on the paper, if they have attended
+(almost) all seminar sessions, how closely they worked with their lecturers in
+preparing the paper - discerning between "no contact", "e-mail contact" and "in
+person" - and what the mean grade for previous papers was. As these imaginary
+students have already turned in their papers, we also know the grades they
+achieved.
+
+Please note, that this is data on **imaginary** students, meaning we have
+simulated the data making some assumptions on how to achieve a good (or bad)
+grade in a paper. The assumptions we made do not necessarily reflect the way
+*you* write a good paper while still being based in our experience on what it
+takes to achieve a good grade. But remember, no real students were harmed in
+making up this exemple data.
+
+You can download the simulated data here: XXX INSERT LINK XXX
+
+
+``` {r simulate_grades_data, include = FALSE}
+library(tidyverse)
+
+set.seed(12345)
+
+grades <- tibble(
+  hours = rpois(200, 40),
+  previous_grades = rnorm(200, mean = 3, sd = 1),
+  attendance = as.logical(rbinom(n = 200, size = 1, prob = 0.75)),
+  contact = rep(c("No contact", "E-Mail", "In Person"), times = c(80, 50, 70)) %>% 
+    as_factor(),
+  contact_num = case_when(
+    contact == "No contact" ~ -0.2,
+    contact == "E-Mail" ~ 0.2,
+    contact == "In Person" ~ 0.7)
+) %>%
+  mutate(previous_grades = case_when(
+           previous_grades < 1 ~ 1.0,
+           previous_grades > 5 ~ 5.0,
+           TRUE ~ previous_grades) %>% 
+           round(digits = 1),
+         grade = previous_grades * (0.9 + rnorm(200, 0, 0.1)) -
+           (hours - 40) * (0.05 + rnorm(200, 0, 0.03)) -
+           attendance * (0.3 + rnorm(200, 0, 0.12)) -
+           contact_num * rnorm(200, 1, 0.07) -
+           (hours - 40) * (contact_num) * (0.05 + rnorm(200, 0, 0.002)) +
+           0.75 - rnorm(200, 0, 0.05),
+         grade = case_when(
+           grade < 1 ~ 1.0,
+           grade > 5 ~ 5.0,
+           TRUE ~ grade
+         ) %>% 
+           round(digits = 1)) %>% 
+  select(-contact_num) %>% 
+  relocate(grade) %>% 
+  arrange(grade) %>% 
+  mutate(hours = hours - mean(hours))
+
+save(grades, file = "grades.RData")  
+```
+
+So let us `load()` the file, as well as the `tidyverse` package.
+
+``` {r load_grades_data}
+library(tidyverse)
+
+load("grades.RData")
+```
+
+The file includes one tibble
+
+
+
+## Simple Linear Regression
 
 ### Regression Formula
+
+
+We are especially
+interested in how much time they spent working on the paper as it is easy to
+imagine, that the time spent has a direct effect on the grading of the paper. 
+
+
+``` {r lin_reg_plot_1}
+lm(grade ~ hours, grades) %>% summary()
+lm(grade ~ hours + previous_grades, grades) %>% summary()
+lm(grade ~ hours + previous_grades + attendance, grades) %>% summary()
+lm(grade ~ hours + previous_grades + attendance + contact, grades) %>% summary()
+lm(grade ~ hours + previous_grades + attendance + contact + hours * contact, grades) %>% summary()
+
+ggplot(data = grades, aes(x = hours, y = grade, colour = contact)) +
+  geom_point(alpha = 0.5) +
+  # geom_abline(slope = 11.7, intercept = 31.8, colour = "blue") +
+  # scale_x_continuous(limits = c(0, 150),
+  #                    breaks = c(seq(0, 150, 25)),
+  #                    expand = c(0, 0)) +
+  # scale_y_continuous(limits = c(0, 2500),
+  #                    breaks = c(seq(0, 2500, 500)),
+  #                    expand = c(0, 0)) +
+  #labs(title = "Linear regression price ~ size",
+  #     x = "Size", y = "Price") +
+  theme_classic()
+```
+$$y = \beta_0 + \beta_1*x_1 + \epsilon$$
 
 * Simple Linear Regression
   * show intercept + beta graphically
   * How to get the coefficients
     * super short: OLS (graphically not how to solve); maybe leave out
-* Multiple Linear Regression
-  * maybe also show graphically for 2 x (plane)
+  * Interpretation of results
+    
+## Multiple Linear Regression
 
+* maybe also show graphically for 2 x (plane)
 
-## Interpretation of results
-
-* Show example from WVS data (without the R code)
-
+* Dummy Variable
+  * Maybe also Categorical?
+* Interaction?
 
 ## Maybes
 
