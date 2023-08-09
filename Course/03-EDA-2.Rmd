@@ -1,11 +1,112 @@
-# Exloratory Data Analysis - II {#eda-2}
-Here goes some texts.
+# Exploratory Data Analysis - II {#eda-2}
+This week we will try to apply our last weeks knowledge into analysis.
 
 ## Markdown Introduction
-Here goes some texts.
+R Markdown is a powerful tool that allows you to create dynamic documents, presentations, and reports using R code. It combines the core syntax of markdown (an easy-to-write plain text format) with embedded R code chunks that are run when the document is rendered¹.
+
+R Markdown documents are fully reproducible, meaning that anyone can re-run the code and generate the same results. This makes it easy to share your work with others and ensure that your results are accurate and reliable.
+
+One of the great things about R Markdown is its flexibility. You can use it to create a wide variety of output formats, including HTML, PDF, and Microsoft Word documents. You can even create interactive documents with Shiny components¹.
+
+To get started with R Markdown, you'll need to install the `rmarkdown` package from CRAN. This can be done by running the command `install.packages("rmarkdown")` in the R console². Once you have the package installed, you can create a new R Markdown document in RStudio by going to `File > New File > R Markdown`.
+
+An R Markdown document is made up of text written in markdown syntax and chunks of R code. When you render the document, the R code is executed and its output (such as plots or tables) is inserted into the final document¹.
+
+Here's an example of what an R Markdown document might look like:
+
+```
+---
+title: "My R Markdown Document"
+output: html_document
+---
+
+This is some text written in markdown syntax.
+
+Here's a chunk of R code that generates a plot:
+
+```{r}
+plot(cars)
+```
+
+And here's another chunk of R code that generates a summary of a data frame:
+
+```{r}
+summary(iris)
+```
+```
+
+When you render this document, the text and code will be combined to create an HTML file that includes both the markdown text and the output of the R code chunks.
+
+You can easily add images to an R Markdown document using the standard markdown syntax for images. The basic syntax for adding an image is `![Alt text](image_url)`, where `Alt text` is the text that will be displayed if the image cannot be loaded, and `image_url` is the URL of the image you want to include.
+
+For example, to add an image of a cute puppy to your R Markdown document, you could use the following code:
+
+```
+![A cute puppy](https://unsplash.com/photos/k4vhuUHv08o)
+```
+
+This would insert an image of a puppy into your document, with the alt text "A cute puppy".
+
+You can also specify additional options for the image, such as its size and alignment, using standard markdown syntax. For example, to resize the image and center it on the page, you could use the following code:
+
+```
+![A cute puppy](https://unsplash.com/photos/k4vhuUHv08o){width=50% align=center}
+```
+
+This would insert a resized image of a puppy into your document, centered on the page.
+
+I hope this helps you understand how to add images to an R Markdown document! Let me know if you have any further questions 😊
+
+R Markdown is a powerful tool that offers many advantages for data analysis and reporting. Some of the key benefits of using R Markdown include:
+
+1. **Reproducibility**: R Markdown documents are fully reproducible, meaning that anyone can re-run the code and generate the same results. This makes it easy to share your work with others and ensure that your results are accurate and reliable.
+
+2. **Flexibility**: R Markdown is incredibly flexible and can be used to create a wide variety of output formats, including HTML, PDF, and Microsoft Word documents. You can even create interactive documents with Shiny components.
+
+3. **Ease of use**: R Markdown is easy to use, even for people with little or no programming experience. The core syntax of markdown is simple and intuitive, and the ability to embed R code directly into the document makes it easy to include dynamic content.
+
+4. **Integration with R**: R Markdown is tightly integrated with R, making it easy to access and use the full power of the R language for data analysis and visualization.
+
+5. **Collaboration**: R Markdown makes it easy to collaborate with others on data analysis projects. You can share your code and results with others, and they can easily reproduce your work and build on it.
+
+Overall, R Markdown is a powerful tool that offers many advantages for data analysis and reporting. It's a great way to create dynamic, reproducible documents that are easy to share and collaborate on 😊
+
+I hope this introduction helps you understand what R Markdown is and how it can be used. If you want to learn more, there are many great resources available online, including the [R Markdown website](^1^) 😊
+
+
+
 
 ## Applying EDA(WVS/own data)
-Here goes some texts.
 
+### Exercise - 1
+
+1. Write a script to load an R data file using the `load()` function. What does this function do and what is the format of the data file that it can read?
+
+2. Use the `read_excel()` function to read data from an Excel file. What arguments does this function take and what is the format of the data that it returns?
+
+3. Use the `str()` and `glimpse()` functions to inspect the structure of a data frame. What is the difference between these two functions and when would you use one over the other?
+
+4. Use the `table()` function to create a frequency table of a categorical variable in a data frame. How can you use this function to summarize data?
+
+5. Use the `summary()` function to generate summary statistics for a numeric variable in a data frame. What statistics does this function return by default and how can you customize its output?
+
+6. Use the `mutate()` function to create a new variable in a data frame based on existing variables. Provide an example of how you would use this function.
+
+7. Use the `case_when()` function to recode a categorical variable in a data frame based on certain conditions. Provide an example of how you would use this function.
+
+8. Use the `ggplot()` function to create a scatter plot of two numeric variables in a data frame. What arguments does this function take and how can you customize the appearance of the plot?
+
+9. Use the `corr()` function to calculate the correlation between two numeric variables in a data frame. What is correlation and how is it calculated?
+
+**This is a draft of questions, dataframe and the variables will be specified later**
+
+Source:
+
+(1) Introduction to R Markdown - RStudio. https://rmarkdown.rstudio.com/articles_intro.html.
+(2) Introduction - R Markdown. https://rmarkdown.rstudio.com/lesson-1.html.
+(3) Introduction to R Markdown - RStudio. https://rmarkdown.rstudio.com/articles_intro.html.
+(4) https://intro2r.com/what-is-r-markdown.html#:~:text=R%20markdown%20is%20a%20simple%20and%20easy%20to,chapter%20or%20a%20web%20page%20like%20this%20one%29.. https://intro2r.com/what-is-r-markdown.html.
+(5) Introduction to R Markdown - GC Digital Fellows. https://digitalfellows.commons.gc.cuny.edu/2022/05/18/introduction-to-r-markdown/.
+(6) R Markdown: The Definitive Guide - Home | Bookdown. https://bookdown.org/yihui/rmarkdown/.
 
 

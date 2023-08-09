@@ -45,7 +45,7 @@ library("tidyverse")
 library("readxl")
 ```
 
-# From CSV
+### From CSV
 
 Now, let's import the WVS (Word Values Survey) 7 which you have downloaded and saved. The datafile is a CSV. To import data from CSV to R, we can use the read_delim() function. Make sure you name the correct sub-directory in case you saved the data a sub-folder of your project folder (which I have done).
 
@@ -57,7 +57,7 @@ wvs7 <- read_delim("DATA/World Values Survey/WVS-7/WVS_Cross-National_Wave_7_csv
 
 Great, the two dataframes should appear in your environment in the upper right side in R studio. 
 
-# from Stata (.dta)
+### from Stata (.dta)
 Some data online is only available in a Stata format. I have downloaded the WVF trend data as a Stata .dta file to show how to import it. We first need to load the "haven" package and then run read_dta(). This will take a while to load because the data is so big. Also, note that the main difference between Stata formats and R or csv data formats is that Stata handles labels of variables and values differently. 
 
 

@@ -15,7 +15,7 @@ link-citations: yes
 github-repo: jaspertjaden/DataAnalysisR
 ---
 
-# Intro {-}
+# Intro 
 
 This course offers an accessible and easy introduction to one of the fastest growing statistical packages used in social science and data science more generally.
 
