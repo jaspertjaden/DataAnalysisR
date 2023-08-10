@@ -1,35 +1,61 @@
 # Linear Regression - Theory {#lin-t}
 
-## Introduction
+## What is Linear Regression
 
-### What is Linear Regression
+When we use statistical modelling in social sciences there are two main
+approaches.
+The more classical approach is to use modelling for estimating the effect that
+one or several independent variables have on one dependent variable. Maybe we 
+are interested in knowing if a higher income has an effect on life satisfaction 
+and if yes, what the direction and magnitude of this effect is. Does more money
+actually make you happier?
 
-### When and for what can it be used?
+The other and more recent approach is to use modelling for making predictions
+with high accuracy. Based on the relationships between many independent 
+variables and one dependent variable, we try to predict the latter for actual
+or hypothetical cases and their individual values for the independent variables.
+This approach lies at the heart of *machine learning* and drives many of the
+technologies we use on a daily basis from E-Mail spam filters to ChatGPT.
 
-When we model
-  do we want to explain?
-  do we want to predict?
+Linear regression is one of the many available modelling techniques and it can
+serve both approaches lined out above. In this session we will focus on using 
+linear regression for estimating an effect of interest but we will return to
+prediction at a later point in this course.
 
-Linear Regression can do both
-Here we want to explain
-predict later
+But how do we know if we should choose linear regression for a specific task?
+This is not easy to answer as there are many alternatives and even variations of
+linear regression which may be better suited for a specific empirical problem.
+As this is an introduction to modelling and time is of the essence we opted to
+reduce the options and focus on two kind of models over the next weeks. Linear
+regression and logistic regression. Both are comparably easy to understand and
+use. Also, if we understand both of these techniques, we are in a good position
+to build upon our knowledge and learn all of those more complex and specific
+models that we will encounter in textbooks and scientific papers.
 
-* Metric outcome variables
-* Predictors can be metric or categorical
+With the pool of options trimmed down to two, the question remains unanswered.
+Should I use linear or logistic regression for my task? But now the answer is
+relatively straightforward. What is the type of our dependent variable? Is it
+metric? Then we use linear regression. Is it binary or categorical? Then we use
+logistic regression. Linear regression will be the focus of this and the next
+weeks and then we will turn to logistic regression.
 
-* Assumptions -> or into diagnostics
+Now let us dive in and learn what linear regression is all about.
 
+## Examplary research question & data
 
-## Example data
+Let us imagine that we are interested in a research question that asks what
+makes a good grade in a seminar paper. In particular we are interested in the
+effect that the hours a student invests in working on it has on the grade. Based
+on some theoretical considerations, and maybe some idealistic views, we derive
+our main hypotheses that putting in more hours will result in a better grade.
 
-Let us imagine that we held a small survey and asked 200 imaginary students some
-questions on how they approached writing a seminar paper. In particular we asked
-them how much time they spent working on the paper, if they have attended
-(almost) all seminar sessions, how closely they worked with their lecturers in
-preparing the paper - discerning between "no contact", "e-mail contact" and "in
-person" - and what the mean grade for previous papers was. As these imaginary
-students have already turned in their papers, we also know the grades they
-achieved.
+Now we also - hypothetically - held a small survey and asked 200 imaginary
+students some questions on how they approached writing a seminar paper. In
+particular we asked them how much time they spent working on the paper, if they
+have attended (almost) all seminar sessions, how closely they worked with their
+lecturers in preparing the paper and what the mean grade for previous papers
+was. As these imaginary students have already turned in their papers, we also
+know the grades they achieved.
 
 Please note, that this is data on **imaginary** students, meaning we have
 simulated the data making some assumptions on how to achieve a good (or bad)
@@ -37,9 +63,6 @@ grade in a paper. The assumptions we made do not necessarily reflect the way
 *you* write a good paper while still being based in our experience on what it
 takes to achieve a good grade. But remember, no real students were harmed in
 making up this example data.
-
-You can download the simulated data here: XXX INSERT LINK XXX
-
 
 ``` {r simulate_grades_data, include = FALSE}
 library(tidyverse)
@@ -66,7 +89,7 @@ grades <- tibble(
            (hours - 40) * (0.05 + rnorm(200, 0, 0.03)) -
            attendance * (0.3 + rnorm(200, 0, 0.12)) -
            contact_num * rnorm(200, 1, 0.07) -
-           (hours - 40) * (contact_num) * (0.05 + rnorm(200, 0, 0.002)) +
+           (hours - 40) * (contact_num) * (0.08 + rnorm(200, 0, 0.002)) +
            0.75 - rnorm(200, 0, 0.05),
          grade = case_when(
            grade < 1 ~ 1.0,
@@ -76,25 +99,19 @@ grades <- tibble(
            round(digits = 1)) %>% 
   select(-contact_num) %>% 
   relocate(grade) %>% 
-  arrange(grade)
+  arrange(grade) %>% 
+  mutate(previous_grades_centered = previous_grades - mean(previous_grades)) %>% 
+  mutate(hours_centered = hours - mean(hours))
+  
 
 save(grades, file = "grades.RData")  
 ```
 
-So let us `load()` the file, as well as the `tidyverse` package.
 
-``` {r load_grades_data}
-library(tidyverse)
-
-load("grades.RData")
-```
-
-The file includes one tibble named `grades`. To get an idea of the contents, we
-use `skim` from the `skimr` package to get some basic descriptive measures for
-the variables included.
+Let us have a first look on the data:
 XXX ALIGN WITH EDA XXX
 
-``` {r grades_skim}
+``` {r grades_skim, echo = FALSE}
 library(skimr)
 skim(grades)
 ```
@@ -107,7 +124,7 @@ linear regression easier and more straightforward. The variable
 `previous_grades` is set up in the same way and represents the mean of the
 grades the student received up to this point `hours` represents the time a
 student spent on writing the paper, ranging from $23 - 57$ hours, with a mean of
-$~40$. Besides these metric variables, the data set also contains two 
+about $40$. Besides these metric variables, the data set also contains two 
 categorical measures. `attendance` is a *dummy variable*, meaning it can only
 have the values $1$ or $0$ or `TRUE` and `FALSE` in this case, as it is saved as
 a logical variable. `TRUE` represents that a student attended almost all seminar
@@ -119,10 +136,13 @@ before starting the writing process. Besides `No contact` the students could
 have had `E-Mail` contact to state ther research question and get some short
 written feedback or meet the lecturer `In Person` to achieve a deeper discussion
 of the question and laid out plan for writing the paper.
+The two additional variables are versions of `previous_grades` and `hours` that
+are centered on their respective means. They will come into play at a later 
+point in this session.
 
 Let's have a look at some observations.
 
-``` {r grades_looksie}
+``` {r grades_looksie, echo = FALSE}
 grades %>% 
   head(n = 10)
 ```
@@ -135,12 +155,12 @@ their grade.
 
 So what makes a bad grade?
 
-``` {r grades_bad_looksie}
+``` {r grades_bad_looksie, echo = FALSE}
 grades %>% 
   tail(n = 10)
 ```
 
-Here the picture seems less clear. While most stduents did not put in as many
+Here the picture seems less clear. While most students did not put in as many
 hours, some did and still failed to pass. Half of the students that received a
 $5.0$ regularly attended and most at least had E-Mail contact before writing
 their paper. What seems to be more consistent though is that the mean of the
@@ -149,7 +169,7 @@ previous grades is rather low.
 So what do we know now? Does a good or bad track record in grades predict all
 future grades? This seems not only unrealistic but also a kind of sad take home
 message. To get a better understanding on which of the potential influential
-variables had an effect on the final grade and what the megnitude and direction
+variables had an effect on the final grade and what the magnitude and direction
 of these effects was, we now turn to linear regression.
 
 ## Simple Linear Regression
@@ -447,7 +467,7 @@ $b$ instead of $\beta$. This also alludes to the fact that we are now
 computing an estimate for the coefficients based on the data available and not
 the real and unknown value of $\beta$.
 
-XXX MAYBE ALSO SOMECUTTING REQUIRED XXX
+XXX MAYBE ALSO SOME CUTTING REQUIRED XXX
 
 XXX include "on average" XXX
 
@@ -463,23 +483,24 @@ lm(grade ~ hours, grades) %>%
   summary()
 ```
 
-This is the ouptut from a simple linear regression for `grade` on `hours` from
+This is the output from a simple linear regression for `grade` on `hours` from
 R. How to do this in practice and what the first to lines mean will be the topic
 of the next sesion. For now we will focus on the coefficient block and
 introduce the additional elements of the output on by one during this session.
 
 The column `Estimate` gives us the values for $\beta_0$ and $\beta_1$ discussed
-above. The estimated coefficient for `hours` tells us that out intution was
+above. The estimated coefficient for `hours` tells us that out intuition was
 right, the more hours a student invests in writing a paper, the better the grade
 will be. In this case every additional hour spent on working will decrease the
-value of the grade by $0.048$ points. In keeping with the example of a 40 hour
-workload this leads to a decrease of $-0.04825 * 40 = -1.93$ points. Adding the
-intercept from the same column, the estimated grade after working 40 hours is
-$4.9156 - 0.04825 * 40 = 2.9856$. So on average a student from our simulated
-data set will pass after 40 hours of work but will not get a great grade.
+value of the grade by $-0.05236$ points. In keeping with the example of a 40
+hour workload this leads to a decrease of $-0.05236 * 40 = -2.0944$ points.
+Adding the intercept from the same column, the estimated grade after working 40
+hours is $5.07912 -0.05236 * 40 = 2.98472$. So on average a student from our
+simulated data set will pass after 40 hours of work but will not get a great
+grade.
 Remember, this is the expected average value. This does not mean that some
 students will not get better or worse grades, or even fail to pass, after this
-amount of time investment.
+amount of time investment, as we hav seen in the plot.
 
 Now that we know the coefficients for the regression line with the best fit,
 i.e. the lowest error, we can again visualise the result.
@@ -488,7 +509,7 @@ i.e. the lowest error, we can again visualise the result.
 grades %>% 
   ggplot(aes(x = hours, y = grade)) +
   geom_point() +
-  geom_abline(slope = -0.04825, intercept = 4.9156, colour = "blue") +
+  geom_abline(slope = -0.05236, intercept = 5.07912, colour = "blue") +
   geom_hline(yintercept = 0) +
   geom_vline(xintercept = 0) +
   scale_y_continuous(breaks = 1:6, labels = c("1.0", "2.0", "3.0", "4.0", "5.0", "6.0"), limits = c(0, 6)) +
@@ -502,7 +523,7 @@ Now, what grade can a student expect, on average, if they invest exactly 0
 hours, i.e. do nothing and hand in a blank paper. We can look at the graph or to
 achieve a more precise result, calculate it.
 
-$$4.9156 - 0.04825 * 0 = 4.9156$$
+$$5.07912 -0.05236 * 0 = 5.07912$$
 
 As $x_{hours} = 0$ for this theoretical example, the estimated value $\hat{y}$
 or $y_{grade}$ is the same as the intercept $\beta_0$. This is what the
@@ -528,9 +549,6 @@ $x_i - \bar{x}$.
 We can now rerun the regression.
 
 ``` {r reg_grade_hours_centered, echo = FALSE}
-grades <- grades %>% 
-  mutate(hours_centered = hours - mean(hours))
-
 lm(grade ~ hours_centered, grades) %>%
   summary()
 ```
@@ -544,7 +562,7 @@ intercept. This will make more sense if we again plot the regression line.
 grades %>% 
   ggplot(aes(x = hours_centered, y = grade)) +
   geom_point() +
-  geom_abline(slope = -0.04825, intercept = 2.9695, colour = "blue") +
+  geom_abline(slope = -0.05236, intercept = 2.9675, colour = "blue") +
   geom_hline(yintercept = 0) +
   geom_vline(xintercept = 0) +
   scale_y_continuous(breaks = 1:6, labels = c("1.0", "2.0", "3.0", "4.0", "5.0", "6.0"), limits = c(0, 6)) +
@@ -557,9 +575,9 @@ grades %>%
 By centering the x-Variable on its mean we have changed its interpretation.
 A value of `hours = 0` now stands for investing as much time as is the mean
 of `hours` in the whole data set, which in this case is $40.33$ hours. Positive
-values indicate that a student worked $x$ hours more, negatives indicate $x$
+values indicate that a student worked $x$ hours more, negatives indicate $-x$
 hours less compared to the mean. In this way, we also moved the y-axis and thus
-changed the interpretation of the intercept. Its new value of $2.9695$ now
+changed the interpretation of the intercept. Its new value of $2.9675$ now
 indicates the estimate for a student who invests the mean value of `hours` in
 their work, i.e. $40.33$. We will use this version of the variable for the rest
 of the session.
@@ -597,78 +615,297 @@ previous grades will have been.
 
 How we can add additional variables in R code will again be a topic for the next
 session, but let us look at the results of a regression of `grade` on
-`hours_centered` and `previous_grades`.
+`hours_centered` and `previous_grades_centered`, the latter being centered on the
+mean previous grade of $2.935$.
 
 ``` {r reg_grade_hours_prev, echo = FALSE}
-lm(grade ~ hours_centered + previous_grades, grades) %>% summary()
+lm(grade ~ hours_centered + previous_grades_centered, grades) %>% summary()
 ```
 
-We can see, that the estimated coefficient for `previous_grades` is rather high
-and positive. Substantially the result indicates that an increase in the mean 
-value of previous grades by $1$ leads to an in increase of $0.92$ points in the 
-new grade. At the same time, the coefficient for `hours_centered` got mildly
-more negative and the intercept sunk substantially.
+As we added a new variable, we now see three coefficients.
+The intercept has not changed. It now indicates the estimated grade for a
+student who invests the mean amount of hours, $40.33$, and whose previous grades
+are exactly $2.935$.
+
+The coefficient for `hours_centered` got mildly more negative, still telling us
+that the value of `grade` gets lower, the more hours are invested in writing the
+paper. This coefficient now gives us the effect while *controlling* for the
+effect of `previous_grades_centered`. This is what multiple linear regression
+does, giving us the coefficients for our variables of interest while keeping all
+other independent variables at specific values. As we have centered the variable
+for previous grades, the coefficient for `hours centered` gives us the effect 
+when the previous grades were exactly at the mean of $2,935$.
+
+In the same way, the coefficient for `previous_grades_centered` gives us the 
+effect of previous grades when the invested hours are controlled for, in this
+case when the invested hours were exactly $40.33$. The coefficient is rather
+high and positive. This indicates that a student with a previous grade value
+that is $1$ above the mean, is estimated to receive a new grade that is $0.9$ 
+points above the intercept. This means, that the previous grade is a very strong
+predictor for the new grade.
 
 While plotting in more than two dimensions gets really hard, we can still
-calculate $\hat{y}$ for certain values of both independent variables. For a
-student who invests the mean of hours - `hours_centered = 0` - and whose mean of
-previous grades was $3.0$ we get the estimate for the new grade by calculating:
+calculate $\hat{y}$ for certain values of both independent variables.
+We already know the predicted grade for a student with mean values on both 
+independent variables, as this is the intercept. To make sure that we correct,
+we can calculate it again.
 
-$$\beta_0 + beta_{hours\_centered}*0 + \beta_{previous_grades}*3 = 0.282147 + 0.915623 * 3 = 3.029$$
+$$b_0 + b_{hours\_centered}*0 + b_{previous\_grades\_centered}*0 = 2.9675$$
 
-At the mean of invested hours, the estimate only depends on the intercept and
-the previous grade. Here the previous grade is such a strong predictor that the
-estimate for the new grade is basically the same.
+For this case we can see, that the previous grade actually is a strong
+predictor, as the previous and new grades are substantially the same.
 
-What if a student invests 10 hours more, compared to the mean?
+What if a student whose previous grades were $1$ above the mean, so just below
+$4.0$ but who decides to invest $10$ hours more than the mean for the new paper?
 
-$$0.282147 - 0.052492 * 10 + 0.915623 * 3 = 2.504$$
+$$2.9675 - 0.056543 * 10 + 0.904079 * 1 = 3.306149$$
 
-So the good message is, putting more hours still leads to better grades.
+So the good message is, while previous grades are a strong predictor, putting in
+more hours still leads to better grades.
 
 What if a really good student decides to rely on their skill and to work less
 this time?
 
-$$0.282147 - 0.052492 * -10 + 0.915623 * 1 = 1.723$$
+$$2.9675 - 0.056543 * -10 + 0.904079 * -2 = 1.724772$$
 
 While $1.7$ is still a very good grade, working 10 less hours than the mean of
-students still leads to a substantially worse estimate compared to the $1.0$ 
-mean of grades the student had before.
+students leads to a substantially worse estimate compared to the about $1.0$
+received in previous grades.
 
-* controlling for all vars
-* maybe talk about std. errors + p-values -> or next week
-* Introduce R^2 and adj here
 
-### Adding dummy-variables
+### Adding dummy variables
+
+Another variable that could be of interest in explaining the received grade,
+is if a student attended most of the seminar sessions.
+`attendance` holds this information in the form of a dummy variable. Dummies can
+only have two states. "Yes" or "No", "1" or "0" or in this case "`TRUE`" or 
+"`FALSE`".
+
+Let us add the variable to our model.
 
 ``` {r reg_grade_hours_prev_att, echo = FALSE}
-lm(grade ~ hours_centered + previous_grades + attendance, grades) %>% summary()
+lm(grade ~ hours_centered + previous_grades_centered + attendance, grades) %>% summary()
 ```
+
+This gives us a new line in the R Output holding an estimate for
+`attendanceTRUE`. What is meant by this? In contrast to the metric variables we 
+have uses in our model up to this point, a dummy variable - or binary variable -
+can only have two states. As we are using a logical variable here, it can only
+have the value `TRUE` - here indicating regular attendance - or `FALSE`. So what
+the output shows us, is the effect of attendance being `TRUE` compared to being
+`FALSE`. If a student did regularly attend the seminar, the estimated grade is
+$-0.248250$ lower compared to when they did not.
+
+We can observe what happens in the formula:
+
+$$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd} + b_{attendance} * x_{attendance}$$
+
+If you calculate with `TRUE` and `FALSE` in R, the values $1$ and $0$ are used
+respectively. So $x_{attendance}$ can either have the value $1$ for regular
+attendance or $0$ for not so regular attendance.
+
+If a student did regularly attend, the coefficient $b_{attendance} becomes a
+part of the estimate $\hat{y}$:
+
+$$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd} + b_{attendance} * 1$$
+
+If stduent did not regularly attended, this happens: 
+
+$$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd} + b_{attendance} * 0$$
+$$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd}$$
+
+The coeeffcient is no longer a part of the estimate. One can basically say, the
+coefficient gets switched on or off by the value of the dummy variable.
+
+So while the estimate for a student with mean values for invested hours and
+previous grades who did not attend is the intercept of $3.157411$ for the same
+student with attendance we can calculate the estimate as:
+
+$$3.157411 - 0.053942*0 + 0.911802*0 - 0.248250 * 1 = 3.157411 - 0.248250 = 2.909161$$
+
+It seems attending class is an easy way to raise one's grades.
 
 ### Adding categorical variables
 
+We have one further variable in our simulated data set that could be of interest
+in explaining, what makes a good grade in a seminar paper.`contact` is a factor
+variable. It can take three different categories. `No contact` indicates that
+the student did not contact the lecturer to discuss a research question or the
+laid out plan for the paper. `E-Mail` means that there was some written contact
+and at least the basics for the paper were discussed before writing. Lastly,
+`In Person` stands for an in depth discussion with the lecturer, clearing up
+problems beforehand and having a more stringent vision for the paper before 
+writing the first word.
+
+Let us add the variable to our model.
+
 ``` {r reg_grade_hours_prev_att_contact, echo = FALSE}
-lm(grade ~ hours_centered + previous_grades + attendance + contact, grades) %>% summary()
+lm(grade ~ hours_centered + previous_grades_centered + attendance + contact, grades) %>% summary()
 ```
 
-### Adding interactions
+Wait, we entered three categories into the model and got estimates for two of
+them. What happened? What R does is to create two dummy variables on the fly.
+The first discerns between having E-Mail contact or no contact at all. The 
+second one between having contact in person to no contact at all. So for
+categorical variables in regression models we always compare being in one
+category to being in the *base category*. In this case the base category is
+`No contact` but we could also change the base category. It depends on what we
+are interested in comparing to. For our example comparing the effects of having 
+more in depth contact to having none makes sense.
 
-``` {r reg_grade_hours_prev_att_contact_interaction, echo = FALSE}
-lm(grade ~ hours_centered + previous_grades + attendance + contact + hours_centered * contact, grades) %>% summary()
+Let us look at our formula again:
+
+$$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd} + b_{attendance} * x_{attendance} + b_{E-Mail} * x_{E-Mail} + b_{In Person} * x_{In Person}$$
+
+Now there are three possibilities. A student can have no contact at all. In this 
+case both dummy variables equal $0$. To make our formula easier to read, we have
+abbreviated the middle part for now:
+
+$$\hat{y} = b_0 + ... + b_{E-Mail} * 0 + b_{In Person} * 0$$
+So in this case, controlling all other independent variables at their default
+values, the mean for the metric variables, `FALSE` for `attendance`, the 
+intercept gives us the estimate for the grade as both dummy variables that
+were created for `contact`are "switched off".
+
+THe two other possibilities are that a student either had E-Mail contact or an
+in person discussion:
+
+$$\hat{y} = b_0 + ... + b_{E-Mail} * 1 + b_{In Person} * 0$$
+
+$$\hat{y} = b_0 + ... + b_{E-Mail} * 0 + b_{In Person} * 1$$
+
+In both cases the relevant dummy variable is "switched on" while the other does
+not factor into the equation.
+
+Looking at the estimates, we can see that having contact to the lecturer before
+writing has strong negative effects, resulting in better grades. Having E-Mail
+contact reduces the value of `grade` by $-0.413808$ points, having an in person
+discussion by $-0.853252$.
+
+So what grade can a student whose previous grades were at the mean of $2.935$,
+but who decided to put in 20 hours more compared to their peers, regularly
+attend the seminar and have an in-depth personal discussion before writing their
+paper expect on average as their new grade?
+
+$$3.617949 - 0.050830 * 20 + 0.874123 * 0 - 0.324653 * 1 - 0.413808 * 0 - 0.853252 * 1 = 1.423444$$
+
+Putting in the hours, attending and working with your lecturer seems to pay off,
+at least in our simulated data set.
+
+<!-- ### Adding interactions -->
+
+<!-- CUT FOR NOW -->
+
+<!-- ``` {r reg_grade_hours_prev_att_contact_interaction, echo = FALSE} -->
+<!-- lm(grade ~ hours_centered + previous_grades_centered + attendance + contact + hours_centered * contact, grades) %>% summary() -->
+<!-- ``` -->
+
+## Returning to our research question
+
+Our examplary research question concerned itself with what makes a good grade in
+a seminar paper. In particular we were interested in the effect of the invested 
+hours, as our main hypothesis was that more hours lead to better grades. What do
+we know now? 
+
+All analysis point towards a clear effect from `hours` on `grade`. This effect
+was consistently visible in all of our models. But did we correctly identify
+and estimate the effect of interest? Maybe. The problem is, we actually did not
+approach the analysis correctly. In a real analysis we should **absolutely**
+refrain from adding variables to our model that *could be* relevant until we are
+satisfied or all available variables are bunched into one huge model. It was
+fine to do this in this introduction to linear regression and for learning how
+different types of variables can be used in a regression model. But in a real
+project, we have to invest time to think about which variables to add because we
+assume that they have a relevant effect based on theoretical assumptions about
+the processes we are interested in. 
+
+So let us do this now and vow do make this our first step in all future
+endeavors. While we do not have a clear theoretical basis, we can make clear
+assumptions on the data generating process and draw these in a DAG.
+
+``` {r dag, echo = FALSE}
+library(dagitty)
+
+dagitty('dag{
+        Hours [pos = "1,0"]
+        Prev_Grades [pos = "1, -2"]
+        Skill_Level [pos = "2, -2"]
+        Attendance [pos = "2, -3"]
+        Contact [pos = " 2, -1"]
+        Grade [pos = "3, 0"]
+        
+        Hours -> Grade
+        Prev_Grades -> Skill_Level -> Grade
+        Attendance -> Grade
+        Hours <- Contact -> Grade
+}') %>% 
+  plot()
 ```
 
+XXX MAYBE NICEN IT UP XXX
 
+Our central assumption, and the effect we want to identify and estimate, is the
+direct effect from `hours` on `grade` in the bottom line. The more hours a 
+student invests, the better the grade should be. This is our variable of 
+interest and it has to be included in the model.
 
+The assumed effect of `contact` is more complex. For one we assume that a more
+in-depth contact with the lecturer will increase the grade directly. The 
+research question will be more focused, the student will know what is important
+to a certain lecturer, common mistakes can be avoided if they are cleared up
+beforehand and so on. But we will also assume that `contact` will have an effect 
+on `hours` in the sense that the hours invested can be used more efficiently if
+an in-depth discussion has taken place. Instead of wasting time running into
+problems that could have been avoided most of the invested time can actually go
+into constructive work. This makes `contact` a confounder for `grade` and 
+`hours`. Tapping into the knowledge from the last session, now we know that we
+also have to control for `contact` to measure the effect of `hours` correctly.
 
+A student's skill level will also have a direct effect on `grade`. As we do not
+have a direct measure of skill in our data, we use `previous_grades` as a proxy
+for skill level. `attendance` also has a direct effect on `grade` as students
+who were present in the seminar will not only have learned the seminar's
+contents, but will also have a better understanding of what is expected in their
+seminar papers. As neither skill level - or `previous_grades` - nor `attendance`
+has any connection to `hours` we also should not control for them in our model.
 
+That leaves us with `hours` and `contact` to be included in our linear
+regression, if our goal is to accuarately identify and estimate the effect of
+invested time on the final grade. So let us do this:
 
+``` {r reg_grade_hours_contact, echo = FALSE}
+lm(grade ~ hours_centered + contact, grades) %>% summary()
+```
 
--> DAG
--> we only need contact to identify the direct effect of hours
--> enough if this was our goal
--> for prediction wen need the rest (and maybe more) -> later session
+This is our estimate. Each hour invested beyond the mean of $40.33$ hours
+changes the grade by about $-0.05$ points. This supports our hypotheses and we
+can conclude, that investing more hours into writing a seminar paper actually
+is a worthwhile investment.
+
+But remember: This is correct as long as our DAG is drawn correctly. This is
+always debatable. Maybe we should assume an effect from skill level on `hours`.
+The higher the skill level the more efficiently the available time can be used.
+For this example we know the DAG is correct, because we have simulated the data
+exactly in this way. For real world applications we never know if our DAG is
+correct. All we can - and have to - do is base it on thorough thought, 
+theoretical work and sound arguments. 
+
+This all is true *if* our goal is to estimate an effect of interest as precisely
+as possible. But as we have alluded to in the introduction to this session we
+could also use modelling with a different goal, i.e. predicting a grade as
+accurately as possible. For this task, the model which only includes `hours` and
+`contact` will not do the best job. From our DAG we know that `attendance` and
+`previous_grade` should have an effect on `grade`, as we have also seen in our 
+models. For this task the full model including all these variables will produce
+better estimates. We will return to this in a later session, but for now we
+should remember that we have to know our task because the task dictates which is
+the best model to use.
 
 ## Maybes
+
+* maybe talk about std. errors + p-values -> or next week
+* Introduce R^2 and adj here
+
 
 *	Mediation
   * maybe theory into DAG session and example into application
