@@ -8,21 +8,216 @@
 
 ## Application with WVS data
 
+XXX USING FAKE DATE FOR NOW XXX
+
+``` {r fake_data}
+library(tidyverse)
+load("grades.RData")
+```
+
 ### R Code
 
-* lm()
-  * formula syntax
+To conduct a multiple linear regression in R, we can use the built-in *base R*
+function `lm()`. The function is straightforward to use. As the first argument
+we write the regression formula in R's *formula syntax*.
+
+In the formula syntac we start by writing the name of our `dependent_variable`
+followed by a *tilde* `~`. You can read this as an $=$ or as "regress the 
+dependent variable on". After the tilde we add our first `indepedent variable`
+by again writing out its name. If we have multiple independent variables in our
+model - so we are runnign a *multiple linear regression* - we can add those by
+writing a `+` followed by the name of the variable to be added.
+
+As a second argument, the function needs the name of the object that holds our
+data.
+
+So if we want to regress XXX on XXX, we just write:
+
+``` {r first_lm}
+lm(grade ~ hours_centered, data = grades)
+```
+
+This gives us a short output. The first line just echoes our code used to run 
+the regression. We have seen this in the last session already, but now we know
+what the meaning was. After this we have a short block with the estimated
+coefficients. As we have run a simple linear regression, we only get the 
+intercept and the coefficient for the sole independent variable used in the 
+model. If we would have run a multiple linear regression, the result would 
+basically look the same, only with more coefficients to display.
+
+Before we dive into the results, we should talk about how to receive a more
+verbose output that does not hide all the other vital information that is 
+associated with the model.
+
+The easiest way is to use the base R function `summary()`. This is a generic R
+function that returns different summaries, depending on the object it is used 
+on. We can for example use it on a data frame or tibble to get some descriptive
+statistics for the included variables.
+
+``` {r summary_df}
+summary(grades)
+```
+
+When we use `summary()` on a model object, like the one created by `lm()`, we
+get a different output. Before we apply this we should save our model in an
+object. This is good practice in most cases as we can now apply all additional
+analysis of the model on ths object and we do not have to rerun the model
+every time.
+
+``` {r m1}
+m1 <- lm(grade ~ hours_centered, data = grades)
+```
+
+We can now apply `summary()` on the object `m1`, short for "model 1":
+
+``` {r summary_m1}
+summary(m1)
+```
+
+This not only gives us an extended and better readable coefficient block but 
+also additional information on the quality of the model. We will address the
+most relevant aspects one by one during this session.
+
+An alternative method of displaying the coefficients in a regular tibble format,
+is to use `tidy()` from the `broom` package.
+
+``` {r tidy_m1}
+library(broom)
+
+tidy(m1)
+```
 
 ### Interpretation of regression table in practice
 
-## Regression Diagnostics (relatively short?)
+Looking at the coefficient block from either of the two outputs, we see more
+than just our estimate. The `Std. Error` or `std.error` is a measure for the
+uncertainty of our estimates. It basically tells us, how far away the actual 
+values of the observations used to compute the model are from our estimate
+*on average*. The smaller the *standard error*, the more accurate is our
+estimate. The standard error is presented in the units of the estimate and we
+can thus compare them. A large standard error for a large estimate is far less
+problematic compared to a large standard error for a small estimate.
 
-## Mediation
+The estimate and it's standard error are the basis for *hypothesis testing*.
+What we are testing is the *alternative hypotheses* $H_a$ that there actually
+is an effect of our independent variable on the dependent variable against the
+*null hypothesis* $H_0$ that there is no effect. To reject the null hypothesis
+and be confident that we are observing an actual effect, versus an effect that
+is joust based on random variation in our sample, the estimate has to be far
+away enough from $0$ and be accurate enough, i.e. have a small standard error.
+This relationship is computed in the *t-statistic*, `t value` and `statistic` in
+our outputs. From this the *p-value* can be computed, `Pr(>|t|)` and `p.value`
+in the outputs. The *p-value* tells us the probability to observe a association
+between the independent and the dependent variable as large or larger than our
+estimate suggests, if the true association would actually be $0$. If the p-value
+is small enough, we can reject $H_0$ and conclude that we observed an actual 
+effect. There are certain agreed upon cutoffs in statistics where values that
+meet this cutoff are considered *statistically significant*. The most common
+cutoff in social sciences is $0.05$ indicated by one `*` in the output from
+`summary()` There are other common cutoffs indicated by more asterisks.
 
-* total + direct effect
-  * use DAGs again
-  * apply with lm()
-  * Interpret results
+Interpreting p-values correctly and not falling into the common pitfalls is a
+topic on its own. We do not have the time to dive into this here, so for now we
+can agree that p-values below $0.05$ indicate that we can reject $H_0$ and thus
+conclude that we have actually observed an effect. Still, our interpretation of
+regression results should not focus solely on p-values or lead us to disregard
+any effects that did not meet the cutoff. For example, we can have very small
+p-values for effects that are so small that they are substantially irrelevant.
+One way to address this is to inspect the actual magnitudes of the effects,
+something we will return to in our session on prediction. On the other hand, we
+can have p-values larger than $0.05$ for effects that are still relevant. Maybe
+the problem is not that there is no effect but that we were not able to measure
+the variable in question precisely enough or that we just did not have enough 
+observations. We can not go any deeper than this here, but we should remember
+that the practice of declaring every effect with stars a win and disregarding
+everything without them may still be common but is not the way to go forward.
+
+XXX CORRECT? MAYBE SHORTEN XXX
+
+XXX INTERPRETATION HERE
+
+### Adding additional variables
+
+The DAG we have constructed above based on our research question indicated that
+we have to include more than just one variable in our model.
+We can add additional independent variables to the formula used in `lm()` with a
+`+` and the name of the additional variable(s).
+So let us do this now:
+
+``` {r m2}
+m2 <- lm(grade ~ hours_centered + contact, data = grades)
+
+summary(m2)
+```
+
+XXX INTERPRETATION HERE XXX
+
+Let us now turn to the bottom block in the output from `summary()`. We do not
+have to talk about every measure at this point but we should consider $R^2$.
+*R-squared* gives us a measure for the amount of variance in the data that is
+"explained" by the model. Real world data will always have variance. Not every
+value will neatly fall onto the mean value of a variable. Rather the data is
+dispersed around it. Thinking back to the last session and the plots on one
+independent against one independent variable we already have an understanding
+of this. The first thing we see is a cloud of dispersed data points. Linear 
+regression tries to bring order into this by fitting a line that explains the 
+relationship between the variables. But this linear line can never explain the
+relationship completely. For this it had to pass through every data point. So we
+have explained part of the relationship but a part that is not explained 
+remains. These are the residuals, the distance that points fall from the 
+regression line. $R^2$ tells us the relative amount of how much we reduced the
+initial variance by fitting the line and thus explaining a part of said
+variance.
+
+A $R^2$ of $0$ would mean that no variance is explained, a value of $1$ that all
+variance is explained. Two highly unlikely outcomes. We will almost always 
+explain something and never explain everything. But in general a higher $R^2$ is
+better, as we have achieved a higher amount of explained variance. But keep in
+mind that $R^2$ is not everything. It is never that easy in statistics. It is
+entirely possible to reach high values with models that are completely wrong.
+Either because we did not put in the theoretical work and never really figured
+out what we actually should include in the model to get an unbiased estimate for
+our effect of interest or because our model is misspecified. We will address the
+latter in the next chapter.
+Also $R^2$ almost always increases by adding additional variable to the model,
+especially if we have few observations. Because of this $R^2$ can get less
+reliable when we have many variables and few observations. *Adjusted R-squared*
+corrects for this by including both factors in the calculation. When we have
+many observations, as in our case, the differences are negligible, but if we do
+not and want or have to add many variables, adjusted R-squared should be used in
+place of the regular $R^2$.
+
+XXX INCREASE IN R^2 FOR OUR MODEL XXX
+
+XXX ALSO ADD OTHER ASPECTS FROM THIS BLOCK? RSE; F/P-VALUE? XXX
+
+
+## Regression Diagnostics
+
+$R^2$ is useful to assess the amount of variance explained but it is never 
+enough to actually judge the quality of a model. We can achieve high values for
+$R^2$ and still have bad or flat-out wrong models.
+That is why the first step before even starting on specifying a model always
+**has** to be thorough theoretical thinking about what we want to measure and
+how we can actually do it. We can not replace this step with ever so fancy a
+statistical technique.
+But what if we did put in the work and laid out the best plan imaginable, we
+also estimated all effects as predicted and reached a high $R^2$. Is our model
+than correct? Maybe, probably, but we do not know yet for certain. This is where
+*regression diagnostics* comes in.
+
+As linear regression is a statistical technique, there are certain statistical
+assumptions we have to meet. If we violate those, the best laid plans may 
+falter and our results may be not as robust as we hoped.
+
+### Assumptions
+
+### Tests
+
+
+
+
+
 
 ## Maybes
 
@@ -30,7 +225,14 @@
   * In practice if introduced the week before
   * Maybe also introduce and apply here
 
+* Mediation/total + direct effect
+  * use DAGs again
+  * apply with lm()
+  * Interpret results
+
 ## Outlook
 
 * Alternative Packages
 * Packages that expand upon the ideas
+* Weighting
+* Mutli-level/Fixed effects
