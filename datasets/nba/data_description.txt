@@ -1,0 +1,57 @@
+## DATA on NBA players
+
+
+File name: 		salaries_1985to2018.csv
+File name: 		players.csv
+Source: 		https://www.kaggle.com/datasets/ulrikthygepedersen/nba-player-salaries
+Codebook: 		https://www.kaggle.com/datasets/ulrikthygepedersen/nba-player-salaries
+Original author: 	https://data.world/datadavis
+
+Description:
+This dataset provides a comprehensive look at NBA player salaries and performance from 1985 to 2018. 
+It contains detailed records of salary figures, season information, physical attributes (such as height and weight),
+draft information, college attended, career stats (including points scored and win shares) and shooting hand preference.
+This invaluable insight into the financial trajectory of NBA players offers an invaluable resource for academics,
+fans and professionals alike. With this data in hand one can not only observe how well drafted picks do over
+time or which type of players command higher salaries but also explore the different strategies employed by
+teams in pursuit of on-court success without breaking the bank
+
+
+VARIABLES:
+
+salaries_1985to2018.csv
+
+Column name	Description
+league		The league the player is in. (String)
+salary		The salary of the player. (Integer)
+season		The season the player is playing in. (String)
+season_end	The end date of the season. (Date)
+season_start	The start date of the season. (Date)
+team		The team the player is playing for. (String)
+
+players.csv
+
+Column name	Description
+birthDate	Date of birth of the player. (Date)
+birthPlace	Place of birth of the player. (String)
+career_AST	Career assists of the player. (Integer)
+career_FG%	Career field goal percentage of the player. (Float)
+career_FG3%	Career three-point field goal percentage of the player. (Float)
+career_FT%	Career free throw percentage of the player. (Float)
+career_G	Career games played by the player. (Integer)
+career_PER	Career player efficiency rating of the player. (Float)
+career_PTS	Career points scored by the player. (Integer)
+career_TRB	Career total rebounds of the player. (Integer)
+career_WS	Career win shares of the player. (Float)
+career_eFG%	Career effective field goal percentage of the player. (Float)
+college		College attended by the player. (String)
+draft_pick	Draft pick of the player. (Integer)
+draft_round	Round of the draft the player was selected in. (Integer)
+draft_team	Team that drafted the player. (String)
+draft_year	Year the player was drafted. (Integer)
+height		Height of the player. (Float)
+highSchool	High school attended by the player. (String)
+name		Name of the player. (String)
+position	Position of the player. (String)
+shoots		Shooting hand preference of the player. (String)
+weight		Weight of the player. (Integer)

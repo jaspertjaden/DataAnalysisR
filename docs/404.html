@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Page not found | Data Analysis with R for Social Scientists" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-08-09" />
+<meta name="date" content="2023-08-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -61,10 +61,6 @@ set in the _output.yml file.</p>" />
 
 
 
-<style type="text/css">
-  
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -82,7 +78,7 @@ set in the _output.yml file.</p>" />
 <li><a href="./">Data Analysis with R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Intro</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a></li>
 <li class="chapter" data-level="2" data-path="intro-sem.html"><a href="intro-sem.html"><i class="fa fa-check"></i><b>2</b> Introduction to Seminar</a></li>
 <li class="chapter" data-level="3" data-path="eda-1.html"><a href="eda-1.html"><i class="fa fa-check"></i><b>3</b> Exloratory Data Analysis - I</a>
 <ul>
@@ -90,17 +86,12 @@ set in the _output.yml file.</p>" />
 <li class="chapter" data-level="3.2" data-path="eda-1.html"><a href="eda-1.html#r-functions-covered-this-week"><i class="fa fa-check"></i><b>3.2</b> R functions covered this week</a></li>
 <li class="chapter" data-level="3.3" data-path="eda-1.html"><a href="eda-1.html#why-is-eda-so-important"><i class="fa fa-check"></i><b>3.3</b> Why is EDA so important?</a></li>
 <li class="chapter" data-level="3.4" data-path="eda-1.html"><a href="eda-1.html#importing-data-into-r"><i class="fa fa-check"></i><b>3.4</b> Importing data into R</a></li>
-<li class="chapter" data-level="3.5" data-path="eda-1.html"><a href="eda-1.html#import-data-into-r"><i class="fa fa-check"></i><b>3.5</b> Import data into R</a>
-<ul>
-<li class="chapter" data-level="3.5.1" data-path="eda-1.html"><a href="eda-1.html#from-csv"><i class="fa fa-check"></i><b>3.5.1</b> From CSV</a></li>
-<li class="chapter" data-level="3.5.2" data-path="eda-1.html"><a href="eda-1.html#from-stata-.dta"><i class="fa fa-check"></i><b>3.5.2</b> from Stata (.dta)</a></li>
-</ul></li>
-<li class="chapter" data-level="3.6" data-path="eda-1.html"><a href="eda-1.html#change-dataset"><i class="fa fa-check"></i><b>3.6</b> Change dataset</a></li>
-<li class="chapter" data-level="3.7" data-path="eda-1.html"><a href="eda-1.html#change-variables"><i class="fa fa-check"></i><b>3.7</b> change variables</a></li>
-<li class="chapter" data-level="3.8" data-path="eda-1.html"><a href="eda-1.html#combine-with-other-data"><i class="fa fa-check"></i><b>3.8</b> combine with other data</a>
-<ul>
-<li class="chapter" data-level="3.8.1" data-path="eda-1.html"><a href="eda-1.html#explore-individual-variables"><i class="fa fa-check"></i><b>3.8.1</b> explore individual variables</a></li>
-</ul></li>
+<li class="chapter" data-level="3.5" data-path="eda-1.html"><a href="eda-1.html#import-data-into-r"><i class="fa fa-check"></i><b>3.5</b> Import data into R</a></li>
+<li class="chapter" data-level="3.6" data-path="eda-1.html"><a href="eda-1.html#merge-datasets"><i class="fa fa-check"></i><b>3.6</b> Merge datasets</a></li>
+<li class="chapter" data-level="3.7" data-path="eda-1.html"><a href="eda-1.html#clean-dataset"><i class="fa fa-check"></i><b>3.7</b> Clean dataset</a></li>
+<li class="chapter" data-level="3.8" data-path="eda-1.html"><a href="eda-1.html#change-variables"><i class="fa fa-check"></i><b>3.8</b> change variables</a></li>
+<li class="chapter" data-level="3.9" data-path="eda-1.html"><a href="eda-1.html#explore-the-whole-dataset"><i class="fa fa-check"></i><b>3.9</b> Explore the whole dataset</a></li>
+<li class="chapter" data-level="3.10" data-path="eda-1.html"><a href="eda-1.html#explore-individual-variables"><i class="fa fa-check"></i><b>3.10</b> explore individual variables</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="eda-2.html"><a href="eda-2.html"><i class="fa fa-check"></i><b>4</b> Exploratory Data Analysis - II</a>
 <ul>
@@ -112,18 +103,21 @@ set in the _output.yml file.</p>" />
 </ul></li>
 <li class="chapter" data-level="5" data-path="lin-t.html"><a href="lin-t.html"><i class="fa fa-check"></i><b>5</b> Linear Regression - Theory</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="lin-t.html"><a href="lin-t.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="lin-t.html"><a href="lin-t.html#what-is-linear-regression"><i class="fa fa-check"></i><b>5.1.1</b> What is Linear Regression</a></li>
-<li class="chapter" data-level="5.1.2" data-path="lin-t.html"><a href="lin-t.html#when-and-for-what-can-it-be-used"><i class="fa fa-check"></i><b>5.1.2</b> When and for what can it be used?</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="lin-t.html"><a href="lin-t.html#example-data"><i class="fa fa-check"></i><b>5.2</b> Example data</a></li>
+<li class="chapter" data-level="5.1" data-path="lin-t.html"><a href="lin-t.html#what-is-linear-regression"><i class="fa fa-check"></i><b>5.1</b> What is Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="lin-t.html"><a href="lin-t.html#examplary-research-question-data"><i class="fa fa-check"></i><b>5.2</b> Examplary research question &amp; data</a></li>
 <li class="chapter" data-level="5.3" data-path="lin-t.html"><a href="lin-t.html#simple-linear-regression"><i class="fa fa-check"></i><b>5.3</b> Simple Linear Regression</a>
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="lin-t.html"><a href="lin-t.html#regression-formula"><i class="fa fa-check"></i><b>5.3.1</b> Regression Formula</a></li>
+<li class="chapter" data-level="5.3.2" data-path="lin-t.html"><a href="lin-t.html#regressing-grade-on-hours"><i class="fa fa-check"></i><b>5.3.2</b> Regressing <code>grade</code> on <code>hours</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="lin-t.html"><a href="lin-t.html#multiple-linear-regression"><i class="fa fa-check"></i><b>5.4</b> Multiple Linear Regression</a></li>
-<li class="chapter" data-level="5.5" data-path="lin-t.html"><a href="lin-t.html#maybes"><i class="fa fa-check"></i><b>5.5</b> Maybes</a></li>
+<li class="chapter" data-level="5.4" data-path="lin-t.html"><a href="lin-t.html#multiple-linear-regression"><i class="fa fa-check"></i><b>5.4</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="lin-t.html"><a href="lin-t.html#adding-additional-variables"><i class="fa fa-check"></i><b>5.4.1</b> Adding additional variables</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lin-t.html"><a href="lin-t.html#adding-dummy-variables"><i class="fa fa-check"></i><b>5.4.2</b> Adding dummy variables</a></li>
+<li class="chapter" data-level="5.4.3" data-path="lin-t.html"><a href="lin-t.html#adding-categorical-variables"><i class="fa fa-check"></i><b>5.4.3</b> Adding categorical variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="lin-t.html"><a href="lin-t.html#returning-to-our-research-question"><i class="fa fa-check"></i><b>5.5</b> Returning to our research question</a></li>
+<li class="chapter" data-level="5.6" data-path="lin-t.html"><a href="lin-t.html#maybes"><i class="fa fa-check"></i><b>5.6</b> Maybes</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="lin-a.html"><a href="lin-a.html"><i class="fa fa-check"></i><b>6</b> Linear Regression - Applied</a>
 <ul>
@@ -144,9 +138,9 @@ set in the _output.yml file.</p>" />
 </ul></li>
 <li class="chapter" data-level="8" data-path="log-t.html"><a href="log-t.html"><i class="fa fa-check"></i><b>8</b> Logistic Regression - Theory</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="log-t.html"><a href="log-t.html#introduction-1"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.1" data-path="log-t.html"><a href="log-t.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
 <li class="chapter" data-level="8.2" data-path="log-t.html"><a href="log-t.html#what-is-linear-regression-1"><i class="fa fa-check"></i><b>8.2</b> What is Linear Regression</a></li>
-<li class="chapter" data-level="8.3" data-path="log-t.html"><a href="log-t.html#when-and-for-what-can-it-be-used-1"><i class="fa fa-check"></i><b>8.3</b> When and for what can it be used?</a></li>
+<li class="chapter" data-level="8.3" data-path="log-t.html"><a href="log-t.html#when-and-for-what-can-it-be-used"><i class="fa fa-check"></i><b>8.3</b> When and for what can it be used?</a></li>
 <li class="chapter" data-level="8.4" data-path="log-t.html"><a href="log-t.html#formal"><i class="fa fa-check"></i><b>8.4</b> Formal</a></li>
 <li class="chapter" data-level="8.5" data-path="log-t.html"><a href="log-t.html#regression-formula-1"><i class="fa fa-check"></i><b>8.5</b> Regression Formula</a></li>
 <li class="chapter" data-level="8.6" data-path="log-t.html"><a href="log-t.html#interpretation-of-results"><i class="fa fa-check"></i><b>8.6</b> Interpretation of results</a></li>
