@@ -286,7 +286,7 @@ paid less then other positions (who score more).
 
 First, let's look how the two continuous variables are distributed:
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 data_nba %>% ggplot() + 
 geom_boxplot(aes(y=salary)) +
   facet_wrap(~position_pg) +
@@ -308,7 +308,7 @@ Let's look at the relationship between salary and position as well as the
 relationship between position and points.
 
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 str(data_nba$position_pg)
 str(data_nba$salary)
 str(data_nba$career_pts)
@@ -368,7 +368,7 @@ data_nba %>%
 
 So, it seems that point gards are paid a little less even though they make a few more points on average. Interesting puzzle to explore. 
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 
 # find example for using histogramm()
 # find example for first just creating cross tabs as perecntages tbl_cross(); summarize(); tabyl()
@@ -377,7 +377,7 @@ So, it seems that point gards are paid a little less even though they make a few
 
 Now, let's explore the relationship which is at the heart of our analysis from now on: salary and average points. 
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 
 # simple scatterplot
 data_nba %>% ggplot() +

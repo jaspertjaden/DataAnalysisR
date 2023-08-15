@@ -44,23 +44,32 @@ I hope this introduction helps you understand what R Markdown is and how it can 
 
 ### Exercise - 1
 
-1. Write a script to load an R data file using the `load()` function. What does this function do and what is the format of the data file that it can read?
+**Boston Housing Dataset**
+Housing data contains 506 census tracts of Boston from the 1970 census. The dataframe BostonHousing contains the original data by Harrison and Rubinfeld (1979), the dataframe BostonHousing2 the corrected version with additional spatial information.
 
-2. Use the `read_excel()` function to read data from an Excel file. What arguments does this function take and what is the format of the data that it returns?
+You can include this data by installing mlbench library:
+```{r}
+#install.packages("mlbench") ## installing the library
+library(mlbench) #adding the library
+data(BostonHousing2)
+housing <- BostonHousing2
+str(housing)
+```
 
-3. Use the `str()` and `glimpse()` functions to inspect the structure of a data frame. What is the difference between these two functions and when would you use one over the other?
+1. Use the `str()` and `glimpse()` functions to explore the structure of the data.
 
-4. Use the `table()` function to create a frequency table of a categorical variable in a data frame. How can you use this function to summarize data?
+2. Use the `table()` and `summary()` functions to generate summary statistics for the variables in the Boston housing dataset.
 
-5. Use the `summary()` function to generate summary statistics for a numeric variable in a data frame. What statistics does this function return by default and how can you customize its output?
+3. Use the `mutate()` and `case_when()` functions from the `dplyr` package to create new variables based on conditions. For example, create a new variable that categorizes houses as "expensive" or "affordable" based on their median value.
 
-6. Use the `mutate()` function to create a new variable in a data frame based on existing variables. Provide an example of how you would use this function.
+4. Use the `ggplot()` function from the `ggplot2` package to create visualizations of the data. For example, create a scatterplot of median value vs. average number of rooms per dwelling using `geom_point()`, and add a smooth trend line using `geom_smooth()`.
 
-7. Use the `case_when()` function to recode a categorical variable in a data frame based on certain conditions. Provide an example of how you would use this function.
+5. Use the `corr()` function to calculate correlations between variables in the Boston housing dataset. Then, use this information to create a correlation plot using `ggplot()`.
 
-8. Use the `ggplot()` function to create a scatter plot of two numeric variables in a data frame. What arguments does this function take and how can you customize the appearance of the plot?
+6. Use the `filter()` function from the `dplyr` package to subset the data based on conditions. For example, create a subset of data containing only houses with more than 6 rooms per dwelling.
 
-9. Use the `corr()` function to calculate the correlation between two numeric variables in a data frame. What is correlation and how is it calculated?
+7. Use functions from the `DataExplorer` and `gtsummary` packages to further explore and summarize the data. For example, use the `plot_boxplot()` function from `DataExplorer` to create boxplots of variables, and use functions from `gtsummary` to create summary tables.
+
 
 **This is a draft of questions, dataframe and the variables will be specified later**
 

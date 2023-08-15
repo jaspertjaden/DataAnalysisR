@@ -1007,10 +1007,6 @@ relationship between position and points.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Unknown or uninitialised column: `career_pts`.
-\end{verbatim}
-
-\begin{verbatim}
 ##  NULL
 \end{verbatim}
 
@@ -1114,10 +1110,6 @@ Now, let's explore the relationship which is at the heart of our analysis from n
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
-\end{verbatim}
-
 \includegraphics{_main_files/figure-latex/unnamed-chunk-10-2.pdf}
 
 \begin{Shaded}
@@ -1132,10 +1124,6 @@ Now, let's explore the relationship which is at the heart of our analysis from n
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
-\end{verbatim}
-
 \includegraphics{_main_files/figure-latex/unnamed-chunk-10-3.pdf}
 
 \begin{Shaded}
@@ -1149,10 +1137,6 @@ Now, let's explore the relationship which is at the heart of our analysis from n
        \FunctionTok{theme\_minimal}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
-\end{verbatim}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-10-4.pdf}
 
@@ -1184,15 +1168,6 @@ Now, let's explore the relationship which is at the heart of our analysis from n
        \FunctionTok{theme\_minimal}\NormalTok{()}
 
 \FunctionTok{library}\NormalTok{(}\StringTok{"ggpubr"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: package 'ggpubr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{ggarrange}\NormalTok{(scatter\_center, scatter\_pf,}
 \NormalTok{          scatter\_sf, scatter\_pg,}
           \AttributeTok{ncol =} \DecValTok{2}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{,}
@@ -1202,13 +1177,6 @@ Now, let's explore the relationship which is at the heart of our analysis from n
                      \StringTok{"Point Guard"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
-## `geom_smooth()` using formula = 'y ~ x'
-## `geom_smooth()` using formula = 'y ~ x'
-## `geom_smooth()` using formula = 'y ~ x'
-\end{verbatim}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-10-5.pdf}
 
@@ -1225,10 +1193,6 @@ Now, let's explore the relationship which is at the heart of our analysis from n
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
-\end{verbatim}
-
 \includegraphics{_main_files/figure-latex/unnamed-chunk-10-6.pdf}
 
 \begin{Shaded}
@@ -1241,10 +1205,6 @@ Now, let's explore the relationship which is at the heart of our analysis from n
        \FunctionTok{theme\_minimal}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
-\end{verbatim}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-10-7.pdf}
 
@@ -1321,26 +1281,69 @@ I hope this introduction helps you understand what R Markdown is and how it can 
 \hypertarget{exercise---1}{%
 \subsection{Exercise - 1}\label{exercise---1}}
 
+\textbf{Boston Housing Dataset}
+Housing data contains 506 census tracts of Boston from the 1970 census. The dataframe BostonHousing contains the original data by Harrison and Rubinfeld (1979), the dataframe BostonHousing2 the corrected version with additional spatial information.
+
+You can include this data by installing mlbench library:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#install.packages("mlbench") \#\# installing the library}
+\FunctionTok{library}\NormalTok{(mlbench) }\CommentTok{\#adding the library}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'mlbench' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(BostonHousing2)}
+\NormalTok{housing }\OtherTok{\textless{}{-}}\NormalTok{ BostonHousing2}
+\FunctionTok{str}\NormalTok{(housing)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    506 obs. of  19 variables:
+##  $ town   : Factor w/ 92 levels "Arlington","Ashland",..: 54 77 77 46 46 46 69 69 69 69 ...
+##  $ tract  : int  2011 2021 2022 2031 2032 2033 2041 2042 2043 2044 ...
+##  $ lon    : num  -71 -71 -70.9 -70.9 -70.9 ...
+##  $ lat    : num  42.3 42.3 42.3 42.3 42.3 ...
+##  $ medv   : num  24 21.6 34.7 33.4 36.2 28.7 22.9 27.1 16.5 18.9 ...
+##  $ cmedv  : num  24 21.6 34.7 33.4 36.2 28.7 22.9 22.1 16.5 18.9 ...
+##  $ crim   : num  0.00632 0.02731 0.02729 0.03237 0.06905 ...
+##  $ zn     : num  18 0 0 0 0 0 12.5 12.5 12.5 12.5 ...
+##  $ indus  : num  2.31 7.07 7.07 2.18 2.18 2.18 7.87 7.87 7.87 7.87 ...
+##  $ chas   : Factor w/ 2 levels "0","1": 1 1 1 1 1 1 1 1 1 1 ...
+##  $ nox    : num  0.538 0.469 0.469 0.458 0.458 0.458 0.524 0.524 0.524 0.524 ...
+##  $ rm     : num  6.58 6.42 7.18 7 7.15 ...
+##  $ age    : num  65.2 78.9 61.1 45.8 54.2 58.7 66.6 96.1 100 85.9 ...
+##  $ dis    : num  4.09 4.97 4.97 6.06 6.06 ...
+##  $ rad    : int  1 2 2 3 3 3 5 5 5 5 ...
+##  $ tax    : int  296 242 242 222 222 222 311 311 311 311 ...
+##  $ ptratio: num  15.3 17.8 17.8 18.7 18.7 18.7 15.2 15.2 15.2 15.2 ...
+##  $ b      : num  397 397 393 395 397 ...
+##  $ lstat  : num  4.98 9.14 4.03 2.94 5.33 ...
+\end{verbatim}
+
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Write a script to load an R data file using the \texttt{load()} function. What does this function do and what is the format of the data file that it can read?
+  Use the \texttt{str()} and \texttt{glimpse()} functions to explore the structure of the data.
 \item
-  Use the \texttt{read\_excel()} function to read data from an Excel file. What arguments does this function take and what is the format of the data that it returns?
+  Use the \texttt{table()} and \texttt{summary()} functions to generate summary statistics for the variables in the Boston housing dataset.
 \item
-  Use the \texttt{str()} and \texttt{glimpse()} functions to inspect the structure of a data frame. What is the difference between these two functions and when would you use one over the other?
+  Use the \texttt{mutate()} and \texttt{case\_when()} functions from the \texttt{dplyr} package to create new variables based on conditions. For example, create a new variable that categorizes houses as ``expensive'' or ``affordable'' based on their median value.
 \item
-  Use the \texttt{table()} function to create a frequency table of a categorical variable in a data frame. How can you use this function to summarize data?
+  Use the \texttt{ggplot()} function from the \texttt{ggplot2} package to create visualizations of the data. For example, create a scatterplot of median value vs.~average number of rooms per dwelling using \texttt{geom\_point()}, and add a smooth trend line using \texttt{geom\_smooth()}.
 \item
-  Use the \texttt{summary()} function to generate summary statistics for a numeric variable in a data frame. What statistics does this function return by default and how can you customize its output?
+  Use the \texttt{corr()} function to calculate correlations between variables in the Boston housing dataset. Then, use this information to create a correlation plot using \texttt{ggplot()}.
 \item
-  Use the \texttt{mutate()} function to create a new variable in a data frame based on existing variables. Provide an example of how you would use this function.
+  Use the \texttt{filter()} function from the \texttt{dplyr} package to subset the data based on conditions. For example, create a subset of data containing only houses with more than 6 rooms per dwelling.
 \item
-  Use the \texttt{case\_when()} function to recode a categorical variable in a data frame based on certain conditions. Provide an example of how you would use this function.
-\item
-  Use the \texttt{ggplot()} function to create a scatter plot of two numeric variables in a data frame. What arguments does this function take and how can you customize the appearance of the plot?
-\item
-  Use the \texttt{corr()} function to calculate the correlation between two numeric variables in a data frame. What is correlation and how is it calculated?
+  Use functions from the \texttt{DataExplorer} and \texttt{gtsummary} packages to further explore and summarize the data. For example, use the \texttt{plot\_boxplot()} function from \texttt{DataExplorer} to create boxplots of variables, and use functions from \texttt{gtsummary} to create summary tables.
 \end{enumerate}
 
 \textbf{This is a draft of questions, dataframe and the variables will be specified later}
