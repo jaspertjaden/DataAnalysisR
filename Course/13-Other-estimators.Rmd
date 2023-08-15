@@ -1,0 +1,3 @@
+# Other Estimators: Logistic, Poisson, Multilevel, FE {#other-est}
+Here goes some texts.
+

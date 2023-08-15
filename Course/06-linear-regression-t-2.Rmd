@@ -1,0 +1,6 @@
+# Linear Regression Theory II: Multiple Linear Regression {#lin-t-2}
+Here goes some texts.
+
+## Application of Linear Regression
+
+

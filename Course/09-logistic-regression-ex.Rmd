@@ -1,5 +1,0 @@
-# Logistic Regression - Exercises {#log-e}
-Here goes some texts.
-
-## Application of Logistic Regression
-With WVS/own data: Students apply linear regression. 

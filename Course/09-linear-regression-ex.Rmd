@@ -1,0 +1,28 @@
+# Linear Regression - Exercises {#lin-e}
+Here goes some texts.
+
+## Application of Logistic Regression
+With WVS/own data: Students apply linear regression:
+
+**DRAFT**
+
+1. Load the `mtcars` dataset in R and fit a simple linear regression model using `mpg` as the response variable and `wt` as the predictor variable. Summarize the model using the `summary()` function from the `tidyverse` package and interpret the results.
+
+2. Using the same model from exercise 1, interpret the p-value of the predictor variable. What does it tell you about the relationship between `mpg` and `wt`?
+
+3. Calculate a 95% confidence interval for the slope of the regression line from exercise 1. Interpret the results.
+
+4. Add an additional predictor variable, `hp`, to the model from exercise 1. Summarize the new model and interpret the results.
+
+5. Perform regression diagnostics on the model from exercise 4. Check for normality, constant variance, and independence of residuals.
+
+6. Load the `iris` dataset in R and fit a simple linear regression model using `Sepal.Length` as the response variable and `Petal.Length` as the predictor variable. Summarize the model and interpret the results.
+
+7. Using the same model from exercise 6, interpret the p-value of the predictor variable. What does it tell you about the relationship between `Sepal.Length` and `Petal.Length`?
+
+8. Calculate a 95% confidence interval for the slope of the regression line from exercise 6. Interpret the results.
+
+9. Add an additional predictor variable, `Sepal.Width`, to the model from exercise 6. Summarize the new model and interpret the results.
+
+10. Perform regression diagnostics on the model from exercise 9. Check for normality, constant variance, and independence of residuals.
+

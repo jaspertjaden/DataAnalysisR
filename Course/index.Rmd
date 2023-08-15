@@ -15,7 +15,7 @@ link-citations: yes
 github-repo: jaspertjaden/DataAnalysisR
 ---
 
-# Intro 
+# Intro {-}
 
 This course offers an accessible and easy introduction to one of the fastest growing statistical packages used in social science and data science more generally.
 
@@ -26,17 +26,17 @@ Please download the data used in the course [here](https://www.worldvaluessurvey
 - **[Week 1: Introduction to Seminar](#intro-sem)**
 - **[Week 2: Exploratory Data Analysis-I](#eda-1)**
 - **[Week 3: Exploratory Data Analysis-II](#eda-2)**
-- **[Week 4: Linear Regression-Theory](#lin-t)**
-- **[Week 5: Linear Regression-Applied](#lin-a)**
-- **[Week 6: Linear Regression-Exercises](#lin-e)**
-- **[Week 7: Logistic Regression-Theory](#log-t)**
-- **[Week 8: Logistic Regression-Applied](#log-a)**
-- **[Week 9: Logistic Regression-Exercises](#log-e)**
-- **[Week 10: Prediction or Margins-Theory](#pm-t)**
-- **[Week 11: Prediction or Margins-Exercises](#pm-e)**
-- **[Week 12: Reporting and Visualizing](#report-v)**
-- **[Week 13: Discussion of Ideas and term papers](#dis-paper)**
-- **[Week 14: Outlook](#out-look)**
+- **[Week 4: DAGs](#dags-1)**
+- **[Week 5: Linear Regression Theory I: Simple Linear Regression](#lin-t-1)**
+- **[Week 6: Linear Regression Theory II: Multiple Linear Regression](#lin-t-2)**
+- **[Week 7: Linear Regression Theory III: Diagnostics](#lin-t-3)**
+- **[Week 8: Linear Regression - Application](#lin-a)**
+- **[Week 9: Logistic Regression - Exercises](#lin-e)**
+- **[Week 10: Mediation](#med)**
+- **[Week 11: Prediction - Theory](#pm-t)**
+- **[Week 12: Prediction - Application](#pm-a)**
+- **[Week 13: Other Estimators](#other-est)**
+- **[Week 14: Course Paper - Discussion - Outlook](#out-look)**
 
 
 ```{r include=FALSE}

@@ -1,5 +1,0 @@
-# Prediction or Margins - Exercises {#pm-e}
-Here goes some texts.
-
-## Application of Regression
-With WVS/own data: Students apply linear+logistic regression from previous exercises. 

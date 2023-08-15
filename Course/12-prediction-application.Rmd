@@ -1,0 +1,11 @@
+# Prediction - Application {#pm-a}
+Here goes some texts.
+
+## Formatted regression tables
+Here goes some texts.
+
+## Publication-ready formatting/ labelling of visuals
+Here goes some texts.
+
+## coefficient plots
+Here goes some texts.

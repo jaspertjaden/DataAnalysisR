@@ -2,6 +2,7 @@
 This week we will try to apply our last weeks knowledge into analysis.
 
 ## Markdown Introduction
+
 R Markdown is a powerful tool that allows you to create dynamic documents, presentations, and reports using R code. It combines the core syntax of markdown (an easy-to-write plain text format) with embedded R code chunks that are run when the document is rendered¹.
 
 R Markdown documents are fully reproducible, meaning that anyone can re-run the code and generate the same results. This makes it easy to share your work with others and ensure that your results are accurate and reliable.
@@ -12,48 +13,11 @@ To get started with R Markdown, you'll need to install the `rmarkdown` package f
 
 An R Markdown document is made up of text written in markdown syntax and chunks of R code. When you render the document, the R code is executed and its output (such as plots or tables) is inserted into the final document¹.
 
-Here's an example of what an R Markdown document might look like:
-
-```
----
-title: "My R Markdown Document"
-output: html_document
----
-
-This is some text written in markdown syntax.
-
-Here's a chunk of R code that generates a plot:
-
-```{r}
-plot(cars)
-```
-
-And here's another chunk of R code that generates a summary of a data frame:
-
-```{r}
-summary(iris)
-```
-```
 
 When you render this document, the text and code will be combined to create an HTML file that includes both the markdown text and the output of the R code chunks.
 
 You can easily add images to an R Markdown document using the standard markdown syntax for images. The basic syntax for adding an image is `![Alt text](image_url)`, where `Alt text` is the text that will be displayed if the image cannot be loaded, and `image_url` is the URL of the image you want to include.
 
-For example, to add an image of a cute puppy to your R Markdown document, you could use the following code:
-
-```
-![A cute puppy](https://unsplash.com/photos/k4vhuUHv08o)
-```
-
-This would insert an image of a puppy into your document, with the alt text "A cute puppy".
-
-You can also specify additional options for the image, such as its size and alignment, using standard markdown syntax. For example, to resize the image and center it on the page, you could use the following code:
-
-```
-![A cute puppy](https://unsplash.com/photos/k4vhuUHv08o){width=50% align=center}
-```
-
-This would insert a resized image of a puppy into your document, centered on the page.
 
 I hope this helps you understand how to add images to an R Markdown document! Let me know if you have any further questions 😊
 
@@ -99,14 +63,5 @@ I hope this introduction helps you understand what R Markdown is and how it can 
 9. Use the `corr()` function to calculate the correlation between two numeric variables in a data frame. What is correlation and how is it calculated?
 
 **This is a draft of questions, dataframe and the variables will be specified later**
-
-Source:
-
-(1) Introduction to R Markdown - RStudio. https://rmarkdown.rstudio.com/articles_intro.html.
-(2) Introduction - R Markdown. https://rmarkdown.rstudio.com/lesson-1.html.
-(3) Introduction to R Markdown - RStudio. https://rmarkdown.rstudio.com/articles_intro.html.
-(4) https://intro2r.com/what-is-r-markdown.html#:~:text=R%20markdown%20is%20a%20simple%20and%20easy%20to,chapter%20or%20a%20web%20page%20like%20this%20one%29.. https://intro2r.com/what-is-r-markdown.html.
-(5) Introduction to R Markdown - GC Digital Fellows. https://digitalfellows.commons.gc.cuny.edu/2022/05/18/introduction-to-r-markdown/.
-(6) R Markdown: The Definitive Guide - Home | Bookdown. https://bookdown.org/yihui/rmarkdown/.
 
 

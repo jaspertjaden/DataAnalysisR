@@ -25,17 +25,28 @@ Prerequisites:
 Structure:
 
 1.	Intro to seminar
-2.	Exploratory data anaylsis (EDA) - I (ggpot; gtsummary; x)
+
+BLOCK I - Pre-processing/ EDA
+2.	Exploratory data analysis (EDA) - I (ggpot; gtsummary; x)
 3.	EDA - II  -> in class exercise
-4.	Linear Regression - theory
-5.	Linear Regression – application
-6.	Linear Regression - exercise
-7.	Logistic Regression - theory
-8.	Logistic Regression - Application
-9.	Logistic Regression - Exercise
-10.	Prediction/ Margins – theory and application
-11.	Prediction/ Margins – exercise 
-12.	Reporting/ Visualization
-13.	Discussion of ideas for term papers
-14.	Outlook
+--> add visualization/ reporting here. 
+--> knitting 
+---
+BLOCK II - Modelling/ Linear regression
+4.  DAGS
+5.	Linear Regression - theory I: Simple Linear Regression
+6.	Linear Regression - theory II: Multiple Linear Regression
+7.  Linear Regression - theory III: Diagnostics
+---
+Block III - Application
+8.	Linear Regression – application 
+9.	Linear Regression - exercise
+---
+Block IV - Advanced uses
+10. Mediation (?)
+11. Prediction - Theory
+12. Prediction - Application
+13.	Other estimators: Logistic/ Poisson/ Multilevel/ FE
+---
+14.	Course paper/Discussion/ Outlook
 

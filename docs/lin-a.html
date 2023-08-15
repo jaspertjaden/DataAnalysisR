@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title> 5 Linear Regression - Applied | Data Analysis with R for Social Scientists</title>
+  <title> 9 Linear Regression - Application | Data Analysis with R for Social Scientists</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content=" 5 Linear Regression - Applied | Data Analysis with R for Social Scientists" />
+  <meta property="og:title" content=" 9 Linear Regression - Application | Data Analysis with R for Social Scientists" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="jaspertjaden/DataAnalysisR" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content=" 5 Linear Regression - Applied | Data Analysis with R for Social Scientists" />
+  <meta name="twitter:title" content=" 9 Linear Regression - Application | Data Analysis with R for Social Scientists" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -29,14 +29,14 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-08-04" />
+<meta name="date" content="2023-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="lin-t.html"/>
+<link rel="prev" href="log-t-3.html"/>
 <link rel="next" href="lin-e.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -60,7 +60,75 @@ set in the _output.yml file.</p>" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -79,105 +147,111 @@ set in the _output.yml file.</p>" />
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Intro</a></li>
-<li class="chapter" data-level="1" data-path="intro-sem.html"><a href="intro-sem.html"><i class="fa fa-check"></i><b>1</b> Introduction to Seminar</a>
+<li class="chapter" data-level="1" data-path="intro-sem.html"><a href="intro-sem.html"><i class="fa fa-check"></i><b>1</b> Introduction to Seminar</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="intro-sem.html"><a href="intro-sem.html#a-section"><i class="fa fa-check"></i><b>1.1</b> A section</a>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#objectives"><i class="fa fa-check"></i><b>2.1</b> Objectives:</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="eda-1.html"><a href="eda-1.html"><i class="fa fa-check"></i><b>3</b> Exloratory Data Analysis - I</a>
 <ul>
-<li class="chapter" data-level="" data-path="intro-sem.html"><a href="intro-sem.html#an-unnumbered-section"><i class="fa fa-check"></i>An unnumbered section</a></li>
+<li class="chapter" data-level="3.1" data-path="eda-1.html"><a href="eda-1.html#objectives-1"><i class="fa fa-check"></i><b>3.1</b> Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="eda-1.html"><a href="eda-1.html#r-functions-covered-this-week"><i class="fa fa-check"></i><b>3.2</b> R functions covered this week</a></li>
+<li class="chapter" data-level="3.3" data-path="eda-1.html"><a href="eda-1.html#why-is-eda-so-important"><i class="fa fa-check"></i><b>3.3</b> Why is EDA so important?</a></li>
+<li class="chapter" data-level="3.4" data-path="eda-1.html"><a href="eda-1.html#importing-data-into-r"><i class="fa fa-check"></i><b>3.4</b> Importing data into R</a></li>
+<li class="chapter" data-level="3.5" data-path="eda-1.html"><a href="eda-1.html#import-data-into-r"><i class="fa fa-check"></i><b>3.5</b> Import data into R</a></li>
+<li class="chapter" data-level="3.6" data-path="eda-1.html"><a href="eda-1.html#merge-datasets"><i class="fa fa-check"></i><b>3.6</b> Merge datasets</a></li>
+<li class="chapter" data-level="3.7" data-path="eda-1.html"><a href="eda-1.html#clean-dataset"><i class="fa fa-check"></i><b>3.7</b> Clean dataset</a></li>
+<li class="chapter" data-level="3.8" data-path="eda-1.html"><a href="eda-1.html#change-variables"><i class="fa fa-check"></i><b>3.8</b> change variables</a></li>
+<li class="chapter" data-level="3.9" data-path="eda-1.html"><a href="eda-1.html#explore-the-whole-dataset"><i class="fa fa-check"></i><b>3.9</b> Explore the whole dataset</a></li>
+<li class="chapter" data-level="3.10" data-path="eda-1.html"><a href="eda-1.html#explore-individual-variables"><i class="fa fa-check"></i><b>3.10</b> explore individual variables</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eda-2.html"><a href="eda-2.html"><i class="fa fa-check"></i><b>4</b> Exploratory Data Analysis - II</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="eda-2.html"><a href="eda-2.html#markdown-introduction"><i class="fa fa-check"></i><b>4.1</b> Markdown Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="eda-2.html"><a href="eda-2.html#applying-edawvsown-data"><i class="fa fa-check"></i><b>4.2</b> Applying EDA(WVS/own data)</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="eda-2.html"><a href="eda-2.html#exercise---1"><i class="fa fa-check"></i><b>4.2.1</b> Exercise - 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="eda-1.html"><a href="eda-1.html"><i class="fa fa-check"></i><b>2</b> Exloratory Data Analysis - I</a>
+<li class="chapter" data-level="5" data-path="dags-1.html"><a href="dags-1.html"><i class="fa fa-check"></i><b>5</b> DAGs</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="eda-1.html"><a href="eda-1.html#load-data"><i class="fa fa-check"></i><b>2.1</b> Load data</a></li>
-<li class="chapter" data-level="2.2" data-path="eda-1.html"><a href="eda-1.html#introduce-wvs"><i class="fa fa-check"></i><b>2.2</b> Introduce WVS</a></li>
-<li class="chapter" data-level="2.3" data-path="eda-1.html"><a href="eda-1.html#glimpse"><i class="fa fa-check"></i><b>2.3</b> glimpse()</a></li>
-<li class="chapter" data-level="2.4" data-path="eda-1.html"><a href="eda-1.html#skim"><i class="fa fa-check"></i><b>2.4</b> skim()</a></li>
-<li class="chapter" data-level="2.5" data-path="eda-1.html"><a href="eda-1.html#types-of-variables-skalen"><i class="fa fa-check"></i><b>2.5</b> Types of Variables/ Skalen</a></li>
-<li class="chapter" data-level="2.6" data-path="eda-1.html"><a href="eda-1.html#univaraite-statistics-means-sds-min-max"><i class="fa fa-check"></i><b>2.6</b> Univaraite statistics (means, SDs, min, max)</a></li>
-<li class="chapter" data-level="2.7" data-path="eda-1.html"><a href="eda-1.html#ggplot"><i class="fa fa-check"></i><b>2.7</b> ggplot</a>
-<ul>
-<li class="chapter" data-level="2.7.1" data-path="eda-1.html"><a href="eda-1.html#histograms"><i class="fa fa-check"></i><b>2.7.1</b> Histograms</a></li>
-<li class="chapter" data-level="2.7.2" data-path="eda-1.html"><a href="eda-1.html#boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Boxplots</a></li>
-<li class="chapter" data-level="2.7.3" data-path="eda-1.html"><a href="eda-1.html#bar-graphs"><i class="fa fa-check"></i><b>2.7.3</b> Bar graphs</a></li>
-<li class="chapter" data-level="2.7.4" data-path="eda-1.html"><a href="eda-1.html#scatterplots"><i class="fa fa-check"></i><b>2.7.4</b> Scatterplots</a></li>
+<li class="chapter" data-level="5.1" data-path="dags-1.html"><a href="dags-1.html#causality"><i class="fa fa-check"></i><b>5.1</b> Causality</a></li>
+<li class="chapter" data-level="5.2" data-path="dags-1.html"><a href="dags-1.html#dags"><i class="fa fa-check"></i><b>5.2</b> DAGs</a></li>
+<li class="chapter" data-level="5.3" data-path="dags-1.html"><a href="dags-1.html#totaldirect-effect"><i class="fa fa-check"></i><b>5.3</b> Total/Direct effect</a></li>
+<li class="chapter" data-level="5.4" data-path="dags-1.html"><a href="dags-1.html#dagitty.net"><i class="fa fa-check"></i><b>5.4</b> dagitty.net</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="eda-1.html"><a href="eda-1.html#gtsummary"><i class="fa fa-check"></i><b>2.8</b> gtsummary</a>
+<li class="chapter" data-level="6" data-path="lin-t-1.html"><a href="lin-t-1.html"><i class="fa fa-check"></i><b>6</b> Linear Regression Theory I: Simple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="2.8.1" data-path="eda-1.html"><a href="eda-1.html#kreuztabellen"><i class="fa fa-check"></i><b>2.8.1</b> Kreuztabellen</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="eda-2.html"><a href="eda-2.html"><i class="fa fa-check"></i><b>3</b> Exloratory Data Analysis - II</a>
+<li class="chapter" data-level="6.1" data-path="lin-t-1.html"><a href="lin-t-1.html#what-is-linear-regression"><i class="fa fa-check"></i><b>6.1</b> What is Linear Regression</a></li>
+<li class="chapter" data-level="6.2" data-path="lin-t-1.html"><a href="lin-t-1.html#examplary-research-question-data"><i class="fa fa-check"></i><b>6.2</b> Examplary research question &amp; data</a></li>
+<li class="chapter" data-level="6.3" data-path="lin-t-1.html"><a href="lin-t-1.html#simple-linear-regression"><i class="fa fa-check"></i><b>6.3</b> Simple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="eda-2.html"><a href="eda-2.html#markdown-introduction"><i class="fa fa-check"></i><b>3.1</b> Markdown Introduction</a></li>
-<li class="chapter" data-level="3.2" data-path="eda-2.html"><a href="eda-2.html#applying-edawvsown-data"><i class="fa fa-check"></i><b>3.2</b> Applying EDA(WVS/own data)</a></li>
+<li class="chapter" data-level="6.3.1" data-path="lin-t-1.html"><a href="lin-t-1.html#regression-formula"><i class="fa fa-check"></i><b>6.3.1</b> Regression Formula</a></li>
+<li class="chapter" data-level="6.3.2" data-path="lin-t-1.html"><a href="lin-t-1.html#regressing-grade-on-hours"><i class="fa fa-check"></i><b>6.3.2</b> Regressing <code>grade</code> on <code>hours</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="lin-t.html"><a href="lin-t.html"><i class="fa fa-check"></i><b>4</b> Linear Regression &amp; DAGS - Theory</a>
+<li class="chapter" data-level="6.4" data-path="lin-t-1.html"><a href="lin-t-1.html#multiple-linear-regression"><i class="fa fa-check"></i><b>6.4</b> Multiple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="lin-t.html"><a href="lin-t.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="lin-t.html"><a href="lin-t.html#what-is-linear-regression"><i class="fa fa-check"></i><b>4.2</b> What is Linear Regression</a></li>
-<li class="chapter" data-level="4.3" data-path="lin-t.html"><a href="lin-t.html#when-and-for-what-can-it-be-used"><i class="fa fa-check"></i><b>4.3</b> When and for what can it be used?</a></li>
-<li class="chapter" data-level="4.4" data-path="lin-t.html"><a href="lin-t.html#formal"><i class="fa fa-check"></i><b>4.4</b> Formal</a></li>
-<li class="chapter" data-level="4.5" data-path="lin-t.html"><a href="lin-t.html#regression-formula"><i class="fa fa-check"></i><b>4.5</b> Regression Formula</a></li>
-<li class="chapter" data-level="4.6" data-path="lin-t.html"><a href="lin-t.html#interpretation-of-results"><i class="fa fa-check"></i><b>4.6</b> Interpretation of results</a></li>
-<li class="chapter" data-level="4.7" data-path="lin-t.html"><a href="lin-t.html#maybes"><i class="fa fa-check"></i><b>4.7</b> Maybes</a></li>
+<li class="chapter" data-level="6.4.1" data-path="lin-t-1.html"><a href="lin-t-1.html#adding-additional-variables"><i class="fa fa-check"></i><b>6.4.1</b> Adding additional variables</a></li>
+<li class="chapter" data-level="6.4.2" data-path="lin-t-1.html"><a href="lin-t-1.html#adding-dummy-variables"><i class="fa fa-check"></i><b>6.4.2</b> Adding dummy variables</a></li>
+<li class="chapter" data-level="6.4.3" data-path="lin-t-1.html"><a href="lin-t-1.html#adding-categorical-variables"><i class="fa fa-check"></i><b>6.4.3</b> Adding categorical variables</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="lin-a.html"><a href="lin-a.html"><i class="fa fa-check"></i><b>5</b> Linear Regression - Applied</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="lin-a.html"><a href="lin-a.html#example-research-question"><i class="fa fa-check"></i><b>5.1</b> Example research question</a></li>
-<li class="chapter" data-level="5.2" data-path="lin-a.html"><a href="lin-a.html#application-with-wvs-data"><i class="fa fa-check"></i><b>5.2</b> Application with WVS data</a></li>
-<li class="chapter" data-level="5.3" data-path="lin-a.html"><a href="lin-a.html#r-code"><i class="fa fa-check"></i><b>5.3</b> R Code</a></li>
-<li class="chapter" data-level="5.4" data-path="lin-a.html"><a href="lin-a.html#interpretation-of-regression-table-in-practice"><i class="fa fa-check"></i><b>5.4</b> Interpretation of regression table in practice</a></li>
-<li class="chapter" data-level="5.5" data-path="lin-a.html"><a href="lin-a.html#regression-diagnostics-relatively-short"><i class="fa fa-check"></i><b>5.5</b> Regression Diagnostics (relatively short?)</a></li>
-<li class="chapter" data-level="5.6" data-path="lin-a.html"><a href="lin-a.html#mediation"><i class="fa fa-check"></i><b>5.6</b> Mediation</a></li>
-<li class="chapter" data-level="5.7" data-path="lin-a.html"><a href="lin-a.html#maybes-1"><i class="fa fa-check"></i><b>5.7</b> Maybes</a></li>
+<li class="chapter" data-level="6.5" data-path="lin-t-1.html"><a href="lin-t-1.html#returning-to-our-research-question"><i class="fa fa-check"></i><b>6.5</b> Returning to our research question</a></li>
+<li class="chapter" data-level="6.6" data-path="lin-t-1.html"><a href="lin-t-1.html#maybes"><i class="fa fa-check"></i><b>6.6</b> Maybes</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="lin-e.html"><a href="lin-e.html"><i class="fa fa-check"></i><b>6</b> Linear Regression - Exercises</a>
+<li class="chapter" data-level="7" data-path="lin-t-2.html"><a href="lin-t-2.html"><i class="fa fa-check"></i><b>7</b> Linear Regression Theory II: Multiple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="lin-e.html"><a href="lin-e.html#application-of-linear-regression"><i class="fa fa-check"></i><b>6.1</b> Application of Linear Regression</a></li>
+<li class="chapter" data-level="7.1" data-path="lin-t-2.html"><a href="lin-t-2.html#application-of-linear-regression"><i class="fa fa-check"></i><b>7.1</b> Application of Linear Regression</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="log-t.html"><a href="log-t.html"><i class="fa fa-check"></i><b>7</b> Logistic Regression - Theory</a>
+<li class="chapter" data-level="8" data-path="log-t-3.html"><a href="log-t-3.html"><i class="fa fa-check"></i><b>8</b> Linear Regression Theory III: Diagnostics</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="log-t.html"><a href="log-t.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="log-t.html"><a href="log-t.html#what-is-linear-regression-1"><i class="fa fa-check"></i><b>7.2</b> What is Linear Regression</a></li>
-<li class="chapter" data-level="7.3" data-path="log-t.html"><a href="log-t.html#when-and-for-what-can-it-be-used-1"><i class="fa fa-check"></i><b>7.3</b> When and for what can it be used?</a></li>
-<li class="chapter" data-level="7.4" data-path="log-t.html"><a href="log-t.html#formal-1"><i class="fa fa-check"></i><b>7.4</b> Formal</a></li>
-<li class="chapter" data-level="7.5" data-path="log-t.html"><a href="log-t.html#regression-formula-1"><i class="fa fa-check"></i><b>7.5</b> Regression Formula</a></li>
-<li class="chapter" data-level="7.6" data-path="log-t.html"><a href="log-t.html#interpretation-of-results-1"><i class="fa fa-check"></i><b>7.6</b> Interpretation of results</a></li>
-<li class="chapter" data-level="7.7" data-path="log-t.html"><a href="log-t.html#maybes-2"><i class="fa fa-check"></i><b>7.7</b> Maybes</a></li>
+<li class="chapter" data-level="8.1" data-path="log-t-3.html"><a href="log-t-3.html#introduction-1"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="log-t-3.html"><a href="log-t-3.html#what-is-linear-regression-1"><i class="fa fa-check"></i><b>8.2</b> What is Linear Regression</a></li>
+<li class="chapter" data-level="8.3" data-path="log-t-3.html"><a href="log-t-3.html#when-and-for-what-can-it-be-used"><i class="fa fa-check"></i><b>8.3</b> When and for what can it be used?</a></li>
+<li class="chapter" data-level="8.4" data-path="log-t-3.html"><a href="log-t-3.html#formal"><i class="fa fa-check"></i><b>8.4</b> Formal</a></li>
+<li class="chapter" data-level="8.5" data-path="log-t-3.html"><a href="log-t-3.html#regression-formula-1"><i class="fa fa-check"></i><b>8.5</b> Regression Formula</a></li>
+<li class="chapter" data-level="8.6" data-path="log-t-3.html"><a href="log-t-3.html#interpretation-of-results"><i class="fa fa-check"></i><b>8.6</b> Interpretation of results</a></li>
+<li class="chapter" data-level="8.7" data-path="log-t-3.html"><a href="log-t-3.html#maybes-1"><i class="fa fa-check"></i><b>8.7</b> Maybes</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="log-a.html"><a href="log-a.html"><i class="fa fa-check"></i><b>8</b> Logistic Regression - Applied</a>
+<li class="chapter" data-level="9" data-path="lin-a.html"><a href="lin-a.html"><i class="fa fa-check"></i><b>9</b> Linear Regression - Application</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="log-a.html"><a href="log-a.html#example-research-question-1"><i class="fa fa-check"></i><b>8.1</b> Example research question</a></li>
-<li class="chapter" data-level="8.2" data-path="log-a.html"><a href="log-a.html#application-with-wvs-data-1"><i class="fa fa-check"></i><b>8.2</b> Application with WVS data</a></li>
-<li class="chapter" data-level="8.3" data-path="log-a.html"><a href="log-a.html#r-code-1"><i class="fa fa-check"></i><b>8.3</b> R Code</a></li>
-<li class="chapter" data-level="8.4" data-path="log-a.html"><a href="log-a.html#interpretation-of-regression-table-in-practice-1"><i class="fa fa-check"></i><b>8.4</b> Interpretation of regression table in practice</a></li>
-<li class="chapter" data-level="8.5" data-path="log-a.html"><a href="log-a.html#regression-diagnostics-relatively-short-1"><i class="fa fa-check"></i><b>8.5</b> Regression Diagnostics (relatively short?)</a></li>
-<li class="chapter" data-level="8.6" data-path="log-a.html"><a href="log-a.html#mediation-1"><i class="fa fa-check"></i><b>8.6</b> Mediation</a></li>
-<li class="chapter" data-level="8.7" data-path="log-a.html"><a href="log-a.html#maybes-3"><i class="fa fa-check"></i><b>8.7</b> Maybes</a></li>
+<li class="chapter" data-level="9.1" data-path="lin-a.html"><a href="lin-a.html#example-research-question"><i class="fa fa-check"></i><b>9.1</b> Example research question</a></li>
+<li class="chapter" data-level="9.2" data-path="lin-a.html"><a href="lin-a.html#application-with-wvs-data"><i class="fa fa-check"></i><b>9.2</b> Application with WVS data</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="lin-a.html"><a href="lin-a.html#r-code"><i class="fa fa-check"></i><b>9.2.1</b> R Code</a></li>
+<li class="chapter" data-level="9.2.2" data-path="lin-a.html"><a href="lin-a.html#interpretation-of-regression-table-in-practice"><i class="fa fa-check"></i><b>9.2.2</b> Interpretation of regression table in practice</a></li>
+<li class="chapter" data-level="9.2.3" data-path="lin-a.html"><a href="lin-a.html#adding-additional-variables-1"><i class="fa fa-check"></i><b>9.2.3</b> Adding additional variables</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="log-e.html"><a href="log-e.html"><i class="fa fa-check"></i><b>9</b> Logistic Regression - Exercises</a>
+<li class="chapter" data-level="9.3" data-path="lin-a.html"><a href="lin-a.html#regression-diagnostics"><i class="fa fa-check"></i><b>9.3</b> Regression Diagnostics</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="log-e.html"><a href="log-e.html#application-of-logistic-regression"><i class="fa fa-check"></i><b>9.1</b> Application of Logistic Regression</a></li>
+<li class="chapter" data-level="9.3.1" data-path="lin-a.html"><a href="lin-a.html#assumptions"><i class="fa fa-check"></i><b>9.3.1</b> Assumptions</a></li>
+<li class="chapter" data-level="9.3.2" data-path="lin-a.html"><a href="lin-a.html#tests"><i class="fa fa-check"></i><b>9.3.2</b> Tests</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="pm-t.html"><a href="pm-t.html"><i class="fa fa-check"></i><b>10</b> Prediction or Margins - Theory</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="pm-t.html"><a href="pm-t.html#predicted-probabilities"><i class="fa fa-check"></i><b>10.1</b> Predicted probabilities</a></li>
-<li class="chapter" data-level="10.2" data-path="pm-t.html"><a href="pm-t.html#marginal-effects"><i class="fa fa-check"></i><b>10.2</b> Marginal Effects</a></li>
+<li class="chapter" data-level="9.4" data-path="lin-a.html"><a href="lin-a.html#maybes-2"><i class="fa fa-check"></i><b>9.4</b> Maybes</a></li>
+<li class="chapter" data-level="9.5" data-path="lin-a.html"><a href="lin-a.html#outlook"><i class="fa fa-check"></i><b>9.5</b> Outlook</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="pm-e.html"><a href="pm-e.html"><i class="fa fa-check"></i><b>11</b> Prediction or Margins - Exercises</a>
+<li class="chapter" data-level="10" data-path="lin-e.html"><a href="lin-e.html"><i class="fa fa-check"></i><b>10</b> Linear Regression - Exercises</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="pm-e.html"><a href="pm-e.html#application-of-regression"><i class="fa fa-check"></i><b>11.1</b> Application of Regression</a></li>
+<li class="chapter" data-level="10.1" data-path="lin-e.html"><a href="lin-e.html#application-of-logistic-regression"><i class="fa fa-check"></i><b>10.1</b> Application of Logistic Regression</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="report-v.html"><a href="report-v.html"><i class="fa fa-check"></i><b>12</b> Reporting and Visualization</a>
+<li class="chapter" data-level="11" data-path="med.html"><a href="med.html"><i class="fa fa-check"></i><b>11</b> Prediction or Margins - Theory</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="report-v.html"><a href="report-v.html#formatted-regression-tables"><i class="fa fa-check"></i><b>12.1</b> Formatted regression tables</a></li>
-<li class="chapter" data-level="12.2" data-path="report-v.html"><a href="report-v.html#publication-ready-formatting-labelling-of-visuals"><i class="fa fa-check"></i><b>12.2</b> Publication-ready formatting/ labelling of visuals</a></li>
-<li class="chapter" data-level="12.3" data-path="report-v.html"><a href="report-v.html#coefficient-plots"><i class="fa fa-check"></i><b>12.3</b> coefficient plots</a></li>
+<li class="chapter" data-level="11.1" data-path="med.html"><a href="med.html#predicted-probabilities"><i class="fa fa-check"></i><b>11.1</b> Predicted probabilities</a></li>
+<li class="chapter" data-level="11.2" data-path="med.html"><a href="med.html#marginal-effects"><i class="fa fa-check"></i><b>11.2</b> Marginal Effects</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="dis-paper.html"><a href="dis-paper.html"><i class="fa fa-check"></i><b>13</b> Discussion of ideas and term papers</a></li>
-<li class="chapter" data-level="14" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>14</b> Outlook</a>
+<li class="chapter" data-level="12" data-path="pm-t.html"><a href="pm-t.html"><i class="fa fa-check"></i><b>12</b> Prediction - Theory</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="out-look.html"><a href="out-look.html#machine-learning"><i class="fa fa-check"></i><b>14.1</b> Machine Learning</a></li>
+<li class="chapter" data-level="12.1" data-path="pm-t.html"><a href="pm-t.html#application-of-regression"><i class="fa fa-check"></i><b>12.1</b> Application of Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="pm-a.html"><a href="pm-a.html"><i class="fa fa-check"></i><b>13</b> Prediction - Application</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="pm-a.html"><a href="pm-a.html#formatted-regression-tables"><i class="fa fa-check"></i><b>13.1</b> Formatted regression tables</a></li>
+<li class="chapter" data-level="13.2" data-path="pm-a.html"><a href="pm-a.html#publication-ready-formatting-labelling-of-visuals"><i class="fa fa-check"></i><b>13.2</b> Publication-ready formatting/ labelling of visuals</a></li>
+<li class="chapter" data-level="13.3" data-path="pm-a.html"><a href="pm-a.html#coefficient-plots"><i class="fa fa-check"></i><b>13.3</b> coefficient plots</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="other-est.html"><a href="other-est.html"><i class="fa fa-check"></i><b>14</b> Other Estimators: Logistic, Poisson, Multilevel, FE</a></li>
+<li class="chapter" data-level="15" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>15</b> Outlook</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="out-look.html"><a href="out-look.html#machine-learning"><i class="fa fa-check"></i><b>15.1</b> Machine Learning</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -200,10 +274,10 @@ set in the _output.yml file.</p>" />
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="lin-a" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number"> 5</span> Linear Regression - Applied<a href="lin-a.html#lin-a" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="example-research-question" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Example research question<a href="lin-a.html#example-research-question" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="lin-a" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number"> 9</span> Linear Regression - Application<a href="lin-a.html#lin-a" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="example-research-question" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Example research question<a href="lin-a.html#example-research-question" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Short theory
 <ul>
@@ -214,28 +288,247 @@ set in the _output.yml file.</p>" />
 </ul></li>
 </ul>
 </div>
-<div id="application-with-wvs-data" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Application with WVS data<a href="lin-a.html#application-with-wvs-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="application-with-wvs-data" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Application with WVS data<a href="lin-a.html#application-with-wvs-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>XXX USING FAKE DATE FOR NOW XXX</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="lin-a.html#cb75-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb75-2"><a href="lin-a.html#cb75-2" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;grades.RData&quot;</span>)</span></code></pre></div>
+<div id="r-code" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> R Code<a href="lin-a.html#r-code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To conduct a multiple linear regression in R, we can use the built-in <em>base R</em>
+function <code>lm()</code>. The function is straightforward to use. As the first argument
+we write the regression formula in R’s <em>formula syntax</em>.</p>
+<p>In the formula syntac we start by writing the name of our <code>dependent_variable</code>
+followed by a <em>tilde</em> <code>~</code>. You can read this as an <span class="math inline">\(=\)</span> or as “regress the
+dependent variable on”. After the tilde we add our first <code>indepedent variable</code>
+by again writing out its name. If we have multiple independent variables in our
+model - so we are runnign a <em>multiple linear regression</em> - we can add those by
+writing a <code>+</code> followed by the name of the variable to be added.</p>
+<p>As a second argument, the function needs the name of the object that holds our
+data.</p>
+<p>So if we want to regress XXX on XXX, we just write:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="lin-a.html#cb76-1" tabindex="-1"></a><span class="fu">lm</span>(grade <span class="sc">~</span> hours_centered, <span class="at">data =</span> grades)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = grade ~ hours_centered, data = grades)
+## 
+## Coefficients:
+##    (Intercept)  hours_centered  
+##        2.96750        -0.05236</code></pre>
+<p>This gives us a short output. The first line just echoes our code used to run
+the regression. We have seen this in the last session already, but now we know
+what the meaning was. After this we have a short block with the estimated
+coefficients. As we have run a simple linear regression, we only get the
+intercept and the coefficient for the sole independent variable used in the
+model. If we would have run a multiple linear regression, the result would
+basically look the same, only with more coefficients to display.</p>
+<p>Before we dive into the results, we should talk about how to receive a more
+verbose output that does not hide all the other vital information that is
+associated with the model.</p>
+<p>The easiest way is to use the base R function <code>summary()</code>. This is a generic R
+function that returns different summaries, depending on the object it is used
+on. We can for example use it on a data frame or tibble to get some descriptive
+statistics for the included variables.</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="lin-a.html#cb78-1" tabindex="-1"></a><span class="fu">summary</span>(grades)</span></code></pre></div>
+<pre><code>##      grade           hours       previous_grades attendance     
+##  Min.   :1.000   Min.   :23.00   Min.   :1.000   Mode :logical  
+##  1st Qu.:2.100   1st Qu.:36.00   1st Qu.:2.300   FALSE:47       
+##  Median :3.000   Median :41.00   Median :2.950   TRUE :153      
+##  Mean   :2.967   Mean   :40.33   Mean   :2.935                  
+##  3rd Qu.:3.725   3rd Qu.:45.00   3rd Qu.:3.625                  
+##  Max.   :5.000   Max.   :57.00   Max.   :5.000                  
+##        contact   previous_grades_centered hours_centered  
+##  No contact:80   Min.   :-1.935           Min.   :-17.33  
+##  E-Mail    :50   1st Qu.:-0.635           1st Qu.: -4.33  
+##  In Person :70   Median : 0.015           Median :  0.67  
+##                  Mean   : 0.000           Mean   :  0.00  
+##                  3rd Qu.: 0.690           3rd Qu.:  4.67  
+##                  Max.   : 2.065           Max.   : 16.67</code></pre>
+<p>When we use <code>summary()</code> on a model object, like the one created by <code>lm()</code>, we
+get a different output. Before we apply this we should save our model in an
+object. This is good practice in most cases as we can now apply all additional
+analysis of the model on ths object and we do not have to rerun the model
+every time.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="lin-a.html#cb80-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(grade <span class="sc">~</span> hours_centered, <span class="at">data =</span> grades)</span></code></pre></div>
+<p>We can now apply <code>summary()</code> on the object <code>m1</code>, short for “model 1”:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="lin-a.html#cb81-1" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = grade ~ hours_centered, data = grades)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.88006 -0.83961 -0.08006  0.77006  2.53881 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)     2.96750    0.07267  40.835  &lt; 2e-16 ***
+## hours_centered -0.05236    0.01159  -4.517 1.07e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.028 on 198 degrees of freedom
+## Multiple R-squared:  0.09344,    Adjusted R-squared:  0.08886 
+## F-statistic: 20.41 on 1 and 198 DF,  p-value: 1.075e-05</code></pre>
+<p>This not only gives us an extended and better readable coefficient block but
+also additional information on the quality of the model. We will address the
+most relevant aspects one by one during this session.</p>
+<p>An alternative method of displaying the coefficients in a regular tibble format,
+is to use <code>tidy()</code> from the <code>broom</code> package.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="lin-a.html#cb83-1" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
+<pre><code>## Warning: package &#39;broom&#39; was built under R version 4.2.3</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="lin-a.html#cb85-1" tabindex="-1"></a><span class="fu">tidy</span>(m1)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 5
+##   term           estimate std.error statistic  p.value
+##   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)      2.97      0.0727     40.8  2.18e-98
+## 2 hours_centered  -0.0524    0.0116     -4.52 1.07e- 5</code></pre>
 </div>
-<div id="r-code" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> R Code<a href="lin-a.html#r-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="interpretation-of-regression-table-in-practice" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> Interpretation of regression table in practice<a href="lin-a.html#interpretation-of-regression-table-in-practice" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Looking at the coefficient block from either of the two outputs, we see more
+than just our estimate. The <code>Std. Error</code> or <code>std.error</code> is a measure for the
+uncertainty of our estimates. It basically tells us, how far away the actual
+values of the observations used to compute the model are from our estimate
+<em>on average</em>. The smaller the <em>standard error</em>, the more accurate is our
+estimate. The standard error is presented in the units of the estimate and we
+can thus compare them. A large standard error for a large estimate is far less
+problematic compared to a large standard error for a small estimate.</p>
+<p>The estimate and it’s standard error are the basis for <em>hypothesis testing</em>.
+What we are testing is the <em>alternative hypotheses</em> <span class="math inline">\(H_a\)</span> that there actually
+is an effect of our independent variable on the dependent variable against the
+<em>null hypothesis</em> <span class="math inline">\(H_0\)</span> that there is no effect. To reject the null hypothesis
+and be confident that we are observing an actual effect, versus an effect that
+is joust based on random variation in our sample, the estimate has to be far
+away enough from <span class="math inline">\(0\)</span> and be accurate enough, i.e. have a small standard error.
+This relationship is computed in the <em>t-statistic</em>, <code>t value</code> and <code>statistic</code> in
+our outputs. From this the <em>p-value</em> can be computed, <code>Pr(&gt;|t|)</code> and <code>p.value</code>
+in the outputs. The <em>p-value</em> tells us the probability to observe a association
+between the independent and the dependent variable as large or larger than our
+estimate suggests, if the true association would actually be <span class="math inline">\(0\)</span>. If the p-value
+is small enough, we can reject <span class="math inline">\(H_0\)</span> and conclude that we observed an actual
+effect. There are certain agreed upon cutoffs in statistics where values that
+meet this cutoff are considered <em>statistically significant</em>. The most common
+cutoff in social sciences is <span class="math inline">\(0.05\)</span> indicated by one <code>*</code> in the output from
+<code>summary()</code> There are other common cutoffs indicated by more asterisks.</p>
+<p>Interpreting p-values correctly and not falling into the common pitfalls is a
+topic on its own. We do not have the time to dive into this here, so for now we
+can agree that p-values below <span class="math inline">\(0.05\)</span> indicate that we can reject <span class="math inline">\(H_0\)</span> and thus
+conclude that we have actually observed an effect. Still, our interpretation of
+regression results should not focus solely on p-values or lead us to disregard
+any effects that did not meet the cutoff. For example, we can have very small
+p-values for effects that are so small that they are substantially irrelevant.
+One way to address this is to inspect the actual magnitudes of the effects,
+something we will return to in our session on prediction. On the other hand, we
+can have p-values larger than <span class="math inline">\(0.05\)</span> for effects that are still relevant. Maybe
+the problem is not that there is no effect but that we were not able to measure
+the variable in question precisely enough or that we just did not have enough
+observations. We can not go any deeper than this here, but we should remember
+that the practice of declaring every effect with stars a win and disregarding
+everything without them may still be common but is not the way to go forward.</p>
+<p>XXX CORRECT? MAYBE SHORTEN XXX</p>
+<p>XXX INTERPRETATION HERE</p>
+</div>
+<div id="adding-additional-variables-1" class="section level3 hasAnchor" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> Adding additional variables<a href="lin-a.html#adding-additional-variables-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The DAG we have constructed above based on our research question indicated that
+we have to include more than just one variable in our model.
+We can add additional independent variables to the formula used in <code>lm()</code> with a
+<code>+</code> and the name of the additional variable(s).
+So let us do this now:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="lin-a.html#cb87-1" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(grade <span class="sc">~</span> hours_centered <span class="sc">+</span> contact, <span class="at">data =</span> grades)</span>
+<span id="cb87-2"><a href="lin-a.html#cb87-2" tabindex="-1"></a></span>
+<span id="cb87-3"><a href="lin-a.html#cb87-3" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = grade ~ hours_centered + contact, data = grades)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.85595 -0.74624 -0.02106  0.66648  2.50161 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       3.44352    0.10404  33.098  &lt; 2e-16 ***
+## hours_centered   -0.04967    0.01052  -4.723 4.43e-06 ***
+## contactE-Mail    -0.46482    0.16785  -2.769  0.00616 ** 
+## contactIn Person -1.02804    0.15240  -6.746 1.67e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.9305 on 196 degrees of freedom
+## Multiple R-squared:  0.2643, Adjusted R-squared:  0.253 
+## F-statistic: 23.47 on 3 and 196 DF,  p-value: 5.072e-13</code></pre>
+<p>XXX INTERPRETATION HERE XXX</p>
+<p>Let us now turn to the bottom block in the output from <code>summary()</code>. We do not
+have to talk about every measure at this point but we should consider <span class="math inline">\(R^2\)</span>.
+<em>R-squared</em> gives us a measure for the amount of variance in the data that is
+“explained” by the model. Real world data will always have variance. Not every
+value will neatly fall onto the mean value of a variable. Rather the data is
+dispersed around it. Thinking back to the last session and the plots on one
+independent against one independent variable we already have an understanding
+of this. The first thing we see is a cloud of dispersed data points. Linear
+regression tries to bring order into this by fitting a line that explains the
+relationship between the variables. But this linear line can never explain the
+relationship completely. For this it had to pass through every data point. So we
+have explained part of the relationship but a part that is not explained
+remains. These are the residuals, the distance that points fall from the
+regression line. <span class="math inline">\(R^2\)</span> tells us the relative amount of how much we reduced the
+initial variance by fitting the line and thus explaining a part of said
+variance.</p>
+<p>A <span class="math inline">\(R^2\)</span> of <span class="math inline">\(0\)</span> would mean that no variance is explained, a value of <span class="math inline">\(1\)</span> that all
+variance is explained. Two highly unlikely outcomes. We will almost always
+explain something and never explain everything. But in general a higher <span class="math inline">\(R^2\)</span> is
+better, as we have achieved a higher amount of explained variance. But keep in
+mind that <span class="math inline">\(R^2\)</span> is not everything. It is never that easy in statistics. It is
+entirely possible to reach high values with models that are completely wrong.
+Either because we did not put in the theoretical work and never really figured
+out what we actually should include in the model to get an unbiased estimate for
+our effect of interest or because our model is misspecified. We will address the
+latter in the next chapter.
+Also <span class="math inline">\(R^2\)</span> almost always increases by adding additional variable to the model,
+especially if we have few observations. Because of this <span class="math inline">\(R^2\)</span> can get less
+reliable when we have many variables and few observations. <em>Adjusted R-squared</em>
+corrects for this by including both factors in the calculation. When we have
+many observations, as in our case, the differences are negligible, but if we do
+not and want or have to add many variables, adjusted R-squared should be used in
+place of the regular <span class="math inline">\(R^2\)</span>.</p>
+<p>XXX INCREASE IN R^2 FOR OUR MODEL XXX</p>
+<p>XXX ALSO ADD OTHER ASPECTS FROM THIS BLOCK? RSE; F/P-VALUE? XXX</p>
+</div>
+</div>
+<div id="regression-diagnostics" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Regression Diagnostics<a href="lin-a.html#regression-diagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(R^2\)</span> is useful to assess the amount of variance explained but it is never
+enough to actually judge the quality of a model. We can achieve high values for
+<span class="math inline">\(R^2\)</span> and still have bad or flat-out wrong models.
+That is why the first step before even starting on specifying a model always
+<strong>has</strong> to be thorough theoretical thinking about what we want to measure and
+how we can actually do it. We can not replace this step with ever so fancy a
+statistical technique.
+But what if we did put in the work and laid out the best plan imaginable, we
+also estimated all effects as predicted and reached a high <span class="math inline">\(R^2\)</span>. Is our model
+than correct? Maybe, probably, but we do not know yet for certain. This is where
+<em>regression diagnostics</em> comes in.</p>
+<p>As linear regression is a statistical technique, there are certain statistical
+assumptions we have to meet. If we violate those, the best laid plans may
+falter and our results may be not as robust as we hoped.</p>
+<div id="assumptions" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Assumptions<a href="lin-a.html#assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="tests" class="section level3 hasAnchor" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> Tests<a href="lin-a.html#tests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="maybes-2" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Maybes<a href="lin-a.html#maybes-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>lm()
+<li>Interactions
 <ul>
-<li>formula syntax</li>
+<li>In practice if introduced the week before</li>
+<li>Maybe also introduce and apply here</li>
 </ul></li>
-</ul>
-</div>
-<div id="interpretation-of-regression-table-in-practice" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Interpretation of regression table in practice<a href="lin-a.html#interpretation-of-regression-table-in-practice" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-</div>
-<div id="regression-diagnostics-relatively-short" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Regression Diagnostics (relatively short?)<a href="lin-a.html#regression-diagnostics-relatively-short" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-</div>
-<div id="mediation" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Mediation<a href="lin-a.html#mediation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>total + direct effect
+<li>Mediation/total + direct effect
 <ul>
 <li>use DAGs again</li>
 <li>apply with lm()</li>
@@ -243,14 +536,13 @@ set in the _output.yml file.</p>" />
 </ul></li>
 </ul>
 </div>
-<div id="maybes-1" class="section level2 hasAnchor" number="5.7">
-<h2><span class="header-section-number">5.7</span> Maybes<a href="lin-a.html#maybes-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="outlook" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Outlook<a href="lin-a.html#outlook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Interactions
-<ul>
-<li>In practice if introduced the week before</li>
-<li>Maybe also introduce and apply here</li>
-</ul></li>
+<li>Alternative Packages</li>
+<li>Packages that expand upon the ideas</li>
+<li>Weighting</li>
+<li>Mutli-level/Fixed effects</li>
 </ul>
 
 </div>
@@ -260,7 +552,7 @@ set in the _output.yml file.</p>" />
           </div>
         </div>
       </div>
-<a href="lin-t.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="log-t-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="lin-e.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -292,7 +584,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-linear-regression-applied.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/08-linear-regression-ex.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -315,6 +607,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
