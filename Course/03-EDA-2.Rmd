@@ -45,15 +45,15 @@ I hope this introduction helps you understand what R Markdown is and how it can 
 ### Exercise - 1
 
 **Boston Housing Dataset**
+
 Housing data contains 506 census tracts of Boston from the 1970 census. The dataframe BostonHousing contains the original data by Harrison and Rubinfeld (1979), the dataframe BostonHousing2 the corrected version with additional spatial information.
 
 You can include this data by installing mlbench library:
-```{r}
+```{r, warning=FALSE, message=FALSE}
 #install.packages("mlbench") ## installing the library
 library(mlbench) #adding the library
 data(BostonHousing2)
 housing <- BostonHousing2
-str(housing)
 ```
 
 1. Use the `str()` and `glimpse()` functions to explore the structure of the data.

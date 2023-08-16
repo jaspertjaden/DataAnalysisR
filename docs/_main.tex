@@ -175,30 +175,54 @@ Please download the data used in the course \href{https://www.worldvaluessurvey.
 \chapter{Introduction to Seminar}\label{intro-sem}}
 
 \hypertarget{introduction}{%
-\chapter{Introduction}\label{introduction}}
+\section{Introduction}\label{introduction}}
 
 Welcome to this course! In this course, you will learn how to analyse data using multiple regression in R. The course is aimed at undergraduate students who have completed the course ``Intro to R for Social Scientists.
 
-Why should I take this course?
-- What is regression?
-- WHat do you use it for?
-
-\hypertarget{objectives}{%
-\section{Objectives:}\label{objectives}}
+\hypertarget{why-should-i-take-this-course}{%
+\section{Why should I take this course?}\label{why-should-i-take-this-course}}
 
 \begin{itemize}
 \tightlist
 \item
+  What is regression?
+\item
+  What do you use it for?
 \end{itemize}
 
-What is not covered:
+\hypertarget{objectives}{%
+\section{Objectives}\label{objectives}}
 
-Prerequisites:
-- Basic knowledge of how to use R (data cleaning, management etc.) (include hyperlink to ``Intro to R course'')
-- Descriptive statistics
-- Data visualization using ggplot()
+\begin{itemize}
+\tightlist
+\item
+\item
+\end{itemize}
 
-Structure:
+\hypertarget{what-is-not-covered}{%
+\section{What is not covered}\label{what-is-not-covered}}
+
+\begin{itemize}
+\tightlist
+\item
+\item
+\end{itemize}
+
+\hypertarget{prerequisites}{%
+\section{Prerequisites}\label{prerequisites}}
+
+\begin{itemize}
+\tightlist
+\item
+  Basic knowledge of how to use R (data cleaning, management etc.) (include hyperlink to ``Intro to R course'')
+\item
+  Descriptive statistics
+\item
+  Data visualization using ggplot()
+\end{itemize}
+
+\hypertarget{structure}{%
+\section{Structure}\label{structure}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -207,29 +231,66 @@ Structure:
   Intro to seminar
 \end{enumerate}
 
-BLOCK I - Pre-processing/ EDA
-2. Exploratory data analysis (EDA) - I (ggpot; gtsummary; x)
-3. EDA - II -\textgreater{} in class exercise
+\emph{BLOCK I - Pre-processing/ EDA}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Exploratory data analysis (EDA) - I (ggplot; gtsummary; x)
+\item
+  EDA - II -\textgreater{} in class exercise
+\end{enumerate}
+
 --\textgreater{} add visualization/ reporting here.
+
 --\textgreater{} knitting
----
-BLOCK II - Modelling/ Linear regression
-4. DAGS
-5. Linear Regression - theory I: Simple Linear Regression
-6. Linear Regression - theory II: Multiple Linear Regression
-7. Linear Regression - theory III: Diagnostics
----
-Block III - Application
-8. Linear Regression -- application
-9. Linear Regression - exercise
----
-Block IV - Advanced uses
-10. Mediation (?)
-11. Prediction - Theory
-12. Prediction - Application
-13. Other estimators: Logistic/ Poisson/ Multilevel/ FE
----
-14. Course paper/Discussion/ Outlook
+
+\emph{BLOCK II - Modelling/ Linear regression}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  DAGS
+\item
+  Linear Regression - theory I: Simple Linear Regression
+\item
+  Linear Regression - theory II: Multiple Linear Regression
+\item
+  Linear Regression - theory III: Diagnostics
+\end{enumerate}
+
+\emph{Block III - Application}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Linear Regression -- application
+\item
+  Linear Regression - exercise
+\end{enumerate}
+
+\emph{Block IV - Advanced uses}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\item
+  Mediation (?)
+\item
+  Prediction - Theory
+\item
+  Prediction - Application
+\item
+  Other estimators: Logistic/ Poisson/ Multilevel/ FE
+\item
+  Course paper/Discussion/ Outlook
+\end{enumerate}
 
 \hypertarget{eda-1}{%
 \chapter{Exloratory Data Analysis - I}\label{eda-1}}
@@ -1282,6 +1343,7 @@ I hope this introduction helps you understand what R Markdown is and how it can 
 \subsection{Exercise - 1}\label{exercise---1}}
 
 \textbf{Boston Housing Dataset}
+
 Housing data contains 506 census tracts of Boston from the 1970 census. The dataframe BostonHousing contains the original data by Harrison and Rubinfeld (1979), the dataframe BostonHousing2 the corrected version with additional spatial information.
 
 You can include this data by installing mlbench library:
@@ -1290,43 +1352,10 @@ You can include this data by installing mlbench library:
 \begin{Highlighting}[]
 \CommentTok{\#install.packages("mlbench") \#\# installing the library}
 \FunctionTok{library}\NormalTok{(mlbench) }\CommentTok{\#adding the library}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: package 'mlbench' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{data}\NormalTok{(BostonHousing2)}
 \NormalTok{housing }\OtherTok{\textless{}{-}}\NormalTok{ BostonHousing2}
-\FunctionTok{str}\NormalTok{(housing)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## 'data.frame':    506 obs. of  19 variables:
-##  $ town   : Factor w/ 92 levels "Arlington","Ashland",..: 54 77 77 46 46 46 69 69 69 69 ...
-##  $ tract  : int  2011 2021 2022 2031 2032 2033 2041 2042 2043 2044 ...
-##  $ lon    : num  -71 -71 -70.9 -70.9 -70.9 ...
-##  $ lat    : num  42.3 42.3 42.3 42.3 42.3 ...
-##  $ medv   : num  24 21.6 34.7 33.4 36.2 28.7 22.9 27.1 16.5 18.9 ...
-##  $ cmedv  : num  24 21.6 34.7 33.4 36.2 28.7 22.9 22.1 16.5 18.9 ...
-##  $ crim   : num  0.00632 0.02731 0.02729 0.03237 0.06905 ...
-##  $ zn     : num  18 0 0 0 0 0 12.5 12.5 12.5 12.5 ...
-##  $ indus  : num  2.31 7.07 7.07 2.18 2.18 2.18 7.87 7.87 7.87 7.87 ...
-##  $ chas   : Factor w/ 2 levels "0","1": 1 1 1 1 1 1 1 1 1 1 ...
-##  $ nox    : num  0.538 0.469 0.469 0.458 0.458 0.458 0.524 0.524 0.524 0.524 ...
-##  $ rm     : num  6.58 6.42 7.18 7 7.15 ...
-##  $ age    : num  65.2 78.9 61.1 45.8 54.2 58.7 66.6 96.1 100 85.9 ...
-##  $ dis    : num  4.09 4.97 4.97 6.06 6.06 ...
-##  $ rad    : int  1 2 2 3 3 3 5 5 5 5 ...
-##  $ tax    : int  296 242 242 222 222 222 311 311 311 311 ...
-##  $ ptratio: num  15.3 17.8 17.8 18.7 18.7 18.7 15.2 15.2 15.2 15.2 ...
-##  $ b      : num  397 397 393 395 397 ...
-##  $ lstat  : num  4.98 9.14 4.03 2.94 5.33 ...
-\end{verbatim}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
