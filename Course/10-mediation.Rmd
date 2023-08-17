@@ -1,0 +1,185 @@
+# Mediation {#med}
+In this week, we will introduce to the concept of mediation analysis. 
+
+
+Mediation is a way of using linear regression with a different interest in mind.
+So far, we have been interested in estimating the effect of an x variable on a 
+y variable. In our example using NBA data, we were interested in the effect of 
+'points scored' by a player on player salary. We learned how to "adjust" or "condition"
+the effect by adding covariates to the model (i.e. control variables). Going back to
+out week on DAGs, we saw that we want to control for so-called confounders, i.e.
+those variables which have an effect on both x and y. The "adjusted" effect is the 
+"total causal effect" of x on y. 
+Mediation now is all about trying to explain "how" x affect y. Mediation analysis
+is about identifying the mechanism between x and y. In other words, what share 
+of the total effect can be explained by something else (i.e. the mediator). When 
+considering mediation, we can distinguish 3 types of effects:
+
++ total effect (Effect of x on y (conditional on z), without mediator)
++ direct effect (Effect of x on y (conditional on z), left after also adjusting for the mediator))
++ indirect effect (The effect of x on y (conditional on z) which only goes through the mediator.
+
+Go back to week X for a refresher. 
+
+Let's turn to our NBA data to make this more tangible. Let's assume now that we are interested in how a player's position on the team affects his salary. Maybe guards feel
+discriminated because they earn less.
+
+First, we identify the year of the season as a confounder which we want to adjust. 
+Tactics over the years changed, so the year when games took place had an influence on
+whether a player would be assigned to the guard or forward position, for example.
+Also, the NBA become more popular, more fans means more money, and higher salaries
+for players. As a result, we will include "season_year" as a control variable.
+
+Second, we have a hypothesis that the points scored on average affect the salaries.
+In the end, fans come to see spectacular dunks and shots, not rebounds and passes.
+Certain positions play further away from the basket (e.g. guards) and thus have a harder time scoring. They also are supposed to pass the ball to the big guys (usually centers).
+So maybe, the fact guards and forwards simply score less than centers explains their salary gap. We can test this using mediation. 
+
+To visualize this mini-theory and identification strategy, let's have a look at this DAG.
+
+--> NIAZ, visual here with the DAG from my powerpoint
+
+
+Now let's test this out using R. 
+
++ First, we load the data. 
++ Second, we reduce the position variable to 4 categories: Center, Guards, Forwards, and Mixed. As we will see, it is actually not common that players take on several roles even within the same season. This likely affects their salary as well. Players that can play multiple positions may get more playing time and as a result, score more. We are interested, however, in the difference between "pure" guards, forwards and centers, so we will run the analysis excluding "mixed" position players. 
++ Third, we check whether there are any differences in average salaries by position using a graph and a table
++ Fourth, we run a linear regression, regressing position (as factor variable) on salary while adjusting for year of season. 
+
+
+```{r}
+# load packages
+
+load(file = "../datasets/nba/data_nba.RData")
+
+
+
+# recode "position" variables"
+data_nba <- data_nba %>%
+  mutate(position_num = rowSums(across(c("position_center", "position_pf", "position_sf",
+                                         "position_pg", "position_sg"))),
+         position_rec = 
+           case_when(
+             position_center==1 & position_num==1 ~ "center",
+             position_pf==1 & position_num==1 ~ "Forward",
+             position_sf==1 & position_num==1 ~ "Forward",
+             position_pg==1 & position_num==1 ~ "Guard",
+             position_sg==1 & position_num==1 ~ "Guard",
+             position_sg==1 & position_pg==1 & position_num==2 ~ "Guard",
+             position_pf==1 & position_sf==1 & position_num==2 ~ "Forward",
+             TRUE ~ "Mixed"))
+
+# pot mean salary by position
+data_nba %>% group_by(position_rec) %>%
+  summarize(salary_mean = mean(salary, rm.na =T)) %>%
+  ggplot() +
+  geom_bar(aes(x=position_rec, y=salary_mean), stat="identity") +
+  ylim(0,6000000) +
+  theme_minimal()
+
+
+# linear regression
+summary(lm(salary ~ as.factor(position_rec), data=data_nba, subset=(position_rec!="Mixed")))
+
+# adjust for confounder 
+summary(lm(salary ~ as.factor(position_rec) + as.factor(season_start), data=data_nba, subset=(position_rec!="Mixed")))
+
+
+```
+
+Looking at the regression ouput, we see that, indeed, centers make more than guards and forwards. Actually, a lot less, approx. 500.000 USD less on average. 
+
+Let's ignore for the moment that this is a terrible model. The r-squared is only 0.03 which means that position and season only explain ~ 3% of variation in salaries. 
+
+Now, we want to know whether scoring explain this salary penalty. Here is a simple mediation. 
+
+
+
+```{r}
+# let'S compare models side by side in a regression table
+
+#install.packages("modelsummary")
+library(modelsummary)
+models <- list(
+  m1 = lm(salary ~ as.factor(position_rec) + as.factor(season_start), data=data_nba, subset=(position_rec!="Mixed")),
+  m2 <- lm(salary ~ as.factor(position_rec) + career_PTS + as.factor(season_start), data=data_nba, subset=(position_rec!="Mixed"))
+)
+
+modelsummary(models)
+
+
+```
+
+At first look, our hypothesis actually does not seem to hold. When we adjust for 
+points scored, the gap between centers, forwards and guards. This means that
+guards don't make less because they make less points. Guards and forwards with
+average points, compared to centers with average points, make even less than centers, compared to when we do not account for points at all. This could mean that teams know that guards
+are important despite the fact that they score less. 
+
+
+Let's use a new package for "causal mediation analysis".
+
+```{r, warning=FALSE, message=FALSE}
+
+
+# now let's try a dedidcated package for mediation
+library(mediation)
+
+data_nba <- data_nba %>% mutate(position_rec = as.factor(position_rec),
+                                season_start = as.factor(season_start),
+                                salary = salary/10)
+
+mean(data_nba$salary)
+
+# first path from x to mediator
+path_a <- lm(career_PTS ~ position_rec + season_start, data=data_nba, subset=(position_rec!="Mixed"))
+
+# Now full model, x to mediator to y
+path_b <- lm(salary ~ position_rec + career_PTS + season_start, data=data_nba, subset=(position_rec!="Mixed"))
+
+# centers vs. forwards
+results_mediation_forwards <- mediate(path_a, path_b,
+                             treat = "position_rec", # x or main independent variable
+                             mediator = "career_PTS",
+                             treat.value = 1)
+
+# centers vs. guards
+results_mediation_guards <- mediate(path_a, path_b,
+                             treat = "position_rec", # x or main independent variable
+                             mediator = "career_PTS",
+                             treat.value = 2)
+
+summary(results_mediation_forwards)
+summary(results_mediation_guards)
+
+# note: this dies not yet work. FOrwads and guards are the same. CHeck how to 
+# take differnt groups of the treatment variable. Problem is that the treatment
+# variable is categorical.
+```
+
+The output looks different. Let's go through it step by step:
+
++ ACME: Average Causal Mediation Effect - "indirect effect", this is the effect of position through points on salary.         
++ ADE: Average Direct Effect - This is the direct effect of position on salary. + Total Effect: ADE and ACME together are the "total effect"  
++ Prop. Mediated. This is the proportion of the total effect that is "explained" by the indirect effect. 
+
+Let's interpret this for our model:
+
++ ACME: If only points could explain salaries, Guards would make, on average 900.000 USD more than centers (because they actually score more points)
++ ADE:  Adjusting for points, guards would make 1.4 Million USD less than centers
++ Total Effect: Overall, guards actually make 500.000 USD less.
++ Prop. Mediated. This is actually a negative value which makes no sense in this case. If points scored really "mediated" part of the total effect and had some explanatory power here, then we would see a positive percentage. 
+
+
+When you take a look at our first approach, where we just estimated both regression models side by side. The coefficient for position is the total effect when we don't include the 
+mediator in the model. The coefficient is the direct effect when we do include the mediator.
+The indirect effect is the total effect minus the direct effect (-1.400.000 - (-500.000) = -900.000).
+
+In sum, Guards are disadvantaged. They receive less money than center, although, if the points were considered, they should make even more. There must be other reasons why guards earn less. We need to go back to theory and come up with new hypothesis. 
+
+
+## FInt out more
+
+- provide resources here 
+- references etc. 

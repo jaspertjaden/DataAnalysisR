@@ -1,0 +1,121 @@
+# Linear Regression - Application {#lin-a}
+
+## Example research question
+
+* NBA data
+* Short theory
+  * DAG from this
+    * What do we have to control for to identify effect of interest?
+
+## Application with NBA data
+
+XXX USING FAKE DATE FOR NOW XXX
+
+``` {r fake_data}
+library(tidyverse)
+load("../datasets/grades.RData")
+```
+
+### R Code
+
+To conduct a multiple linear regression in R, we can use the built-in *base R*
+function `lm()`. The function is straightforward to use. As the first argument
+we write the regression formula in R's *formula syntax*.
+
+In the formula syntac we start by writing the name of our `dependent_variable`
+followed by a *tilde* `~`. You can read this as an $=$ or as "regress the 
+dependent variable on". After the tilde we add our first `indepedent variable`
+by again writing out its name. If we have multiple independent variables in our
+model - so we are runnign a *multiple linear regression* - we can add those by
+writing a `+` followed by the name of the variable to be added.
+
+As a second argument, the function needs the name of the object that holds our
+data.
+
+So if we want to regress XXX on XXX, we just write:
+
+``` {r first_lm}
+lm(grade ~ hours_centered, data = grades)
+```
+
+This gives us a short output. The first line just echoes our code used to run 
+the regression. We have seen this in the last session already, but now we know
+what the meaning was. After this we have a short block with the estimated
+coefficients. As we have run a simple linear regression, we only get the 
+intercept and the coefficient for the sole independent variable used in the 
+model. If we would have run a multiple linear regression, the result would 
+basically look the same, only with more coefficients to display.
+
+Before we dive into the results, we should talk about how to receive a more
+verbose output that does not hide all the other vital information that is 
+associated with the model.
+
+The easiest way is to use the base R function `summary()`. This is a generic R
+function that returns different summaries, depending on the object it is used 
+on. We can for example use it on a data frame or tibble to get some descriptive
+statistics for the included variables.
+
+``` {r summary_df}
+summary(grades)
+```
+
+When we use `summary()` on a model object, like the one created by `lm()`, we
+get a different output. Before we apply this we should save our model in an
+object. This is good practice in most cases as we can now apply all additional
+analysis of the model on ths object and we do not have to rerun the model
+every time.
+
+``` {r m1}
+m1 <- lm(grade ~ hours_centered, data = grades)
+```
+
+We can now apply `summary()` on the object `m1`, short for "model 1":
+
+``` {r summary_m1}
+summary(m1)
+```
+
+This not only gives us an extended and better readable coefficient block but 
+also additional information on the quality of the model. We will address the
+most relevant aspects one by one during this session.
+
+An alternative method of displaying the coefficients in a regular tibble format,
+is to use `tidy()` from the `broom` package.
+
+``` {r tidy_m1}
+library(broom)
+
+tidy(m1)
+```
+
+### Interpretation of regression table in practice
+
+
+XXX INTERPRETATION HERE
+
+### Adding additional variables
+
+The DAG we have constructed above based on our research question indicated that
+we have to include more than just one variable in our model.
+We can add additional independent variables to the formula used in `lm()` with a
+`+` and the name of the additional variable(s).
+So let us do this now:
+
+``` {r m2}
+m2 <- lm(grade ~ hours_centered + contact, data = grades)
+
+summary(m2)
+```
+
+XXX INTERPRETATION HERE XXX
+
+
+
+
+## Outlook
+
+* Alternative Packages
+* Packages that expand upon the ideas
+* Weighting
+* Mutli-level/Fixed effects
+

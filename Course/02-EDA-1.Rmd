@@ -1,21 +1,22 @@
 # Exloratory Data Analysis - I {#eda-1}
 
+
 ## Objectives
 - Remember how to load and explore datasets in R
 - Conduct basic descriptive data analysis 
 - Undestand and visualize distribution of and relationship between variables
 
 ## R functions covered this week
-- load()
-- read_excel()
-- str()
-- glimpse()
-- table()
-- summary()
-- mutate()
-- case_when()
-- ggplot()
-- corr ()
+- `load()`
+- `read_excel()`
+- `str()`
+- `glimpse()`
+- `table()`
+- `summary()`
+- `mutate()`
+- `case_when()`
+- `ggplot()`
+- `corr ()`
 
 
 ## Why is EDA so important?
@@ -41,7 +42,7 @@ Now, Let's get started.
 
 First, we need to install some packages.
 
-```{r install_packages}
+```{r install_packages, warning=FALSE, message=FALSE}
 library("tidyverse")
 library("readxl")
 ```
@@ -53,10 +54,10 @@ We can use `read_delim()` or `read_csv` function. Note that you need other funct
 Make sure you name the correct sub-directory in case you saved the data a sub-folder of your project folder (which I have done).
 
 
-```{r import_csv}
+```{r import_csv, warning=FALSE}
 # import data 
-nba_salaries <- read_csv("../datasets/nba/salaries_1985to2018.csv")
-nba_players <- read_csv("../datasets/nba/players.csv")
+nba_salaries <- read_csv("../datasets/nba/salaries_1985to2018.csv", show_col_types = FALSE)
+nba_players <- read_csv("../datasets/nba/players.csv", show_col_types = FALSE)
 ```
 
 Great, the two dataframes should appear in your environment in the upper right side in R studio. 
@@ -80,7 +81,7 @@ Now we want to link both datasets. We can do this using the `merge()` function.
 An alternative would be `join()`. 
 
 ```{r merge}
-data_nba <- merge(nba_players, nba_salaries, by.x = c("id"), by.y=c("player_id"))
+data_nba <- merge(nba_players, nba_salaries, by.x = c("_id"), by.y=c("player_id"))
 rm(nba_players, nba_salaries)
 ```
 
@@ -97,7 +98,7 @@ Afterwards, we use the save() function to store the data as a .Rdata file and th
 
 ```{r select}
 data_nba <- data_nba %>%
-        select(everything(), -league, -highschool) %>%
+        select(everything(), -league, -highSchool) %>%
         filter(season_start>=1998)
 save(data_nba, file ="../datasets/nba/data_nba.RData")
 
@@ -118,11 +119,11 @@ for each position.
 ```{r recode}
 
 # let's calculate age for every season
-class(data_nba$birthdate) # nice, it is already a date variable
+class(data_nba$birthDate) # nice, it is already a date variable
 
 library(lubridate)
 data_nba <- data_nba %>%
-  mutate(year_of_birth = year(birthdate),
+  mutate(year_of_birth = year(mdy(birthDate)),
          age = season_start - year_of_birth)
 
 
@@ -151,7 +152,8 @@ data_nba <- data_nba %>%
 
 
 data_nba <- data_nba %>%
-  select(id, name, age, weight, height, birthplace, everything(), -position, -birthdate, -year_of_birth)
+  select("_id", name, age, weight, height, birthPlace, everything(), -position, -birthDate, -year_of_birth)
+save(data_nba, file ="../datasets/nba/data_nba.RData")
 ```
 
 Now, we want to create a variable that gives us the number of seasons (i.e.years)
@@ -161,7 +163,7 @@ is one season. Counting the rows per player gives us the years they played.
 
 ```{r}
 data_nba <- data_nba %>%
-  group_by(id) %>%
+  group_by("_id") %>%
   mutate(seasons_played = n()) %>%
   ungroup()
 
@@ -190,8 +192,7 @@ str(data_nba)
 Now, let's explore some packages which help us to explore the dataframe as a whole.
 Let's start with the DataExplorer package. It is nice to get an overview of variables and the "missingness" of data. 
 
-```{r}
-#install.packages("DataExplorer")
+```{r, warning=FALSE}
 library(DataExplorer)
 
 # overview of types of variables and missingness
@@ -207,18 +208,18 @@ plot_missing(data_nba)
 plot_bar(data_nba)
 ```
 
-Now, let's try gtSummary for summary tables. A summary table is always a useful start once you have identified the type of varibales you are interested in. 
+Now, let's try gtSummary for summary tables. A summary table is always a useful start once you have identified the type of variables you are interested in. 
 
-Let's assume we are interested in age, seasons played, career ppints, salary,
+Let's assume we are interested in age, seasons played, career points, salary,
 position, and right or left handed (i.e. "shoots")
 
-```{r}
+```{r, warning=FALSE}
 library(gtsummary)
 
 data_nba %>% 
-  select(age, seasons_played, shoots, career_pts, salary, contains("position")) %>%
+  select(age, seasons_played, shoots, career_PTS, salary, contains("position")) %>%
          tbl_summary(
-           statistic = all_continuous() ~ c("{mean} ({min}, {max})")
+           statistic = all_continuous() ~ c("{mean} ({min}, {max})")) 
          
 ```
 
@@ -226,9 +227,7 @@ data_nba %>%
 Now, let's look at a correlation matrix between all numeric
 variables in the dataset.
 
-```{r}
-#install.packages("corrr")
-#install.packages("corrplot")
+```{r, warning=FALSE, message=FALSE}
 library("corrr")
 library("corrplot")
 
@@ -236,6 +235,11 @@ data_nba_numeric <- data_nba %>%
   select(where(is.numeric)) %>%
   na.omit()
 
+# Find constant columns
+constant_columns <- sapply(data_nba_numeric, function(x) length(unique(x)) == 1)
+
+# Remove constant columns
+data_nba_numeric <- data_nba_numeric[, !constant_columns]
 # as number
 corrmatrix <- data_nba_numeric %>%
   correlate() %>%    # Create correlation data frame (cor_df)
@@ -248,7 +252,6 @@ fashion(corrmatrix)
 rplot(corrmatrix)
 
 # or...ggplot approach
-install.packages("ggcorrplot")
 library("ggcorrplot")
 
 corrmatrix <- round(cor(data_nba_numeric), 1)
@@ -284,18 +287,18 @@ paid less then other positions (who score more).
 
 First, let's look how the two continuous variables are distributed:
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 data_nba %>% ggplot() + 
 geom_boxplot(aes(y=salary)) +
   facet_wrap(~position_pg) +
   theme_light()
 
 data_nba %>% ggplot() + 
-geom_boxplot(aes(y=career_pts)) + 
+geom_boxplot(aes(y=career_PTS)) + 
   theme_light()
 
 data_nba %>% ggplot() + 
-geom_boxplot(aes(y=career_pts)) +
+geom_boxplot(aes(y=career_PTS)) +
   facet_wrap(~position_pg) +
   theme_light()
 
@@ -306,7 +309,7 @@ Let's look at the relationship between salary and position as well as the
 relationship between position and points.
 
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 str(data_nba$position_pg)
 str(data_nba$salary)
 str(data_nba$career_pts)
@@ -349,7 +352,7 @@ data_nba %>%
 
 data_nba %>% 
   group_by(position_pg) %>%
-  summarize(mean_points = mean(career_pts, na.rm=T)) %>%
+  summarize(mean_points = mean(career_PTS, na.rm=T)) %>%
   ggplot() +
   geom_bar(aes(x = as.factor(position_pg), 
                y = mean_points),
@@ -366,7 +369,7 @@ data_nba %>%
 
 So, it seems that point gards are paid a little less even though they make a few more points on average. Interesting puzzle to explore. 
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 
 # find example for using histogramm()
 # find example for first just creating cross tabs as perecntages tbl_cross(); summarize(); tabyl()
@@ -375,23 +378,23 @@ So, it seems that point gards are paid a little less even though they make a few
 
 Now, let's explore the relationship which is at the heart of our analysis from now on: salary and average points. 
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 
 # simple scatterplot
 data_nba %>% ggplot() +
-geom_point(aes(y=salary, x=career_pts)) + 
+geom_point(aes(y=salary, x=career_PTS)) + 
   theme_minimal()
 
 # Now, let's add a line
 data_nba %>% 
-  ggplot(aes(y=salary, x=career_pts)) +
+  ggplot(aes(y=salary, x=career_PTS)) +
     geom_point() + 
      stat_smooth(method = "lm") + 
        theme_minimal()
 
 # let's look the relatiship separate for every year
 data_nba %>% 
-  ggplot(aes(y=salary, x=career_pts)) +
+  ggplot(aes(y=salary, x=career_PTS)) +
     geom_point() + 
      stat_smooth(method = "lm") + 
         facet_wrap(~season_start) + 
@@ -400,7 +403,7 @@ data_nba %>%
 
 # let's look the relatiship for separate teams
 data_nba %>% 
-  ggplot(aes(y=salary, x=career_pts)) +
+  ggplot(aes(y=salary, x=career_PTS)) +
     geom_point() + 
      stat_smooth(method = "lm") + 
         facet_wrap(~team) + 
@@ -408,25 +411,25 @@ data_nba %>%
 
 # let's look at it by position
 scatter_pg <- data_nba %>% filter(position_pg ==1) %>%
-  ggplot(aes(y=salary, x=career_pts)) +
+  ggplot(aes(y=salary, x=career_PTS)) +
     geom_point() + 
      stat_smooth(method = "lm") + 
        theme_minimal()
 
 scatter_center <- data_nba %>% filter(position_center ==1) %>%
-  ggplot(aes(y=salary, x=career_pts)) +
+  ggplot(aes(y=salary, x=career_PTS)) +
     geom_point() + 
      stat_smooth(method = "lm") + 
        theme_minimal()
 
 scatter_pf <- data_nba %>% filter(position_pf ==1) %>%
-  ggplot(aes(y=salary, x=career_pts)) +
+  ggplot(aes(y=salary, x=career_PTS)) +
     geom_point() + 
      stat_smooth(method = "lm") + 
        theme_minimal()
 
 scatter_sf <- data_nba %>% filter(position_sf ==1) %>%
-  ggplot(aes(y=salary, x=career_pts)) +
+  ggplot(aes(y=salary, x=career_PTS)) +
     geom_point() + 
      stat_smooth(method = "lm") + 
        theme_minimal()
@@ -444,14 +447,14 @@ ggarrange(scatter_center, scatter_pf,
 # yet a better way to compare this could be:
 
 data_nba %>% 
-  ggplot(aes(y=salary, x=career_pts, color=as.factor(position_pg))) +
+  ggplot(aes(y=salary, x=career_PTS, color=as.factor(position_pg))) +
     geom_point() + 
      stat_smooth(method = "lm",
                  aes(group=as.factor(position_pg))) + 
        theme_minimal()
 
 data_nba %>% 
-  ggplot(aes(y=salary, x=career_pts, color=as.factor(position_center))) +
+  ggplot(aes(y=salary, x=career_PTS, color=as.factor(position_center))) +
     geom_point() + 
      stat_smooth(method = "lm",
                  aes(group=as.factor(position_center))) + 
@@ -468,7 +471,7 @@ a player scores and how much they are paid. This relationship seems pretty robus
 We have set the stage now for linear regression (next week). Linear regression
 is all about further exploring the relationship between two variables, one outcome (often called "y") and one independent variable (often called "x"). Independent variables have many names. They are sometimes called "covariates"; "predictors"; "exposure", depending on the context. 
 
-There are a number of cool things that regressioncan do for us that simple EDA cannot: 
+There are a number of cool things that regression can do for us that simple EDA cannot: 
  
 1) It can model the relationship between two variables while considering simultaneously the potential influence of other factors. Image we are interested
 in the effect of points per game on salary regardless of position, season or team.
@@ -478,9 +481,6 @@ if he scored 10 more points a game (regardless of the position he plays).
 2) It can assess what explains the effect of one variable on another (i.e. mediation). Maybe we find that point guards earn less and we want to know why. Is it because they score less? Is it because they play less time on average?
 
 3) It can be used to predict salaries for players for whom we don't know the salary or even for hypothetical players. We could also look at the performance trend of players and predict whether they earn more next season or not.
-
-
-
 
 
 

@@ -1,5 +1,0 @@
-# Linear Regression - Exercises {#lin-e}
-Here goes some texts.
-
-## Application of Linear Regression
-With WVS/own data: Students apply linear regression. 

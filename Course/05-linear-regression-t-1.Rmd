@@ -1,0 +1,588 @@
+# Linear Regression Theory I: Simple Linear Regression {#lin-t-1}
+
+
+## What is Linear Regression
+
+When we use statistical modelling in social sciences there are two main
+approaches.
+The more classical approach is to use modelling for estimating the effect that
+one or several independent variables have on one dependent variable. Maybe we 
+are interested in knowing if a higher income has an effect on life satisfaction 
+and if yes, what the direction and magnitude of this effect is. Does more money
+actually make you happier?
+
+The other and more recent approach is to use modelling for making predictions
+with high accuracy. Based on the relationships between many independent 
+variables and one dependent variable, we try to predict the latter for actual
+or hypothetical cases and their individual values for the independent variables.
+This approach lies at the heart of *machine learning* and drives many of the
+technologies we use on a daily basis from E-Mail spam filters to ChatGPT.
+
+Linear regression is one of the many available modelling techniques and it can
+serve both approaches lined out above. In this session we will focus on using 
+linear regression for estimating an effect of interest but we will return to
+prediction at a later point in this course.
+
+But how do we know if we should choose linear regression for a specific task?
+This is not easy to answer as there are many alternatives and even variations of
+linear regression which may be better suited for a specific empirical problem.
+As this is an introduction to modelling and time is of the essence we opted to
+reduce the options and focus on two kind of models over the next weeks. Linear
+regression and logistic regression. Both are comparably easy to understand and
+use. Also, if we understand both of these techniques, we are in a good position
+to build upon our knowledge and learn all of those more complex and specific
+models that we will encounter in textbooks and scientific papers.
+
+With the pool of options trimmed down to two, the question remains unanswered.
+Should I use linear or logistic regression for my task? But now the answer is
+relatively straightforward. What is the type of our dependent variable? Is it
+metric? Then we use linear regression. Is it binary or categorical? Then we use
+logistic regression. Linear regression will be the focus of this and the next
+weeks and then we will turn to logistic regression.
+
+Now let us dive in and learn what linear regression is all about.
+
+## Examplary research question & data
+
+Let us imagine that we are interested in a research question that asks what
+makes a good grade in a seminar paper. In particular we are interested in the
+effect that the hours a student invests in working on it has on the grade. Based
+on some theoretical considerations, and maybe some idealistic views, we derive
+our main hypotheses that putting in more hours will result in a better grade.
+
+Now we also - hypothetically - held a small survey and asked 200 imaginary
+students some questions on how they approached writing a seminar paper. In
+particular we asked them how much time they spent working on the paper, if they
+have attended (almost) all seminar sessions, how closely they worked with their
+lecturers in preparing the paper and what the mean grade for previous papers
+was. As these imaginary students have already turned in their papers, we also
+know the grades they achieved.
+
+Please note, that this is data on **imaginary** students, meaning we have
+simulated the data making some assumptions on how to achieve a good (or bad)
+grade in a paper. The assumptions we made do not necessarily reflect the way
+*you* write a good paper while still being based in our experience on what it
+takes to achieve a good grade. But remember, no real students were harmed in
+making up this example data.
+
+``` {r simulate_grades_data, include = FALSE}
+library(tidyverse)
+
+set.seed(12345)
+
+grades <- tibble(
+  hours = rpois(200, 40),
+  previous_grades = rnorm(200, mean = 3, sd = 1),
+  attendance = as.logical(rbinom(n = 200, size = 1, prob = 0.75)),
+  contact = rep(c("No contact", "E-Mail", "In Person"), times = c(80, 50, 70)) %>% 
+    as_factor(),
+  contact_num = case_when(
+    contact == "No contact" ~ -0.2,
+    contact == "E-Mail" ~ 0.2,
+    contact == "In Person" ~ 0.7)
+) %>%
+  mutate(previous_grades = case_when(
+           previous_grades < 1 ~ 1.0,
+           previous_grades > 5 ~ 5.0,
+           TRUE ~ previous_grades) %>% 
+           round(digits = 1),
+         grade = previous_grades * (0.9 + rnorm(200, 0, 0.1)) -
+           (hours - 40) * (0.05 + rnorm(200, 0, 0.03)) -
+           attendance * (0.3 + rnorm(200, 0, 0.12)) -
+           contact_num * rnorm(200, 1, 0.07) -
+           (hours - 40) * (contact_num) * (0.08 + rnorm(200, 0, 0.002)) +
+           0.75 - rnorm(200, 0, 0.05),
+         grade = case_when(
+           grade < 1 ~ 1.0,
+           grade > 5 ~ 5.0,
+           TRUE ~ grade
+         ) %>% 
+           round(digits = 1)) %>% 
+  select(-contact_num) %>% 
+  relocate(grade) %>% 
+  arrange(grade) %>% 
+  mutate(previous_grades_centered = previous_grades - mean(previous_grades)) %>% 
+  mutate(hours_centered = hours - mean(hours))
+  
+
+save(grades, file = "../datasets/grades.RData")  
+```
+
+
+Let us have a first look on the data:
+XXX ALIGN WITH EDA XXX
+
+``` {r grades_skim, echo = FALSE}
+library(skimr)
+library(knitr)
+kable(skim(grades))
+```
+
+Right now, the observations are ordered by the grade of the seminar paper which
+run from $1.0$ to $5.0$ in increments of $0.1$. While this is somewhat
+unrealistic - the german grading system actually only uses theincrements $.0$,
+$.3$ and $.7$ - simulating the data in this way will make the demonstrations on
+linear regression easier and more straightforward. The variable
+`previous_grades` is set up in the same way and represents the mean of the
+grades the student received up to this point `hours` represents the time a
+student spent on writing the paper, ranging from $23 - 57$ hours, with a mean of
+about $40$. Besides these metric variables, the data set also contains two 
+categorical measures. `attendance` is a *dummy variable*, meaning it can only
+have the values $1$ or $0$ or `TRUE` and `FALSE` in this case, as it is saved as
+a logical variable. `TRUE` represents that a student attended almost all seminar
+sessions before writing the paper - which about $77%$ did -, `FALSE` states that
+they did not.
+`contact` is a factor variable with three categories and shows the answers to
+the imaginary question on how much contact the student had to the lecturer
+before starting the writing process. Besides `No contact` the students could 
+have had `E-Mail` contact to state ther research question and get some short
+written feedback or meet the lecturer `In Person` to achieve a deeper discussion
+of the question and laid out plan for writing the paper.
+The two additional variables are versions of `previous_grades` and `hours` that
+are centered on their respective means. They will come into play at a later 
+point in this session.
+
+Let's have a look at some observations.
+
+``` {r grades_looksie, echo = FALSE}
+grades %>% 
+  head(n = 10)
+```
+
+From this first 10 rows, we can see that the students with the best grades spent
+more than 40 hours on writing, have already achieved good grades in their papers
+up to this point and at least had some contact to the lecturers. Most also
+regularly attended the seminar but two did not and still achieved a $1.0$ in
+their grade.
+
+So what makes a bad grade?
+
+``` {r grades_bad_looksie, echo = FALSE}
+grades %>% 
+  tail(n = 10)
+```
+
+Here the picture seems less clear. While most students did not put in as many
+hours, some did and still failed to pass. Half of the students that received a
+$5.0$ regularly attended and most at least had E-Mail contact before writing
+their paper. What seems to be more consistent though is that the mean of the
+previous grades is rather low.
+
+So what do we know now? Does a good or bad track record in grades predict all
+future grades? This seems not only unrealistic but also a kind of sad take home
+message. To get a better understanding on which of the potential influential
+variables had an effect on the final grade and what the magnitude and direction
+of these effects was, we now turn to linear regression.
+
+## Simple Linear Regression
+
+In a *simple linear regression*, the model is used to describe the relationship
+between *one* dependent and *one* independant or explanatory variable. The
+question this model can answer for us is, by how much does the dependent
+variable increase or decrease, when the explanatory variable increases by $1$?
+
+Returning to our exemplary research question on what makes a good grade in a
+seminar paper an intuitive hypotheses would be, that the grade gets better the
+more hours a student invests in writing the paper. In this case we assume a
+linear relationship between the independent variable `hours` and the dependent
+variable `grade`. As german grades are better the lower their value, we thus
+would assume a negative effect from `hours` on `grade`.
+
+Before turning to the formalities and practical application of a simple linear
+regression model, let us first have a look on this relationship by plotting the
+variables against each other.
+
+``` {r plot_grade_hours, echo = FALSE}
+grade_vector <- c(1.0, 1.3, 1.7, 2.0, 2.3, 2.7, 3.0, 3.3, 3.7, 4.0, 4.3, 4.7, 5.0)
+grade_vector_small_lbl <- c("1.0", "2.0", "3.0", "4.0", "5.0")
+
+grades %>% 
+  ggplot(aes(x = hours, y = grade)) +
+  geom_point() +
+  scale_y_continuous(breaks = 1:5, labels = grade_vector_small_lbl) +
+  scale_x_continuous(breaks = seq(20, 60, 10), limits = c(20, 60)) +
+  labs(title = "Regression of seminar paper grade on hours invested in writing",
+       x = "Hours invested",
+       y = "Grade achieved")
+```
+
+When we are talking about dependent and independent variables, there is the
+convention to plot former on the x-axis and the latter on the y-axis. So the
+*y-variable* is to be explained and the *x-variable* is used to explain it.
+This convention will also be used in all formulas in this seminar.
+
+Looking at the plot we first see a cloud of dots, representing all combinations
+of `hours` and `grade` in all our $200$ observations. It may be hard to pick out
+any pattern, but looking closely we can observe that overall the dots seem to
+follow a downward slope from the upper left - indicating few hours worked and a
+worse grade - towards the lower right - indicating more invested hours and a
+better grade. This would be the relationship stated in our hypotheses. The more
+hours a student works on a seminar paper the better the final grade will be.
+
+We can try to describe this pattern by adding a line from the upper left to the
+lower right. 
+
+``` {r plot_grade_hours_wild_guess, echo = FALSE}
+grades %>% 
+  ggplot(aes(x = hours, y = grade)) +
+  geom_point() +
+  geom_abline(slope = -0.08, intercept = 6, colour = "red") +
+  scale_y_continuous(breaks = 1:5, labels = grade_vector_small_lbl) +
+  scale_x_continuous(breaks = seq(20, 60, 10), limits = c(20, 60)) +
+  labs(title = "Regression of seminar paper grade on hours invested in writing",
+       x = "Hours invested",
+       y = "Grade achieved")
+```
+
+This describes the realtionship between the two variables as linear. Each hour
+invested decreases the grade by a certain amount, for this proposed line by
+exactly $0.08$ points. Remember that decreasing the value of the grade actually
+means getting a better grade.
+
+But is this the only possible line or even the *correct* one? Most certainly not
+as the values used to draw the line were only a wild guess by the authors. We
+could imagine several other lines that also look more or less reasonable - as
+well as some that look unreasonable - and add them to the plot.
+
+``` {r plot_grade_hours_wild_guesses, echo = FALSE}
+grades %>% 
+  ggplot(aes(x = hours, y = grade)) +
+  geom_point() +
+  geom_abline(slope = -0.08, intercept = 6, colour = "red") +
+  geom_abline(slope = -0.06, intercept = 5, colour = "blue") +
+  geom_abline(slope = -0.02, intercept = 4, colour = "yellow") +
+  geom_abline(slope = 0.03, intercept = 3, colour = "green") +
+  scale_y_continuous(breaks = 1:5, labels = grade_vector_small_lbl) +
+  scale_x_continuous(breaks = seq(20, 60, 10), limits = c(20, 60)) +
+  labs(title = "Regression of seminar paper grade on hours invested in writing",
+       x = "Hours invested",
+       y = "Grade achieved")
+```
+
+While we have some intution, that especially the green line misses the mark by a
+lot, we can't really decide between the others just by looking at the plot. The
+data points are way to dispersed to see the relationship clearly.
+
+The goal of using a simple linear regression model is to identify the *one* line
+that describes the relationship the best. The *best* meaning, with as little
+error as possible. 
+
+XXX OVERLAPPING DOTS? XXX
+
+### Regression Formula
+
+To understand how these lines in the above plot were conceived and how to find 
+the line with the best *fit*, i.e. the lowest error, we have to understand the
+formular for linear regression. While formulas may always be kind of daunting,
+we are in luck as tis particular one is actually quite easy to understand,
+especially when paired with a graphical representation.
+
+$$y = \beta_0 + \beta_1*x_1 + \epsilon$$
+
+Let us first look at the parts we already know. $y$ is the dependent variable,
+in our case the grade achieved. So one thing is for sure, the whole right part
+of the equation has to be used to calculate the value of $y$ from the data, i.e.
+the dependent variable $x$. Here we have three terms. Let us skip the first one
+for now and focus on the second one $\beta_1*x_1$. 
+
+$x_1$ is the dependent variable, in our case `hours`. $\beta_1$ is the 
+*redression coefficient* for $x_1$. This value gives us the *slope* of the
+regression line. Based on this, we can start rewriting the general formula and 
+tailor it to our specific use case.
+
+$$y_{grade} = \beta_0 + \beta_{hours}*x_{hours} + \epsilon$$
+
+
+Let us return to the first wild guess we made above.
+
+``` {r plot_grade_hours_wild_guess_expl_slope, echo = FALSE}
+grades %>% 
+  ggplot(aes(x = hours, y = grade)) +
+  geom_point() +
+  geom_abline(slope = -0.08, intercept = 6, colour = "red") +
+  scale_y_continuous(breaks = 1:5, labels = grade_vector_small_lbl) +
+  scale_x_continuous(breaks = seq(20, 60, 10), limits = c(20, 60)) +
+  labs(title = "Regression of seminar paper grade on hours invested in writing",
+       x = "Hours invested",
+       y = "Grade achieved")
+```
+
+Here we guessed, that an increase in time invested of one hour decreases the
+value of `grade` by $0.08$. This is the slope of the red line and thus also the
+coefficient in the regression formula that is used in computing said line. So,
+$\beta_{hours} = -0.08$. We can insert this value into our formula.
+
+$$y_{grade} = \beta_0 -0.08*x_{hours} + \epsilon$$
+
+In this way the value of $x_{hours}$ is multiplied by $-0.08$. Let us assume a
+student worked $40$ hours on their paper. $-0.08*40$ being $-3.2$, we know, that
+working 40 hours on a paper *on average* - more on that later - leads to a $3.2$
+lower grade value and thus a better grade. But $3.2$ lower than what?
+
+Looking at the formula again, we see that subtract this value from $\beta_0$.
+This is the *intercept*, the value at which the line intersects with the y-axis.
+Let us zoom out on our plot, to see what happens.
+
+``` {r plot_grade_hours_wild_guess_expl_intercept, echo = FALSE}
+grades %>% 
+  ggplot(aes(x = hours, y = grade)) +
+  geom_point() +
+  geom_abline(slope = -0.08, intercept = 6, colour = "red") +
+  geom_hline(yintercept = 0) +
+  geom_vline(xintercept = 0) +
+  scale_y_continuous(breaks = 1:6, labels = c("1.0", "2.0", "3.0", "4.0", "5.0", "6.0"), limits = c(0, 6)) +
+  scale_x_continuous(breaks = seq(0, 60, 10), limits = c(0, 60)) +
+  labs(title = "Regression of seminar paper grade on hours invested in writing",
+       x = "Hours invested",
+       y = "Grade achieved")
+```
+
+We can now see the point where the red line intersects with the y-axis. This is
+the intercept of this line, i.e. $\beta_0 = 6$.
+
+$$y_{grade} = 6 -0.08*x_{hours} + \epsilon$$
+
+If we now again assume a time investment of $40$ hours, we can compute
+$6-0.08*40 = 2.8$. So our red regression line - which is still only a wild guess
+- assumes, that working 40 hours on a seminar paper will result in a grade of 
+$2.8$, on avarage. We can mark these values in our plot
+
+
+``` {r plot_grade_hours_wild_guess_expl_40hours, echo = FALSE}
+grades %>% 
+  ggplot(aes(x = hours, y = grade)) +
+  geom_segment(x = 0, y = 2.8, xend = 40, yend = 2.8, linetype = 2, colour = "red") +
+  geom_segment(x = 40, y = 0, xend = 40, yend = 2.8, linetype = 2, colour = "red") +
+  geom_point() +
+  geom_point(x = 40, y = 2.8, colour = "red") +
+  geom_abline(slope = -0.08, intercept = 6, colour = "red") +
+  scale_y_continuous(breaks = 1:5, labels = grade_vector_small_lbl) +
+  scale_x_continuous(breaks = seq(20, 60, 10), limits = c(20, 60)) +
+  labs(title = "Regression of seminar paper grade on hours invested in writing",
+       x = "Hours invested",
+       y = "Grade achieved")
+```
+
+The red dot is the intersection of the values `hours = 40` and `grade = 2.8`.
+As this is the value for $y$ our regression line assumes a student with a time
+investment of 40 hours achieves, the red dot also lies exactly on the red line.
+
+But if we look at the plot once again, we can see that most actual observations
+for students that invested 40 hours do not actually lie on the regression line
+but are scattered above and below the line. So some of these students achieve
+much worse or much better grades than $2.8$ investing the same amount of time in
+their work. This leads us to the last part of the formula, $\epsilon$.
+
+This is the *error term*. Having data that is dispersed like this - and any real
+world data will always be - our linear line will never be able to pass exactly
+through every data point. Some points may lie exactly on the line, but many or
+most will not.
+
+We can visualize this. To keep the plot readable, we only do this for some 
+random observations but in reality the distance of every data point from the
+regression line is taken into account.
+
+``` {r plot_grade_hours_wild_guess_expl_residuals, echo = FALSE}
+set.seed(123456)
+
+grades %>% 
+  slice_sample(n = 5)
+
+grades %>% 
+  ggplot(aes(x = hours, y = grade)) +
+  geom_point() +
+  geom_abline(slope = -0.08, intercept = 6, colour = "red") +
+  geom_segment(x = 28, y = 6-0.08*28, xend = 28, yend = 2.3, colour = "red") +
+  geom_segment(x = 39, y = 6-0.08*39, xend = 39, yend = 2.0, colour = "red") +
+  geom_segment(x = 38, y = 6-0.08*38, xend = 38, yend = 3.1, colour = "red") +
+  geom_segment(x = 40, y = 6-0.08*40, xend = 40, yend = 3.3, colour = "red") +
+  geom_segment(x = 44, y = 6-0.08*44, xend = 44, yend = 4.5, colour = "red") +
+  geom_point(x = 28, y = 2.3, colour = "red") +
+  geom_point(x = 39, y = 2.0, colour = "red") +
+  geom_point(x = 38, y = 3.1, colour = "red") +
+  geom_point(x = 40, y = 3.3, colour = "red") +
+  geom_point(x = 44, y = 4.5, colour = "red") +
+  scale_y_continuous(breaks = 1:5, labels = grade_vector_small_lbl) +
+  scale_x_continuous(breaks = seq(20, 60, 10), limits = c(20, 60)) +
+  labs(title = "Regression of seminar paper grade on hours invested in writing",
+       x = "Hours invested",
+       y = "Grade achieved")
+```
+
+The distance of these or rather all points from the line, the *residuals*, are
+represented in the error term $\epsilon$. It is a measure for how wrong our line
+is in describing the data in it's entirety. So why is it wrong? We can not say
+for sure, but there are two common main reasons. 
+
+For one, there may be other variables that also influence the relationship
+between invested hours and achieved grade, something that we will return to
+later in this session when we expand the idea of linear regression to multiple
+independent variables. 
+
+But there is also random variation present in every bit of real world data.
+While our data is simulated we also added random variation on purpose. Because
+this is what real world data is, it's messy and it's noisy.
+
+Not every seminar paper that had the same time investment, e.g. 40 hours, will
+have the same quality in results. There may be other influential variables, e.g.
+the student's general skill level or if they sought assistance by their lecturer
+in preparing the paper, influencing the final grade. But even if the quality of
+the paper after working 40 hours would be the same for each student, measurement
+error, i.e. noise, will be introduced because not every lecturer will grade
+exactly the same or maybe because papers were submitted at different time
+points and grading standards may have changed. If we can not measure these
+variables we have to accept these unobservable sources of noise and hope, where
+*hope* actually means thorough theoretical and methodical thinking, that we can
+still measure our effect of interest. But his also means, that measuring and
+modelling **always** includes uncertainty. We never know for certain if and to
+what extent our results are influenced by unobservable variables and random
+variation. Still, there are ways to assess this uncertainty, which we will
+regularly return to during the course. This should not stop quantitative
+social scientists from making strong or even bold arguments based in thorough
+theoretical thinking and responsible data analysis, but we always have to 
+acknowledge the uncertainty included in every step and make it a part of our
+interpretations and conclusions.
+
+XXX MAYBE SHORTEN THE SERMON... XXX
+
+The error term $\epsilon$ is the final piece of the puzzle in actually computing
+a linear regression model. Without jumping into the mathematics of it all, the
+technique that is used to estimate the coefficients $\beta_0$ and $\beta_1$ is
+called *OLS* - Ordinary Least Squares. What it basically does, is to take the
+squares of all residuals, i.e. the distances of the data points from the 
+regression line, sum them up and minimise this value. All this substantialy
+means is, that OLS searches the regression line with lowest amount of error,
+i.e. the lowest overall distance from the actual data points.
+
+This computation gives us estimates for the regression coefficients in this
+formula:
+
+$\hat{y} = b_0 +b_1*x_1$
+
+We can see two differences to the formula we started with. First, we write
+$\hat{y}$ - pronounced as "y hat" - instead of $y$. At the same time, we exclude
+the error term $\epsilon$. This means that we are no longer computing the actual
+value of $y$, as in the point on the regression line for a certain value of
+$x_1$ $+$ the error, but the estimate $\hat{y}$, as in the point on the
+regression line that is predicted for a certain value of $x_1$. Second, we write
+$b$ instead of $\beta$. This also alludes to the fact that we are now
+computing an estimate for the coefficients based on the data available and not
+the real and unknown value of $\beta$.
+
+XXX MAYBE ALSO SOME CUTTING REQUIRED XXX
+
+XXX include "on average" XXX
+
+### Regressing `grade` on `hours`
+
+Now that we have a firmer understanding on what linear regression actually is
+and does, we can finally get to the fun part and use the technique for
+estimating the effect of `hours` on `grade` or in other words, regress
+`grade` on `hours`.
+
+``` {r reg_grade_hours_0, echo = FALSE}
+lm(grade ~ hours, grades) %>%
+  summary()
+```
+
+This is the output from a simple linear regression for `grade` on `hours` from
+R. How to do this in practice and what the first to lines mean will be the topic
+of the next sesion. For now we will focus on the coefficient block and
+introduce the additional elements of the output on by one during this session.
+
+The column `Estimate` gives us the values for $\beta_0$ and $\beta_1$ discussed
+above. The estimated coefficient for `hours` tells us that out intuition was
+right, the more hours a student invests in writing a paper, the better the grade
+will be. In this case every additional hour spent on working will decrease the
+value of the grade by $-0.05236$ points. In keeping with the example of a 40
+hour workload this leads to a decrease of $-0.05236 * 40 = -2.0944$ points.
+Adding the intercept from the same column, the estimated grade after working 40
+hours is $5.07912 -0.05236 * 40 = 2.98472$. So on average a student from our
+simulated data set will pass after 40 hours of work but will not get a great
+grade.
+Remember, this is the expected average value. This does not mean that some
+students will not get better or worse grades, or even fail to pass, after this
+amount of time investment, as we hav seen in the plot.
+
+Now that we know the coefficients for the regression line with the best fit,
+i.e. the lowest error, we can again visualise the result.
+
+``` {r plot_lm_grade_hours, echo = FALSE}
+grades %>% 
+  ggplot(aes(x = hours, y = grade)) +
+  geom_point() +
+  geom_abline(slope = -0.05236, intercept = 5.07912, colour = "blue") +
+  geom_hline(yintercept = 0) +
+  geom_vline(xintercept = 0) +
+  scale_y_continuous(breaks = 1:6, labels = c("1.0", "2.0", "3.0", "4.0", "5.0", "6.0"), limits = c(0, 6)) +
+  scale_x_continuous(breaks = seq(0, 60, 10), limits = c(0, 60)) +
+  labs(title = "Regression of seminar paper grade on hours invested in writing",
+       x = "Hours invested",
+       y = "Grade achieved")
+```
+
+Now, what grade can a student expect, on average, if they invest exactly 0
+hours, i.e. do nothing and hand in a blank paper. We can look at the graph or to
+achieve a more precise result, calculate it.
+
+$$5.07912 -0.05236 * 0 = 5.07912$$
+
+As $x_{hours} = 0$ for this theoretical example, the estimated value $\hat{y}$
+or $y_{grade}$ is the same as the intercept $\beta_0$. This is what the
+intercept represents in general, the estimated value $\hat{y}$ when the
+dependent variable is $0$.
+
+Now, investing zero hours in a seminar paper is not only not advisable, it is
+also not a value we observed in our data. If the data would include observations
+with zero hours of time invested, the grade would be a firm $5.0$ and the same 
+would be true for low single digits, i.e. turning in a two-pager as a seminar
+paper. The takeaway is, that the model is highly dependent on the data that it
+is trained on. If the data would have included such cases we could expect a
+higher intercept and a steeper slope, i.e. stronger negative coefficient.
+
+Luckily all our simulated students have put in at least some hours. But as we do
+not have data for zero to $22$ hours, we can not really make reliable estimates
+in this range. Because of this, it does not really make sense to enter `hours`
+into the regression model as ranging from $0$ to $57$. One solution that is
+often used for metric variables is to center them on their mean. This can be
+achieved by simply subtracting the mean of $x$ from each individual value:
+$x_i - \bar{x}$.
+
+We can now rerun the regression.
+
+``` {r reg_grade_hours_centered, echo = FALSE}
+lm(grade ~ hours_centered, grades) %>%
+  summary()
+```
+
+Comparing the results to the first model shows us, that the coefficient for
+$b_{hours\_centered}$ is exactly the same as for $b_{hours}$. So the effect
+of working more hours has not changed. What has changed is the value of the
+intercept. This will make more sense if we again plot the regression line.
+
+``` {r plot_lm_grade_hours_centered_0, echo = FALSE}
+grades %>% 
+  ggplot(aes(x = hours_centered, y = grade)) +
+  geom_point() +
+  geom_abline(slope = -0.05236, intercept = 2.9675, colour = "blue") +
+  geom_hline(yintercept = 0) +
+  geom_vline(xintercept = 0) +
+  scale_y_continuous(breaks = 1:6, labels = c("1.0", "2.0", "3.0", "4.0", "5.0", "6.0"), limits = c(0, 6)) +
+  scale_x_continuous(breaks = seq(-20, 20, 10), limits = c(-20, 20)) +
+  labs(title = "Regression of seminar paper grade on hours invested in writing",
+       x = "Hours invested (centered)",
+       y = "Grade achieved")
+```
+
+By centering the x-Variable on its mean we have changed its interpretation.
+A value of `hours = 0` now stands for investing as much time as is the mean
+of `hours` in the whole data set, which in this case is $40.33$ hours. Positive
+values indicate that a student worked $x$ hours more, negatives indicate $-x$
+hours less compared to the mean. In this way, we also moved the y-axis and thus
+changed the interpretation of the intercept. Its new value of $2.9675$ now
+indicates the estimate for a student who invests the mean value of `hours` in
+their work, i.e. $40.33$. We will use this version of the variable for the rest
+of the session.
+
+
+XXX OUTRO XXX

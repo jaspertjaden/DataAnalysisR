@@ -1,8 +1,0 @@
-# Prediction or Margins - Theory {#pm-t}
-Here goes some texts.
-
-## Predicted probabilities
-At various co-variate levels
-
-## Marginal Effects
-
