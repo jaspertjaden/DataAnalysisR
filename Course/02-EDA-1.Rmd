@@ -153,6 +153,7 @@ data_nba <- data_nba %>%
 
 data_nba <- data_nba %>%
   select("_id", name, age, weight, height, birthPlace, everything(), -position, -birthDate, -year_of_birth)
+save(data_nba, file ="../datasets/nba/data_nba.RData")
 ```
 
 Now, we want to create a variable that gives us the number of seasons (i.e.years)
@@ -207,9 +208,9 @@ plot_missing(data_nba)
 plot_bar(data_nba)
 ```
 
-Now, let's try gtSummary for summary tables. A summary table is always a useful start once you have identified the type of varibales you are interested in. 
+Now, let's try gtSummary for summary tables. A summary table is always a useful start once you have identified the type of variables you are interested in. 
 
-Let's assume we are interested in age, seasons played, career ppints, salary,
+Let's assume we are interested in age, seasons played, career points, salary,
 position, and right or left handed (i.e. "shoots")
 
 ```{r, warning=FALSE}
@@ -218,7 +219,7 @@ library(gtsummary)
 data_nba %>% 
   select(age, seasons_played, shoots, career_PTS, salary, contains("position")) %>%
          tbl_summary(
-           statistic = all_continuous() ~ c("{mean} ({min}, {max})"))
+           statistic = all_continuous() ~ c("{mean} ({min}, {max})")) 
          
 ```
 

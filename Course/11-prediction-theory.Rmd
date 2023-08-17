@@ -1,5 +1,268 @@
 # Prediction - Theory {#pm-t}
-Here goes some texts.
 
-## Application of Regression
-With WVS/own data: Students apply linear+logistic regression from previous exercises. 
+In prior weeks, you learned how to build a linear regression model. The main interest
+we pursued so far was to arrive at a good estimate of one independent variable (points scored in NBA basketball league) on an outcome (salary of NBA players).
+
+With the help of DAGs, we identified relevant "counfounders" we should adjust for to "isolate' the effect of points as much as possible and reduce bias. COnfounders enter as covariates in in the model. 
+
+With the help of mediation analysis, we were then interested what "explains" or "mediates" the effect of x on y. We use additional variables which we assume operate as mechanisms of the causal effect of x on y and we test how much of the effect of x and y can be attributed to this mediator. In our example, we found that points scored do not really explain why guards earn less money in the NBA compared to centers. 
+
+All what we have done so far can be considered part of causal inference, i.e.
+understanding why an outcome varies. A different perspective is the perspective of PREDICTION.Prediction is at the heart of appraoches in "data science" and "machine learning".
+In this scenario, we build regression models (or other models) simply to predict and outcome. The main interest is not to learn more about how the outcome can be explained but to predict something with it which we want to know. Machine learning then takes it a step further and simply iteratively select the best models among hundrets of options to arrive at the best possible prediction (more on that at the end of the class). First, we will learn how to predict values based on a linear regression model. 
+
+## How prediction works
+
+For a linear regression model, prediction is very straight forward. Linear regression is all about finding a straight line through a cloud of points that lie on as many dimensions as there are variables in model. The model provides you with an intercept (i.e. where the line touches the Y-Axis, and a slope; the increase in y given one unit increase in x. The unit is whatever the scale of the x variable is). The formula is y= b + ßx + €. Any prediction is the on the line. You know the intercept, you plug in a value for x and you get your predicted y.
+
+-> visual here.
+
+Let's apply this logic to our NBA data. Remember in prior weeks, we built a linear model to estimate the effect of points scored on average per game and salaries of players. Let's assume we now want to predict salaries of players and don't care too much about the scores. We can consider a range of variables which we think explain variation in salaries. The better we can capture variation in salaries between players, the more precise our prediction will be.
+
+Now, you may rightfully ask: "Why do we want to predict salaries if we already know the actual salaries!?" Fair point. Prediction is commonly used to predict values which we don't have. Imagine there are some players that don't report their salaries. We could predict their salaries based on what we know from players who are similar to them in many other observable characteristics. Or imagine we want to predict the salary of a hypothetical player that does not exist. Imagine an average players would like to know how much he could earn more if player more like other players. We can predict that. Last example, imagine we want to forecast how much a player makes next year, depending on his past performance. 
+
+Machine learning is basically predicting outcomes that are no known based on very large datasets. You provide R with a million photos of animals, you build a model to explain which animal is a cat. The you apply the model to new data and the model predicts whether there is a cat in the photo. Of course, machine learning gets much more complicated quickly, however, the basic logic is the logic of prediction. 
+
+```{r}
+model1 <- lm(salary ~ career_PTS + position_rec + season_start +
+             age, data = data_nba)
+
+# base R way to get predicted values
+data_nba$predicted_values <- model1$fitted.values
+data_nba <- data_nba %>% dplyr::select('_id', name, salary, predicted_values, everything())
+
+data_nba %>%
+  ggplot(aes(x=salary, y=predicted_values)) +
+  geom_point() +
+  geom_smooth(method = "loess")
+
+# new tidyverse way to get predicted values
+library(broom)
+
+# broom package has nice features to work with models
+
+# tidy() converts the model output into a dataframe, makes it easy to process further, e.g. make graphs etc.
+tidy(model1)
+
+# glance provides meta-level info like r-squared etc.
+glance(model1)
+
+# augment creates a dataframe with the predicted values for everyobservation in the dataframe. 
+
+nba_salalary_predicted <- augment(model1)
+```
+
+
+The output above, get you the predicted values for the observations in the dataset. This is mostly used to evaluate the model itself. The bigger the difference between the predicted values and the actual values (so-called residuals), the worse the model. 
+
+Now, let's predict the salary of hypothetical players:
+
+```{r}
+table(data_nba$position_rec)
+
+# create all combination of the control variables which you want to predict
+prediction.data <- tibble(
+  position_rec = c("center", "center", "Guard", "Guard"),
+  career_PTS = c(10, 14, 10, 14),
+  age = c(20,20,20,20),
+  season_start = c("2017", "2017", "2017", "2017")
+)
+
+# apply the model to the "new" dataset
+predict(model1, 
+        prediction.data)
+prediction.data$predicted_values <- predict(model1, 
+        prediction.data)
+
+prediction.data %>% ggplot() +
+  geom_point(aes(position_rec, predicted_values,
+                 color=career_PTS,
+                 size=12)) +
+  coord_flip() +
+  theme_minimal()
+```
+
+We can see that there is a huge salary increase predicted for just making two more baskets (i.e. 4 points) on average each game, for both guards and centers. We also see that centers make more money generally. 
+
+There is another way to get predicted values using the `margins()` function.
+
+```{r, warning=FALSE, message=FALSE}
+library(margins)
+# This gets you the average change in predicted value for a unit-increase in the all model variables.
+margins(model1)
+
+summary(margins(model1, at= list(position_rec= c("Guard", "center"),
+                         career_PTS= c(10, 14))))
+```
+
+The margins function is handy to calculate predictions for different groups. 
+It automatically can hold other control variables at their mean or at their observed value. 
+
+Now, let's also calculate confidence and prediction intervals. For background, watch these short videos to understand what they are [hyperlink] [hyperlink]. Confidence intervals basically tell how the following: "If we repeated our study on a different sample of people with the same sample size, then the estimate which we have (for example, a mean) would we within the confidence interval 95% of the time. This means in 5% of cases, our study would arrive at a lower or higher mean. The formula for confidence is not very intuitive:
+
+-> formulate here: Margin of error = z * (standard deviation/ square-root of sample size)
+
+Let's not worry about why this formula works, but let's focus on its ingredients: Sample size (N) is the number of people in our data; Standard Deviation is a measure for how much individual people deviate from the mean on average, in other words, how much the data spreads around the mean. and z is 1.96 and is derived from probability theory (i.e. in a normal distribution, there is a certain known likelihood that means fall within a range when re-sampling populations). In other words, the confidence intervals tells us how "confident" we can be that our estimate is within the range 95% of times.
+
+Prediction intervals are very similar but only apply to predictions for specfific values. It gives us a measure for "confident" we can be that our prediction would be within the prediction interval (95% of times).
+
+The 95% is an arbitrarily set value which is a standard in research. However, we can also set it at 99% or 90%. 
+
+Let's apply this to our data. 
+
+```{r, warning=FALSE, message=FALSE}
+# Just for illustration, let's take a suimple model
+model2 <- lm(salary ~ career_PTS, data = data_nba)
+predict(model2)
+
+
+# using geom_smooth, method=lm will automatically plot the confidence intervals
+data_nba %>%
+  ggplot(aes(x=salary, y=career_PTS)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+# let's get prediction intervals and add them to our dataset
+data_nba_predict <- cbind(data_nba, predict(model2, interval = c("prediction")))
+
+data_nba_predict %>%
+  ggplot(aes(x= career_PTS, y=salary)) +
+  geom_point() +
+  geom_line(aes(x=career_PTS, y=fit),
+            col="blue") +
+  geom_line(aes(y=lwr),
+                col="blue",
+                linetype="dashed") +
+  geom_line(aes(y=upr),
+                col="blue",
+                linetype="dashed")
+
+# same using geom_ribbon
+data_nba_predict %>%
+ggplot(aes(x=career_PTS,y=salary))+
+  geom_point()+
+  geom_line(aes(x=career_PTS,y=fit))+
+  geom_ribbon(aes(ymax=upr,ymin=lwr),color="red",alpha=0.7)
+  
+
+## do this with tidy approach
+
+# get confidnce interval for estimate
+tidy(model2, conf.int = TRUE)
+
+# get predictive intervals
+augment(model2, interval= "prediction") %>%
+  ggplot(aes(x=career_PTS,y=salary))+
+  geom_point()+
+  geom_line(aes(x=career_PTS,y=.fitted))+
+  geom_ribbon(aes(ymax=.upper,ymin=.lower),color="red",alpha=0.7)
+
+
+
+```
+
+
+Now, let's compare the prediction interval for 2 differnt models.To compare the performance of models, you can use the r-squared (which measures how much of the variation in the outcome can be explained by your set of independent variables) and the mean squared error. For more background on both measures see here: https://vitalflux.com/mean-square-error-r-squared-which-one-to-use/
+
+The Mean squared error (MSE) represents the error of the estimator or predictive model created based on the given set of observations in the sample. It measures the average squared difference between the predicted values and the actual values, quantifying the discrepancy between the model’s predictions and the true observations. The lower the MSE, the better the model predictive accuracy, and, the better the regression model is.
+
+
+
+```{r, warning=FALSE, message=FALSE}
+model1 <- lm(salary ~ career_PTS + position_rec + season_start +
+             age, data = data_nba)
+model2 <- lm(salary ~ career_PTS, data = data_nba)
+
+# compared R-squared/ adjusted R-squared
+glance(model1)
+glance(model2)
+
+# compare prediction intervals
+model1_predicted <- augment(model1, interval = "prediction")
+model2_predicted <- augment(model2, interval = "prediction")
+
+  ggplot(aes(x=career_PTS,y=salary), data = model1_predicted)+
+  geom_point()+
+  # geom_line(aes(x=career_pts,y=.fitted),
+  #           color ="red", data = model1_predicted) +
+  # geom_line(aes(x=career_pts,y=.fitted),
+  #          color ="blue", data = model2_predicted) +
+  geom_ribbon(aes(ymax=.upper,ymin=.lower),
+              color="red",
+              alpha=0.7,
+              data = model1_predicted) +
+  geom_ribbon(aes(ymax=.upper,ymin=.lower),
+              color="blue",
+              alpha=0.7,
+              data = model2_predicted)
+
+# see if there is a better way to do this
+
+library(Metrics) # using rmse from Metrics library
+# compare mean squared error
+  rmse(model1_predicted$.fitted, data_nba$salary)
+  rmse(model2_predicted$.fitted, data_nba$salary)
+  
+```
+
+Looking at r2, the prediction intervals and rmse, model 1 clearly performs better than model 2.
+
+## Intro to Machine learning
+
+We have now arrived at the entry gates to machine learning. We will conduct a very basic and simple machine learning routine using linear regression. The main difference between simple prediction and Machine Learning is that the sample is first divided into a training and a test dataset at random. The model is than tuned based on, let's say, 80% of the sample. When the model is ready, it is tested based on the 20% remaining sample. The prediction produced with the model are then compared with the actual values in the test dataset. There is of course more nuance to all this, but this is basically the idea. 
+
+Let's use the "caret" package, a common package for machine learning.
+
+
+```{r, warning=FALSE, message=FALSE}
+library(caret)
+
+# Create a train and test split
+set.seed(123)  # For reproducibility
+train_indices <- createDataPartition(data_nba$salary, p = 0.7, list = FALSE)
+train_data <- data_nba[train_indices, ]
+test_data <- data_nba[-train_indices, ]
+
+# Create a train control object
+ctrl <- trainControl(method = "none") 
+
+# Train a linear regression model using caret
+model1 <- train(
+  salary ~ career_PTS + position_rec + season_start + age,
+  data = train_data,
+  method = "lm",
+  trControl = ctrl
+)
+
+model2 <- train(
+  salary ~ career_PTS,
+  data = train_data,
+  method = "lm",
+  trControl = ctrl
+)
+
+# Make predictions on the test set
+predicted_salaries_m1 <- predict(model1, newdata = test_data)
+predicted_salaries_m2 <- predict(model2, newdata = test_data)
+
+
+# Calculate prediction errors (e.g., root mean squared error)
+rmse1 <- sqrt(mean((predicted_salaries_m1 - test_data$salary)^2))
+rmse2 <- sqrt(mean((predicted_salaries_m2 - test_data$salary)^2))
+
+# Print the prediction errors
+print(rmse1)
+print(rmse2)
+```
+
+Now machine learning usually involves several more steps:
++ we can optimize how the variables (in ML language called features enter the model) (Pre-processing)
++ we can optimize which variables should even enter the model ("feature selection")
++ we can optimize how the predictions of the model get evaluated ("training"/ "tuning" - e.g. )
+
+JT maybe expand here or not. 
+JT: consider doing this also with "tidymodels"
+
+
+## More resources:
+Provide list of online resources to dig deeper

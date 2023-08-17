@@ -480,7 +480,7 @@ and does, we can finally get to the fun part and use the technique for
 estimating the effect of `hours` on `grade` or in other words, regress
 `grade` on `hours`.
 
-``` {r reg_grade_hours, echo = FALSE}
+``` {r reg_grade_hours_0, echo = FALSE}
 lm(grade ~ hours, grades) %>%
   summary()
 ```
@@ -560,7 +560,7 @@ $b_{hours\_centered}$ is exactly the same as for $b_{hours}$. So the effect
 of working more hours has not changed. What has changed is the value of the
 intercept. This will make more sense if we again plot the regression line.
 
-``` {r plot_lm_grade_hours_centered, echo = FALSE}
+``` {r plot_lm_grade_hours_centered_0, echo = FALSE}
 grades %>% 
   ggplot(aes(x = hours_centered, y = grade)) +
   geom_point() +

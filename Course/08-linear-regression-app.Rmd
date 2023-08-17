@@ -13,7 +13,7 @@ XXX USING FAKE DATE FOR NOW XXX
 
 ``` {r fake_data}
 library(tidyverse)
-load("grades.RData")
+load("../datasets/grades.RData")
 ```
 
 ### R Code

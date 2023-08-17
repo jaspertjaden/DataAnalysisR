@@ -1,6 +1,6 @@
 # Linear Regression Theory II: Multiple Linear Regression {#lin-t-2}
 
-``` {r init, include = FALSE}
+``` {r init_0, include = FALSE}
 library(tidyverse)
 
 load("../datasets/grades.RData")
@@ -164,7 +164,7 @@ writing the first word.
 
 Let us add the variable to our model.
 
-``` {r reg_grade_hours_prev_att_contact, echo = FALSE}
+``` {r reg_grade_hours_prev_att_contact_0, echo = FALSE}
 lm(grade ~ hours_centered + previous_grades_centered + attendance + contact, grades) %>% summary()
 ```
 
@@ -298,7 +298,7 @@ That leaves us with `hours` and `contact` to be included in our linear
 regression, if our goal is to accuarately identify and estimate the effect of
 invested time on the final grade. So let us do this:
 
-``` {r reg_grade_hours_contact, echo = FALSE}
+``` {r reg_grade_hours_contact_0, echo = FALSE}
 lm(grade ~ hours_centered + contact, grades) %>% summary()
 ```
 
