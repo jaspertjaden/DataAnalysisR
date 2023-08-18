@@ -1,22 +1,161 @@
 # Linear Regression - Application {#lin-a}
 
-## Example research question
+## Objectives
 
-* NBA data
-* Short theory
-  * DAG from this
-    * What do we have to control for to identify effect of interest?
 
-## Application with NBA data
+## R functions covered this week
 
-XXX USING FAKE DATE FOR NOW XXX
+- `lm()`
 
-``` {r fake_data}
-library(tidyverse)
-load("../datasets/grades.RData")
+## Temporary from EDA I
+
+This is interesting for a first look. For example, it seems that the weight is 
+strongly correlated with whatever position you play. Centers are heavy, point
+guards are light weights. 
+We also see that most performance metrics ("career_...") are correlated with each
+other and also with salary. Good players seem to be good in many things, and
+good players seem to be paid more. 
+
+Now, that we have a feeling for the whole dataset, we want to explore individual 
+variables. To keep it focused, we want to further explore the question
+of whether players that score more on average are also paid more. 
+
+Maybe roles are clearly divided on the team. Maybe really good passers are highly
+paid because they give great passes to people who then score. Or maybe teams
+don't care about passers and just pay more to people who score more. 
+
+So, now, let's look at salary and average number of points scored by game. 
+Also, we want to know whether point guards (short people who pass a lot) are
+paid less then other positions (who score more). 
+
+So, it seems that point gards are paid a little less even though they make a few more points on average. Interesting puzzle to explore. 
+
+Let's reflect a moment what we can learn from all this. 
+
+First, there seems to be a somewhat linear relationship between how many points 
+a player scores and how much they are paid. This relationship seems pretty robust across years and teams. It also holds true for point guards just as much as for non-point guards. However, the average salary for point guards is lower in comparison. We also learn that the link between salary and points is stronger for centers. They seems to be paid more, the more they score. 
+
+1) It can model the relationship between two variables while considering simultaneously the potential influence of other factors. Image we are interested
+in the effect of points per game on salary regardless of position, season or team.
+With regression we can estimate how much more a player would ear every season
+if he scored 10 more points a game (regardless of the position he plays).
+
+
+
+
+## Research question
+
+We will now pick up where we left several sessions ago and return to the NBA 
+data. We already saw, that there was an interesting relationship between the
+points a player makes per game and the salary he receives. The more points, the 
+higher the salary. This makes intuitive sense as high scoring player is more
+valuable to the team and thus receives a higher monetary compensation. Our 
+goal for this session is to estimate the effect of points on salary and to 
+assess if it really exists and what its magnitude is.
+
+Let us start building a DAG with the information we already have.
+
+``` {r dag_1, echo = FALSE}
+library(dagitty)
+
+dagitty('dag{
+        "Points per game" [pos = "1,0"]
+        Salary [pos = "3, 0"]
+        
+        "Points per game" -> Salary
+}') %>% 
+  plot()
 ```
 
-### R Code
+Now we have to think about other factors that could influence the relationship 
+between points and salary. One variable we already identified as having an 
+effect on both was the position a player occupies. The position influences how
+many points per game a player can score and we also already saw that centers
+make more money compared to point guards. Right now we have no reason to believe
+that other positions do not also have an effect on the received salary. 
+Following this reasoning, position is a confounder for points and salary.
+
+``` {r dag_2, echo = FALSE}
+library(dagitty)
+
+dagitty('dag{
+        "Points per game" [pos = "1,0"]
+        Position [pos = " 2, -1"]
+        Salary [pos = "3, 0"]
+        
+        "Points per game" -> Salary
+        "Points per game" <- Position -> Salary
+}') %>% 
+  plot()
+```
+
+It is also reasonable that the height influences which position a
+player can occupy. Centers have to be big while smaller players tend to play on
+other positions. At the same time, height is an advantage if you want to score
+in a basketball game. Thus height is a confounder for points and position.
+
+``` {r dag_3, echo = FALSE}
+library(dagitty)
+
+dagitty('dag{
+        "Points per game" [pos = "1,0"]
+        Height [pos = "1.3, -1.3"]
+        Position [pos = " 2, -1"]
+        Salary [pos = "3, 0"]
+        
+        "Points per game" -> Salary
+        "Points per game" <- Position -> Salary
+        "Points per game" <- Height -> Position
+}') %>% 
+  plot()
+```
+
+Another factor that will have an effect on the salary is the team a player play
+for. More successful teams will be able to pay higher salaries. The season an
+observation was recorded in, should also influence the paid salary as we can
+expect a general inflation of salaries over time.
+
+``` {r dag_final, echo = FALSE}
+library(dagitty)
+
+dagitty('dag{
+        "Points per game" [pos = "1,0"]
+        Height [pos = "1.3, -1.3"]
+        Team [pos = "2, -2"]
+        Season [pos = "2, -3"]
+        Position [pos = " 2, -1"]
+        Salary [pos = "3, 0"]
+        
+        "Points per game" -> Salary
+        Team -> Salary
+        Season -> Salary
+        "Points per game" <- Position -> Salary
+        "Points per game" <- Height -> Position
+}') %>% 
+  plot()
+```
+
+This is our final DAG. Now what does this imply for our model?
+Our goal is to measure the effect of the points per game on the received
+salary. Position is a confounder for both, so we have to control for it to get
+an unbiased estimate for points. Height is also a confounder, but for points
+and position. So we have to control for this variable too? As we already control
+for position, the path from height -> position -> points is already closed. This
+means that we do **not** have to onclude height in our model to get a unbiased
+estimate. The two remaining variables, team and season, have direct effects on 
+salary but no other connections. This implies, that we also do **not** have to
+control for them if our goal is estimating the effect of points. Remember, if 
+our goal was predicting the salary as accurately as possible, we should maybe
+include both variables, but this is not our goal today.
+
+Now let us get to it and load the NBA data we prepared in week 2.
+
+``` {r nba_data}
+library(tidyverse)
+load("../datasets/nba/data_nba.RData")
+```
+
+## Simple linear regression in R
 
 To conduct a multiple linear regression in R, we can use the built-in *base R*
 function `lm()`. The function is straightforward to use. As the first argument
@@ -26,16 +165,18 @@ In the formula syntac we start by writing the name of our `dependent_variable`
 followed by a *tilde* `~`. You can read this as an $=$ or as "regress the 
 dependent variable on". After the tilde we add our first `indepedent variable`
 by again writing out its name. If we have multiple independent variables in our
-model - so we are runnign a *multiple linear regression* - we can add those by
+model - so we are running a *multiple linear regression* - we can add those by
 writing a `+` followed by the name of the variable to be added.
 
 As a second argument, the function needs the name of the object that holds our
 data.
 
-So if we want to regress XXX on XXX, we just write:
+The goal of our research question is to estimate the effect of the points per
+game on the received salary. So to regress `salary` on `career_PTS`, we just
+write:
 
 ``` {r first_lm}
-lm(grade ~ hours_centered, data = grades)
+lm(salary ~ career_PTS, data = data_nba)
 ```
 
 This gives us a short output. The first line just echoes our code used to run 
@@ -53,10 +194,11 @@ associated with the model.
 The easiest way is to use the base R function `summary()`. This is a generic R
 function that returns different summaries, depending on the object it is used 
 on. We can for example use it on a data frame or tibble to get some descriptive
-statistics for the included variables.
+statistics for the included variables. For example, we can information on the
+distribution of points per game by writing:
 
 ``` {r summary_df}
-summary(grades)
+summary(data_nba$career_PTS)
 ```
 
 When we use `summary()` on a model object, like the one created by `lm()`, we
@@ -66,7 +208,7 @@ analysis of the model on ths object and we do not have to rerun the model
 every time.
 
 ``` {r m1}
-m1 <- lm(grade ~ hours_centered, data = grades)
+m1 <- lm(salary ~ career_PTS, data = data_nba)
 ```
 
 We can now apply `summary()` on the object `m1`, short for "model 1":
@@ -75,9 +217,9 @@ We can now apply `summary()` on the object `m1`, short for "model 1":
 summary(m1)
 ```
 
-This not only gives us an extended and better readable coefficient block but 
-also additional information on the quality of the model. We will address the
-most relevant aspects one by one during this session.
+This is the output we saw over the last weeks and it includes extended and
+better readable coefficient block as well as the information on the residuals
+and the model fit.
 
 An alternative method of displaying the coefficients in a regular tibble format,
 is to use `tidy()` from the `broom` package.
@@ -88,29 +230,105 @@ library(broom)
 tidy(m1)
 ```
 
-### Interpretation of regression table in practice
+### Interpretation
 
+While we know our model is not complete yet, let us still inspect the results.
+For each point a player scores per game, his salary rises by about $550,000\$$.
+We see a clear positive and substantial effect. Let us also inspect the 
+intercept. THis tells us that a player who makes no points per game has to pay
+the team about $850,000$. Wait, this does not make sense...
+To make the intercept more readily interpretable we should again center our
+metric dependent variable `career_PTS` on its mean.
 
-XXX INTERPRETATION HERE
+``` {r center_pts}
+mean(data_nba$career_PTS)
 
-### Adding additional variables
+data_nba <- data_nba %>% 
+  mutate(PTS_centered = career_PTS - mean(career_PTS))
+```
+
+As we have now centered the independent variable of interst on its mean of $8.9$
+we can rerun the model.
+
+``` {r m1_rerun}
+m1 <- lm(salary ~ PTS_centered, data = data_nba)
+
+summary(m1)
+```
+
+The coefficient for points per game has not changed but its interpretation has.
+For each point per game over the mean of $8.9$ points per game, the salary is
+estimated to increase by about $550,000\$$. At the same time, for each point 
+below the mean the salary is estimated to decrease by the same amount.
+The intercept now shows us the estimated salary of a player who scores $8.9$
+points per game which is slightly upwards of $4,000,000\$$ This makes way more
+sense.
+
+This model model already achieved a considerable $R^2$ of $0.36$. About $36\%$
+of the variance in salaries is explained by the points per game a player scores.
+
+## Multiple linear regression in R
 
 The DAG we have constructed above based on our research question indicated that
-we have to include more than just one variable in our model.
+we also have to include the position a player occupies in our model.
 We can add additional independent variables to the formula used in `lm()` with a
-`+` and the name of the additional variable(s).
-So let us do this now:
+`+` and the name of the additional variable(s). This works the same way for all
+types of variables, i.e. metric, dummies or categorical variables.
+So let us do this now by adding the 5 dummies we constructed for the positions:
 
 ``` {r m2}
-m2 <- lm(grade ~ hours_centered + contact, data = grades)
+m2 <- lm(salary ~ PTS_centered + position_center + position_sf +  position_pf + position_sg + position_pg, data = data_nba)
 
 summary(m2)
 ```
 
-XXX INTERPRETATION HERE XXX
+
+### Interpretation
+
+We still see a clear positive effect of points per game on the received salary
+after controlling for the position a player occupies. Among those centers are by
+far the top earners, making about $1,400,00\$$ more than players on other
+positions. Most other positions show relatively small effects on the earnings.
+Power and small forwards earn somewhat more than other positions on average
+while point and especially shooting guards earns less.
+
+We can now compare two fictive cases of a center and a point guard who each make
+about $20$ points per game. What is the estimated salary for them?
+
+As we have extensively worked with the formulas over the last sessions, we can
+now keep it short and calculate the estimate directly. Remember that we
+centered the points per game on the mean of about $8.9$, so making $20$ per game
+would mean making about $11.1$ than the average player. We will keep it simple
+here and calculate with $11$.
+
+$$\hat{y_{center\_20}} = 3679728 + 568019 * 11 + 1380246 = 11,308,183$$
+
+$$\hat{y_{pg\_20}} = 3679728 + 568019 * 11 - 114552 = 9,813,385$$
+
+Despite making the same amount of points per game for their team, the model
+estimates that a point guard earns about $1,500,000\$$ less compared to a center.
 
 
+### Sidenote: Adding interactions
 
+We will not use interactions in this session but we briefly want to state how we
+could add them in the formula syntax. 
+
+Remember that interactions are multiplicative terms in our regression formula.
+Adding them to the R formula syntax works the same way. We add the new term with
+a `+` and use a `*` between the two variables that we want to interact.
+
+Here is a non running toy example where we interact two x-variables:
+
+```
+lm(y ~ x1 + x2 + x1 * x2, data = some_data)
+```
+
+## Regression Diagnostics
+
+### Corrections
+
+## Returning to our research question
 
 ## Outlook
 
