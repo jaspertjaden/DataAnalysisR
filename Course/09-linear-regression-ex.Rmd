@@ -1,28 +1,18 @@
 # Linear Regression - Exercises {#lin-e}
-Here goes some texts.
 
 ## Application of Logistic Regression
-With WVS/own data: Students apply linear regression:
 
 **DRAFT**
 
-1. Load the `mtcars` dataset in R and fit a simple linear regression model using `mpg` as the response variable and `wt` as the predictor variable. Summarize the model using the `summary()` function from the `tidyverse` package and interpret the results.
+1. **Simple linear regression**: Use simple linear regression to predict the median value of owner-occupied homes (`MEDV`) based on a single predictor variable, such as the average number of rooms per dwelling (`RM`). Fit the model, generate predictions, and calculate the R-squared value to assess the model's performance.
+2. **Multiple linear regression**: Use multiple linear regression to predict `MEDV` based on multiple predictor variables, such as `RM`, `CRIM` (per capita crime rate by town), and `LSTAT` (% lower status of the population). Fit the model, generate predictions, and calculate the R-squared value to assess the model's performance.
+3. **Model summary**: Use the `summary()` function to generate a summary of a linear regression model, including information about the coefficients, standard errors, t-values, and p-values. Interpret the results and discuss their implications from a social science perspective.
+4. **Model diagnostics**: Use diagnostic plots to assess the assumptions of linear regression, such as linearity, normality, and homoscedasticity. Identify any potential problems with the model and discuss how they could be addressed.
+5. **Variable selection**: Use variable selection methods, such as stepwise selection or best subset selection, to identify a subset of predictor variables that provide the best fit for a multiple linear regression model. Compare the performance of different models and discuss their relative strengths and weaknesses.
+6. **Interaction effects**: Include interaction terms in a multiple linear regression model to capture the effect of two or more predictor variables interacting with each other. Interpret the coefficients of the interaction terms and discuss their implications from a social science perspective.
+7. **Polynomial regression**: Use polynomial regression to model non-linear relationships between predictor variables and the response variable. Fit a polynomial regression model, generate predictions, and assess the model's performance.
+8. **Model comparison**: Use model comparison methods, such as adjusted R-squared or AIC, to compare the performance of different linear regression models. Select the best model based on these criteria and discuss its strengths and weaknesses.
+9. **Tidy models**: Use the `broom` package to convert linear regression models into tidy data frames using functions such as `tidy()`, `glance()`, and `augment()`. Manipulate and visualize the tidy data frames to gain insights into the models and their performance.
+10. **Prediction intervals**: Generate prediction intervals for new observations using a fitted linear regression model. Interpret the prediction intervals and discuss their usefulness for making predictions in a social science context.
 
-2. Using the same model from exercise 1, interpret the p-value of the predictor variable. What does it tell you about the relationship between `mpg` and `wt`?
-
-3. Calculate a 95% confidence interval for the slope of the regression line from exercise 1. Interpret the results.
-
-4. Add an additional predictor variable, `hp`, to the model from exercise 1. Summarize the new model and interpret the results.
-
-5. Perform regression diagnostics on the model from exercise 4. Check for normality, constant variance, and independence of residuals.
-
-6. Load the `iris` dataset in R and fit a simple linear regression model using `Sepal.Length` as the response variable and `Petal.Length` as the predictor variable. Summarize the model and interpret the results.
-
-7. Using the same model from exercise 6, interpret the p-value of the predictor variable. What does it tell you about the relationship between `Sepal.Length` and `Petal.Length`?
-
-8. Calculate a 95% confidence interval for the slope of the regression line from exercise 6. Interpret the results.
-
-9. Add an additional predictor variable, `Sepal.Width`, to the model from exercise 6. Summarize the new model and interpret the results.
-
-10. Perform regression diagnostics on the model from exercise 9. Check for normality, constant variance, and independence of residuals.
 

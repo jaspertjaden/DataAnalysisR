@@ -22,8 +22,8 @@
 ## Why is EDA so important?
 
 + Every regression analysis is based on proper EDA; EDA often used for "hypothesis generation" (i.e. finding things that could be interesting to study). 
-+ EDA helps understand the data and issues in the data. The better we understand the data, the better we can "fine-tune" our regression model later.
-+ EDA helps prepping data for regression (i.e. "cleaning"; "pre-processing"). Small errors in the data can lead to completely wrong conclusions or even prevent 
++ `EDA` helps understand the data and issues in the data. The better we understand the data, the better we can "fine-tune" our regression model later.
++ `EDA` helps prepping data for regression (i.e. "cleaning"; "pre-processing"). Small errors in the data can lead to completely wrong conclusions or even prevent 
 the model from working altogether. 
 
 
@@ -48,8 +48,8 @@ library("readxl")
 ```
 
 
-Now, let's import the data.You can see in the folder that we have 2 cvs files. 
-We can use `read_delim()` or `read_csv` function. Note that you need other function for Stata datasets (`read_data` from teh haven package). To load Rdata files, you use the `load()` function.
+Now, let's import the data.You can see in the folder that we have 2 csv files. 
+We can use `read_delim()` or `read_csv` function. Note that you need other function for Stata datasets (`read_data` from the haven package). To load Rdata files, you use the `load()` function.
 
 Make sure you name the correct sub-directory in case you saved the data a sub-folder of your project folder (which I have done).
 
@@ -161,7 +161,7 @@ that each player played. Since the dataset is organized in seasons, each row
 is one season. Counting the rows per player gives us the years they played.
 
 
-```{r}
+```{r change_vr_0}
 data_nba <- data_nba %>%
   group_by("_id") %>%
   mutate(seasons_played = n()) %>%
@@ -173,7 +173,7 @@ data_nba <- data_nba %>%
 Almost done. When we browse the dataset, we recognize that the height and weight variables are stored as characters. Let's convert them to numeric, so we can
 use them in operations. 
 
-```{r}
+```{r change_vr_1}
 str(data_nba$weight)
 str(data_nba$height)
 
@@ -192,7 +192,7 @@ str(data_nba)
 Now, let's explore some packages which help us to explore the dataframe as a whole.
 Let's start with the DataExplorer package. It is nice to get an overview of variables and the "missingness" of data. 
 
-```{r, warning=FALSE}
+```{r explore_dt_0, warning=FALSE}
 library(DataExplorer)
 
 # overview of types of variables and missingness
@@ -213,7 +213,7 @@ Now, let's try gtSummary for summary tables. A summary table is always a useful 
 Let's assume we are interested in age, seasons played, career points, salary,
 position, and right or left handed (i.e. "shoots")
 
-```{r, warning=FALSE}
+```{r explore_dt_1, warning=FALSE}
 library(gtsummary)
 
 data_nba %>% 
@@ -227,7 +227,7 @@ data_nba %>%
 Now, let's look at a correlation matrix between all numeric
 variables in the dataset.
 
-```{r, warning=FALSE, message=FALSE}
+```{r explore_dt_2, warning=FALSE, message=FALSE}
 library("corrr")
 library("corrplot")
 
@@ -287,7 +287,7 @@ paid less then other positions (who score more).
 
 First, let's look how the two continuous variables are distributed:
 
-```{r, warning=FALSE, message=FALSE}
+```{r explore_dt_3, warning=FALSE, message=FALSE}
 data_nba %>% ggplot() + 
 geom_boxplot(aes(y=salary)) +
   facet_wrap(~position_pg) +
@@ -309,7 +309,7 @@ Let's look at the relationship between salary and position as well as the
 relationship between position and points.
 
 
-```{r, warning=FALSE, message=FALSE}
+```{r explore_dt_4, warning=FALSE, message=FALSE}
 str(data_nba$position_pg)
 str(data_nba$salary)
 str(data_nba$career_pts)
@@ -369,7 +369,7 @@ data_nba %>%
 
 So, it seems that point gards are paid a little less even though they make a few more points on average. Interesting puzzle to explore. 
 
-```{r, warning=FALSE, message=FALSE}
+```{r explore_dt_5, warning=FALSE, message=FALSE}
 
 # find example for using histogramm()
 # find example for first just creating cross tabs as perecntages tbl_cross(); summarize(); tabyl()
@@ -378,7 +378,7 @@ So, it seems that point gards are paid a little less even though they make a few
 
 Now, let's explore the relationship which is at the heart of our analysis from now on: salary and average points. 
 
-```{r, warning=FALSE, message=FALSE}
+```{r explore_dt_6, warning=FALSE, message=FALSE}
 
 # simple scatterplot
 data_nba %>% ggplot() +

@@ -144,7 +144,7 @@
 
 \title{Data Analysis with R for Social Scientists}
 \author{Jakob Tures \& Jasper Tjaden}
-\date{2023-08-17}
+\date{2023-08-21}
 
 \begin{document}
 \maketitle
@@ -851,7 +851,15 @@ position, and right or left handed (i.e.~``shoots'')
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(gtsummary)}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{verbatim}
+## #BlackLivesMatter
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{select}\NormalTok{(age, seasons\_played, shoots, career\_PTS, salary, }\FunctionTok{contains}\NormalTok{(}\StringTok{"position"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
          \FunctionTok{tbl\_summary}\NormalTok{(}
@@ -1377,28 +1385,276 @@ You can include this data by installing mlbench library:
 \begin{Highlighting}[]
 \CommentTok{\#install.packages("mlbench") \#\# installing the library}
 \FunctionTok{library}\NormalTok{(mlbench) }\CommentTok{\#adding the library}
+\FunctionTok{library}\NormalTok{(openxlsx)}
 \FunctionTok{data}\NormalTok{(BostonHousing2)}
 \NormalTok{housing }\OtherTok{\textless{}{-}}\NormalTok{ BostonHousing2}
+\FunctionTok{write.xlsx}\NormalTok{(housing, }\StringTok{"../datasets/boston.xlsx"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
-  Use the \texttt{str()} and \texttt{glimpse()} functions to explore the structure of the data.
-\item
-  Use the \texttt{table()} and \texttt{summary()} functions to generate summary statistics for the variables in the Boston housing dataset.
-\item
-  Use the \texttt{mutate()} and \texttt{case\_when()} functions from the \texttt{dplyr} package to create new variables based on conditions. For example, create a new variable that categorizes houses as ``expensive'' or ``affordable'' based on their median value.
-\item
-  Use the \texttt{ggplot()} function from the \texttt{ggplot2} package to create visualizations of the data. For example, create a scatterplot of median value vs.~average number of rooms per dwelling using \texttt{geom\_point()}, and add a smooth trend line using \texttt{geom\_smooth()}.
-\item
-  Use the \texttt{corr()} function to calculate correlations between variables in the Boston housing dataset. Then, use this information to create a correlation plot using \texttt{ggplot()}.
-\item
-  Use the \texttt{filter()} function from the \texttt{dplyr} package to subset the data based on conditions. For example, create a subset of data containing only houses with more than 6 rooms per dwelling.
-\item
-  Use functions from the \texttt{DataExplorer} and \texttt{gtsummary} packages to further explore and summarize the data. For example, use the \texttt{plot\_boxplot()} function from \texttt{DataExplorer} to create boxplots of variables, and use functions from \texttt{gtsummary} to create summary tables.
+  \textbf{Read the dataset}: Read the Boston Housing Dataset from the Excel file.
 \end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readxl)}
+\NormalTok{BostonHousing }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"../datasets/boston.xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \textbf{Inspect the dataset}: Use the proper functions to inspect the structure and contents of the dataset. How many Categorical variables are there? How many numerical variables are there? Is there any null values?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(BostonHousing)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## tibble [506 x 19] (S3: tbl_df/tbl/data.frame)
+##  $ town   : chr [1:506] "Nahant" "Swampscott" "Swampscott" "Marblehead" ...
+##  $ tract  : num [1:506] 2011 2021 2022 2031 2032 ...
+##  $ lon    : num [1:506] -71 -71 -70.9 -70.9 -70.9 ...
+##  $ lat    : num [1:506] 42.3 42.3 42.3 42.3 42.3 ...
+##  $ medv   : num [1:506] 24 21.6 34.7 33.4 36.2 28.7 22.9 27.1 16.5 18.9 ...
+##  $ cmedv  : num [1:506] 24 21.6 34.7 33.4 36.2 28.7 22.9 22.1 16.5 18.9 ...
+##  $ crim   : num [1:506] 0.00632 0.02731 0.02729 0.03237 0.06905 ...
+##  $ zn     : num [1:506] 18 0 0 0 0 0 12.5 12.5 12.5 12.5 ...
+##  $ indus  : num [1:506] 2.31 7.07 7.07 2.18 2.18 2.18 7.87 7.87 7.87 7.87 ...
+##  $ chas   : chr [1:506] "0" "0" "0" "0" ...
+##  $ nox    : num [1:506] 0.538 0.469 0.469 0.458 0.458 0.458 0.524 0.524 0.524 0.524 ...
+##  $ rm     : num [1:506] 6.58 6.42 7.18 7 7.15 ...
+##  $ age    : num [1:506] 65.2 78.9 61.1 45.8 54.2 58.7 66.6 96.1 100 85.9 ...
+##  $ dis    : num [1:506] 4.09 4.97 4.97 6.06 6.06 ...
+##  $ rad    : num [1:506] 1 2 2 3 3 3 5 5 5 5 ...
+##  $ tax    : num [1:506] 296 242 242 222 222 222 311 311 311 311 ...
+##  $ ptratio: num [1:506] 15.3 17.8 17.8 18.7 18.7 18.7 15.2 15.2 15.2 15.2 ...
+##  $ b      : num [1:506] 397 397 393 395 397 ...
+##  $ lstat  : num [1:506] 4.98 9.14 4.03 2.94 5.33 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glimpse}\NormalTok{(BostonHousing)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 506
+## Columns: 19
+## $ town    <chr> "Nahant", "Swampscott", "Swampscott", "Marblehead", "Marblehea~
+## $ tract   <dbl> 2011, 2021, 2022, 2031, 2032, 2033, 2041, 2042, 2043, 2044, 20~
+## $ lon     <dbl> -70.9550, -70.9500, -70.9360, -70.9280, -70.9220, -70.9165, -7~
+## $ lat     <dbl> 42.2550, 42.2875, 42.2830, 42.2930, 42.2980, 42.3040, 42.2970,~
+## $ medv    <dbl> 24.0, 21.6, 34.7, 33.4, 36.2, 28.7, 22.9, 27.1, 16.5, 18.9, 15~
+## $ cmedv   <dbl> 24.0, 21.6, 34.7, 33.4, 36.2, 28.7, 22.9, 22.1, 16.5, 18.9, 15~
+## $ crim    <dbl> 0.00632, 0.02731, 0.02729, 0.03237, 0.06905, 0.02985, 0.08829,~
+## $ zn      <dbl> 18.0, 0.0, 0.0, 0.0, 0.0, 0.0, 12.5, 12.5, 12.5, 12.5, 12.5, 1~
+## $ indus   <dbl> 2.31, 7.07, 7.07, 2.18, 2.18, 2.18, 7.87, 7.87, 7.87, 7.87, 7.~
+## $ chas    <chr> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0~
+## $ nox     <dbl> 0.538, 0.469, 0.469, 0.458, 0.458, 0.458, 0.524, 0.524, 0.524,~
+## $ rm      <dbl> 6.575, 6.421, 7.185, 6.998, 7.147, 6.430, 6.012, 6.172, 5.631,~
+## $ age     <dbl> 65.2, 78.9, 61.1, 45.8, 54.2, 58.7, 66.6, 96.1, 100.0, 85.9, 9~
+## $ dis     <dbl> 4.0900, 4.9671, 4.9671, 6.0622, 6.0622, 6.0622, 5.5605, 5.9505~
+## $ rad     <dbl> 1, 2, 2, 3, 3, 3, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4,~
+## $ tax     <dbl> 296, 242, 242, 222, 222, 222, 311, 311, 311, 311, 311, 311, 31~
+## $ ptratio <dbl> 15.3, 17.8, 17.8, 18.7, 18.7, 18.7, 15.2, 15.2, 15.2, 15.2, 15~
+## $ b       <dbl> 396.90, 396.90, 392.83, 394.63, 396.90, 394.12, 395.60, 396.90~
+## $ lstat   <dbl> 4.98, 9.14, 4.03, 2.94, 5.33, 5.21, 12.43, 19.15, 29.93, 17.10~
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Check for missing values in all columns}
+\FunctionTok{colSums}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(BostonHousing))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    town   tract     lon     lat    medv   cmedv    crim      zn   indus    chas 
+##       0       0       0       0       0       0       0       0       0       0 
+##     nox      rm     age     dis     rad     tax ptratio       b   lstat 
+##       0       0       0       0       0       0       0       0       0
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \textbf{Summarize categorical variables}: Create frequency table for categorical variables CHAS (Charles River dummy variable).
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{table}\NormalTok{(BostonHousing}\SpecialCharTok{$}\NormalTok{chas)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##   0   1 
+## 471  35
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  \textbf{Summarize numerical variables}: Generate summary statistics for numerical variables CRIM (per capita crime rate by town) and RM (average number of rooms per dwelling).
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(BostonHousing}\SpecialCharTok{$}\NormalTok{crim)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+##  0.00632  0.08204  0.25651  3.61352  3.67708 88.97620
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(BostonHousing}\SpecialCharTok{$}\NormalTok{rm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   3.561   5.886   6.208   6.285   6.623   8.780
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  \textbf{Create new variables}: Create new variable indicating whether a house is located near the Charles River or not.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\NormalTok{BostonHousing }\OtherTok{\textless{}{-}}\NormalTok{ BostonHousing }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{near\_river =} \FunctionTok{ifelse}\NormalTok{(chas }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\StringTok{"Yes"}\NormalTok{, }\StringTok{"No"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  \textbf{Recoding variables}: Create a new variable that groups houses by their proximity to employment centers.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BostonHousing }\OtherTok{\textless{}{-}}\NormalTok{ BostonHousing }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{distance\_group =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{    dis }\SpecialCharTok{\textless{}} \DecValTok{2} \SpecialCharTok{\textasciitilde{}} \StringTok{"Near"}\NormalTok{,}
+\NormalTok{    dis }\SpecialCharTok{\textgreater{}=} \DecValTok{2} \SpecialCharTok{\&}\NormalTok{ dis }\SpecialCharTok{\textless{}} \DecValTok{5} \SpecialCharTok{\textasciitilde{}} \StringTok{"Medium"}\NormalTok{,}
+\NormalTok{    dis }\SpecialCharTok{\textgreater{}=} \DecValTok{5} \SpecialCharTok{\textasciitilde{}} \StringTok{"Far"}
+\NormalTok{  ))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  \textbf{Visualize relationships}: Create scatter plots to explore the relationship between housing prices and other numeric variables. Interpret the plots. Also show the distribution of ptratio by distance\_group.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create a list of numeric variables to plot against MEDV}
+\NormalTok{vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"crim"}\NormalTok{, }\StringTok{"rm"}\NormalTok{, }\StringTok{"age"}\NormalTok{, }\StringTok{"dis"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"lstat"}\NormalTok{)}
+
+\CommentTok{\# Create a scatter plot for each variable}
+\NormalTok{plots }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(vars, }\ControlFlowTok{function}\NormalTok{(var) \{}
+  \FunctionTok{ggplot}\NormalTok{(BostonHousing, }\FunctionTok{aes\_string}\NormalTok{(}\AttributeTok{x =}\NormalTok{ var, }\AttributeTok{y =} \StringTok{"medv"}\NormalTok{)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =}\NormalTok{ var, }\AttributeTok{y =} \StringTok{"medv"}\NormalTok{)}
+\NormalTok{\})}
+\FunctionTok{library}\NormalTok{(gridExtra)}
+\CommentTok{\# Combine the plots into a single plot}
+\NormalTok{combined\_plot }\OtherTok{\textless{}{-}} \FunctionTok{do.call}\NormalTok{(grid.arrange, }\FunctionTok{c}\NormalTok{(plots, }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Display the combined plot}
+\NormalTok{combined\_plot}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## TableGrob (2 x 3) "arrange": 6 grobs
+##   z     cells    name           grob
+## 1 1 (1-1,1-1) arrange gtable[layout]
+## 2 2 (1-1,2-2) arrange gtable[layout]
+## 3 3 (1-1,3-3) arrange gtable[layout]
+## 4 4 (2-2,1-1) arrange gtable[layout]
+## 5 5 (2-2,2-2) arrange gtable[layout]
+## 6 6 (2-2,3-3) arrange gtable[layout]
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create a boxplot of PTRATIO grouped by distance\_group}
+\NormalTok{BostonHousing }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+\FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{ptratio)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{distance\_group) }\SpecialCharTok{+}
+  \FunctionTok{theme\_light}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  \textbf{Correlation analysis}: Calculate correlation coefficients between housing prices and average number of rooms per dwelling, also between housing prices and crime rate. Interpret the result.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(corrplot)}
+\NormalTok{corr\_matrix0 }\OtherTok{\textless{}{-}} \FunctionTok{cor}\NormalTok{(BostonHousing[, }\FunctionTok{c}\NormalTok{(}\StringTok{"medv"}\NormalTok{, }\StringTok{"rm"}\NormalTok{)])}
+\NormalTok{corr\_matrix1 }\OtherTok{\textless{}{-}} \FunctionTok{cor}\NormalTok{(BostonHousing[, }\FunctionTok{c}\NormalTok{(}\StringTok{"medv"}\NormalTok{, }\StringTok{"crim"}\NormalTok{)])}
+\FunctionTok{corrplot}\NormalTok{(corr\_matrix0)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{corrplot}\NormalTok{(corr\_matrix1)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-20-2.pdf}
 
 \textbf{This is a draft of questions, dataframe and the variables will be specified later}
 
@@ -2673,7 +2929,7 @@ certain befre we apply a last step in constructing a valid linear regression
 model, \emph{regression diagnostics}.
 
 \hypertarget{regression-diagnostics}{%
-\section{Regression Diagnostics}\label{regression-diagnostics}}
+\section{Regression diagnostics}\label{regression-diagnostics}}
 
 As linear regression is a statistical technique, there are certain statistical
 assumptions we have to meet. If we violate those, the best laid plans may
@@ -2753,24 +3009,11 @@ For many use cases, the line is straight enough, indicating no clear and strong
 patterns on non-linearity. Still the residuals seem to be slightly off for very
 good and very bad estimated grades.
 
-\hypertarget{no-missing-relevant-explanatory-variables}{%
-\subsubsection{No missing relevant explanatory variables}\label{no-missing-relevant-explanatory-variables}}
-
 Besides violating the assumption of linearity, patterns in the residuals vs.
 fitted plot can also indicate, that there is some important explanatory variable
-missing from the model. If our DAG is correct, we can rule out \texttt{attendance} and
-\texttt{previous\_grades}. We did assume that \texttt{contact} is a confounder for \texttt{hours} and
-\texttt{grade} and thus included it in our model. Did we go wrong there?
-
-We did assume, that the more personal the contact, the more efficiently the time
-working on the paper can be used. And here lies the problem. The way we included
-\texttt{contact} in the model is not the way we reasoned in our DAG. It would we be
-correct if we assumed that the more personal the contact, the less time has to
-be invested. But we already saw in the scatterplot matrix that there is no such
-relationship between the variables. To specify the effect of \texttt{contact} in the
-model correctly, we have to include it as an \emph{interaction} with \texttt{hours}.
-We will correct this, after we have applied the further tests and discussed the
-remaining assumptions.
+missing from the model.
+We will return to this this, after we have applied the further tests and
+discussed the remaining assumptions.
 
 \hypertarget{normally-distributed-residuals}{%
 \subsection{Normally distributed residuals}\label{normally-distributed-residuals}}
@@ -2783,7 +3026,11 @@ problematic. Still, systematic deviations from normality can indicate that the
 model is not \emph{parsimonious}. This means that either not all relevant variables
 are included or that variables are included that are not necessary for the model.
 
-We can check the normality assumption using a \emph{Q-Q plot}. This plots the
+We get a first idea of the distribution from the model summary. This shows us
+the median as well as the 25- 75-percentiles and the minimum and maximum values.
+While strong and clear violations against the normality assumption could already
+be visible here, these measures are not enough to actually test for normality.
+A more informative and accurate approach is using a \emph{Q-Q plot}. This plots the
 standardizes residuals, the residuals divided by their standard error, against
 a theoretical normal distribution. If the residuals are perfectly normally
 distributed, each data point lies on the diagonal, if they are not they move
@@ -2850,8 +3097,8 @@ variable, \emph{outliers}, and unusual values on independent variables,
 regression lines and thus change the slope. As a rule of thumb, we can consider
 values with standardized residuals over \(3\) or under \(-3\) outliers.
 Concerning the dependent variables we can compute the \emph{leverage statistic}.
-Here values that exceed \(2 * (p + 1) / n\), where \(p\) is the number of independent
-variables, are considered as having high leverage.
+Here values that exceed \(2 * (p + 1) / n\), where \(p\) is the number of
+predictors, are considered as having high leverage.
 We can inspect both at the same time in the \emph{Residuals vs.~Leverage} plot.
 
 XXX LINK TO LEVERAGE STATISTIC FORMULA XXX
@@ -2859,11 +3106,15 @@ XXX LINK TO LEVERAGE STATISTIC FORMULA XXX
 \includegraphics{_main_files/figure-latex/residuals_leverage-1.pdf}
 
 We can see that there are no clear outliers. To assess points with high leverage
-we first have to compute the threshold as: \(2 * (2 + 1) / 200 = 0.03\). We can
+we first have to compute the threshold as: \(2 * (3 + 1) / 200 = 0.04\). Note that
+while we have two independent variables in our model, we actually have three
+predictors due to our categorical variable. Thus we have to compute with \(p = 3\)
+instead of \(p = 2\).
+We can
 see that there are a number of points that exceed this value. The question is,
 why do these values exist? Sometimes these are measurement errors, extreme values
 or unusual combinations that come down to the researcher recording the wrong
-values into the dataset. In these cases we can try to fix the errors or remove
+values into the data set. In these cases we can try to fix the errors or remove
 the observations from the data. As we have several values with high leverage,
 this seems highly unlikely. But if we had not simulated the data ourselves and
 knew that there is no error, we should at least check. What seems more probable
@@ -2872,18 +3123,108 @@ variables missing from the model that could explain the high leverage.
 In this case the values should be lower after we include the missing
 variables into the model. We will return to this later.
 
+XXX IS LEVERAGE CORRECTLY COMPUTED? HOW TO INCLUDE A CAT. VAR? XXX
 XXX ALSO INCLUDE COOKS D? XXXX
 
 \hypertarget{no-multicollinearity}{%
-\subsection{No multicollinearity}\label{no-multicollinearity}}
+\subsection{No (multi)collinearity}\label{no-multicollinearity}}
 
-Independence of residuals error terms.
+The final assumption we will discuss here, is the absence of (high) collinearity
+between the predictor variables. Collinearity is present, if two independent
+variables are highly correlated with each other. This can become a problem as it
+gets harder to individually estimate the effects for both variables on the
+outcome as the collinear variables vary together at the same time.
+
+Often collinearity can already be spotted in the correlation matrix. Considering
+our matrix above we saw no clear indication that \texttt{hours} and \texttt{contact} are
+correlated. But the problem can get more complicated if we include three or more
+independent variables in our model. While none of the pairs of variables may be
+highly correlated, correlation may exist for a set of three or more of those
+variables. In these cases we speak of \emph{multicollinearity}. We can not spot this
+in a correlation matrix, but there is an easy to use measure available.
+
+The \emph{variance inflation factor} (VIF) can be used to inspect (multi)collinearity
+between two or more independent variables accurately. A VIF of \(1\) would
+indicate no collinearity. For real world data this is almost never true as some
+amount of collinearity always exists. But in general we can say that the VIF
+should be near \(1\) and should not exceed a value of \(5\).
+
+Let us compute the measure for our model with \texttt{hours\_centered} and \texttt{contact}:
+
+\begin{verbatim}
+## Warning: package 'car' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## hours_centered        contact 
+##       1.004352       1.004352
+\end{verbatim}
+
+Both values are very close to \(1\) so we can conclude that we did not violate
+the assumption. But what could we do, if we did? One approach is to just delete
+one of the highly correlated independent variables from the model. As they vary
+together, it may be save to exclude one of them witout losing to much
+information. Another approach would be, to combine both variables into a new
+measure. Let us imagine that besides \texttt{contact} we would have another variable in
+our model, measuring how well a student feels supported by their lecturer in
+writing the paper. We could also imagine both variables being strongly
+correlated as they measure comparable concepts. We could then either drop one of
+the variables, maybe losing some information in the process, or we could combine
+both into a new variable which measures the form and the feeling of support at
+the same time, maybe leading to a more accurate estimate while at the same time
+eliminating the problem of collinearity. Which one is the right solution
+depends on the specific case.
 
 \hypertarget{returning-to-our-research-question-1}{%
 \section{Returning to our research question}\label{returning-to-our-research-question-1}}
 
+When we tested for linearity above, we saw a mild pattern in the data which is
+not explainable by a violation of the assumption of linearity and thus could be
+an indication of a missing relevant explanatory variable in our model. Some of
+the other tests also supported this notion. The Q-Q plot showed us that the
+residuals have some slight deviations from normality in the tails. While these
+deviations are small enough to not cause concern on their own, taken together
+with the residuals vs.~fitted plot this gives more weight to the suspicion that
+some important variable is missing. We also identified some of observations with
+high leverage. While we can rule out errors in our data, the high leverage could
+also be explainable by a missing variable.
+
+But which variable could be missing from the model?
+If our DAG is correct, we can rule out \texttt{attendance} and
+\texttt{previous\_grades}. We did assume that \texttt{contact} is a confounder for \texttt{hours} and
+\texttt{grade} and thus included it in our model. Did we go wrong there?
+
+We did assume, that the more personal the contact, the more efficiently the time
+working on the paper can be used. And here may lie the problem. The way we included
+\texttt{contact} in the model is not the way we reasoned in our DAG. It would be
+correct if we assumed that the more personal the contact, the less time has to
+be invested. But we already saw in the scatterplot matrix that there is no such
+relationship between the variables. To specify the effect of \texttt{contact} in the
+model correctly, reflecting the idea of a more efficient use of time the closer
+the contact was, we have to include it as an interaction with \texttt{hours}.
+
 \hypertarget{interactions}{%
 \subsection{Interactions}\label{interactions}}
+
+In an \emph{interaction}, we assume that the effect of one variable differs based on
+the value of another variable. Let us return to the formula for a multiple
+regression with two variables:
+
+\[y = \beta_0 + \beta_1*x_1 + \beta_2*x_2 + \epsilon\]
+
+Here we assume that the value of \(y\) varies with the value of \(x_1\) and \(x_2\) as
+indicated by the coefficients \(\beta_1\) and \(\beta_2\).
+
+But we could also follow the notion that the value of \(x_1\) influences \(y\)
+differently based on the value of \(x_2\). For example the effect of \(x_1\) on \(y\)
+could be higher when \(x_2\) also has a high value. This is an interaction and is
+reflected in the formula by adding an additional multiplicative term between
+the two dependent variables with an additional associated coefficient:
+
+\[y = \beta_0 + \beta_1*x_1 + \beta_2*x_2 + \beta_3 * x_1 * x_2 + \epsilon\]
+
+To get a better understanding of this, let us return to our model and add an
+interaction between \texttt{hours\_centered} and \texttt{contact}.
 
 \begin{verbatim}
 ## 
@@ -2911,67 +3252,256 @@ Independence of residuals error terms.
 ## F-statistic: 15.09 on 5 and 194 DF,  p-value: 1.63e-12
 \end{verbatim}
 
-\begin{itemize}
-\tightlist
-\item
-  here we know, never that easy in realtiy
-\end{itemize}
+How can we interpret these results?
+While the estimates for the intercept and for having e-mail or personal contact
+in comparison to having no contact at all have barely changed, the coefficient
+for the amount of hours invested substantially shrunk to almost half its former
+value. Up till now, we assumed that the effect of \texttt{hours} would be the same for
+each student. Not that we have included an interaction we assume that the effect
+of \texttt{hours} differs, based on the form of contact a student had.
 
-\hypertarget{maybes}{%
-\section{Maybes}\label{maybes}}
+Let us rewrite our formula for \(\hat{y}\) including the interaction.
+As we are interacting with a categorical variable with three categories, we have
+to add two interaction terms. The first for the effect of invested hours when
+e-mail contact was made and the second for the effect of hours when contact was
+made in person, in both cases compared to having had no contact.
 
-\begin{itemize}
-\tightlist
-\item
-  Mediation
-\item
-  maybe theory into DAG session and example into application
-\item
-  Multiple outcomes
-\item
-  maybe leave out
-\end{itemize}
+\[\hat{y} = b_0 + b_{hours\_centered} * x_{hours\_centered} + b_{E-Mail} * x_{E-Mail} +
+b_{In Person} * x_{In Person} +
+b_{hours\_E-Mail} * x_{hours\_centered} * x_{E-Mail} +
+b_{hours\_{In Person}} * x_{hours\_centered} * x_{In Person}\]
+
+Let us now also add the coefficients from the model:
+
+\[\hat{y} = 3.44466 -0.02893 * x_{hours\_centered} -0.46775 * x_{E-Mail}
+-1.01493 * x_{In Person}
+-0.02377 * x_{hours\_centered} * x_{E-Mail}
+-0.05017 * x_{hours\_centered} * x_{In Person}\]
+
+We can now consider the three possible forms of contact one by one.
+
+What happens, when a student had no contact? To explore this, we return to the
+regression formula and equal \(x_{E-Mail}\) and \(x_{In Person}\) to \(0\), which
+means that no contact was made beforehand. Note that for now we do not care
+about the actual value of \texttt{hours\_centered}.
+
+\[\hat{y} = 3.44466 -0.02893 *x_{hours\_centered} -0.46775 * 0 
+-1.01493 * 0 
+-0.02377 * x_{hours\_centered} * 0 
+-0.05017 * x_{hours\_centered} * 0\]
+
+This shortens to:
+
+\[\hat{y} = 3.44466 -0.02893 *x_{hours\_centered}\]
+
+For a student who did not make contact, we would estimate the final grade as the
+intercept minus \(0.02893\) per hour invested more than the mean of
+\texttt{hours\_centered}. As having equaled \(x_{E-Mail}\) and \(x_{In Person}\) to \(0\) not
+only ``switched off'' the effects of \texttt{contact} but also removed the interaction
+effects from the equation, the estimated effect for \texttt{hours\_centered} is only its
+coefficient of \(-0.02893\).
+
+What happens, when a student had e-mail contact?
+
+\[\hat{y} = 3.44466 -0.02893 * x_{hours\_centered} -0.46775 * 1 
+-1.01493 * 0 
+-0.02377 * x_{hours\_centered} * 1 
+-0.05017 * x_{hours\_centered} * 0\]
+
+This shortens to:
+
+\[\hat{y} = 3.44466 -0.02893 *x_{hours\_centered} -0.46775 -0.02377 * x_{hours\_centered}\]
+
+and further to:
+
+\[\hat{y} = 2.97691 -0.0527 *x_{hours\_centered}\]
+
+The intercept is reduced by the coefficient of having e-mail contact, but what
+is actually of interest here is the effect that \texttt{hours\_centerd} has. For a
+student who had e-mail contact, each hour invested above the mean reduces the
+estimated grade by \(-0.0527\).
+
+We can compute the same for a student with personal contact:
+
+\[\hat{y} = 3.44466 -0.02893 * x_{hours\_centered} -0.46775 * 0
+-1.01493 * 1 
+-0.02377 * x_{hours\_centered} * 0 
+-0.05017 * x_{hours\_centered} * 1\]
+
+\[\hat{y} = 3.44466 -0.02893 *x_{hours\_centered} -1.01493 -0.05017 * x_{hours\_centered}\]
+
+\[\hat{y} = 2.42973 -0.0791 *x_{hours\_centered}\]
+
+For a student who had in person contact, each hour invested above the mean
+reduces the estimated grade by \(-0.0791\).
+
+In practice we would have reached these conclusions more quickly by inspecting
+the output from our model and just subtracting the corresponding interaction
+effect from the effect for \texttt{hours\_centered}.
+
+In the model without the added interaction we concluded, that on average each
+hour invested above the mean decreases the final grade by about \(-0.5\). Now we
+see that the effect of hours depends on the form of contact had. This reflects
+the theoretical assumption from our DAG that time can be used more efficiently
+the more personal the form of contact was.
+
+The same DAG that informed our best model from last week now lead us to
+including the interaction. This underlines the importance of thorough
+theoretical thinking before starting to model. If we had invested more time, we
+could have concluded the correct model directly. In our case we first needed the
+regression diagnostics to tell us that something might be off before we figured
+out our error.
+
+\hypertarget{regression-diagnostics-revisited}{%
+\subsection{Regression diagnostics (revisited)}\label{regression-diagnostics-revisited}}
+
+We now have a theoretically sound model, but did we also solve the problems
+indicated in the regression diagnostics?
+
+\includegraphics{_main_files/figure-latex/residuals_fitted_revisit-1.pdf}
+
+The residuals vs.~fitted plot now shows an almost straight horizontal line with
+no clear visible patterns.
+This indicates that the problem we saw with our former model actually came down
+to a missing variable, or to be more precise a missing term in our case.
+
+\includegraphics{_main_files/figure-latex/qq_revisited-1.pdf}
+
+The Q-Q plot now also shows more normally distributed residuals. While there are
+still some small deviations at the lower tail these do not indicate a remaining
+severe problem. THe deviations are smaller than before and also not drastic in
+absolute terms. Also, as stated above, violating the normality assumption is less
+problematic with a high \(n\) and few variables in the model, which is true for
+our case.
+
+\includegraphics{_main_files/figure-latex/residuals_leverage_revisited-1.pdf}
+
+Adding the interaction term actually increased the leverage of the more
+influential observations.
+
+XXX REVIST LEVERAGE, I THNIK I SHOULD INCLUDE COOK'S D BECAUSE LEVERAGE MAY NOT BE PROBLEMATIC IN ITSELF XXX
+
+XXX MAYBE PUT DIAGNOSTICS FOR M2 AND M4 NEXT TO EACH OTHER XXX
+
+XXX OUTRO: here we know, never that easy in reality XXX
 
 \hypertarget{lin-a}{%
 \chapter{Linear Regression - Application}\label{lin-a}}
 
-\hypertarget{example-research-question}{%
-\section{Example research question}\label{example-research-question}}
+\hypertarget{objectives-2}{%
+\section{Objectives}\label{objectives-2}}
+
+\hypertarget{r-functions-covered-this-week-1}{%
+\section{R functions covered this week}\label{r-functions-covered-this-week-1}}
 
 \begin{itemize}
 \tightlist
 \item
-  NBA data
-\item
-  Short theory
-
-  \begin{itemize}
-  \tightlist
-  \item
-    DAG from this
-
-    \begin{itemize}
-    \tightlist
-    \item
-      What do we have to control for to identify effect of interest?
-    \end{itemize}
-  \end{itemize}
+  \texttt{lm()}
 \end{itemize}
 
-\hypertarget{application-with-nba-data}{%
-\section{Application with NBA data}\label{application-with-nba-data}}
+\hypertarget{temporary-from-eda-i}{%
+\section{Temporary from EDA I}\label{temporary-from-eda-i}}
 
-XXX USING FAKE DATE FOR NOW XXX
+This is interesting for a first look. For example, it seems that the weight is
+strongly correlated with whatever position you play. Centers are heavy, point
+guards are light weights.
+We also see that most performance metrics (``career\_\ldots{}'') are correlated with each
+other and also with salary. Good players seem to be good in many things, and
+good players seem to be paid more.
+
+Now, that we have a feeling for the whole dataset, we want to explore individual
+variables. To keep it focused, we want to further explore the question
+of whether players that score more on average are also paid more.
+
+Maybe roles are clearly divided on the team. Maybe really good passers are highly
+paid because they give great passes to people who then score. Or maybe teams
+don't care about passers and just pay more to people who score more.
+
+So, now, let's look at salary and average number of points scored by game.
+Also, we want to know whether point guards (short people who pass a lot) are
+paid less then other positions (who score more).
+
+So, it seems that point gards are paid a little less even though they make a few more points on average. Interesting puzzle to explore.
+
+Let's reflect a moment what we can learn from all this.
+
+First, there seems to be a somewhat linear relationship between how many points
+a player scores and how much they are paid. This relationship seems pretty robust across years and teams. It also holds true for point guards just as much as for non-point guards. However, the average salary for point guards is lower in comparison. We also learn that the link between salary and points is stronger for centers. They seems to be paid more, the more they score.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  It can model the relationship between two variables while considering simultaneously the potential influence of other factors. Image we are interested
+  in the effect of points per game on salary regardless of position, season or team.
+  With regression we can estimate how much more a player would ear every season
+  if he scored 10 more points a game (regardless of the position he plays).
+\end{enumerate}
+
+\hypertarget{research-question}{%
+\section{Research question}\label{research-question}}
+
+We will now pick up where we left several sessions ago and return to the NBA
+data. We already saw, that there was an interesting relationship between the
+points a player makes per game and the salary he receives. The more points, the
+higher the salary. This makes intuitive sense as high scoring player is more
+valuable to the team and thus receives a higher monetary compensation. Our
+goal for this session is to estimate the effect of points on salary and to
+assess if it really exists and what its magnitude is.
+
+Let us start building a DAG with the information we already have.
+
+\includegraphics{_main_files/figure-latex/dag_1-1.pdf}
+
+Now we have to think about other factors that could influence the relationship
+between points and salary. One variable we already identified as having an
+effect on both was the position a player occupies. The position influences how
+many points per game a player can score and we also already saw that centers
+make more money compared to point guards. Right now we have no reason to believe
+that other positions do not also have an effect on the received salary.
+Following this reasoning, position is a confounder for points and salary.
+
+\includegraphics{_main_files/figure-latex/dag_2-1.pdf}
+
+It is also reasonable that the height influences which position a
+player can occupy. Centers have to be big while smaller players tend to play on
+other positions. At the same time, height is an advantage if you want to score
+in a basketball game. Thus height is a confounder for points and position.
+
+\includegraphics{_main_files/figure-latex/dag_3-1.pdf}
+
+Another factor that will have an effect on the salary is the team a player play
+for. More successful teams will be able to pay higher salaries. The season an
+observation was recorded in, should also influence the paid salary as we can
+expect a general inflation of salaries over time.
+
+\includegraphics{_main_files/figure-latex/dag_final-1.pdf}
+
+This is our final DAG. Now what does this imply for our model?
+Our goal is to measure the effect of the points per game on the received
+salary. Position is a confounder for both, so we have to control for it to get
+an unbiased estimate for points. Height is also a confounder, but for points
+and position. So we have to control for this variable too? As we already control
+for position, the path from height -\textgreater{} position -\textgreater{} points is already closed. This
+means that we do \textbf{not} have to onclude height in our model to get a unbiased
+estimate. The two remaining variables, team and season, have direct effects on
+salary but no other connections. This implies, that we also do \textbf{not} have to
+control for them if our goal is estimating the effect of points. Remember, if
+our goal was predicting the salary as accurately as possible, we should maybe
+include both variables, but this is not our goal today.
+
+Now let us get to it and load the NBA data we prepared in week 2.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(tidyverse)}
-\FunctionTok{load}\NormalTok{(}\StringTok{"../datasets/grades.RData"}\NormalTok{)}
+\FunctionTok{load}\NormalTok{(}\StringTok{"../datasets/nba/data\_nba.RData"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-code}{%
-\subsection{R Code}\label{r-code}}
+\hypertarget{simple-linear-regression-in-r}{%
+\section{Simple linear regression in R}\label{simple-linear-regression-in-r}}
 
 To conduct a multiple linear regression in R, we can use the built-in \emph{base R}
 function \texttt{lm()}. The function is straightforward to use. As the first argument
@@ -2981,28 +3511,30 @@ In the formula syntac we start by writing the name of our \texttt{dependent\_var
 followed by a \emph{tilde} \texttt{\textasciitilde{}}. You can read this as an \(=\) or as ``regress the
 dependent variable on''. After the tilde we add our first \texttt{indepedent\ variable}
 by again writing out its name. If we have multiple independent variables in our
-model - so we are runnign a \emph{multiple linear regression} - we can add those by
+model - so we are running a \emph{multiple linear regression} - we can add those by
 writing a \texttt{+} followed by the name of the variable to be added.
 
 As a second argument, the function needs the name of the object that holds our
 data.
 
-So if we want to regress XXX on XXX, we just write:
+The goal of our research question is to estimate the effect of the points per
+game on the received salary. So to regress \texttt{salary} on \texttt{career\_PTS}, we just
+write:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{lm}\NormalTok{(grade }\SpecialCharTok{\textasciitilde{}}\NormalTok{ hours\_centered, }\AttributeTok{data =}\NormalTok{ grades)}
+\FunctionTok{lm}\NormalTok{(salary }\SpecialCharTok{\textasciitilde{}}\NormalTok{ career\_PTS, }\AttributeTok{data =}\NormalTok{ data\_nba)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## 
 ## Call:
-## lm(formula = grade ~ hours_centered, data = grades)
+## lm(formula = salary ~ career_PTS, data = data_nba)
 ## 
 ## Coefficients:
-##    (Intercept)  hours_centered  
-##        2.96750        -0.05236
+## (Intercept)   career_PTS  
+##     -851914       552843
 \end{verbatim}
 
 This gives us a short output. The first line just echoes our code used to run
@@ -3020,29 +3552,18 @@ associated with the model.
 The easiest way is to use the base R function \texttt{summary()}. This is a generic R
 function that returns different summaries, depending on the object it is used
 on. We can for example use it on a data frame or tibble to get some descriptive
-statistics for the included variables.
+statistics for the included variables. For example, we can information on the
+distribution of points per game by writing:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{summary}\NormalTok{(grades)}
+\FunctionTok{summary}\NormalTok{(data\_nba}\SpecialCharTok{$}\NormalTok{career\_PTS)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##      grade           hours       previous_grades attendance     
-##  Min.   :1.000   Min.   :23.00   Min.   :1.000   Mode :logical  
-##  1st Qu.:2.100   1st Qu.:36.00   1st Qu.:2.300   FALSE:47       
-##  Median :3.000   Median :41.00   Median :2.950   TRUE :153      
-##  Mean   :2.967   Mean   :40.33   Mean   :2.935                  
-##  3rd Qu.:3.725   3rd Qu.:45.00   3rd Qu.:3.625                  
-##  Max.   :5.000   Max.   :57.00   Max.   :5.000                  
-##        contact   previous_grades_centered hours_centered  
-##  No contact:80   Min.   :-1.935           Min.   :-17.33  
-##  E-Mail    :50   1st Qu.:-0.635           1st Qu.: -4.33  
-##  In Person :70   Median : 0.015           Median :  0.67  
-##                  Mean   : 0.000           Mean   :  0.00  
-##                  3rd Qu.: 0.690           3rd Qu.:  4.67  
-##                  Max.   : 2.065           Max.   : 16.67
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.000   5.100   8.000   8.908  12.000  30.100
 \end{verbatim}
 
 When we use \texttt{summary()} on a model object, like the one created by \texttt{lm()}, we
@@ -3053,7 +3574,7 @@ every time.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{m1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(grade }\SpecialCharTok{\textasciitilde{}}\NormalTok{ hours\_centered, }\AttributeTok{data =}\NormalTok{ grades)}
+\NormalTok{m1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(salary }\SpecialCharTok{\textasciitilde{}}\NormalTok{ career\_PTS, }\AttributeTok{data =}\NormalTok{ data\_nba)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3068,27 +3589,27 @@ We can now apply \texttt{summary()} on the object \texttt{m1}, short for ``model
 \begin{verbatim}
 ## 
 ## Call:
-## lm(formula = grade ~ hours_centered, data = grades)
+## lm(formula = salary ~ career_PTS, data = data_nba)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.88006 -0.83961 -0.08006  0.77006  2.53881 
+##       Min        1Q    Median        3Q       Max 
+## -14788659  -2023969   -434599   1311807  24326060 
 ## 
 ## Coefficients:
-##                Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)     2.96750    0.07267  40.835  < 2e-16 ***
-## hours_centered -0.05236    0.01159  -4.517 1.07e-05 ***
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  -851915      76417  -11.15   <2e-16 ***
+## career_PTS    552843       7453   74.17   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.028 on 198 degrees of freedom
-## Multiple R-squared:  0.09344,    Adjusted R-squared:  0.08886 
-## F-statistic: 20.41 on 1 and 198 DF,  p-value: 1.075e-05
+## Residual standard error: 3732000 on 9726 degrees of freedom
+## Multiple R-squared:  0.3613, Adjusted R-squared:  0.3612 
+## F-statistic:  5502 on 1 and 9726 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
-This not only gives us an extended and better readable coefficient block but
-also additional information on the quality of the model. We will address the
-most relevant aspects one by one during this session.
+This is the output we saw over the last weeks and it includes extended and
+better readable coefficient block as well as the information on the residuals
+and the model fit.
 
 An alternative method of displaying the coefficients in a regular tibble format,
 is to use \texttt{tidy()} from the \texttt{broom} package.
@@ -3111,29 +3632,96 @@ is to use \texttt{tidy()} from the \texttt{broom} package.
 
 \begin{verbatim}
 ## # A tibble: 2 x 5
-##   term           estimate std.error statistic  p.value
-##   <chr>             <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)      2.97      0.0727     40.8  2.18e-98
-## 2 hours_centered  -0.0524    0.0116     -4.52 1.07e- 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept) -851914.    76417.     -11.1 1.09e-28
+## 2 career_PTS   552843.     7453.      74.2 0
 \end{verbatim}
 
-\hypertarget{interpretation-of-regression-table-in-practice}{%
-\subsection{Interpretation of regression table in practice}\label{interpretation-of-regression-table-in-practice}}
+\hypertarget{interpretation-1}{%
+\subsection{Interpretation}\label{interpretation-1}}
 
-XXX INTERPRETATION HERE
-
-\hypertarget{adding-additional-variables}{%
-\subsection{Adding additional variables}\label{adding-additional-variables}}
-
-The DAG we have constructed above based on our research question indicated that
-we have to include more than just one variable in our model.
-We can add additional independent variables to the formula used in \texttt{lm()} with a
-\texttt{+} and the name of the additional variable(s).
-So let us do this now:
+While we know our model is not complete yet, let us still inspect the results.
+For each point a player scores per game, his salary rises by about \(550,000\$\).
+We see a clear positive and substantial effect. Let us also inspect the
+intercept. THis tells us that a player who makes no points per game has to pay
+the team about \(850,000\). Wait, this does not make sense\ldots{}
+To make the intercept more readily interpretable we should again center our
+metric dependent variable \texttt{career\_PTS} on its mean.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{m2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(grade }\SpecialCharTok{\textasciitilde{}}\NormalTok{ hours\_centered }\SpecialCharTok{+}\NormalTok{ contact, }\AttributeTok{data =}\NormalTok{ grades)}
+\FunctionTok{mean}\NormalTok{(data\_nba}\SpecialCharTok{$}\NormalTok{career\_PTS)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8.907679
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{PTS\_centered =}\NormalTok{ career\_PTS }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(career\_PTS))}
+\end{Highlighting}
+\end{Shaded}
+
+As we have now centered the independent variable of interst on its mean of \(8.9\)
+we can rerun the model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(salary }\SpecialCharTok{\textasciitilde{}}\NormalTok{ PTS\_centered, }\AttributeTok{data =}\NormalTok{ data\_nba)}
+
+\FunctionTok{summary}\NormalTok{(m1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = salary ~ PTS_centered, data = data_nba)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -14788659  -2023969   -434599   1311807  24326060 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   4072633      37840  107.63   <2e-16 ***
+## PTS_centered   552843       7453   74.17   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3732000 on 9726 degrees of freedom
+## Multiple R-squared:  0.3613, Adjusted R-squared:  0.3612 
+## F-statistic:  5502 on 1 and 9726 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+The coefficient for points per game has not changed but its interpretation has.
+For each point per game over the mean of \(8.9\) points per game, the salary is
+estimated to increase by about \(550,000\$\). At the same time, for each point
+below the mean the salary is estimated to decrease by the same amount.
+The intercept now shows us the estimated salary of a player who scores \(8.9\)
+points per game which is slightly upwards of \(4,000,000\$\) This makes way more
+sense.
+
+This model model already achieved a considerable \(R^2\) of \(0.36\). About \(36\%\)
+of the variance in salaries is explained by the points per game a player scores.
+
+\hypertarget{multiple-linear-regression-in-r}{%
+\section{Multiple linear regression in R}\label{multiple-linear-regression-in-r}}
+
+The DAG we have constructed above based on our research question indicated that
+we also have to include the position a player occupies in our model.
+We can add additional independent variables to the formula used in \texttt{lm()} with a
+\texttt{+} and the name of the additional variable(s). This works the same way for all
+types of variables, i.e.~metric, dummies or categorical variables.
+So let us do this now by adding the 5 dummies we constructed for the positions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(salary }\SpecialCharTok{\textasciitilde{}}\NormalTok{ PTS\_centered }\SpecialCharTok{+}\NormalTok{ position\_center }\SpecialCharTok{+}\NormalTok{ position\_sf }\SpecialCharTok{+}\NormalTok{  position\_pf }\SpecialCharTok{+}\NormalTok{ position\_sg }\SpecialCharTok{+}\NormalTok{ position\_pg, }\AttributeTok{data =}\NormalTok{ data\_nba)}
 
 \FunctionTok{summary}\NormalTok{(m2)}
 \end{Highlighting}
@@ -3142,27 +3730,80 @@ So let us do this now:
 \begin{verbatim}
 ## 
 ## Call:
-## lm(formula = grade ~ hours_centered + contact, data = grades)
+## lm(formula = salary ~ PTS_centered + position_center + position_sf + 
+##     position_pf + position_sg + position_pg, data = data_nba)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.85595 -0.74624 -0.02106  0.66648  2.50161 
+##       Min        1Q    Median        3Q       Max 
+## -14511723  -1950255   -372906   1358768  24433660 
 ## 
 ## Coefficients:
-##                  Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)       3.44352    0.10404  33.098  < 2e-16 ***
-## hours_centered   -0.04967    0.01052  -4.723 4.43e-06 ***
-## contactE-Mail    -0.46482    0.16785  -2.769  0.00616 ** 
-## contactIn Person -1.02804    0.15240  -6.746 1.67e-10 ***
+##                 Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)      3679728     114300  32.193  < 2e-16 ***
+## PTS_centered      568019       7474  75.994  < 2e-16 ***
+## position_center  1380246     114539  12.050  < 2e-16 ***
+## position_sf       125384     102174   1.227 0.219790    
+## position_pf       206505      94882   2.176 0.029547 *  
+## position_sg      -331033      96841  -3.418 0.000633 ***
+## position_pg      -114552     117486  -0.975 0.329572    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.9305 on 196 degrees of freedom
-## Multiple R-squared:  0.2643, Adjusted R-squared:  0.253 
-## F-statistic: 23.47 on 3 and 196 DF,  p-value: 5.072e-13
+## Residual standard error: 3652000 on 9721 degrees of freedom
+## Multiple R-squared:  0.3888, Adjusted R-squared:  0.3884 
+## F-statistic:  1031 on 6 and 9721 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
-XXX INTERPRETATION HERE XXX
+\hypertarget{interpretation-2}{%
+\subsection{Interpretation}\label{interpretation-2}}
+
+We still see a clear positive effect of points per game on the received salary
+after controlling for the position a player occupies. Among those centers are by
+far the top earners, making about \(1,400,00\$\) more than players on other
+positions. Most other positions show relatively small effects on the earnings.
+Power and small forwards earn somewhat more than other positions on average
+while point and especially shooting guards earns less.
+
+We can now compare two fictive cases of a center and a point guard who each make
+about \(20\) points per game. What is the estimated salary for them?
+
+As we have extensively worked with the formulas over the last sessions, we can
+now keep it short and calculate the estimate directly. Remember that we
+centered the points per game on the mean of about \(8.9\), so making \(20\) per game
+would mean making about \(11.1\) than the average player. We will keep it simple
+here and calculate with \(11\).
+
+\[\hat{y_{center\_20}} = 3679728 + 568019 * 11 + 1380246 = 11,308,183\]
+
+\[\hat{y_{pg\_20}} = 3679728 + 568019 * 11 - 114552 = 9,813,385\]
+
+Despite making the same amount of points per game for their team, the model
+estimates that a point guard earns about \(1,500,000\$\) less compared to a center.
+
+\hypertarget{sidenote-adding-interactions}{%
+\subsection{Sidenote: Adding interactions}\label{sidenote-adding-interactions}}
+
+We will not use interactions in this session but we briefly want to state how we
+could add them in the formula syntax.
+
+Remember that interactions are multiplicative terms in our regression formula.
+Adding them to the R formula syntax works the same way. We add the new term with
+a \texttt{+} and use a \texttt{*} between the two variables that we want to interact.
+
+Here is a non running toy example where we interact two x-variables:
+
+\begin{verbatim}
+lm(y ~ x1 + x2 + x1 * x2, data = some_data)
+\end{verbatim}
+
+\hypertarget{regression-diagnostics-1}{%
+\section{Regression Diagnostics}\label{regression-diagnostics-1}}
+
+\hypertarget{corrections}{%
+\subsection{Corrections}\label{corrections}}
+
+\hypertarget{returning-to-our-research-question-2}{%
+\section{Returning to our research question}\label{returning-to-our-research-question-2}}
 
 \hypertarget{outlook}{%
 \section{Outlook}\label{outlook}}
@@ -3182,37 +3823,34 @@ XXX INTERPRETATION HERE XXX
 \hypertarget{lin-e}{%
 \chapter{Linear Regression - Exercises}\label{lin-e}}
 
-Here goes some texts.
-
 \hypertarget{application-of-logistic-regression}{%
 \section{Application of Logistic Regression}\label{application-of-logistic-regression}}
-
-With WVS/own data: Students apply linear regression:
 
 \textbf{DRAFT}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
-  Load the \texttt{mtcars} dataset in R and fit a simple linear regression model using \texttt{mpg} as the response variable and \texttt{wt} as the predictor variable. Summarize the model using the \texttt{summary()} function from the \texttt{tidyverse} package and interpret the results.
+  \textbf{Simple linear regression}: Use simple linear regression to predict the median value of owner-occupied homes (\texttt{MEDV}) based on a single predictor variable, such as the average number of rooms per dwelling (\texttt{RM}). Fit the model, generate predictions, and calculate the R-squared value to assess the model's performance.
 \item
-  Using the same model from exercise 1, interpret the p-value of the predictor variable. What does it tell you about the relationship between \texttt{mpg} and \texttt{wt}?
+  \textbf{Multiple linear regression}: Use multiple linear regression to predict \texttt{MEDV} based on multiple predictor variables, such as \texttt{RM}, \texttt{CRIM} (per capita crime rate by town), and \texttt{LSTAT} (\% lower status of the population). Fit the model, generate predictions, and calculate the R-squared value to assess the model's performance.
 \item
-  Calculate a 95\% confidence interval for the slope of the regression line from exercise 1. Interpret the results.
+  \textbf{Model summary}: Use the \texttt{summary()} function to generate a summary of a linear regression model, including information about the coefficients, standard errors, t-values, and p-values. Interpret the results and discuss their implications from a social science perspective.
 \item
-  Add an additional predictor variable, \texttt{hp}, to the model from exercise 1. Summarize the new model and interpret the results.
+  \textbf{Model diagnostics}: Use diagnostic plots to assess the assumptions of linear regression, such as linearity, normality, and homoscedasticity. Identify any potential problems with the model and discuss how they could be addressed.
 \item
-  Perform regression diagnostics on the model from exercise 4. Check for normality, constant variance, and independence of residuals.
+  \textbf{Variable selection}: Use variable selection methods, such as stepwise selection or best subset selection, to identify a subset of predictor variables that provide the best fit for a multiple linear regression model. Compare the performance of different models and discuss their relative strengths and weaknesses.
 \item
-  Load the \texttt{iris} dataset in R and fit a simple linear regression model using \texttt{Sepal.Length} as the response variable and \texttt{Petal.Length} as the predictor variable. Summarize the model and interpret the results.
+  \textbf{Interaction effects}: Include interaction terms in a multiple linear regression model to capture the effect of two or more predictor variables interacting with each other. Interpret the coefficients of the interaction terms and discuss their implications from a social science perspective.
 \item
-  Using the same model from exercise 6, interpret the p-value of the predictor variable. What does it tell you about the relationship between \texttt{Sepal.Length} and \texttt{Petal.Length}?
+  \textbf{Polynomial regression}: Use polynomial regression to model non-linear relationships between predictor variables and the response variable. Fit a polynomial regression model, generate predictions, and assess the model's performance.
 \item
-  Calculate a 95\% confidence interval for the slope of the regression line from exercise 6. Interpret the results.
+  \textbf{Model comparison}: Use model comparison methods, such as adjusted R-squared or AIC, to compare the performance of different linear regression models. Select the best model based on these criteria and discuss its strengths and weaknesses.
 \item
-  Add an additional predictor variable, \texttt{Sepal.Width}, to the model from exercise 6. Summarize the new model and interpret the results.
+  \textbf{Tidy models}: Use the \texttt{broom} package to convert linear regression models into tidy data frames using functions such as \texttt{tidy()}, \texttt{glance()}, and \texttt{augment()}. Manipulate and visualize the tidy data frames to gain insights into the models and their performance.
 \item
-  Perform regression diagnostics on the model from exercise 9. Check for normality, constant variance, and independence of residuals.
+  \textbf{Prediction intervals}: Generate prediction intervals for new observations using a fitted linear regression model. Interpret the prediction intervals and discuss their usefulness for making predictions in a social science context.
 \end{enumerate}
 
 \hypertarget{med}{%
@@ -3310,7 +3948,7 @@ Now let's test this out using R.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-12-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-21-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3679,7 +4317,7 @@ Machine learning is basically predicting outcomes that are no known based on ver
 ## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-15-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-24-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3784,7 +4422,7 @@ Now, let's predict the salary of hypothetical players:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-16-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-25-1.pdf}
 
 We can see that there is a huge salary increase predicted for just making two more baskets (i.e.~4 points) on average each game, for both guards and centers. We also see that centers make more money generally.
 
@@ -7281,7 +7919,7 @@ Let's apply this to our data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-18-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-27-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7302,7 +7940,7 @@ Let's apply this to our data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-18-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-27-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7315,7 +7953,7 @@ Let's apply this to our data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-18-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-27-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7345,7 +7983,7 @@ Let's apply this to our data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-18-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-27-4.pdf}
 
 Now, let's compare the prediction interval for 2 differnt models.To compare the performance of models, you can use the r-squared (which measures how much of the variation in the outcome can be explained by your set of independent variables) and the mean squared error. For more background on both measures see here: \url{https://vitalflux.com/mean-square-error-r-squared-which-one-to-use/}
 
@@ -7407,7 +8045,7 @@ The Mean squared error (MSE) represents the error of the estimator or predictive
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-19-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-28-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
