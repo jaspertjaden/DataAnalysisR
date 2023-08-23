@@ -180,7 +180,7 @@ hours on received grade to rest for good? Maybe, but we still do not know for
 certain befre we apply a last step in constructing a valid linear regression
 model, *regression diagnostics*.
 
-## Regression Diagnostics
+## Regression diagnostics
 
 As linear regression is a statistical technique, there are certain statistical
 assumptions we have to meet. If we violate those, the best laid plans may 
@@ -278,23 +278,12 @@ For many use cases, the line is straight enough, indicating no clear and strong
 patterns on non-linearity. Still the residuals seem to be slightly off for very
 good and very bad estimated grades. 
 
-#### No missing relevant explanatory variables
 
 Besides violating the assumption of linearity, patterns in the residuals vs.
 fitted plot can also indicate, that there is some important explanatory variable
-missing from the model. If our DAG is correct, we can rule out `attendance` and
-`previous_grades`. We did assume that `contact` is a confounder for `hours` and
-`grade` and thus included it in our model. Did we go wrong there?
-
-We did assume, that the more personal the contact, the more efficiently the time
-working on the paper can be used. And here lies the problem. The way we included
-`contact` in the model is not the way we reasoned in our DAG. It would we be
-correct if we assumed that the more personal the contact, the less time has to
-be invested. But we already saw in the scatterplot matrix that there is no such
-relationship between the variables. To specify the effect of `contact` in the
-model correctly, we have to include it as an *interaction* with `hours`.
-We will correct this, after we have applied the further tests and discussed the
-remaining assumptions.
+missing from the model. 
+We will return to this this, after we have applied the further tests and
+discussed the remaining assumptions.
 
 ### Normally distributed residuals
 
@@ -306,7 +295,11 @@ problematic. Still, systematic deviations from normality can indicate that the
 model is not *parsimonious*. This means that either not all relevant variables
 are included or that variables are included that are not necessary for the model.
 
-We can check the normality assumption using a *Q-Q plot*. This plots the
+We get a first idea of the distribution from the model summary. This shows us
+the median as well as the 25- 75-percentiles and the minimum and maximum values.
+While strong and clear violations against the normality assumption could already
+be visible here, these measures are not enough to actually test for normality.
+A more informative and accurate approach is using a *Q-Q plot*. This plots the
 standardizes residuals, the residuals divided by their standard error, against
 a theoretical normal distribution. If the residuals are perfectly normally 
 distributed, each data point lies on the diagonal, if they are not they move
@@ -376,8 +369,8 @@ variable, *outliers*, and unusual values on independent variables,
 regression lines and thus change the slope. As a rule of thumb, we can consider
 values with standardized residuals over $3$ or under $-3$ outliers. 
 Concerning the dependent variables we can compute the *leverage statistic*.
-Here values that exceed $2 * (p + 1) / n$, where $p$ is the number of independent
-variables, are considered as having high leverage.
+Here values that exceed $2 * (p + 1) / n$, where $p$ is the number of 
+predictors, are considered as having high leverage.
 We can inspect both at the same time in the *Residuals vs. Leverage* plot.
 
 XXX LINK TO LEVERAGE STATISTIC FORMULA XXX
@@ -387,11 +380,15 @@ plot(m2, 5)
 ```
 
 We can see that there are no clear outliers. To assess points with high leverage
-we first have to compute the threshold as: $2 * (2 + 1) / 200 = 0.03$. We can
+we first have to compute the threshold as: $2 * (3 + 1) / 200 = 0.04$. Note that
+while we have two independent variables in our model, we actually have three
+predictors due to our categorical variable. Thus we have to compute with $p = 3$
+instead of $p = 2$. 
+We can
 see that there are a number of points that exceed this value. The question is,
 why do these values exist? Sometimes these are measurement errors, extreme values
 or unusual combinations that come down to the researcher recording the wrong 
-values into the dataset. In these cases we can try to fix the errors or remove
+values into the data set. In these cases we can try to fix the errors or remove
 the observations from the data. As we have several values with high leverage,
 this seems highly unlikely. But if we had not simulated the data ourselves and 
 knew that there is no error, we should at least check. What seems more probable
@@ -400,40 +397,244 @@ variables missing from the model that could explain the high leverage.
 In this case the values should be lower after we include the missing
 variables into the model. We will return to this later.
 
+XXX IS LEVERAGE CORRECTLY COMPUTED? HOW TO INCLUDE A CAT. VAR? XXX
 XXX ALSO INCLUDE COOKS D? XXXX
 
 
-### No multicollinearity
+### No (multi)collinearity
 
+The final assumption we will discuss here, is the absence of (high) collinearity
+between the predictor variables. Collinearity is present, if two independent
+variables are highly correlated with each other. This can become a problem as it
+gets harder to individually estimate the effects for both variables on the
+outcome as the collinear variables vary together at the same time. 
 
+Often collinearity can already be spotted in the correlation matrix. Considering
+our matrix above we saw no clear indication that `hours` and `contact` are
+correlated. But the problem can get more complicated if we include three or more
+independent variables in our model. While none of the pairs of variables may be
+highly correlated, correlation may exist for a set of three or more of those
+variables. In these cases we speak of *multicollinearity*. We can not spot this
+in a correlation matrix, but there is an easy to use measure available.
 
-Independence of residuals error terms.
+The *variance inflation factor* (VIF) can be used to inspect (multi)collinearity
+between two or more independent variables accurately. A VIF of $1$ would
+indicate no collinearity. For real world data this is almost never true as some
+amount of collinearity always exists. But in general we can say that the VIF 
+should be near $1$ and should not exceed a value of $5$.
 
+Let us compute the measure for our model with `hours_centered` and `contact`:
 
+``` {r vif, echo = FALSE, message = FALSE}
+library(car)
+vif(m2)[,1]
+```
 
-
+Both values are very close to $1$ so we can conclude that we did not violate
+the assumption. But what could we do, if we did? One approach is to just delete
+one of the highly correlated independent variables from the model. As they vary
+together, it may be save to exclude one of them witout losing to much
+information. Another approach would be, to combine both variables into a new
+measure. Let us imagine that besides `contact` we would have another variable in
+our model, measuring how well a student feels supported by their lecturer in 
+writing the paper. We could also imagine both variables being strongly
+correlated as they measure comparable concepts. We could then either drop one of
+the variables, maybe losing some information in the process, or we could combine
+both into a new variable which measures the form and the feeling of support at
+the same time, maybe leading to a more accurate estimate while at the same time
+eliminating the problem of collinearity. Which one is the right solution
+depends on the specific case.
 
 
 ## Returning to our research question
 
+When we tested for linearity above, we saw a mild pattern in the data which is
+not explainable by a violation of the assumption of linearity and thus could be
+an indication of a missing relevant explanatory variable in our model. Some of
+the other tests also supported this notion. The Q-Q plot showed us that the
+residuals have some slight deviations from normality in the tails. While these
+deviations are small enough to not cause concern on their own, taken together
+with the residuals vs. fitted plot this gives more weight to the suspicion that
+some important variable is missing. We also identified some of observations with
+high leverage. While we can rule out errors in our data, the high leverage could
+also be explainable by a missing variable. 
+
+But which variable could be missing from the model?
+If our DAG is correct, we can rule out `attendance` and
+`previous_grades`. We did assume that `contact` is a confounder for `hours` and
+`grade` and thus included it in our model. Did we go wrong there?
+
+We did assume, that the more personal the contact, the more efficiently the time
+working on the paper can be used. And here may lie the problem. The way we included
+`contact` in the model is not the way we reasoned in our DAG. It would be
+correct if we assumed that the more personal the contact, the less time has to
+be invested. But we already saw in the scatterplot matrix that there is no such
+relationship between the variables. To specify the effect of `contact` in the
+model correctly, reflecting the idea of a more efficient use of time the closer
+the contact was, we have to include it as an interaction with `hours`.
+
 ### Interactions
 
+In an *interaction*, we assume that the effect of one variable differs based on
+the value of another variable. Let us return to the formula for a multiple
+regression with two variables:
 
+$$y = \beta_0 + \beta_1*x_1 + \beta_2*x_2 + \epsilon$$
 
+Here we assume that the value of $y$ varies with the value of $x_1$ and $x_2$ as
+indicated by the coefficients $\beta_1$ and $\beta_2$. 
+
+But we could also follow the notion that the value of $x_1$ influences $y$
+differently based on the value of $x_2$. For example the effect of $x_1$ on $y$
+could be higher when $x_2$ also has a high value. This is an interaction and is
+reflected in the formula by adding an additional multiplicative term between
+the two dependent variables with an additional associated coefficient:
+
+$$y = \beta_0 + \beta_1*x_1 + \beta_2*x_2 + \beta_3 * x_1 * x_2 + \epsilon$$
+
+To get a better understanding of this, let us return to our model and add an
+interaction between `hours_centered` and `contact`.
 
 ``` {r reg_grade_hours_contact_interact, echo = FALSE}
 m4 <- lm(grade ~ hours_centered + contact + hours_centered * contact, grades)
 summary(m4)
 ```
 
+How can we interpret these results?
+While the estimates for the intercept and for having e-mail or personal contact
+in comparison to having no contact at all have barely changed, the coefficient
+for the amount of hours invested substantially shrunk to almost half its former
+value. Up till now, we assumed that the effect of `hours` would be the same for
+each student. Not that we have included an interaction we assume that the effect
+of `hours` differs, based on the form of contact a student had. 
 
-* here we know, never that easy in realtiy
+Let us rewrite our formula for $\hat{y}$ including the interaction. 
+As we are interacting with a categorical variable with three categories, we have
+to add two interaction terms. The first for the effect of invested hours when
+e-mail contact was made and the second for the effect of hours when contact was
+made in person, in both cases compared to having had no contact.
 
+$$\hat{y} = b_0 + b_{hours\_centered} * x_{hours\_centered} + b_{E-Mail} * x_{E-Mail} +
+b_{In Person} * x_{In Person} +
+b_{hours\_E-Mail} * x_{hours\_centered} * x_{E-Mail} +
+b_{hours\_{In Person}} * x_{hours\_centered} * x_{In Person}$$
 
-## Maybes
+Let us now also add the coefficients from the model:
 
-*	Mediation
-  * maybe theory into DAG session and example into application
-*	Multiple outcomes
-  * maybe leave out
+$$\hat{y} = 3.44466 -0.02893 * x_{hours\_centered} -0.46775 * x_{E-Mail}
+-1.01493 * x_{In Person}
+-0.02377 * x_{hours\_centered} * x_{E-Mail}
+-0.05017 * x_{hours\_centered} * x_{In Person}$$
+
+We can now consider the three possible forms of contact one by one.
+
+What happens, when a student had no contact? To explore this, we return to the
+regression formula and equal $x_{E-Mail}$ and $x_{In Person}$ to $0$, which
+means that no contact was made beforehand. Note that for now we do not care
+about the actual value of `hours_centered`.
+
+$$\hat{y} = 3.44466 -0.02893 *x_{hours\_centered} -0.46775 * 0 
+-1.01493 * 0 
+-0.02377 * x_{hours\_centered} * 0 
+-0.05017 * x_{hours\_centered} * 0$$
+
+This shortens to:
+
+$$\hat{y} = 3.44466 -0.02893 *x_{hours\_centered}$$
+
+For a student who did not make contact, we would estimate the final grade as the
+intercept minus $0.02893$ per hour invested more than the mean of
+`hours_centered`. As having equaled $x_{E-Mail}$ and $x_{In Person}$ to $0$ not
+only "switched off" the effects of `contact` but also removed the interaction
+effects from the equation, the estimated effect for `hours_centered` is only its
+coefficient of $-0.02893$.
+
+What happens, when a student had e-mail contact?
+
+$$\hat{y} = 3.44466 -0.02893 * x_{hours\_centered} -0.46775 * 1 
+-1.01493 * 0 
+-0.02377 * x_{hours\_centered} * 1 
+-0.05017 * x_{hours\_centered} * 0$$
+
+This shortens to:
+
+$$\hat{y} = 3.44466 -0.02893 *x_{hours\_centered} -0.46775 -0.02377 * x_{hours\_centered}$$
+
+and further to:
+
+$$\hat{y} = 2.97691 -0.0527 *x_{hours\_centered}$$
+
+The intercept is reduced by the coefficient of having e-mail contact, but what
+is actually of interest here is the effect that `hours_centerd` has. For a
+student who had e-mail contact, each hour invested above the mean reduces the
+estimated grade by $-0.0527$.
+
+We can compute the same for a student with personal contact:
+
+$$\hat{y} = 3.44466 -0.02893 * x_{hours\_centered} -0.46775 * 0
+-1.01493 * 1 
+-0.02377 * x_{hours\_centered} * 0 
+-0.05017 * x_{hours\_centered} * 1$$
+
+$$\hat{y} = 3.44466 -0.02893 *x_{hours\_centered} -1.01493 -0.05017 * x_{hours\_centered}$$
+
+$$\hat{y} = 2.42973 -0.0791 *x_{hours\_centered}$$
+
+For a student who had in person contact, each hour invested above the mean
+reduces the estimated grade by $-0.0791$.
+
+In practice we would have reached these conclusions more quickly by inspecting
+the output from our model and just subtracting the corresponding interaction
+effect from the effect for `hours_centered`.
+
+In the model without the added interaction we concluded, that on average each
+hour invested above the mean decreases the final grade by about $-0.5$. Now we
+see that the effect of hours depends on the form of contact had. This reflects
+the theoretical assumption from our DAG that time can be used more efficiently
+the more personal the form of contact was. 
+
+The same DAG that informed our best model from last week now lead us to 
+including the interaction. This underlines the importance of thorough
+theoretical thinking before starting to model. If we had invested more time, we
+could have concluded the correct model directly. In our case we first needed the
+regression diagnostics to tell us that something might be off before we figured
+out our error. 
+
+### Regression diagnostics (revisited)
+
+We now have a theoretically sound model, but did we also solve the problems
+indicated in the regression diagnostics? 
+
+``` {r residuals_fitted_revisit, echo = FALSE}
+plot(m4, 1)
+```
+
+The residuals vs. fitted plot now shows an almost straight horizontal line with
+no clear visible patterns.
+This indicates that the problem we saw with our former model actually came down
+to a missing variable, or to be more precise a missing term in our case.
+
+``` {r qq_revisited, echo = FALSE}
+plot(m4, 2)
+```
+
+The Q-Q plot now also shows more normally distributed residuals. While there are 
+still some small deviations at the lower tail these do not indicate a remaining
+severe problem. THe deviations are smaller than before and also not drastic in 
+absolute terms. Also, as stated above, violating the normality assumption is less
+problematic with a high $n$ and few variables in the model, which is true for
+our case.
+
+``` {r residuals_leverage_revisited, echo = FALSE}
+plot(m4, 5)
+```
+
+Adding the interaction term actually increased the leverage of the more 
+influential observations.
+
+XXX REVIST LEVERAGE, I THNIK I SHOULD INCLUDE COOK'S D BECAUSE LEVERAGE MAY NOT BE PROBLEMATIC IN ITSELF XXX
+
+XXX MAYBE PUT DIAGNOSTICS FOR M2 AND M4 NEXT TO EACH OTHER XXX
+
+XXX OUTRO: here we know, never that easy in reality XXX
 

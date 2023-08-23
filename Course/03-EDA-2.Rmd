@@ -52,23 +52,106 @@ You can include this data by installing mlbench library:
 ```{r, warning=FALSE, message=FALSE}
 #install.packages("mlbench") ## installing the library
 library(mlbench) #adding the library
+library(openxlsx)
 data(BostonHousing2)
 housing <- BostonHousing2
+write.xlsx(housing, "../datasets/boston.xlsx")
 ```
 
-1. Use the `str()` and `glimpse()` functions to explore the structure of the data.
 
-2. Use the `table()` and `summary()` functions to generate summary statistics for the variables in the Boston housing dataset.
+1. **Read the dataset**: Read the Boston Housing Dataset from the Excel file.
 
-3. Use the `mutate()` and `case_when()` functions from the `dplyr` package to create new variables based on conditions. For example, create a new variable that categorizes houses as "expensive" or "affordable" based on their median value.
+```{r}
+library(readxl)
+BostonHousing <- read_excel("../datasets/boston.xlsx")
+```
 
-4. Use the `ggplot()` function from the `ggplot2` package to create visualizations of the data. For example, create a scatterplot of median value vs. average number of rooms per dwelling using `geom_point()`, and add a smooth trend line using `geom_smooth()`.
 
-5. Use the `corr()` function to calculate correlations between variables in the Boston housing dataset. Then, use this information to create a correlation plot using `ggplot()`.
+2. **Inspect the dataset**: Use the proper functions to inspect the structure and contents of the dataset. How many Categorical variables are there? How many numerical variables are there? Is there any null values?
 
-6. Use the `filter()` function from the `dplyr` package to subset the data based on conditions. For example, create a subset of data containing only houses with more than 6 rooms per dwelling.
+```{r}
+str(BostonHousing)
+glimpse(BostonHousing)
+# Check for missing values in all columns
+colSums(is.na(BostonHousing))
+```
 
-7. Use functions from the `DataExplorer` and `gtsummary` packages to further explore and summarize the data. For example, use the `plot_boxplot()` function from `DataExplorer` to create boxplots of variables, and use functions from `gtsummary` to create summary tables.
+
+3. **Summarize categorical variables**: Create frequency table for categorical variables CHAS (Charles River dummy variable).
+
+```{r}
+table(BostonHousing$chas)
+```
+
+
+4. **Summarize numerical variables**: Generate summary statistics for numerical variables CRIM (per capita crime rate by town) and RM (average number of rooms per dwelling).
+
+```{r}
+summary(BostonHousing$crim)
+summary(BostonHousing$rm)
+```
+
+
+5. **Create new variables**: Create new variable indicating whether a house is located near the Charles River or not.
+
+```{r}
+library(dplyr)
+BostonHousing <- BostonHousing %>%
+  mutate(near_river = ifelse(chas == 1, "Yes", "No"))
+```
+
+
+6. **Recoding variables**: Create a new variable that groups houses by their proximity to employment centers.
+
+```{r}
+BostonHousing <- BostonHousing %>%
+  mutate(distance_group = case_when(
+    dis < 2 ~ "Near",
+    dis >= 2 & dis < 5 ~ "Medium",
+    dis >= 5 ~ "Far"
+  ))
+```
+
+
+7. **Visualize relationships**: Create scatter plots to explore the relationship between housing prices and other numeric variables. Interpret the plots. Also show the distribution of ptratio by distance_group.
+
+```{r, message=FALSE, warning=FALSE}
+# Create a list of numeric variables to plot against MEDV
+vars <- c("crim", "rm", "age", "dis", "b", "lstat")
+
+# Create a scatter plot for each variable
+plots <- lapply(vars, function(var) {
+  ggplot(BostonHousing, aes_string(x = var, y = "medv")) +
+    geom_point() +
+    labs(x = var, y = "medv")
+})
+library(gridExtra)
+# Combine the plots into a single plot
+combined_plot <- do.call(grid.arrange, c(plots, ncol = 3))
+
+# Display the combined plot
+combined_plot
+```
+```{r}
+# Create a boxplot of PTRATIO grouped by distance_group
+BostonHousing %>% ggplot() + 
+geom_boxplot(aes(y=ptratio)) +
+  facet_wrap(~distance_group) +
+  theme_light()
+```
+
+
+8. **Correlation analysis**: Calculate correlation coefficients between housing prices and average number of rooms per dwelling, also between housing prices and crime rate. Interpret the result.
+
+```{r}
+library(corrplot)
+corr_matrix0 <- cor(BostonHousing[, c("medv", "rm")])
+corr_matrix1 <- cor(BostonHousing[, c("medv", "crim")])
+corrplot(corr_matrix0)
+corrplot(corr_matrix1)
+```
+
+
 
 
 **This is a draft of questions, dataframe and the variables will be specified later**
