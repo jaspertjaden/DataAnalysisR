@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content=" 7 Linear Regression Theory III: Diagnostics | Data Analysis with R for Social Scientists" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-08-21" />
+<meta name="date" content="2023-08-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -127,10 +127,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-  
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -241,7 +237,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="lin-a.html"><a href="lin-a.html#regression-diagnostics-1"><i class="fa fa-check"></i><b>8.7</b> Regression Diagnostics</a>
 <ul>
-<li class="chapter" data-level="8.7.1" data-path="lin-a.html"><a href="lin-a.html#corrections"><i class="fa fa-check"></i><b>8.7.1</b> Corrections</a></li>
+<li class="chapter" data-level="8.7.1" data-path="lin-a.html"><a href="lin-a.html#skewed-outcome-variable"><i class="fa fa-check"></i><b>8.7.1</b> Skewed outcome variable</a></li>
+<li class="chapter" data-level="8.7.2" data-path="lin-a.html"><a href="lin-a.html#non-linearity"><i class="fa fa-check"></i><b>8.7.2</b> Non-linearity</a></li>
 </ul></li>
 <li class="chapter" data-level="8.8" data-path="lin-a.html"><a href="lin-a.html#returning-to-our-research-question-2"><i class="fa fa-check"></i><b>8.8</b> Returning to our research question</a></li>
 <li class="chapter" data-level="8.9" data-path="lin-a.html"><a href="lin-a.html#outlook"><i class="fa fa-check"></i><b>8.9</b> Outlook</a></li>
@@ -461,7 +458,7 @@ computing our first model. Based on our DAG, if it is correct, we know do not
 have to control for previous grades and attendance. Including them may give us a
 larger <span class="math inline">\(R^2\)</span>, but is still not the correct way to build our model.</p>
 <p>Based on this our best model is still the second one:</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="log-t-3.html#cb93-1" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="log-t-3.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = grade ~ hours_centered + contact, data = grades)
@@ -516,7 +513,7 @@ linear one.</p>
 spot as in this example. A first step to approach this, is inspecting a
 scatterplot matrix. This is usually done before starting to model to identify
 relationships between the variables used.</p>
-<pre><code>## Warning: package &#39;GGally&#39; was built under R version 4.2.3</code></pre>
+<pre><code>## Warning: Paket &#39;GGally&#39; wurde unter R Version 4.2.3 erstellt</code></pre>
 <p><img src="_main_files/figure-html/scatterplot_matrix-1.png" width="672" /></p>
 <p>The diagonal displays the distribution of all variables included. Here metric
 variables are displayed as density plots and categorical variables as bar plots.
@@ -668,7 +665,8 @@ indicate no collinearity. For real world data this is almost never true as some
 amount of collinearity always exists. But in general we can say that the VIF
 should be near <span class="math inline">\(1\)</span> and should not exceed a value of <span class="math inline">\(5\)</span>.</p>
 <p>Let us compute the measure for our model with <code>hours_centered</code> and <code>contact</code>:</p>
-<pre><code>## Warning: package &#39;car&#39; was built under R version 4.2.3</code></pre>
+<pre><code>## Warning: Paket &#39;car&#39; wurde unter R Version 4.2.1 erstellt</code></pre>
+<pre><code>## Warning: Paket &#39;carData&#39; wurde unter R Version 4.2.1 erstellt</code></pre>
 <pre><code>## hours_centered        contact 
 ##       1.004352       1.004352</code></pre>
 <p>Both values are very close to <span class="math inline">\(1\)</span> so we can conclude that we did not violate

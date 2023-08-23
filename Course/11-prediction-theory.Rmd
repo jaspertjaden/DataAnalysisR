@@ -9,6 +9,7 @@ With the help of mediation analysis, we were then interested what "explains" or 
 
 All what we have done so far can be considered part of causal inference, i.e.
 understanding why an outcome varies. A different perspective is the perspective of PREDICTION.Prediction is at the heart of appraoches in "data science" and "machine learning".
+
 In this scenario, we build regression models (or other models) simply to predict and outcome. The main interest is not to learn more about how the outcome can be explained but to predict something with it which we want to know. Machine learning then takes it a step further and simply iteratively select the best models among hundrets of options to arrive at the best possible prediction (more on that at the end of the class). First, we will learn how to predict values based on a linear regression model. 
 
 ## How prediction works
@@ -256,13 +257,15 @@ print(rmse2)
 ```
 
 Now machine learning usually involves several more steps:
-+ we can optimize how the variables (in ML language called features enter the model) (Pre-processing)
-+ we can optimize which variables should even enter the model ("feature selection")
-+ we can optimize how the predictions of the model get evaluated ("training"/ "tuning" - e.g. )
++ we can optimize how the variables (in ML language called features) enter the model  (Pre-processing; transformations; diagnostics, see week X) 
++ we can optimize which variables should even enter the model ("feature selection", see e.g. lasso regression)
++ we can optimize how the predictions of the model get evaluated ("training")
++ we can optimize which estimator or algorithm best predicts the outcome (lm model is just one option among many)
++ for other algorithms (e.g. random forests), we can also "tune" the model using hyper-parameters
 
-JT maybe expand here or not. 
-JT: consider doing this also with "tidymodels"
+
 
 
 ## More resources:
-Provide list of online resources to dig deeper
++ Provide list of online resources to dig deeper
++ see `tidymodels()` for another package for Machine Learning

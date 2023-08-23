@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content=" 8 Linear Regression - Application | Data Analysis with R for Social Scientists" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-08-21" />
+<meta name="date" content="2023-08-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -127,10 +127,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-  
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -241,7 +237,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="lin-a.html"><a href="lin-a.html#regression-diagnostics-1"><i class="fa fa-check"></i><b>8.7</b> Regression Diagnostics</a>
 <ul>
-<li class="chapter" data-level="8.7.1" data-path="lin-a.html"><a href="lin-a.html#corrections"><i class="fa fa-check"></i><b>8.7.1</b> Corrections</a></li>
+<li class="chapter" data-level="8.7.1" data-path="lin-a.html"><a href="lin-a.html#skewed-outcome-variable"><i class="fa fa-check"></i><b>8.7.1</b> Skewed outcome variable</a></li>
+<li class="chapter" data-level="8.7.2" data-path="lin-a.html"><a href="lin-a.html#non-linearity"><i class="fa fa-check"></i><b>8.7.2</b> Non-linearity</a></li>
 </ul></li>
 <li class="chapter" data-level="8.8" data-path="lin-a.html"><a href="lin-a.html#returning-to-our-research-question-2"><i class="fa fa-check"></i><b>8.8</b> Returning to our research question</a></li>
 <li class="chapter" data-level="8.9" data-path="lin-a.html"><a href="lin-a.html#outlook"><i class="fa fa-check"></i><b>8.9</b> Outlook</a></li>
@@ -320,7 +317,7 @@ don’t care about passers and just pay more to people who score more.</p>
 <p>So, now, let’s look at salary and average number of points scored by game.
 Also, we want to know whether point guards (short people who pass a lot) are
 paid less then other positions (who score more).</p>
-<p>So, it seems that point gards are paid a little less even though they make a few more points on average. Interesting puzzle to explore.</p>
+<p>So, it seems that point guards are paid a little less even though they make a few more points on average. Interesting puzzle to explore.</p>
 <p>Let’s reflect a moment what we can learn from all this.</p>
 <p>First, there seems to be a somewhat linear relationship between how many points
 a player scores and how much they are paid. This relationship seems pretty robust across years and teams. It also holds true for point guards just as much as for non-point guards. However, the average salary for point guards is lower in comparison. We also learn that the link between salary and points is stronger for centers. They seems to be paid more, the more they score.</p>
@@ -373,8 +370,8 @@ control for them if our goal is estimating the effect of points. Remember, if
 our goal was predicting the salary as accurately as possible, we should maybe
 include both variables, but this is not our goal today.</p>
 <p>Now let us get to it and load the NBA data we prepared in week 2.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="lin-a.html#cb99-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb99-2"><a href="lin-a.html#cb99-2" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;../datasets/nba/data_nba.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="lin-a.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb100-2"><a href="lin-a.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;../datasets/nba/data_nba.RData&quot;</span>)</span></code></pre></div>
 </div>
 <div id="simple-linear-regression-in-r" class="section level2 hasAnchor" number="8.5">
 <h2><span class="header-section-number">8.5</span> Simple linear regression in R<a href="lin-a.html#simple-linear-regression-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -392,7 +389,7 @@ data.</p>
 <p>The goal of our research question is to estimate the effect of the points per
 game on the received salary. So to regress <code>salary</code> on <code>career_PTS</code>, we just
 write:</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="lin-a.html#cb100-1" tabindex="-1"></a><span class="fu">lm</span>(salary <span class="sc">~</span> career_PTS, <span class="at">data =</span> data_nba)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="lin-a.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(salary <span class="sc">~</span> career_PTS, <span class="at">data =</span> data_nba)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salary ~ career_PTS, data = data_nba)
@@ -415,7 +412,7 @@ function that returns different summaries, depending on the object it is used
 on. We can for example use it on a data frame or tibble to get some descriptive
 statistics for the included variables. For example, we can information on the
 distribution of points per game by writing:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="lin-a.html#cb102-1" tabindex="-1"></a><span class="fu">summary</span>(data_nba<span class="sc">$</span>career_PTS)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="lin-a.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data_nba<span class="sc">$</span>career_PTS)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   0.000   5.100   8.000   8.908  12.000  30.100</code></pre>
 <p>When we use <code>summary()</code> on a model object, like the one created by <code>lm()</code>, we
@@ -423,9 +420,9 @@ get a different output. Before we apply this we should save our model in an
 object. This is good practice in most cases as we can now apply all additional
 analysis of the model on ths object and we do not have to rerun the model
 every time.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="lin-a.html#cb104-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> career_PTS, <span class="at">data =</span> data_nba)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="lin-a.html#cb105-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> career_PTS, <span class="at">data =</span> data_nba)</span></code></pre></div>
 <p>We can now apply <code>summary()</code> on the object <code>m1</code>, short for “model 1”:</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="lin-a.html#cb105-1" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="lin-a.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salary ~ career_PTS, data = data_nba)
@@ -449,10 +446,10 @@ better readable coefficient block as well as the information on the residuals
 and the model fit.</p>
 <p>An alternative method of displaying the coefficients in a regular tibble format,
 is to use <code>tidy()</code> from the <code>broom</code> package.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="lin-a.html#cb107-1" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
-<pre><code>## Warning: package &#39;broom&#39; was built under R version 4.2.3</code></pre>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="lin-a.html#cb109-1" tabindex="-1"></a><span class="fu">tidy</span>(m1)</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 5
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="lin-a.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
+<pre><code>## Warning: Paket &#39;broom&#39; wurde unter R Version 4.2.2 erstellt</code></pre>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="lin-a.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m1)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept) -851914.    76417.     -11.1 1.09e-28
@@ -460,21 +457,21 @@ is to use <code>tidy()</code> from the <code>broom</code> package.</p>
 <div id="interpretation-1" class="section level3 hasAnchor" number="8.5.1">
 <h3><span class="header-section-number">8.5.1</span> Interpretation<a href="lin-a.html#interpretation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>While we know our model is not complete yet, let us still inspect the results.
-For each point a player scores per game, his salary rises by about <span class="math inline">\(550,000\$\)</span>.
+For each point a player scores per game, his salary rises by about <span class="math inline">\(552,000\$\)</span>.
 We see a clear positive and substantial effect. Let us also inspect the
 intercept. THis tells us that a player who makes no points per game has to pay
 the team about <span class="math inline">\(850,000\)</span>. Wait, this does not make sense…
 To make the intercept more readily interpretable we should again center our
 metric dependent variable <code>career_PTS</code> on its mean.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="lin-a.html#cb111-1" tabindex="-1"></a><span class="fu">mean</span>(data_nba<span class="sc">$</span>career_PTS)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="lin-a.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data_nba<span class="sc">$</span>career_PTS)</span></code></pre></div>
 <pre><code>## [1] 8.907679</code></pre>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="lin-a.html#cb113-1" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb113-2"><a href="lin-a.html#cb113-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PTS_centered =</span> career_PTS <span class="sc">-</span> <span class="fu">mean</span>(career_PTS))</span></code></pre></div>
-<p>As we have now centered the independent variable of interst on its mean of <span class="math inline">\(8.9\)</span>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="lin-a.html#cb114-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb114-2"><a href="lin-a.html#cb114-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PTS_centered =</span> career_PTS <span class="sc">-</span> <span class="fu">mean</span>(career_PTS))</span></code></pre></div>
+<p>As we have now centered the independent variable of interest on its mean of <span class="math inline">\(8.9\)</span>
 we can rerun the model.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="lin-a.html#cb114-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> PTS_centered, <span class="at">data =</span> data_nba)</span>
-<span id="cb114-2"><a href="lin-a.html#cb114-2" tabindex="-1"></a></span>
-<span id="cb114-3"><a href="lin-a.html#cb114-3" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="lin-a.html#cb115-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> PTS_centered, <span class="at">data =</span> data_nba)</span>
+<span id="cb115-2"><a href="lin-a.html#cb115-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-3"><a href="lin-a.html#cb115-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salary ~ PTS_centered, data = data_nba)
@@ -495,7 +492,7 @@ we can rerun the model.</p>
 ## F-statistic:  5502 on 1 and 9726 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The coefficient for points per game has not changed but its interpretation has.
 For each point per game over the mean of <span class="math inline">\(8.9\)</span> points per game, the salary is
-estimated to increase by about <span class="math inline">\(550,000\$\)</span>. At the same time, for each point
+estimated to increase by about <span class="math inline">\(552,000\$\)</span>. At the same time, for each point
 below the mean the salary is estimated to decrease by the same amount.
 The intercept now shows us the estimated salary of a player who scores <span class="math inline">\(8.9\)</span>
 points per game which is slightly upwards of <span class="math inline">\(4,000,000\$\)</span> This makes way more
@@ -512,9 +509,9 @@ We can add additional independent variables to the formula used in <code>lm()</c
 <code>+</code> and the name of the additional variable(s). This works the same way for all
 types of variables, i.e. metric, dummies or categorical variables.
 So let us do this now by adding the 5 dummies we constructed for the positions:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="lin-a.html#cb116-1" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> PTS_centered <span class="sc">+</span> position_center <span class="sc">+</span> position_sf <span class="sc">+</span>  position_pf <span class="sc">+</span> position_sg <span class="sc">+</span> position_pg, <span class="at">data =</span> data_nba)</span>
-<span id="cb116-2"><a href="lin-a.html#cb116-2" tabindex="-1"></a></span>
-<span id="cb116-3"><a href="lin-a.html#cb116-3" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="lin-a.html#cb117-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> PTS_centered <span class="sc">+</span> position_center <span class="sc">+</span> position_sf <span class="sc">+</span>  position_pf <span class="sc">+</span> position_sg <span class="sc">+</span> position_pg, <span class="at">data =</span> data_nba)</span>
+<span id="cb117-2"><a href="lin-a.html#cb117-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-3"><a href="lin-a.html#cb117-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salary ~ PTS_centered + position_center + position_sf + 
@@ -546,7 +543,7 @@ after controlling for the position a player occupies. Among those centers are by
 far the top earners, making about <span class="math inline">\(1,400,00\$\)</span> more than players on other
 positions. Most other positions show relatively small effects on the earnings.
 Power and small forwards earn somewhat more than other positions on average
-while point and especially shooting guards earns less.</p>
+while point and especially shooting guards earn less.</p>
 <p>We can now compare two fictive cases of a center and a point guard who each make
 about <span class="math inline">\(20\)</span> points per game. What is the estimated salary for them?</p>
 <p>As we have extensively worked with the formulas over the last sessions, we can
@@ -572,12 +569,277 @@ a <code>+</code> and use a <code>*</code> between the two variables that we want
 </div>
 <div id="regression-diagnostics-1" class="section level2 hasAnchor" number="8.7">
 <h2><span class="header-section-number">8.7</span> Regression Diagnostics<a href="lin-a.html#regression-diagnostics-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="corrections" class="section level3 hasAnchor" number="8.7.1">
-<h3><span class="header-section-number">8.7.1</span> Corrections<a href="lin-a.html#corrections" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So how does our model perform? Did we meet all the regression assumptions that
+were introduced last week?</p>
+<p>To access the visual tests we used last session, we can just use the base R
+function plot, applied to the model object. If we just write <code>plot(m2)</code>, the
+console asks us to press <code>ENTER</code> to go through each plot ony by one. We can also
+add a number as a second argument, specifying which plot we want to see. For
+example, <code>plot(m2, 1)</code> gives us the residuals vs. fitted plot.</p>
+<p>But there is an easier way to see all four plots at once. The package
+<code>ggfortify</code> expands the functionalities of <code>ggplot2</code> so that we can use it’s
+<code>autoplot()</code> function to automatically plot all four visual tests of interest.
+An added benefit, depending on your taste, is that the plots are rendered in the
+style of <code>ggplot2</code>.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="lin-a.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span></code></pre></div>
+<pre><code>## Warning: Paket &#39;ggfortify&#39; wurde unter R Version 4.2.3 erstellt</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="lin-a.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(m2)</span></code></pre></div>
+<p><img src="_main_files/figure-html/m2_diag-1.png" width="672" /></p>
+<p>The residuals vs. fitted does not show us a more or less straight line but
+starts mildly positive, then dips below <span class="math inline">\(0\)</span> and rises again for higher estimated
+salaries. This could indicate at least wo thing. Either we have missed an
+important indepedent variable, like in the last session, or we are actually
+dealing with some amount on non-linearity.</p>
+<p>The Q-Q plot this time shows, that the actual residuals are far from being
+distributed normally. While we can never expect a perfectly normal distribution,
+here the deviations are striking, especially for high residuals.</p>
+<p>The scale-location plot is used to adress the assumption of homoscedasticity.
+What we want to see, is a straight line with data points equally distributed
+around it. This clearly is not the case here. As it is, the plot indicates
+that we may be able to estimate small salaries reasonably well but that the
+higher the estimate, the more unreliable our model gets.</p>
+<p>The residuals va. leverage plot also indicates some problems. There are some
+observations that have larger or smaller standardized residuals compared to the
+thresholds of <span class="math inline">\(3\)</span> and <span class="math inline">\(-3\)</span>. The threshold for leverage is computed as
+<span class="math inline">\(2 * (6 + 1) / 9728 = 0.001439145\)</span> We also see some observations with higher
+values. While both are rules of thumb and may not necessarily point to severe
+problems by themselves, things can get problematic when there are observation
+that do not meet the thresholds for both measures at the same time. This is
+indicated by clusters in the lower or upper right corners. We can observe this
+in the lower right.</p>
+<p>We should also test for multicollinearity. We can compute the VIF measures using
+a function from the package <code>car</code>.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="lin-a.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb123-2"><a href="lin-a.html#cb123-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-3"><a href="lin-a.html#cb123-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(m2)</span></code></pre></div>
+<pre><code>##    PTS_centered position_center     position_sf     position_pf     position_sg 
+##        1.050400        2.035722        1.686736        1.512765        1.565004 
+##     position_pg 
+##        1.916933</code></pre>
+<p>The values for any variable should not exceed <span class="math inline">\(5\)</span> and should be closer to <span class="math inline">\(1\)</span>.
+Our value for points shows no signs of multicollinearity. The values for the
+position dummies have somewhat higher values, which makes sense. While there are
+some players that play multiple positions, for most a value of <span class="math inline">\(1\)</span> on one
+position predicts the other positions as having a value of <span class="math inline">\(0\)</span>. But as we are
+still far away from the threshold of <span class="math inline">\(5\)</span>, there is no need for concern here.</p>
+<p>Overall, we have problems! While we do not see signs of problematic
+multicollinearity, all other tests indicated clear and in parts severe problems.
+We have to put in some more work before we can be confident that our model
+accurately predicts the effect of points per game on the received salary.</p>
+<p>Before we start addressing the problems, we should not that the four plots are
+highly interactive. It is entirely possible that solving one of the problems
+also solves the others or, for added fun, even generates new ones. This means
+that we should refrain from turning too many dials at once and rather change the
+model one step at a time, see if it improves things and then adress remaining
+problems in the same way.</p>
+<div id="skewed-outcome-variable" class="section level3 hasAnchor" number="8.7.1">
+<h3><span class="header-section-number">8.7.1</span> Skewed outcome variable<a href="lin-a.html#skewed-outcome-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The deviation from normality and the clearly present heteroscedasticity could
+both point to the same problem, namely a skewed dependent variable. Let us
+examine its distribution first.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="lin-a.html#cb125-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb125-2"><a href="lin-a.html#cb125-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> salary)) <span class="sc">+</span></span>
+<span id="cb125-3"><a href="lin-a.html#cb125-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/distribution_dv_before-1.png" width="672" /></p>
+<p>Our outcome variable is not only skewed, it is <strong>highly skewed</strong>. While there
+are many salaries in the “lower” six to seven digits regions, we also see some
+extremely high wages up to about <span class="math inline">\(35,000,000\$\)</span>. The higher the salary the fewer
+observations we have. That is why we see such a long flat tail to the right.</p>
+<p>This distribution actually is relatively common for income data. In most surveys
+of the general population we have many people receiving relatively low incomes
+while fewer individuals receive higher or extremely high incomes. It is still
+interesting that this also holds true for a population of high earners such as
+NBA players. That is why inequality is relative. Compared to the general
+population almost all our players would be somewhere in the long tail to the
+right. Compared to their own population we still see highly substantial
+differences in outcomes.</p>
+<p>We can transform the dependent variable to a different scale to get a less
+skewed distribution. A common transformation for income data is to take the
+<em>logarithmus naturalis</em> of the actual value and then use this as our
+dependent variable. To achive the transformation we can simply use the base R
+function <code>log()</code> which as its default computes the <span class="math inline">\(ln\)</span>.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="lin-a.html#cb126-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb126-2"><a href="lin-a.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">salary_log =</span> <span class="fu">log</span>(salary))</span>
+<span id="cb126-3"><a href="lin-a.html#cb126-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-4"><a href="lin-a.html#cb126-4" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb126-5"><a href="lin-a.html#cb126-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> salary_log)) <span class="sc">+</span></span>
+<span id="cb126-6"><a href="lin-a.html#cb126-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/transform_dv_log-1.png" width="672" /></p>
+<p>While the distribution of the transformed variable also is somewhat skewed, now
+to the left, overall it is much more evenly distributed.</p>
+<p>We should use the new variable as our outcome an check the tests again.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="lin-a.html#cb127-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary_log <span class="sc">~</span> PTS_centered <span class="sc">+</span> position_center <span class="sc">+</span> position_sf <span class="sc">+</span>  position_pf <span class="sc">+</span> position_sg <span class="sc">+</span> position_pg, <span class="at">data =</span> data_nba)</span>
+<span id="cb127-2"><a href="lin-a.html#cb127-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-3"><a href="lin-a.html#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(m3)</span></code></pre></div>
+<p><img src="_main_files/figure-html/m3-1.png" width="672" /></p>
+<p>Looking at the scale-location plot first, we can now see a straight line with
+our residuals fairly evenly distributed around it. Thus we now longer see any
+signs of heteroscedasticity. The Q-Q plot now also indicates a somewhat more
+normal distribution of our residuals but there are substantial deviations still.
+While high residuals now appear to more or less follow the normal distribution,
+small residuals now deviate stronger than they have before. This reflects the
+transformation and its distribution, which now has long tail on the left and not
+on the right anymore. Turning to the residuals vs. leverage plot we still see
+some observations that do not meet the respective thresholds. At the same time,
+there appear to be less that simultaneously have high absolute standardized
+residuals and high leverage. The residuals vs. fitted plot now also shows a more
+even distribution while the signs on non-linearity remain. We do not have to
+recompute the VIF measure as we did not change any independent variables in the
+model.</p>
+</div>
+<div id="non-linearity" class="section level3 hasAnchor" number="8.7.2">
+<h3><span class="header-section-number">8.7.2</span> Non-linearity<a href="lin-a.html#non-linearity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let us now address the non-linearity that is still indicated in the first plot.
+We can approach non-linear relationships in our inherently linear model by
+adding non-linear transformations of a dependent variable to the model. But
+before we start squaring random variables, we should think about what could be
+non-linear in our case. We can rule out our dummy variables for position. This
+leaves the points scored. The model already tells us that our suspicion that
+salary rises with the points scored could be true. But maybe this relationship
+is not linear over its whole range. If you already are among high scorers,
+scoring one or two points more than your peers may not be such a substantial
+difference and thus may not have the same strong effect on salary.</p>
+<p>We should first inspect the relationship between both variables again. This time
+we add a LOWESS curve to the plot. This is often helpful in detecting
+non-linearity as the curve can change its slope over the range of the dependent
+variable. This is also the default for <code>geom_smooth()</code>.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="lin-a.html#cb128-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb128-2"><a href="lin-a.html#cb128-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> career_PTS, <span class="at">y =</span> salary)) <span class="sc">+</span></span>
+<span id="cb128-3"><a href="lin-a.html#cb128-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb128-4"><a href="lin-a.html#cb128-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<p><img src="_main_files/figure-html/non_linearity-1.png" width="672" /></p>
+<p>While this is not as clear as we hoped, the line may still indicate some mild
+non-linearity as it flattens somewhat for really high point values. Also we have
+to keep in mind that the non-linearity may be stronger when we control for
+additional variables, as our position dummies.</p>
+<p>One common way to address the non-linearity is taking the square of the
+dependent variable in question. We should not square our centered points
+variable though. Let us inspect what would happen if we squared it.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="lin-a.html#cb130-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb130-2"><a href="lin-a.html#cb130-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PTS_centered, <span class="at">y =</span> PTS_centered <span class="sc">^</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb130-3"><a href="lin-a.html#cb130-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb130-4"><a href="lin-a.html#cb130-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<p><img src="_main_files/figure-html/centered_squared-1.png" width="672" /></p>
+<p>As the square of negative values is positive we would basically introduce the
+assumption into the model that there is non-linearity for low and high scorers
+and that the effect will be in the same direction. While our assumption is that
+there are diminishing returns between being a high scorer and a <strong>really</strong> high
+scorer, we do not assume that making more points if you are among the lower
+scorers should have the same effect. If at all, in these regions additional
+points could have an even larger effect.</p>
+<p>Because of this we should return the uncentered version of our variable. What
+happens if we square this?</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="lin-a.html#cb132-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb132-2"><a href="lin-a.html#cb132-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> career_PTS, <span class="at">y =</span> career_PTS <span class="sc">^</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb132-3"><a href="lin-a.html#cb132-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb132-4"><a href="lin-a.html#cb132-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<p><img src="_main_files/figure-html/career_pts_squared-1.png" width="672" /></p>
+<p>This is what we wanted, a transformation that expects a stronger difference the
+higher the score value is. For the final model we will thus work with the
+uncentered variable. We included the centered version because it is more
+straightforward to interpret. This is not really a concern anymore because
+dreams of easy interpretability are long gone after transforming two variables.</p>
+<p>We could again transform the variable in our data and thus add a second version,
+but we can also do so directly in the formuly syntax. When we use the function
+<code>I()</code> we tell R to interpret anything within the parantheses as a mathematacial
+expression. This is waht we will do below. Note that we add the point variable
+as its untransformed and transformed versions. The first represents the linear
+parts and the second the non-linear parts of the effect.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="lin-a.html#cb134-1" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary_log <span class="sc">~</span> career_PTS <span class="sc">+</span> <span class="fu">I</span>(career_PTS<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> position_center <span class="sc">+</span> position_sf <span class="sc">+</span> position_pf <span class="sc">+</span> position_sg <span class="sc">+</span> position_pg, <span class="at">data =</span> data_nba)</span></code></pre></div>
+<p>We can now reasses the tests for the last model.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="lin-a.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(m4)</span></code></pre></div>
+<p><img src="_main_files/figure-html/m4_diag-1.png" width="672" /></p>
+<p>The line in the residuals vs. fitted plot got more straight. It seems that we
+actually captured the mild non-linearity that was present before by adding the
+squared points value to our model. The scale-location plot also still indicates
+no more problems of heteroscedasticity. Contrary, the data points now are even
+more evenly distributed compared to <code>m3</code>. The Q-Q plot also has not changed,
+still showing non-normally distributed residuals. We can not really fix this
+now, but we also learned, that this test is less consequantial if we have a
+large N. Turning to the residuals vs. leverage plot, we still se several points
+that do not meet the thresholds but at the same time we do not see any points
+with high values for both. Overall there seem to be no overly influential points
+which we had to address. Let us also reexamine the VIF.</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="lin-a.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(m4)</span></code></pre></div>
+<pre><code>##      career_PTS I(career_PTS^2) position_center     position_sf     position_pf 
+##       12.135096       11.883255        2.040563        1.709312        1.520284 
+##     position_sg     position_pg 
+##        1.569463        1.949078</code></pre>
+<p>We now see high VIF values for both versions of our point variable. The only
+substantial change is that we now see high values for these. Did we introduce a
+new problem? If we take the measure at face value, yes. But if we think about
+it, no. All this means is that both versions of our variable are highly
+correlated. Of course they are. One is computed from the other. We can
+perfectly predict the value of <code>career_PTS^2</code> from <code>career_PTS</code>. There is
+collinearity by design. If we want to assess multicollinearity we should apply
+the function to <code>m3</code>. If would have used interactions, the situation would be
+similar. This is just a small reminder that all our tests do not work without
+thinking about what we are actually doing.</p>
 </div>
 </div>
 <div id="returning-to-our-research-question-2" class="section level2 hasAnchor" number="8.8">
 <h2><span class="header-section-number">8.8</span> Returning to our research question<a href="lin-a.html#returning-to-our-research-question-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As we now settled on <code>m4</code> as our best model, it is time to discuss what we
+actually found out about the effect of scored points on the received salary.</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="lin-a.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m4)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = salary_log ~ career_PTS + I(career_PTS^2) + position_center + 
+##     position_sf + position_pf + position_sg + position_pg, data = data_nba)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.1886 -0.5744  0.1583  0.7318  2.4876 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)     12.2544680  0.0428953 285.684  &lt; 2e-16 ***
+## career_PTS       0.3124511  0.0072287  43.224  &lt; 2e-16 ***
+## I(career_PTS^2) -0.0071879  0.0003113 -23.092  &lt; 2e-16 ***
+## position_center  0.5482072  0.0326289  16.801  &lt; 2e-16 ***
+## position_sf      0.1067444  0.0292656   3.647 0.000266 ***
+## position_pf      0.1214253  0.0270641   4.487 7.32e-06 ***
+## position_sg     -0.0025577  0.0275935  -0.093 0.926150    
+## position_pg      0.0312286  0.0337077   0.926 0.354234    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.039 on 9720 degrees of freedom
+## Multiple R-squared:  0.3978, Adjusted R-squared:  0.3973 
+## F-statistic: 917.1 on 7 and 9720 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>The more points a player scores, the higher the salary is estimated. At the same
+time we have identified a non-linear aspect to this relationship. The non-linear
+effect is small but negative. This indicates diminishing returns for high
+scorers. The higher the score, the less positive the effect of additional points
+is.</p>
+<p>The problem after two transformations of involved variables is, that
+interpretation has lost all its intuitiveness. The effects now describe the
+change in logarithmized salaries. While we can still easily assess if an effect
+is positive or negative we do not really what the magnitude of an effect is. For
+ths we have to reverse the transformation.</p>
+<p>Let us revist our example of a center and a point guard making <span class="math inline">\(20\)</span> points
+per game from above. Note that we also have to take the square of points for the
+non-linear term.</p>
+<p><span class="math display">\[\hat{y_{center\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.5482072 = 16.17654\]</span></p>
+<p><span class="math display">\[\hat{y_{pg\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.0312286 = 15.659565\]</span></p>
+<p>To find out what this means in hard dollars, we have to reverse the logarithmus
+naturalis. We can do this by calculating <span class="math inline">\(e^\hat{y}\)</span>. R gives us the function
+<code>exp()</code> to just that.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="lin-a.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">16.17654</span>)</span></code></pre></div>
+<pre><code>## [1] 10601860</code></pre>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="lin-a.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">15.659565</span>)</span></code></pre></div>
+<pre><code>## [1] 6322119</code></pre>
+<p>For our center who scored <span class="math inline">\(20\)</span> points we thus estimate a salary of
+<span class="math inline">\(10,601,860\$\)</span>, for a point guard with the same amounts of points <span class="math inline">\(6,322,119\$\)</span>.
+These estimates are not only lower than the ones derived above, the difference
+between the positions is also more pronounced. For a point guard scoring
+additional hoops does not have the same payoff compared to a center. While the
+latter receive a higher pay in general they also receive ore per additional
+point scored.</p>
+<p>XXX FINAL CONCLUSIONS ON THE PUZZLE? XXX</p>
 </div>
 <div id="outlook" class="section level2 hasAnchor" number="8.9">
 <h2><span class="header-section-number">8.9</span> Outlook<a href="lin-a.html#outlook" class="anchor-section" aria-label="Anchor link to header"></a></h2>

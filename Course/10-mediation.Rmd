@@ -37,7 +37,7 @@ So maybe, the fact guards and forwards simply score less than centers explains t
 
 To visualize this mini-theory and identification strategy, let's have a look at this DAG.
 
---> NIAZ, visual here with the DAG from my powerpoint
+--> Jasper: visual here with the DAG from my powerpoint
 
 
 Now let's test this out using R. 
@@ -154,7 +154,7 @@ summary(results_mediation_forwards)
 summary(results_mediation_guards)
 
 # note: this dies not yet work. FOrwads and guards are the same. CHeck how to 
-# take differnt groups of the treatment variable. Problem is that the treatment
+# take different groups of the treatment variable. Problem is that the treatment
 # variable is categorical.
 ```
 
@@ -179,7 +179,7 @@ The indirect effect is the total effect minus the direct effect (-1.400.000 - (-
 In sum, Guards are disadvantaged. They receive less money than center, although, if the points were considered, they should make even more. There must be other reasons why guards earn less. We need to go back to theory and come up with new hypothesis. 
 
 
-## FInt out more
+## Find out more
 
 - provide resources here 
 - references etc. 

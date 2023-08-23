@@ -1,6 +1,0 @@
-# Outlook {#out-look}
-Here goes some texts.
-
-## Machine Learning
-Here goes some texts.
-

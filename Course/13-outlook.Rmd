@@ -1,0 +1,19 @@
+# Outlook {#out-look}
+
+
+## Summary of what was covered in course
+
+## Other outcome variables
++ generalized linear models
++ logistic
++ poisson
+
+## Data structures
++ multilevel
+
+## Where to go next
++ econometrics 
++ machine learning 
++ geo-data
++ web-scraping 
+

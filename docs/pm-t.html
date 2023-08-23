@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content=" 11 Prediction - Theory | Data Analysis with R for Social Scientists" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-08-21" />
+<meta name="date" content="2023-08-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -127,10 +127,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-  
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -241,7 +237,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="lin-a.html"><a href="lin-a.html#regression-diagnostics-1"><i class="fa fa-check"></i><b>8.7</b> Regression Diagnostics</a>
 <ul>
-<li class="chapter" data-level="8.7.1" data-path="lin-a.html"><a href="lin-a.html#corrections"><i class="fa fa-check"></i><b>8.7.1</b> Corrections</a></li>
+<li class="chapter" data-level="8.7.1" data-path="lin-a.html"><a href="lin-a.html#skewed-outcome-variable"><i class="fa fa-check"></i><b>8.7.1</b> Skewed outcome variable</a></li>
+<li class="chapter" data-level="8.7.2" data-path="lin-a.html"><a href="lin-a.html#non-linearity"><i class="fa fa-check"></i><b>8.7.2</b> Non-linearity</a></li>
 </ul></li>
 <li class="chapter" data-level="8.8" data-path="lin-a.html"><a href="lin-a.html#returning-to-our-research-question-2"><i class="fa fa-check"></i><b>8.8</b> Returning to our research question</a></li>
 <li class="chapter" data-level="8.9" data-path="lin-a.html"><a href="lin-a.html#outlook"><i class="fa fa-check"></i><b>8.9</b> Outlook</a></li>
@@ -308,27 +305,27 @@ In this scenario, we build regression models (or other models) simply to predict
 <p>Let’s apply this logic to our NBA data. Remember in prior weeks, we built a linear model to estimate the effect of points scored on average per game and salaries of players. Let’s assume we now want to predict salaries of players and don’t care too much about the scores. We can consider a range of variables which we think explain variation in salaries. The better we can capture variation in salaries between players, the more precise our prediction will be.</p>
 <p>Now, you may rightfully ask: “Why do we want to predict salaries if we already know the actual salaries!?” Fair point. Prediction is commonly used to predict values which we don’t have. Imagine there are some players that don’t report their salaries. We could predict their salaries based on what we know from players who are similar to them in many other observable characteristics. Or imagine we want to predict the salary of a hypothetical player that does not exist. Imagine an average players would like to know how much he could earn more if player more like other players. We can predict that. Last example, imagine we want to forecast how much a player makes next year, depending on his past performance.</p>
 <p>Machine learning is basically predicting outcomes that are no known based on very large datasets. You provide R with a million photos of animals, you build a model to explain which animal is a cat. The you apply the model to new data and the model predicts whether there is a cat in the photo. Of course, machine learning gets much more complicated quickly, however, the basic logic is the logic of prediction.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="pm-t.html#cb134-1" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> career_PTS <span class="sc">+</span> position_rec <span class="sc">+</span> season_start <span class="sc">+</span></span>
-<span id="cb134-2"><a href="pm-t.html#cb134-2" tabindex="-1"></a>             age, <span class="at">data =</span> data_nba)</span>
-<span id="cb134-3"><a href="pm-t.html#cb134-3" tabindex="-1"></a></span>
-<span id="cb134-4"><a href="pm-t.html#cb134-4" tabindex="-1"></a><span class="co"># base R way to get predicted values</span></span>
-<span id="cb134-5"><a href="pm-t.html#cb134-5" tabindex="-1"></a>data_nba<span class="sc">$</span>predicted_values <span class="ot">&lt;-</span> model1<span class="sc">$</span>fitted.values</span>
-<span id="cb134-6"><a href="pm-t.html#cb134-6" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">&#39;_id&#39;</span>, name, salary, predicted_values, <span class="fu">everything</span>())</span>
-<span id="cb134-7"><a href="pm-t.html#cb134-7" tabindex="-1"></a></span>
-<span id="cb134-8"><a href="pm-t.html#cb134-8" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span></span>
-<span id="cb134-9"><a href="pm-t.html#cb134-9" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>salary, <span class="at">y=</span>predicted_values)) <span class="sc">+</span></span>
-<span id="cb134-10"><a href="pm-t.html#cb134-10" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb134-11"><a href="pm-t.html#cb134-11" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="pm-t.html#cb159-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> career_PTS <span class="sc">+</span> position_rec <span class="sc">+</span> season_start <span class="sc">+</span></span>
+<span id="cb159-2"><a href="pm-t.html#cb159-2" aria-hidden="true" tabindex="-1"></a>             age, <span class="at">data =</span> data_nba)</span>
+<span id="cb159-3"><a href="pm-t.html#cb159-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb159-4"><a href="pm-t.html#cb159-4" aria-hidden="true" tabindex="-1"></a><span class="co"># base R way to get predicted values</span></span>
+<span id="cb159-5"><a href="pm-t.html#cb159-5" aria-hidden="true" tabindex="-1"></a>data_nba<span class="sc">$</span>predicted_values <span class="ot">&lt;-</span> model1<span class="sc">$</span>fitted.values</span>
+<span id="cb159-6"><a href="pm-t.html#cb159-6" aria-hidden="true" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">&#39;_id&#39;</span>, name, salary, predicted_values, <span class="fu">everything</span>())</span>
+<span id="cb159-7"><a href="pm-t.html#cb159-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb159-8"><a href="pm-t.html#cb159-8" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span></span>
+<span id="cb159-9"><a href="pm-t.html#cb159-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>salary, <span class="at">y=</span>predicted_values)) <span class="sc">+</span></span>
+<span id="cb159-10"><a href="pm-t.html#cb159-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb159-11"><a href="pm-t.html#cb159-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="pm-t.html#cb136-1" tabindex="-1"></a><span class="co"># new tidyverse way to get predicted values</span></span>
-<span id="cb136-2"><a href="pm-t.html#cb136-2" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb136-3"><a href="pm-t.html#cb136-3" tabindex="-1"></a></span>
-<span id="cb136-4"><a href="pm-t.html#cb136-4" tabindex="-1"></a><span class="co"># broom package has nice features to work with models</span></span>
-<span id="cb136-5"><a href="pm-t.html#cb136-5" tabindex="-1"></a></span>
-<span id="cb136-6"><a href="pm-t.html#cb136-6" tabindex="-1"></a><span class="co"># tidy() converts the model output into a dataframe, makes it easy to process further, e.g. make graphs etc.</span></span>
-<span id="cb136-7"><a href="pm-t.html#cb136-7" tabindex="-1"></a><span class="fu">tidy</span>(model1)</span></code></pre></div>
-<pre><code>## # A tibble: 25 × 5
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="pm-t.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="co"># new tidyverse way to get predicted values</span></span>
+<span id="cb161-2"><a href="pm-t.html#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb161-3"><a href="pm-t.html#cb161-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb161-4"><a href="pm-t.html#cb161-4" aria-hidden="true" tabindex="-1"></a><span class="co"># broom package has nice features to work with models</span></span>
+<span id="cb161-5"><a href="pm-t.html#cb161-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb161-6"><a href="pm-t.html#cb161-6" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy() converts the model output into a dataframe, makes it easy to process further, e.g. make graphs etc.</span></span>
+<span id="cb161-7"><a href="pm-t.html#cb161-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model1)</span></code></pre></div>
+<pre><code>## # A tibble: 25 x 5
 ##    term                estimate std.error statistic  p.value
 ##    &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ##  1 (Intercept)         -568370.    29308.    -19.4  3.15e-82
@@ -341,51 +338,51 @@ In this scenario, we build regression models (or other models) simply to predict
 ##  8 season_start2001     106436.    23625.      4.51 6.71e- 6
 ##  9 season_start2002     130348.    23627.      5.52 3.54e- 8
 ## 10 season_start2003     135221.    23648.      5.72 1.11e- 8
-## # ℹ 15 more rows</code></pre>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="pm-t.html#cb138-1" tabindex="-1"></a><span class="co"># glance provides meta-level info like r-squared etc.</span></span>
-<span id="cb138-2"><a href="pm-t.html#cb138-2" tabindex="-1"></a><span class="fu">glance</span>(model1)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 12
+## # i 15 more rows</code></pre>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="pm-t.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="co"># glance provides meta-level info like r-squared etc.</span></span>
+<span id="cb163-2"><a href="pm-t.html#cb163-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model1)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 12
 ##   r.squared adj.r.squared   sigma statistic p.value    df   logLik    AIC    BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1     0.432         0.431 352361.      308.       0    24 -138041. 2.76e5 2.76e5
-## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="pm-t.html#cb140-1" tabindex="-1"></a><span class="co"># augment creates a dataframe with the predicted values for everyobservation in the dataframe. </span></span>
-<span id="cb140-2"><a href="pm-t.html#cb140-2" tabindex="-1"></a></span>
-<span id="cb140-3"><a href="pm-t.html#cb140-3" tabindex="-1"></a>nba_salalary_predicted <span class="ot">&lt;-</span> <span class="fu">augment</span>(model1)</span></code></pre></div>
+## # i 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="pm-t.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="co"># augment creates a dataframe with the predicted values for everyobservation in the dataframe. </span></span>
+<span id="cb165-2"><a href="pm-t.html#cb165-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-3"><a href="pm-t.html#cb165-3" aria-hidden="true" tabindex="-1"></a>nba_salalary_predicted <span class="ot">&lt;-</span> <span class="fu">augment</span>(model1)</span></code></pre></div>
 <p>The output above, get you the predicted values for the observations in the dataset. This is mostly used to evaluate the model itself. The bigger the difference between the predicted values and the actual values (so-called residuals), the worse the model.</p>
 <p>Now, let’s predict the salary of hypothetical players:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="pm-t.html#cb141-1" tabindex="-1"></a><span class="fu">table</span>(data_nba<span class="sc">$</span>position_rec)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="pm-t.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data_nba<span class="sc">$</span>position_rec)</span></code></pre></div>
 <pre><code>## 
 ##  center Forward   Guard   Mixed 
 ##    1204    2130    3051    3343</code></pre>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="pm-t.html#cb143-1" tabindex="-1"></a><span class="co"># create all combination of the control variables which you want to predict</span></span>
-<span id="cb143-2"><a href="pm-t.html#cb143-2" tabindex="-1"></a>prediction.data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb143-3"><a href="pm-t.html#cb143-3" tabindex="-1"></a>  <span class="at">position_rec =</span> <span class="fu">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;center&quot;</span>, <span class="st">&quot;Guard&quot;</span>, <span class="st">&quot;Guard&quot;</span>),</span>
-<span id="cb143-4"><a href="pm-t.html#cb143-4" tabindex="-1"></a>  <span class="at">career_PTS =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">10</span>, <span class="dv">14</span>),</span>
-<span id="cb143-5"><a href="pm-t.html#cb143-5" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">20</span>),</span>
-<span id="cb143-6"><a href="pm-t.html#cb143-6" tabindex="-1"></a>  <span class="at">season_start =</span> <span class="fu">c</span>(<span class="st">&quot;2017&quot;</span>, <span class="st">&quot;2017&quot;</span>, <span class="st">&quot;2017&quot;</span>, <span class="st">&quot;2017&quot;</span>)</span>
-<span id="cb143-7"><a href="pm-t.html#cb143-7" tabindex="-1"></a>)</span>
-<span id="cb143-8"><a href="pm-t.html#cb143-8" tabindex="-1"></a></span>
-<span id="cb143-9"><a href="pm-t.html#cb143-9" tabindex="-1"></a><span class="co"># apply the model to the &quot;new&quot; dataset</span></span>
-<span id="cb143-10"><a href="pm-t.html#cb143-10" tabindex="-1"></a><span class="fu">predict</span>(model1, </span>
-<span id="cb143-11"><a href="pm-t.html#cb143-11" tabindex="-1"></a>        prediction.data)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="pm-t.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create all combination of the control variables which you want to predict</span></span>
+<span id="cb168-2"><a href="pm-t.html#cb168-2" aria-hidden="true" tabindex="-1"></a>prediction.data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb168-3"><a href="pm-t.html#cb168-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">position_rec =</span> <span class="fu">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;center&quot;</span>, <span class="st">&quot;Guard&quot;</span>, <span class="st">&quot;Guard&quot;</span>),</span>
+<span id="cb168-4"><a href="pm-t.html#cb168-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">career_PTS =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">10</span>, <span class="dv">14</span>),</span>
+<span id="cb168-5"><a href="pm-t.html#cb168-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">20</span>),</span>
+<span id="cb168-6"><a href="pm-t.html#cb168-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">season_start =</span> <span class="fu">c</span>(<span class="st">&quot;2017&quot;</span>, <span class="st">&quot;2017&quot;</span>, <span class="st">&quot;2017&quot;</span>, <span class="st">&quot;2017&quot;</span>)</span>
+<span id="cb168-7"><a href="pm-t.html#cb168-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb168-8"><a href="pm-t.html#cb168-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-9"><a href="pm-t.html#cb168-9" aria-hidden="true" tabindex="-1"></a><span class="co"># apply the model to the &quot;new&quot; dataset</span></span>
+<span id="cb168-10"><a href="pm-t.html#cb168-10" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model1, </span>
+<span id="cb168-11"><a href="pm-t.html#cb168-11" aria-hidden="true" tabindex="-1"></a>        prediction.data)</span></code></pre></div>
 <pre><code>##        1        2        3        4 
 ## 675129.3 890294.2 466895.1 682059.9</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="pm-t.html#cb145-1" tabindex="-1"></a>prediction.data<span class="sc">$</span>predicted_values <span class="ot">&lt;-</span> <span class="fu">predict</span>(model1, </span>
-<span id="cb145-2"><a href="pm-t.html#cb145-2" tabindex="-1"></a>        prediction.data)</span>
-<span id="cb145-3"><a href="pm-t.html#cb145-3" tabindex="-1"></a></span>
-<span id="cb145-4"><a href="pm-t.html#cb145-4" tabindex="-1"></a>prediction.data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb145-5"><a href="pm-t.html#cb145-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(position_rec, predicted_values,</span>
-<span id="cb145-6"><a href="pm-t.html#cb145-6" tabindex="-1"></a>                 <span class="at">color=</span>career_PTS,</span>
-<span id="cb145-7"><a href="pm-t.html#cb145-7" tabindex="-1"></a>                 <span class="at">size=</span><span class="dv">12</span>)) <span class="sc">+</span></span>
-<span id="cb145-8"><a href="pm-t.html#cb145-8" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb145-9"><a href="pm-t.html#cb145-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="pm-t.html#cb170-1" aria-hidden="true" tabindex="-1"></a>prediction.data<span class="sc">$</span>predicted_values <span class="ot">&lt;-</span> <span class="fu">predict</span>(model1, </span>
+<span id="cb170-2"><a href="pm-t.html#cb170-2" aria-hidden="true" tabindex="-1"></a>        prediction.data)</span>
+<span id="cb170-3"><a href="pm-t.html#cb170-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-4"><a href="pm-t.html#cb170-4" aria-hidden="true" tabindex="-1"></a>prediction.data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb170-5"><a href="pm-t.html#cb170-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(position_rec, predicted_values,</span>
+<span id="cb170-6"><a href="pm-t.html#cb170-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span>career_PTS,</span>
+<span id="cb170-7"><a href="pm-t.html#cb170-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">size=</span><span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb170-8"><a href="pm-t.html#cb170-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb170-9"><a href="pm-t.html#cb170-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>We can see that there is a huge salary increase predicted for just making two more baskets (i.e. 4 points) on average each game, for both guards and centers. We also see that centers make more money generally.</p>
 <p>There is another way to get predicted values using the <code>margins()</code> function.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="pm-t.html#cb146-1" tabindex="-1"></a><span class="fu">library</span>(margins)</span>
-<span id="cb146-2"><a href="pm-t.html#cb146-2" tabindex="-1"></a><span class="co"># This gets you the average change in predicted value for a unit-increase in the all model variables.</span></span>
-<span id="cb146-3"><a href="pm-t.html#cb146-3" tabindex="-1"></a><span class="fu">margins</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="pm-t.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(margins)</span>
+<span id="cb171-2"><a href="pm-t.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This gets you the average change in predicted value for a unit-increase in the all model variables.</span></span>
+<span id="cb171-3"><a href="pm-t.html#cb171-3" aria-hidden="true" tabindex="-1"></a><span class="fu">margins</span>(model1)</span></code></pre></div>
 <pre><code>##  career_PTS   age position_recForward position_recGuard position_recMixed
 ##       53791 16809             -140645           -208234           -103661
 ##  season_start1999 season_start2000 season_start2001 season_start2002
@@ -398,8 +395,8 @@ In this scenario, we build regression models (or other models) simply to predict
 ##            183026           182509           199072           174359
 ##  season_start2015 season_start2016 season_start2017
 ##            206791           305228           369398</code></pre>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="pm-t.html#cb148-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">margins</span>(model1, <span class="at">at=</span> <span class="fu">list</span>(<span class="at">position_rec=</span> <span class="fu">c</span>(<span class="st">&quot;Guard&quot;</span>, <span class="st">&quot;center&quot;</span>),</span>
-<span id="cb148-2"><a href="pm-t.html#cb148-2" tabindex="-1"></a>                         <span class="at">career_PTS=</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">14</span>))))</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="pm-t.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">margins</span>(model1, <span class="at">at=</span> <span class="fu">list</span>(<span class="at">position_rec=</span> <span class="fu">c</span>(<span class="st">&quot;Guard&quot;</span>, <span class="st">&quot;center&quot;</span>),</span>
+<span id="cb173-2"><a href="pm-t.html#cb173-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">career_PTS=</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">14</span>))))</span></code></pre></div>
 <pre><code>##              factor position_rec career_PTS         AME         SE       z
 ##                 age       1.0000    10.0000  16809.4290   822.1461 20.4458
 ##                 age       1.0000    14.0000  16809.4290   821.2659 20.4677
@@ -586,9 +583,9 @@ It automatically can hold other control variables at their mean or at their obse
 <p>Prediction intervals are very similar but only apply to predictions for specfific values. It gives us a measure for “confident” we can be that our prediction would be within the prediction interval (95% of times).</p>
 <p>The 95% is an arbitrarily set value which is a standard in research. However, we can also set it at 99% or 90%.</p>
 <p>Let’s apply this to our data.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="pm-t.html#cb150-1" tabindex="-1"></a><span class="co"># Just for illustration, let&#39;s take a suimple model</span></span>
-<span id="cb150-2"><a href="pm-t.html#cb150-2" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> career_PTS, <span class="at">data =</span> data_nba)</span>
-<span id="cb150-3"><a href="pm-t.html#cb150-3" tabindex="-1"></a><span class="fu">predict</span>(model2)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="pm-t.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Just for illustration, let&#39;s take a suimple model</span></span>
+<span id="cb175-2"><a href="pm-t.html#cb175-2" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> career_PTS, <span class="at">data =</span> data_nba)</span>
+<span id="cb175-3"><a href="pm-t.html#cb175-3" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model2)</span></code></pre></div>
 <pre><code>##           1           2           3           4           5           6 
 ##  721959.298  346026.074  346026.074  346026.074  346026.074  346026.074 
 ##           7           8           9          10          11          12 
@@ -3833,95 +3830,95 @@ It automatically can hold other control variables at their mean or at their obse
 ##  158059.462  158059.462  -18850.291  174644.751  174644.751  268628.057 
 ##        9727        9728 
 ##  296270.206  296270.206</code></pre>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="pm-t.html#cb152-1" tabindex="-1"></a><span class="co"># using geom_smooth, method=lm will automatically plot the confidence intervals</span></span>
-<span id="cb152-2"><a href="pm-t.html#cb152-2" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span></span>
-<span id="cb152-3"><a href="pm-t.html#cb152-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>salary, <span class="at">y=</span>career_PTS)) <span class="sc">+</span></span>
-<span id="cb152-4"><a href="pm-t.html#cb152-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb152-5"><a href="pm-t.html#cb152-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="pm-t.html#cb153-1" tabindex="-1"></a><span class="co"># let&#39;s get prediction intervals and add them to our dataset</span></span>
-<span id="cb153-2"><a href="pm-t.html#cb153-2" tabindex="-1"></a>data_nba_predict <span class="ot">&lt;-</span> <span class="fu">cbind</span>(data_nba, <span class="fu">predict</span>(model2, <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">&quot;prediction&quot;</span>)))</span>
-<span id="cb153-3"><a href="pm-t.html#cb153-3" tabindex="-1"></a></span>
-<span id="cb153-4"><a href="pm-t.html#cb153-4" tabindex="-1"></a>data_nba_predict <span class="sc">%&gt;%</span></span>
-<span id="cb153-5"><a href="pm-t.html#cb153-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> career_PTS, <span class="at">y=</span>salary)) <span class="sc">+</span></span>
-<span id="cb153-6"><a href="pm-t.html#cb153-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb153-7"><a href="pm-t.html#cb153-7" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>career_PTS, <span class="at">y=</span>fit),</span>
-<span id="cb153-8"><a href="pm-t.html#cb153-8" tabindex="-1"></a>            <span class="at">col=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb153-9"><a href="pm-t.html#cb153-9" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>lwr),</span>
-<span id="cb153-10"><a href="pm-t.html#cb153-10" tabindex="-1"></a>                <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb153-11"><a href="pm-t.html#cb153-11" tabindex="-1"></a>                <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb153-12"><a href="pm-t.html#cb153-12" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>upr),</span>
-<span id="cb153-13"><a href="pm-t.html#cb153-13" tabindex="-1"></a>                <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb153-14"><a href="pm-t.html#cb153-14" tabindex="-1"></a>                <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="pm-t.html#cb154-1" tabindex="-1"></a><span class="co"># same using geom_ribbon</span></span>
-<span id="cb154-2"><a href="pm-t.html#cb154-2" tabindex="-1"></a>data_nba_predict <span class="sc">%&gt;%</span></span>
-<span id="cb154-3"><a href="pm-t.html#cb154-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>career_PTS,<span class="at">y=</span>salary))<span class="sc">+</span></span>
-<span id="cb154-4"><a href="pm-t.html#cb154-4" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb154-5"><a href="pm-t.html#cb154-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>career_PTS,<span class="at">y=</span>fit))<span class="sc">+</span></span>
-<span id="cb154-6"><a href="pm-t.html#cb154-6" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymax=</span>upr,<span class="at">ymin=</span>lwr),<span class="at">color=</span><span class="st">&quot;red&quot;</span>,<span class="at">alpha=</span><span class="fl">0.7</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-27-3.png" width="672" /></p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="pm-t.html#cb155-1" tabindex="-1"></a><span class="do">## do this with tidy approach</span></span>
-<span id="cb155-2"><a href="pm-t.html#cb155-2" tabindex="-1"></a></span>
-<span id="cb155-3"><a href="pm-t.html#cb155-3" tabindex="-1"></a><span class="co"># get confidnce interval for estimate</span></span>
-<span id="cb155-4"><a href="pm-t.html#cb155-4" tabindex="-1"></a><span class="fu">tidy</span>(model2, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 7
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="pm-t.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using geom_smooth, method=lm will automatically plot the confidence intervals</span></span>
+<span id="cb177-2"><a href="pm-t.html#cb177-2" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span></span>
+<span id="cb177-3"><a href="pm-t.html#cb177-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>salary, <span class="at">y=</span>career_PTS)) <span class="sc">+</span></span>
+<span id="cb177-4"><a href="pm-t.html#cb177-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb177-5"><a href="pm-t.html#cb177-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="pm-t.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="co"># let&#39;s get prediction intervals and add them to our dataset</span></span>
+<span id="cb178-2"><a href="pm-t.html#cb178-2" aria-hidden="true" tabindex="-1"></a>data_nba_predict <span class="ot">&lt;-</span> <span class="fu">cbind</span>(data_nba, <span class="fu">predict</span>(model2, <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">&quot;prediction&quot;</span>)))</span>
+<span id="cb178-3"><a href="pm-t.html#cb178-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb178-4"><a href="pm-t.html#cb178-4" aria-hidden="true" tabindex="-1"></a>data_nba_predict <span class="sc">%&gt;%</span></span>
+<span id="cb178-5"><a href="pm-t.html#cb178-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> career_PTS, <span class="at">y=</span>salary)) <span class="sc">+</span></span>
+<span id="cb178-6"><a href="pm-t.html#cb178-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb178-7"><a href="pm-t.html#cb178-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>career_PTS, <span class="at">y=</span>fit),</span>
+<span id="cb178-8"><a href="pm-t.html#cb178-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">col=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb178-9"><a href="pm-t.html#cb178-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>lwr),</span>
+<span id="cb178-10"><a href="pm-t.html#cb178-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb178-11"><a href="pm-t.html#cb178-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb178-12"><a href="pm-t.html#cb178-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>upr),</span>
+<span id="cb178-13"><a href="pm-t.html#cb178-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb178-14"><a href="pm-t.html#cb178-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-2.png" width="672" /></p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="pm-t.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same using geom_ribbon</span></span>
+<span id="cb179-2"><a href="pm-t.html#cb179-2" aria-hidden="true" tabindex="-1"></a>data_nba_predict <span class="sc">%&gt;%</span></span>
+<span id="cb179-3"><a href="pm-t.html#cb179-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>career_PTS,<span class="at">y=</span>salary))<span class="sc">+</span></span>
+<span id="cb179-4"><a href="pm-t.html#cb179-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb179-5"><a href="pm-t.html#cb179-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>career_PTS,<span class="at">y=</span>fit))<span class="sc">+</span></span>
+<span id="cb179-6"><a href="pm-t.html#cb179-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymax=</span>upr,<span class="at">ymin=</span>lwr),<span class="at">color=</span><span class="st">&quot;red&quot;</span>,<span class="at">alpha=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-3.png" width="672" /></p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="pm-t.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="do">## do this with tidy approach</span></span>
+<span id="cb180-2"><a href="pm-t.html#cb180-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-3"><a href="pm-t.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="co"># get confidnce interval for estimate</span></span>
+<span id="cb180-4"><a href="pm-t.html#cb180-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model2, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 7
 ##   term        estimate std.error statistic  p.value conf.low conf.high
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 (Intercept)  -85191.     7642.     -11.1 1.09e-28 -100171.   -70212.
 ## 2 career_PTS    55284.      745.      74.2 0          53823.    56745.</code></pre>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="pm-t.html#cb157-1" tabindex="-1"></a><span class="co"># get predictive intervals</span></span>
-<span id="cb157-2"><a href="pm-t.html#cb157-2" tabindex="-1"></a><span class="fu">augment</span>(model2, <span class="at">interval=</span> <span class="st">&quot;prediction&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb157-3"><a href="pm-t.html#cb157-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>career_PTS,<span class="at">y=</span>salary))<span class="sc">+</span></span>
-<span id="cb157-4"><a href="pm-t.html#cb157-4" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb157-5"><a href="pm-t.html#cb157-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>career_PTS,<span class="at">y=</span>.fitted))<span class="sc">+</span></span>
-<span id="cb157-6"><a href="pm-t.html#cb157-6" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymax=</span>.upper,<span class="at">ymin=</span>.lower),<span class="at">color=</span><span class="st">&quot;red&quot;</span>,<span class="at">alpha=</span><span class="fl">0.7</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-27-4.png" width="672" /></p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="pm-t.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get predictive intervals</span></span>
+<span id="cb182-2"><a href="pm-t.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(model2, <span class="at">interval=</span> <span class="st">&quot;prediction&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb182-3"><a href="pm-t.html#cb182-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>career_PTS,<span class="at">y=</span>salary))<span class="sc">+</span></span>
+<span id="cb182-4"><a href="pm-t.html#cb182-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb182-5"><a href="pm-t.html#cb182-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>career_PTS,<span class="at">y=</span>.fitted))<span class="sc">+</span></span>
+<span id="cb182-6"><a href="pm-t.html#cb182-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymax=</span>.upper,<span class="at">ymin=</span>.lower),<span class="at">color=</span><span class="st">&quot;red&quot;</span>,<span class="at">alpha=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-4.png" width="672" /></p>
 <p>Now, let’s compare the prediction interval for 2 differnt models.To compare the performance of models, you can use the r-squared (which measures how much of the variation in the outcome can be explained by your set of independent variables) and the mean squared error. For more background on both measures see here: <a href="https://vitalflux.com/mean-square-error-r-squared-which-one-to-use/" class="uri">https://vitalflux.com/mean-square-error-r-squared-which-one-to-use/</a></p>
 <p>The Mean squared error (MSE) represents the error of the estimator or predictive model created based on the given set of observations in the sample. It measures the average squared difference between the predicted values and the actual values, quantifying the discrepancy between the model’s predictions and the true observations. The lower the MSE, the better the model predictive accuracy, and, the better the regression model is.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="pm-t.html#cb158-1" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> career_PTS <span class="sc">+</span> position_rec <span class="sc">+</span> season_start <span class="sc">+</span></span>
-<span id="cb158-2"><a href="pm-t.html#cb158-2" tabindex="-1"></a>             age, <span class="at">data =</span> data_nba)</span>
-<span id="cb158-3"><a href="pm-t.html#cb158-3" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> career_PTS, <span class="at">data =</span> data_nba)</span>
-<span id="cb158-4"><a href="pm-t.html#cb158-4" tabindex="-1"></a></span>
-<span id="cb158-5"><a href="pm-t.html#cb158-5" tabindex="-1"></a><span class="co"># compared R-squared/ adjusted R-squared</span></span>
-<span id="cb158-6"><a href="pm-t.html#cb158-6" tabindex="-1"></a><span class="fu">glance</span>(model1)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 12
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="pm-t.html#cb183-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> career_PTS <span class="sc">+</span> position_rec <span class="sc">+</span> season_start <span class="sc">+</span></span>
+<span id="cb183-2"><a href="pm-t.html#cb183-2" aria-hidden="true" tabindex="-1"></a>             age, <span class="at">data =</span> data_nba)</span>
+<span id="cb183-3"><a href="pm-t.html#cb183-3" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> career_PTS, <span class="at">data =</span> data_nba)</span>
+<span id="cb183-4"><a href="pm-t.html#cb183-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-5"><a href="pm-t.html#cb183-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compared R-squared/ adjusted R-squared</span></span>
+<span id="cb183-6"><a href="pm-t.html#cb183-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model1)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 12
 ##   r.squared adj.r.squared   sigma statistic p.value    df   logLik    AIC    BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1     0.432         0.431 352361.      308.       0    24 -138041. 2.76e5 2.76e5
-## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="pm-t.html#cb160-1" tabindex="-1"></a><span class="fu">glance</span>(model2)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 12
+## # i 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="pm-t.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model2)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 12
 ##   r.squared adj.r.squared   sigma statistic p.value    df   logLik    AIC    BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1     0.361         0.361 373217.     5502.       0     1 -138612. 2.77e5 2.77e5
-## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="pm-t.html#cb162-1" tabindex="-1"></a><span class="co"># compare prediction intervals</span></span>
-<span id="cb162-2"><a href="pm-t.html#cb162-2" tabindex="-1"></a>model1_predicted <span class="ot">&lt;-</span> <span class="fu">augment</span>(model1, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span>
-<span id="cb162-3"><a href="pm-t.html#cb162-3" tabindex="-1"></a>model2_predicted <span class="ot">&lt;-</span> <span class="fu">augment</span>(model2, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span>
-<span id="cb162-4"><a href="pm-t.html#cb162-4" tabindex="-1"></a></span>
-<span id="cb162-5"><a href="pm-t.html#cb162-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>career_PTS,<span class="at">y=</span>salary), <span class="at">data =</span> model1_predicted)<span class="sc">+</span></span>
-<span id="cb162-6"><a href="pm-t.html#cb162-6" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb162-7"><a href="pm-t.html#cb162-7" tabindex="-1"></a>  <span class="co"># geom_line(aes(x=career_pts,y=.fitted),</span></span>
-<span id="cb162-8"><a href="pm-t.html#cb162-8" tabindex="-1"></a>  <span class="co">#           color =&quot;red&quot;, data = model1_predicted) +</span></span>
-<span id="cb162-9"><a href="pm-t.html#cb162-9" tabindex="-1"></a>  <span class="co"># geom_line(aes(x=career_pts,y=.fitted),</span></span>
-<span id="cb162-10"><a href="pm-t.html#cb162-10" tabindex="-1"></a>  <span class="co">#          color =&quot;blue&quot;, data = model2_predicted) +</span></span>
-<span id="cb162-11"><a href="pm-t.html#cb162-11" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymax=</span>.upper,<span class="at">ymin=</span>.lower),</span>
-<span id="cb162-12"><a href="pm-t.html#cb162-12" tabindex="-1"></a>              <span class="at">color=</span><span class="st">&quot;red&quot;</span>,</span>
-<span id="cb162-13"><a href="pm-t.html#cb162-13" tabindex="-1"></a>              <span class="at">alpha=</span><span class="fl">0.7</span>,</span>
-<span id="cb162-14"><a href="pm-t.html#cb162-14" tabindex="-1"></a>              <span class="at">data =</span> model1_predicted) <span class="sc">+</span></span>
-<span id="cb162-15"><a href="pm-t.html#cb162-15" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymax=</span>.upper,<span class="at">ymin=</span>.lower),</span>
-<span id="cb162-16"><a href="pm-t.html#cb162-16" tabindex="-1"></a>              <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb162-17"><a href="pm-t.html#cb162-17" tabindex="-1"></a>              <span class="at">alpha=</span><span class="fl">0.7</span>,</span>
-<span id="cb162-18"><a href="pm-t.html#cb162-18" tabindex="-1"></a>              <span class="at">data =</span> model2_predicted)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="pm-t.html#cb163-1" tabindex="-1"></a><span class="co"># see if there is a better way to do this</span></span>
-<span id="cb163-2"><a href="pm-t.html#cb163-2" tabindex="-1"></a></span>
-<span id="cb163-3"><a href="pm-t.html#cb163-3" tabindex="-1"></a><span class="fu">library</span>(Metrics) <span class="co"># using rmse from Metrics library</span></span>
-<span id="cb163-4"><a href="pm-t.html#cb163-4" tabindex="-1"></a><span class="co"># compare mean squared error</span></span>
-<span id="cb163-5"><a href="pm-t.html#cb163-5" tabindex="-1"></a>  <span class="fu">rmse</span>(model1_predicted<span class="sc">$</span>.fitted, data_nba<span class="sc">$</span>salary)</span></code></pre></div>
+## # i 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="pm-t.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compare prediction intervals</span></span>
+<span id="cb187-2"><a href="pm-t.html#cb187-2" aria-hidden="true" tabindex="-1"></a>model1_predicted <span class="ot">&lt;-</span> <span class="fu">augment</span>(model1, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span>
+<span id="cb187-3"><a href="pm-t.html#cb187-3" aria-hidden="true" tabindex="-1"></a>model2_predicted <span class="ot">&lt;-</span> <span class="fu">augment</span>(model2, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span>
+<span id="cb187-4"><a href="pm-t.html#cb187-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb187-5"><a href="pm-t.html#cb187-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>career_PTS,<span class="at">y=</span>salary), <span class="at">data =</span> model1_predicted)<span class="sc">+</span></span>
+<span id="cb187-6"><a href="pm-t.html#cb187-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb187-7"><a href="pm-t.html#cb187-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_line(aes(x=career_pts,y=.fitted),</span></span>
+<span id="cb187-8"><a href="pm-t.html#cb187-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#           color =&quot;red&quot;, data = model1_predicted) +</span></span>
+<span id="cb187-9"><a href="pm-t.html#cb187-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_line(aes(x=career_pts,y=.fitted),</span></span>
+<span id="cb187-10"><a href="pm-t.html#cb187-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#          color =&quot;blue&quot;, data = model2_predicted) +</span></span>
+<span id="cb187-11"><a href="pm-t.html#cb187-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymax=</span>.upper,<span class="at">ymin=</span>.lower),</span>
+<span id="cb187-12"><a href="pm-t.html#cb187-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">&quot;red&quot;</span>,</span>
+<span id="cb187-13"><a href="pm-t.html#cb187-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha=</span><span class="fl">0.7</span>,</span>
+<span id="cb187-14"><a href="pm-t.html#cb187-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> model1_predicted) <span class="sc">+</span></span>
+<span id="cb187-15"><a href="pm-t.html#cb187-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymax=</span>.upper,<span class="at">ymin=</span>.lower),</span>
+<span id="cb187-16"><a href="pm-t.html#cb187-16" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb187-17"><a href="pm-t.html#cb187-17" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha=</span><span class="fl">0.7</span>,</span>
+<span id="cb187-18"><a href="pm-t.html#cb187-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> model2_predicted)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="pm-t.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co"># see if there is a better way to do this</span></span>
+<span id="cb188-2"><a href="pm-t.html#cb188-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb188-3"><a href="pm-t.html#cb188-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Metrics) <span class="co"># using rmse from Metrics library</span></span>
+<span id="cb188-4"><a href="pm-t.html#cb188-4" aria-hidden="true" tabindex="-1"></a><span class="co"># compare mean squared error</span></span>
+<span id="cb188-5"><a href="pm-t.html#cb188-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rmse</span>(model1_predicted<span class="sc">$</span>.fitted, data_nba<span class="sc">$</span>salary)</span></code></pre></div>
 <pre><code>## [1] 351908.3</code></pre>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="pm-t.html#cb165-1" tabindex="-1"></a>  <span class="fu">rmse</span>(model2_predicted<span class="sc">$</span>.fitted, data_nba<span class="sc">$</span>salary)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="pm-t.html#cb190-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rmse</span>(model2_predicted<span class="sc">$</span>.fitted, data_nba<span class="sc">$</span>salary)</span></code></pre></div>
 <pre><code>## [1] 373178.4</code></pre>
 <p>Looking at r2, the prediction intervals and rmse, model 1 clearly performs better than model 2.</p>
 </div>
@@ -3929,45 +3926,45 @@ It automatically can hold other control variables at their mean or at their obse
 <h2><span class="header-section-number">11.2</span> Intro to Machine learning<a href="pm-t.html#intro-to-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We have now arrived at the entry gates to machine learning. We will conduct a very basic and simple machine learning routine using linear regression. The main difference between simple prediction and Machine Learning is that the sample is first divided into a training and a test dataset at random. The model is than tuned based on, let’s say, 80% of the sample. When the model is ready, it is tested based on the 20% remaining sample. The prediction produced with the model are then compared with the actual values in the test dataset. There is of course more nuance to all this, but this is basically the idea.</p>
 <p>Let’s use the “caret” package, a common package for machine learning.</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="pm-t.html#cb167-1" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
-<span id="cb167-2"><a href="pm-t.html#cb167-2" tabindex="-1"></a></span>
-<span id="cb167-3"><a href="pm-t.html#cb167-3" tabindex="-1"></a><span class="co"># Create a train and test split</span></span>
-<span id="cb167-4"><a href="pm-t.html#cb167-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
-<span id="cb167-5"><a href="pm-t.html#cb167-5" tabindex="-1"></a>train_indices <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(data_nba<span class="sc">$</span>salary, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb167-6"><a href="pm-t.html#cb167-6" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> data_nba[train_indices, ]</span>
-<span id="cb167-7"><a href="pm-t.html#cb167-7" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> data_nba[<span class="sc">-</span>train_indices, ]</span>
-<span id="cb167-8"><a href="pm-t.html#cb167-8" tabindex="-1"></a></span>
-<span id="cb167-9"><a href="pm-t.html#cb167-9" tabindex="-1"></a><span class="co"># Create a train control object</span></span>
-<span id="cb167-10"><a href="pm-t.html#cb167-10" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;none&quot;</span>) </span>
-<span id="cb167-11"><a href="pm-t.html#cb167-11" tabindex="-1"></a></span>
-<span id="cb167-12"><a href="pm-t.html#cb167-12" tabindex="-1"></a><span class="co"># Train a linear regression model using caret</span></span>
-<span id="cb167-13"><a href="pm-t.html#cb167-13" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
-<span id="cb167-14"><a href="pm-t.html#cb167-14" tabindex="-1"></a>  salary <span class="sc">~</span> career_PTS <span class="sc">+</span> position_rec <span class="sc">+</span> season_start <span class="sc">+</span> age,</span>
-<span id="cb167-15"><a href="pm-t.html#cb167-15" tabindex="-1"></a>  <span class="at">data =</span> train_data,</span>
-<span id="cb167-16"><a href="pm-t.html#cb167-16" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb167-17"><a href="pm-t.html#cb167-17" tabindex="-1"></a>  <span class="at">trControl =</span> ctrl</span>
-<span id="cb167-18"><a href="pm-t.html#cb167-18" tabindex="-1"></a>)</span>
-<span id="cb167-19"><a href="pm-t.html#cb167-19" tabindex="-1"></a></span>
-<span id="cb167-20"><a href="pm-t.html#cb167-20" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
-<span id="cb167-21"><a href="pm-t.html#cb167-21" tabindex="-1"></a>  salary <span class="sc">~</span> career_PTS,</span>
-<span id="cb167-22"><a href="pm-t.html#cb167-22" tabindex="-1"></a>  <span class="at">data =</span> train_data,</span>
-<span id="cb167-23"><a href="pm-t.html#cb167-23" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb167-24"><a href="pm-t.html#cb167-24" tabindex="-1"></a>  <span class="at">trControl =</span> ctrl</span>
-<span id="cb167-25"><a href="pm-t.html#cb167-25" tabindex="-1"></a>)</span>
-<span id="cb167-26"><a href="pm-t.html#cb167-26" tabindex="-1"></a></span>
-<span id="cb167-27"><a href="pm-t.html#cb167-27" tabindex="-1"></a><span class="co"># Make predictions on the test set</span></span>
-<span id="cb167-28"><a href="pm-t.html#cb167-28" tabindex="-1"></a>predicted_salaries_m1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model1, <span class="at">newdata =</span> test_data)</span>
-<span id="cb167-29"><a href="pm-t.html#cb167-29" tabindex="-1"></a>predicted_salaries_m2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model2, <span class="at">newdata =</span> test_data)</span>
-<span id="cb167-30"><a href="pm-t.html#cb167-30" tabindex="-1"></a></span>
-<span id="cb167-31"><a href="pm-t.html#cb167-31" tabindex="-1"></a></span>
-<span id="cb167-32"><a href="pm-t.html#cb167-32" tabindex="-1"></a><span class="co"># Calculate prediction errors (e.g., root mean squared error)</span></span>
-<span id="cb167-33"><a href="pm-t.html#cb167-33" tabindex="-1"></a>rmse1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted_salaries_m1 <span class="sc">-</span> test_data<span class="sc">$</span>salary)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb167-34"><a href="pm-t.html#cb167-34" tabindex="-1"></a>rmse2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted_salaries_m2 <span class="sc">-</span> test_data<span class="sc">$</span>salary)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb167-35"><a href="pm-t.html#cb167-35" tabindex="-1"></a></span>
-<span id="cb167-36"><a href="pm-t.html#cb167-36" tabindex="-1"></a><span class="co"># Print the prediction errors</span></span>
-<span id="cb167-37"><a href="pm-t.html#cb167-37" tabindex="-1"></a><span class="fu">print</span>(rmse1)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="pm-t.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb192-2"><a href="pm-t.html#cb192-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-3"><a href="pm-t.html#cb192-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a train and test split</span></span>
+<span id="cb192-4"><a href="pm-t.html#cb192-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb192-5"><a href="pm-t.html#cb192-5" aria-hidden="true" tabindex="-1"></a>train_indices <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(data_nba<span class="sc">$</span>salary, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb192-6"><a href="pm-t.html#cb192-6" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> data_nba[train_indices, ]</span>
+<span id="cb192-7"><a href="pm-t.html#cb192-7" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> data_nba[<span class="sc">-</span>train_indices, ]</span>
+<span id="cb192-8"><a href="pm-t.html#cb192-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-9"><a href="pm-t.html#cb192-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a train control object</span></span>
+<span id="cb192-10"><a href="pm-t.html#cb192-10" aria-hidden="true" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;none&quot;</span>) </span>
+<span id="cb192-11"><a href="pm-t.html#cb192-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-12"><a href="pm-t.html#cb192-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Train a linear regression model using caret</span></span>
+<span id="cb192-13"><a href="pm-t.html#cb192-13" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
+<span id="cb192-14"><a href="pm-t.html#cb192-14" aria-hidden="true" tabindex="-1"></a>  salary <span class="sc">~</span> career_PTS <span class="sc">+</span> position_rec <span class="sc">+</span> season_start <span class="sc">+</span> age,</span>
+<span id="cb192-15"><a href="pm-t.html#cb192-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> train_data,</span>
+<span id="cb192-16"><a href="pm-t.html#cb192-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb192-17"><a href="pm-t.html#cb192-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">trControl =</span> ctrl</span>
+<span id="cb192-18"><a href="pm-t.html#cb192-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb192-19"><a href="pm-t.html#cb192-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-20"><a href="pm-t.html#cb192-20" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
+<span id="cb192-21"><a href="pm-t.html#cb192-21" aria-hidden="true" tabindex="-1"></a>  salary <span class="sc">~</span> career_PTS,</span>
+<span id="cb192-22"><a href="pm-t.html#cb192-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> train_data,</span>
+<span id="cb192-23"><a href="pm-t.html#cb192-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb192-24"><a href="pm-t.html#cb192-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">trControl =</span> ctrl</span>
+<span id="cb192-25"><a href="pm-t.html#cb192-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb192-26"><a href="pm-t.html#cb192-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-27"><a href="pm-t.html#cb192-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions on the test set</span></span>
+<span id="cb192-28"><a href="pm-t.html#cb192-28" aria-hidden="true" tabindex="-1"></a>predicted_salaries_m1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model1, <span class="at">newdata =</span> test_data)</span>
+<span id="cb192-29"><a href="pm-t.html#cb192-29" aria-hidden="true" tabindex="-1"></a>predicted_salaries_m2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model2, <span class="at">newdata =</span> test_data)</span>
+<span id="cb192-30"><a href="pm-t.html#cb192-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-31"><a href="pm-t.html#cb192-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-32"><a href="pm-t.html#cb192-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate prediction errors (e.g., root mean squared error)</span></span>
+<span id="cb192-33"><a href="pm-t.html#cb192-33" aria-hidden="true" tabindex="-1"></a>rmse1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted_salaries_m1 <span class="sc">-</span> test_data<span class="sc">$</span>salary)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb192-34"><a href="pm-t.html#cb192-34" aria-hidden="true" tabindex="-1"></a>rmse2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted_salaries_m2 <span class="sc">-</span> test_data<span class="sc">$</span>salary)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb192-35"><a href="pm-t.html#cb192-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-36"><a href="pm-t.html#cb192-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the prediction errors</span></span>
+<span id="cb192-37"><a href="pm-t.html#cb192-37" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rmse1)</span></code></pre></div>
 <pre><code>## [1] 341746.4</code></pre>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="pm-t.html#cb169-1" tabindex="-1"></a><span class="fu">print</span>(rmse2)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="pm-t.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rmse2)</span></code></pre></div>
 <pre><code>## [1] 360297.3</code></pre>
 <p>Now machine learning usually involves several more steps:
 + we can optimize how the variables (in ML language called features enter the model) (Pre-processing)

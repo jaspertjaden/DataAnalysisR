@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content=" 5 Linear Regression Theory I: Simple Linear Regression | Data Analysis with R for Social Scientists" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-08-21" />
+<meta name="date" content="2023-08-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -127,10 +127,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-  
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -241,7 +237,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="lin-a.html"><a href="lin-a.html#regression-diagnostics-1"><i class="fa fa-check"></i><b>8.7</b> Regression Diagnostics</a>
 <ul>
-<li class="chapter" data-level="8.7.1" data-path="lin-a.html"><a href="lin-a.html#corrections"><i class="fa fa-check"></i><b>8.7.1</b> Corrections</a></li>
+<li class="chapter" data-level="8.7.1" data-path="lin-a.html"><a href="lin-a.html#skewed-outcome-variable"><i class="fa fa-check"></i><b>8.7.1</b> Skewed outcome variable</a></li>
+<li class="chapter" data-level="8.7.2" data-path="lin-a.html"><a href="lin-a.html#non-linearity"><i class="fa fa-check"></i><b>8.7.2</b> Non-linearity</a></li>
 </ul></li>
 <li class="chapter" data-level="8.8" data-path="lin-a.html"><a href="lin-a.html#returning-to-our-research-question-2"><i class="fa fa-check"></i><b>8.8</b> Returning to our research question</a></li>
 <li class="chapter" data-level="8.9" data-path="lin-a.html"><a href="lin-a.html#outlook"><i class="fa fa-check"></i><b>8.9</b> Outlook</a></li>
@@ -352,32 +349,31 @@ takes to achieve a good grade. But remember, no real students were harmed in
 making up this example data.</p>
 <p>Let us have a first look on the data:
 XXX ALIGN WITH EDA XXX</p>
-<pre><code>## Warning: package &#39;skimr&#39; was built under R version 4.2.3</code></pre>
+<pre><code>## Warning: Paket &#39;skimr&#39; wurde unter R Version 4.2.3 erstellt</code></pre>
 <pre><code>## 
-## Attaching package: &#39;skimr&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:corrr&#39;:
+## Attache Paket: &#39;skimr&#39;</code></pre>
+<pre><code>## Das folgende Objekt ist maskiert &#39;package:corrr&#39;:
 ## 
 ##     focus</code></pre>
-<pre><code>## Warning: package &#39;knitr&#39; was built under R version 4.2.3</code></pre>
-<table>
+<table style="width:100%;">
 <colgroup>
-<col width="4%" />
-<col width="10%" />
-<col width="4%" />
+<col width="3%" />
+<col width="9%" />
+<col width="3%" />
 <col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="9%" />
+<col width="4%" />
 <col width="6%" />
-<col width="6%" />
-<col width="10%" />
-<col width="5%" />
-<col width="7%" />
-<col width="5%" />
 <col width="4%" />
 <col width="4%" />
 <col width="4%" />
 <col width="4%" />
 <col width="4%" />
-<col width="5%" />
-<col width="5%" />
+<col width="4%" />
+<col width="4%" />
+<col width="15%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -456,7 +452,7 @@ XXX ALIGN WITH EDA XXX</p>
 <td align="right">3.000</td>
 <td align="right">3.725</td>
 <td align="right">5.000</td>
-<td align="left">▅▆▇▆▅</td>
+<td align="left">&lt;U+2585&gt;&lt;U+2586&gt;&lt;U+2587&gt;&lt;U+2586&gt;&lt;U+2585&gt;</td>
 </tr>
 <tr class="even">
 <td align="left">numeric</td>
@@ -475,7 +471,7 @@ XXX ALIGN WITH EDA XXX</p>
 <td align="right">41.000</td>
 <td align="right">45.000</td>
 <td align="right">57.000</td>
-<td align="left">▁▅▇▅▁</td>
+<td align="left">&lt;U+2581&gt;&lt;U+2585&gt;&lt;U+2587&gt;&lt;U+2585&gt;&lt;U+2581&gt;</td>
 </tr>
 <tr class="odd">
 <td align="left">numeric</td>
@@ -494,7 +490,7 @@ XXX ALIGN WITH EDA XXX</p>
 <td align="right">2.950</td>
 <td align="right">3.625</td>
 <td align="right">5.000</td>
-<td align="left">▅▇▇▆▂</td>
+<td align="left">&lt;U+2585&gt;&lt;U+2587&gt;&lt;U+2587&gt;&lt;U+2586&gt;&lt;U+2582&gt;</td>
 </tr>
 <tr class="even">
 <td align="left">numeric</td>
@@ -513,7 +509,7 @@ XXX ALIGN WITH EDA XXX</p>
 <td align="right">0.015</td>
 <td align="right">0.690</td>
 <td align="right">2.065</td>
-<td align="left">▅▇▇▆▂</td>
+<td align="left">&lt;U+2585&gt;&lt;U+2587&gt;&lt;U+2587&gt;&lt;U+2586&gt;&lt;U+2582&gt;</td>
 </tr>
 <tr class="odd">
 <td align="left">numeric</td>
@@ -532,7 +528,7 @@ XXX ALIGN WITH EDA XXX</p>
 <td align="right">0.670</td>
 <td align="right">4.670</td>
 <td align="right">16.670</td>
-<td align="left">▁▅▇▅▁</td>
+<td align="left">&lt;U+2581&gt;&lt;U+2585&gt;&lt;U+2587&gt;&lt;U+2585&gt;&lt;U+2581&gt;</td>
 </tr>
 </tbody>
 </table>
@@ -560,7 +556,7 @@ The two additional variables are versions of <code>previous_grades</code> and <c
 are centered on their respective means. They will come into play at a later
 point in this session.</p>
 <p>Let’s have a look at some observations.</p>
-<pre><code>## # A tibble: 10 × 7
+<pre><code>## # A tibble: 10 x 7
 ##    grade hours previous_grades attendance contact   previous_grades_centered
 ##    &lt;dbl&gt; &lt;int&gt;           &lt;dbl&gt; &lt;lgl&gt;      &lt;fct&gt;                        &lt;dbl&gt;
 ##  1     1    50             1.4 TRUE       E-Mail                      -1.54 
@@ -573,14 +569,14 @@ point in this session.</p>
 ##  8     1    45             2   TRUE       In Person                   -0.935
 ##  9     1    48             1   TRUE       In Person                   -1.94 
 ## 10     1    45             2   TRUE       In Person                   -0.935
-## # ℹ 1 more variable: hours_centered &lt;dbl&gt;</code></pre>
+## # i 1 more variable: hours_centered &lt;dbl&gt;</code></pre>
 <p>From this first 10 rows, we can see that the students with the best grades spent
 more than 40 hours on writing, have already achieved good grades in their papers
 up to this point and at least had some contact to the lecturers. Most also
 regularly attended the seminar but two did not and still achieved a <span class="math inline">\(1.0\)</span> in
 their grade.</p>
 <p>So what makes a bad grade?</p>
-<pre><code>## # A tibble: 10 × 7
+<pre><code>## # A tibble: 10 x 7
 ##    grade hours previous_grades attendance contact    previous_grades_centered
 ##    &lt;dbl&gt; &lt;int&gt;           &lt;dbl&gt; &lt;lgl&gt;      &lt;fct&gt;                         &lt;dbl&gt;
 ##  1   4.8    37             4.2 TRUE       No contact                    1.27 
@@ -593,7 +589,7 @@ their grade.</p>
 ##  8   5      33             5   TRUE       E-Mail                        2.06 
 ##  9   5      29             4.1 FALSE      E-Mail                        1.16 
 ## 10   5      50             4.6 FALSE      E-Mail                        1.66 
-## # ℹ 1 more variable: hours_centered &lt;dbl&gt;</code></pre>
+## # i 1 more variable: hours_centered &lt;dbl&gt;</code></pre>
 <p>Here the picture seems less clear. While most students did not put in as many
 hours, some did and still failed to pass. Half of the students that received a
 <span class="math inline">\(5.0\)</span> regularly attended and most at least had E-Mail contact before writing
@@ -707,7 +703,7 @@ most will not.</p>
 <p>We can visualize this. To keep the plot readable, we only do this for some
 random observations but in reality the distance of every data point from the
 regression line is taken into account.</p>
-<pre><code>## # A tibble: 5 × 7
+<pre><code>## # A tibble: 5 x 7
 ##   grade hours previous_grades attendance contact    previous_grades_centered
 ##   &lt;dbl&gt; &lt;int&gt;           &lt;dbl&gt; &lt;lgl&gt;      &lt;fct&gt;                         &lt;dbl&gt;
 ## 1   2.3    45             2.6 TRUE       No contact                   -0.335
@@ -715,7 +711,7 @@ regression line is taken into account.</p>
 ## 3   3.1    38             3.7 TRUE       In Person                     0.765
 ## 4   3.3    40             3.4 TRUE       E-Mail                        0.465
 ## 5   4.6    54             4.5 TRUE       No contact                    1.56 
-## # ℹ 1 more variable: hours_centered &lt;dbl&gt;</code></pre>
+## # i 1 more variable: hours_centered &lt;dbl&gt;</code></pre>
 <p><img src="_main_files/figure-html/plot_grade_hours_wild_guess_expl_residuals-1.png" width="672" /></p>
 <p>The distance of these or rather all points from the line, the <em>residuals</em>, are
 represented in the error term <span class="math inline">\(\epsilon\)</span>. It is a measure for how wrong our line
