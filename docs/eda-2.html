@@ -417,6 +417,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="7" style="list-style-type: decimal">
 <li><strong>Visualize relationships</strong>: Create scatter plots to explore the relationship between housing prices and other numeric variables. Interpret the plots. Also show the distribution of ptratio by distance_group.</li>
 </ol>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="eda-2.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of numeric variables to plot against MEDV</span></span>
 <span id="cb71-2"><a href="eda-2.html#cb71-2" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;crim&quot;</span>, <span class="st">&quot;rm&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;dis&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;lstat&quot;</span>)</span>
 <span id="cb71-3"><a href="eda-2.html#cb71-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -432,6 +433,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="eda-2.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the combined plot</span></span>
 <span id="cb72-2"><a href="eda-2.html#cb72-2" aria-hidden="true" tabindex="-1"></a>combined_plot</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="eda-2.html#cb70-1" tabindex="-1"></a><span class="co"># Create a list of numeric variables to plot against MEDV</span></span>
+<span id="cb70-2"><a href="eda-2.html#cb70-2" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;crim&quot;</span>, <span class="st">&quot;rm&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;dis&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;lstat&quot;</span>)</span>
+<span id="cb70-3"><a href="eda-2.html#cb70-3" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="eda-2.html#cb70-4" tabindex="-1"></a><span class="co"># Create a scatter plot for each variable</span></span>
+<span id="cb70-5"><a href="eda-2.html#cb70-5" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">lapply</span>(vars, <span class="cf">function</span>(var) {</span>
+<span id="cb70-6"><a href="eda-2.html#cb70-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(BostonHousing, <span class="fu">aes_string</span>(<span class="at">x =</span> var, <span class="at">y =</span> <span class="st">&quot;medv&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb70-7"><a href="eda-2.html#cb70-7" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb70-8"><a href="eda-2.html#cb70-8" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> var, <span class="at">y =</span> <span class="st">&quot;medv&quot;</span>)</span>
+<span id="cb70-9"><a href="eda-2.html#cb70-9" tabindex="-1"></a>})</span>
+<span id="cb70-10"><a href="eda-2.html#cb70-10" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb70-11"><a href="eda-2.html#cb70-11" tabindex="-1"></a><span class="co"># Combine the plots into a single plot</span></span>
+<span id="cb70-12"><a href="eda-2.html#cb70-12" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> <span class="fu">do.call</span>(grid.arrange, <span class="fu">c</span>(plots, <span class="at">ncol =</span> <span class="dv">3</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="eda-2.html#cb71-1" tabindex="-1"></a><span class="co"># Display the combined plot</span></span>
+<span id="cb71-2"><a href="eda-2.html#cb71-2" tabindex="-1"></a>combined_plot</span></code></pre></div>
+>>>>>>> Stashed changes
 <pre><code>## TableGrob (2 x 3) &quot;arrange&quot;: 6 grobs
 ##   z     cells    name           grob
 ## 1 1 (1-1,1-1) arrange gtable[layout]
@@ -440,21 +458,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 4 (2-2,1-1) arrange gtable[layout]
 ## 5 5 (2-2,2-2) arrange gtable[layout]
 ## 6 6 (2-2,3-3) arrange gtable[layout]</code></pre>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="eda-2.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a boxplot of PTRATIO grouped by distance_group</span></span>
 <span id="cb74-2"><a href="eda-2.html#cb74-2" aria-hidden="true" tabindex="-1"></a>BostonHousing <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
 <span id="cb74-3"><a href="eda-2.html#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>ptratio)) <span class="sc">+</span></span>
 <span id="cb74-4"><a href="eda-2.html#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>distance_group) <span class="sc">+</span></span>
 <span id="cb74-5"><a href="eda-2.html#cb74-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="eda-2.html#cb73-1" tabindex="-1"></a><span class="co"># Create a boxplot of PTRATIO grouped by distance_group</span></span>
+<span id="cb73-2"><a href="eda-2.html#cb73-2" tabindex="-1"></a>BostonHousing <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb73-3"><a href="eda-2.html#cb73-3" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>ptratio)) <span class="sc">+</span></span>
+<span id="cb73-4"><a href="eda-2.html#cb73-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>distance_group) <span class="sc">+</span></span>
+<span id="cb73-5"><a href="eda-2.html#cb73-5" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+>>>>>>> Stashed changes
 <p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <ol start="8" style="list-style-type: decimal">
 <li><strong>Correlation analysis</strong>: Calculate correlation coefficients between housing prices and average number of rooms per dwelling, also between housing prices and crime rate. Interpret the result.</li>
 </ol>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="eda-2.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
 <span id="cb75-2"><a href="eda-2.html#cb75-2" aria-hidden="true" tabindex="-1"></a>corr_matrix0 <span class="ot">&lt;-</span> <span class="fu">cor</span>(BostonHousing[, <span class="fu">c</span>(<span class="st">&quot;medv&quot;</span>, <span class="st">&quot;rm&quot;</span>)])</span>
 <span id="cb75-3"><a href="eda-2.html#cb75-3" aria-hidden="true" tabindex="-1"></a>corr_matrix1 <span class="ot">&lt;-</span> <span class="fu">cor</span>(BostonHousing[, <span class="fu">c</span>(<span class="st">&quot;medv&quot;</span>, <span class="st">&quot;crim&quot;</span>)])</span>
 <span id="cb75-4"><a href="eda-2.html#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(corr_matrix0)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="eda-2.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(corr_matrix1)</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="eda-2.html#cb74-1" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb74-2"><a href="eda-2.html#cb74-2" tabindex="-1"></a>corr_matrix0 <span class="ot">&lt;-</span> <span class="fu">cor</span>(BostonHousing[, <span class="fu">c</span>(<span class="st">&quot;medv&quot;</span>, <span class="st">&quot;rm&quot;</span>)])</span>
+<span id="cb74-3"><a href="eda-2.html#cb74-3" tabindex="-1"></a>corr_matrix1 <span class="ot">&lt;-</span> <span class="fu">cor</span>(BostonHousing[, <span class="fu">c</span>(<span class="st">&quot;medv&quot;</span>, <span class="st">&quot;crim&quot;</span>)])</span>
+<span id="cb74-4"><a href="eda-2.html#cb74-4" tabindex="-1"></a><span class="fu">corrplot</span>(corr_matrix0)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="eda-2.html#cb75-1" tabindex="-1"></a><span class="fu">corrplot</span>(corr_matrix1)</span></code></pre></div>
+>>>>>>> Stashed changes
 <p><img src="_main_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
 <p><strong>This is a draft of questions, dataframe and the variables will be specified later</strong></p>
 

@@ -15,6 +15,7 @@ link-citations: yes
 github-repo: jaspertjaden/DataAnalysisR
 ---
 
+<<<<<<< Updated upstream
 # Intro {-}
 
 This course offers an accessible and easy introduction to one of the fastest growing statistical packages used in social science and data science more generally.
@@ -604,6 +605,48 @@ if he scored 10 more points a game (regardless of the position he plays).
 
 
 
+=======
+# url: your book url like https://bookdown.org/yihui/bookdown
+
+Placeholder
+
+
+
+<!--chapter:end:index.Rmd-->
+
+
+# Introduction to Seminar {#intro-sem} 
+
+Placeholder
+
+
+## Introduction
+## Why should I take this course?
+## Objectives
+## What is not covered
+## Prerequisites
+## Structure
+
+<!--chapter:end:01-intro-to-seminar.Rmd-->
+
+
+# Exloratory Data Analysis - I {#eda-1}
+
+Placeholder
+
+
+## Objectives
+## R functions covered this week
+## Why is EDA so important?
+## Importing data into R
+## Import data into R
+## Merge datasets
+## Clean dataset
+## change variables
+## Explore the whole dataset
+## explore individual variables
+
+>>>>>>> Stashed changes
 <!--chapter:end:02-EDA-1.Rmd-->
 
 # Exploratory Data Analysis - II {#eda-2}
@@ -661,6 +704,10 @@ You can include this data by installing mlbench library:
 #install.packages("mlbench") ## installing the library
 library(mlbench) #adding the library
 library(openxlsx)
+<<<<<<< Updated upstream
+=======
+library(dplyr)
+>>>>>>> Stashed changes
 data(BostonHousing2)
 housing <- BostonHousing2
 write.xlsx(housing, "../datasets/boston.xlsx")
@@ -799,6 +846,7 @@ corrplot(corr_matrix1)
 
 <!--chapter:end:04-DAGs.Rmd-->
 
+<<<<<<< Updated upstream
 # Linear Regression Theory I: Simple Linear Regression {#lin-t-1}
 
 
@@ -3052,6 +3100,77 @@ XXX FINAL CONCLUSIONS ON THE PUZZLE? XXX
 * Weighting
 * Mutli-level/Fixed effects
 
+=======
+
+# Linear Regression Theory I: Simple Linear Regression {#lin-t-1}
+
+Placeholder
+
+
+## What is Linear Regression
+## Examplary research question & data
+## Simple Linear Regression
+### Regression Formula
+### Regressing `grade` on `hours`
+
+<!--chapter:end:05-linear-regression-t-1.Rmd-->
+
+
+# Linear Regression Theory II: Multiple Linear Regression {#lin-t-2}
+
+Placeholder
+
+
+## Multiple Linear Regression
+### Adding additional metric variables
+### Adding dummy variables
+### Adding categorical variables
+## Returning to our research question
+## Interpretation
+
+<!--chapter:end:06-linear-regression-t-2.Rmd-->
+
+
+# Linear Regression Theory III: Diagnostics {#log-t-3}
+
+Placeholder
+
+
+## Model fit
+## Regression diagnostics
+### Linearity
+### Normally distributed residuals
+### Homoscedasticity
+### No overly influential data points
+### No (multi)collinearity
+## Returning to our research question
+### Interactions
+### Regression diagnostics (revisited)
+
+<!--chapter:end:07-linear-regression-t-3.Rmd-->
+
+
+# Linear Regression - Application {#lin-a}
+
+Placeholder
+
+
+## Objectives
+## R functions covered this week
+## Temporary from EDA I
+## Research question
+## Simple linear regression in R
+### Interpretation
+## Multiple linear regression in R
+### Interpretation
+### Sidenote: Adding interactions
+## Regression Diagnostics
+### Skewed outcome variable
+### Non-linearity
+## Returning to our research question
+## Outlook
+
+>>>>>>> Stashed changes
 <!--chapter:end:08-linear-regression-app.Rmd-->
 
 # Linear Regression - Exercises {#lin-e}
@@ -3075,6 +3194,7 @@ XXX FINAL CONCLUSIONS ON THE PUZZLE? XXX
 
 <!--chapter:end:09-linear-regression-ex.Rmd-->
 
+<<<<<<< Updated upstream
 # Mediation {#med}
 In this week, we will introduce to the concept of mediation analysis. 
 
@@ -3254,10 +3374,17 @@ mediator in the model. The coefficient is the direct effect when we do include t
 The indirect effect is the total effect minus the direct effect (-1.400.000 - (-500.000) = -900.000).
 
 In sum, Guards are disadvantaged. They receive less money than center, although, if the points were considered, they should make even more. There must be other reasons why guards earn less. We need to go back to theory and come up with new hypothesis. 
+=======
+
+# Mediation {#med}
+
+Placeholder
+>>>>>>> Stashed changes
 
 
 ## FInt out more
 
+<<<<<<< Updated upstream
 - provide resources here 
 - references etc. 
 
@@ -3531,6 +3658,19 @@ JT: consider doing this also with "tidymodels"
 
 ## More resources:
 Provide list of online resources to dig deeper
+=======
+<!--chapter:end:10-mediation.Rmd-->
+
+
+# Prediction - Theory {#pm-t}
+
+Placeholder
+
+
+## How prediction works
+## Intro to Machine learning
+## More resources:
+>>>>>>> Stashed changes
 
 <!--chapter:end:11-prediction-theory.Rmd-->
 

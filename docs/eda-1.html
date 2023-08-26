@@ -336,8 +336,13 @@ the model from working altogether.</li>
 <div id="import-data-into-r" class="section level2 hasAnchor" number="2.5">
 <h2><span class="header-section-number">2.5</span> Import data into R<a href="eda-1.html#import-data-into-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>First, we need to install some packages.</p>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="eda-1.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
 <span id="cb1-2"><a href="eda-1.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readxl&quot;</span>)</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="eda-1.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb1-2"><a href="eda-1.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readxl&quot;</span>)</span></code></pre></div>
+>>>>>>> Stashed changes
 <p>Now, let’s import the data.You can see in the folder that we have 2 csv files.
 We can use <code>read_delim()</code> or <code>read_csv</code> function. Note that you need other function for Stata datasets (<code>read_data</code> from the haven package). To load Rdata files, you use the <code>load()</code> function.</p>
 <p>Make sure you name the correct sub-directory in case you saved the data a sub-folder of your project folder (which I have done).</p>
@@ -637,6 +642,7 @@ Let’s start with the DataExplorer package. It is nice to get an overview of va
 ## 1  9728      36               18                 18                   0
 ## # i 4 more variables: total_missing_values &lt;int&gt;, complete_rows &lt;int&gt;,
 ## #   total_observations &lt;int&gt;, memory_usage &lt;dbl&gt;</code></pre>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="eda-1.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plots the info from above</span></span>
 <span id="cb26-2"><a href="eda-1.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_intro</span>(data_nba)</span></code></pre></div>
 <p><img src="_main_files/figure-html/explore_dt_0-1.png" width="672" /></p>
@@ -645,6 +651,16 @@ Let’s start with the DataExplorer package. It is nice to get an overview of va
 <p><img src="_main_files/figure-html/explore_dt_0-2.png" width="672" /></p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="eda-1.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plots frequencies across variables</span></span>
 <span id="cb28-2"><a href="eda-1.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_bar</span>(data_nba)</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="eda-1.html#cb23-1" tabindex="-1"></a><span class="co"># plots the info from above</span></span>
+<span id="cb23-2"><a href="eda-1.html#cb23-2" tabindex="-1"></a><span class="fu">plot_intro</span>(data_nba)</span></code></pre></div>
+<p><img src="_main_files/figure-html/explore_dt_0-1.png" width="672" /></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="eda-1.html#cb24-1" tabindex="-1"></a><span class="co">#plots percentages missing across variables</span></span>
+<span id="cb24-2"><a href="eda-1.html#cb24-2" tabindex="-1"></a><span class="fu">plot_missing</span>(data_nba)</span></code></pre></div>
+<p><img src="_main_files/figure-html/explore_dt_0-2.png" width="672" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="eda-1.html#cb25-1" tabindex="-1"></a><span class="co"># plots frequencies across variables</span></span>
+<span id="cb25-2"><a href="eda-1.html#cb25-2" tabindex="-1"></a><span class="fu">plot_bar</span>(data_nba)</span></code></pre></div>
+>>>>>>> Stashed changes
 <pre><code>## 11 columns ignored with more than 50 categories.
 ## X_id: 1794 categories
 ## name: 1790 categories
@@ -661,6 +677,7 @@ Let’s start with the DataExplorer package. It is nice to get an overview of va
 <p>Now, let’s try gtSummary for summary tables. A summary table is always a useful start once you have identified the type of variables you are interested in.</p>
 <p>Let’s assume we are interested in age, seasons played, career points, salary,
 position, and right or left handed (i.e. “shoots”)</p>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="eda-1.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
 <span id="cb30-2"><a href="eda-1.html#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-3"><a href="eda-1.html#cb30-3" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
@@ -673,6 +690,31 @@ position, and right or left handed (i.e. “shoots”)</p>
 }
 
 #feqoznywet .gt_table {
+=======
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="eda-1.html#cb27-1" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span></code></pre></div>
+<pre><code>## #BlackLivesMatter</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="eda-1.html#cb29-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="eda-1.html#cb29-2" tabindex="-1"></a>  <span class="fu">select</span>(age, seasons_played, shoots, career_PTS, salary, <span class="fu">contains</span>(<span class="st">&quot;position&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="eda-1.html#cb29-3" tabindex="-1"></a>         <span class="fu">tbl_summary</span>(</span>
+<span id="cb29-4"><a href="eda-1.html#cb29-4" tabindex="-1"></a>           <span class="at">statistic =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="st">&quot;{mean} ({min}, {max})&quot;</span>)) </span></code></pre></div>
+<div id="oasrknykyz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#oasrknykyz table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#oasrknykyz thead, #oasrknykyz tbody, #oasrknykyz tfoot, #oasrknykyz tr, #oasrknykyz td, #oasrknykyz th {
+  border-style: none;
+}
+
+#oasrknykyz p {
+  margin: 0;
+  padding: 0;
+}
+
+#oasrknykyz .gt_table {
+>>>>>>> Stashed changes
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -697,7 +739,40 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-left-color: #D3D3D3;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_heading {
+=======
+#oasrknykyz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#oasrknykyz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#oasrknykyz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#oasrknykyz .gt_heading {
+>>>>>>> Stashed changes
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -709,6 +784,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-right-color: #D3D3D3;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
@@ -739,12 +815,19 @@ position, and right or left handed (i.e. “shoots”)</p>
 }
 
 #feqoznywet .gt_bottom_border {
+=======
+#oasrknykyz .gt_bottom_border {
+>>>>>>> Stashed changes
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_col_headings {
+=======
+#oasrknykyz .gt_col_headings {
+>>>>>>> Stashed changes
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -759,7 +842,11 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-right-color: #D3D3D3;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_col_heading {
+=======
+#oasrknykyz .gt_col_heading {
+>>>>>>> Stashed changes
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -779,7 +866,11 @@ position, and right or left handed (i.e. “shoots”)</p>
   overflow-x: hidden;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_column_spanner_outer {
+=======
+#oasrknykyz .gt_column_spanner_outer {
+>>>>>>> Stashed changes
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -791,6 +882,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 4px;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
@@ -800,6 +892,17 @@ position, and right or left handed (i.e. “shoots”)</p>
 }
 
 #feqoznywet .gt_column_spanner {
+=======
+#oasrknykyz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#oasrknykyz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#oasrknykyz .gt_column_spanner {
+>>>>>>> Stashed changes
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -811,7 +914,15 @@ position, and right or left handed (i.e. “shoots”)</p>
   width: 100%;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_group_heading {
+=======
+#oasrknykyz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#oasrknykyz .gt_group_heading {
+>>>>>>> Stashed changes
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -837,7 +948,11 @@ position, and right or left handed (i.e. “shoots”)</p>
   text-align: left;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_empty_group_heading {
+=======
+#oasrknykyz .gt_empty_group_heading {
+>>>>>>> Stashed changes
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -852,6 +967,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   vertical-align: middle;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -861,6 +977,17 @@ position, and right or left handed (i.e. “shoots”)</p>
 }
 
 #feqoznywet .gt_row {
+=======
+#oasrknykyz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#oasrknykyz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#oasrknykyz .gt_row {
+>>>>>>> Stashed changes
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -879,7 +1006,11 @@ position, and right or left handed (i.e. “shoots”)</p>
   overflow-x: hidden;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_stub {
+=======
+#oasrknykyz .gt_stub {
+>>>>>>> Stashed changes
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -892,7 +1023,11 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 5px;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_stub_row_group {
+=======
+#oasrknykyz .gt_stub_row_group {
+>>>>>>> Stashed changes
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -906,11 +1041,23 @@ position, and right or left handed (i.e. “shoots”)</p>
   vertical-align: top;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_row_group_first td {
   border-top-width: 2px;
 }
 
 #feqoznywet .gt_summary_row {
+=======
+#oasrknykyz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#oasrknykyz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#oasrknykyz .gt_summary_row {
+>>>>>>> Stashed changes
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -920,16 +1067,28 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 5px;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_first_summary_row {
+=======
+#oasrknykyz .gt_first_summary_row {
+>>>>>>> Stashed changes
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
 #feqoznywet .gt_last_summary_row {
+=======
+#oasrknykyz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#oasrknykyz .gt_last_summary_row {
+>>>>>>> Stashed changes
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -939,7 +1098,11 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-bottom-color: #D3D3D3;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_grand_summary_row {
+=======
+#oasrknykyz .gt_grand_summary_row {
+>>>>>>> Stashed changes
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -949,7 +1112,11 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 5px;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_first_grand_summary_row {
+=======
+#oasrknykyz .gt_first_grand_summary_row {
+>>>>>>> Stashed changes
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -959,11 +1126,29 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-top-color: #D3D3D3;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
 #feqoznywet .gt_table_body {
+=======
+#oasrknykyz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oasrknykyz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#oasrknykyz .gt_table_body {
+>>>>>>> Stashed changes
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -972,7 +1157,11 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-bottom-color: #D3D3D3;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_footnotes {
+=======
+#oasrknykyz .gt_footnotes {
+>>>>>>> Stashed changes
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -986,7 +1175,11 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-right-color: #D3D3D3;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_footnote {
+=======
+#oasrknykyz .gt_footnote {
+>>>>>>> Stashed changes
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -995,7 +1188,11 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 5px;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_sourcenotes {
+=======
+#oasrknykyz .gt_sourcenotes {
+>>>>>>> Stashed changes
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1009,7 +1206,11 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-right-color: #D3D3D3;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_sourcenote {
+=======
+#oasrknykyz .gt_sourcenote {
+>>>>>>> Stashed changes
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1017,6 +1218,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 5px;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_left {
   text-align: left;
 }
@@ -1026,10 +1228,22 @@ position, and right or left handed (i.e. “shoots”)</p>
 }
 
 #feqoznywet .gt_right {
+=======
+#oasrknykyz .gt_left {
+  text-align: left;
+}
+
+#oasrknykyz .gt_center {
+  text-align: center;
+}
+
+#oasrknykyz .gt_right {
+>>>>>>> Stashed changes
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_font_normal {
   font-weight: normal;
 }
@@ -1049,15 +1263,39 @@ position, and right or left handed (i.e. “shoots”)</p>
 #feqoznywet .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
+=======
+#oasrknykyz .gt_font_normal {
+  font-weight: normal;
+}
+
+#oasrknykyz .gt_font_bold {
+  font-weight: bold;
+}
+
+#oasrknykyz .gt_font_italic {
+  font-style: italic;
+}
+
+#oasrknykyz .gt_super {
+  font-size: 65%;
+}
+
+#oasrknykyz .gt_footnote_marks {
+>>>>>>> Stashed changes
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_asterisk {
+=======
+#oasrknykyz .gt_asterisk {
+>>>>>>> Stashed changes
   font-size: 100%;
   vertical-align: 0;
 }
 
+<<<<<<< Updated upstream
 #feqoznywet .gt_indent_1 {
   text-indent: 5px;
 }
@@ -1075,6 +1313,25 @@ position, and right or left handed (i.e. “shoots”)</p>
 }
 
 #feqoznywet .gt_indent_5 {
+=======
+#oasrknykyz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#oasrknykyz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#oasrknykyz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#oasrknykyz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#oasrknykyz .gt_indent_5 {
+>>>>>>> Stashed changes
   text-indent: 25px;
 }
 </style>
@@ -1199,6 +1456,7 @@ variables in the dataset.</p>
 ## 15    .15                                   
 ## 16    .12         .33                       
 ## 17    .41         .45             .66</code></pre>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="eda-1.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># as plot</span></span>
 <span id="cb33-2"><a href="eda-1.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rplot</span>(corrmatrix)</span></code></pre></div>
 <p><img src="_main_files/figure-html/explore_dt_2-1.png" width="672" /></p>
@@ -1210,6 +1468,19 @@ variables in the dataset.</p>
 <span id="cb34-6"><a href="eda-1.html#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcorrplot</span>(corrmatrix,</span>
 <span id="cb34-7"><a href="eda-1.html#cb34-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">method =</span> <span class="st">&quot;circle&quot;</span>,</span>
 <span id="cb34-8"><a href="eda-1.html#cb34-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">type=</span><span class="st">&quot;lower&quot;</span>)</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="eda-1.html#cb32-1" tabindex="-1"></a><span class="co"># as plot</span></span>
+<span id="cb32-2"><a href="eda-1.html#cb32-2" tabindex="-1"></a><span class="fu">rplot</span>(corrmatrix)</span></code></pre></div>
+<p><img src="_main_files/figure-html/explore_dt_2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="eda-1.html#cb33-1" tabindex="-1"></a><span class="co"># or...ggplot approach</span></span>
+<span id="cb33-2"><a href="eda-1.html#cb33-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggcorrplot&quot;</span>)</span>
+<span id="cb33-3"><a href="eda-1.html#cb33-3" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="eda-1.html#cb33-4" tabindex="-1"></a>corrmatrix <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(data_nba_numeric), <span class="dv">1</span>)</span>
+<span id="cb33-5"><a href="eda-1.html#cb33-5" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="eda-1.html#cb33-6" tabindex="-1"></a><span class="fu">ggcorrplot</span>(corrmatrix,</span>
+<span id="cb33-7"><a href="eda-1.html#cb33-7" tabindex="-1"></a>           <span class="at">method =</span> <span class="st">&quot;circle&quot;</span>,</span>
+<span id="cb33-8"><a href="eda-1.html#cb33-8" tabindex="-1"></a>           <span class="at">type=</span><span class="st">&quot;lower&quot;</span>)</span></code></pre></div>
+>>>>>>> Stashed changes
 <p><img src="_main_files/figure-html/explore_dt_2-2.png" width="672" /></p>
 <p>This is interesting for a first look. For example, it seems that the weight is
 strongly correlated with whatever position you play. Centers are heavy, point
@@ -1230,6 +1501,7 @@ don’t care about passers and just pay more to people who score more.</p>
 Also, we want to know whether point guards (short people who pass a lot) are
 paid less then other positions (who score more).</p>
 <p>First, let’s look how the two continuous variables are distributed:</p>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="eda-1.html#cb35-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
 <span id="cb35-2"><a href="eda-1.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary)) <span class="sc">+</span></span>
 <span id="cb35-3"><a href="eda-1.html#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>position_pg) <span class="sc">+</span></span>
@@ -1243,6 +1515,21 @@ paid less then other positions (who score more).</p>
 <span id="cb37-2"><a href="eda-1.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>career_PTS)) <span class="sc">+</span></span>
 <span id="cb37-3"><a href="eda-1.html#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>position_pg) <span class="sc">+</span></span>
 <span id="cb37-4"><a href="eda-1.html#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="eda-1.html#cb34-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb34-2"><a href="eda-1.html#cb34-2" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary)) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="eda-1.html#cb34-3" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>position_pg) <span class="sc">+</span></span>
+<span id="cb34-4"><a href="eda-1.html#cb34-4" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/explore_dt_3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="eda-1.html#cb35-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb35-2"><a href="eda-1.html#cb35-2" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>career_PTS)) <span class="sc">+</span> </span>
+<span id="cb35-3"><a href="eda-1.html#cb35-3" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/explore_dt_3-2.png" width="672" /></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="eda-1.html#cb36-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb36-2"><a href="eda-1.html#cb36-2" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>career_PTS)) <span class="sc">+</span></span>
+<span id="cb36-3"><a href="eda-1.html#cb36-3" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>position_pg) <span class="sc">+</span></span>
+<span id="cb36-4"><a href="eda-1.html#cb36-4" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+>>>>>>> Stashed changes
 <p><img src="_main_files/figure-html/explore_dt_3-3.png" width="672" /></p>
 <p>Let’s look at the relationship between salary and position as well as the
 relationship between position and points.</p>
@@ -1252,6 +1539,7 @@ relationship between position and points.</p>
 <pre><code>##  num [1:9728] 798500 1411000 1594920 4500000 5062500 ...</code></pre>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="eda-1.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data_nba<span class="sc">$</span>career_pts)</span></code></pre></div>
 <pre><code>##  NULL</code></pre>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="eda-1.html#cb44-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
 <span id="cb44-2"><a href="eda-1.html#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb44-3"><a href="eda-1.html#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> position_pg, </span>
@@ -1300,11 +1588,62 @@ relationship between position and points.</p>
 <span id="cb46-14"><a href="eda-1.html#cb46-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Player&#39;s position&quot;</span>) <span class="sc">+</span></span>
 <span id="cb46-15"><a href="eda-1.html#cb46-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Points per game&quot;</span>) <span class="sc">+</span></span>
 <span id="cb46-16"><a href="eda-1.html#cb46-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="eda-1.html#cb43-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb43-2"><a href="eda-1.html#cb43-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb43-3"><a href="eda-1.html#cb43-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> position_pg, </span>
+<span id="cb43-4"><a href="eda-1.html#cb43-4" tabindex="-1"></a>               <span class="at">y =</span> salary),</span>
+<span id="cb43-5"><a href="eda-1.html#cb43-5" tabindex="-1"></a>           <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>,</span>
+<span id="cb43-6"><a href="eda-1.html#cb43-6" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>,</span>
+<span id="cb43-7"><a href="eda-1.html#cb43-7" tabindex="-1"></a>           <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb43-8"><a href="eda-1.html#cb43-8" tabindex="-1"></a>  <span class="co">#xlim(0, 10000000) +</span></span>
+<span id="cb43-9"><a href="eda-1.html#cb43-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Average salary (Point guard vs other positions)&quot;</span>,</span>
+<span id="cb43-10"><a href="eda-1.html#cb43-10" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;this is not that interesting&quot;</span>,</span>
+<span id="cb43-11"><a href="eda-1.html#cb43-11" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Authors&#39; calculation; NBA data 1998-2018&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-12"><a href="eda-1.html#cb43-12" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Player&#39;s position&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-13"><a href="eda-1.html#cb43-13" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Player&#39;s salary&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-14"><a href="eda-1.html#cb43-14" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/explore_dt_4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="eda-1.html#cb44-1" tabindex="-1"></a><span class="do">## alternatively:</span></span>
+<span id="cb44-2"><a href="eda-1.html#cb44-2" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="eda-1.html#cb44-3" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb44-4"><a href="eda-1.html#cb44-4" tabindex="-1"></a>  <span class="fu">group_by</span>(position_pg) <span class="sc">%&gt;%</span></span>
+<span id="cb44-5"><a href="eda-1.html#cb44-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_salary =</span> <span class="fu">mean</span>(salary, <span class="at">na.rm=</span>T)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-6"><a href="eda-1.html#cb44-6" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb44-7"><a href="eda-1.html#cb44-7" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(position_pg), </span>
+<span id="cb44-8"><a href="eda-1.html#cb44-8" tabindex="-1"></a>               <span class="at">y =</span> mean_salary),</span>
+<span id="cb44-9"><a href="eda-1.html#cb44-9" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb44-10"><a href="eda-1.html#cb44-10" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">6000000</span>) <span class="sc">+</span></span>
+<span id="cb44-11"><a href="eda-1.html#cb44-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Average salary (Point guard vs other positions)&quot;</span>,</span>
+<span id="cb44-12"><a href="eda-1.html#cb44-12" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;this is not that interesting&quot;</span>,</span>
+<span id="cb44-13"><a href="eda-1.html#cb44-13" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Authors&#39; calculation; NBA data 1998-2018&quot;</span>) <span class="sc">+</span></span>
+<span id="cb44-14"><a href="eda-1.html#cb44-14" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Player&#39;s position&quot;</span>) <span class="sc">+</span></span>
+<span id="cb44-15"><a href="eda-1.html#cb44-15" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Player&#39;s salary (in million USD)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb44-16"><a href="eda-1.html#cb44-16" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/explore_dt_4-2.png" width="672" /></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="eda-1.html#cb45-1" tabindex="-1"></a><span class="co"># Now the relationship between position and points:</span></span>
+<span id="cb45-2"><a href="eda-1.html#cb45-2" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="eda-1.html#cb45-3" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb45-4"><a href="eda-1.html#cb45-4" tabindex="-1"></a>  <span class="fu">group_by</span>(position_pg) <span class="sc">%&gt;%</span></span>
+<span id="cb45-5"><a href="eda-1.html#cb45-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_points =</span> <span class="fu">mean</span>(career_PTS, <span class="at">na.rm=</span>T)) <span class="sc">%&gt;%</span></span>
+<span id="cb45-6"><a href="eda-1.html#cb45-6" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb45-7"><a href="eda-1.html#cb45-7" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(position_pg), </span>
+<span id="cb45-8"><a href="eda-1.html#cb45-8" tabindex="-1"></a>               <span class="at">y =</span> mean_points),</span>
+<span id="cb45-9"><a href="eda-1.html#cb45-9" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb45-10"><a href="eda-1.html#cb45-10" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb45-11"><a href="eda-1.html#cb45-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Average points per game (Point guard vs other positions)&quot;</span>,</span>
+<span id="cb45-12"><a href="eda-1.html#cb45-12" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;this is not that interesting&quot;</span>,</span>
+<span id="cb45-13"><a href="eda-1.html#cb45-13" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Authors&#39; calculation; NBA data 1998-2018&quot;</span>) <span class="sc">+</span></span>
+<span id="cb45-14"><a href="eda-1.html#cb45-14" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Player&#39;s position&quot;</span>) <span class="sc">+</span></span>
+<span id="cb45-15"><a href="eda-1.html#cb45-15" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Points per game&quot;</span>) <span class="sc">+</span></span>
+<span id="cb45-16"><a href="eda-1.html#cb45-16" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+>>>>>>> Stashed changes
 <p><img src="_main_files/figure-html/explore_dt_4-3.png" width="672" /></p>
 <p>So, it seems that point gards are paid a little less even though they make a few more points on average. Interesting puzzle to explore.</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="eda-1.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find example for using histogramm()</span></span>
 <span id="cb47-2"><a href="eda-1.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co"># find example for first just creating cross tabs as perecntages tbl_cross(); summarize(); tabyl()</span></span></code></pre></div>
 <p>Now, let’s explore the relationship which is at the heart of our analysis from now on: salary and average points.</p>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="eda-1.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simple scatterplot</span></span>
 <span id="cb48-2"><a href="eda-1.html#cb48-2" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb48-3"><a href="eda-1.html#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span> </span>
@@ -1382,6 +1721,85 @@ relationship between position and points.</p>
 <span id="cb54-4"><a href="eda-1.html#cb54-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
 <span id="cb54-5"><a href="eda-1.html#cb54-5" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">group=</span><span class="fu">as.factor</span>(position_center))) <span class="sc">+</span> </span>
 <span id="cb54-6"><a href="eda-1.html#cb54-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="eda-1.html#cb47-1" tabindex="-1"></a><span class="co"># simple scatterplot</span></span>
+<span id="cb47-2"><a href="eda-1.html#cb47-2" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb47-3"><a href="eda-1.html#cb47-3" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span> </span>
+<span id="cb47-4"><a href="eda-1.html#cb47-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/explore_dt_6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="eda-1.html#cb48-1" tabindex="-1"></a><span class="co"># Now, let&#39;s add a line</span></span>
+<span id="cb48-2"><a href="eda-1.html#cb48-2" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb48-3"><a href="eda-1.html#cb48-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span></span>
+<span id="cb48-4"><a href="eda-1.html#cb48-4" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb48-5"><a href="eda-1.html#cb48-5" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb48-6"><a href="eda-1.html#cb48-6" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/explore_dt_6-2.png" width="672" /></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="eda-1.html#cb49-1" tabindex="-1"></a><span class="co"># let&#39;s look the relatiship separate for every year</span></span>
+<span id="cb49-2"><a href="eda-1.html#cb49-2" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb49-3"><a href="eda-1.html#cb49-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span></span>
+<span id="cb49-4"><a href="eda-1.html#cb49-4" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb49-5"><a href="eda-1.html#cb49-5" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb49-6"><a href="eda-1.html#cb49-6" tabindex="-1"></a>        <span class="fu">facet_wrap</span>(<span class="sc">~</span>season_start) <span class="sc">+</span> </span>
+<span id="cb49-7"><a href="eda-1.html#cb49-7" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/explore_dt_6-3.png" width="672" /></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="eda-1.html#cb50-1" tabindex="-1"></a><span class="co"># let&#39;s look the relatiship for separate teams</span></span>
+<span id="cb50-2"><a href="eda-1.html#cb50-2" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb50-3"><a href="eda-1.html#cb50-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span></span>
+<span id="cb50-4"><a href="eda-1.html#cb50-4" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb50-5"><a href="eda-1.html#cb50-5" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb50-6"><a href="eda-1.html#cb50-6" tabindex="-1"></a>        <span class="fu">facet_wrap</span>(<span class="sc">~</span>team) <span class="sc">+</span> </span>
+<span id="cb50-7"><a href="eda-1.html#cb50-7" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/explore_dt_6-4.png" width="672" /></p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="eda-1.html#cb51-1" tabindex="-1"></a><span class="co"># let&#39;s look at it by position</span></span>
+<span id="cb51-2"><a href="eda-1.html#cb51-2" tabindex="-1"></a>scatter_pg <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> <span class="fu">filter</span>(position_pg <span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-3"><a href="eda-1.html#cb51-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span></span>
+<span id="cb51-4"><a href="eda-1.html#cb51-4" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb51-5"><a href="eda-1.html#cb51-5" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb51-6"><a href="eda-1.html#cb51-6" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span>
+<span id="cb51-7"><a href="eda-1.html#cb51-7" tabindex="-1"></a></span>
+<span id="cb51-8"><a href="eda-1.html#cb51-8" tabindex="-1"></a>scatter_center <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> <span class="fu">filter</span>(position_center <span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-9"><a href="eda-1.html#cb51-9" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span></span>
+<span id="cb51-10"><a href="eda-1.html#cb51-10" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb51-11"><a href="eda-1.html#cb51-11" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb51-12"><a href="eda-1.html#cb51-12" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span>
+<span id="cb51-13"><a href="eda-1.html#cb51-13" tabindex="-1"></a></span>
+<span id="cb51-14"><a href="eda-1.html#cb51-14" tabindex="-1"></a>scatter_pf <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> <span class="fu">filter</span>(position_pf <span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-15"><a href="eda-1.html#cb51-15" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span></span>
+<span id="cb51-16"><a href="eda-1.html#cb51-16" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb51-17"><a href="eda-1.html#cb51-17" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb51-18"><a href="eda-1.html#cb51-18" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span>
+<span id="cb51-19"><a href="eda-1.html#cb51-19" tabindex="-1"></a></span>
+<span id="cb51-20"><a href="eda-1.html#cb51-20" tabindex="-1"></a>scatter_sf <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> <span class="fu">filter</span>(position_sf <span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-21"><a href="eda-1.html#cb51-21" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span></span>
+<span id="cb51-22"><a href="eda-1.html#cb51-22" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb51-23"><a href="eda-1.html#cb51-23" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb51-24"><a href="eda-1.html#cb51-24" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span>
+<span id="cb51-25"><a href="eda-1.html#cb51-25" tabindex="-1"></a></span>
+<span id="cb51-26"><a href="eda-1.html#cb51-26" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggpubr&quot;</span>)</span>
+<span id="cb51-27"><a href="eda-1.html#cb51-27" tabindex="-1"></a><span class="fu">ggarrange</span>(scatter_center, scatter_pf,</span>
+<span id="cb51-28"><a href="eda-1.html#cb51-28" tabindex="-1"></a>          scatter_sf, scatter_pg,</span>
+<span id="cb51-29"><a href="eda-1.html#cb51-29" tabindex="-1"></a>          <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb51-30"><a href="eda-1.html#cb51-30" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Center&quot;</span>,</span>
+<span id="cb51-31"><a href="eda-1.html#cb51-31" tabindex="-1"></a>                     <span class="st">&quot;Power Forward&quot;</span>,</span>
+<span id="cb51-32"><a href="eda-1.html#cb51-32" tabindex="-1"></a>                     <span class="st">&quot;Small Forward&quot;</span>,</span>
+<span id="cb51-33"><a href="eda-1.html#cb51-33" tabindex="-1"></a>                     <span class="st">&quot;Point Guard&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/explore_dt_6-5.png" width="672" /></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="eda-1.html#cb52-1" tabindex="-1"></a><span class="co"># yet a better way to compare this could be:</span></span>
+<span id="cb52-2"><a href="eda-1.html#cb52-2" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="eda-1.html#cb52-3" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb52-4"><a href="eda-1.html#cb52-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS, <span class="at">color=</span><span class="fu">as.factor</span>(position_pg))) <span class="sc">+</span></span>
+<span id="cb52-5"><a href="eda-1.html#cb52-5" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb52-6"><a href="eda-1.html#cb52-6" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb52-7"><a href="eda-1.html#cb52-7" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">group=</span><span class="fu">as.factor</span>(position_pg))) <span class="sc">+</span> </span>
+<span id="cb52-8"><a href="eda-1.html#cb52-8" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/explore_dt_6-6.png" width="672" /></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="eda-1.html#cb53-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb53-2"><a href="eda-1.html#cb53-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS, <span class="at">color=</span><span class="fu">as.factor</span>(position_center))) <span class="sc">+</span></span>
+<span id="cb53-3"><a href="eda-1.html#cb53-3" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb53-4"><a href="eda-1.html#cb53-4" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb53-5"><a href="eda-1.html#cb53-5" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">group=</span><span class="fu">as.factor</span>(position_center))) <span class="sc">+</span> </span>
+<span id="cb53-6"><a href="eda-1.html#cb53-6" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span></code></pre></div>
+>>>>>>> Stashed changes
 <p><img src="_main_files/figure-html/explore_dt_6-7.png" width="672" /></p>
 <p>Let’s reflect a moment what we can learn from all this.</p>
 <p>First, there seems to be a somewhat linear relationship between how many points

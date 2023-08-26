@@ -53,6 +53,7 @@ You can include this data by installing mlbench library:
 #install.packages("mlbench") ## installing the library
 library(mlbench) #adding the library
 library(openxlsx)
+library(dplyr)
 data(BostonHousing2)
 housing <- BostonHousing2
 write.xlsx(housing, "../datasets/boston.xlsx")

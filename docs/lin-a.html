@@ -465,8 +465,13 @@ To make the intercept more readily interpretable we should again center our
 metric dependent variable <code>career_PTS</code> on its mean.</p>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="lin-a.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data_nba<span class="sc">$</span>career_PTS)</span></code></pre></div>
 <pre><code>## [1] 8.907679</code></pre>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="lin-a.html#cb114-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
 <span id="cb114-2"><a href="lin-a.html#cb114-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PTS_centered =</span> career_PTS <span class="sc">-</span> <span class="fu">mean</span>(career_PTS))</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="lin-a.html#cb113-1" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb113-2"><a href="lin-a.html#cb113-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PTS_centered =</span> career_PTS <span class="sc">-</span> <span class="fu">mean</span>(career_PTS))</span></code></pre></div>
+>>>>>>> Stashed changes
 <p>As we have now centered the independent variable of interest on its mean of <span class="math inline">\(8.9\)</span>
 we can rerun the model.</p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="lin-a.html#cb115-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> PTS_centered, <span class="at">data =</span> data_nba)</span>
@@ -581,9 +586,15 @@ example, <code>plot(m2, 1)</code> gives us the residuals vs. fitted plot.</p>
 <code>autoplot()</code> function to automatically plot all four visual tests of interest.
 An added benefit, depending on your taste, is that the plots are rendered in the
 style of <code>ggplot2</code>.</p>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="lin-a.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span></code></pre></div>
 <pre><code>## Warning: Paket &#39;ggfortify&#39; wurde unter R Version 4.2.3 erstellt</code></pre>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="lin-a.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(m2)</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="lin-a.html#cb119-1" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span></code></pre></div>
+<pre><code>## Warning: package &#39;ggfortify&#39; was built under R version 4.2.3</code></pre>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="lin-a.html#cb121-1" tabindex="-1"></a><span class="fu">autoplot</span>(m2)</span></code></pre></div>
+>>>>>>> Stashed changes
 <p><img src="_main_files/figure-html/m2_diag-1.png" width="672" /></p>
 <p>The residuals vs. fitted does not show us a more or less straight line but
 starts mildly positive, then dips below <span class="math inline">\(0\)</span> and rises again for higher estimated
@@ -609,9 +620,15 @@ indicated by clusters in the lower or upper right corners. We can observe this
 in the lower right.</p>
 <p>We should also test for multicollinearity. We can compute the VIF measures using
 a function from the package <code>car</code>.</p>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="lin-a.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
 <span id="cb123-2"><a href="lin-a.html#cb123-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb123-3"><a href="lin-a.html#cb123-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(m2)</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="lin-a.html#cb122-1" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb122-2"><a href="lin-a.html#cb122-2" tabindex="-1"></a></span>
+<span id="cb122-3"><a href="lin-a.html#cb122-3" tabindex="-1"></a><span class="fu">vif</span>(m2)</span></code></pre></div>
+>>>>>>> Stashed changes
 <pre><code>##    PTS_centered position_center     position_sf     position_pf     position_sg 
 ##        1.050400        2.035722        1.686736        1.512765        1.565004 
 ##     position_pg 
@@ -637,9 +654,15 @@ problems in the same way.</p>
 <p>The deviation from normality and the clearly present heteroscedasticity could
 both point to the same problem, namely a skewed dependent variable. Let us
 examine its distribution first.</p>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="lin-a.html#cb125-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
 <span id="cb125-2"><a href="lin-a.html#cb125-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> salary)) <span class="sc">+</span></span>
 <span id="cb125-3"><a href="lin-a.html#cb125-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="lin-a.html#cb124-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb124-2"><a href="lin-a.html#cb124-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> salary)) <span class="sc">+</span></span>
+<span id="cb124-3"><a href="lin-a.html#cb124-3" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+>>>>>>> Stashed changes
 <p><img src="_main_files/figure-html/distribution_dv_before-1.png" width="672" /></p>
 <p>Our outcome variable is not only skewed, it is <strong>highly skewed</strong>. While there
 are many salaries in the “lower” six to seven digits regions, we also see some
@@ -658,19 +681,34 @@ skewed distribution. A common transformation for income data is to take the
 <em>logarithmus naturalis</em> of the actual value and then use this as our
 dependent variable. To achive the transformation we can simply use the base R
 function <code>log()</code> which as its default computes the <span class="math inline">\(ln\)</span>.</p>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="lin-a.html#cb126-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
 <span id="cb126-2"><a href="lin-a.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">salary_log =</span> <span class="fu">log</span>(salary))</span>
 <span id="cb126-3"><a href="lin-a.html#cb126-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb126-4"><a href="lin-a.html#cb126-4" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
 <span id="cb126-5"><a href="lin-a.html#cb126-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> salary_log)) <span class="sc">+</span></span>
 <span id="cb126-6"><a href="lin-a.html#cb126-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="lin-a.html#cb125-1" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb125-2"><a href="lin-a.html#cb125-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">salary_log =</span> <span class="fu">log</span>(salary))</span>
+<span id="cb125-3"><a href="lin-a.html#cb125-3" tabindex="-1"></a></span>
+<span id="cb125-4"><a href="lin-a.html#cb125-4" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb125-5"><a href="lin-a.html#cb125-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> salary_log)) <span class="sc">+</span></span>
+<span id="cb125-6"><a href="lin-a.html#cb125-6" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+>>>>>>> Stashed changes
 <p><img src="_main_files/figure-html/transform_dv_log-1.png" width="672" /></p>
 <p>While the distribution of the transformed variable also is somewhat skewed, now
 to the left, overall it is much more evenly distributed.</p>
 <p>We should use the new variable as our outcome an check the tests again.</p>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="lin-a.html#cb127-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary_log <span class="sc">~</span> PTS_centered <span class="sc">+</span> position_center <span class="sc">+</span> position_sf <span class="sc">+</span>  position_pf <span class="sc">+</span> position_sg <span class="sc">+</span> position_pg, <span class="at">data =</span> data_nba)</span>
 <span id="cb127-2"><a href="lin-a.html#cb127-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb127-3"><a href="lin-a.html#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(m3)</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="lin-a.html#cb126-1" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary_log <span class="sc">~</span> PTS_centered <span class="sc">+</span> position_center <span class="sc">+</span> position_sf <span class="sc">+</span>  position_pf <span class="sc">+</span> position_sg <span class="sc">+</span> position_pg, <span class="at">data =</span> data_nba)</span>
+<span id="cb126-2"><a href="lin-a.html#cb126-2" tabindex="-1"></a></span>
+<span id="cb126-3"><a href="lin-a.html#cb126-3" tabindex="-1"></a><span class="fu">autoplot</span>(m3)</span></code></pre></div>
+>>>>>>> Stashed changes
 <p><img src="_main_files/figure-html/m3-1.png" width="672" /></p>
 <p>Looking at the scale-location plot first, we can now see a straight line with
 our residuals fairly evenly distributed around it. Thus we now longer see any
@@ -703,10 +741,17 @@ difference and thus may not have the same strong effect on salary.</p>
 we add a LOWESS curve to the plot. This is often helpful in detecting
 non-linearity as the curve can change its slope over the range of the dependent
 variable. This is also the default for <code>geom_smooth()</code>.</p>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="lin-a.html#cb128-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
 <span id="cb128-2"><a href="lin-a.html#cb128-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> career_PTS, <span class="at">y =</span> salary)) <span class="sc">+</span></span>
 <span id="cb128-3"><a href="lin-a.html#cb128-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb128-4"><a href="lin-a.html#cb128-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="lin-a.html#cb127-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb127-2"><a href="lin-a.html#cb127-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> career_PTS, <span class="at">y =</span> salary)) <span class="sc">+</span></span>
+<span id="cb127-3"><a href="lin-a.html#cb127-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb127-4"><a href="lin-a.html#cb127-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+>>>>>>> Stashed changes
 <pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
 <p><img src="_main_files/figure-html/non_linearity-1.png" width="672" /></p>
 <p>While this is not as clear as we hoped, the line may still indicate some mild
@@ -716,10 +761,17 @@ additional variables, as our position dummies.</p>
 <p>One common way to address the non-linearity is taking the square of the
 dependent variable in question. We should not square our centered points
 variable though. Let us inspect what would happen if we squared it.</p>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="lin-a.html#cb130-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
 <span id="cb130-2"><a href="lin-a.html#cb130-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PTS_centered, <span class="at">y =</span> PTS_centered <span class="sc">^</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
 <span id="cb130-3"><a href="lin-a.html#cb130-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb130-4"><a href="lin-a.html#cb130-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="lin-a.html#cb129-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb129-2"><a href="lin-a.html#cb129-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PTS_centered, <span class="at">y =</span> PTS_centered <span class="sc">^</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb129-3"><a href="lin-a.html#cb129-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb129-4"><a href="lin-a.html#cb129-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+>>>>>>> Stashed changes
 <pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
 <p><img src="_main_files/figure-html/centered_squared-1.png" width="672" /></p>
 <p>As the square of negative values is positive we would basically introduce the
@@ -731,10 +783,17 @@ scorers should have the same effect. If at all, in these regions additional
 points could have an even larger effect.</p>
 <p>Because of this we should return the uncentered version of our variable. What
 happens if we square this?</p>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="lin-a.html#cb132-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
 <span id="cb132-2"><a href="lin-a.html#cb132-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> career_PTS, <span class="at">y =</span> career_PTS <span class="sc">^</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
 <span id="cb132-3"><a href="lin-a.html#cb132-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb132-4"><a href="lin-a.html#cb132-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="lin-a.html#cb131-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb131-2"><a href="lin-a.html#cb131-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> career_PTS, <span class="at">y =</span> career_PTS <span class="sc">^</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb131-3"><a href="lin-a.html#cb131-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb131-4"><a href="lin-a.html#cb131-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+>>>>>>> Stashed changes
 <pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
 <p><img src="_main_files/figure-html/career_pts_squared-1.png" width="672" /></p>
 <p>This is what we wanted, a transformation that expects a stronger difference the
@@ -748,9 +807,15 @@ but we can also do so directly in the formuly syntax. When we use the function
 expression. This is waht we will do below. Note that we add the point variable
 as its untransformed and transformed versions. The first represents the linear
 parts and the second the non-linear parts of the effect.</p>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="lin-a.html#cb134-1" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary_log <span class="sc">~</span> career_PTS <span class="sc">+</span> <span class="fu">I</span>(career_PTS<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> position_center <span class="sc">+</span> position_sf <span class="sc">+</span> position_pf <span class="sc">+</span> position_sg <span class="sc">+</span> position_pg, <span class="at">data =</span> data_nba)</span></code></pre></div>
 <p>We can now reasses the tests for the last model.</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="lin-a.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(m4)</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="lin-a.html#cb133-1" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary_log <span class="sc">~</span> career_PTS <span class="sc">+</span> <span class="fu">I</span>(career_PTS<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> position_center <span class="sc">+</span> position_sf <span class="sc">+</span> position_pf <span class="sc">+</span> position_sg <span class="sc">+</span> position_pg, <span class="at">data =</span> data_nba)</span></code></pre></div>
+<p>We can now reasses the tests for the last model.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="lin-a.html#cb134-1" tabindex="-1"></a><span class="fu">autoplot</span>(m4)</span></code></pre></div>
+>>>>>>> Stashed changes
 <p><img src="_main_files/figure-html/m4_diag-1.png" width="672" /></p>
 <p>The line in the residuals vs. fitted plot got more straight. It seems that we
 actually captured the mild non-linearity that was present before by adding the
@@ -763,7 +828,11 @@ large N. Turning to the residuals vs. leverage plot, we still se several points
 that do not meet the thresholds but at the same time we do not see any points
 with high values for both. Overall there seem to be no overly influential points
 which we had to address. Let us also reexamine the VIF.</p>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="lin-a.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(m4)</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="lin-a.html#cb135-1" tabindex="-1"></a><span class="fu">vif</span>(m4)</span></code></pre></div>
+>>>>>>> Stashed changes
 <pre><code>##      career_PTS I(career_PTS^2) position_center     position_sf     position_pf 
 ##       12.135096       11.883255        2.040563        1.709312        1.520284 
 ##     position_sg     position_pg 
@@ -784,7 +853,11 @@ thinking about what we are actually doing.</p>
 <h2><span class="header-section-number">8.8</span> Returning to our research question<a href="lin-a.html#returning-to-our-research-question-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As we now settled on <code>m4</code> as our best model, it is time to discuss what we
 actually found out about the effect of scored points on the received salary.</p>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="lin-a.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m4)</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="lin-a.html#cb137-1" tabindex="-1"></a><span class="fu">summary</span>(m4)</span></code></pre></div>
+>>>>>>> Stashed changes
 <pre><code>## 
 ## Call:
 ## lm(formula = salary_log ~ career_PTS + I(career_PTS^2) + position_center + 
@@ -828,9 +901,15 @@ non-linear term.</p>
 <p>To find out what this means in hard dollars, we have to reverse the logarithmus
 naturalis. We can do this by calculating <span class="math inline">\(e^\hat{y}\)</span>. R gives us the function
 <code>exp()</code> to just that.</p>
+<<<<<<< Updated upstream
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="lin-a.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">16.17654</span>)</span></code></pre></div>
 <pre><code>## [1] 10601860</code></pre>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="lin-a.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">15.659565</span>)</span></code></pre></div>
+=======
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="lin-a.html#cb139-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">16.17654</span>)</span></code></pre></div>
+<pre><code>## [1] 10601860</code></pre>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="lin-a.html#cb141-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">15.659565</span>)</span></code></pre></div>
+>>>>>>> Stashed changes
 <pre><code>## [1] 6322119</code></pre>
 <p>For our center who scored <span class="math inline">\(20\)</span> points we thus estimate a salary of
 <span class="math inline">\(10,601,860\$\)</span>, for a point guard with the same amounts of points <span class="math inline">\(6,322,119\$\)</span>.

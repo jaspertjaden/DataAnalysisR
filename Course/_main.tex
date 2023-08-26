@@ -5,17 +5,31 @@
 \documentclass[
 ]{book}
 \usepackage{amsmath,amssymb}
+<<<<<<< Updated upstream
 \usepackage{lmodern}
+=======
+>>>>>>> Stashed changes
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
+<<<<<<< Updated upstream
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
+=======
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+>>>>>>> Stashed changes
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \IfFileExists{microtype.sty}{% use microtype if available
@@ -44,13 +58,21 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+<<<<<<< Updated upstream
 \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+=======
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+>>>>>>> Stashed changes
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+<<<<<<< Updated upstream
 \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+=======
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+>>>>>>> Stashed changes
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -58,7 +80,11 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+<<<<<<< Updated upstream
 \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+=======
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+>>>>>>> Stashed changes
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -67,7 +93,11 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
+<<<<<<< Updated upstream
 \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+=======
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+>>>>>>> Stashed changes
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -132,7 +162,11 @@
 \bibliographystyle{plainnat}
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+<<<<<<< Updated upstream
 \urlstyle{same} % disable monospaced font for URLs
+=======
+\urlstyle{same}
+>>>>>>> Stashed changes
 \hypersetup{
   pdftitle={Data Analysis with R for Social Scientists},
   pdfauthor={Jakob Tures \& Jasper Tjaden},
@@ -573,6 +607,7 @@ for each position.
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(lubridate)}
+<<<<<<< Updated upstream
 \end{Highlighting}
 \end{Shaded}
 
@@ -589,6 +624,8 @@ for each position.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+=======
+>>>>>>> Stashed changes
 \NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{year\_of\_birth =} \FunctionTok{year}\NormalTok{(}\FunctionTok{mdy}\NormalTok{(birthDate)),}
          \AttributeTok{age =}\NormalTok{ season\_start }\SpecialCharTok{{-}}\NormalTok{ year\_of\_birth)}
@@ -1805,20 +1842,39 @@ Let us have a first look on the data:
 XXX ALIGN WITH EDA XXX
 
 \begin{verbatim}
+<<<<<<< Updated upstream
 ## Warning: Paket 'skimr' wurde unter R Version 4.2.3 erstellt
+=======
+## Warning: package 'skimr' was built under R version 4.2.3
+>>>>>>> Stashed changes
 \end{verbatim}
 
 \begin{verbatim}
 ## 
+<<<<<<< Updated upstream
 ## Attache Paket: 'skimr'
 \end{verbatim}
 
 \begin{verbatim}
 ## Das folgende Objekt ist maskiert 'package:corrr':
+=======
+## Attaching package: 'skimr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:corrr':
+>>>>>>> Stashed changes
 ## 
 ##     focus
 \end{verbatim}
 
+<<<<<<< Updated upstream
+=======
+\begin{verbatim}
+## Warning: package 'knitr' was built under R version 4.2.3
+\end{verbatim}
+
+>>>>>>> Stashed changes
 \begin{tabular}{l|l|r|r|l|r|l|r|l|r|r|r|r|r|r|r|l}
 \hline
 skim\_type & skim\_variable & n\_missing & complete\_rate & factor.ordered & factor.n\_unique & factor.top\_counts & logical.mean & logical.count & numeric.mean & numeric.sd & numeric.p0 & numeric.p25 & numeric.p50 & numeric.p75 & numeric.p100 & numeric.hist\\
@@ -1827,6 +1883,7 @@ factor & contact & 0 & 1 & FALSE & 3 & No : 80, In : 70, E-M: 50 & NA & NA & NA 
 \hline
 logical & attendance & 0 & 1 & NA & NA & NA & 0.765 & TRU: 153, FAL: 47 & NA & NA & NA & NA & NA & NA & NA & NA\\
 \hline
+<<<<<<< Updated upstream
 numeric & grade & 0 & 1 & NA & NA & NA & NA & NA & 2.9675 & 1.076657 & 1.000 & 2.100 & 3.000 & 3.725 & 5.000 & <U+2585><U+2586><U+2587><U+2586><U+2585>\\
 \hline
 numeric & hours & 0 & 1 & NA & NA & NA & NA & NA & 40.3300 & 6.285590 & 23.000 & 36.000 & 41.000 & 45.000 & 57.000 & <U+2581><U+2585><U+2587><U+2585><U+2581>\\
@@ -1836,6 +1893,17 @@ numeric & previous\_grades & 0 & 1 & NA & NA & NA & NA & NA & 2.9350 & 0.964847 
 numeric & previous\_grades\_centered & 0 & 1 & NA & NA & NA & NA & NA & 0.0000 & 0.964847 & -1.935 & -0.635 & 0.015 & 0.690 & 2.065 & <U+2585><U+2587><U+2587><U+2586><U+2582>\\
 \hline
 numeric & hours\_centered & 0 & 1 & NA & NA & NA & NA & NA & 0.0000 & 6.285590 & -17.330 & -4.330 & 0.670 & 4.670 & 16.670 & <U+2581><U+2585><U+2587><U+2585><U+2581>\\
+=======
+numeric & grade & 0 & 1 & NA & NA & NA & NA & NA & 2.9675 & 1.076657 & 1.000 & 2.100 & 3.000 & 3.725 & 5.000 & ▅▆▇▆▅\\
+\hline
+numeric & hours & 0 & 1 & NA & NA & NA & NA & NA & 40.3300 & 6.285590 & 23.000 & 36.000 & 41.000 & 45.000 & 57.000 & ▁▅▇▅▁\\
+\hline
+numeric & previous\_grades & 0 & 1 & NA & NA & NA & NA & NA & 2.9350 & 0.964847 & 1.000 & 2.300 & 2.950 & 3.625 & 5.000 & ▅▇▇▆▂\\
+\hline
+numeric & previous\_grades\_centered & 0 & 1 & NA & NA & NA & NA & NA & 0.0000 & 0.964847 & -1.935 & -0.635 & 0.015 & 0.690 & 2.065 & ▅▇▇▆▂\\
+\hline
+numeric & hours\_centered & 0 & 1 & NA & NA & NA & NA & NA & 0.0000 & 6.285590 & -17.330 & -4.330 & 0.670 & 4.670 & 16.670 & ▁▅▇▅▁\\
+>>>>>>> Stashed changes
 \hline
 \end{tabular}
 
@@ -2560,7 +2628,11 @@ endeavors. While we do not have a clear theoretical basis, we can make clear
 assumptions on the data generating process and draw these in a DAG.
 
 \begin{verbatim}
+<<<<<<< Updated upstream
 ## Warning: Paket 'dagitty' wurde unter R Version 4.2.3 erstellt
+=======
+## Warning: package 'dagitty' was built under R version 4.2.3
+>>>>>>> Stashed changes
 \end{verbatim}
 
 \includegraphics{_main_files/figure-latex/dag-1.pdf}
@@ -2971,7 +3043,11 @@ scatterplot matrix. This is usually done before starting to model to identify
 relationships between the variables used.
 
 \begin{verbatim}
+<<<<<<< Updated upstream
 ## Warning: Paket 'GGally' wurde unter R Version 4.2.3 erstellt
+=======
+## Warning: package 'GGally' was built under R version 4.2.3
+>>>>>>> Stashed changes
 \end{verbatim}
 
 \includegraphics{_main_files/figure-latex/scatterplot_matrix-1.pdf}
@@ -3153,11 +3229,15 @@ should be near \(1\) and should not exceed a value of \(5\).
 Let us compute the measure for our model with \texttt{hours\_centered} and \texttt{contact}:
 
 \begin{verbatim}
+<<<<<<< Updated upstream
 ## Warning: Paket 'car' wurde unter R Version 4.2.1 erstellt
 \end{verbatim}
 
 \begin{verbatim}
 ## Warning: Paket 'carData' wurde unter R Version 4.2.1 erstellt
+=======
+## Warning: package 'car' was built under R version 4.2.3
+>>>>>>> Stashed changes
 \end{verbatim}
 
 \begin{verbatim}
@@ -3626,7 +3706,11 @@ is to use \texttt{tidy()} from the \texttt{broom} package.
 \end{Shaded}
 
 \begin{verbatim}
+<<<<<<< Updated upstream
 ## Warning: Paket 'broom' wurde unter R Version 4.2.2 erstellt
+=======
+## Warning: package 'broom' was built under R version 4.2.3
+>>>>>>> Stashed changes
 \end{verbatim}
 
 \begin{Shaded}
@@ -3826,7 +3910,11 @@ style of \texttt{ggplot2}.
 \end{Shaded}
 
 \begin{verbatim}
+<<<<<<< Updated upstream
 ## Warning: Paket 'ggfortify' wurde unter R Version 4.2.3 erstellt
+=======
+## Warning: package 'ggfortify' was built under R version 4.2.3
+>>>>>>> Stashed changes
 \end{verbatim}
 
 \begin{Shaded}
@@ -4463,7 +4551,11 @@ Now, we want to know whether scoring explain this salary penalty. Here is a simp
 \end{Shaded}
 
 \begin{verbatim}
+<<<<<<< Updated upstream
 ## Warning: Paket 'modelsummary' wurde unter R Version 4.2.3 erstellt
+=======
+## Warning: package 'modelsummary' was built under R version 4.2.3
+>>>>>>> Stashed changes
 \end{verbatim}
 
 \begin{Shaded}
