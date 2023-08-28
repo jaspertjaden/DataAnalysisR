@@ -1,20 +1,43 @@
 # Linear Regression - Exercises {#lin-e}
 
-## Application of Logistic Regression
+## Exercises of Linear Regression
+In this exercise, you will use the Boston Housing Dataset to explore the relationship between housing prices and various features of the houses and their surroundings. The dataset contains 506 observations and 15 columns. The last column, MEDV, is the median value of owner-occupied homes in $1000’s. This is the target variable that you will try to predict using linear regression models. The other 14 columns represent different features of the houses and their surroundings, such as crime rate, nitric oxides concentration, pupil-teacher ratio, etc.
 
 **DRAFT**
 
-1. **Simple linear regression**: Use simple linear regression to predict the median value of owner-occupied homes (`MEDV`) based on a single predictor variable, such as the average number of rooms per dwelling (`RM`). Fit the model, generate predictions, and calculate the R-squared value to assess the model's performance.
-2. **Multiple linear regression**: Use multiple linear regression to predict `MEDV` based on multiple predictor variables, such as `RM`, `CRIM` (per capita crime rate by town), and `LSTAT` (% lower status of the population). Fit the model, generate predictions, and calculate the R-squared value to assess the model's performance.
-3. **Model summary**: Use the `summary()` function to generate a summary of a linear regression model, including information about the coefficients, standard errors, t-values, and p-values. Interpret the results and discuss their implications from a social science perspective.
-4. **Model diagnostics**: Use diagnostic plots to assess the assumptions of linear regression, such as linearity, normality, and homoscedasticity. Identify any potential problems with the model and discuss how they could be addressed.
+1. **Simple linear regression**: Use simple linear regression to predict the median value of owner-occupied homes (`MEDV`) based on a single predictor variable which is the average number of rooms per dwelling (`RM`). Fit the model.
+```{r slm, warning=FALSE, message=FALSE}
+# loading dataset
+library(readxl)
+BostonHousing <- read_excel("../datasets/boston.xlsx")
+# applying linear regression
+model_l <- lm(medv ~ rm, data = BostonHousing)
+```
 
-/**
-5. **Variable selection**: Use variable selection methods, such as stepwise selection or best subset selection, to identify a subset of predictor variables that provide the best fit for a multiple linear regression model. Compare the performance of different models and discuss their relative strengths and weaknesses.
-6. **Interaction effects**: Include interaction terms in a multiple linear regression model to capture the effect of two or more predictor variables interacting with each other. Interpret the coefficients of the interaction terms and discuss their implications from a social science perspective.
-7. **Polynomial regression**: Use polynomial regression to model non-linear relationships between predictor variables and the response variable. Fit a polynomial regression model, generate predictions, and assess the model's performance.
-8. **Model comparison**: Use model comparison methods, such as adjusted R-squared or AIC, to compare the performance of different linear regression models. Select the best model based on these criteria and discuss its strengths and weaknesses.
-9. **Tidy models**: Use the `broom` package to convert linear regression models into tidy data frames using functions such as `tidy()`, `glance()`, and `augment()`. Manipulate and visualize the tidy data frames to gain insights into the models and their performance.
-10. **Prediction intervals**: Generate prediction intervals for new observations using a fitted linear regression model. Interpret the prediction intervals and discuss their usefulness for making predictions in a social science context.
-**/
+2. **Multiple linear regression**: Use multiple linear regression to predict `MEDV` based on multiple predictor variables, such as `RM`, `CRIM` (per capita crime rate by town), and `LSTAT` (% lower status of the population). Fit the model, generate predictions, and calculate the R-squared value to assess the model's performance.
+```{r mlm, warning=FALSE, message=FALSE}
+# applying linear regression
+model_m <- lm(medv ~ rm + crim + lstat, data = BostonHousing)
+```
+3. **Model summary**: Generate summary of a both regression model, including information about the coefficients, standard errors, t-values, and p-values. Interpret the results. Calculate the R-squared value to assess both model's performance. Which model has better goodness of fit (R-Squared) ?
+
+```{r model_summary, warning=FALSE, message=FALSE}
+summary(model_l)
+summary(model_m)
+```
+XXX--INTERPRETATION HERE--XXX
+
+4. **Model diagnostics**: Create diagnostic plots to assess the assumptions of the models. Check whether your regression models from Tasks 1 and 2 satisfy the assumptions of linearity, multicollinearity, normality and homoscedasticity.Use numerical method variance inflation factor (VIF) to detect any multicollinearity issues among your predictor variables.
+
+```{r model_diag, message=FALSE, warning=FALSE}
+library(ggfortify)
+library(car)
+autoplot(model_l)
+autoplot(model_m)
+vif(model_m)
+```
+
+XXX---INTERPRETATION HERE---XXX
+
+
 

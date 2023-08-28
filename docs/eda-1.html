@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content=" 2 Exloratory Data Analysis - I | Data Analysis with R for Social Scientists" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-08-23" />
+<meta name="date" content="2023-08-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -127,6 +127,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -177,79 +181,98 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="dags-1.html"><a href="dags-1.html"><i class="fa fa-check"></i><b>4</b> DAGs</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="dags-1.html"><a href="dags-1.html#causality"><i class="fa fa-check"></i><b>4.1</b> Causality</a></li>
-<li class="chapter" data-level="4.2" data-path="dags-1.html"><a href="dags-1.html#dags"><i class="fa fa-check"></i><b>4.2</b> DAGs</a></li>
-<li class="chapter" data-level="4.3" data-path="dags-1.html"><a href="dags-1.html#totaldirect-effect"><i class="fa fa-check"></i><b>4.3</b> Total/Direct effect</a></li>
-<li class="chapter" data-level="4.4" data-path="dags-1.html"><a href="dags-1.html#dagitty.net"><i class="fa fa-check"></i><b>4.4</b> dagitty.net</a></li>
+<li class="chapter" data-level="4.1" data-path="dags-1.html"><a href="dags-1.html#objectives-2"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="dags-1.html"><a href="dags-1.html#modelling"><i class="fa fa-check"></i><b>4.2</b> Modelling</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="dags-1.html"><a href="dags-1.html#what-is-modelling"><i class="fa fa-check"></i><b>4.2.1</b> What is modelling?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dags-1.html"><a href="dags-1.html#estimating-effects-vs.-prediction"><i class="fa fa-check"></i><b>4.2.2</b> Estimating effects vs. prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dags-1.html"><a href="dags-1.html#dags"><i class="fa fa-check"></i><b>4.3</b> DAGs</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="dags-1.html"><a href="dags-1.html#directed-acyclical-graphs"><i class="fa fa-check"></i><b>4.3.1</b> Directed acyclical graphs</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dags-1.html"><a href="dags-1.html#patterns-of-relationships"><i class="fa fa-check"></i><b>4.3.2</b> Patterns of relationships</a></li>
+<li class="chapter" data-level="4.3.3" data-path="dags-1.html"><a href="dags-1.html#adjustment-set"><i class="fa fa-check"></i><b>4.3.3</b> Adjustment set</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dags-1.html"><a href="dags-1.html#nba-dag"><i class="fa fa-check"></i><b>4.4</b> NBA DAG</a></li>
+<li class="chapter" data-level="4.5" data-path="dags-1.html"><a href="dags-1.html#resources"><i class="fa fa-check"></i><b>4.5</b> Resources</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="dags-1.html"><a href="dags-1.html#dagitty.net"><i class="fa fa-check"></i><b>4.5.1</b> dagitty.net</a></li>
+<li class="chapter" data-level="4.5.2" data-path="dags-1.html"><a href="dags-1.html#more-on-dags"><i class="fa fa-check"></i><b>4.5.2</b> More on DAGs</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="lin-t-1.html"><a href="lin-t-1.html"><i class="fa fa-check"></i><b>5</b> Linear Regression Theory I: Simple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="lin-t-1.html"><a href="lin-t-1.html#what-is-linear-regression"><i class="fa fa-check"></i><b>5.1</b> What is Linear Regression</a></li>
-<li class="chapter" data-level="5.2" data-path="lin-t-1.html"><a href="lin-t-1.html#examplary-research-question-data"><i class="fa fa-check"></i><b>5.2</b> Examplary research question &amp; data</a></li>
-<li class="chapter" data-level="5.3" data-path="lin-t-1.html"><a href="lin-t-1.html#simple-linear-regression"><i class="fa fa-check"></i><b>5.3</b> Simple Linear Regression</a>
+<li class="chapter" data-level="5.1" data-path="lin-t-1.html"><a href="lin-t-1.html#objectives-3"><i class="fa fa-check"></i><b>5.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.2" data-path="lin-t-1.html"><a href="lin-t-1.html#what-is-linear-regression"><i class="fa fa-check"></i><b>5.2</b> What is Linear Regression</a></li>
+<li class="chapter" data-level="5.3" data-path="lin-t-1.html"><a href="lin-t-1.html#examplary-research-question-data"><i class="fa fa-check"></i><b>5.3</b> Examplary research question &amp; data</a></li>
+<li class="chapter" data-level="5.4" data-path="lin-t-1.html"><a href="lin-t-1.html#simple-linear-regression"><i class="fa fa-check"></i><b>5.4</b> Simple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="lin-t-1.html"><a href="lin-t-1.html#regression-formula"><i class="fa fa-check"></i><b>5.3.1</b> Regression Formula</a></li>
-<li class="chapter" data-level="5.3.2" data-path="lin-t-1.html"><a href="lin-t-1.html#regressing-grade-on-hours"><i class="fa fa-check"></i><b>5.3.2</b> Regressing <code>grade</code> on <code>hours</code></a></li>
+<li class="chapter" data-level="5.4.1" data-path="lin-t-1.html"><a href="lin-t-1.html#regression-formula"><i class="fa fa-check"></i><b>5.4.1</b> Regression Formula</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lin-t-1.html"><a href="lin-t-1.html#regressing-grade-on-hours"><i class="fa fa-check"></i><b>5.4.2</b> Regressing <code>grade</code> on <code>hours</code></a></li>
 </ul></li>
+<li class="chapter" data-level="5.5" data-path="lin-t-1.html"><a href="lin-t-1.html#moving-on"><i class="fa fa-check"></i><b>5.5</b> Moving on</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="lin-t-2.html"><a href="lin-t-2.html"><i class="fa fa-check"></i><b>6</b> Linear Regression Theory II: Multiple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="lin-t-2.html"><a href="lin-t-2.html#multiple-linear-regression"><i class="fa fa-check"></i><b>6.1</b> Multiple Linear Regression</a>
+<li class="chapter" data-level="6.1" data-path="lin-t-2.html"><a href="lin-t-2.html#objectives-4"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="lin-t-2.html"><a href="lin-t-2.html#multiple-linear-regression"><i class="fa fa-check"></i><b>6.2</b> Multiple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-additional-metric-variables"><i class="fa fa-check"></i><b>6.1.1</b> Adding additional metric variables</a></li>
-<li class="chapter" data-level="6.1.2" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-dummy-variables"><i class="fa fa-check"></i><b>6.1.2</b> Adding dummy variables</a></li>
-<li class="chapter" data-level="6.1.3" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-categorical-variables"><i class="fa fa-check"></i><b>6.1.3</b> Adding categorical variables</a></li>
+<li class="chapter" data-level="6.2.1" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-additional-metric-variables"><i class="fa fa-check"></i><b>6.2.1</b> Adding additional metric variables</a></li>
+<li class="chapter" data-level="6.2.2" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-dummy-variables"><i class="fa fa-check"></i><b>6.2.2</b> Adding dummy variables</a></li>
+<li class="chapter" data-level="6.2.3" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-categorical-variables"><i class="fa fa-check"></i><b>6.2.3</b> Adding categorical variables</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="lin-t-2.html"><a href="lin-t-2.html#returning-to-our-research-question"><i class="fa fa-check"></i><b>6.2</b> Returning to our research question</a></li>
-<li class="chapter" data-level="6.3" data-path="lin-t-2.html"><a href="lin-t-2.html#interpretation"><i class="fa fa-check"></i><b>6.3</b> Interpretation</a></li>
+<li class="chapter" data-level="6.3" data-path="lin-t-2.html"><a href="lin-t-2.html#returning-to-our-research-question"><i class="fa fa-check"></i><b>6.3</b> Returning to our research question</a></li>
+<li class="chapter" data-level="6.4" data-path="lin-t-2.html"><a href="lin-t-2.html#adressing-the-uncertainty"><i class="fa fa-check"></i><b>6.4</b> Adressing the uncertainty</a></li>
+<li class="chapter" data-level="6.5" data-path="lin-t-2.html"><a href="lin-t-2.html#moving-on-1"><i class="fa fa-check"></i><b>6.5</b> Moving on</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="log-t-3.html"><a href="log-t-3.html"><i class="fa fa-check"></i><b>7</b> Linear Regression Theory III: Diagnostics</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="log-t-3.html"><a href="log-t-3.html#model-fit"><i class="fa fa-check"></i><b>7.1</b> Model fit</a></li>
-<li class="chapter" data-level="7.2" data-path="log-t-3.html"><a href="log-t-3.html#regression-diagnostics"><i class="fa fa-check"></i><b>7.2</b> Regression diagnostics</a>
+<li class="chapter" data-level="7.1" data-path="log-t-3.html"><a href="log-t-3.html#objectives-5"><i class="fa fa-check"></i><b>7.1</b> Objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="log-t-3.html"><a href="log-t-3.html#model-fit"><i class="fa fa-check"></i><b>7.2</b> Model fit</a></li>
+<li class="chapter" data-level="7.3" data-path="log-t-3.html"><a href="log-t-3.html#regression-diagnostics"><i class="fa fa-check"></i><b>7.3</b> Regression diagnostics</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="log-t-3.html"><a href="log-t-3.html#linearity"><i class="fa fa-check"></i><b>7.2.1</b> Linearity</a></li>
-<li class="chapter" data-level="7.2.2" data-path="log-t-3.html"><a href="log-t-3.html#normally-distributed-residuals"><i class="fa fa-check"></i><b>7.2.2</b> Normally distributed residuals</a></li>
-<li class="chapter" data-level="7.2.3" data-path="log-t-3.html"><a href="log-t-3.html#homoscedasticity"><i class="fa fa-check"></i><b>7.2.3</b> Homoscedasticity</a></li>
-<li class="chapter" data-level="7.2.4" data-path="log-t-3.html"><a href="log-t-3.html#no-overly-influential-data-points"><i class="fa fa-check"></i><b>7.2.4</b> No overly influential data points</a></li>
-<li class="chapter" data-level="7.2.5" data-path="log-t-3.html"><a href="log-t-3.html#no-multicollinearity"><i class="fa fa-check"></i><b>7.2.5</b> No (multi)collinearity</a></li>
+<li class="chapter" data-level="7.3.1" data-path="log-t-3.html"><a href="log-t-3.html#linearity"><i class="fa fa-check"></i><b>7.3.1</b> Linearity</a></li>
+<li class="chapter" data-level="7.3.2" data-path="log-t-3.html"><a href="log-t-3.html#normally-distributed-residuals"><i class="fa fa-check"></i><b>7.3.2</b> Normally distributed residuals</a></li>
+<li class="chapter" data-level="7.3.3" data-path="log-t-3.html"><a href="log-t-3.html#homoscedasticity"><i class="fa fa-check"></i><b>7.3.3</b> Homoscedasticity</a></li>
+<li class="chapter" data-level="7.3.4" data-path="log-t-3.html"><a href="log-t-3.html#no-overly-influential-data-points"><i class="fa fa-check"></i><b>7.3.4</b> No overly influential data points</a></li>
+<li class="chapter" data-level="7.3.5" data-path="log-t-3.html"><a href="log-t-3.html#no-multicollinearity"><i class="fa fa-check"></i><b>7.3.5</b> No (multi)collinearity</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="log-t-3.html"><a href="log-t-3.html#returning-to-our-research-question-1"><i class="fa fa-check"></i><b>7.3</b> Returning to our research question</a>
+<li class="chapter" data-level="7.4" data-path="log-t-3.html"><a href="log-t-3.html#returning-to-our-research-question-1"><i class="fa fa-check"></i><b>7.4</b> Returning to our research question</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="log-t-3.html"><a href="log-t-3.html#interactions"><i class="fa fa-check"></i><b>7.3.1</b> Interactions</a></li>
-<li class="chapter" data-level="7.3.2" data-path="log-t-3.html"><a href="log-t-3.html#regression-diagnostics-revisited"><i class="fa fa-check"></i><b>7.3.2</b> Regression diagnostics (revisited)</a></li>
+<li class="chapter" data-level="7.4.1" data-path="log-t-3.html"><a href="log-t-3.html#interactions"><i class="fa fa-check"></i><b>7.4.1</b> Interactions</a></li>
+<li class="chapter" data-level="7.4.2" data-path="log-t-3.html"><a href="log-t-3.html#regression-diagnostics-revisited"><i class="fa fa-check"></i><b>7.4.2</b> Regression diagnostics (revisited)</a></li>
 </ul></li>
+<li class="chapter" data-level="7.5" data-path="log-t-3.html"><a href="log-t-3.html#conclusion"><i class="fa fa-check"></i><b>7.5</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="lin-a.html"><a href="lin-a.html"><i class="fa fa-check"></i><b>8</b> Linear Regression - Application</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="lin-a.html"><a href="lin-a.html#objectives-2"><i class="fa fa-check"></i><b>8.1</b> Objectives</a></li>
+<li class="chapter" data-level="8.1" data-path="lin-a.html"><a href="lin-a.html#objectives-6"><i class="fa fa-check"></i><b>8.1</b> Objectives</a></li>
 <li class="chapter" data-level="8.2" data-path="lin-a.html"><a href="lin-a.html#r-functions-covered-this-week-1"><i class="fa fa-check"></i><b>8.2</b> R functions covered this week</a></li>
-<li class="chapter" data-level="8.3" data-path="lin-a.html"><a href="lin-a.html#temporary-from-eda-i"><i class="fa fa-check"></i><b>8.3</b> Temporary from EDA I</a></li>
-<li class="chapter" data-level="8.4" data-path="lin-a.html"><a href="lin-a.html#research-question"><i class="fa fa-check"></i><b>8.4</b> Research question</a></li>
-<li class="chapter" data-level="8.5" data-path="lin-a.html"><a href="lin-a.html#simple-linear-regression-in-r"><i class="fa fa-check"></i><b>8.5</b> Simple linear regression in R</a>
+<li class="chapter" data-level="8.3" data-path="lin-a.html"><a href="lin-a.html#research-question"><i class="fa fa-check"></i><b>8.3</b> Research question</a></li>
+<li class="chapter" data-level="8.4" data-path="lin-a.html"><a href="lin-a.html#simple-linear-regression-in-r"><i class="fa fa-check"></i><b>8.4</b> Simple linear regression in R</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="lin-a.html"><a href="lin-a.html#interpretation"><i class="fa fa-check"></i><b>8.4.1</b> Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="lin-a.html"><a href="lin-a.html#multiple-linear-regression-in-r"><i class="fa fa-check"></i><b>8.5</b> Multiple linear regression in R</a>
 <ul>
 <li class="chapter" data-level="8.5.1" data-path="lin-a.html"><a href="lin-a.html#interpretation-1"><i class="fa fa-check"></i><b>8.5.1</b> Interpretation</a></li>
+<li class="chapter" data-level="8.5.2" data-path="lin-a.html"><a href="lin-a.html#sidenote-adding-interactions"><i class="fa fa-check"></i><b>8.5.2</b> Sidenote: Adding interactions</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="lin-a.html"><a href="lin-a.html#multiple-linear-regression-in-r"><i class="fa fa-check"></i><b>8.6</b> Multiple linear regression in R</a>
+<li class="chapter" data-level="8.6" data-path="lin-a.html"><a href="lin-a.html#regression-diagnostics-1"><i class="fa fa-check"></i><b>8.6</b> Regression Diagnostics</a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="lin-a.html"><a href="lin-a.html#interpretation-2"><i class="fa fa-check"></i><b>8.6.1</b> Interpretation</a></li>
-<li class="chapter" data-level="8.6.2" data-path="lin-a.html"><a href="lin-a.html#sidenote-adding-interactions"><i class="fa fa-check"></i><b>8.6.2</b> Sidenote: Adding interactions</a></li>
+<li class="chapter" data-level="8.6.1" data-path="lin-a.html"><a href="lin-a.html#skewed-outcome-variable"><i class="fa fa-check"></i><b>8.6.1</b> Skewed outcome variable</a></li>
+<li class="chapter" data-level="8.6.2" data-path="lin-a.html"><a href="lin-a.html#non-linearity"><i class="fa fa-check"></i><b>8.6.2</b> Non-linearity</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="lin-a.html"><a href="lin-a.html#regression-diagnostics-1"><i class="fa fa-check"></i><b>8.7</b> Regression Diagnostics</a>
-<ul>
-<li class="chapter" data-level="8.7.1" data-path="lin-a.html"><a href="lin-a.html#skewed-outcome-variable"><i class="fa fa-check"></i><b>8.7.1</b> Skewed outcome variable</a></li>
-<li class="chapter" data-level="8.7.2" data-path="lin-a.html"><a href="lin-a.html#non-linearity"><i class="fa fa-check"></i><b>8.7.2</b> Non-linearity</a></li>
-</ul></li>
-<li class="chapter" data-level="8.8" data-path="lin-a.html"><a href="lin-a.html#returning-to-our-research-question-2"><i class="fa fa-check"></i><b>8.8</b> Returning to our research question</a></li>
-<li class="chapter" data-level="8.9" data-path="lin-a.html"><a href="lin-a.html#outlook"><i class="fa fa-check"></i><b>8.9</b> Outlook</a></li>
+<li class="chapter" data-level="8.7" data-path="lin-a.html"><a href="lin-a.html#returning-to-our-research-question-2"><i class="fa fa-check"></i><b>8.7</b> Returning to our research question</a></li>
+<li class="chapter" data-level="8.8" data-path="lin-a.html"><a href="lin-a.html#moving-on-2"><i class="fa fa-check"></i><b>8.8</b> Moving on</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="lin-e.html"><a href="lin-e.html"><i class="fa fa-check"></i><b>9</b> Linear Regression - Exercises</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="lin-e.html"><a href="lin-e.html#application-of-logistic-regression"><i class="fa fa-check"></i><b>9.1</b> Application of Logistic Regression</a></li>
+<li class="chapter" data-level="9.1" data-path="lin-e.html"><a href="lin-e.html#exercises-of-linear-regression"><i class="fa fa-check"></i><b>9.1</b> Exercises of Linear Regression</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="med.html"><a href="med.html"><i class="fa fa-check"></i><b>10</b> Mediation</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="med.html"><a href="med.html#fint-out-more"><i class="fa fa-check"></i><b>10.1</b> FInt out more</a></li>
+<li class="chapter" data-level="10.1" data-path="med.html"><a href="med.html#find-out-more"><i class="fa fa-check"></i><b>10.1</b> Find out more</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="pm-t.html"><a href="pm-t.html"><i class="fa fa-check"></i><b>11</b> Prediction - Theory</a>
 <ul>
@@ -259,14 +282,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="pm-a.html"><a href="pm-a.html"><i class="fa fa-check"></i><b>12</b> Prediction - Application</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#formatted-regression-tables"><i class="fa fa-check"></i><b>12.1</b> Formatted regression tables</a></li>
-<li class="chapter" data-level="12.2" data-path="pm-a.html"><a href="pm-a.html#publication-ready-formatting-labelling-of-visuals"><i class="fa fa-check"></i><b>12.2</b> Publication-ready formatting/ labelling of visuals</a></li>
-<li class="chapter" data-level="12.3" data-path="pm-a.html"><a href="pm-a.html#coefficient-plots"><i class="fa fa-check"></i><b>12.3</b> coefficient plots</a></li>
+<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="other-est.html"><a href="other-est.html"><i class="fa fa-check"></i><b>13</b> Other Estimators: Logistic, Poisson, Multilevel, FE</a></li>
-<li class="chapter" data-level="14" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>14</b> Outlook</a>
+<li class="chapter" data-level="13" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>13</b> Outlook</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="out-look.html"><a href="out-look.html#machine-learning"><i class="fa fa-check"></i><b>14.1</b> Machine Learning</a></li>
+<li class="chapter" data-level="13.1" data-path="out-look.html"><a href="out-look.html#summary-of-what-was-covered-in-course"><i class="fa fa-check"></i><b>13.1</b> Summary of what was covered in course</a></li>
+<li class="chapter" data-level="13.2" data-path="out-look.html"><a href="out-look.html#other-outcome-variables"><i class="fa fa-check"></i><b>13.2</b> Other outcome variables</a></li>
+<li class="chapter" data-level="13.3" data-path="out-look.html"><a href="out-look.html#data-structures"><i class="fa fa-check"></i><b>13.3</b> Data structures</a></li>
+<li class="chapter" data-level="13.4" data-path="out-look.html"><a href="out-look.html#where-to-go-next"><i class="fa fa-check"></i><b>13.4</b> Where to go next</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -336,23 +359,18 @@ the model from working altogether.</li>
 <div id="import-data-into-r" class="section level2 hasAnchor" number="2.5">
 <h2><span class="header-section-number">2.5</span> Import data into R<a href="eda-1.html#import-data-into-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>First, we need to install some packages.</p>
-<<<<<<< Updated upstream
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="eda-1.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb1-2"><a href="eda-1.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readxl&quot;</span>)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="eda-1.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
 <span id="cb1-2"><a href="eda-1.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readxl&quot;</span>)</span></code></pre></div>
->>>>>>> Stashed changes
 <p>Now, let’s import the data.You can see in the folder that we have 2 csv files.
 We can use <code>read_delim()</code> or <code>read_csv</code> function. Note that you need other function for Stata datasets (<code>read_data</code> from the haven package). To load Rdata files, you use the <code>load()</code> function.</p>
 <p>Make sure you name the correct sub-directory in case you saved the data a sub-folder of your project folder (which I have done).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="eda-1.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data </span></span>
-<span id="cb2-2"><a href="eda-1.html#cb2-2" aria-hidden="true" tabindex="-1"></a>nba_salaries <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;../datasets/nba/salaries_1985to2018.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-3"><a href="eda-1.html#cb2-3" aria-hidden="true" tabindex="-1"></a>nba_players <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;../datasets/nba/players.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="eda-1.html#cb2-1" tabindex="-1"></a><span class="co"># import data </span></span>
+<span id="cb2-2"><a href="eda-1.html#cb2-2" tabindex="-1"></a>nba_salaries <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;../datasets/nba/salaries_1985to2018.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-3"><a href="eda-1.html#cb2-3" tabindex="-1"></a>nba_players <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;../datasets/nba/players.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Great, the two dataframes should appear in your environment in the upper right side in R studio.</p>
 <p>Let’s take a quick look at these trend dataframe using str() function The str() function shows the number of rows (observations) and columns (variables). It also provides information on the name of each column, its type and an example of some of the values in each column.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="eda-1.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(nba_players)</span></code></pre></div>
-<pre><code>## spc_tbl_ [4,685 x 25] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="eda-1.html#cb3-1" tabindex="-1"></a><span class="fu">str</span>(nba_players)</span></code></pre></div>
+<pre><code>## spc_tbl_ [4,685 × 25] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ index      : num [1:4685] 0 1 2 3 4 5 6 7 8 9 ...
 ##  $ _id        : chr [1:4685] &quot;abdelal01&quot; &quot;abdulza01&quot; &quot;abdulka01&quot; &quot;abdulma02&quot; ...
 ##  $ birthDate  : chr [1:4685] &quot;June 24, 1968&quot; &quot;April 7, 1946&quot; &quot;April 16, 1947&quot; &quot;March 9, 1969&quot; ...
@@ -407,8 +425,8 @@ We can use <code>read_delim()</code> or <code>read_csv</code> function. Note tha
 ##   ..   weight = col_character()
 ##   .. )
 ##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="eda-1.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(nba_salaries)</span></code></pre></div>
-<pre><code>## spc_tbl_ [14,163 x 8] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="eda-1.html#cb5-1" tabindex="-1"></a><span class="fu">str</span>(nba_salaries)</span></code></pre></div>
+<pre><code>## spc_tbl_ [14,163 × 8] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ index       : num [1:14163] 0 1 2 3 4 5 6 7 8 9 ...
 ##  $ league      : chr [1:14163] &quot;NBA&quot; &quot;NBA&quot; &quot;NBA&quot; &quot;NBA&quot; ...
 ##  $ player_id   : chr [1:14163] &quot;abdelal01&quot; &quot;abdelal01&quot; &quot;abdelal01&quot; &quot;abdelal01&quot; ...
@@ -437,8 +455,8 @@ We can use <code>read_delim()</code> or <code>read_csv</code> function. Note tha
 “players” contains many career statistics about players, for example, how many points they scored on average per game, across their whole career.</p>
 <p>Now we want to link both datasets. We can do this using the <code>merge()</code> function.
 An alternative would be <code>join()</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="eda-1.html#cb7-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> <span class="fu">merge</span>(nba_players, nba_salaries, <span class="at">by.x =</span> <span class="fu">c</span>(<span class="st">&quot;_id&quot;</span>), <span class="at">by.y=</span><span class="fu">c</span>(<span class="st">&quot;player_id&quot;</span>))</span>
-<span id="cb7-2"><a href="eda-1.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(nba_players, nba_salaries)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="eda-1.html#cb7-1" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> <span class="fu">merge</span>(nba_players, nba_salaries, <span class="at">by.x =</span> <span class="fu">c</span>(<span class="st">&quot;_id&quot;</span>), <span class="at">by.y=</span><span class="fu">c</span>(<span class="st">&quot;player_id&quot;</span>))</span>
+<span id="cb7-2"><a href="eda-1.html#cb7-2" tabindex="-1"></a><span class="fu">rm</span>(nba_players, nba_salaries)</span></code></pre></div>
 </div>
 <div id="clean-dataset" class="section level2 hasAnchor" number="2.7">
 <h2><span class="header-section-number">2.7</span> Clean dataset<a href="eda-1.html#clean-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -446,10 +464,10 @@ An alternative would be <code>join()</code>.</p>
 <p>When using the select function, we will also rename the variables to make them more intuitive.</p>
 <p>First, let’s filter out Let’s filter all years between 2012-2022.</p>
 <p>Afterwards, we use the save() function to store the data as a .Rdata file and the write_excel() function to store the reduced dataset. This way we can simply load that one next time and save time.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="eda-1.html#cb8-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="eda-1.html#cb8-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(<span class="fu">everything</span>(), <span class="sc">-</span>league, <span class="sc">-</span>highSchool) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="eda-1.html#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(season_start<span class="sc">&gt;=</span><span class="dv">1998</span>)</span>
-<span id="cb8-4"><a href="eda-1.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(data_nba, <span class="at">file =</span><span class="st">&quot;../datasets/nba/data_nba.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="eda-1.html#cb8-1" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="eda-1.html#cb8-2" tabindex="-1"></a>        <span class="fu">select</span>(<span class="fu">everything</span>(), <span class="sc">-</span>league, <span class="sc">-</span>highSchool) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="eda-1.html#cb8-3" tabindex="-1"></a>        <span class="fu">filter</span>(season_start<span class="sc">&gt;=</span><span class="dv">1998</span>)</span>
+<span id="cb8-4"><a href="eda-1.html#cb8-4" tabindex="-1"></a><span class="fu">save</span>(data_nba, <span class="at">file =</span><span class="st">&quot;../datasets/nba/data_nba.RData&quot;</span>)</span></code></pre></div>
 </div>
 <div id="change-variables" class="section level2 hasAnchor" number="2.8">
 <h2><span class="header-section-number">2.8</span> change variables<a href="eda-1.html#change-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -459,23 +477,18 @@ for each season.</p>
 <p>Second, we want recode the “position” variable. Some players played multiple
 position, so that info is messy. We want to create varies dummy variables
 for each position.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="eda-1.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># let&#39;s calculate age for every season</span></span>
-<span id="cb9-2"><a href="eda-1.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(data_nba<span class="sc">$</span>birthDate) <span class="co"># nice, it is already a date variable</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="eda-1.html#cb9-1" tabindex="-1"></a><span class="co"># let&#39;s calculate age for every season</span></span>
+<span id="cb9-2"><a href="eda-1.html#cb9-2" tabindex="-1"></a><span class="fu">class</span>(data_nba<span class="sc">$</span>birthDate) <span class="co"># nice, it is already a date variable</span></span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="eda-1.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
-<pre><code>## 
-## Attache Paket: &#39;lubridate&#39;</code></pre>
-<pre><code>## Die folgenden Objekte sind maskiert von &#39;package:base&#39;:
-## 
-##     date, intersect, setdiff, union</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="eda-1.html#cb14-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="eda-1.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year_of_birth =</span> <span class="fu">year</span>(<span class="fu">mdy</span>(birthDate)),</span>
-<span id="cb14-3"><a href="eda-1.html#cb14-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">age =</span> season_start <span class="sc">-</span> year_of_birth)</span>
-<span id="cb14-4"><a href="eda-1.html#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="eda-1.html#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="eda-1.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># let&#39;s clean the position</span></span>
-<span id="cb14-7"><a href="eda-1.html#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="eda-1.html#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data_nba<span class="sc">$</span>position)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="eda-1.html#cb11-1" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb11-2"><a href="eda-1.html#cb11-2" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="eda-1.html#cb11-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year_of_birth =</span> <span class="fu">year</span>(<span class="fu">mdy</span>(birthDate)),</span>
+<span id="cb11-4"><a href="eda-1.html#cb11-4" tabindex="-1"></a>         <span class="at">age =</span> season_start <span class="sc">-</span> year_of_birth)</span>
+<span id="cb11-5"><a href="eda-1.html#cb11-5" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="eda-1.html#cb11-6" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="eda-1.html#cb11-7" tabindex="-1"></a><span class="co"># let&#39;s clean the position</span></span>
+<span id="cb11-8"><a href="eda-1.html#cb11-8" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="eda-1.html#cb11-9" tabindex="-1"></a><span class="fu">table</span>(data_nba<span class="sc">$</span>position)</span></code></pre></div>
 <pre><code>## 
 ##                                                             Center 
 ##                                                               1204 
@@ -547,50 +560,50 @@ for each position.</p>
 ##                                                                 22 
 ##                 Small Forward and Shooting Guard and Power Forward 
 ##                                                                 69</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="eda-1.html#cb16-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="eda-1.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb16-3"><a href="eda-1.html#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">position_center =</span> </span>
-<span id="cb16-4"><a href="eda-1.html#cb16-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(<span class="at">position =</span> <span class="fu">str_detect</span>(position,<span class="st">&quot;Center&quot;</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb16-5"><a href="eda-1.html#cb16-5" aria-hidden="true" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>),</span>
-<span id="cb16-6"><a href="eda-1.html#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">position_sf =</span> </span>
-<span id="cb16-7"><a href="eda-1.html#cb16-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(<span class="at">position =</span> <span class="fu">str_detect</span>(position,<span class="st">&quot;Small Forward&quot;</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb16-8"><a href="eda-1.html#cb16-8" aria-hidden="true" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>),</span>
-<span id="cb16-9"><a href="eda-1.html#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">position_pf =</span> </span>
-<span id="cb16-10"><a href="eda-1.html#cb16-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(<span class="at">position =</span> <span class="fu">str_detect</span>(position,<span class="st">&quot;Power Forward&quot;</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb16-11"><a href="eda-1.html#cb16-11" aria-hidden="true" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>),</span>
-<span id="cb16-12"><a href="eda-1.html#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">position_sg =</span> </span>
-<span id="cb16-13"><a href="eda-1.html#cb16-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(<span class="at">position =</span> <span class="fu">str_detect</span>(position,<span class="st">&quot;Shooting Guard&quot;</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb16-14"><a href="eda-1.html#cb16-14" aria-hidden="true" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>),</span>
-<span id="cb16-15"><a href="eda-1.html#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">position_pg =</span> </span>
-<span id="cb16-16"><a href="eda-1.html#cb16-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(<span class="at">position =</span> <span class="fu">str_detect</span>(position,<span class="st">&quot;Point Guard&quot;</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb16-17"><a href="eda-1.html#cb16-17" aria-hidden="true" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>))</span>
-<span id="cb16-18"><a href="eda-1.html#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-19"><a href="eda-1.html#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-20"><a href="eda-1.html#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-21"><a href="eda-1.html#cb16-21" aria-hidden="true" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
-<span id="cb16-22"><a href="eda-1.html#cb16-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">&quot;_id&quot;</span>, name, age, weight, height, birthPlace, <span class="fu">everything</span>(), <span class="sc">-</span>position, <span class="sc">-</span>birthDate, <span class="sc">-</span>year_of_birth)</span>
-<span id="cb16-23"><a href="eda-1.html#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(data_nba, <span class="at">file =</span><span class="st">&quot;../datasets/nba/data_nba.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="eda-1.html#cb13-1" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="eda-1.html#cb13-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-3"><a href="eda-1.html#cb13-3" tabindex="-1"></a>    <span class="at">position_center =</span> </span>
+<span id="cb13-4"><a href="eda-1.html#cb13-4" tabindex="-1"></a>      <span class="fu">case_when</span>(<span class="at">position =</span> <span class="fu">str_detect</span>(position,<span class="st">&quot;Center&quot;</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb13-5"><a href="eda-1.html#cb13-5" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>),</span>
+<span id="cb13-6"><a href="eda-1.html#cb13-6" tabindex="-1"></a>    <span class="at">position_sf =</span> </span>
+<span id="cb13-7"><a href="eda-1.html#cb13-7" tabindex="-1"></a>      <span class="fu">case_when</span>(<span class="at">position =</span> <span class="fu">str_detect</span>(position,<span class="st">&quot;Small Forward&quot;</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb13-8"><a href="eda-1.html#cb13-8" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>),</span>
+<span id="cb13-9"><a href="eda-1.html#cb13-9" tabindex="-1"></a>    <span class="at">position_pf =</span> </span>
+<span id="cb13-10"><a href="eda-1.html#cb13-10" tabindex="-1"></a>      <span class="fu">case_when</span>(<span class="at">position =</span> <span class="fu">str_detect</span>(position,<span class="st">&quot;Power Forward&quot;</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb13-11"><a href="eda-1.html#cb13-11" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>),</span>
+<span id="cb13-12"><a href="eda-1.html#cb13-12" tabindex="-1"></a>    <span class="at">position_sg =</span> </span>
+<span id="cb13-13"><a href="eda-1.html#cb13-13" tabindex="-1"></a>      <span class="fu">case_when</span>(<span class="at">position =</span> <span class="fu">str_detect</span>(position,<span class="st">&quot;Shooting Guard&quot;</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb13-14"><a href="eda-1.html#cb13-14" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>),</span>
+<span id="cb13-15"><a href="eda-1.html#cb13-15" tabindex="-1"></a>    <span class="at">position_pg =</span> </span>
+<span id="cb13-16"><a href="eda-1.html#cb13-16" tabindex="-1"></a>      <span class="fu">case_when</span>(<span class="at">position =</span> <span class="fu">str_detect</span>(position,<span class="st">&quot;Point Guard&quot;</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb13-17"><a href="eda-1.html#cb13-17" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>))</span>
+<span id="cb13-18"><a href="eda-1.html#cb13-18" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="eda-1.html#cb13-19" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="eda-1.html#cb13-20" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="eda-1.html#cb13-21" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
+<span id="cb13-22"><a href="eda-1.html#cb13-22" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">&quot;_id&quot;</span>, name, age, weight, height, birthPlace, <span class="fu">everything</span>(), <span class="sc">-</span>position, <span class="sc">-</span>birthDate, <span class="sc">-</span>year_of_birth)</span>
+<span id="cb13-23"><a href="eda-1.html#cb13-23" tabindex="-1"></a><span class="fu">save</span>(data_nba, <span class="at">file =</span><span class="st">&quot;../datasets/nba/data_nba.RData&quot;</span>)</span></code></pre></div>
 <p>Now, we want to create a variable that gives us the number of seasons (i.e.years)
 that each player played. Since the dataset is organized in seasons, each row
 is one season. Counting the rows per player gives us the years they played.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="eda-1.html#cb17-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a href="eda-1.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">&quot;_id&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb17-3"><a href="eda-1.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">seasons_played =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb17-4"><a href="eda-1.html#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="eda-1.html#cb14-1" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="eda-1.html#cb14-2" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">&quot;_id&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="eda-1.html#cb14-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">seasons_played =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="eda-1.html#cb14-4" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
 <p>Almost done. When we browse the dataset, we recognize that the height and weight variables are stored as characters. Let’s convert them to numeric, so we can
 use them in operations.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="eda-1.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data_nba<span class="sc">$</span>weight)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="eda-1.html#cb15-1" tabindex="-1"></a><span class="fu">str</span>(data_nba<span class="sc">$</span>weight)</span></code></pre></div>
 <pre><code>##  chr [1:9728] &quot;162lb&quot; &quot;223lb&quot; &quot;223lb&quot; &quot;223lb&quot; &quot;223lb&quot; &quot;223lb&quot; &quot;223lb&quot; ...</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="eda-1.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data_nba<span class="sc">$</span>height)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="eda-1.html#cb17-1" tabindex="-1"></a><span class="fu">str</span>(data_nba<span class="sc">$</span>height)</span></code></pre></div>
 <pre><code>##  chr [1:9728] &quot;6-1&quot; &quot;6-6&quot; &quot;6-6&quot; &quot;6-6&quot; &quot;6-6&quot; &quot;6-6&quot; &quot;6-6&quot; &quot;6-6&quot; &quot;6-6&quot; &quot;6-6&quot; ...</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="eda-1.html#cb22-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="eda-1.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">weight =</span> <span class="fu">str_replace</span>(weight, <span class="st">&quot;lb&quot;</span>, <span class="st">&quot;&quot;</span>),</span>
-<span id="cb22-3"><a href="eda-1.html#cb22-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">weight =</span> <span class="fu">as.numeric</span>(weight),</span>
-<span id="cb22-4"><a href="eda-1.html#cb22-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">height =</span> <span class="fu">str_replace</span>(height, <span class="st">&quot;-&quot;</span>, <span class="st">&quot;.&quot;</span>),</span>
-<span id="cb22-5"><a href="eda-1.html#cb22-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">height =</span> <span class="fu">as.numeric</span>(height))</span>
-<span id="cb22-6"><a href="eda-1.html#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-7"><a href="eda-1.html#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data_nba)</span></code></pre></div>
-<pre><code>## tibble [9,728 x 36] (S3: tbl_df/tbl/data.frame)
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="eda-1.html#cb19-1" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="eda-1.html#cb19-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">weight =</span> <span class="fu">str_replace</span>(weight, <span class="st">&quot;lb&quot;</span>, <span class="st">&quot;&quot;</span>),</span>
+<span id="cb19-3"><a href="eda-1.html#cb19-3" tabindex="-1"></a>         <span class="at">weight =</span> <span class="fu">as.numeric</span>(weight),</span>
+<span id="cb19-4"><a href="eda-1.html#cb19-4" tabindex="-1"></a>         <span class="at">height =</span> <span class="fu">str_replace</span>(height, <span class="st">&quot;-&quot;</span>, <span class="st">&quot;.&quot;</span>),</span>
+<span id="cb19-5"><a href="eda-1.html#cb19-5" tabindex="-1"></a>         <span class="at">height =</span> <span class="fu">as.numeric</span>(height))</span>
+<span id="cb19-6"><a href="eda-1.html#cb19-6" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="eda-1.html#cb19-7" tabindex="-1"></a><span class="fu">str</span>(data_nba)</span></code></pre></div>
+<pre><code>## tibble [9,728 × 36] (S3: tbl_df/tbl/data.frame)
 ##  $ _id            : chr [1:9728] &quot;abdulma02&quot; &quot;abdulta01&quot; &quot;abdulta01&quot; &quot;abdulta01&quot; ...
 ##  $ name           : chr [1:9728] &quot;Mahmoud Abdul-Rauf&quot; &quot;Tariq Abdul-Wahad&quot; &quot;Tariq Abdul-Wahad&quot; &quot;Tariq Abdul-Wahad&quot; ...
 ##  $ age            : num [1:9728] 31 24 25 26 27 28 29 30 31 32 ...
@@ -632,26 +645,16 @@ use them in operations.</p>
 <h2><span class="header-section-number">2.9</span> Explore the whole dataset<a href="eda-1.html#explore-the-whole-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now, let’s explore some packages which help us to explore the dataframe as a whole.
 Let’s start with the DataExplorer package. It is nice to get an overview of variables and the “missingness” of data.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="eda-1.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DataExplorer)</span>
-<span id="cb24-2"><a href="eda-1.html#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="eda-1.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># overview of types of variables and missingness</span></span>
-<span id="cb24-4"><a href="eda-1.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">introduce</span>(data_nba)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 9
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="eda-1.html#cb21-1" tabindex="-1"></a><span class="fu">library</span>(DataExplorer)</span>
+<span id="cb21-2"><a href="eda-1.html#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="eda-1.html#cb21-3" tabindex="-1"></a><span class="co"># overview of types of variables and missingness</span></span>
+<span id="cb21-4"><a href="eda-1.html#cb21-4" tabindex="-1"></a><span class="fu">introduce</span>(data_nba)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 9
 ##    rows columns discrete_columns continuous_columns all_missing_columns
 ##   &lt;int&gt;   &lt;int&gt;            &lt;int&gt;              &lt;int&gt;               &lt;int&gt;
 ## 1  9728      36               18                 18                   0
-## # i 4 more variables: total_missing_values &lt;int&gt;, complete_rows &lt;int&gt;,
+## # ℹ 4 more variables: total_missing_values &lt;int&gt;, complete_rows &lt;int&gt;,
 ## #   total_observations &lt;int&gt;, memory_usage &lt;dbl&gt;</code></pre>
-<<<<<<< Updated upstream
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="eda-1.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plots the info from above</span></span>
-<span id="cb26-2"><a href="eda-1.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_intro</span>(data_nba)</span></code></pre></div>
-<p><img src="_main_files/figure-html/explore_dt_0-1.png" width="672" /></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="eda-1.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plots percentages missing across variables</span></span>
-<span id="cb27-2"><a href="eda-1.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_missing</span>(data_nba)</span></code></pre></div>
-<p><img src="_main_files/figure-html/explore_dt_0-2.png" width="672" /></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="eda-1.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plots frequencies across variables</span></span>
-<span id="cb28-2"><a href="eda-1.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_bar</span>(data_nba)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="eda-1.html#cb23-1" tabindex="-1"></a><span class="co"># plots the info from above</span></span>
 <span id="cb23-2"><a href="eda-1.html#cb23-2" tabindex="-1"></a><span class="fu">plot_intro</span>(data_nba)</span></code></pre></div>
 <p><img src="_main_files/figure-html/explore_dt_0-1.png" width="672" /></p>
@@ -660,7 +663,6 @@ Let’s start with the DataExplorer package. It is nice to get an overview of va
 <p><img src="_main_files/figure-html/explore_dt_0-2.png" width="672" /></p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="eda-1.html#cb25-1" tabindex="-1"></a><span class="co"># plots frequencies across variables</span></span>
 <span id="cb25-2"><a href="eda-1.html#cb25-2" tabindex="-1"></a><span class="fu">plot_bar</span>(data_nba)</span></code></pre></div>
->>>>>>> Stashed changes
 <pre><code>## 11 columns ignored with more than 50 categories.
 ## X_id: 1794 categories
 ## name: 1790 categories
@@ -677,46 +679,32 @@ Let’s start with the DataExplorer package. It is nice to get an overview of va
 <p>Now, let’s try gtSummary for summary tables. A summary table is always a useful start once you have identified the type of variables you are interested in.</p>
 <p>Let’s assume we are interested in age, seasons played, career points, salary,
 position, and right or left handed (i.e. “shoots”)</p>
-<<<<<<< Updated upstream
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="eda-1.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb30-2"><a href="eda-1.html#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="eda-1.html#cb30-3" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb30-4"><a href="eda-1.html#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, seasons_played, shoots, career_PTS, salary, <span class="fu">contains</span>(<span class="st">&quot;position&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb30-5"><a href="eda-1.html#cb30-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">tbl_summary</span>(</span>
-<span id="cb30-6"><a href="eda-1.html#cb30-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">statistic =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="st">&quot;{mean} ({min}, {max})&quot;</span>)) </span></code></pre></div>
-<div id="feqoznywet" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
-}
-
-#feqoznywet .gt_table {
-=======
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="eda-1.html#cb27-1" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span></code></pre></div>
 <pre><code>## #BlackLivesMatter</code></pre>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="eda-1.html#cb29-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
 <span id="cb29-2"><a href="eda-1.html#cb29-2" tabindex="-1"></a>  <span class="fu">select</span>(age, seasons_played, shoots, career_PTS, salary, <span class="fu">contains</span>(<span class="st">&quot;position&quot;</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb29-3"><a href="eda-1.html#cb29-3" tabindex="-1"></a>         <span class="fu">tbl_summary</span>(</span>
 <span id="cb29-4"><a href="eda-1.html#cb29-4" tabindex="-1"></a>           <span class="at">statistic =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="st">&quot;{mean} ({min}, {max})&quot;</span>)) </span></code></pre></div>
-<div id="oasrknykyz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#oasrknykyz table {
+<div id="gifzhurfug" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gifzhurfug table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#oasrknykyz thead, #oasrknykyz tbody, #oasrknykyz tfoot, #oasrknykyz tr, #oasrknykyz td, #oasrknykyz th {
+#gifzhurfug thead, #gifzhurfug tbody, #gifzhurfug tfoot, #gifzhurfug tr, #gifzhurfug td, #gifzhurfug th {
   border-style: none;
 }
 
-#oasrknykyz p {
+#gifzhurfug p {
   margin: 0;
   padding: 0;
 }
 
-#oasrknykyz .gt_table {
->>>>>>> Stashed changes
+#gifzhurfug .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -739,15 +727,12 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-left-color: #D3D3D3;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_heading {
-=======
-#oasrknykyz .gt_caption {
+#gifzhurfug .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#oasrknykyz .gt_title {
+#gifzhurfug .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -759,7 +744,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-bottom-width: 0;
 }
 
-#oasrknykyz .gt_subtitle {
+#gifzhurfug .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -771,8 +756,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-top-width: 0;
 }
 
-#oasrknykyz .gt_heading {
->>>>>>> Stashed changes
+#gifzhurfug .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -784,50 +768,13 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-right-color: #D3D3D3;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#feqoznywet .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#feqoznywet .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#feqoznywet .gt_bottom_border {
-=======
-#oasrknykyz .gt_bottom_border {
->>>>>>> Stashed changes
+#gifzhurfug .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_col_headings {
-=======
-#oasrknykyz .gt_col_headings {
->>>>>>> Stashed changes
+#gifzhurfug .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -842,11 +789,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-right-color: #D3D3D3;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_col_heading {
-=======
-#oasrknykyz .gt_col_heading {
->>>>>>> Stashed changes
+#gifzhurfug .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -866,11 +809,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   overflow-x: hidden;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_column_spanner_outer {
-=======
-#oasrknykyz .gt_column_spanner_outer {
->>>>>>> Stashed changes
+#gifzhurfug .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -882,27 +821,15 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 4px;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_column_spanner_outer:first-child {
+#gifzhurfug .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#feqoznywet .gt_column_spanner_outer:last-child {
+#gifzhurfug .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#feqoznywet .gt_column_spanner {
-=======
-#oasrknykyz .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#oasrknykyz .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#oasrknykyz .gt_column_spanner {
->>>>>>> Stashed changes
+#gifzhurfug .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -914,15 +841,11 @@ position, and right or left handed (i.e. “shoots”)</p>
   width: 100%;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_group_heading {
-=======
-#oasrknykyz .gt_spanner_row {
+#gifzhurfug .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#oasrknykyz .gt_group_heading {
->>>>>>> Stashed changes
+#gifzhurfug .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -948,11 +871,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   text-align: left;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_empty_group_heading {
-=======
-#oasrknykyz .gt_empty_group_heading {
->>>>>>> Stashed changes
+#gifzhurfug .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -967,27 +886,15 @@ position, and right or left handed (i.e. “shoots”)</p>
   vertical-align: middle;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_from_md > :first-child {
+#gifzhurfug .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#feqoznywet .gt_from_md > :last-child {
+#gifzhurfug .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#feqoznywet .gt_row {
-=======
-#oasrknykyz .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#oasrknykyz .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#oasrknykyz .gt_row {
->>>>>>> Stashed changes
+#gifzhurfug .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1006,11 +913,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   overflow-x: hidden;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_stub {
-=======
-#oasrknykyz .gt_stub {
->>>>>>> Stashed changes
+#gifzhurfug .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1023,11 +926,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 5px;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_stub_row_group {
-=======
-#oasrknykyz .gt_stub_row_group {
->>>>>>> Stashed changes
+#gifzhurfug .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1041,23 +940,15 @@ position, and right or left handed (i.e. “shoots”)</p>
   vertical-align: top;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_row_group_first td {
+#gifzhurfug .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#feqoznywet .gt_summary_row {
-=======
-#oasrknykyz .gt_row_group_first td {
+#gifzhurfug .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#oasrknykyz .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#oasrknykyz .gt_summary_row {
->>>>>>> Stashed changes
+#gifzhurfug .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1067,28 +958,16 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 5px;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_first_summary_row {
-=======
-#oasrknykyz .gt_first_summary_row {
->>>>>>> Stashed changes
+#gifzhurfug .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_first_summary_row.thick {
+#gifzhurfug .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#feqoznywet .gt_last_summary_row {
-=======
-#oasrknykyz .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#oasrknykyz .gt_last_summary_row {
->>>>>>> Stashed changes
+#gifzhurfug .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1098,11 +977,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-bottom-color: #D3D3D3;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_grand_summary_row {
-=======
-#oasrknykyz .gt_grand_summary_row {
->>>>>>> Stashed changes
+#gifzhurfug .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1112,11 +987,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 5px;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_first_grand_summary_row {
-=======
-#oasrknykyz .gt_first_grand_summary_row {
->>>>>>> Stashed changes
+#gifzhurfug .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1126,14 +997,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-top-color: #D3D3D3;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#feqoznywet .gt_table_body {
-=======
-#oasrknykyz .gt_last_grand_summary_row_top {
+#gifzhurfug .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1143,12 +1007,11 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-bottom-color: #D3D3D3;
 }
 
-#oasrknykyz .gt_striped {
+#gifzhurfug .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#oasrknykyz .gt_table_body {
->>>>>>> Stashed changes
+#gifzhurfug .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1157,11 +1020,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-bottom-color: #D3D3D3;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_footnotes {
-=======
-#oasrknykyz .gt_footnotes {
->>>>>>> Stashed changes
+#gifzhurfug .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1175,42 +1034,8 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-right-color: #D3D3D3;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_footnote {
-=======
-#oasrknykyz .gt_footnote {
->>>>>>> Stashed changes
+#gifzhurfug .gt_footnote {
   margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-<<<<<<< Updated upstream
-#feqoznywet .gt_sourcenotes {
-=======
-#oasrknykyz .gt_sourcenotes {
->>>>>>> Stashed changes
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-<<<<<<< Updated upstream
-#feqoznywet .gt_sourcenote {
-=======
-#oasrknykyz .gt_sourcenote {
->>>>>>> Stashed changes
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1218,129 +1043,94 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 5px;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_left {
+#gifzhurfug .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gifzhurfug .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gifzhurfug .gt_left {
   text-align: left;
 }
 
-#feqoznywet .gt_center {
+#gifzhurfug .gt_center {
   text-align: center;
 }
 
-#feqoznywet .gt_right {
-=======
-#oasrknykyz .gt_left {
-  text-align: left;
-}
-
-#oasrknykyz .gt_center {
-  text-align: center;
-}
-
-#oasrknykyz .gt_right {
->>>>>>> Stashed changes
+#gifzhurfug .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_font_normal {
+#gifzhurfug .gt_font_normal {
   font-weight: normal;
 }
 
-#feqoznywet .gt_font_bold {
+#gifzhurfug .gt_font_bold {
   font-weight: bold;
 }
 
-#feqoznywet .gt_font_italic {
+#gifzhurfug .gt_font_italic {
   font-style: italic;
 }
 
-#feqoznywet .gt_super {
+#gifzhurfug .gt_super {
   font-size: 65%;
 }
 
-#feqoznywet .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
-=======
-#oasrknykyz .gt_font_normal {
-  font-weight: normal;
-}
-
-#oasrknykyz .gt_font_bold {
-  font-weight: bold;
-}
-
-#oasrknykyz .gt_font_italic {
-  font-style: italic;
-}
-
-#oasrknykyz .gt_super {
-  font-size: 65%;
-}
-
-#oasrknykyz .gt_footnote_marks {
->>>>>>> Stashed changes
+#gifzhurfug .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_asterisk {
-=======
-#oasrknykyz .gt_asterisk {
->>>>>>> Stashed changes
+#gifzhurfug .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-<<<<<<< Updated upstream
-#feqoznywet .gt_indent_1 {
+#gifzhurfug .gt_indent_1 {
   text-indent: 5px;
 }
 
-#feqoznywet .gt_indent_2 {
+#gifzhurfug .gt_indent_2 {
   text-indent: 10px;
 }
 
-#feqoznywet .gt_indent_3 {
+#gifzhurfug .gt_indent_3 {
   text-indent: 15px;
 }
 
-#feqoznywet .gt_indent_4 {
+#gifzhurfug .gt_indent_4 {
   text-indent: 20px;
 }
 
-#feqoznywet .gt_indent_5 {
-=======
-#oasrknykyz .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#oasrknykyz .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#oasrknykyz .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#oasrknykyz .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#oasrknykyz .gt_indent_5 {
->>>>>>> Stashed changes
+#gifzhurfug .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 9,728&lt;/strong&gt;&lt;sup class=&quot;gt_footnote_marks&quot;&gt;1&lt;/sup&gt;"><strong>N = 9,728</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 9,728&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 9,728</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -1376,32 +1166,32 @@ position, and right or left handed (i.e. “shoots”)</p>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="2"><sup class="gt_footnote_marks">1</sup> Mean (Range); n (%)</td>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Mean (Range); n (%)</td>
     </tr>
   </tfoot>
 </table>
 </div>
 <p>Now, let’s look at a correlation matrix between all numeric
 variables in the dataset.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="eda-1.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;corrr&quot;</span>)</span>
-<span id="cb31-2"><a href="eda-1.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;corrplot&quot;</span>)</span>
-<span id="cb31-3"><a href="eda-1.html#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="eda-1.html#cb31-4" aria-hidden="true" tabindex="-1"></a>data_nba_numeric <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
-<span id="cb31-5"><a href="eda-1.html#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span></span>
-<span id="cb31-6"><a href="eda-1.html#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
-<span id="cb31-7"><a href="eda-1.html#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-8"><a href="eda-1.html#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Find constant columns</span></span>
-<span id="cb31-9"><a href="eda-1.html#cb31-9" aria-hidden="true" tabindex="-1"></a>constant_columns <span class="ot">&lt;-</span> <span class="fu">sapply</span>(data_nba_numeric, <span class="cf">function</span>(x) <span class="fu">length</span>(<span class="fu">unique</span>(x)) <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb31-10"><a href="eda-1.html#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-11"><a href="eda-1.html#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove constant columns</span></span>
-<span id="cb31-12"><a href="eda-1.html#cb31-12" aria-hidden="true" tabindex="-1"></a>data_nba_numeric <span class="ot">&lt;-</span> data_nba_numeric[, <span class="sc">!</span>constant_columns]</span>
-<span id="cb31-13"><a href="eda-1.html#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co"># as number</span></span>
-<span id="cb31-14"><a href="eda-1.html#cb31-14" aria-hidden="true" tabindex="-1"></a>corrmatrix <span class="ot">&lt;-</span> data_nba_numeric <span class="sc">%&gt;%</span></span>
-<span id="cb31-15"><a href="eda-1.html#cb31-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>() <span class="sc">%&gt;%</span>    <span class="co"># Create correlation data frame (cor_df)</span></span>
-<span id="cb31-16"><a href="eda-1.html#cb31-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rearrange</span>() <span class="sc">%&gt;%</span>  <span class="co"># rearrange by correlations</span></span>
-<span id="cb31-17"><a href="eda-1.html#cb31-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shave</span>() </span>
-<span id="cb31-18"><a href="eda-1.html#cb31-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-19"><a href="eda-1.html#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="fu">fashion</span>(corrmatrix)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="eda-1.html#cb30-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;corrr&quot;</span>)</span>
+<span id="cb30-2"><a href="eda-1.html#cb30-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;corrplot&quot;</span>)</span>
+<span id="cb30-3"><a href="eda-1.html#cb30-3" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="eda-1.html#cb30-4" tabindex="-1"></a>data_nba_numeric <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="eda-1.html#cb30-5" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span></span>
+<span id="cb30-6"><a href="eda-1.html#cb30-6" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb30-7"><a href="eda-1.html#cb30-7" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="eda-1.html#cb30-8" tabindex="-1"></a><span class="co"># Find constant columns</span></span>
+<span id="cb30-9"><a href="eda-1.html#cb30-9" tabindex="-1"></a>constant_columns <span class="ot">&lt;-</span> <span class="fu">sapply</span>(data_nba_numeric, <span class="cf">function</span>(x) <span class="fu">length</span>(<span class="fu">unique</span>(x)) <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb30-10"><a href="eda-1.html#cb30-10" tabindex="-1"></a></span>
+<span id="cb30-11"><a href="eda-1.html#cb30-11" tabindex="-1"></a><span class="co"># Remove constant columns</span></span>
+<span id="cb30-12"><a href="eda-1.html#cb30-12" tabindex="-1"></a>data_nba_numeric <span class="ot">&lt;-</span> data_nba_numeric[, <span class="sc">!</span>constant_columns]</span>
+<span id="cb30-13"><a href="eda-1.html#cb30-13" tabindex="-1"></a><span class="co"># as number</span></span>
+<span id="cb30-14"><a href="eda-1.html#cb30-14" tabindex="-1"></a>corrmatrix <span class="ot">&lt;-</span> data_nba_numeric <span class="sc">%&gt;%</span></span>
+<span id="cb30-15"><a href="eda-1.html#cb30-15" tabindex="-1"></a>  <span class="fu">correlate</span>() <span class="sc">%&gt;%</span>    <span class="co"># Create correlation data frame (cor_df)</span></span>
+<span id="cb30-16"><a href="eda-1.html#cb30-16" tabindex="-1"></a>  <span class="fu">rearrange</span>() <span class="sc">%&gt;%</span>  <span class="co"># rearrange by correlations</span></span>
+<span id="cb30-17"><a href="eda-1.html#cb30-17" tabindex="-1"></a>  <span class="fu">shave</span>() </span>
+<span id="cb30-18"><a href="eda-1.html#cb30-18" tabindex="-1"></a></span>
+<span id="cb30-19"><a href="eda-1.html#cb30-19" tabindex="-1"></a><span class="fu">fashion</span>(corrmatrix)</span></code></pre></div>
 <pre><code>##               term career_AST position_pg career_PTS career_G career_WS
 ## 1       career_AST                                                     
 ## 2      position_pg        .61                                          
@@ -1456,19 +1246,6 @@ variables in the dataset.</p>
 ## 15    .15                                   
 ## 16    .12         .33                       
 ## 17    .41         .45             .66</code></pre>
-<<<<<<< Updated upstream
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="eda-1.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># as plot</span></span>
-<span id="cb33-2"><a href="eda-1.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rplot</span>(corrmatrix)</span></code></pre></div>
-<p><img src="_main_files/figure-html/explore_dt_2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="eda-1.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or...ggplot approach</span></span>
-<span id="cb34-2"><a href="eda-1.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggcorrplot&quot;</span>)</span>
-<span id="cb34-3"><a href="eda-1.html#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="eda-1.html#cb34-4" aria-hidden="true" tabindex="-1"></a>corrmatrix <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(data_nba_numeric), <span class="dv">1</span>)</span>
-<span id="cb34-5"><a href="eda-1.html#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-6"><a href="eda-1.html#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcorrplot</span>(corrmatrix,</span>
-<span id="cb34-7"><a href="eda-1.html#cb34-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">method =</span> <span class="st">&quot;circle&quot;</span>,</span>
-<span id="cb34-8"><a href="eda-1.html#cb34-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">type=</span><span class="st">&quot;lower&quot;</span>)</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="eda-1.html#cb32-1" tabindex="-1"></a><span class="co"># as plot</span></span>
 <span id="cb32-2"><a href="eda-1.html#cb32-2" tabindex="-1"></a><span class="fu">rplot</span>(corrmatrix)</span></code></pre></div>
 <p><img src="_main_files/figure-html/explore_dt_2-1.png" width="672" /></p>
@@ -1480,7 +1257,6 @@ variables in the dataset.</p>
 <span id="cb33-6"><a href="eda-1.html#cb33-6" tabindex="-1"></a><span class="fu">ggcorrplot</span>(corrmatrix,</span>
 <span id="cb33-7"><a href="eda-1.html#cb33-7" tabindex="-1"></a>           <span class="at">method =</span> <span class="st">&quot;circle&quot;</span>,</span>
 <span id="cb33-8"><a href="eda-1.html#cb33-8" tabindex="-1"></a>           <span class="at">type=</span><span class="st">&quot;lower&quot;</span>)</span></code></pre></div>
->>>>>>> Stashed changes
 <p><img src="_main_files/figure-html/explore_dt_2-2.png" width="672" /></p>
 <p>This is interesting for a first look. For example, it seems that the weight is
 strongly correlated with whatever position you play. Centers are heavy, point
@@ -1501,21 +1277,6 @@ don’t care about passers and just pay more to people who score more.</p>
 Also, we want to know whether point guards (short people who pass a lot) are
 paid less then other positions (who score more).</p>
 <p>First, let’s look how the two continuous variables are distributed:</p>
-<<<<<<< Updated upstream
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="eda-1.html#cb35-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb35-2"><a href="eda-1.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary)) <span class="sc">+</span></span>
-<span id="cb35-3"><a href="eda-1.html#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>position_pg) <span class="sc">+</span></span>
-<span id="cb35-4"><a href="eda-1.html#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/explore_dt_3-1.png" width="672" /></p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="eda-1.html#cb36-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb36-2"><a href="eda-1.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>career_PTS)) <span class="sc">+</span> </span>
-<span id="cb36-3"><a href="eda-1.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/explore_dt_3-2.png" width="672" /></p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="eda-1.html#cb37-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb37-2"><a href="eda-1.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>career_PTS)) <span class="sc">+</span></span>
-<span id="cb37-3"><a href="eda-1.html#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>position_pg) <span class="sc">+</span></span>
-<span id="cb37-4"><a href="eda-1.html#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="eda-1.html#cb34-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
 <span id="cb34-2"><a href="eda-1.html#cb34-2" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary)) <span class="sc">+</span></span>
 <span id="cb34-3"><a href="eda-1.html#cb34-3" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>position_pg) <span class="sc">+</span></span>
@@ -1529,66 +1290,15 @@ paid less then other positions (who score more).</p>
 <span id="cb36-2"><a href="eda-1.html#cb36-2" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>career_PTS)) <span class="sc">+</span></span>
 <span id="cb36-3"><a href="eda-1.html#cb36-3" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>position_pg) <span class="sc">+</span></span>
 <span id="cb36-4"><a href="eda-1.html#cb36-4" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
->>>>>>> Stashed changes
 <p><img src="_main_files/figure-html/explore_dt_3-3.png" width="672" /></p>
 <p>Let’s look at the relationship between salary and position as well as the
 relationship between position and points.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="eda-1.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data_nba<span class="sc">$</span>position_pg)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="eda-1.html#cb37-1" tabindex="-1"></a><span class="fu">str</span>(data_nba<span class="sc">$</span>position_pg)</span></code></pre></div>
 <pre><code>##  num [1:9728] 1 0 0 0 0 0 0 0 0 0 ...</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="eda-1.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data_nba<span class="sc">$</span>salary)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="eda-1.html#cb39-1" tabindex="-1"></a><span class="fu">str</span>(data_nba<span class="sc">$</span>salary)</span></code></pre></div>
 <pre><code>##  num [1:9728] 798500 1411000 1594920 4500000 5062500 ...</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="eda-1.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data_nba<span class="sc">$</span>career_pts)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="eda-1.html#cb41-1" tabindex="-1"></a><span class="fu">str</span>(data_nba<span class="sc">$</span>career_pts)</span></code></pre></div>
 <pre><code>##  NULL</code></pre>
-<<<<<<< Updated upstream
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="eda-1.html#cb44-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb44-2"><a href="eda-1.html#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb44-3"><a href="eda-1.html#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> position_pg, </span>
-<span id="cb44-4"><a href="eda-1.html#cb44-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> salary),</span>
-<span id="cb44-5"><a href="eda-1.html#cb44-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>,</span>
-<span id="cb44-6"><a href="eda-1.html#cb44-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>,</span>
-<span id="cb44-7"><a href="eda-1.html#cb44-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb44-8"><a href="eda-1.html#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#xlim(0, 10000000) +</span></span>
-<span id="cb44-9"><a href="eda-1.html#cb44-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Average salary (Point guard vs other positions)&quot;</span>,</span>
-<span id="cb44-10"><a href="eda-1.html#cb44-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;this is not that interesting&quot;</span>,</span>
-<span id="cb44-11"><a href="eda-1.html#cb44-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Authors&#39; calculation; NBA data 1998-2018&quot;</span>) <span class="sc">+</span></span>
-<span id="cb44-12"><a href="eda-1.html#cb44-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Player&#39;s position&quot;</span>) <span class="sc">+</span></span>
-<span id="cb44-13"><a href="eda-1.html#cb44-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Player&#39;s salary&quot;</span>) <span class="sc">+</span></span>
-<span id="cb44-14"><a href="eda-1.html#cb44-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/explore_dt_4-1.png" width="672" /></p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="eda-1.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="do">## alternatively:</span></span>
-<span id="cb45-2"><a href="eda-1.html#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="eda-1.html#cb45-3" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb45-4"><a href="eda-1.html#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(position_pg) <span class="sc">%&gt;%</span></span>
-<span id="cb45-5"><a href="eda-1.html#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_salary =</span> <span class="fu">mean</span>(salary, <span class="at">na.rm=</span>T)) <span class="sc">%&gt;%</span></span>
-<span id="cb45-6"><a href="eda-1.html#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb45-7"><a href="eda-1.html#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(position_pg), </span>
-<span id="cb45-8"><a href="eda-1.html#cb45-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> mean_salary),</span>
-<span id="cb45-9"><a href="eda-1.html#cb45-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb45-10"><a href="eda-1.html#cb45-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">6000000</span>) <span class="sc">+</span></span>
-<span id="cb45-11"><a href="eda-1.html#cb45-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Average salary (Point guard vs other positions)&quot;</span>,</span>
-<span id="cb45-12"><a href="eda-1.html#cb45-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;this is not that interesting&quot;</span>,</span>
-<span id="cb45-13"><a href="eda-1.html#cb45-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Authors&#39; calculation; NBA data 1998-2018&quot;</span>) <span class="sc">+</span></span>
-<span id="cb45-14"><a href="eda-1.html#cb45-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Player&#39;s position&quot;</span>) <span class="sc">+</span></span>
-<span id="cb45-15"><a href="eda-1.html#cb45-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Player&#39;s salary (in million USD)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb45-16"><a href="eda-1.html#cb45-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/explore_dt_4-2.png" width="672" /></p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="eda-1.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now the relationship between position and points:</span></span>
-<span id="cb46-2"><a href="eda-1.html#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-3"><a href="eda-1.html#cb46-3" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb46-4"><a href="eda-1.html#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(position_pg) <span class="sc">%&gt;%</span></span>
-<span id="cb46-5"><a href="eda-1.html#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_points =</span> <span class="fu">mean</span>(career_PTS, <span class="at">na.rm=</span>T)) <span class="sc">%&gt;%</span></span>
-<span id="cb46-6"><a href="eda-1.html#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb46-7"><a href="eda-1.html#cb46-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(position_pg), </span>
-<span id="cb46-8"><a href="eda-1.html#cb46-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> mean_points),</span>
-<span id="cb46-9"><a href="eda-1.html#cb46-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb46-10"><a href="eda-1.html#cb46-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb46-11"><a href="eda-1.html#cb46-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Average points per game (Point guard vs other positions)&quot;</span>,</span>
-<span id="cb46-12"><a href="eda-1.html#cb46-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;this is not that interesting&quot;</span>,</span>
-<span id="cb46-13"><a href="eda-1.html#cb46-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Authors&#39; calculation; NBA data 1998-2018&quot;</span>) <span class="sc">+</span></span>
-<span id="cb46-14"><a href="eda-1.html#cb46-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Player&#39;s position&quot;</span>) <span class="sc">+</span></span>
-<span id="cb46-15"><a href="eda-1.html#cb46-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Points per game&quot;</span>) <span class="sc">+</span></span>
-<span id="cb46-16"><a href="eda-1.html#cb46-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="eda-1.html#cb43-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
 <span id="cb43-2"><a href="eda-1.html#cb43-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb43-3"><a href="eda-1.html#cb43-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> position_pg, </span>
@@ -1637,91 +1347,11 @@ relationship between position and points.</p>
 <span id="cb45-14"><a href="eda-1.html#cb45-14" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Player&#39;s position&quot;</span>) <span class="sc">+</span></span>
 <span id="cb45-15"><a href="eda-1.html#cb45-15" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Points per game&quot;</span>) <span class="sc">+</span></span>
 <span id="cb45-16"><a href="eda-1.html#cb45-16" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
->>>>>>> Stashed changes
 <p><img src="_main_files/figure-html/explore_dt_4-3.png" width="672" /></p>
 <p>So, it seems that point gards are paid a little less even though they make a few more points on average. Interesting puzzle to explore.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="eda-1.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find example for using histogramm()</span></span>
-<span id="cb47-2"><a href="eda-1.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co"># find example for first just creating cross tabs as perecntages tbl_cross(); summarize(); tabyl()</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="eda-1.html#cb46-1" tabindex="-1"></a><span class="co"># find example for using histogramm()</span></span>
+<span id="cb46-2"><a href="eda-1.html#cb46-2" tabindex="-1"></a><span class="co"># find example for first just creating cross tabs as perecntages tbl_cross(); summarize(); tabyl()</span></span></code></pre></div>
 <p>Now, let’s explore the relationship which is at the heart of our analysis from now on: salary and average points.</p>
-<<<<<<< Updated upstream
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="eda-1.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simple scatterplot</span></span>
-<span id="cb48-2"><a href="eda-1.html#cb48-2" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb48-3"><a href="eda-1.html#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span> </span>
-<span id="cb48-4"><a href="eda-1.html#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/explore_dt_6-1.png" width="672" /></p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="eda-1.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, let&#39;s add a line</span></span>
-<span id="cb49-2"><a href="eda-1.html#cb49-2" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb49-3"><a href="eda-1.html#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span></span>
-<span id="cb49-4"><a href="eda-1.html#cb49-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb49-5"><a href="eda-1.html#cb49-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb49-6"><a href="eda-1.html#cb49-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/explore_dt_6-2.png" width="672" /></p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="eda-1.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># let&#39;s look the relatiship separate for every year</span></span>
-<span id="cb50-2"><a href="eda-1.html#cb50-2" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb50-3"><a href="eda-1.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span></span>
-<span id="cb50-4"><a href="eda-1.html#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb50-5"><a href="eda-1.html#cb50-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb50-6"><a href="eda-1.html#cb50-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">facet_wrap</span>(<span class="sc">~</span>season_start) <span class="sc">+</span> </span>
-<span id="cb50-7"><a href="eda-1.html#cb50-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/explore_dt_6-3.png" width="672" /></p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="eda-1.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># let&#39;s look the relatiship for separate teams</span></span>
-<span id="cb51-2"><a href="eda-1.html#cb51-2" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb51-3"><a href="eda-1.html#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span></span>
-<span id="cb51-4"><a href="eda-1.html#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb51-5"><a href="eda-1.html#cb51-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb51-6"><a href="eda-1.html#cb51-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">facet_wrap</span>(<span class="sc">~</span>team) <span class="sc">+</span> </span>
-<span id="cb51-7"><a href="eda-1.html#cb51-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/explore_dt_6-4.png" width="672" /></p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="eda-1.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># let&#39;s look at it by position</span></span>
-<span id="cb52-2"><a href="eda-1.html#cb52-2" aria-hidden="true" tabindex="-1"></a>scatter_pg <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> <span class="fu">filter</span>(position_pg <span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb52-3"><a href="eda-1.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span></span>
-<span id="cb52-4"><a href="eda-1.html#cb52-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb52-5"><a href="eda-1.html#cb52-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb52-6"><a href="eda-1.html#cb52-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span>
-<span id="cb52-7"><a href="eda-1.html#cb52-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-8"><a href="eda-1.html#cb52-8" aria-hidden="true" tabindex="-1"></a>scatter_center <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> <span class="fu">filter</span>(position_center <span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb52-9"><a href="eda-1.html#cb52-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span></span>
-<span id="cb52-10"><a href="eda-1.html#cb52-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb52-11"><a href="eda-1.html#cb52-11" aria-hidden="true" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb52-12"><a href="eda-1.html#cb52-12" aria-hidden="true" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span>
-<span id="cb52-13"><a href="eda-1.html#cb52-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-14"><a href="eda-1.html#cb52-14" aria-hidden="true" tabindex="-1"></a>scatter_pf <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> <span class="fu">filter</span>(position_pf <span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb52-15"><a href="eda-1.html#cb52-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span></span>
-<span id="cb52-16"><a href="eda-1.html#cb52-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb52-17"><a href="eda-1.html#cb52-17" aria-hidden="true" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb52-18"><a href="eda-1.html#cb52-18" aria-hidden="true" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span>
-<span id="cb52-19"><a href="eda-1.html#cb52-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-20"><a href="eda-1.html#cb52-20" aria-hidden="true" tabindex="-1"></a>scatter_sf <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> <span class="fu">filter</span>(position_sf <span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb52-21"><a href="eda-1.html#cb52-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span></span>
-<span id="cb52-22"><a href="eda-1.html#cb52-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb52-23"><a href="eda-1.html#cb52-23" aria-hidden="true" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb52-24"><a href="eda-1.html#cb52-24" aria-hidden="true" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span>
-<span id="cb52-25"><a href="eda-1.html#cb52-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-26"><a href="eda-1.html#cb52-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggpubr&quot;</span>)</span>
-<span id="cb52-27"><a href="eda-1.html#cb52-27" aria-hidden="true" tabindex="-1"></a><span class="fu">ggarrange</span>(scatter_center, scatter_pf,</span>
-<span id="cb52-28"><a href="eda-1.html#cb52-28" aria-hidden="true" tabindex="-1"></a>          scatter_sf, scatter_pg,</span>
-<span id="cb52-29"><a href="eda-1.html#cb52-29" aria-hidden="true" tabindex="-1"></a>          <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>,</span>
-<span id="cb52-30"><a href="eda-1.html#cb52-30" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Center&quot;</span>,</span>
-<span id="cb52-31"><a href="eda-1.html#cb52-31" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;Power Forward&quot;</span>,</span>
-<span id="cb52-32"><a href="eda-1.html#cb52-32" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;Small Forward&quot;</span>,</span>
-<span id="cb52-33"><a href="eda-1.html#cb52-33" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;Point Guard&quot;</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/explore_dt_6-5.png" width="672" /></p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="eda-1.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># yet a better way to compare this could be:</span></span>
-<span id="cb53-2"><a href="eda-1.html#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-3"><a href="eda-1.html#cb53-3" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb53-4"><a href="eda-1.html#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS, <span class="at">color=</span><span class="fu">as.factor</span>(position_pg))) <span class="sc">+</span></span>
-<span id="cb53-5"><a href="eda-1.html#cb53-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb53-6"><a href="eda-1.html#cb53-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb53-7"><a href="eda-1.html#cb53-7" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">group=</span><span class="fu">as.factor</span>(position_pg))) <span class="sc">+</span> </span>
-<span id="cb53-8"><a href="eda-1.html#cb53-8" aria-hidden="true" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/explore_dt_6-6.png" width="672" /></p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="eda-1.html#cb54-1" aria-hidden="true" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb54-2"><a href="eda-1.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS, <span class="at">color=</span><span class="fu">as.factor</span>(position_center))) <span class="sc">+</span></span>
-<span id="cb54-3"><a href="eda-1.html#cb54-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb54-4"><a href="eda-1.html#cb54-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb54-5"><a href="eda-1.html#cb54-5" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">group=</span><span class="fu">as.factor</span>(position_center))) <span class="sc">+</span> </span>
-<span id="cb54-6"><a href="eda-1.html#cb54-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span></code></pre></div>
-=======
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="eda-1.html#cb47-1" tabindex="-1"></a><span class="co"># simple scatterplot</span></span>
 <span id="cb47-2"><a href="eda-1.html#cb47-2" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb47-3"><a href="eda-1.html#cb47-3" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span> </span>
@@ -1799,7 +1429,6 @@ relationship between position and points.</p>
 <span id="cb53-4"><a href="eda-1.html#cb53-4" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
 <span id="cb53-5"><a href="eda-1.html#cb53-5" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">group=</span><span class="fu">as.factor</span>(position_center))) <span class="sc">+</span> </span>
 <span id="cb53-6"><a href="eda-1.html#cb53-6" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span></code></pre></div>
->>>>>>> Stashed changes
 <p><img src="_main_files/figure-html/explore_dt_6-7.png" width="672" /></p>
 <p>Let’s reflect a moment what we can learn from all this.</p>
 <p>First, there seems to be a somewhat linear relationship between how many points

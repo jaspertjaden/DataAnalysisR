@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content=" 12 Prediction - Application | Data Analysis with R for Social Scientists" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-08-23" />
+<meta name="date" content="2023-08-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -37,7 +37,7 @@ set in the _output.yml file.</p>" />
   
   
 <link rel="prev" href="pm-t.html"/>
-<link rel="next" href="other-est.html"/>
+<link rel="next" href="out-look.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -127,6 +127,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -177,79 +181,98 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="dags-1.html"><a href="dags-1.html"><i class="fa fa-check"></i><b>4</b> DAGs</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="dags-1.html"><a href="dags-1.html#causality"><i class="fa fa-check"></i><b>4.1</b> Causality</a></li>
-<li class="chapter" data-level="4.2" data-path="dags-1.html"><a href="dags-1.html#dags"><i class="fa fa-check"></i><b>4.2</b> DAGs</a></li>
-<li class="chapter" data-level="4.3" data-path="dags-1.html"><a href="dags-1.html#totaldirect-effect"><i class="fa fa-check"></i><b>4.3</b> Total/Direct effect</a></li>
-<li class="chapter" data-level="4.4" data-path="dags-1.html"><a href="dags-1.html#dagitty.net"><i class="fa fa-check"></i><b>4.4</b> dagitty.net</a></li>
+<li class="chapter" data-level="4.1" data-path="dags-1.html"><a href="dags-1.html#objectives-2"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="dags-1.html"><a href="dags-1.html#modelling"><i class="fa fa-check"></i><b>4.2</b> Modelling</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="dags-1.html"><a href="dags-1.html#what-is-modelling"><i class="fa fa-check"></i><b>4.2.1</b> What is modelling?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dags-1.html"><a href="dags-1.html#estimating-effects-vs.-prediction"><i class="fa fa-check"></i><b>4.2.2</b> Estimating effects vs. prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dags-1.html"><a href="dags-1.html#dags"><i class="fa fa-check"></i><b>4.3</b> DAGs</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="dags-1.html"><a href="dags-1.html#directed-acyclical-graphs"><i class="fa fa-check"></i><b>4.3.1</b> Directed acyclical graphs</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dags-1.html"><a href="dags-1.html#patterns-of-relationships"><i class="fa fa-check"></i><b>4.3.2</b> Patterns of relationships</a></li>
+<li class="chapter" data-level="4.3.3" data-path="dags-1.html"><a href="dags-1.html#adjustment-set"><i class="fa fa-check"></i><b>4.3.3</b> Adjustment set</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dags-1.html"><a href="dags-1.html#nba-dag"><i class="fa fa-check"></i><b>4.4</b> NBA DAG</a></li>
+<li class="chapter" data-level="4.5" data-path="dags-1.html"><a href="dags-1.html#resources"><i class="fa fa-check"></i><b>4.5</b> Resources</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="dags-1.html"><a href="dags-1.html#dagitty.net"><i class="fa fa-check"></i><b>4.5.1</b> dagitty.net</a></li>
+<li class="chapter" data-level="4.5.2" data-path="dags-1.html"><a href="dags-1.html#more-on-dags"><i class="fa fa-check"></i><b>4.5.2</b> More on DAGs</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="lin-t-1.html"><a href="lin-t-1.html"><i class="fa fa-check"></i><b>5</b> Linear Regression Theory I: Simple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="lin-t-1.html"><a href="lin-t-1.html#what-is-linear-regression"><i class="fa fa-check"></i><b>5.1</b> What is Linear Regression</a></li>
-<li class="chapter" data-level="5.2" data-path="lin-t-1.html"><a href="lin-t-1.html#examplary-research-question-data"><i class="fa fa-check"></i><b>5.2</b> Examplary research question &amp; data</a></li>
-<li class="chapter" data-level="5.3" data-path="lin-t-1.html"><a href="lin-t-1.html#simple-linear-regression"><i class="fa fa-check"></i><b>5.3</b> Simple Linear Regression</a>
+<li class="chapter" data-level="5.1" data-path="lin-t-1.html"><a href="lin-t-1.html#objectives-3"><i class="fa fa-check"></i><b>5.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.2" data-path="lin-t-1.html"><a href="lin-t-1.html#what-is-linear-regression"><i class="fa fa-check"></i><b>5.2</b> What is Linear Regression</a></li>
+<li class="chapter" data-level="5.3" data-path="lin-t-1.html"><a href="lin-t-1.html#examplary-research-question-data"><i class="fa fa-check"></i><b>5.3</b> Examplary research question &amp; data</a></li>
+<li class="chapter" data-level="5.4" data-path="lin-t-1.html"><a href="lin-t-1.html#simple-linear-regression"><i class="fa fa-check"></i><b>5.4</b> Simple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="lin-t-1.html"><a href="lin-t-1.html#regression-formula"><i class="fa fa-check"></i><b>5.3.1</b> Regression Formula</a></li>
-<li class="chapter" data-level="5.3.2" data-path="lin-t-1.html"><a href="lin-t-1.html#regressing-grade-on-hours"><i class="fa fa-check"></i><b>5.3.2</b> Regressing <code>grade</code> on <code>hours</code></a></li>
+<li class="chapter" data-level="5.4.1" data-path="lin-t-1.html"><a href="lin-t-1.html#regression-formula"><i class="fa fa-check"></i><b>5.4.1</b> Regression Formula</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lin-t-1.html"><a href="lin-t-1.html#regressing-grade-on-hours"><i class="fa fa-check"></i><b>5.4.2</b> Regressing <code>grade</code> on <code>hours</code></a></li>
 </ul></li>
+<li class="chapter" data-level="5.5" data-path="lin-t-1.html"><a href="lin-t-1.html#moving-on"><i class="fa fa-check"></i><b>5.5</b> Moving on</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="lin-t-2.html"><a href="lin-t-2.html"><i class="fa fa-check"></i><b>6</b> Linear Regression Theory II: Multiple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="lin-t-2.html"><a href="lin-t-2.html#multiple-linear-regression"><i class="fa fa-check"></i><b>6.1</b> Multiple Linear Regression</a>
+<li class="chapter" data-level="6.1" data-path="lin-t-2.html"><a href="lin-t-2.html#objectives-4"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="lin-t-2.html"><a href="lin-t-2.html#multiple-linear-regression"><i class="fa fa-check"></i><b>6.2</b> Multiple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-additional-metric-variables"><i class="fa fa-check"></i><b>6.1.1</b> Adding additional metric variables</a></li>
-<li class="chapter" data-level="6.1.2" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-dummy-variables"><i class="fa fa-check"></i><b>6.1.2</b> Adding dummy variables</a></li>
-<li class="chapter" data-level="6.1.3" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-categorical-variables"><i class="fa fa-check"></i><b>6.1.3</b> Adding categorical variables</a></li>
+<li class="chapter" data-level="6.2.1" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-additional-metric-variables"><i class="fa fa-check"></i><b>6.2.1</b> Adding additional metric variables</a></li>
+<li class="chapter" data-level="6.2.2" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-dummy-variables"><i class="fa fa-check"></i><b>6.2.2</b> Adding dummy variables</a></li>
+<li class="chapter" data-level="6.2.3" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-categorical-variables"><i class="fa fa-check"></i><b>6.2.3</b> Adding categorical variables</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="lin-t-2.html"><a href="lin-t-2.html#returning-to-our-research-question"><i class="fa fa-check"></i><b>6.2</b> Returning to our research question</a></li>
-<li class="chapter" data-level="6.3" data-path="lin-t-2.html"><a href="lin-t-2.html#interpretation"><i class="fa fa-check"></i><b>6.3</b> Interpretation</a></li>
+<li class="chapter" data-level="6.3" data-path="lin-t-2.html"><a href="lin-t-2.html#returning-to-our-research-question"><i class="fa fa-check"></i><b>6.3</b> Returning to our research question</a></li>
+<li class="chapter" data-level="6.4" data-path="lin-t-2.html"><a href="lin-t-2.html#adressing-the-uncertainty"><i class="fa fa-check"></i><b>6.4</b> Adressing the uncertainty</a></li>
+<li class="chapter" data-level="6.5" data-path="lin-t-2.html"><a href="lin-t-2.html#moving-on-1"><i class="fa fa-check"></i><b>6.5</b> Moving on</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="log-t-3.html"><a href="log-t-3.html"><i class="fa fa-check"></i><b>7</b> Linear Regression Theory III: Diagnostics</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="log-t-3.html"><a href="log-t-3.html#model-fit"><i class="fa fa-check"></i><b>7.1</b> Model fit</a></li>
-<li class="chapter" data-level="7.2" data-path="log-t-3.html"><a href="log-t-3.html#regression-diagnostics"><i class="fa fa-check"></i><b>7.2</b> Regression diagnostics</a>
+<li class="chapter" data-level="7.1" data-path="log-t-3.html"><a href="log-t-3.html#objectives-5"><i class="fa fa-check"></i><b>7.1</b> Objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="log-t-3.html"><a href="log-t-3.html#model-fit"><i class="fa fa-check"></i><b>7.2</b> Model fit</a></li>
+<li class="chapter" data-level="7.3" data-path="log-t-3.html"><a href="log-t-3.html#regression-diagnostics"><i class="fa fa-check"></i><b>7.3</b> Regression diagnostics</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="log-t-3.html"><a href="log-t-3.html#linearity"><i class="fa fa-check"></i><b>7.2.1</b> Linearity</a></li>
-<li class="chapter" data-level="7.2.2" data-path="log-t-3.html"><a href="log-t-3.html#normally-distributed-residuals"><i class="fa fa-check"></i><b>7.2.2</b> Normally distributed residuals</a></li>
-<li class="chapter" data-level="7.2.3" data-path="log-t-3.html"><a href="log-t-3.html#homoscedasticity"><i class="fa fa-check"></i><b>7.2.3</b> Homoscedasticity</a></li>
-<li class="chapter" data-level="7.2.4" data-path="log-t-3.html"><a href="log-t-3.html#no-overly-influential-data-points"><i class="fa fa-check"></i><b>7.2.4</b> No overly influential data points</a></li>
-<li class="chapter" data-level="7.2.5" data-path="log-t-3.html"><a href="log-t-3.html#no-multicollinearity"><i class="fa fa-check"></i><b>7.2.5</b> No (multi)collinearity</a></li>
+<li class="chapter" data-level="7.3.1" data-path="log-t-3.html"><a href="log-t-3.html#linearity"><i class="fa fa-check"></i><b>7.3.1</b> Linearity</a></li>
+<li class="chapter" data-level="7.3.2" data-path="log-t-3.html"><a href="log-t-3.html#normally-distributed-residuals"><i class="fa fa-check"></i><b>7.3.2</b> Normally distributed residuals</a></li>
+<li class="chapter" data-level="7.3.3" data-path="log-t-3.html"><a href="log-t-3.html#homoscedasticity"><i class="fa fa-check"></i><b>7.3.3</b> Homoscedasticity</a></li>
+<li class="chapter" data-level="7.3.4" data-path="log-t-3.html"><a href="log-t-3.html#no-overly-influential-data-points"><i class="fa fa-check"></i><b>7.3.4</b> No overly influential data points</a></li>
+<li class="chapter" data-level="7.3.5" data-path="log-t-3.html"><a href="log-t-3.html#no-multicollinearity"><i class="fa fa-check"></i><b>7.3.5</b> No (multi)collinearity</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="log-t-3.html"><a href="log-t-3.html#returning-to-our-research-question-1"><i class="fa fa-check"></i><b>7.3</b> Returning to our research question</a>
+<li class="chapter" data-level="7.4" data-path="log-t-3.html"><a href="log-t-3.html#returning-to-our-research-question-1"><i class="fa fa-check"></i><b>7.4</b> Returning to our research question</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="log-t-3.html"><a href="log-t-3.html#interactions"><i class="fa fa-check"></i><b>7.3.1</b> Interactions</a></li>
-<li class="chapter" data-level="7.3.2" data-path="log-t-3.html"><a href="log-t-3.html#regression-diagnostics-revisited"><i class="fa fa-check"></i><b>7.3.2</b> Regression diagnostics (revisited)</a></li>
+<li class="chapter" data-level="7.4.1" data-path="log-t-3.html"><a href="log-t-3.html#interactions"><i class="fa fa-check"></i><b>7.4.1</b> Interactions</a></li>
+<li class="chapter" data-level="7.4.2" data-path="log-t-3.html"><a href="log-t-3.html#regression-diagnostics-revisited"><i class="fa fa-check"></i><b>7.4.2</b> Regression diagnostics (revisited)</a></li>
 </ul></li>
+<li class="chapter" data-level="7.5" data-path="log-t-3.html"><a href="log-t-3.html#conclusion"><i class="fa fa-check"></i><b>7.5</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="lin-a.html"><a href="lin-a.html"><i class="fa fa-check"></i><b>8</b> Linear Regression - Application</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="lin-a.html"><a href="lin-a.html#objectives-2"><i class="fa fa-check"></i><b>8.1</b> Objectives</a></li>
+<li class="chapter" data-level="8.1" data-path="lin-a.html"><a href="lin-a.html#objectives-6"><i class="fa fa-check"></i><b>8.1</b> Objectives</a></li>
 <li class="chapter" data-level="8.2" data-path="lin-a.html"><a href="lin-a.html#r-functions-covered-this-week-1"><i class="fa fa-check"></i><b>8.2</b> R functions covered this week</a></li>
-<li class="chapter" data-level="8.3" data-path="lin-a.html"><a href="lin-a.html#temporary-from-eda-i"><i class="fa fa-check"></i><b>8.3</b> Temporary from EDA I</a></li>
-<li class="chapter" data-level="8.4" data-path="lin-a.html"><a href="lin-a.html#research-question"><i class="fa fa-check"></i><b>8.4</b> Research question</a></li>
-<li class="chapter" data-level="8.5" data-path="lin-a.html"><a href="lin-a.html#simple-linear-regression-in-r"><i class="fa fa-check"></i><b>8.5</b> Simple linear regression in R</a>
+<li class="chapter" data-level="8.3" data-path="lin-a.html"><a href="lin-a.html#research-question"><i class="fa fa-check"></i><b>8.3</b> Research question</a></li>
+<li class="chapter" data-level="8.4" data-path="lin-a.html"><a href="lin-a.html#simple-linear-regression-in-r"><i class="fa fa-check"></i><b>8.4</b> Simple linear regression in R</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="lin-a.html"><a href="lin-a.html#interpretation"><i class="fa fa-check"></i><b>8.4.1</b> Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="lin-a.html"><a href="lin-a.html#multiple-linear-regression-in-r"><i class="fa fa-check"></i><b>8.5</b> Multiple linear regression in R</a>
 <ul>
 <li class="chapter" data-level="8.5.1" data-path="lin-a.html"><a href="lin-a.html#interpretation-1"><i class="fa fa-check"></i><b>8.5.1</b> Interpretation</a></li>
+<li class="chapter" data-level="8.5.2" data-path="lin-a.html"><a href="lin-a.html#sidenote-adding-interactions"><i class="fa fa-check"></i><b>8.5.2</b> Sidenote: Adding interactions</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="lin-a.html"><a href="lin-a.html#multiple-linear-regression-in-r"><i class="fa fa-check"></i><b>8.6</b> Multiple linear regression in R</a>
+<li class="chapter" data-level="8.6" data-path="lin-a.html"><a href="lin-a.html#regression-diagnostics-1"><i class="fa fa-check"></i><b>8.6</b> Regression Diagnostics</a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="lin-a.html"><a href="lin-a.html#interpretation-2"><i class="fa fa-check"></i><b>8.6.1</b> Interpretation</a></li>
-<li class="chapter" data-level="8.6.2" data-path="lin-a.html"><a href="lin-a.html#sidenote-adding-interactions"><i class="fa fa-check"></i><b>8.6.2</b> Sidenote: Adding interactions</a></li>
+<li class="chapter" data-level="8.6.1" data-path="lin-a.html"><a href="lin-a.html#skewed-outcome-variable"><i class="fa fa-check"></i><b>8.6.1</b> Skewed outcome variable</a></li>
+<li class="chapter" data-level="8.6.2" data-path="lin-a.html"><a href="lin-a.html#non-linearity"><i class="fa fa-check"></i><b>8.6.2</b> Non-linearity</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="lin-a.html"><a href="lin-a.html#regression-diagnostics-1"><i class="fa fa-check"></i><b>8.7</b> Regression Diagnostics</a>
-<ul>
-<li class="chapter" data-level="8.7.1" data-path="lin-a.html"><a href="lin-a.html#skewed-outcome-variable"><i class="fa fa-check"></i><b>8.7.1</b> Skewed outcome variable</a></li>
-<li class="chapter" data-level="8.7.2" data-path="lin-a.html"><a href="lin-a.html#non-linearity"><i class="fa fa-check"></i><b>8.7.2</b> Non-linearity</a></li>
-</ul></li>
-<li class="chapter" data-level="8.8" data-path="lin-a.html"><a href="lin-a.html#returning-to-our-research-question-2"><i class="fa fa-check"></i><b>8.8</b> Returning to our research question</a></li>
-<li class="chapter" data-level="8.9" data-path="lin-a.html"><a href="lin-a.html#outlook"><i class="fa fa-check"></i><b>8.9</b> Outlook</a></li>
+<li class="chapter" data-level="8.7" data-path="lin-a.html"><a href="lin-a.html#returning-to-our-research-question-2"><i class="fa fa-check"></i><b>8.7</b> Returning to our research question</a></li>
+<li class="chapter" data-level="8.8" data-path="lin-a.html"><a href="lin-a.html#moving-on-2"><i class="fa fa-check"></i><b>8.8</b> Moving on</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="lin-e.html"><a href="lin-e.html"><i class="fa fa-check"></i><b>9</b> Linear Regression - Exercises</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="lin-e.html"><a href="lin-e.html#application-of-logistic-regression"><i class="fa fa-check"></i><b>9.1</b> Application of Logistic Regression</a></li>
+<li class="chapter" data-level="9.1" data-path="lin-e.html"><a href="lin-e.html#exercises-of-linear-regression"><i class="fa fa-check"></i><b>9.1</b> Exercises of Linear Regression</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="med.html"><a href="med.html"><i class="fa fa-check"></i><b>10</b> Mediation</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="med.html"><a href="med.html#fint-out-more"><i class="fa fa-check"></i><b>10.1</b> FInt out more</a></li>
+<li class="chapter" data-level="10.1" data-path="med.html"><a href="med.html#find-out-more"><i class="fa fa-check"></i><b>10.1</b> Find out more</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="pm-t.html"><a href="pm-t.html"><i class="fa fa-check"></i><b>11</b> Prediction - Theory</a>
 <ul>
@@ -259,14 +282,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="pm-a.html"><a href="pm-a.html"><i class="fa fa-check"></i><b>12</b> Prediction - Application</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#formatted-regression-tables"><i class="fa fa-check"></i><b>12.1</b> Formatted regression tables</a></li>
-<li class="chapter" data-level="12.2" data-path="pm-a.html"><a href="pm-a.html#publication-ready-formatting-labelling-of-visuals"><i class="fa fa-check"></i><b>12.2</b> Publication-ready formatting/ labelling of visuals</a></li>
-<li class="chapter" data-level="12.3" data-path="pm-a.html"><a href="pm-a.html#coefficient-plots"><i class="fa fa-check"></i><b>12.3</b> coefficient plots</a></li>
+<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="other-est.html"><a href="other-est.html"><i class="fa fa-check"></i><b>13</b> Other Estimators: Logistic, Poisson, Multilevel, FE</a></li>
-<li class="chapter" data-level="14" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>14</b> Outlook</a>
+<li class="chapter" data-level="13" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>13</b> Outlook</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="out-look.html"><a href="out-look.html#machine-learning"><i class="fa fa-check"></i><b>14.1</b> Machine Learning</a></li>
+<li class="chapter" data-level="13.1" data-path="out-look.html"><a href="out-look.html#summary-of-what-was-covered-in-course"><i class="fa fa-check"></i><b>13.1</b> Summary of what was covered in course</a></li>
+<li class="chapter" data-level="13.2" data-path="out-look.html"><a href="out-look.html#other-outcome-variables"><i class="fa fa-check"></i><b>13.2</b> Other outcome variables</a></li>
+<li class="chapter" data-level="13.3" data-path="out-look.html"><a href="out-look.html#data-structures"><i class="fa fa-check"></i><b>13.3</b> Data structures</a></li>
+<li class="chapter" data-level="13.4" data-path="out-look.html"><a href="out-look.html#where-to-go-next"><i class="fa fa-check"></i><b>13.4</b> Where to go next</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -292,17 +315,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="pm-a" class="section level1 hasAnchor" number="12">
 <h1><span class="header-section-number"> 12</span> Prediction - Application<a href="pm-a.html#pm-a" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Here goes some texts.</p>
-<div id="formatted-regression-tables" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> Formatted regression tables<a href="pm-a.html#formatted-regression-tables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Here goes some texts.</p>
-</div>
-<div id="publication-ready-formatting-labelling-of-visuals" class="section level2 hasAnchor" number="12.2">
-<h2><span class="header-section-number">12.2</span> Publication-ready formatting/ labelling of visuals<a href="pm-a.html#publication-ready-formatting-labelling-of-visuals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Here goes some texts.</p>
-</div>
-<div id="coefficient-plots" class="section level2 hasAnchor" number="12.3">
-<h2><span class="header-section-number">12.3</span> coefficient plots<a href="pm-a.html#coefficient-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Here goes some texts.</p>
+<div id="exercises" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Exercises<a href="pm-a.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><strong>Variable selection</strong>: Use variable selection methods, such as stepwise selection or best subset selection, to identify a subset of predictor variables that provide the best fit for a multiple linear regression model. Compare the performance of different models and discuss their relative strengths and weaknesses.</li>
+<li><strong>Interaction effects</strong>: Include interaction terms in a multiple linear regression model to capture the effect of two or more predictor variables interacting with each other. Interpret the coefficients of the interaction terms and discuss their implications from a social science perspective.</li>
+<li><strong>Polynomial regression</strong>: Use polynomial regression to model non-linear relationships between predictor variables and the response variable. Fit a polynomial regression model, generate predictions, and assess the model’s performance.</li>
+<li><strong>Model comparison</strong>: Use model comparison methods, such as adjusted R-squared or AIC, to compare the performance of different linear regression models. Select the best model based on these criteria and discuss its strengths and weaknesses.</li>
+<li><strong>Tidy models</strong>: Use the <code>broom</code> package to convert linear regression models into tidy data frames using functions such as <code>tidy()</code>, <code>glance()</code>, and <code>augment()</code>. Manipulate and visualize the tidy data frames to gain insights into the models and their performance.</li>
+<li><strong>Prediction intervals</strong>: Generate prediction intervals for new observations using a fitted linear regression model. Interpret the prediction intervals and discuss their usefulness for making predictions in a social science context.</li>
+</ol>
 
 </div>
 </div>
@@ -312,7 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="pm-t.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="other-est.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="out-look.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -61,3 +61,15 @@ Welcome to this course! In this course, you will learn how to analyse data using
 
 14.	Course paper/Discussion/ Outlook
 
+
+```{r load, include=FALSE, message=FALSE, warning=FALSE}
+# Define the required packages
+required_packages <- c("ggplot2", "dplyr", "tidyr", "dagitty", "mlbench")
+
+# Check if all required packages are loaded
+all(required_packages %in% search())
+
+# Load any missing required packages
+lapply(required_packages, require, character.only = TRUE)
+```
+

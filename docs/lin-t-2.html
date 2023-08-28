@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content=" 6 Linear Regression Theory II: Multiple Linear Regression | Data Analysis with R for Social Scientists" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-08-23" />
+<meta name="date" content="2023-08-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -127,6 +127,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -177,79 +181,98 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="dags-1.html"><a href="dags-1.html"><i class="fa fa-check"></i><b>4</b> DAGs</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="dags-1.html"><a href="dags-1.html#causality"><i class="fa fa-check"></i><b>4.1</b> Causality</a></li>
-<li class="chapter" data-level="4.2" data-path="dags-1.html"><a href="dags-1.html#dags"><i class="fa fa-check"></i><b>4.2</b> DAGs</a></li>
-<li class="chapter" data-level="4.3" data-path="dags-1.html"><a href="dags-1.html#totaldirect-effect"><i class="fa fa-check"></i><b>4.3</b> Total/Direct effect</a></li>
-<li class="chapter" data-level="4.4" data-path="dags-1.html"><a href="dags-1.html#dagitty.net"><i class="fa fa-check"></i><b>4.4</b> dagitty.net</a></li>
+<li class="chapter" data-level="4.1" data-path="dags-1.html"><a href="dags-1.html#objectives-2"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="dags-1.html"><a href="dags-1.html#modelling"><i class="fa fa-check"></i><b>4.2</b> Modelling</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="dags-1.html"><a href="dags-1.html#what-is-modelling"><i class="fa fa-check"></i><b>4.2.1</b> What is modelling?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dags-1.html"><a href="dags-1.html#estimating-effects-vs.-prediction"><i class="fa fa-check"></i><b>4.2.2</b> Estimating effects vs. prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dags-1.html"><a href="dags-1.html#dags"><i class="fa fa-check"></i><b>4.3</b> DAGs</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="dags-1.html"><a href="dags-1.html#directed-acyclical-graphs"><i class="fa fa-check"></i><b>4.3.1</b> Directed acyclical graphs</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dags-1.html"><a href="dags-1.html#patterns-of-relationships"><i class="fa fa-check"></i><b>4.3.2</b> Patterns of relationships</a></li>
+<li class="chapter" data-level="4.3.3" data-path="dags-1.html"><a href="dags-1.html#adjustment-set"><i class="fa fa-check"></i><b>4.3.3</b> Adjustment set</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dags-1.html"><a href="dags-1.html#nba-dag"><i class="fa fa-check"></i><b>4.4</b> NBA DAG</a></li>
+<li class="chapter" data-level="4.5" data-path="dags-1.html"><a href="dags-1.html#resources"><i class="fa fa-check"></i><b>4.5</b> Resources</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="dags-1.html"><a href="dags-1.html#dagitty.net"><i class="fa fa-check"></i><b>4.5.1</b> dagitty.net</a></li>
+<li class="chapter" data-level="4.5.2" data-path="dags-1.html"><a href="dags-1.html#more-on-dags"><i class="fa fa-check"></i><b>4.5.2</b> More on DAGs</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="lin-t-1.html"><a href="lin-t-1.html"><i class="fa fa-check"></i><b>5</b> Linear Regression Theory I: Simple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="lin-t-1.html"><a href="lin-t-1.html#what-is-linear-regression"><i class="fa fa-check"></i><b>5.1</b> What is Linear Regression</a></li>
-<li class="chapter" data-level="5.2" data-path="lin-t-1.html"><a href="lin-t-1.html#examplary-research-question-data"><i class="fa fa-check"></i><b>5.2</b> Examplary research question &amp; data</a></li>
-<li class="chapter" data-level="5.3" data-path="lin-t-1.html"><a href="lin-t-1.html#simple-linear-regression"><i class="fa fa-check"></i><b>5.3</b> Simple Linear Regression</a>
+<li class="chapter" data-level="5.1" data-path="lin-t-1.html"><a href="lin-t-1.html#objectives-3"><i class="fa fa-check"></i><b>5.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.2" data-path="lin-t-1.html"><a href="lin-t-1.html#what-is-linear-regression"><i class="fa fa-check"></i><b>5.2</b> What is Linear Regression</a></li>
+<li class="chapter" data-level="5.3" data-path="lin-t-1.html"><a href="lin-t-1.html#examplary-research-question-data"><i class="fa fa-check"></i><b>5.3</b> Examplary research question &amp; data</a></li>
+<li class="chapter" data-level="5.4" data-path="lin-t-1.html"><a href="lin-t-1.html#simple-linear-regression"><i class="fa fa-check"></i><b>5.4</b> Simple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="lin-t-1.html"><a href="lin-t-1.html#regression-formula"><i class="fa fa-check"></i><b>5.3.1</b> Regression Formula</a></li>
-<li class="chapter" data-level="5.3.2" data-path="lin-t-1.html"><a href="lin-t-1.html#regressing-grade-on-hours"><i class="fa fa-check"></i><b>5.3.2</b> Regressing <code>grade</code> on <code>hours</code></a></li>
+<li class="chapter" data-level="5.4.1" data-path="lin-t-1.html"><a href="lin-t-1.html#regression-formula"><i class="fa fa-check"></i><b>5.4.1</b> Regression Formula</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lin-t-1.html"><a href="lin-t-1.html#regressing-grade-on-hours"><i class="fa fa-check"></i><b>5.4.2</b> Regressing <code>grade</code> on <code>hours</code></a></li>
 </ul></li>
+<li class="chapter" data-level="5.5" data-path="lin-t-1.html"><a href="lin-t-1.html#moving-on"><i class="fa fa-check"></i><b>5.5</b> Moving on</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="lin-t-2.html"><a href="lin-t-2.html"><i class="fa fa-check"></i><b>6</b> Linear Regression Theory II: Multiple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="lin-t-2.html"><a href="lin-t-2.html#multiple-linear-regression"><i class="fa fa-check"></i><b>6.1</b> Multiple Linear Regression</a>
+<li class="chapter" data-level="6.1" data-path="lin-t-2.html"><a href="lin-t-2.html#objectives-4"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="lin-t-2.html"><a href="lin-t-2.html#multiple-linear-regression"><i class="fa fa-check"></i><b>6.2</b> Multiple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-additional-metric-variables"><i class="fa fa-check"></i><b>6.1.1</b> Adding additional metric variables</a></li>
-<li class="chapter" data-level="6.1.2" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-dummy-variables"><i class="fa fa-check"></i><b>6.1.2</b> Adding dummy variables</a></li>
-<li class="chapter" data-level="6.1.3" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-categorical-variables"><i class="fa fa-check"></i><b>6.1.3</b> Adding categorical variables</a></li>
+<li class="chapter" data-level="6.2.1" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-additional-metric-variables"><i class="fa fa-check"></i><b>6.2.1</b> Adding additional metric variables</a></li>
+<li class="chapter" data-level="6.2.2" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-dummy-variables"><i class="fa fa-check"></i><b>6.2.2</b> Adding dummy variables</a></li>
+<li class="chapter" data-level="6.2.3" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-categorical-variables"><i class="fa fa-check"></i><b>6.2.3</b> Adding categorical variables</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="lin-t-2.html"><a href="lin-t-2.html#returning-to-our-research-question"><i class="fa fa-check"></i><b>6.2</b> Returning to our research question</a></li>
-<li class="chapter" data-level="6.3" data-path="lin-t-2.html"><a href="lin-t-2.html#interpretation"><i class="fa fa-check"></i><b>6.3</b> Interpretation</a></li>
+<li class="chapter" data-level="6.3" data-path="lin-t-2.html"><a href="lin-t-2.html#returning-to-our-research-question"><i class="fa fa-check"></i><b>6.3</b> Returning to our research question</a></li>
+<li class="chapter" data-level="6.4" data-path="lin-t-2.html"><a href="lin-t-2.html#adressing-the-uncertainty"><i class="fa fa-check"></i><b>6.4</b> Adressing the uncertainty</a></li>
+<li class="chapter" data-level="6.5" data-path="lin-t-2.html"><a href="lin-t-2.html#moving-on-1"><i class="fa fa-check"></i><b>6.5</b> Moving on</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="log-t-3.html"><a href="log-t-3.html"><i class="fa fa-check"></i><b>7</b> Linear Regression Theory III: Diagnostics</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="log-t-3.html"><a href="log-t-3.html#model-fit"><i class="fa fa-check"></i><b>7.1</b> Model fit</a></li>
-<li class="chapter" data-level="7.2" data-path="log-t-3.html"><a href="log-t-3.html#regression-diagnostics"><i class="fa fa-check"></i><b>7.2</b> Regression diagnostics</a>
+<li class="chapter" data-level="7.1" data-path="log-t-3.html"><a href="log-t-3.html#objectives-5"><i class="fa fa-check"></i><b>7.1</b> Objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="log-t-3.html"><a href="log-t-3.html#model-fit"><i class="fa fa-check"></i><b>7.2</b> Model fit</a></li>
+<li class="chapter" data-level="7.3" data-path="log-t-3.html"><a href="log-t-3.html#regression-diagnostics"><i class="fa fa-check"></i><b>7.3</b> Regression diagnostics</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="log-t-3.html"><a href="log-t-3.html#linearity"><i class="fa fa-check"></i><b>7.2.1</b> Linearity</a></li>
-<li class="chapter" data-level="7.2.2" data-path="log-t-3.html"><a href="log-t-3.html#normally-distributed-residuals"><i class="fa fa-check"></i><b>7.2.2</b> Normally distributed residuals</a></li>
-<li class="chapter" data-level="7.2.3" data-path="log-t-3.html"><a href="log-t-3.html#homoscedasticity"><i class="fa fa-check"></i><b>7.2.3</b> Homoscedasticity</a></li>
-<li class="chapter" data-level="7.2.4" data-path="log-t-3.html"><a href="log-t-3.html#no-overly-influential-data-points"><i class="fa fa-check"></i><b>7.2.4</b> No overly influential data points</a></li>
-<li class="chapter" data-level="7.2.5" data-path="log-t-3.html"><a href="log-t-3.html#no-multicollinearity"><i class="fa fa-check"></i><b>7.2.5</b> No (multi)collinearity</a></li>
+<li class="chapter" data-level="7.3.1" data-path="log-t-3.html"><a href="log-t-3.html#linearity"><i class="fa fa-check"></i><b>7.3.1</b> Linearity</a></li>
+<li class="chapter" data-level="7.3.2" data-path="log-t-3.html"><a href="log-t-3.html#normally-distributed-residuals"><i class="fa fa-check"></i><b>7.3.2</b> Normally distributed residuals</a></li>
+<li class="chapter" data-level="7.3.3" data-path="log-t-3.html"><a href="log-t-3.html#homoscedasticity"><i class="fa fa-check"></i><b>7.3.3</b> Homoscedasticity</a></li>
+<li class="chapter" data-level="7.3.4" data-path="log-t-3.html"><a href="log-t-3.html#no-overly-influential-data-points"><i class="fa fa-check"></i><b>7.3.4</b> No overly influential data points</a></li>
+<li class="chapter" data-level="7.3.5" data-path="log-t-3.html"><a href="log-t-3.html#no-multicollinearity"><i class="fa fa-check"></i><b>7.3.5</b> No (multi)collinearity</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="log-t-3.html"><a href="log-t-3.html#returning-to-our-research-question-1"><i class="fa fa-check"></i><b>7.3</b> Returning to our research question</a>
+<li class="chapter" data-level="7.4" data-path="log-t-3.html"><a href="log-t-3.html#returning-to-our-research-question-1"><i class="fa fa-check"></i><b>7.4</b> Returning to our research question</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="log-t-3.html"><a href="log-t-3.html#interactions"><i class="fa fa-check"></i><b>7.3.1</b> Interactions</a></li>
-<li class="chapter" data-level="7.3.2" data-path="log-t-3.html"><a href="log-t-3.html#regression-diagnostics-revisited"><i class="fa fa-check"></i><b>7.3.2</b> Regression diagnostics (revisited)</a></li>
+<li class="chapter" data-level="7.4.1" data-path="log-t-3.html"><a href="log-t-3.html#interactions"><i class="fa fa-check"></i><b>7.4.1</b> Interactions</a></li>
+<li class="chapter" data-level="7.4.2" data-path="log-t-3.html"><a href="log-t-3.html#regression-diagnostics-revisited"><i class="fa fa-check"></i><b>7.4.2</b> Regression diagnostics (revisited)</a></li>
 </ul></li>
+<li class="chapter" data-level="7.5" data-path="log-t-3.html"><a href="log-t-3.html#conclusion"><i class="fa fa-check"></i><b>7.5</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="lin-a.html"><a href="lin-a.html"><i class="fa fa-check"></i><b>8</b> Linear Regression - Application</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="lin-a.html"><a href="lin-a.html#objectives-2"><i class="fa fa-check"></i><b>8.1</b> Objectives</a></li>
+<li class="chapter" data-level="8.1" data-path="lin-a.html"><a href="lin-a.html#objectives-6"><i class="fa fa-check"></i><b>8.1</b> Objectives</a></li>
 <li class="chapter" data-level="8.2" data-path="lin-a.html"><a href="lin-a.html#r-functions-covered-this-week-1"><i class="fa fa-check"></i><b>8.2</b> R functions covered this week</a></li>
-<li class="chapter" data-level="8.3" data-path="lin-a.html"><a href="lin-a.html#temporary-from-eda-i"><i class="fa fa-check"></i><b>8.3</b> Temporary from EDA I</a></li>
-<li class="chapter" data-level="8.4" data-path="lin-a.html"><a href="lin-a.html#research-question"><i class="fa fa-check"></i><b>8.4</b> Research question</a></li>
-<li class="chapter" data-level="8.5" data-path="lin-a.html"><a href="lin-a.html#simple-linear-regression-in-r"><i class="fa fa-check"></i><b>8.5</b> Simple linear regression in R</a>
+<li class="chapter" data-level="8.3" data-path="lin-a.html"><a href="lin-a.html#research-question"><i class="fa fa-check"></i><b>8.3</b> Research question</a></li>
+<li class="chapter" data-level="8.4" data-path="lin-a.html"><a href="lin-a.html#simple-linear-regression-in-r"><i class="fa fa-check"></i><b>8.4</b> Simple linear regression in R</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="lin-a.html"><a href="lin-a.html#interpretation"><i class="fa fa-check"></i><b>8.4.1</b> Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="lin-a.html"><a href="lin-a.html#multiple-linear-regression-in-r"><i class="fa fa-check"></i><b>8.5</b> Multiple linear regression in R</a>
 <ul>
 <li class="chapter" data-level="8.5.1" data-path="lin-a.html"><a href="lin-a.html#interpretation-1"><i class="fa fa-check"></i><b>8.5.1</b> Interpretation</a></li>
+<li class="chapter" data-level="8.5.2" data-path="lin-a.html"><a href="lin-a.html#sidenote-adding-interactions"><i class="fa fa-check"></i><b>8.5.2</b> Sidenote: Adding interactions</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="lin-a.html"><a href="lin-a.html#multiple-linear-regression-in-r"><i class="fa fa-check"></i><b>8.6</b> Multiple linear regression in R</a>
+<li class="chapter" data-level="8.6" data-path="lin-a.html"><a href="lin-a.html#regression-diagnostics-1"><i class="fa fa-check"></i><b>8.6</b> Regression Diagnostics</a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="lin-a.html"><a href="lin-a.html#interpretation-2"><i class="fa fa-check"></i><b>8.6.1</b> Interpretation</a></li>
-<li class="chapter" data-level="8.6.2" data-path="lin-a.html"><a href="lin-a.html#sidenote-adding-interactions"><i class="fa fa-check"></i><b>8.6.2</b> Sidenote: Adding interactions</a></li>
+<li class="chapter" data-level="8.6.1" data-path="lin-a.html"><a href="lin-a.html#skewed-outcome-variable"><i class="fa fa-check"></i><b>8.6.1</b> Skewed outcome variable</a></li>
+<li class="chapter" data-level="8.6.2" data-path="lin-a.html"><a href="lin-a.html#non-linearity"><i class="fa fa-check"></i><b>8.6.2</b> Non-linearity</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="lin-a.html"><a href="lin-a.html#regression-diagnostics-1"><i class="fa fa-check"></i><b>8.7</b> Regression Diagnostics</a>
-<ul>
-<li class="chapter" data-level="8.7.1" data-path="lin-a.html"><a href="lin-a.html#skewed-outcome-variable"><i class="fa fa-check"></i><b>8.7.1</b> Skewed outcome variable</a></li>
-<li class="chapter" data-level="8.7.2" data-path="lin-a.html"><a href="lin-a.html#non-linearity"><i class="fa fa-check"></i><b>8.7.2</b> Non-linearity</a></li>
-</ul></li>
-<li class="chapter" data-level="8.8" data-path="lin-a.html"><a href="lin-a.html#returning-to-our-research-question-2"><i class="fa fa-check"></i><b>8.8</b> Returning to our research question</a></li>
-<li class="chapter" data-level="8.9" data-path="lin-a.html"><a href="lin-a.html#outlook"><i class="fa fa-check"></i><b>8.9</b> Outlook</a></li>
+<li class="chapter" data-level="8.7" data-path="lin-a.html"><a href="lin-a.html#returning-to-our-research-question-2"><i class="fa fa-check"></i><b>8.7</b> Returning to our research question</a></li>
+<li class="chapter" data-level="8.8" data-path="lin-a.html"><a href="lin-a.html#moving-on-2"><i class="fa fa-check"></i><b>8.8</b> Moving on</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="lin-e.html"><a href="lin-e.html"><i class="fa fa-check"></i><b>9</b> Linear Regression - Exercises</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="lin-e.html"><a href="lin-e.html#application-of-logistic-regression"><i class="fa fa-check"></i><b>9.1</b> Application of Logistic Regression</a></li>
+<li class="chapter" data-level="9.1" data-path="lin-e.html"><a href="lin-e.html#exercises-of-linear-regression"><i class="fa fa-check"></i><b>9.1</b> Exercises of Linear Regression</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="med.html"><a href="med.html"><i class="fa fa-check"></i><b>10</b> Mediation</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="med.html"><a href="med.html#fint-out-more"><i class="fa fa-check"></i><b>10.1</b> FInt out more</a></li>
+<li class="chapter" data-level="10.1" data-path="med.html"><a href="med.html#find-out-more"><i class="fa fa-check"></i><b>10.1</b> Find out more</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="pm-t.html"><a href="pm-t.html"><i class="fa fa-check"></i><b>11</b> Prediction - Theory</a>
 <ul>
@@ -259,14 +282,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="pm-a.html"><a href="pm-a.html"><i class="fa fa-check"></i><b>12</b> Prediction - Application</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#formatted-regression-tables"><i class="fa fa-check"></i><b>12.1</b> Formatted regression tables</a></li>
-<li class="chapter" data-level="12.2" data-path="pm-a.html"><a href="pm-a.html#publication-ready-formatting-labelling-of-visuals"><i class="fa fa-check"></i><b>12.2</b> Publication-ready formatting/ labelling of visuals</a></li>
-<li class="chapter" data-level="12.3" data-path="pm-a.html"><a href="pm-a.html#coefficient-plots"><i class="fa fa-check"></i><b>12.3</b> coefficient plots</a></li>
+<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="other-est.html"><a href="other-est.html"><i class="fa fa-check"></i><b>13</b> Other Estimators: Logistic, Poisson, Multilevel, FE</a></li>
-<li class="chapter" data-level="14" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>14</b> Outlook</a>
+<li class="chapter" data-level="13" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>13</b> Outlook</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="out-look.html"><a href="out-look.html#machine-learning"><i class="fa fa-check"></i><b>14.1</b> Machine Learning</a></li>
+<li class="chapter" data-level="13.1" data-path="out-look.html"><a href="out-look.html#summary-of-what-was-covered-in-course"><i class="fa fa-check"></i><b>13.1</b> Summary of what was covered in course</a></li>
+<li class="chapter" data-level="13.2" data-path="out-look.html"><a href="out-look.html#other-outcome-variables"><i class="fa fa-check"></i><b>13.2</b> Other outcome variables</a></li>
+<li class="chapter" data-level="13.3" data-path="out-look.html"><a href="out-look.html#data-structures"><i class="fa fa-check"></i><b>13.3</b> Data structures</a></li>
+<li class="chapter" data-level="13.4" data-path="out-look.html"><a href="out-look.html#where-to-go-next"><i class="fa fa-check"></i><b>13.4</b> Where to go next</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -291,25 +314,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="lin-t-2" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number"> 6</span> Linear Regression Theory II: Multiple Linear Regression<a href="lin-t-2.html#lin-t-2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>XXX INTRO XXX</p>
-<div id="multiple-linear-regression" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> Multiple Linear Regression<a href="lin-t-2.html#multiple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Maybe explaining the grade a student receives solely based on the hours of
 invested time, does not paint the whole picture. As we have alluded to, there
-may be other variables that could also have an effect of the final grade.</p>
+may be other variables that could affect the relationship between <code>hours</code> and
+<code>grade</code>.
+If we fail to include these in our model, we may not get an unbiased estimate
+for our effect of interest. Maybe the actual effect for <code>hours</code> is even stronger,
+maybe it is weaker, or maybe there is no effect at all.
+To assess this, we have to move from simple to multiple linear regression.</p>
+<div id="objectives-4" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Objectives<a href="lin-t-2.html#objectives-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Expand the idea to multiple linear regression</li>
+<li>How can we interpret different types of independent variables?</li>
+<li>Understand measures of uncertainty</li>
+</ul>
+</div>
+<div id="multiple-linear-regression" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Multiple Linear Regression<a href="lin-t-2.html#multiple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A <em>simple linear regression</em> only allows for one independent variable. This is
 why we need <em>multiple linear regression</em> if we want to start introducing
 additional variables into the model. Luckily this is easy to understand as we
-already know the formula for a simple linear regression.</p>
+already know the formula for a simple linear regression:</p>
 <p><span class="math display">\[y = \beta_0 + \beta_1*x_1 + \epsilon\]</span></p>
 <p>To change a simple into a multiple linear regression, we just start adding the
 additional variables and their coefficients additively to the formula.</p>
 <p><span class="math display">\[y = \beta_0 + \beta_1*x_1 + \beta_2*x_2 + ... + \beta_k*x_k + \epsilon\]</span></p>
-<p>So to add a second variable and its coeffcient we add the term <span class="math inline">\(+ \beta_2*x_2\)</span>
-and so on until we added all independent varibles of interest <span class="math inline">\(k\)</span> to the model.
+<p>So to add a second variable and its coefficient we add the term <span class="math inline">\(+ \beta_2*x_2\)</span>
+and so on until we added all independent variables of interest <span class="math inline">\(k\)</span> to the model.
 Everything else works exactly as described above for the simple model.</p>
-<div id="adding-additional-metric-variables" class="section level3 hasAnchor" number="6.1.1">
-<h3><span class="header-section-number">6.1.1</span> Adding additional metric variables<a href="lin-t-2.html#adding-additional-metric-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="adding-additional-metric-variables" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Adding additional metric variables<a href="lin-t-2.html#adding-additional-metric-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We already expected that the mean of the previous grades could be a strong
 predictor for future grades. We could understand these as a <em>proxy</em> variable for
 the general skill level of a student. The higher the skill level, the higher
@@ -341,7 +376,7 @@ mean previous grade of <span class="math inline">\(2.935\)</span>.</p>
 <p>As we added a new variable, we now see three coefficients.
 The intercept has not changed. It now indicates the estimated grade for a
 student who invests the mean amount of hours, <span class="math inline">\(40.33\)</span>, and whose previous grades
-are exactly <span class="math inline">\(2.935\)</span>.</p>
+are exactly <span class="math inline">\(2.935\)</span>, the mean of the variable.</p>
 <p>The coefficient for <code>hours_centered</code> got mildly more negative, still telling us
 that the value of <code>grade</code> gets lower, the more hours are invested in writing the
 paper. This coefficient now gives us the effect while <em>controlling</em> for the
@@ -377,8 +412,8 @@ this time?</p>
 students leads to a substantially worse estimate compared to the about <span class="math inline">\(1.0\)</span>
 received in previous grades.</p>
 </div>
-<div id="adding-dummy-variables" class="section level3 hasAnchor" number="6.1.2">
-<h3><span class="header-section-number">6.1.2</span> Adding dummy variables<a href="lin-t-2.html#adding-dummy-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="adding-dummy-variables" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Adding dummy variables<a href="lin-t-2.html#adding-dummy-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Another variable that could be of interest in explaining the received grade,
 is if a student attended most of the seminar sessions.
 <code>attendance</code> holds this information in the form of a dummy variable. Dummies can
@@ -422,28 +457,29 @@ attendance or <span class="math inline">\(0\)</span> for not so regular attendan
 <p>If a student did regularly attend, the coefficient $b_{attendance} becomes a
 part of the estimate <span class="math inline">\(\hat{y}\)</span>:</p>
 <p><span class="math display">\[\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd} + b_{attendance} * 1\]</span></p>
-<p>If stduent did not regularly attended, this happens:</p>
+<p>If student did not regularly attended, this happens:</p>
 <p><span class="math display">\[\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd} + b_{attendance} * 0\]</span>
 <span class="math display">\[\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd}\]</span></p>
-<p>The coeeffcient is no longer a part of the estimate. One can basically say, the
+<p>The coefficient is no longer a part of the estimate. One can basically say, the
 coefficient gets switched on or off by the value of the dummy variable.</p>
 <p>So while the estimate for a student with mean values for invested hours and
-previous grades who did not attend is the intercept of <span class="math inline">\(3.157411\)</span> for the same
-student with attendance we can calculate the estimate as:</p>
+previous grades who did not attend is equal to the intercept of <span class="math inline">\(3.157411\)</span>,
+for a similar student who attended we can calculate the estimate as:</p>
 <p><span class="math display">\[3.157411 - 0.053942*0 + 0.911802*0 - 0.248250 * 1 = 3.157411 - 0.248250 = 2.909161\]</span></p>
 <p>It seems attending class is an easy way to raise one’s grades.</p>
 </div>
-<div id="adding-categorical-variables" class="section level3 hasAnchor" number="6.1.3">
-<h3><span class="header-section-number">6.1.3</span> Adding categorical variables<a href="lin-t-2.html#adding-categorical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="adding-categorical-variables" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Adding categorical variables<a href="lin-t-2.html#adding-categorical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We have one further variable in our simulated data set that could be of interest
-in explaining, what makes a good grade in a seminar paper.<code>contact</code> is a factor
-variable. It can take three different categories. <code>No contact</code> indicates that
+in explaining, what makes a good grade in a seminar paper.<code>contact</code> is a
+categorical variable, or a factor variable in R terms.
+It can take three different categories. <code>No contact</code> indicates that
 the student did not contact the lecturer to discuss a research question or the
 laid out plan for the paper. <code>E-Mail</code> means that there was some written contact
 and at least the basics for the paper were discussed before writing. Lastly,
 <code>In Person</code> stands for an in depth discussion with the lecturer, clearing up
-problems beforehand and having a more stringent vision for the paper before
-writing the first word.</p>
+problems beforehand and thus potentially having a more stringent vision for the
+paper before writing the first word.</p>
 <p>Let us add the variable to our model.</p>
 <pre><code>## 
 ## Call:
@@ -470,11 +506,11 @@ writing the first word.</p>
 ## F-statistic: 269.4 on 5 and 194 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Wait, we entered three categories into the model and got estimates for two of
 them. What happened? What R does is to create two dummy variables on the fly.
-The first discerns between having E-Mail contact or no contact at all. The
-second one between having contact in person to no contact at all. So for
-categorical variables in regression models we always compare being in one
+The first discerns between having E-Mail contact and no contact at all. The
+second one between having contact in person and no contact at all. So for
+categorical variables in regression models we always compare being in one of the
 category to being in the <em>base category</em>. In this case the base category is
-<code>No contact</code> but we could also change the base category. It depends on what we
+<code>No contact</code>, but we could also change the base category. It depends on what we
 are interested in comparing to. For our example comparing the effects of having
 more in depth contact to having none makes sense.</p>
 <p>Let us look at our formula again:</p>
@@ -483,17 +519,17 @@ more in depth contact to having none makes sense.</p>
 case both dummy variables equal <span class="math inline">\(0\)</span>. To make our formula easier to read, we have
 abbreviated the middle part for now:</p>
 <p><span class="math display">\[\hat{y} = b_0 + ... + b_{E-Mail} * 0 + b_{In Person} * 0\]</span>
-So in this case, controlling all other independent variables at their default
-values, the mean for the metric variables, <code>FALSE</code> for <code>attendance</code>, the
+So in this case controlling all other independent variables at their default
+values, the mean for the metric variables and <code>FALSE</code> for <code>attendance</code>, the
 intercept gives us the estimate for the grade as both dummy variables that
-were created for <code>contact</code>are “switched off”.</p>
-<p>THe two other possibilities are that a student either had E-Mail contact or an
+were created for <code>contact</code> are “switched off”.</p>
+<p>The two other possibilities are that a student either had E-Mail contact or an
 in person discussion:</p>
 <p><span class="math display">\[\hat{y} = b_0 + ... + b_{E-Mail} * 1 + b_{In Person} * 0\]</span></p>
 <p><span class="math display">\[\hat{y} = b_0 + ... + b_{E-Mail} * 0 + b_{In Person} * 1\]</span></p>
 <p>In both cases the relevant dummy variable is “switched on” while the other does
 not factor into the equation.</p>
-<p>Looking at the estimates, we can see that having contact to the lecturer before
+<p>Looking at the estimates we can see that having contact to the lecturer before
 writing has strong negative effects, resulting in better grades. Having E-Mail
 contact reduces the value of <code>grade</code> by <span class="math inline">\(-0.413808\)</span> points, having an in person
 discussion by <span class="math inline">\(-0.853252\)</span>.</p>
@@ -504,15 +540,10 @@ paper expect on average as their new grade?</p>
 <p><span class="math display">\[3.617949 - 0.050830 * 20 + 0.874123 * 0 - 0.324653 * 1 - 0.413808 * 0 - 0.853252 * 1 = 1.423444\]</span></p>
 <p>Putting in the hours, attending and working with your lecturer seems to pay off,
 at least in our simulated data set.</p>
-<!-- ### Adding interactions -->
-<!-- CUT FOR NOW -->
-<!-- ``` {r reg_grade_hours_prev_att_contact_interaction, echo = FALSE} -->
-<!-- lm(grade ~ hours_centered + previous_grades_centered + attendance + contact + hours_centered * contact, grades) %>% summary() -->
-<!-- ``` -->
 </div>
 </div>
-<div id="returning-to-our-research-question" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> Returning to our research question<a href="lin-t-2.html#returning-to-our-research-question" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="returning-to-our-research-question" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Returning to our research question<a href="lin-t-2.html#returning-to-our-research-question" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Our exemplary research question concerned itself with what makes a good grade in
 a seminar paper. In particular we were interested in the effect of the invested
 hours, as our main hypothesis was that more hours lead to better grades. What do
@@ -522,8 +553,8 @@ was consistently visible in all of our models. But did we correctly identify
 and estimate the effect of interest? Maybe. The problem is, we actually did not
 approach the analysis correctly. In a real analysis we should <strong>absolutely</strong>
 refrain from adding variables to our model that <em>could be</em> relevant until we are
-satisfied or all available variables are bunched into one huge model. It was
-fine to do this in this introduction to linear regression and for learning how
+satisfied or even until all available variables are bunched into one huge model.
+It was fine to do this in this introduction to linear regression to learn how
 different types of variables can be used in a regression model. But in a real
 project, we have to invest time to think about which variables to add because we
 assume that they have a relevant effect based on theoretical assumptions about
@@ -531,13 +562,10 @@ the processes we are interested in.</p>
 <p>So let us do this now and vow do make this our first step in all future
 endeavors. While we do not have a clear theoretical basis, we can make clear
 assumptions on the data generating process and draw these in a DAG.</p>
-<pre><code>## Warning: Paket &#39;dagitty&#39; wurde unter R Version 4.2.3 erstellt</code></pre>
 <p><img src="_main_files/figure-html/dag-1.png" width="672" /></p>
-<p>XXX MAYBE NICEN IT UP XXX</p>
 <p>Our central assumption, and the effect we want to identify and estimate, is the
 direct effect from <code>hours</code> on <code>grade</code> in the bottom line. The more hours a
-student invests, the better the grade should be. This is our variable of
-interest and it has to be included in the model.</p>
+student invests, the better the grade should be.</p>
 <p>The assumed effect of <code>contact</code> is more complex. For one we assume that a more
 in-depth contact with the lecturer will increase the grade directly. The
 research question will be more focused, the student will know what is important
@@ -547,17 +575,24 @@ on <code>hours</code> in the sense that the hours invested can be used more effi
 an in-depth discussion has taken place. Instead of wasting time running into
 problems that could have been avoided most of the invested time can actually go
 into constructive work. This makes <code>contact</code> a confounder for <code>grade</code> and
-<code>hours</code>. Tapping into the knowledge from the last session, now we know that we
-also have to control for <code>contact</code> to measure the effect of <code>hours</code> correctly.</p>
+<code>hours</code>.</p>
 <p>A student’s skill level will also have a direct effect on <code>grade</code>. As we do not
 have a direct measure of skill in our data, we use <code>previous_grades</code> as a proxy
-for skill level. <code>attendance</code> also has a direct effect on <code>grade</code> as students
-who were present in the seminar will not only have learned the seminar’s
+for skill level. <code>attendance</code> is also assumed to have a direct effect on <code>grade</code>
+as students who were present in the seminar will not only have learned the seminar’s
 contents, but will also have a better understanding of what is expected in their
-seminar papers. As neither skill level - or <code>previous_grades</code> - nor <code>attendance</code>
-has any connection to <code>hours</code> we also should not control for them in our model.</p>
-<p>That leaves us with <code>hours</code> and <code>contact</code> to be included in our linear
-regression, if our goal is to accuarately identify and estimate the effect of
+seminar papers.</p>
+<p>Tapping into the knowledge from session 4, we can now make implications for our
+model from the DAG. Let us list all paths from <code>hours</code> to <code>grade</code>:</p>
+<p><span class="math display">\[A: Hours \rightarrow Grade\]</span></p>
+<p><span class="math display">\[B: Hours \leftarrow Contact \rightarrow Grade\]</span></p>
+<p>Path A represents our effect of interest. On path B, <code>contact</code> is a confounder
+for <code>hours</code> and <code>grade</code>. To close this path, we have to control for <code>contact</code>.
+As neither skill level - or <code>previous_grades</code> - nor <code>attendance</code> lie on a path
+from our independent variable of interest to our dependent variable, we should
+not control for them in our model.
+That leaves us with <code>hours</code> and <code>contact</code> to be included in our linear
+regression, if our goal is to get an unbiased estimate for the effect of
 invested time on the final grade. So let us do this:</p>
 <pre><code>## 
 ## Call:
@@ -589,7 +624,7 @@ The higher the skill level the more efficiently the available time can be used.
 For this example we know the DAG is correct, because we have simulated the data
 exactly in this way. For real world applications we never know if our DAG is
 correct. All we can - and have to - do is base it on thorough thought,
-theoretical work and sound arguments.</p>
+theoretical work, exploratory data analysis and sound arguments.</p>
 <p>This all is true <em>if</em> our goal is to estimate an effect of interest as precisely
 as possible. But as we have alluded to in the introduction to this session we
 could also use modelling with a different goal, i.e. predicting a grade as
@@ -601,14 +636,13 @@ better estimates. We will return to this in a later session, but for now we
 should remember that we have to know our task because the task dictates which is
 the best model to use.</p>
 </div>
-<div id="interpretation" class="section level2 hasAnchor" number="6.3">
-<h2><span class="header-section-number">6.3</span> Interpretation<a href="lin-t-2.html#interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>XXX WHERE TO PUT IT? XXX</p>
-<p>Looking at the coefficient block from either of the two outputs, we see more
-than just our estimate. The <code>Std. Error</code> or <code>std.error</code> is a measure for the
+<div id="adressing-the-uncertainty" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Adressing the uncertainty<a href="lin-t-2.html#adressing-the-uncertainty" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Looking at the coefficient block from the output, we see more
+than just our estimates. The <code>Std. Error</code> - <em>standard error</em> - is a measure for the
 uncertainty of our estimates. It basically tells us, how far away the actual
 values of the observations used to compute the model are from our estimate
-<em>on average</em>. The smaller the <em>standard error</em>, the more accurate is our
+<em>on average</em>. The smaller the <em>standard error</em>, the more accurate our
 estimate. The standard error is presented in the units of the estimate and we
 can thus compare them. A large standard error for a large estimate is far less
 problematic compared to a large standard error for a small estimate.</p>
@@ -617,18 +651,18 @@ What we are testing is the <em>alternative hypotheses</em> <span class="math inl
 is an effect of our independent variable on the dependent variable against the
 <em>null hypothesis</em> <span class="math inline">\(H_0\)</span> that there is no effect. To reject the null hypothesis
 and be confident that we are observing an actual effect, versus an effect that
-is joust based on random variation in our sample, the estimate has to be far
+is just based on random variation in our sample, the estimate has to be far
 away enough from <span class="math inline">\(0\)</span> and be accurate enough, i.e. have a small standard error.
-This relationship is computed in the <em>t-statistic</em>, <code>t value</code> and <code>statistic</code> in
-our outputs. From this the <em>p-value</em> can be computed, <code>Pr(&gt;|t|)</code> and <code>p.value</code>
-in the outputs. The <em>p-value</em> tells us the probability to observe a association
+This relationship is computed in the <em>t-statistic</em>, <code>t value</code> in
+our output. From this the <em>p-value</em> can be computed, <code>Pr(&gt;|t|)</code> in the output.
+The <em>p-value</em> tells us the probability to observe an association
 between the independent and the dependent variable as large or larger than our
 estimate suggests, if the true association would actually be <span class="math inline">\(0\)</span>. If the p-value
 is small enough, we can reject <span class="math inline">\(H_0\)</span> and conclude that we observed an actual
-effect. There are certain agreed upon cutoffs in statistics where values that
-meet this cutoff are considered <em>statistically significant</em>. The most common
-cutoff in social sciences is <span class="math inline">\(0.05\)</span> indicated by one <code>*</code> in the output from
-<code>summary()</code> There are other common cutoffs indicated by more asterisks.</p>
+effect. There are certain agreed upon cutoffs in statistics while values that
+meet this cutoffs are considered <em>statistically significant</em>. The most common
+cutoff in social sciences is <span class="math inline">\(0.05\)</span> indicated by one <code>*</code> in the output.
+Other common cutoffs are indicated by more asterisks.</p>
 <p>Interpreting p-values correctly and not falling into the common pitfalls is a
 topic on its own. We do not have the time to dive into this here, so for now we
 can agree that p-values below <span class="math inline">\(0.05\)</span> indicate that we can reject <span class="math inline">\(H_0\)</span> and thus
@@ -636,16 +670,29 @@ conclude that we have actually observed an effect. Still, our interpretation of
 regression results should not focus solely on p-values or lead us to disregard
 any effects that did not meet the cutoff. For example, we can have very small
 p-values for effects that are so small that they are substantially irrelevant.
-One way to address this is to inspect the actual magnitudes of the effects,
-something we will return to in our session on prediction. On the other hand, we
+One way to address this is to inspect the actual magnitudes of the effects.
+On the other hand, we
 can have p-values larger than <span class="math inline">\(0.05\)</span> for effects that are still relevant. Maybe
 the problem is not that there is no effect but that we were not able to measure
 the variable in question precisely enough or that we just did not have enough
 observations. We can not go any deeper than this here, but we should remember
 that the practice of declaring every effect with stars a win and disregarding
 everything without them may still be common but is not the way to go forward.</p>
-<p>XXX CORRECT? MAYBE SHORTEN XXX</p>
-<p>XXX OUTRO XXX</p>
+<p>In our model, we can see that the effect of interest is statistically
+highly significant. We can thus conclude, that we have observed an actual effect
+from <code>hours</code> on <code>grade</code>. Our estimate is large enough and our standard error
+small enough to reach this conclusion.</p>
+</div>
+<div id="moving-on-1" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Moving on<a href="lin-t-2.html#moving-on-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We have attained an estimate for our effect of interest which supports our
+hypotheses that investing more hours into writing a paper leads to better grades.
+So can we wrap a bow on the question and move on to finally figuring out what
+is going on in our NBA data? Almost, but not yet. We still do not know, if our
+model actually works as intended. Linear regression, as well as every modelling
+technique, has some underlying assumptions that we have to meet for the model
+to accurately estimate an effect. In the next session we will get to know this
+assumptions and how we can test for them.</p>
 
 </div>
 </div>

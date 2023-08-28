@@ -48,6 +48,34 @@ I hope this introduction helps you understand what R Markdown is and how it can 
 
 Housing data contains 506 census tracts of Boston from the 1970 census. The dataframe BostonHousing contains the original data by Harrison and Rubinfeld (1979), the dataframe BostonHousing2 the corrected version with additional spatial information.
 
+The dataset has two prototasks: `nox`, in which the nitrous oxide level is to be predicted; and `price`, in which the median value of a home is to be predicted.
+
+**Other Details:** 
+  *Origin*
+    -The origin of the boston housing data is Natural.
+  *Usage*
+    -This dataset may be used for Assessment.
+  *Number of Cases*
+    -The dataset contains a total of 506 cases.
+  *Order*
+    -The order of the cases is mysterious.
+  *Variables*
+    -There are 14 attributes in each case of the dataset. They are:
+    1. CRIM - per capita crime rate by town
+    2. ZN - proportion of residential land zoned for lots over 25,000 sq.ft.
+    3. INDUS - proportion of non-retail business acres per town.
+    4. CHAS - Charles River dummy variable (1 if tract bounds river; 0 otherwise)
+    5. NOX - nitric oxides concentration (parts per 10 million)
+    6. RM - average number of rooms per dwelling
+    7. AGE - proportion of owner-occupied units built prior to 1940
+    8. DIS - weighted distances to five Boston employment centres
+    9. RAD - index of accessibility to radial highways
+    10. TAX - full-value property-tax rate per $10,000
+    11. PTRATIO - pupil-teacher ratio by town
+    12. B - 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town
+    13. LSTAT - % lower status of the population
+    14. MEDV - Median value of owner-occupied homes in $1000's
+
 You can include this data by installing mlbench library:
 ```{r, warning=FALSE, message=FALSE}
 #install.packages("mlbench") ## installing the library
@@ -98,7 +126,8 @@ summary(BostonHousing$rm)
 ```{r}
 library(dplyr)
 BostonHousing <- BostonHousing %>%
-  mutate(near_river = ifelse(chas == 1, "Yes", "No"))
+  mutate(near_river = case_when(chas == 1 ~ "Yes",
+                                chas != 1 ~ "No"))
 ```
 
 
@@ -114,25 +143,46 @@ BostonHousing <- BostonHousing %>%
 ```
 
 
-7. **Visualize relationships**: Create scatter plots to explore the relationship between housing prices and other numeric variables. Interpret the plots. Also show the distribution of ptratio by distance_group.
+7. **Visualize relationships**: Create scatter plots to explore the relationship between housing prices and other numeric variables(`rm`, `age`, `dis`, `lstat`). Interpret the plots. Also show the distribution of ptratio by distance_group.
 
 ```{r, message=FALSE, warning=FALSE}
 # Create a list of numeric variables to plot against MEDV
-vars <- c("crim", "rm", "age", "dis", "b", "lstat")
+vars <- c("rm", "age", "dis", "lstat")
 
 # Create a scatter plot for each variable
-plots <- lapply(vars, function(var) {
-  ggplot(BostonHousing, aes_string(x = var, y = "medv")) +
-    geom_point() +
-    labs(x = var, y = "medv")
-})
-library(gridExtra)
-# Combine the plots into a single plot
-combined_plot <- do.call(grid.arrange, c(plots, ncol = 3))
-
-# Display the combined plot
-combined_plot
+#rm
+rm_sp <- BostonHousing %>% 
+  ggplot(aes(y=rm, x=medv)) +
+    geom_point() + 
+     stat_smooth(method = "lm") + 
+       theme_minimal()
+#age
+age_sp <- BostonHousing %>% 
+  ggplot(aes(y=age, x=medv)) +
+    geom_point() + 
+     stat_smooth(method = "lm") + 
+       theme_minimal()
+#dis
+dis_sp <- BostonHousing %>% 
+  ggplot(aes(y=dis, x=medv)) +
+    geom_point() + 
+     stat_smooth(method = "lm") + 
+       theme_minimal()
+#lstat
+lstat_sp <- BostonHousing %>% 
+  ggplot(aes(y=lstat, x=medv)) +
+    geom_point() + 
+     stat_smooth(method = "lm") + 
+       theme_minimal()
+#adding all plots in one
+library("ggpubr")
+ggarrange(rm_sp, age_sp,
+          dis_sp, lstat_sp,
+          ncol = 2, nrow = 2)
 ```
+
+*boxplot*
+
 ```{r}
 # Create a boxplot of PTRATIO grouped by distance_group
 BostonHousing %>% ggplot() + 
@@ -155,6 +205,5 @@ corrplot(corr_matrix1)
 
 
 
-**This is a draft of questions, dataframe and the variables will be specified later**
 
 

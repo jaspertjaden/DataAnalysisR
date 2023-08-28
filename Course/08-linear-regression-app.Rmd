@@ -518,7 +518,7 @@ $$\hat{y_{center\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.5482
 $$\hat{y_{pg\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.0312286 = 15.659565$$
 
 To find out what this means in hard dollars, we have to reverse the logarithmus
-naturalis. We can do this by calculating $e^\hat{y}$. R gives us the function
+naturalis. We can do this by calculating $e^{\hat{y}}$. R gives us the function
 `exp()` to do just that.
 
 ``` {r there_and_back_again}
