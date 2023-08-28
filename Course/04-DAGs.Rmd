@@ -2,7 +2,9 @@
 
 ## Objectives
 
-XXX FILL IN XXX
+* Getting to know DAGs
+* Understand its implications on achieving unbiased estimates for effects of interest
+* Building a DAG for the NBA data to model the effect of scored points on salary (in session 8)
 
 ## Modelling
 

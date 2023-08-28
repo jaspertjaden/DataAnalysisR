@@ -9,7 +9,9 @@ learned to assess the effect of scored points on salary.
 
 ## Objectives
 
-XXX FILL IN XXX
+* Understand simple linear regression
+* Understand the regression formula
+* Interpret the results
 
 ## What is Linear Regression
 

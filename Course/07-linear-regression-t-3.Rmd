@@ -15,7 +15,9 @@ of the regression output, the model fit.
 
 ## Objectives
 
-XXX FILL IN XXX
+* Learn about model fit and its limits
+* Understand the statistical assumptions underlying linear regression
+* Test for violated assumptions and learn how to correct for those
 
 ## Model fit
 

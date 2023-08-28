@@ -18,8 +18,9 @@ To assess this, we have to move from simple to multiple linear regression.
 
 ## Objectives
 
-XXX FILL IN XXX
-
+* Expand the idea to multiple linear regression
+* How can we interpret different types of independent variables?
+* Understand measures of uncertainty
 
 ## Multiple Linear Regression
 
