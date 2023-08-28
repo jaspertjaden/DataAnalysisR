@@ -28,7 +28,7 @@ So, now, let's look at salary and average number of points scored by game.
 Also, we want to know whether point guards (short people who pass a lot) are
 paid less then other positions (who score more). 
 
-So, it seems that point gards are paid a little less even though they make a few more points on average. Interesting puzzle to explore. 
+So, it seems that point guards are paid a little less even though they make a few more points on average. Interesting puzzle to explore. 
 
 Let's reflect a moment what we can learn from all this. 
 
@@ -233,7 +233,7 @@ tidy(m1)
 ### Interpretation
 
 While we know our model is not complete yet, let us still inspect the results.
-For each point a player scores per game, his salary rises by about $550,000\$$.
+For each point a player scores per game, his salary rises by about $552,000\$$.
 We see a clear positive and substantial effect. Let us also inspect the 
 intercept. THis tells us that a player who makes no points per game has to pay
 the team about $850,000$. Wait, this does not make sense...
@@ -247,7 +247,7 @@ data_nba <- data_nba %>%
   mutate(PTS_centered = career_PTS - mean(career_PTS))
 ```
 
-As we have now centered the independent variable of interst on its mean of $8.9$
+As we have now centered the independent variable of interest on its mean of $8.9$
 we can rerun the model.
 
 ``` {r m1_rerun}
@@ -258,7 +258,7 @@ summary(m1)
 
 The coefficient for points per game has not changed but its interpretation has.
 For each point per game over the mean of $8.9$ points per game, the salary is
-estimated to increase by about $550,000\$$. At the same time, for each point 
+estimated to increase by about $552,000\$$. At the same time, for each point 
 below the mean the salary is estimated to decrease by the same amount.
 The intercept now shows us the estimated salary of a player who scores $8.9$
 points per game which is slightly upwards of $4,000,000\$$ This makes way more
@@ -290,7 +290,7 @@ after controlling for the position a player occupies. Among those centers are by
 far the top earners, making about $1,400,00\$$ more than players on other
 positions. Most other positions show relatively small effects on the earnings.
 Power and small forwards earn somewhat more than other positions on average
-while point and especially shooting guards earns less.
+while point and especially shooting guards earn less.
 
 We can now compare two fictive cases of a center and a point guard who each make
 about $20$ points per game. What is the estimated salary for them?
@@ -326,9 +326,306 @@ lm(y ~ x1 + x2 + x1 * x2, data = some_data)
 
 ## Regression Diagnostics
 
-### Corrections
+So how does our model perform? Did we meet all the regression assumptions that
+were introduced last week?
+
+To access the visual tests we used last session, we can just use the base R
+function plot, applied to the model object. If we just write `plot(m2)`, the
+console asks us to press `ENTER` to go through each plot ony by one. We can also
+add a number as a second argument, specifying which plot we want to see. For
+example, `plot(m2, 1)` gives us the residuals vs. fitted plot. 
+
+But there is an easier way to see all four plots at once. The package 
+`ggfortify` expands the functionalities of `ggplot2` so that we can use it's
+`autoplot()` function to automatically plot all four visual tests of interest.
+An added benefit, depending on your taste, is that the plots are rendered in the
+style of `ggplot2`.
+
+``` {r m2_diag}
+library(ggfortify)
+
+autoplot(m2)
+```
+
+The residuals vs. fitted does not show us a more or less straight line but
+starts mildly positive, then dips below $0$ and rises again for higher estimated
+salaries. This could indicate at least wo thing. Either we have missed an
+important indepedent variable, like in the last session, or we are actually
+dealing with some amount on non-linearity. 
+
+The Q-Q plot this time shows, that the actual residuals are far from being
+distributed normally. While we can never expect a perfectly normal distribution,
+here the deviations are striking, especially for high residuals.
+
+The scale-location plot is used to adress the assumption of homoscedasticity.
+What we want to see, is a straight line with data points equally distributed 
+around it. This clearly is not the case here. As it is, the plot indicates
+that we may be able to estimate small salaries reasonably well but that the 
+higher the estimate, the more unreliable our model gets.
+
+The residuals va. leverage plot also indicates some problems. There are some
+observations that have larger or smaller standardized residuals compared to the
+thresholds of $3$ and $-3$. The threshold for leverage is computed as
+$2 * (6 + 1) / 9728 = 0.001439145$ We also see some observations with higher
+values. While both are rules of thumb and may not necessarily point to severe
+problems by themselves, things can get problematic when there are observation
+that do not meet the thresholds for both measures at the same time. This is
+indicated by clusters in the lower or upper right corners. We can observe this 
+in the lower right.
+
+We should also test for multicollinearity. We can compute the VIF measures using
+a function from the package `car`.
+
+``` {r m2_vif, message = FALSE}
+library(car)
+
+vif(m2)
+```
+
+The values for any variable should not exceed $5$ and should be closer to $1$.
+Our value for points shows no signs of multicollinearity. The values for the 
+position dummies have somewhat higher values, which makes sense. While there are
+some players that play multiple positions, for most a value of $1$ on one
+position predicts the other positions as having a value of $0$. But as we are
+still far away from the threshold of $5$, there is no need for concern here.
+
+Overall, we have problems! While we do not see signs of problematic 
+multicollinearity, all other tests indicated clear and in parts severe problems.
+We have to put in some more work before we can be confident that our model
+accurately predicts the effect of points per game on the received salary.
+
+Before we start addressing the problems, we should not that the four plots are
+highly interactive. It is entirely possible that solving one of the problems
+also solves the others or, for added fun, even generates new ones. This means
+that we should refrain from turning too many dials at once and rather change the
+model one step at a time, see if it improves things and then adress remaining
+problems in the same way.
+
+
+### Skewed outcome variable
+
+The deviation from normality and the clearly present heteroscedasticity could
+both point to the same problem, namely a skewed dependent variable. Let us
+examine its distribution first.
+
+``` {r distribution_dv_before}
+data_nba %>% 
+  ggplot(aes(x = salary)) +
+  geom_density()
+```
+
+Our outcome variable is not only skewed, it is **highly skewed**. While there 
+are many salaries in the "lower" six to seven digits regions, we also see some
+extremely high wages up to about $35,000,000\$$. The higher the salary the fewer
+observations we have. That is why we see such a long flat tail to the right.
+
+This distribution actually is relatively common for income data. In most surveys
+of the general population we have many people receiving relatively low incomes
+while fewer individuals receive higher or extremely high incomes. It is still
+interesting that this also holds true for a population of high earners such as
+NBA players. That is why inequality is relative. Compared to the general 
+population almost all our players would be somewhere in the long tail to the 
+right. Compared to their own population we still see highly substantial
+differences in outcomes.
+
+We can transform the dependent variable to a different scale to get a less
+skewed distribution. A common transformation for income data is to take the
+*logarithmus naturalis* of the actual value and then use this as our
+dependent variable. To achive the transformation we can simply use the base R
+function `log()` which as its default computes the $ln$. 
+
+``` {r transform_dv_log}
+data_nba <- data_nba %>% 
+  mutate(salary_log = log(salary))
+
+data_nba %>% 
+  ggplot(aes(x = salary_log)) +
+  geom_density()
+```
+
+While the distribution of the transformed variable also is somewhat skewed, now
+to the left, overall it is much more evenly distributed. 
+
+We should use the new variable as our outcome an check the tests again.
+
+``` {r m3}
+m3 <- lm(salary_log ~ PTS_centered + position_center + position_sf +  position_pf + position_sg + position_pg, data = data_nba)
+
+autoplot(m3)
+```
+
+Looking at the scale-location plot first, we can now see a straight line with 
+our residuals fairly evenly distributed around it. Thus we now longer see any
+signs of heteroscedasticity. The Q-Q plot now also indicates a somewhat more
+normal distribution of our residuals but there are substantial deviations still.
+While high residuals now appear to more or less follow the normal distribution,
+small residuals now deviate stronger than they have before. This reflects the
+transformation and its distribution, which now has long tail on the left and not
+on the right anymore. Turning to the residuals vs. leverage plot we still see 
+some observations that do not meet the respective thresholds. At the same time,
+there appear to be less that simultaneously have high absolute standardized
+residuals and high leverage. The residuals vs. fitted plot now also shows a more
+even distribution while the signs on non-linearity remain. We do not have to 
+recompute the VIF measure as we did not change any independent variables in the 
+model.
+
+### Non-linearity
+
+Let us now address the non-linearity that is still indicated in the first plot.
+We can approach non-linear relationships in our inherently linear model by 
+adding non-linear transformations of a dependent variable to the model. But
+before we start squaring random variables, we should think about what could be
+non-linear in our case. We can rule out our dummy variables for position. This
+leaves the points scored. The model already tells us that our suspicion that 
+salary rises with the points scored could be true. But maybe this relationship 
+is not linear over its whole range. If you already are among high scorers, 
+scoring one or two points more than your peers may not be such a substantial 
+difference and thus may not have the same strong effect on salary.
+
+We should first inspect the relationship between both variables again. This time
+we add a LOWESS curve to the plot. This is often helpful in detecting 
+non-linearity as the curve can change its slope over the range of the dependent
+variable. This is also the default for `geom_smooth()`.
+
+``` {r non_linearity}
+data_nba %>% 
+  ggplot(aes(x = career_PTS, y = salary)) +
+  geom_point() +
+  geom_smooth(se = FALSE)
+```
+
+While this is not as clear as we hoped, the line may still indicate some mild
+non-linearity as it flattens somewhat for really high point values. Also we have
+to keep in mind that the non-linearity may be stronger when we control for
+additional variables, as our position dummies. 
+
+One common way to address the non-linearity is taking the square of the
+dependent variable in question. We should not square our centered points 
+variable though. Let us inspect what would happen if we squared it.
+
+``` {r centered_squared}
+data_nba %>% 
+  ggplot(aes(x = PTS_centered, y = PTS_centered ^ 2)) +
+  geom_point() +
+  geom_smooth(se = FALSE)
+```
+
+As the square of negative values is positive we would basically introduce the
+assumption into the model that there is non-linearity for low and high scorers
+and that the effect will be in the same direction. While our assumption is that
+there are diminishing returns between being a high scorer and a **really** high
+scorer, we do not assume that making more points if you are among the lower 
+scorers should have the same effect. If at all, in these regions additional
+points could have an even larger effect.
+
+Because of this we should return the uncentered version of our variable. What
+happens if we square this?
+
+``` {r career_pts_squared}
+data_nba %>% 
+  ggplot(aes(x = career_PTS, y = career_PTS ^ 2)) +
+  geom_point() +
+  geom_smooth(se = FALSE)
+```
+
+This is what we wanted, a transformation that expects a stronger difference the
+higher the score value is. For the final model we will thus work with the
+uncentered variable. We included the centered version because it is more 
+straightforward to interpret. This is not really a concern anymore because 
+dreams of easy interpretability are long gone after transforming two variables.
+
+We could again transform the variable in our data and thus add a second version,
+but we can also do so directly in the formuly syntax. When we use the function
+`I()` we tell R to interpret anything within the parantheses as a mathematacial 
+expression. This is waht we will do below. Note that we add the point variable
+as its untransformed and transformed versions. The first represents the linear
+parts and the second the non-linear parts of the effect.
+
+``` {r m4}
+m4 <- lm(salary_log ~ career_PTS + I(career_PTS^2) + position_center + position_sf + position_pf + position_sg + position_pg, data = data_nba)
+```
+
+We can now reasses the tests for the last model.
+
+``` {r m4_diag}
+autoplot(m4)
+```
+
+The line in the residuals vs. fitted plot got more straight. It seems that we
+actually captured the mild non-linearity that was present before by adding the
+squared points value to our model. The scale-location plot also still indicates
+no more problems of heteroscedasticity. Contrary, the data points now are even
+more evenly distributed compared to `m3`. The Q-Q plot also has not changed, 
+still showing non-normally distributed residuals. We can not really fix this 
+now, but we also learned, that this test is less consequantial if we have a 
+large N. Turning to the residuals vs. leverage plot, we still se several points
+that do not meet the thresholds but at the same time we do not see any points
+with high values for both. Overall there seem to be no overly influential points
+which we had to address. Let us also reexamine the VIF.
+
+``` {r m4_vif}
+vif(m4)
+```
+
+We now see high VIF values for both versions of our point variable. The only
+substantial change is that we now see high values for these. Did we introduce a
+new problem? If we take the measure at face value, yes. But if we think about
+it, no. All this means is that both versions of our variable are highly
+correlated. Of course they are. One is computed from the other. We can
+perfectly predict the value of `career_PTS^2` from `career_PTS`. There is
+collinearity by design. If we want to assess multicollinearity we should apply
+the function to `m3`. If would have used interactions, the situation would be 
+similar. This is just a small reminder that all our tests do not work without
+thinking about what we are actually doing.
 
 ## Returning to our research question
+
+As we now settled on `m4` as our best model, it is time to discuss what we
+actually found out about the effect of scored points on the received salary.
+
+``` {r m4_interpret}
+summary(m4)
+```
+
+The more points a player scores, the higher the salary is estimated. At the same
+time we have identified a non-linear aspect to this relationship. The non-linear
+effect is small but negative. This indicates diminishing returns for high
+scorers. The higher the score, the less positive the effect of additional points
+is.
+
+The problem after two transformations of involved variables is, that 
+interpretation has lost all its intuitiveness. The effects now describe the 
+change in logarithmized salaries. While we can still easily assess if an effect
+is positive or negative we do not really what the magnitude of an effect is. For
+ths we have to reverse the transformation.
+
+Let us revist our example of a center and a point guard making $20$ points
+per game from above. Note that we also have to take the square of points for the
+non-linear term.
+
+$$\hat{y_{center\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.5482072 = 16.17654$$
+
+$$\hat{y_{pg\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.0312286 = 15.659565$$
+
+To find out what this means in hard dollars, we have to reverse the logarithmus
+naturalis. We can do this by calculating $e^\hat{y}$. R gives us the function
+`exp()` to just that.
+
+``` {r there_and_back_again}
+exp(16.17654)
+exp(15.659565)
+```
+
+For our center who scored $20$ points we thus estimate a salary of 
+$10,601,860\$$, for a point guard with the same amounts of points $6,322,119\$$.
+These estimates are not only lower than the ones derived above, the difference
+between the positions is also more pronounced. For a point guard scoring 
+additional hoops does not have the same payoff compared to a center. While the
+latter receive a higher pay in general they also receive ore per additional
+point scored. 
+
+XXX FINAL CONCLUSIONS ON THE PUZZLE? XXX
+
 
 ## Outlook
 
@@ -336,4 +633,3 @@ lm(y ~ x1 + x2 + x1 * x2, data = some_data)
 * Packages that expand upon the ideas
 * Weighting
 * Mutli-level/Fixed effects
-
