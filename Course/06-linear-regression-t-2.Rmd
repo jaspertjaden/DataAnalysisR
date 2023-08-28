@@ -7,18 +7,22 @@ load("../datasets/grades.RData")
 ```
 
 
-XXX INTRO XXX
-
-## Multiple Linear Regression
-
 Maybe explaining the grade a student receives solely based on the hours of
 invested time, does not paint the whole picture. As we have alluded to, there
-may be other variables that could also have an effect of the final grade.
+may be other variables that could affect the relationship between `hours` and
+`grade`. 
+If we fail to include these in our model, we may not get an unbiased estimate
+for our effect of interest. Maybe the actual effect for `hours` is even stronger,
+maybe it is weaker, or maybe there is no effect at all. 
+To assess this, we have to move from simple to multiple linear regression.
+
+
+## Multiple Linear Regression
 
 A *simple linear regression* only allows for one independent variable. This is
 why we need *multiple linear regression* if we want to start introducing 
 additional variables into the model. Luckily this is easy to understand as we
-already know the formula for a simple linear regression.
+already know the formula for a simple linear regression:
 
 $$y = \beta_0 + \beta_1*x_1 + \epsilon$$
 
@@ -27,8 +31,8 @@ additional variables and their coefficients additively to the formula.
 
 $$y = \beta_0 + \beta_1*x_1 + \beta_2*x_2 + ... + \beta_k*x_k + \epsilon$$
 
-So to add a second variable and its coeffcient we add the term $+ \beta_2*x_2$
-and so on until we added all independent varibles of interest $k$ to the model.
+So to add a second variable and its coefficient we add the term $+ \beta_2*x_2$
+and so on until we added all independent variables of interest $k$ to the model.
 Everything else works exactly as described above for the simple model.
 
 ### Adding additional metric variables
@@ -50,7 +54,7 @@ lm(grade ~ hours_centered + previous_grades_centered, grades) %>% summary()
 As we added a new variable, we now see three coefficients.
 The intercept has not changed. It now indicates the estimated grade for a
 student who invests the mean amount of hours, $40.33$, and whose previous grades
-are exactly $2.935$.
+are exactly $2.935$, the mean of the variable.
 
 The coefficient for `hours_centered` got mildly more negative, still telling us
 that the value of `grade` gets lower, the more hours are invested in writing the
@@ -134,17 +138,17 @@ part of the estimate $\hat{y}$:
 
 $$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd} + b_{attendance} * 1$$
 
-If stduent did not regularly attended, this happens: 
+If student did not regularly attended, this happens: 
 
 $$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd} + b_{attendance} * 0$$
 $$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd}$$
 
-The coeeffcient is no longer a part of the estimate. One can basically say, the
+The coefficient is no longer a part of the estimate. One can basically say, the
 coefficient gets switched on or off by the value of the dummy variable.
 
 So while the estimate for a student with mean values for invested hours and
-previous grades who did not attend is the intercept of $3.157411$ for the same
-student with attendance we can calculate the estimate as:
+previous grades who did not attend is equal to the intercept of $3.157411$,
+for a similar student who attended we can calculate the estimate as:
 
 $$3.157411 - 0.053942*0 + 0.911802*0 - 0.248250 * 1 = 3.157411 - 0.248250 = 2.909161$$
 
@@ -153,14 +157,15 @@ It seems attending class is an easy way to raise one's grades.
 ### Adding categorical variables
 
 We have one further variable in our simulated data set that could be of interest
-in explaining, what makes a good grade in a seminar paper.`contact` is a factor
-variable. It can take three different categories. `No contact` indicates that
+in explaining, what makes a good grade in a seminar paper.`contact` is a 
+categorical variable, or a factor variable in R terms.
+It can take three different categories. `No contact` indicates that
 the student did not contact the lecturer to discuss a research question or the
 laid out plan for the paper. `E-Mail` means that there was some written contact
 and at least the basics for the paper were discussed before writing. Lastly,
 `In Person` stands for an in depth discussion with the lecturer, clearing up
-problems beforehand and having a more stringent vision for the paper before 
-writing the first word.
+problems beforehand and thus potentially having a more stringent vision for the
+paper before writing the first word.
 
 Let us add the variable to our model.
 
@@ -170,11 +175,11 @@ lm(grade ~ hours_centered + previous_grades_centered + attendance + contact, gra
 
 Wait, we entered three categories into the model and got estimates for two of
 them. What happened? What R does is to create two dummy variables on the fly.
-The first discerns between having E-Mail contact or no contact at all. The 
-second one between having contact in person to no contact at all. So for
-categorical variables in regression models we always compare being in one
+The first discerns between having E-Mail contact and no contact at all. The 
+second one between having contact in person and no contact at all. So for
+categorical variables in regression models we always compare being in one of the
 category to being in the *base category*. In this case the base category is
-`No contact` but we could also change the base category. It depends on what we
+`No contact`, but we could also change the base category. It depends on what we
 are interested in comparing to. For our example comparing the effects of having 
 more in depth contact to having none makes sense.
 
@@ -187,12 +192,12 @@ case both dummy variables equal $0$. To make our formula easier to read, we have
 abbreviated the middle part for now:
 
 $$\hat{y} = b_0 + ... + b_{E-Mail} * 0 + b_{In Person} * 0$$
-So in this case, controlling all other independent variables at their default
-values, the mean for the metric variables, `FALSE` for `attendance`, the 
+So in this case controlling all other independent variables at their default
+values, the mean for the metric variables and `FALSE` for `attendance`, the 
 intercept gives us the estimate for the grade as both dummy variables that
-were created for `contact`are "switched off".
+were created for `contact` are "switched off".
 
-THe two other possibilities are that a student either had E-Mail contact or an
+The two other possibilities are that a student either had E-Mail contact or an
 in person discussion:
 
 $$\hat{y} = b_0 + ... + b_{E-Mail} * 1 + b_{In Person} * 0$$
@@ -202,7 +207,7 @@ $$\hat{y} = b_0 + ... + b_{E-Mail} * 0 + b_{In Person} * 1$$
 In both cases the relevant dummy variable is "switched on" while the other does
 not factor into the equation.
 
-Looking at the estimates, we can see that having contact to the lecturer before
+Looking at the estimates we can see that having contact to the lecturer before
 writing has strong negative effects, resulting in better grades. Having E-Mail
 contact reduces the value of `grade` by $-0.413808$ points, having an in person
 discussion by $-0.853252$.
@@ -217,13 +222,6 @@ $$3.617949 - 0.050830 * 20 + 0.874123 * 0 - 0.324653 * 1 - 0.413808 * 0 - 0.8532
 Putting in the hours, attending and working with your lecturer seems to pay off,
 at least in our simulated data set.
 
-<!-- ### Adding interactions -->
-
-<!-- CUT FOR NOW -->
-
-<!-- ``` {r reg_grade_hours_prev_att_contact_interaction, echo = FALSE} -->
-<!-- lm(grade ~ hours_centered + previous_grades_centered + attendance + contact + hours_centered * contact, grades) %>% summary() -->
-<!-- ``` -->
 
 ## Returning to our research question
 
@@ -237,8 +235,8 @@ was consistently visible in all of our models. But did we correctly identify
 and estimate the effect of interest? Maybe. The problem is, we actually did not
 approach the analysis correctly. In a real analysis we should **absolutely**
 refrain from adding variables to our model that *could be* relevant until we are
-satisfied or all available variables are bunched into one huge model. It was
-fine to do this in this introduction to linear regression and for learning how
+satisfied or even until all available variables are bunched into one huge model.
+It was fine to do this in this introduction to linear regression to learn how
 different types of variables can be used in a regression model. But in a real
 project, we have to invest time to think about which variables to add because we
 assume that they have a relevant effect based on theoretical assumptions about
@@ -267,12 +265,9 @@ dagitty('dag{
   plot()
 ```
 
-XXX MAYBE NICEN IT UP XXX
-
 Our central assumption, and the effect we want to identify and estimate, is the
 direct effect from `hours` on `grade` in the bottom line. The more hours a 
-student invests, the better the grade should be. This is our variable of 
-interest and it has to be included in the model.
+student invests, the better the grade should be. 
 
 The assumed effect of `contact` is more complex. For one we assume that a more
 in-depth contact with the lecturer will increase the grade directly. The 
@@ -283,19 +278,29 @@ on `hours` in the sense that the hours invested can be used more efficiently if
 an in-depth discussion has taken place. Instead of wasting time running into
 problems that could have been avoided most of the invested time can actually go
 into constructive work. This makes `contact` a confounder for `grade` and 
-`hours`. Tapping into the knowledge from the last session, now we know that we
-also have to control for `contact` to measure the effect of `hours` correctly.
+`hours`. 
 
 A student's skill level will also have a direct effect on `grade`. As we do not
 have a direct measure of skill in our data, we use `previous_grades` as a proxy
-for skill level. `attendance` also has a direct effect on `grade` as students
-who were present in the seminar will not only have learned the seminar's
+for skill level. `attendance` is also assumed to have a direct effect on `grade`
+as students who were present in the seminar will not only have learned the seminar's
 contents, but will also have a better understanding of what is expected in their
-seminar papers. As neither skill level - or `previous_grades` - nor `attendance`
-has any connection to `hours` we also should not control for them in our model.
+seminar papers. 
 
+Tapping into the knowledge from session 4, we can now make implications for our
+model from the DAG. Let us list all paths from `hours` to `grade`:
+
+$$A: Hours \rightarrow Grade$$
+
+$$B: Hours \leftarrow Contact \rightarrow Grade$$
+
+Path A represents our effect of interest. On path B, `contact` is a confounder
+for `hours` and `grade`. To close this path, we have to control for `contact`.
+As neither skill level - or `previous_grades` - nor `attendance` lie on a path
+from our independent variable of interest to our dependent variable, we should
+not control for them in our model.
 That leaves us with `hours` and `contact` to be included in our linear
-regression, if our goal is to accuarately identify and estimate the effect of
+regression, if our goal is to get an unbiased estimate for the effect of
 invested time on the final grade. So let us do this:
 
 ``` {r reg_grade_hours_contact_0, echo = FALSE}
@@ -313,7 +318,7 @@ The higher the skill level the more efficiently the available time can be used.
 For this example we know the DAG is correct, because we have simulated the data
 exactly in this way. For real world applications we never know if our DAG is
 correct. All we can - and have to - do is base it on thorough thought, 
-theoretical work and sound arguments. 
+theoretical work, exploratory data analysis and sound arguments. 
 
 This all is true *if* our goal is to estimate an effect of interest as precisely
 as possible. But as we have alluded to in the introduction to this session we
@@ -327,15 +332,13 @@ should remember that we have to know our task because the task dictates which is
 the best model to use.
 
 
-## Interpretation
+## Adressing the uncertainty
 
-XXX WHERE TO PUT IT? XXX
-
-Looking at the coefficient block from either of the two outputs, we see more
-than just our estimate. The `Std. Error` or `std.error` is a measure for the
+Looking at the coefficient block from the output, we see more
+than just our estimates. The `Std. Error` - *standard error* - is a measure for the
 uncertainty of our estimates. It basically tells us, how far away the actual 
 values of the observations used to compute the model are from our estimate
-*on average*. The smaller the *standard error*, the more accurate is our
+*on average*. The smaller the *standard error*, the more accurate our
 estimate. The standard error is presented in the units of the estimate and we
 can thus compare them. A large standard error for a large estimate is far less
 problematic compared to a large standard error for a small estimate.
@@ -345,18 +348,18 @@ What we are testing is the *alternative hypotheses* $H_a$ that there actually
 is an effect of our independent variable on the dependent variable against the
 *null hypothesis* $H_0$ that there is no effect. To reject the null hypothesis
 and be confident that we are observing an actual effect, versus an effect that
-is joust based on random variation in our sample, the estimate has to be far
+is just based on random variation in our sample, the estimate has to be far
 away enough from $0$ and be accurate enough, i.e. have a small standard error.
-This relationship is computed in the *t-statistic*, `t value` and `statistic` in
-our outputs. From this the *p-value* can be computed, `Pr(>|t|)` and `p.value`
-in the outputs. The *p-value* tells us the probability to observe a association
+This relationship is computed in the *t-statistic*, `t value` in
+our output. From this the *p-value* can be computed, `Pr(>|t|)` in the output.
+The *p-value* tells us the probability to observe an association
 between the independent and the dependent variable as large or larger than our
 estimate suggests, if the true association would actually be $0$. If the p-value
 is small enough, we can reject $H_0$ and conclude that we observed an actual 
-effect. There are certain agreed upon cutoffs in statistics where values that
-meet this cutoff are considered *statistically significant*. The most common
-cutoff in social sciences is $0.05$ indicated by one `*` in the output from
-`summary()` There are other common cutoffs indicated by more asterisks.
+effect. There are certain agreed upon cutoffs in statistics while values that
+meet this cutoffs are considered *statistically significant*. The most common
+cutoff in social sciences is $0.05$ indicated by one `*` in the output.
+Other common cutoffs are indicated by more asterisks.
 
 Interpreting p-values correctly and not falling into the common pitfalls is a
 topic on its own. We do not have the time to dive into this here, so for now we
@@ -365,8 +368,8 @@ conclude that we have actually observed an effect. Still, our interpretation of
 regression results should not focus solely on p-values or lead us to disregard
 any effects that did not meet the cutoff. For example, we can have very small
 p-values for effects that are so small that they are substantially irrelevant.
-One way to address this is to inspect the actual magnitudes of the effects,
-something we will return to in our session on prediction. On the other hand, we
+One way to address this is to inspect the actual magnitudes of the effects.
+On the other hand, we
 can have p-values larger than $0.05$ for effects that are still relevant. Maybe
 the problem is not that there is no effect but that we were not able to measure
 the variable in question precisely enough or that we just did not have enough 
@@ -374,7 +377,18 @@ observations. We can not go any deeper than this here, but we should remember
 that the practice of declaring every effect with stars a win and disregarding
 everything without them may still be common but is not the way to go forward.
 
-XXX CORRECT? MAYBE SHORTEN XXX
+In our model, we can see that the effect of interest is statistically 
+highly significant. We can thus conclude, that we have observed an actual effect
+from `hours` on `grade`. Our estimate is large enough and our standard error
+small enough to reach this conclusion.
 
+## Moving on
 
-XXX OUTRO XXX
+We have attained an estimate for our effect of interest which supports our
+hypotheses that investing more hours into writing a paper leads to better grades.
+So can we wrap a bow on the question and move on to finally figuring out what
+is going on in our NBA data? Almost, but not yet. We still do not know, if our
+model actually works as intended. Linear regression, as well as every modelling
+technique, has some underlying assumptions that we have to meet for the model
+to accurately estimate an effect. In the next session we will get to know this
+assumptions and how we can test for them.

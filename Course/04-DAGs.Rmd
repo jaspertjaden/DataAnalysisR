@@ -23,8 +23,8 @@ and how our data is structured. The next step would be modelling.
 
 So what is modelling? In general we have one *dependent variable*, typically
 denoted as $y$. This variable has some varying values. Our goal in modelling is
-to estimate how these values are generated. Generating refers to the 
-*data generating process* that we asumme responsible for $y$ having the values
+to estimate how these values are generated. Generating here refers to the 
+*data generating process* that we assume responsible for $y$ having the values
 it has. One or multiple *independent variables*, $x_1 \ x_2 \ ... \ x_k$, 
 influence how the values of $y$ are generated; thus $y$ *depends* on the values
 of our independent variable(s).
@@ -32,18 +32,18 @@ of our independent variable(s).
 When we model, we do not know the data generating process, but based on 
 theoretical considerations, careful thinking and exploratory data analysis, we
 can make assumptions on how we think the process operates. DAGs are a tool that
-can help us in clarifying our assumptions on the data generating process and
-to formulate a model based on this. 
+can assist us in this step. We can use it to formally clarify our assumptions on
+the data generating process and to formulate a model based on its implications. 
 
 
 ### Estimating effects vs. prediction
 
 There are two main reasons for modelling in the social sciences.
 
-Our goal can be *prediction*, as in predicting our dependent variable $y$ to the
-highest accuracy. This may be is the less classical reason for modelling, but 
-one that has come to the forefront in recent years in the context of 
-*machine learning*. 
+Our goal can be *prediction*, as in predicting our dependent variable $y$ with
+the highest possible accuracy. This maybe is the less classical approach to
+modelling, but one that has come to the forefront in recent years, especially in
+the context of *machine learning*. 
 
 Take ChatGPT for instance. The underlying GPT model, a large language model
 (LLM), is used to predict what the next word in a sequence of words should be. 
@@ -66,13 +66,16 @@ it contains, the independent variables.
 When prediction is our goal, we most often are not primarily interested in
 understanding what independent variables influence the dependent variables in
 which direction and with which magnitude. We are interested in the most accurate
-prediction possible. These approaches are also called *y-centered*.
+prediction for the dependent variable possible. These approaches are therefore
+also called *y-centered*.
 
-When we our interest can be centered on y, we can also be *x-centered*. This is
-the more classical approach in statistics, at least for the social sciences.
-Here our goal is estimate an effect of interest as possible. $y$ is still our
-dependent variable but our focus lies on understanding which $x$ variables
-influence $y$, in which direction this influence goes and what the magnitude is.
+When our interest is focused on one or multiple independent variables, our
+approach is *x-centered*. This is the more classical usage of modelling in
+statistics, at least for the social sciences.
+Here our goal is to estimate an effect of interest as accurately as possible.
+$y$ is still our dependent variable but our focus lies on understanding which
+$x$ variables influence $y$, in which direction this influence goes and what the
+magnitude is.
 
 Let us say we are interested in why people cast their vote for a certain party.
 We may have some hypotheses that proposes that voters who find certain issues
@@ -103,13 +106,15 @@ Based on this we will already have developed some assumptions concerning our
 proposed underlying data generating process. Should we now throw everything into
 our model that we deem interesting or relevant for the relationship between
 score and salary? No, we should not. What we should do is use a tool that helps
-us organize our assumptions and figure out which variables are actually relevant
-for the effect we want to measure. This is where DAGs come in.
+us formalise our assumptions and figure out which variables are actually 
+relevant for measuring our effect of interest; and which variables we can not
+include in our model as they would potentially lead to incorrect estimations.
+This is where DAGs come in.
 
 
 ## DAGs
 
-### Directed acylclical graphs
+### Directed acyclical graphs
 
 *DAG* is short for *directed acyclical graph*. DAGs are *graphs* that display 
 the assumed relationship between variables as arrows, or missing arrows, between
@@ -117,11 +122,11 @@ them. An arrow represents our assumption that one variable has an effect on the
 other, a missing arrow represents our assumption that one variable has no effect
 on the other. These arrows are *directed*. This represents our assumptions about
 the direction of the effect. We do not only assume that two variables are
-somehow associated, but we explicitly state that one influences the other. 
+somehow associated, but we explicitly state which one influences the other. 
 
 A simple DAG could look like this:
 
-``` {r dag_directed, echo = FALSE}
+``` {r dag_directed, echo = FALSE, message = FALSE}
 library(tidyverse)
 library(dagitty)
 
@@ -134,17 +139,18 @@ dagitty('dag{
   plot()
 ```
 
-What are the asumptions about the data generating process we have encoded here?
+What are the assumptions about the data generating process we have encoded here?
 We have one dependent variable $X$ that we assume to have a direct effect on the
 independent variable $Y$. We know that our assumption was that $X$ has an effect
-of $Y$ and not the other way around because the arrow is *directed* from $X$ to 
+on $Y$ and not the other way around, because the arrow is *directed* from $X$ to 
 $Y$. 
 
-We call the sequence of one or many arrows a *path* and when trying to 
-estimate an effect of interest we are foremost interested in the paths going
-from our independent variable of interest to the dependent variable. In the first
-example we only have the one path $X \rightarrow Y$, but in most "real" DAGs we
-will have multiple paths between $X$ and $Y$.
+We call the sequence of one or many arrows that do not pass a single variable
+more than once a *path*. When trying to estimate an effect of interest we are
+foremost interested in the paths going from our independent variable of interest
+to the dependent variable. 
+In the first example we only have the one path $X \rightarrow Y$, but in most
+"real" DAGs we will have multiple paths between $X$ and $Y$.
 
 Consider this DAG, were we introduce a second variable $A$:
 
@@ -163,7 +169,7 @@ dagitty('dag{
 Here there are two paths from $X$ to $Y$, $X \rightarrow Y$ and 
 $X \rightarrow A \rightarrow Y$. Our assumption here was that $X$ directly
 influences $Y$, but that $X$ also directly influences $A$ which in turn directly
-influences $Y$. The latter is an indirect efffect from $X$ on $Y$ through $A$.
+influences $Y$. The latter is an indirect effect from $X$ on $Y$ through $A$.
 
 DAGs are also *acyclical*, meaning that there can not be any cyclical 
 relationships between variables. A cyclical relationship would be present if we
@@ -185,14 +191,14 @@ In this example there is a path $X \rightarrow Y \rightarrow A \rightarrow X$
 that leads us from $X$ back to $X$. This is not allowed in a DAG.
 
 Now that we know the basics, what do we actually do with a DAG? A DAG is a way
-to graphically represent our assumptions about the data generating process. But
-it is about more than drawing nice representation, it is also about figuring out
+to graphically formalise our assumptions about the data generating process. But
+it is about more than drawing nice formalisations, it is also about figuring out
 which variables we have to include and which we are not allowed to include to
 get an unbiased estimate of our effect of interest. We do this by *blocking* all
 paths from $X$ to $Y$ that do not represent the relationship we want to estimate
 and at the same time opening up all paths that do. For this to make sense, we 
-need to know the three patterns of relationship between three variables and how
-we can deal with them.
+need to know the three patterns of relationships between a set of three 
+variables and how we can open or close paths with them.
 
 
 
@@ -214,27 +220,24 @@ dagitty('dag{
   plot()
 ```
 
-$X$ has an effect on $A$ which in turn affects the value of $Z$. This implies
-$X$ and $Y$ are statistically correlated. When the value of $X$ changes, the
-value of $Y$ also changes, "transmitted" through the indirect effect $X$ has
-thorugh $Y$. Remember we are still interested in measuring the effect of $X$ on
+$X$ has an effect on $A$ which in turn affects the value of $Y$. This implies
+that $X$ and $Y$ are statistically correlated. When the value of $X$ changes,
+the value of $Y$ also changes, "transmitted" by the indirect effect $X$ has
+on $Y$ through $A$. Remember we are still interested in measuring the effect of $X$ on
 $Y$, so we also want to measure this indirect effect.
 
-THe DAG tells us that there is a relationship between all three variables. We
-could be tempted to include $A$ in our model because of this. But what happens
-then is that by including $A$ we *block* the path between $X$ and $Y$. This 
-means that we can not measure the association we are interested in anymore and
-is called *overcontrol bias*. 
+The DAG tells us that there is a relationship between all three variables. We
+therefore could be tempted to include $A$ in our model as well. But what would
+happen is that by including $A$ we would *block* the path between $X$ and $Y$.
+We would not be able to measure the association we are actually interested in.
+Including such a variable and thereby blocking a path of interest is called
+*overcontrol bias*. 
 
-A common practice in published scientific work is to just include all variables
-that are assumed to be connected to the depedent or independent variable
-without really thinking about what this implies. This can result in 
-overcontrolling and in some cases make the effect of interest unmeasurable. We 
+In some cases overcontrolling can make the effect of interest unmeasurable. We 
 would then conclude from our analysis that $X$ has no effect on $Y$ and that our
-hypotheses was wrong while there actually could be an effect that we made 
-"disappear" by overcontrolling. If would have drawn a DAG based on our
-assumptions it would have been easy to see that we should not have controlled
-for $A$ when we are interested in the effect of $X$.
+hypotheses was wrong, while there actually could be an effect that we made 
+"disappear" by blocking its path. Drawing a DAG based on our assumptions helps
+us to prevent this pitfall.
 
 ##### Mediation
 
@@ -255,16 +258,20 @@ dagitty('dag{
   plot()
 ```
 
-We see a direct effectthorugh the path $X \rightarrow Y$ as well as indirect
+We see a direct effect through the path $X \rightarrow Y$ as well as indirect
 effect through $X \rightarrow A \rightarrow Y$. Should we include $A$ in our 
-model? This depends on what we want to measure. If we are interested in the
-*total effect* of $X$ on $Y$, we should not. Both effects, the direct and the
-indirect paths, are of interest here, so we keep both paths open by not 
-controlling for $A$. Our interest could also lie exlusively in the 
-*direct effect*. Here we would want to measure the effefct of $X$ stripped by
-all indirect effects. In this case we want the path $X \rightarrow Y$ to keep
-open, but we would close the path $X \rightarrow A \rightarrow Y$ by controlling 
-for $A$. We could also only be interested in the *indirect effect*, the effect
+model? This depends on what we want to measure. 
+
+If we are interested in the *total effect* of $X$ on $Y$, we should not. Both
+effects, the direct and the indirect paths, are of interest here, so we keep
+both paths open by not controlling for $A$. 
+
+Our interest could also lie exclusively in the *direct effect*. Here we would
+want to measure the effect of $X$ stripped by all indirect effects. In this case
+we want the path $X \rightarrow Y$ to keep open, but we would close the path
+$X \rightarrow A \rightarrow Y$ by controlling for $A$.
+
+We could also only be interested in the *indirect effect*, the effect
 of $X$ on $Y$ that goes through $A$. We can not directly model this, but we can
 compute the indirect effect as the difference between total and direct effect.
 
@@ -287,41 +294,57 @@ dagitty('dag{
 
 We see that there is no implied direct relationship between $X$ and $Y$ but that
 both variables are influenced by $A$. If we would measure the relationship
-between $X$ and $Y$ we should see no statistical correlation. The problem is,
-that we would see a correlation despite there being none. Why is that?
-Both the values of $X$ and $Y$ depend on the value of $A$. If we assume that 
-both effects are positive the value of $X$ would rise with the value of $A$ and
-the value of $Y$ would rise with the value of $A$ also. $X$ and $Y$ vary 
-together. If we just include $X$ and $Y$ in our model this would show up as a
-positive effect from $X$ on $Y$.
+between $X$ and $Y$ we *should* see no statistical correlation. The problem is,
+that we *would* see a correlation despite this. Why is that?
+The values of $X$ and $Y$ both depend on the value of $A$. If we for example 
+assume that both effects are positive the value of $X$ would rise with the value
+of $A$ and the value of $Y$ would rise with the value of $A$ also.
+The opposite would be true if both effects were negative. Lower values for $A$ 
+would lead to lower values for $X$ and $Y$.
+But even the effects would be opposite, they would never cancel each other out
+perfectly. $X$ and $Y$ vary together.
+If we just include $X$ and $Y$ in our model this would show up as an
+effect from $X$ on $Y$.
 
-In DAG terms, there is an open path between $X$ and $Y$ allthough we did not 
+In DAG terms, there is an open path between $X$ and $Y$ although we did not 
 draw a direct path: $X \leftarrow A \rightarrow Y$. This may seem 
-counterintuitive at first as the arrows go in opposite directions, but for
+counterintuitive at first, as the arrows go in opposite directions, but for
 paths in a DAG to exist, the direction of the arrows does not matter. Every
 connection between variables is a path. So there is an open path, in this case
 a so called *backdoor path*, that leads to a statistical association between
 $X$ and $Y$, but we can close it by controlling for $A$. If we do this, we would
 see no remaining association between $X$ and $Y$ and thus get an unbiased 
-estimate for the effect of interest.
+estimate for the effect of interest, i.e. no effect.
 
-If this still seems unintuitive consider the following example you can also find
-in statistical textbooks. Do storks bring babies? We could tackle this 
-analytically by taking a measure of babies born as our dependent variable and
-the number of storksightings in the same region as our dependent variable. Let
-statistics come to the rescue and help us discard the notion of the baby bringing
-stork once and for all. But alas, our model will tell us that there is a positive
-effect from storksightings on the number of newborns. Should we conclude that
-everything we learned from our parents and teachers was one big lie to hide away
-the magical truth of reproduction? Before we do that let us return to 
-rationality. Maybe we have missed something important. It turns out that there
-is a confounder we did not include in our model. More rural areas have higher 
-birthrates and also have a higher rate of storksightings while both variables
-have lower values in more urban regions. Our dependent and independent variables
-both vary by the value of the confounder and thus it seems that there is a
-correlation. If we now include a measure for the type of region, let us say
-population density, this spurious association disappears and we can return to
-normalitty. Storks do not bring babies after all.
+If this still seems unintuitive consider the following example, which you can 
+also find in many statistical textbooks. Do storks bring babies? We could tackle
+this analytically by taking a measure of babies born in a region as our dependent
+variable and the number of storksightings in the same region as our dependent
+variable. Let statistics come to the rescue and help us discard the notion of 
+the baby bringing stork once and for all. But alas, our model will tell us that
+there is a positive effect from storksightings on the number of newborns. Should
+we conclude that everything we learned from our parents and teachers was one big
+lie to hide away the magical truth about reproduction? Before we do that, let us
+return to rationality. Maybe we have missed something important. It turns out
+that there is a confounder we did not include in our model. More rural areas 
+have higher birthrates and also have a higher rate of storksightings while both
+variables have lower values in more urban regions. Our dependent and independent
+variables both vary by the value of the confounder and thus it seems that there
+is a correlation where there actually is none. If we now include a measure for
+the type of region, let us say population density, this spurious association
+disappears and we can return to normalitty. Storks do not bring babies after all.
+
+``` {r dag_storks, echo = FALSE}
+dagitty('dag{
+        Storks [pos = "1,0"]
+        Babies [pos = "3, 0"]
+        "Population Dens." [pos = "2, -1"]
+        
+        "Population Dens." -> Storks
+        "Population Dens." -> Babies
+}') %>% 
+  plot()
+```
 
 #### Colliders
 
@@ -354,20 +377,20 @@ these rules we may statistically find relationships where there are none or miss
 relationships that actually exist. We then would draw the wrong conclusions for
 our hypotheses and research question. We would produce bad science.
 
-If we draw out our DAG and use it to identify the correct *adjustment set* $Z$ of
-control variables, we do not fall into this trap. We only control what we have
-to, and nothing that we should not. We thus create the best model to get an
-unbiased estimate for our effect of interest; but there is always a caveat and
-this is a big one. The model is only correct if our DAG is also correct and we
-can never know for certain if it is. We could make wrong assumptions, forget
-important relationships, and make all matters of mistakes while building our 
-DAG. While DAGs are a great tool for identifying the adjustment set the technique
-alone can never replace careful thinking.
+If we draw out our DAG and use its implications to identify the correct
+*adjustment set* $Z$ of control variables, we do not fall into this trap. 
+We only control what we have to, and nothing that we should not. We thus create
+the best model to get an unbiased estimate for our effect of interest; 
+but there is always a caveat and this is a big one. The model is only correct if
+our DAG is also correct and we can never know for certain if it is. We could
+make wrong assumptions, forget important relationships, and make all matters of
+mistakes while building our DAG. While DAGs are a great tool for identifying the
+adjustment set, the technique alone can never replace careful thinking.
 
 
 ## NBA DAG
 
-We will now pick up where we left off and return to the NBA data.
+We will now pick up where we left off in session 2 and return to the NBA data.
 Equipped with our new tool we can now draw a DAG with the goal of building a
 model to estimate the effect of points scored on the salary a player receives.
 The assumption is, that the higher the point average, the higher the salary. 
@@ -406,7 +429,7 @@ dagitty('dag{
   plot()
 ```
 
-It is also reasonable that the height influences which position a
+It is also reasonable that body height influences which position a
 player can occupy. Centers have to be big while smaller players tend to play on
 other positions. At the same time, height is an advantage if you want to score
 in a basketball game. Thus height is a confounder for points and position.
@@ -427,7 +450,7 @@ dagitty('dag{
 
 Another factor that will have an effect on the salary is the team a player plays
 for. More successful teams will be able to pay higher salaries. The season an
-observation was recorded in, should also influence the paid salary as we can
+observation was recorded in should also influence the paid salary as we can
 expect a general inflation of salaries over time.
 
 ``` {r dag_final, echo = FALSE}
@@ -448,25 +471,34 @@ dagitty('dag{
   plot()
 ```
 
-This is our final DAG. Now what does this imply for our model?
-Let us list the paths from our dependent variable points scored to the dependent
-variable salary. Luckily for us there a are few.
+This is our final DAG. Does it correctly depict the underlying data generating
+process? We do not know for sure, but the DAG correctly reflects our assumptions
+at this point. Those may be wrong. Maybe the data generating process actually 
+works slightly or even completely different; but to the best of our current 
+knowledge, this is how the scored points affect the salary a player receives.
+
+We can now inspect what implications the DAG has for our model. To do this,
+let us list the paths from our independent to the dependent variable.
 
 $$A: Points \rightarrow Salary$$
 $$B: Points \leftarrow Position \rightarrow Salary$$
 
 $$C: Points \leftarrow Height \rightarrow Position \rightarrow Salary$$
 Path A is a direct path from our independent variable to our dependent variable.
+We will have to include scored points and salary into our model, but that is a
+given.
+
 Paths B & C are both backdoor paths - these are easily spotable by an arrow
-pointing into the independent variable - that we have to adress somehow.
+pointing into the independent variable - that we have to address somehow.
 Let us consider B first. Position is a confounder for points and salary. Above
-we already learned how to deal with this, we control for position. This removes
+we already learned how to deal with this, we control for it. This removes
 the spurious part of the association between points and salary introduced by the
-confounder. Path C also includes a confounder, namely the height of a player.
+confounder. Path C also includes a confounder, namely the body height of a player.
 Do we also control for this variable to close path C? No, we do not. If we
 further examine path C we will see that it also includes position as a pipe.
 When we control for a variable in a pipe, the path gets closed. As we have to
 include position to close path B, path C is also already closed.
+
 The two remaining variables, team and season, have direct effects on the 
 salary but do not lie on a path from points to salary. This implies, that we
 do **not** have to control for them if our goal is estimating the effect of
@@ -479,7 +511,7 @@ to reach this goal.
 If our goal was predicting the salary as accurately as possible we would made 
 other conclusions. The team a player is employed by and the season where an
 observation was measured are both relevant predictors for the received salary.
-For prediction we would have include both variables because this should increase
+For prediction we would have included both variables because this should increase
 the accuracy of the prediction. We will return to this in more detail in 
 sessions 11 and 12.
 
@@ -488,7 +520,7 @@ sessions 11 and 12.
 
 ### dagitty.net
 
-While the underlying rules of DAGs are reltively straightforward, identifying
+While the underlying rules of DAGs are relatively straightforward, identifying
 the adjustment set can get harder the more complex a DAG gets. Consider this for
 instance:
 
@@ -514,12 +546,14 @@ X -> Y
 ```
 
 What variables do we have to include in our adjustment set to get unbiased
-measure for the effect from $X$ on $Y$? We would suggest take out pen and paper
+measure for the effect from $X$ on $Y$? We would suggest you take out pen and paper
 and try to figure it out. You can approach this as above. List all paths from
 $X$ to $Y$ that do not include a variable twice and try to find the adjustment
-set that closes all paths besides direct path $X \rightarrow Y$.
+set that closes all paths besides the one(s) needed to measure the effect from
+$X$ on $Y$. Spoiler: In this case the only path we want to keep open is the
+direct effect $X \rightarrow Y$.
 
-While this is doable, you may be unsure if found the correct set. Luckily there
+While this is doable, you may be unsure if you found the correct set. Luckily there
 is a convenient way to find out. https://dagitty.net/ provides a browser tool
 where you can draw DAGs - as well as export them for your papers - and check for
 the correct adjustment set. After launching the tool you should click on "Model"
@@ -543,24 +577,25 @@ If you are interested in diving deeper into DAGs, we can recommend this
 resources, which were also used for writing this session.
 
 Richard McElreath provides a great introduction into the topic with many clear
-examples. While the book chapter on DAGs may require some kowledge of advanced
-statistical topics, the correpsonding lecture on YouTube is more apprachable:
+examples. While the book chapter on DAGs may require some knowledge of advanced
+statistical topics, the corresponding lecture on YouTube is more approachable:
 
-McElreath, Richard (2020). Statistical Rethinking: A Byesian Course with Examples in R and STAN. Sesond Edition. Boca Raton & Oxon: CRC Press.
+McElreath, Richard (2020). Statistical Rethinking: A Bayesian Course with 
+Examples in R and STAN. Second Edition. Boca Raton & Oxon: CRC Press.
 Chapter 5: The Many Variables & The Spurious Waffles, 123-160.
 
 Corresponding YouTube lecture: https://www.youtube.com/watch?v=mBEA7PKDmiY
 
 
-Felix Elwert wrote a concise paper on DAGs with a persepctive that is more 
-focussed on causality than we have presented here:
+Felix Elwert wrote a concise paper on DAGs with a perspective that is more 
+focused on causality than we have presented here:
 
 Elwert, Felix (2013). Graphical Causal Models. In S. L. Morgan (Hrsg.), Handbook
 of Causal Analysis for Social Research, 245–273. Dordrecht [u.a.]: Springer.
 
 
 If you really want to get into it, the work of Judea Pearl was central for
-establishing DAGs. An aproachable starting point would be the "Book of Why":
+establishing DAGs. An approachable starting point would be the "Book of Why":
 
-Pearl, Judea % Dana Mackenzie (2018). The book of why : the new science of cause
+Pearl, Judea & Dana Mackenzie (2018). The book of why : the new science of cause
 and effect. New York: Basic Books.
