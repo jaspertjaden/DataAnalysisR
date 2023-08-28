@@ -1,119 +1,32 @@
 # Linear Regression - Application {#lin-a}
 
+After we have learned the ins and outs of linear regression we will now
+return to our NBA data. 
+We already saw, that there was an interesting relationship between the
+points a player makes per game and the salary he receives in session 2. In
+session 4 we also built a DAG that reflects our assumptions about the data
+generating process. Based on the DAGs implications we can now build a linear
+regression model and try to estimate the effect of interest as accurately as
+possible.
+
 ## Objectives
 
+* Estimate the effect of interest, scored point on salary, using a linear regression
+* Applying diagnostics to the model and correct mistakes
+* Interpret the final model
 
 ## R functions covered this week
 
 - `lm()`
-
-## Temporary from EDA I
-
-This is interesting for a first look. For example, it seems that the weight is 
-strongly correlated with whatever position you play. Centers are heavy, point
-guards are light weights. 
-We also see that most performance metrics ("career_...") are correlated with each
-other and also with salary. Good players seem to be good in many things, and
-good players seem to be paid more. 
-
-Now, that we have a feeling for the whole dataset, we want to explore individual 
-variables. To keep it focused, we want to further explore the question
-of whether players that score more on average are also paid more. 
-
-Maybe roles are clearly divided on the team. Maybe really good passers are highly
-paid because they give great passes to people who then score. Or maybe teams
-don't care about passers and just pay more to people who score more. 
-
-So, now, let's look at salary and average number of points scored by game. 
-Also, we want to know whether point guards (short people who pass a lot) are
-paid less then other positions (who score more). 
-
-So, it seems that point guards are paid a little less even though they make a few more points on average. Interesting puzzle to explore. 
-
-Let's reflect a moment what we can learn from all this. 
-
-First, there seems to be a somewhat linear relationship between how many points 
-a player scores and how much they are paid. This relationship seems pretty robust across years and teams. It also holds true for point guards just as much as for non-point guards. However, the average salary for point guards is lower in comparison. We also learn that the link between salary and points is stronger for centers. They seems to be paid more, the more they score. 
-
-1) It can model the relationship between two variables while considering simultaneously the potential influence of other factors. Image we are interested
-in the effect of points per game on salary regardless of position, season or team.
-With regression we can estimate how much more a player would ear every season
-if he scored 10 more points a game (regardless of the position he plays).
-
-
+XXX FILL IN XXX
 
 
 ## Research question
 
-We will now pick up where we left several sessions ago and return to the NBA 
-data. We already saw, that there was an interesting relationship between the
-points a player makes per game and the salary he receives. The more points, the 
-higher the salary. This makes intuitive sense as high scoring player is more
-valuable to the team and thus receives a higher monetary compensation. Our 
-goal for this session is to estimate the effect of points on salary and to 
-assess if it really exists and what its magnitude is.
-
-Let us start building a DAG with the information we already have.
-
-``` {r dag_1, echo = FALSE}
-library(dagitty)
-
-dagitty('dag{
-        "Points per game" [pos = "1,0"]
-        Salary [pos = "3, 0"]
-        
-        "Points per game" -> Salary
-}') %>% 
-  plot()
-```
-
-Now we have to think about other factors that could influence the relationship 
-between points and salary. One variable we already identified as having an 
-effect on both was the position a player occupies. The position influences how
-many points per game a player can score and we also already saw that centers
-make more money compared to point guards. Right now we have no reason to believe
-that other positions do not also have an effect on the received salary. 
-Following this reasoning, position is a confounder for points and salary.
-
-``` {r dag_2, echo = FALSE}
-library(dagitty)
-
-dagitty('dag{
-        "Points per game" [pos = "1,0"]
-        Position [pos = " 2, -1"]
-        Salary [pos = "3, 0"]
-        
-        "Points per game" -> Salary
-        "Points per game" <- Position -> Salary
-}') %>% 
-  plot()
-```
-
-It is also reasonable that the height influences which position a
-player can occupy. Centers have to be big while smaller players tend to play on
-other positions. At the same time, height is an advantage if you want to score
-in a basketball game. Thus height is a confounder for points and position.
-
-``` {r dag_3, echo = FALSE}
-library(dagitty)
-
-dagitty('dag{
-        "Points per game" [pos = "1,0"]
-        Height [pos = "1.3, -1.3"]
-        Position [pos = " 2, -1"]
-        Salary [pos = "3, 0"]
-        
-        "Points per game" -> Salary
-        "Points per game" <- Position -> Salary
-        "Points per game" <- Height -> Position
-}') %>% 
-  plot()
-```
-
-Another factor that will have an effect on the salary is the team a player play
-for. More successful teams will be able to pay higher salaries. The season an
-observation was recorded in, should also influence the paid salary as we can
-expect a general inflation of salaries over time.
+Picking up from session 2 & 4, our research question is still to get an unbiased
+estimate for the effect from points scored on the salary an NBA player receives.
+We already constructed a DAG that reflects our assumptions for the underlying
+data generating process. Let us revist this briefly:
 
 ``` {r dag_final, echo = FALSE}
 library(dagitty)
@@ -135,18 +48,13 @@ dagitty('dag{
   plot()
 ```
 
-This is our final DAG. Now what does this imply for our model?
-Our goal is to measure the effect of the points per game on the received
-salary. Position is a confounder for both, so we have to control for it to get
-an unbiased estimate for points. Height is also a confounder, but for points
-and position. So we have to control for this variable too? As we already control
-for position, the path from height -> position -> points is already closed. This
-means that we do **not** have to onclude height in our model to get a unbiased
-estimate. The two remaining variables, team and season, have direct effects on 
-salary but no other connections. This implies, that we also do **not** have to
-control for them if our goal is estimating the effect of points. Remember, if 
-our goal was predicting the salary as accurately as possible, we should maybe
-include both variables, but this is not our goal today.
+The implications of our DAG were that we only have to control for the position
+a player occupies to get an unbiased estimate for our effect of interest.
+The path that passes the body height is already closed by controlling for
+position and the team a player plays for as well as the season an observation 
+was recorded in do not lie on an paths from our main independent to our 
+dependent variable.
+Based on this we construct our model.
 
 Now let us get to it and load the NBA data we prepared in week 2.
 
@@ -158,14 +66,15 @@ load("../datasets/nba/data_nba.RData")
 ## Simple linear regression in R
 
 To conduct a multiple linear regression in R, we can use the built-in *base R*
-function `lm()`. The function is straightforward to use. As the first argument
+function `lm()`, short for *linear model*.
+The function is straightforward to use. As the first argument
 we write the regression formula in R's *formula syntax*.
 
-In the formula syntac we start by writing the name of our `dependent_variable`
+We start building the formula by writing the name of our `dependent_variable`
 followed by a *tilde* `~`. You can read this as an $=$ or as "regress the 
 dependent variable on". After the tilde we add our first `indepedent variable`
 by again writing out its name. If we have multiple independent variables in our
-model - so we are running a *multiple linear regression* - we can add those by
+model - when we are running a *multiple linear regression* - we can add those by
 writing a `+` followed by the name of the variable to be added.
 
 As a second argument, the function needs the name of the object that holds our
@@ -204,7 +113,7 @@ summary(data_nba$career_PTS)
 When we use `summary()` on a model object, like the one created by `lm()`, we
 get a different output. Before we apply this we should save our model in an
 object. This is good practice in most cases as we can now apply all additional
-analysis of the model on ths object and we do not have to rerun the model
+analysis of the model on this object and we do not have to rerun the model
 every time.
 
 ``` {r m1}
@@ -235,7 +144,7 @@ tidy(m1)
 While we know our model is not complete yet, let us still inspect the results.
 For each point a player scores per game, his salary rises by about $552,000\$$.
 We see a clear positive and substantial effect. Let us also inspect the 
-intercept. THis tells us that a player who makes no points per game has to pay
+intercept. This tells us that a player who makes no points per game has to pay
 the team about $850,000$. Wait, this does not make sense...
 To make the intercept more readily interpretable we should again center our
 metric dependent variable `career_PTS` on its mean.
@@ -330,8 +239,8 @@ So how does our model perform? Did we meet all the regression assumptions that
 were introduced last week?
 
 To access the visual tests we used last session, we can just use the base R
-function plot, applied to the model object. If we just write `plot(m2)`, the
-console asks us to press `ENTER` to go through each plot ony by one. We can also
+function `plot()`, applied to the model object. If we just write `plot(m2)`, the
+console asks us to press `ENTER` to go through each plot one by one. We can also
 add a number as a second argument, specifying which plot we want to see. For
 example, `plot(m2, 1)` gives us the residuals vs. fitted plot. 
 
@@ -349,29 +258,30 @@ autoplot(m2)
 
 The residuals vs. fitted does not show us a more or less straight line but
 starts mildly positive, then dips below $0$ and rises again for higher estimated
-salaries. This could indicate at least wo thing. Either we have missed an
-important indepedent variable, like in the last session, or we are actually
-dealing with some amount on non-linearity. 
+salaries. This could indicate at least two thing. Either we have missed an
+important independent variable, like in the last session, or we are actually
+dealing with some amount on non-linearity. If it is non-linearity, it is still
+*mild* non-linearity, but maybe we should still inspect this.
 
-The Q-Q plot this time shows, that the actual residuals are far from being
+The Q-Q plot this time shows that the actual residuals are far from being
 distributed normally. While we can never expect a perfectly normal distribution,
 here the deviations are striking, especially for high residuals.
 
-The scale-location plot is used to adress the assumption of homoscedasticity.
+The scale-location plot is used to address the assumption of homoscedasticity.
 What we want to see, is a straight line with data points equally distributed 
 around it. This clearly is not the case here. As it is, the plot indicates
 that we may be able to estimate small salaries reasonably well but that the 
 higher the estimate, the more unreliable our model gets.
 
-The residuals va. leverage plot also indicates some problems. There are some
+The residuals vs. leverage plot also indicates some problems. There are some
 observations that have larger or smaller standardized residuals compared to the
 thresholds of $3$ and $-3$. The threshold for leverage is computed as
-$2 * (6 + 1) / 9728 = 0.001439145$ We also see some observations with higher
+$2 * (6 + 1) / 9728 = 0.001439145$. We also see some observations with higher
 values. While both are rules of thumb and may not necessarily point to severe
 problems by themselves, things can get problematic when there are observation
 that do not meet the thresholds for both measures at the same time. This is
-indicated by clusters in the lower or upper right corners. We can observe this 
-in the lower right.
+indicated by clusters in the lower or upper right corners. This time we can
+observe this in the lower right.
 
 We should also test for multicollinearity. We can compute the VIF measures using
 a function from the package `car`.
@@ -398,7 +308,7 @@ Before we start addressing the problems, we should not that the four plots are
 highly interactive. It is entirely possible that solving one of the problems
 also solves the others or, for added fun, even generates new ones. This means
 that we should refrain from turning too many dials at once and rather change the
-model one step at a time, see if it improves things and then adress remaining
+model one step at a time, see if it improves things and then address remaining
 problems in the same way.
 
 
@@ -423,7 +333,7 @@ This distribution actually is relatively common for income data. In most surveys
 of the general population we have many people receiving relatively low incomes
 while fewer individuals receive higher or extremely high incomes. It is still
 interesting that this also holds true for a population of high earners such as
-NBA players. That is why inequality is relative. Compared to the general 
+NBA players. Inequality is relative. Compared to the general 
 population almost all our players would be somewhere in the long tail to the 
 right. Compared to their own population we still see highly substantial
 differences in outcomes.
@@ -431,7 +341,7 @@ differences in outcomes.
 We can transform the dependent variable to a different scale to get a less
 skewed distribution. A common transformation for income data is to take the
 *logarithmus naturalis* of the actual value and then use this as our
-dependent variable. To achive the transformation we can simply use the base R
+dependent variable. To achieve the transformation we can simply use the base R
 function `log()` which as its default computes the $ln$. 
 
 ``` {r transform_dv_log}
@@ -518,7 +428,7 @@ scorer, we do not assume that making more points if you are among the lower
 scorers should have the same effect. If at all, in these regions additional
 points could have an even larger effect.
 
-Because of this we should return the uncentered version of our variable. What
+Because of this we should return to the uncentred version of our variable. What
 happens if we square this?
 
 ``` {r career_pts_squared}
@@ -530,14 +440,14 @@ data_nba %>%
 
 This is what we wanted, a transformation that expects a stronger difference the
 higher the score value is. For the final model we will thus work with the
-uncentered variable. We included the centered version because it is more 
+uncentred variable. We included the centered version because it is more 
 straightforward to interpret. This is not really a concern anymore because 
 dreams of easy interpretability are long gone after transforming two variables.
 
 We could again transform the variable in our data and thus add a second version,
-but we can also do so directly in the formuly syntax. When we use the function
-`I()` we tell R to interpret anything within the parantheses as a mathematacial 
-expression. This is waht we will do below. Note that we add the point variable
+but we can also do so directly in the formula syntax. When we use the function
+`I()` we tell R to interpret anything within the parentheses as a mathematical 
+expression. This is what we will do below. Note that we add the point variable
 as its untransformed and transformed versions. The first represents the linear
 parts and the second the non-linear parts of the effect.
 
@@ -545,7 +455,7 @@ parts and the second the non-linear parts of the effect.
 m4 <- lm(salary_log ~ career_PTS + I(career_PTS^2) + position_center + position_sf + position_pf + position_sg + position_pg, data = data_nba)
 ```
 
-We can now reasses the tests for the last model.
+We can now reassess the tests for the last model.
 
 ``` {r m4_diag}
 autoplot(m4)
@@ -555,10 +465,10 @@ The line in the residuals vs. fitted plot got more straight. It seems that we
 actually captured the mild non-linearity that was present before by adding the
 squared points value to our model. The scale-location plot also still indicates
 no more problems of heteroscedasticity. Contrary, the data points now are even
-more evenly distributed compared to `m3`. The Q-Q plot also has not changed, 
+more evenly distributed compared to `m3`. The Q-Q plot also has not substantially changed, 
 still showing non-normally distributed residuals. We can not really fix this 
-now, but we also learned, that this test is less consequantial if we have a 
-large N. Turning to the residuals vs. leverage plot, we still se several points
+now, but we also learned that this test is less consequential if we have a 
+large $n$. Turning to the residuals vs. leverage plot, we still see several points
 that do not meet the thresholds but at the same time we do not see any points
 with high values for both. Overall there seem to be no overly influential points
 which we had to address. Let us also reexamine the VIF.
@@ -567,8 +477,8 @@ which we had to address. Let us also reexamine the VIF.
 vif(m4)
 ```
 
-We now see high VIF values for both versions of our point variable. The only
-substantial change is that we now see high values for these. Did we introduce a
+We now see high VIF values for both versions of our point variable, which is the
+only substantial change. Did we introduce a
 new problem? If we take the measure at face value, yes. But if we think about
 it, no. All this means is that both versions of our variable are highly
 correlated. Of course they are. One is computed from the other. We can
@@ -595,11 +505,11 @@ is.
 
 The problem after two transformations of involved variables is, that 
 interpretation has lost all its intuitiveness. The effects now describe the 
-change in logarithmized salaries. While we can still easily assess if an effect
-is positive or negative we do not really what the magnitude of an effect is. For
-ths we have to reverse the transformation.
+change in logarithmised salaries. While we can still easily assess if an effect
+is positive or negative we do not really know what the magnitude of an effect is.
+For this we have to reverse the transformation.
 
-Let us revist our example of a center and a point guard making $20$ points
+Let us revisit our example of a center and a point guard making $20$ points
 per game from above. Note that we also have to take the square of points for the
 non-linear term.
 
@@ -609,7 +519,7 @@ $$\hat{y_{pg\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.0312286 
 
 To find out what this means in hard dollars, we have to reverse the logarithmus
 naturalis. We can do this by calculating $e^\hat{y}$. R gives us the function
-`exp()` to just that.
+`exp()` to do just that.
 
 ``` {r there_and_back_again}
 exp(16.17654)
@@ -619,17 +529,34 @@ exp(15.659565)
 For our center who scored $20$ points we thus estimate a salary of 
 $10,601,860\$$, for a point guard with the same amounts of points $6,322,119\$$.
 These estimates are not only lower than the ones derived above, the difference
-between the positions is also more pronounced. For a point guard scoring 
+between the positions is also more pronounced. For a point guard, scoring 
 additional hoops does not have the same payoff compared to a center. While the
-latter receive a higher pay in general they also receive ore per additional
-point scored. 
+latter receive a higher pay in general they also receive more per additional
+point scored.
 
-XXX FINAL CONCLUSIONS ON THE PUZZLE? XXX
+As the name suggests and as we have seen in our exploratory data analysis, 
+point guards make a lot of points. At the same time they earn considerable less.
+Above we see an estimated difference of over $4,000,000\$$ between high scoring
+centers and point guards. The question remains why this is the case.
+Maybe there are some additional variables we had to consider to fully unravel 
+this.
+For example it is reasonable to expect some effects on salary that are not
+connected to the performance in terms of scoring. Both positions fill different
+roles in basketball game. Centers, besides scoring, have to get rebounds and
+facilitate turnarounds. Point guards on the other hand have the role to build
+opportunities for their team and pass to other players. Both measures of 
+performance were not considered in our model but are highly valuable to any team.
+Also there is something we can call "starfactor" or "flashiness". A center is 
+much more visible in the game, takes big jumps and dunks. Maybe a center is not
+only more valuable in terms of performance but also in being an attracting force
+for fans. This could change the relationship between points and salary for
+players with a high "starpower". Such a variable would be hard to measure,
+but could maybe solve the parts of the puzzle that still remain.
 
+## Moving on
 
-## Outlook
-
-* Alternative Packages
-* Packages that expand upon the ideas
-* Weighting
-* Mutli-level/Fixed effects
+But there is another possibility. We built the best model based on our DAG, but
+maybe the DAG is not entirely correct. Maybe we made some faulty assumptions or
+maybe we missed a variable with an important role in the data generating
+process. In the next session we will see, how we can come up with a different
+DAG that incorporates the same variables but makes some different assumptions.
