@@ -16,6 +16,10 @@ for our effect of interest. Maybe the actual effect for `hours` is even stronger
 maybe it is weaker, or maybe there is no effect at all. 
 To assess this, we have to move from simple to multiple linear regression.
 
+## Objectives
+
+XXX FILL IN XXX
+
 
 ## Multiple Linear Regression
 

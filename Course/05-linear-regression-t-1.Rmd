@@ -7,6 +7,10 @@ keep the NBA data aside and use some simulated data that plays nice with us.
 We will return to the NBA data in session 8 applying everything we
 learned to assess the effect of scored points on salary.
 
+## Objectives
+
+XXX FILL IN XXX
+
 ## What is Linear Regression
 
 As we eluded to last session, there are two main approaches to using

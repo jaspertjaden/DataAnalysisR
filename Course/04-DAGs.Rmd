@@ -1,5 +1,9 @@
 # DAGs {#dags-1}
 
+## Objectives
+
+XXX FILL IN XXX
+
 ## Modelling
 
 This session kicks off the block on linear regression as a statistic
