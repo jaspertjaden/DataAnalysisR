@@ -353,37 +353,37 @@ So maybe, the fact guards and forwards simply score less than centers explains t
 <li>Third, we check whether there are any differences in average salaries by position using a graph and a table</li>
 <li>Fourth, we run a linear regression, regressing position (as factor variable) on salary while adjusting for year of season.</li>
 </ul>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="med.html#cb150-1" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb150-2"><a href="med.html#cb150-2" tabindex="-1"></a></span>
-<span id="cb150-3"><a href="med.html#cb150-3" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file =</span> <span class="st">&quot;../datasets/nba/data_nba.RData&quot;</span>)</span>
-<span id="cb150-4"><a href="med.html#cb150-4" tabindex="-1"></a></span>
-<span id="cb150-5"><a href="med.html#cb150-5" tabindex="-1"></a></span>
-<span id="cb150-6"><a href="med.html#cb150-6" tabindex="-1"></a></span>
-<span id="cb150-7"><a href="med.html#cb150-7" tabindex="-1"></a><span class="co"># recode &quot;position&quot; variables&quot;</span></span>
-<span id="cb150-8"><a href="med.html#cb150-8" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
-<span id="cb150-9"><a href="med.html#cb150-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">position_num =</span> <span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">&quot;position_center&quot;</span>, <span class="st">&quot;position_pf&quot;</span>, <span class="st">&quot;position_sf&quot;</span>,</span>
-<span id="cb150-10"><a href="med.html#cb150-10" tabindex="-1"></a>                                         <span class="st">&quot;position_pg&quot;</span>, <span class="st">&quot;position_sg&quot;</span>))),</span>
-<span id="cb150-11"><a href="med.html#cb150-11" tabindex="-1"></a>         <span class="at">position_rec =</span> </span>
-<span id="cb150-12"><a href="med.html#cb150-12" tabindex="-1"></a>           <span class="fu">case_when</span>(</span>
-<span id="cb150-13"><a href="med.html#cb150-13" tabindex="-1"></a>             position_center<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;center&quot;</span>,</span>
-<span id="cb150-14"><a href="med.html#cb150-14" tabindex="-1"></a>             position_pf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
-<span id="cb150-15"><a href="med.html#cb150-15" tabindex="-1"></a>             position_sf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
-<span id="cb150-16"><a href="med.html#cb150-16" tabindex="-1"></a>             position_pg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
-<span id="cb150-17"><a href="med.html#cb150-17" tabindex="-1"></a>             position_sg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
-<span id="cb150-18"><a href="med.html#cb150-18" tabindex="-1"></a>             position_sg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_pg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
-<span id="cb150-19"><a href="med.html#cb150-19" tabindex="-1"></a>             position_pf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_sf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
-<span id="cb150-20"><a href="med.html#cb150-20" tabindex="-1"></a>             <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Mixed&quot;</span>))</span>
-<span id="cb150-21"><a href="med.html#cb150-21" tabindex="-1"></a></span>
-<span id="cb150-22"><a href="med.html#cb150-22" tabindex="-1"></a><span class="co"># pot mean salary by position</span></span>
-<span id="cb150-23"><a href="med.html#cb150-23" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(position_rec) <span class="sc">%&gt;%</span></span>
-<span id="cb150-24"><a href="med.html#cb150-24" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">salary_mean =</span> <span class="fu">mean</span>(salary, <span class="at">rm.na =</span>T)) <span class="sc">%&gt;%</span></span>
-<span id="cb150-25"><a href="med.html#cb150-25" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb150-26"><a href="med.html#cb150-26" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>position_rec, <span class="at">y=</span>salary_mean), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb150-27"><a href="med.html#cb150-27" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">6000000</span>) <span class="sc">+</span></span>
-<span id="cb150-28"><a href="med.html#cb150-28" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="med.html#cb148-1" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb148-2"><a href="med.html#cb148-2" tabindex="-1"></a></span>
+<span id="cb148-3"><a href="med.html#cb148-3" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file =</span> <span class="st">&quot;../datasets/nba/data_nba.RData&quot;</span>)</span>
+<span id="cb148-4"><a href="med.html#cb148-4" tabindex="-1"></a></span>
+<span id="cb148-5"><a href="med.html#cb148-5" tabindex="-1"></a></span>
+<span id="cb148-6"><a href="med.html#cb148-6" tabindex="-1"></a></span>
+<span id="cb148-7"><a href="med.html#cb148-7" tabindex="-1"></a><span class="co"># recode &quot;position&quot; variables&quot;</span></span>
+<span id="cb148-8"><a href="med.html#cb148-8" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
+<span id="cb148-9"><a href="med.html#cb148-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">position_num =</span> <span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">&quot;position_center&quot;</span>, <span class="st">&quot;position_pf&quot;</span>, <span class="st">&quot;position_sf&quot;</span>,</span>
+<span id="cb148-10"><a href="med.html#cb148-10" tabindex="-1"></a>                                         <span class="st">&quot;position_pg&quot;</span>, <span class="st">&quot;position_sg&quot;</span>))),</span>
+<span id="cb148-11"><a href="med.html#cb148-11" tabindex="-1"></a>         <span class="at">position_rec =</span> </span>
+<span id="cb148-12"><a href="med.html#cb148-12" tabindex="-1"></a>           <span class="fu">case_when</span>(</span>
+<span id="cb148-13"><a href="med.html#cb148-13" tabindex="-1"></a>             position_center<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;center&quot;</span>,</span>
+<span id="cb148-14"><a href="med.html#cb148-14" tabindex="-1"></a>             position_pf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
+<span id="cb148-15"><a href="med.html#cb148-15" tabindex="-1"></a>             position_sf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
+<span id="cb148-16"><a href="med.html#cb148-16" tabindex="-1"></a>             position_pg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
+<span id="cb148-17"><a href="med.html#cb148-17" tabindex="-1"></a>             position_sg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
+<span id="cb148-18"><a href="med.html#cb148-18" tabindex="-1"></a>             position_sg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_pg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
+<span id="cb148-19"><a href="med.html#cb148-19" tabindex="-1"></a>             position_pf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_sf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
+<span id="cb148-20"><a href="med.html#cb148-20" tabindex="-1"></a>             <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Mixed&quot;</span>))</span>
+<span id="cb148-21"><a href="med.html#cb148-21" tabindex="-1"></a></span>
+<span id="cb148-22"><a href="med.html#cb148-22" tabindex="-1"></a><span class="co"># pot mean salary by position</span></span>
+<span id="cb148-23"><a href="med.html#cb148-23" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(position_rec) <span class="sc">%&gt;%</span></span>
+<span id="cb148-24"><a href="med.html#cb148-24" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">salary_mean =</span> <span class="fu">mean</span>(salary, <span class="at">rm.na =</span>T)) <span class="sc">%&gt;%</span></span>
+<span id="cb148-25"><a href="med.html#cb148-25" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb148-26"><a href="med.html#cb148-26" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>position_rec, <span class="at">y=</span>salary_mean), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb148-27"><a href="med.html#cb148-27" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">6000000</span>) <span class="sc">+</span></span>
+<span id="cb148-28"><a href="med.html#cb148-28" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="med.html#cb151-1" tabindex="-1"></a><span class="co"># linear regression</span></span>
-<span id="cb151-2"><a href="med.html#cb151-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(position_rec), <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="med.html#cb149-1" tabindex="-1"></a><span class="co"># linear regression</span></span>
+<span id="cb149-2"><a href="med.html#cb149-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(position_rec), <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>)))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salary ~ as.factor(position_rec), data = data_nba, 
@@ -404,8 +404,8 @@ So maybe, the fact guards and forwards simply score less than centers explains t
 ## Residual standard error: 4402000 on 6382 degrees of freedom
 ## Multiple R-squared:  0.001519,   Adjusted R-squared:  0.001206 
 ## F-statistic: 4.855 on 2 and 6382 DF,  p-value: 0.007821</code></pre>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="med.html#cb153-1" tabindex="-1"></a><span class="co"># adjust for confounder </span></span>
-<span id="cb153-2"><a href="med.html#cb153-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(position_rec) <span class="sc">+</span> <span class="fu">as.factor</span>(season_start), <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="med.html#cb151-1" tabindex="-1"></a><span class="co"># adjust for confounder </span></span>
+<span id="cb151-2"><a href="med.html#cb151-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(position_rec) <span class="sc">+</span> <span class="fu">as.factor</span>(season_start), <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>)))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salary ~ as.factor(position_rec) + as.factor(season_start), 
@@ -448,17 +448,17 @@ So maybe, the fact guards and forwards simply score less than centers explains t
 <p>Looking at the regression ouput, we see that, indeed, centers make more than guards and forwards. Actually, a lot less, approx. 500.000 USD less on average.</p>
 <p>Let’s ignore for the moment that this is a terrible model. The r-squared is only 0.03 which means that position and season only explain ~ 3% of variation in salaries.</p>
 <p>Now, we want to know whether scoring explain this salary penalty. Here is a simple mediation.</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="med.html#cb155-1" tabindex="-1"></a><span class="co"># let&#39;S compare models side by side in a regression table</span></span>
-<span id="cb155-2"><a href="med.html#cb155-2" tabindex="-1"></a></span>
-<span id="cb155-3"><a href="med.html#cb155-3" tabindex="-1"></a><span class="co">#install.packages(&quot;modelsummary&quot;)</span></span>
-<span id="cb155-4"><a href="med.html#cb155-4" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="med.html#cb153-1" tabindex="-1"></a><span class="co"># let&#39;S compare models side by side in a regression table</span></span>
+<span id="cb153-2"><a href="med.html#cb153-2" tabindex="-1"></a></span>
+<span id="cb153-3"><a href="med.html#cb153-3" tabindex="-1"></a><span class="co">#install.packages(&quot;modelsummary&quot;)</span></span>
+<span id="cb153-4"><a href="med.html#cb153-4" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span></code></pre></div>
 <pre><code>## Warning: package &#39;modelsummary&#39; was built under R version 4.2.3</code></pre>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="med.html#cb157-1" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb157-2"><a href="med.html#cb157-2" tabindex="-1"></a>  <span class="at">m1 =</span> <span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(position_rec) <span class="sc">+</span> <span class="fu">as.factor</span>(season_start), <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>)),</span>
-<span id="cb157-3"><a href="med.html#cb157-3" tabindex="-1"></a>  m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(position_rec) <span class="sc">+</span> career_PTS <span class="sc">+</span> <span class="fu">as.factor</span>(season_start), <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>))</span>
-<span id="cb157-4"><a href="med.html#cb157-4" tabindex="-1"></a>)</span>
-<span id="cb157-5"><a href="med.html#cb157-5" tabindex="-1"></a></span>
-<span id="cb157-6"><a href="med.html#cb157-6" tabindex="-1"></a><span class="fu">modelsummary</span>(models)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="med.html#cb155-1" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb155-2"><a href="med.html#cb155-2" tabindex="-1"></a>  <span class="at">m1 =</span> <span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(position_rec) <span class="sc">+</span> <span class="fu">as.factor</span>(season_start), <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>)),</span>
+<span id="cb155-3"><a href="med.html#cb155-3" tabindex="-1"></a>  m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(position_rec) <span class="sc">+</span> career_PTS <span class="sc">+</span> <span class="fu">as.factor</span>(season_start), <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>))</span>
+<span id="cb155-4"><a href="med.html#cb155-4" tabindex="-1"></a>)</span>
+<span id="cb155-5"><a href="med.html#cb155-5" tabindex="-1"></a></span>
+<span id="cb155-6"><a href="med.html#cb155-6" tabindex="-1"></a><span class="fu">modelsummary</span>(models)</span></code></pre></div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1049,34 +1049,34 @@ guards don’t make less because they make less points. Guards and forwards with
 average points, compared to centers with average points, make even less than centers, compared to when we do not account for points at all. This could mean that teams know that guards
 are important despite the fact that they score less.</p>
 <p>Let’s use a new package for “causal mediation analysis”.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="med.html#cb158-1" tabindex="-1"></a><span class="co"># now let&#39;s try a dedidcated package for mediation</span></span>
-<span id="cb158-2"><a href="med.html#cb158-2" tabindex="-1"></a><span class="fu">library</span>(mediation)</span>
-<span id="cb158-3"><a href="med.html#cb158-3" tabindex="-1"></a></span>
-<span id="cb158-4"><a href="med.html#cb158-4" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">position_rec =</span> <span class="fu">as.factor</span>(position_rec),</span>
-<span id="cb158-5"><a href="med.html#cb158-5" tabindex="-1"></a>                                <span class="at">season_start =</span> <span class="fu">as.factor</span>(season_start),</span>
-<span id="cb158-6"><a href="med.html#cb158-6" tabindex="-1"></a>                                <span class="at">salary =</span> salary<span class="sc">/</span><span class="dv">10</span>)</span>
-<span id="cb158-7"><a href="med.html#cb158-7" tabindex="-1"></a></span>
-<span id="cb158-8"><a href="med.html#cb158-8" tabindex="-1"></a><span class="fu">mean</span>(data_nba<span class="sc">$</span>salary)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="med.html#cb156-1" tabindex="-1"></a><span class="co"># now let&#39;s try a dedidcated package for mediation</span></span>
+<span id="cb156-2"><a href="med.html#cb156-2" tabindex="-1"></a><span class="fu">library</span>(mediation)</span>
+<span id="cb156-3"><a href="med.html#cb156-3" tabindex="-1"></a></span>
+<span id="cb156-4"><a href="med.html#cb156-4" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">position_rec =</span> <span class="fu">as.factor</span>(position_rec),</span>
+<span id="cb156-5"><a href="med.html#cb156-5" tabindex="-1"></a>                                <span class="at">season_start =</span> <span class="fu">as.factor</span>(season_start),</span>
+<span id="cb156-6"><a href="med.html#cb156-6" tabindex="-1"></a>                                <span class="at">salary =</span> salary<span class="sc">/</span><span class="dv">10</span>)</span>
+<span id="cb156-7"><a href="med.html#cb156-7" tabindex="-1"></a></span>
+<span id="cb156-8"><a href="med.html#cb156-8" tabindex="-1"></a><span class="fu">mean</span>(data_nba<span class="sc">$</span>salary)</span></code></pre></div>
 <pre><code>## [1] 407263.3</code></pre>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="med.html#cb160-1" tabindex="-1"></a><span class="co"># first path from x to mediator</span></span>
-<span id="cb160-2"><a href="med.html#cb160-2" tabindex="-1"></a>path_a <span class="ot">&lt;-</span> <span class="fu">lm</span>(career_PTS <span class="sc">~</span> position_rec <span class="sc">+</span> season_start, <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>))</span>
-<span id="cb160-3"><a href="med.html#cb160-3" tabindex="-1"></a></span>
-<span id="cb160-4"><a href="med.html#cb160-4" tabindex="-1"></a><span class="co"># Now full model, x to mediator to y</span></span>
-<span id="cb160-5"><a href="med.html#cb160-5" tabindex="-1"></a>path_b <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> position_rec <span class="sc">+</span> career_PTS <span class="sc">+</span> season_start, <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>))</span>
-<span id="cb160-6"><a href="med.html#cb160-6" tabindex="-1"></a></span>
-<span id="cb160-7"><a href="med.html#cb160-7" tabindex="-1"></a><span class="co"># centers vs. forwards</span></span>
-<span id="cb160-8"><a href="med.html#cb160-8" tabindex="-1"></a>results_mediation_forwards <span class="ot">&lt;-</span> <span class="fu">mediate</span>(path_a, path_b,</span>
-<span id="cb160-9"><a href="med.html#cb160-9" tabindex="-1"></a>                             <span class="at">treat =</span> <span class="st">&quot;position_rec&quot;</span>, <span class="co"># x or main independent variable</span></span>
-<span id="cb160-10"><a href="med.html#cb160-10" tabindex="-1"></a>                             <span class="at">mediator =</span> <span class="st">&quot;career_PTS&quot;</span>,</span>
-<span id="cb160-11"><a href="med.html#cb160-11" tabindex="-1"></a>                             <span class="at">treat.value =</span> <span class="dv">1</span>)</span>
-<span id="cb160-12"><a href="med.html#cb160-12" tabindex="-1"></a></span>
-<span id="cb160-13"><a href="med.html#cb160-13" tabindex="-1"></a><span class="co"># centers vs. guards</span></span>
-<span id="cb160-14"><a href="med.html#cb160-14" tabindex="-1"></a>results_mediation_guards <span class="ot">&lt;-</span> <span class="fu">mediate</span>(path_a, path_b,</span>
-<span id="cb160-15"><a href="med.html#cb160-15" tabindex="-1"></a>                             <span class="at">treat =</span> <span class="st">&quot;position_rec&quot;</span>, <span class="co"># x or main independent variable</span></span>
-<span id="cb160-16"><a href="med.html#cb160-16" tabindex="-1"></a>                             <span class="at">mediator =</span> <span class="st">&quot;career_PTS&quot;</span>,</span>
-<span id="cb160-17"><a href="med.html#cb160-17" tabindex="-1"></a>                             <span class="at">treat.value =</span> <span class="dv">2</span>)</span>
-<span id="cb160-18"><a href="med.html#cb160-18" tabindex="-1"></a></span>
-<span id="cb160-19"><a href="med.html#cb160-19" tabindex="-1"></a><span class="fu">summary</span>(results_mediation_forwards)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="med.html#cb158-1" tabindex="-1"></a><span class="co"># first path from x to mediator</span></span>
+<span id="cb158-2"><a href="med.html#cb158-2" tabindex="-1"></a>path_a <span class="ot">&lt;-</span> <span class="fu">lm</span>(career_PTS <span class="sc">~</span> position_rec <span class="sc">+</span> season_start, <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>))</span>
+<span id="cb158-3"><a href="med.html#cb158-3" tabindex="-1"></a></span>
+<span id="cb158-4"><a href="med.html#cb158-4" tabindex="-1"></a><span class="co"># Now full model, x to mediator to y</span></span>
+<span id="cb158-5"><a href="med.html#cb158-5" tabindex="-1"></a>path_b <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> position_rec <span class="sc">+</span> career_PTS <span class="sc">+</span> season_start, <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>))</span>
+<span id="cb158-6"><a href="med.html#cb158-6" tabindex="-1"></a></span>
+<span id="cb158-7"><a href="med.html#cb158-7" tabindex="-1"></a><span class="co"># centers vs. forwards</span></span>
+<span id="cb158-8"><a href="med.html#cb158-8" tabindex="-1"></a>results_mediation_forwards <span class="ot">&lt;-</span> <span class="fu">mediate</span>(path_a, path_b,</span>
+<span id="cb158-9"><a href="med.html#cb158-9" tabindex="-1"></a>                             <span class="at">treat =</span> <span class="st">&quot;position_rec&quot;</span>, <span class="co"># x or main independent variable</span></span>
+<span id="cb158-10"><a href="med.html#cb158-10" tabindex="-1"></a>                             <span class="at">mediator =</span> <span class="st">&quot;career_PTS&quot;</span>,</span>
+<span id="cb158-11"><a href="med.html#cb158-11" tabindex="-1"></a>                             <span class="at">treat.value =</span> <span class="dv">1</span>)</span>
+<span id="cb158-12"><a href="med.html#cb158-12" tabindex="-1"></a></span>
+<span id="cb158-13"><a href="med.html#cb158-13" tabindex="-1"></a><span class="co"># centers vs. guards</span></span>
+<span id="cb158-14"><a href="med.html#cb158-14" tabindex="-1"></a>results_mediation_guards <span class="ot">&lt;-</span> <span class="fu">mediate</span>(path_a, path_b,</span>
+<span id="cb158-15"><a href="med.html#cb158-15" tabindex="-1"></a>                             <span class="at">treat =</span> <span class="st">&quot;position_rec&quot;</span>, <span class="co"># x or main independent variable</span></span>
+<span id="cb158-16"><a href="med.html#cb158-16" tabindex="-1"></a>                             <span class="at">mediator =</span> <span class="st">&quot;career_PTS&quot;</span>,</span>
+<span id="cb158-17"><a href="med.html#cb158-17" tabindex="-1"></a>                             <span class="at">treat.value =</span> <span class="dv">2</span>)</span>
+<span id="cb158-18"><a href="med.html#cb158-18" tabindex="-1"></a></span>
+<span id="cb158-19"><a href="med.html#cb158-19" tabindex="-1"></a><span class="fu">summary</span>(results_mediation_forwards)</span></code></pre></div>
 <pre><code>## 
 ## Causal Mediation Analysis 
 ## 
@@ -1094,7 +1094,7 @@ are important despite the fact that they score less.</p>
 ## 
 ## 
 ## Simulations: 1000</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="med.html#cb162-1" tabindex="-1"></a><span class="fu">summary</span>(results_mediation_guards)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="med.html#cb160-1" tabindex="-1"></a><span class="fu">summary</span>(results_mediation_guards)</span></code></pre></div>
 <pre><code>## 
 ## Causal Mediation Analysis 
 ## 
@@ -1112,9 +1112,9 @@ are important despite the fact that they score less.</p>
 ## 
 ## 
 ## Simulations: 1000</code></pre>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="med.html#cb164-1" tabindex="-1"></a><span class="co"># note: this dies not yet work. FOrwads and guards are the same. CHeck how to </span></span>
-<span id="cb164-2"><a href="med.html#cb164-2" tabindex="-1"></a><span class="co"># take different groups of the treatment variable. Problem is that the treatment</span></span>
-<span id="cb164-3"><a href="med.html#cb164-3" tabindex="-1"></a><span class="co"># variable is categorical.</span></span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="med.html#cb162-1" tabindex="-1"></a><span class="co"># note: this dies not yet work. FOrwads and guards are the same. CHeck how to </span></span>
+<span id="cb162-2"><a href="med.html#cb162-2" tabindex="-1"></a><span class="co"># take different groups of the treatment variable. Problem is that the treatment</span></span>
+<span id="cb162-3"><a href="med.html#cb162-3" tabindex="-1"></a><span class="co"># variable is categorical.</span></span></code></pre></div>
 <p>The output looks different. Let’s go through it step by step:</p>
 <ul>
 <li>ACME: Average Causal Mediation Effect - “indirect effect”, this is the effect of position through points on salary.<br />

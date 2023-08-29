@@ -321,20 +321,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li><strong>Simple linear regression</strong>: Use simple linear regression to predict the median value of owner-occupied homes (<code>MEDV</code>) based on a single predictor variable which is the average number of rooms per dwelling (<code>RM</code>). Fit the model.</li>
 </ol>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="lin-e.html#cb140-1" tabindex="-1"></a><span class="co"># loading dataset</span></span>
-<span id="cb140-2"><a href="lin-e.html#cb140-2" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb140-3"><a href="lin-e.html#cb140-3" tabindex="-1"></a>BostonHousing <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;../datasets/boston.xlsx&quot;</span>)</span>
-<span id="cb140-4"><a href="lin-e.html#cb140-4" tabindex="-1"></a><span class="co"># applying linear regression</span></span>
-<span id="cb140-5"><a href="lin-e.html#cb140-5" tabindex="-1"></a>model_l <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> rm, <span class="at">data =</span> BostonHousing)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="lin-e.html#cb138-1" tabindex="-1"></a><span class="co"># loading dataset</span></span>
+<span id="cb138-2"><a href="lin-e.html#cb138-2" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb138-3"><a href="lin-e.html#cb138-3" tabindex="-1"></a>BostonHousing <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;../datasets/boston.xlsx&quot;</span>)</span>
+<span id="cb138-4"><a href="lin-e.html#cb138-4" tabindex="-1"></a><span class="co"># applying linear regression</span></span>
+<span id="cb138-5"><a href="lin-e.html#cb138-5" tabindex="-1"></a>model_l <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> rm, <span class="at">data =</span> BostonHousing)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Multiple linear regression</strong>: Use multiple linear regression to predict <code>MEDV</code> based on multiple predictor variables, such as <code>RM</code>, <code>CRIM</code> (per capita crime rate by town), and <code>LSTAT</code> (% lower status of the population). Fit the model, generate predictions, and calculate the R-squared value to assess the model’s performance.</li>
 </ol>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="lin-e.html#cb141-1" tabindex="-1"></a><span class="co"># applying linear regression</span></span>
-<span id="cb141-2"><a href="lin-e.html#cb141-2" tabindex="-1"></a>model_m <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> rm <span class="sc">+</span> crim <span class="sc">+</span> lstat, <span class="at">data =</span> BostonHousing)</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="lin-e.html#cb139-1" tabindex="-1"></a><span class="co"># applying linear regression</span></span>
+<span id="cb139-2"><a href="lin-e.html#cb139-2" tabindex="-1"></a>model_m <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> rm <span class="sc">+</span> crim <span class="sc">+</span> lstat, <span class="at">data =</span> BostonHousing)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li><strong>Model summary</strong>: Generate summary of a both regression model, including information about the coefficients, standard errors, t-values, and p-values. Interpret the results. Calculate the R-squared value to assess both model’s performance. Which model has better goodness of fit (R-Squared) ?</li>
 </ol>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="lin-e.html#cb142-1" tabindex="-1"></a><span class="fu">summary</span>(model_l)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="lin-e.html#cb140-1" tabindex="-1"></a><span class="fu">summary</span>(model_l)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = medv ~ rm, data = BostonHousing)
@@ -353,7 +353,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 6.616 on 504 degrees of freedom
 ## Multiple R-squared:  0.4835, Adjusted R-squared:  0.4825 
 ## F-statistic: 471.8 on 1 and 504 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="lin-e.html#cb144-1" tabindex="-1"></a><span class="fu">summary</span>(model_m)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="lin-e.html#cb142-1" tabindex="-1"></a><span class="fu">summary</span>(model_m)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = medv ~ rm + crim + lstat, data = BostonHousing)
@@ -378,13 +378,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="4" style="list-style-type: decimal">
 <li><strong>Model diagnostics</strong>: Create diagnostic plots to assess the assumptions of the models. Check whether your regression models from Tasks 1 and 2 satisfy the assumptions of linearity, multicollinearity, normality and homoscedasticity.Use numerical method variance inflation factor (VIF) to detect any multicollinearity issues among your predictor variables.</li>
 </ol>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="lin-e.html#cb146-1" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb146-2"><a href="lin-e.html#cb146-2" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb146-3"><a href="lin-e.html#cb146-3" tabindex="-1"></a><span class="fu">autoplot</span>(model_l)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="lin-e.html#cb144-1" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb144-2"><a href="lin-e.html#cb144-2" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb144-3"><a href="lin-e.html#cb144-3" tabindex="-1"></a><span class="fu">autoplot</span>(model_l)</span></code></pre></div>
 <p><img src="_main_files/figure-html/model_diag-1.png" width="672" /></p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="lin-e.html#cb147-1" tabindex="-1"></a><span class="fu">autoplot</span>(model_m)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="lin-e.html#cb145-1" tabindex="-1"></a><span class="fu">autoplot</span>(model_m)</span></code></pre></div>
 <p><img src="_main_files/figure-html/model_diag-2.png" width="672" /></p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="lin-e.html#cb148-1" tabindex="-1"></a><span class="fu">vif</span>(model_m)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="lin-e.html#cb146-1" tabindex="-1"></a><span class="fu">vif</span>(model_m)</span></code></pre></div>
 <pre><code>##       rm     crim    lstat 
 ## 1.616468 1.271372 1.941883</code></pre>
 <p>XXX—INTERPRETATION HERE—XXX</p>

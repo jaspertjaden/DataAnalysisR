@@ -369,22 +369,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 13. LSTAT - % lower status of the population
 14. MEDV - Median value of owner-occupied homes in $1000’s</p>
 <p>You can include this data by installing mlbench library:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="eda-2.html#cb54-1" tabindex="-1"></a><span class="co">#install.packages(&quot;mlbench&quot;) ## installing the library</span></span>
-<span id="cb54-2"><a href="eda-2.html#cb54-2" tabindex="-1"></a><span class="fu">library</span>(mlbench) <span class="co">#adding the library</span></span>
-<span id="cb54-3"><a href="eda-2.html#cb54-3" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb54-4"><a href="eda-2.html#cb54-4" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb54-5"><a href="eda-2.html#cb54-5" tabindex="-1"></a><span class="fu">data</span>(BostonHousing2)</span>
-<span id="cb54-6"><a href="eda-2.html#cb54-6" tabindex="-1"></a>housing <span class="ot">&lt;-</span> BostonHousing2</span>
-<span id="cb54-7"><a href="eda-2.html#cb54-7" tabindex="-1"></a><span class="fu">write.xlsx</span>(housing, <span class="st">&quot;../datasets/boston.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="eda-2.html#cb52-1" tabindex="-1"></a><span class="co">#install.packages(&quot;mlbench&quot;) ## installing the library</span></span>
+<span id="cb52-2"><a href="eda-2.html#cb52-2" tabindex="-1"></a><span class="fu">library</span>(mlbench) <span class="co">#adding the library</span></span>
+<span id="cb52-3"><a href="eda-2.html#cb52-3" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb52-4"><a href="eda-2.html#cb52-4" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb52-5"><a href="eda-2.html#cb52-5" tabindex="-1"></a><span class="fu">data</span>(BostonHousing2)</span>
+<span id="cb52-6"><a href="eda-2.html#cb52-6" tabindex="-1"></a>housing <span class="ot">&lt;-</span> BostonHousing2</span>
+<span id="cb52-7"><a href="eda-2.html#cb52-7" tabindex="-1"></a><span class="fu">write.xlsx</span>(housing, <span class="st">&quot;../datasets/boston.xlsx&quot;</span>)</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><strong>Read the dataset</strong>: Read the Boston Housing Dataset from the Excel file.</li>
 </ol>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="eda-2.html#cb55-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb55-2"><a href="eda-2.html#cb55-2" tabindex="-1"></a>BostonHousing <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;../datasets/boston.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="eda-2.html#cb53-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb53-2"><a href="eda-2.html#cb53-2" tabindex="-1"></a>BostonHousing <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;../datasets/boston.xlsx&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Inspect the dataset</strong>: Use the proper functions to inspect the structure and contents of the dataset. How many Categorical variables are there? How many numerical variables are there? Is there any null values?</li>
 </ol>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="eda-2.html#cb56-1" tabindex="-1"></a><span class="fu">str</span>(BostonHousing)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="eda-2.html#cb54-1" tabindex="-1"></a><span class="fu">str</span>(BostonHousing)</span></code></pre></div>
 <pre><code>## tibble [506 × 19] (S3: tbl_df/tbl/data.frame)
 ##  $ town   : chr [1:506] &quot;Nahant&quot; &quot;Swampscott&quot; &quot;Swampscott&quot; &quot;Marblehead&quot; ...
 ##  $ tract  : num [1:506] 2011 2021 2022 2031 2032 ...
@@ -405,7 +405,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ ptratio: num [1:506] 15.3 17.8 17.8 18.7 18.7 18.7 15.2 15.2 15.2 15.2 ...
 ##  $ b      : num [1:506] 397 397 393 395 397 ...
 ##  $ lstat  : num [1:506] 4.98 9.14 4.03 2.94 5.33 ...</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="eda-2.html#cb58-1" tabindex="-1"></a><span class="fu">glimpse</span>(BostonHousing)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="eda-2.html#cb56-1" tabindex="-1"></a><span class="fu">glimpse</span>(BostonHousing)</span></code></pre></div>
 <pre><code>## Rows: 506
 ## Columns: 19
 ## $ town    &lt;chr&gt; &quot;Nahant&quot;, &quot;Swampscott&quot;, &quot;Swampscott&quot;, &quot;Marblehead&quot;, &quot;Marblehea…
@@ -427,8 +427,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ ptratio &lt;dbl&gt; 15.3, 17.8, 17.8, 18.7, 18.7, 18.7, 15.2, 15.2, 15.2, 15.2, 15…
 ## $ b       &lt;dbl&gt; 396.90, 396.90, 392.83, 394.63, 396.90, 394.12, 395.60, 396.90…
 ## $ lstat   &lt;dbl&gt; 4.98, 9.14, 4.03, 2.94, 5.33, 5.21, 12.43, 19.15, 29.93, 17.10…</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="eda-2.html#cb60-1" tabindex="-1"></a><span class="co"># Check for missing values in all columns</span></span>
-<span id="cb60-2"><a href="eda-2.html#cb60-2" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(BostonHousing))</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="eda-2.html#cb58-1" tabindex="-1"></a><span class="co"># Check for missing values in all columns</span></span>
+<span id="cb58-2"><a href="eda-2.html#cb58-2" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(BostonHousing))</span></code></pre></div>
 <pre><code>##    town   tract     lon     lat    medv   cmedv    crim      zn   indus    chas 
 ##       0       0       0       0       0       0       0       0       0       0 
 ##     nox      rm     age     dis     rad     tax ptratio       b   lstat 
@@ -436,88 +436,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="3" style="list-style-type: decimal">
 <li><strong>Summarize categorical variables</strong>: Create frequency table for categorical variables CHAS (Charles River dummy variable).</li>
 </ol>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="eda-2.html#cb62-1" tabindex="-1"></a><span class="fu">table</span>(BostonHousing<span class="sc">$</span>chas)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="eda-2.html#cb60-1" tabindex="-1"></a><span class="fu">table</span>(BostonHousing<span class="sc">$</span>chas)</span></code></pre></div>
 <pre><code>## 
 ##   0   1 
 ## 471  35</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li><strong>Summarize numerical variables</strong>: Generate summary statistics for numerical variables CRIM (per capita crime rate by town) and RM (average number of rooms per dwelling).</li>
 </ol>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="eda-2.html#cb64-1" tabindex="-1"></a><span class="fu">summary</span>(BostonHousing<span class="sc">$</span>crim)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="eda-2.html#cb62-1" tabindex="-1"></a><span class="fu">summary</span>(BostonHousing<span class="sc">$</span>crim)</span></code></pre></div>
 <pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
 ##  0.00632  0.08204  0.25651  3.61352  3.67708 88.97620</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="eda-2.html#cb66-1" tabindex="-1"></a><span class="fu">summary</span>(BostonHousing<span class="sc">$</span>rm)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="eda-2.html#cb64-1" tabindex="-1"></a><span class="fu">summary</span>(BostonHousing<span class="sc">$</span>rm)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   3.561   5.886   6.208   6.285   6.623   8.780</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li><strong>Create new variables</strong>: Create new variable indicating whether a house is located near the Charles River or not.</li>
 </ol>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="eda-2.html#cb68-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb68-2"><a href="eda-2.html#cb68-2" tabindex="-1"></a>BostonHousing <span class="ot">&lt;-</span> BostonHousing <span class="sc">%&gt;%</span></span>
-<span id="cb68-3"><a href="eda-2.html#cb68-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">near_river =</span> <span class="fu">case_when</span>(chas <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Yes&quot;</span>,</span>
-<span id="cb68-4"><a href="eda-2.html#cb68-4" tabindex="-1"></a>                                chas <span class="sc">!=</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;No&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="eda-2.html#cb66-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb66-2"><a href="eda-2.html#cb66-2" tabindex="-1"></a>BostonHousing <span class="ot">&lt;-</span> BostonHousing <span class="sc">%&gt;%</span></span>
+<span id="cb66-3"><a href="eda-2.html#cb66-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">near_river =</span> <span class="fu">case_when</span>(chas <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Yes&quot;</span>,</span>
+<span id="cb66-4"><a href="eda-2.html#cb66-4" tabindex="-1"></a>                                chas <span class="sc">!=</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;No&quot;</span>))</span></code></pre></div>
 <ol start="6" style="list-style-type: decimal">
 <li><strong>Recoding variables</strong>: Create a new variable that groups houses by their proximity to employment centers.</li>
 </ol>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="eda-2.html#cb69-1" tabindex="-1"></a>BostonHousing <span class="ot">&lt;-</span> BostonHousing <span class="sc">%&gt;%</span></span>
-<span id="cb69-2"><a href="eda-2.html#cb69-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">distance_group =</span> <span class="fu">case_when</span>(</span>
-<span id="cb69-3"><a href="eda-2.html#cb69-3" tabindex="-1"></a>    dis <span class="sc">&lt;</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Near&quot;</span>,</span>
-<span id="cb69-4"><a href="eda-2.html#cb69-4" tabindex="-1"></a>    dis <span class="sc">&gt;=</span> <span class="dv">2</span> <span class="sc">&amp;</span> dis <span class="sc">&lt;</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">&quot;Medium&quot;</span>,</span>
-<span id="cb69-5"><a href="eda-2.html#cb69-5" tabindex="-1"></a>    dis <span class="sc">&gt;=</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">&quot;Far&quot;</span></span>
-<span id="cb69-6"><a href="eda-2.html#cb69-6" tabindex="-1"></a>  ))</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="eda-2.html#cb67-1" tabindex="-1"></a>BostonHousing <span class="ot">&lt;-</span> BostonHousing <span class="sc">%&gt;%</span></span>
+<span id="cb67-2"><a href="eda-2.html#cb67-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">distance_group =</span> <span class="fu">case_when</span>(</span>
+<span id="cb67-3"><a href="eda-2.html#cb67-3" tabindex="-1"></a>    dis <span class="sc">&lt;</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Near&quot;</span>,</span>
+<span id="cb67-4"><a href="eda-2.html#cb67-4" tabindex="-1"></a>    dis <span class="sc">&gt;=</span> <span class="dv">2</span> <span class="sc">&amp;</span> dis <span class="sc">&lt;</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">&quot;Medium&quot;</span>,</span>
+<span id="cb67-5"><a href="eda-2.html#cb67-5" tabindex="-1"></a>    dis <span class="sc">&gt;=</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">&quot;Far&quot;</span></span>
+<span id="cb67-6"><a href="eda-2.html#cb67-6" tabindex="-1"></a>  ))</span></code></pre></div>
 <ol start="7" style="list-style-type: decimal">
 <li><strong>Visualize relationships</strong>: Create scatter plots to explore the relationship between housing prices and other numeric variables(<code>rm</code>, <code>age</code>, <code>dis</code>, <code>lstat</code>). Interpret the plots. Also show the distribution of ptratio by distance_group.</li>
 </ol>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="eda-2.html#cb70-1" tabindex="-1"></a><span class="co"># Create a list of numeric variables to plot against MEDV</span></span>
-<span id="cb70-2"><a href="eda-2.html#cb70-2" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;rm&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;dis&quot;</span>, <span class="st">&quot;lstat&quot;</span>)</span>
-<span id="cb70-3"><a href="eda-2.html#cb70-3" tabindex="-1"></a></span>
-<span id="cb70-4"><a href="eda-2.html#cb70-4" tabindex="-1"></a><span class="co"># Create a scatter plot for each variable</span></span>
-<span id="cb70-5"><a href="eda-2.html#cb70-5" tabindex="-1"></a><span class="co">#rm</span></span>
-<span id="cb70-6"><a href="eda-2.html#cb70-6" tabindex="-1"></a>rm_sp <span class="ot">&lt;-</span> BostonHousing <span class="sc">%&gt;%</span> </span>
-<span id="cb70-7"><a href="eda-2.html#cb70-7" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>rm, <span class="at">x=</span>medv)) <span class="sc">+</span></span>
-<span id="cb70-8"><a href="eda-2.html#cb70-8" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb70-9"><a href="eda-2.html#cb70-9" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb70-10"><a href="eda-2.html#cb70-10" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span>
-<span id="cb70-11"><a href="eda-2.html#cb70-11" tabindex="-1"></a><span class="co">#age</span></span>
-<span id="cb70-12"><a href="eda-2.html#cb70-12" tabindex="-1"></a>age_sp <span class="ot">&lt;-</span> BostonHousing <span class="sc">%&gt;%</span> </span>
-<span id="cb70-13"><a href="eda-2.html#cb70-13" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>age, <span class="at">x=</span>medv)) <span class="sc">+</span></span>
-<span id="cb70-14"><a href="eda-2.html#cb70-14" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb70-15"><a href="eda-2.html#cb70-15" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb70-16"><a href="eda-2.html#cb70-16" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span>
-<span id="cb70-17"><a href="eda-2.html#cb70-17" tabindex="-1"></a><span class="co">#dis</span></span>
-<span id="cb70-18"><a href="eda-2.html#cb70-18" tabindex="-1"></a>dis_sp <span class="ot">&lt;-</span> BostonHousing <span class="sc">%&gt;%</span> </span>
-<span id="cb70-19"><a href="eda-2.html#cb70-19" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>dis, <span class="at">x=</span>medv)) <span class="sc">+</span></span>
-<span id="cb70-20"><a href="eda-2.html#cb70-20" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb70-21"><a href="eda-2.html#cb70-21" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb70-22"><a href="eda-2.html#cb70-22" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span>
-<span id="cb70-23"><a href="eda-2.html#cb70-23" tabindex="-1"></a><span class="co">#lstat</span></span>
-<span id="cb70-24"><a href="eda-2.html#cb70-24" tabindex="-1"></a>lstat_sp <span class="ot">&lt;-</span> BostonHousing <span class="sc">%&gt;%</span> </span>
-<span id="cb70-25"><a href="eda-2.html#cb70-25" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>lstat, <span class="at">x=</span>medv)) <span class="sc">+</span></span>
-<span id="cb70-26"><a href="eda-2.html#cb70-26" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb70-27"><a href="eda-2.html#cb70-27" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb70-28"><a href="eda-2.html#cb70-28" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span>
-<span id="cb70-29"><a href="eda-2.html#cb70-29" tabindex="-1"></a><span class="co">#adding all plots in one</span></span>
-<span id="cb70-30"><a href="eda-2.html#cb70-30" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggpubr&quot;</span>)</span>
-<span id="cb70-31"><a href="eda-2.html#cb70-31" tabindex="-1"></a><span class="fu">ggarrange</span>(rm_sp, age_sp,</span>
-<span id="cb70-32"><a href="eda-2.html#cb70-32" tabindex="-1"></a>          dis_sp, lstat_sp,</span>
-<span id="cb70-33"><a href="eda-2.html#cb70-33" tabindex="-1"></a>          <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="eda-2.html#cb68-1" tabindex="-1"></a><span class="co"># Create a list of numeric variables to plot against MEDV</span></span>
+<span id="cb68-2"><a href="eda-2.html#cb68-2" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;rm&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;dis&quot;</span>, <span class="st">&quot;lstat&quot;</span>)</span>
+<span id="cb68-3"><a href="eda-2.html#cb68-3" tabindex="-1"></a></span>
+<span id="cb68-4"><a href="eda-2.html#cb68-4" tabindex="-1"></a><span class="co"># Create a scatter plot for each variable</span></span>
+<span id="cb68-5"><a href="eda-2.html#cb68-5" tabindex="-1"></a><span class="co">#rm</span></span>
+<span id="cb68-6"><a href="eda-2.html#cb68-6" tabindex="-1"></a>rm_sp <span class="ot">&lt;-</span> BostonHousing <span class="sc">%&gt;%</span> </span>
+<span id="cb68-7"><a href="eda-2.html#cb68-7" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>rm, <span class="at">x=</span>medv)) <span class="sc">+</span></span>
+<span id="cb68-8"><a href="eda-2.html#cb68-8" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb68-9"><a href="eda-2.html#cb68-9" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb68-10"><a href="eda-2.html#cb68-10" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span>
+<span id="cb68-11"><a href="eda-2.html#cb68-11" tabindex="-1"></a><span class="co">#age</span></span>
+<span id="cb68-12"><a href="eda-2.html#cb68-12" tabindex="-1"></a>age_sp <span class="ot">&lt;-</span> BostonHousing <span class="sc">%&gt;%</span> </span>
+<span id="cb68-13"><a href="eda-2.html#cb68-13" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>age, <span class="at">x=</span>medv)) <span class="sc">+</span></span>
+<span id="cb68-14"><a href="eda-2.html#cb68-14" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb68-15"><a href="eda-2.html#cb68-15" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb68-16"><a href="eda-2.html#cb68-16" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span>
+<span id="cb68-17"><a href="eda-2.html#cb68-17" tabindex="-1"></a><span class="co">#dis</span></span>
+<span id="cb68-18"><a href="eda-2.html#cb68-18" tabindex="-1"></a>dis_sp <span class="ot">&lt;-</span> BostonHousing <span class="sc">%&gt;%</span> </span>
+<span id="cb68-19"><a href="eda-2.html#cb68-19" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>dis, <span class="at">x=</span>medv)) <span class="sc">+</span></span>
+<span id="cb68-20"><a href="eda-2.html#cb68-20" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb68-21"><a href="eda-2.html#cb68-21" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb68-22"><a href="eda-2.html#cb68-22" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span>
+<span id="cb68-23"><a href="eda-2.html#cb68-23" tabindex="-1"></a><span class="co">#lstat</span></span>
+<span id="cb68-24"><a href="eda-2.html#cb68-24" tabindex="-1"></a>lstat_sp <span class="ot">&lt;-</span> BostonHousing <span class="sc">%&gt;%</span> </span>
+<span id="cb68-25"><a href="eda-2.html#cb68-25" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>lstat, <span class="at">x=</span>medv)) <span class="sc">+</span></span>
+<span id="cb68-26"><a href="eda-2.html#cb68-26" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb68-27"><a href="eda-2.html#cb68-27" tabindex="-1"></a>     <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb68-28"><a href="eda-2.html#cb68-28" tabindex="-1"></a>       <span class="fu">theme_minimal</span>()</span>
+<span id="cb68-29"><a href="eda-2.html#cb68-29" tabindex="-1"></a><span class="co">#adding all plots in one</span></span>
+<span id="cb68-30"><a href="eda-2.html#cb68-30" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggpubr&quot;</span>)</span>
+<span id="cb68-31"><a href="eda-2.html#cb68-31" tabindex="-1"></a><span class="fu">ggarrange</span>(rm_sp, age_sp,</span>
+<span id="cb68-32"><a href="eda-2.html#cb68-32" tabindex="-1"></a>          dis_sp, lstat_sp,</span>
+<span id="cb68-33"><a href="eda-2.html#cb68-33" tabindex="-1"></a>          <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p><em>boxplot</em></p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="eda-2.html#cb71-1" tabindex="-1"></a><span class="co"># Create a boxplot of PTRATIO grouped by distance_group</span></span>
-<span id="cb71-2"><a href="eda-2.html#cb71-2" tabindex="-1"></a>BostonHousing <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb71-3"><a href="eda-2.html#cb71-3" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>ptratio)) <span class="sc">+</span></span>
-<span id="cb71-4"><a href="eda-2.html#cb71-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>distance_group) <span class="sc">+</span></span>
-<span id="cb71-5"><a href="eda-2.html#cb71-5" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="eda-2.html#cb69-1" tabindex="-1"></a><span class="co"># Create a boxplot of PTRATIO grouped by distance_group</span></span>
+<span id="cb69-2"><a href="eda-2.html#cb69-2" tabindex="-1"></a>BostonHousing <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb69-3"><a href="eda-2.html#cb69-3" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>ptratio)) <span class="sc">+</span></span>
+<span id="cb69-4"><a href="eda-2.html#cb69-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>distance_group) <span class="sc">+</span></span>
+<span id="cb69-5"><a href="eda-2.html#cb69-5" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <ol start="8" style="list-style-type: decimal">
 <li><strong>Correlation analysis</strong>: Calculate correlation coefficients between housing prices and average number of rooms per dwelling, also between housing prices and crime rate. Interpret the result.</li>
 </ol>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="eda-2.html#cb72-1" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
-<span id="cb72-2"><a href="eda-2.html#cb72-2" tabindex="-1"></a>corr_matrix0 <span class="ot">&lt;-</span> <span class="fu">cor</span>(BostonHousing[, <span class="fu">c</span>(<span class="st">&quot;medv&quot;</span>, <span class="st">&quot;rm&quot;</span>)])</span>
-<span id="cb72-3"><a href="eda-2.html#cb72-3" tabindex="-1"></a>corr_matrix1 <span class="ot">&lt;-</span> <span class="fu">cor</span>(BostonHousing[, <span class="fu">c</span>(<span class="st">&quot;medv&quot;</span>, <span class="st">&quot;crim&quot;</span>)])</span>
-<span id="cb72-4"><a href="eda-2.html#cb72-4" tabindex="-1"></a><span class="fu">corrplot</span>(corr_matrix0)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="eda-2.html#cb70-1" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb70-2"><a href="eda-2.html#cb70-2" tabindex="-1"></a>corr_matrix0 <span class="ot">&lt;-</span> <span class="fu">cor</span>(BostonHousing[, <span class="fu">c</span>(<span class="st">&quot;medv&quot;</span>, <span class="st">&quot;rm&quot;</span>)])</span>
+<span id="cb70-3"><a href="eda-2.html#cb70-3" tabindex="-1"></a>corr_matrix1 <span class="ot">&lt;-</span> <span class="fu">cor</span>(BostonHousing[, <span class="fu">c</span>(<span class="st">&quot;medv&quot;</span>, <span class="st">&quot;crim&quot;</span>)])</span>
+<span id="cb70-4"><a href="eda-2.html#cb70-4" tabindex="-1"></a><span class="fu">corrplot</span>(corr_matrix0)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="eda-2.html#cb73-1" tabindex="-1"></a><span class="fu">corrplot</span>(corr_matrix1)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="eda-2.html#cb71-1" tabindex="-1"></a><span class="fu">corrplot</span>(corr_matrix1)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
 
 </div>

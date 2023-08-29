@@ -112,9 +112,10 @@ The 95% is an arbitrarily set value which is a standard in research. However, we
 Let's apply this to our data. 
 
 ```{r, warning=FALSE, message=FALSE}
-# Just for illustration, let's take a suimple model
+# Just for illustration, let's take a simple model
 model2 <- lm(salary ~ career_PTS, data = data_nba)
-predict(model2)
+preds <- predict(model2)
+preds[1:10]
 
 
 # using geom_smooth, method=lm will automatically plot the confidence intervals
