@@ -1,0 +1,123 @@
+# Logistic regression {#out-look}
+
+Logistic regression is similar to linear regression. The main difference is that 
+it can perform better for binary variables (i.e. 0 vs. 1). Binary outcomes have 
+only two levels. Linear regression is used to model continuous variables such as the number of points scored in an NBA game. A binary outcome would be the sex of the player (male vs. female) or the maybe the health status (injured vs. not injured).
+
+Logistic regression and linear regression are both part of the family of 
+generalized linear regression models (including also Poisson regression, ridge, lasso etc.).
+Logistic regression and linear regression share some of the same assumptions, such
+as linearity, outliers and multicollienarity.However, under the hood, logistic 
+regression uses a different estimation method. 
+
+
+Rather than fitting a straight line through data points as in linear regression,
+logistic regression fits a "s-shaped" line through data points. Coefficients in 
+the logistic model are interepreted as the probability of being category 1 or 0. 
+
+-> visual here, scatterplot with striaght line and s-shaped line.
+
+Linear regression uses ordinary least sqauares as estimation method (i.e. using the distance from each observation to the regression line). Logistic regression uses the "maximum likelihood function" to approximate the s-shape curve which best fits the data. It moves the s-curve left and right and
+calculates for each observation the likelihood of being either 0 or 1 given the assumed distribution. Then we take the average of all likelihoods of observations. The best fitting 
+curve is the one with the largest likelihood (that's why it is called "maximum likelihood function").
+See here[], here[] and here[] for more background. 
+
+Let's apply logistic regressison to our NBA data. 
+
+```{r prep, warning=FALSE, message=FALSE}
+
+# load packages
+library("tidyverse")
+library("readxl")
+library("lubridate")
+
+# import data 
+nba_salaries <- read_csv("../datasets/nba/salaries_1985to2018.csv", show_col_types = FALSE)
+nba_players <- read_csv("../datasets/nba/players.csv", show_col_types = FALSE)
+
+# merge
+data_nba <- merge(nba_players, nba_salaries, by.x = c("_id"), by.y=c("player_id"))
+
+# clean
+data_nba <- data_nba %>%
+        select(everything(), -league, -highSchool) %>%
+        filter(season_start>=1998) %>%
+  mutate(year_of_birth = year(mdy(birthDate)),
+         age = season_start - year_of_birth,
+         position_center = 
+      case_when(position = str_detect(position,"Center") ~ 1,
+                TRUE ~ 0),
+    position_sf = 
+      case_when(position = str_detect(position,"Small Forward") ~ 1,
+                TRUE ~ 0),
+    position_pf = 
+      case_when(position = str_detect(position,"Power Forward") ~ 1,
+                TRUE ~ 0),
+    position_sg = 
+      case_when(position = str_detect(position,"Shooting Guard") ~ 1,
+                TRUE ~ 0),
+    position_pg = 
+      case_when(position = str_detect(position,"Point Guard") ~ 1,
+                TRUE ~ 0),
+    weight = str_replace(weight, "lb", ""),
+         weight = as.numeric(weight),
+         height = str_replace(height, "-", "."),
+         height = as.numeric(height),
+    ) %>%
+  rename(id = "_id") %>%
+  select(id, name, age, weight, height, birthPlace, everything(), -position, -birthDate, -year_of_birth)
+
+data_nba <- data_nba %>%
+  group_by(id) %>%
+  mutate(seasons_played = n()) %>%
+  ungroup()
+str(data_nba)
+
+```
+
+First, let's check out dataset for binary outcomes.Binary variables in R are
+labelled as "factor" variables. Any categorical variable is a factor variable.
+A binary variable is simply a categorical variable with two categories.
+
+```{r}
+str(data_nba)
+```
+
+We see that there are no "factor" variables currently in the dataset. However, 
+there are a few variables that should be marked as factors which currently 
+aren't, such as birth place, college, draft team, and the shooting hand (left/right hand).
+If we want to use any of these variables in a regression, we need to convert them.
+Currently they are marked as "character" variables. 
+
+Let's assume we are interested in knowing how long a player plays in the NBA 
+measured by the number of seasons he played. 
+
+
+- logit model for "long career" using weight and height and season and position.
+
+
+## run model
+
+## interpret coefficients
+
+- convert to odds ratios
+- convert to probabilities
+
+## diagnostics
+
+## prediction
+
+## logistic regression in Machine Learning context
+
+## Note on mediation with logistic regression
+
+## compare logistoc and linear
+
+
+
+
+
+
+
+
+
