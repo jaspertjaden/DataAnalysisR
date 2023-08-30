@@ -11,35 +11,23 @@
 This session kicks off the block on linear regression as a statistic
 modelling technique, but before we jump into the deep end and learn what
 linear regression is and how we can apply it, we first have to understand
-what modelling is and why we might do it. We also need a way to find out what we
-actually have to include in the model and what we might not want or even can not
-include to achieve robust results. This is what this session is all about.
+what modelling is and why we might do it. We also need a way to find out what we actually have to include in the model and what we might not want or even can not include to achieve robust results. This is what this session is all about.
 
 ### What is modelling?
 
 Before we approach this question, we should briefly think about what steps a 
 typical data analysis project comprises. We usually start with an interesting
-problem and derive a research question from it. Based on this question we would
-go into the literature and read up on theories and already published research
-papers that are relevant to our question. We construct a theoretical framework
-for our particular problem and formulate some hypotheses, collect or identify
-appropriate data and conduct an exploratory data analysis. At this point we
-should already have a firm understanding about what we actually want to find out
-and how our data is structured. The next step would be modelling.
+problem and derive a research question from it. Based on this question we would go into the literature and read up on theories and already published research papers that are relevant to our question. We construct a theoretical framework for our particular problem and formulate some hypotheses, collect or identify appropriate data and conduct an exploratory data analysis. At this point we should already have a firm understanding about what we actually want to find out and how our data is structured. The next step would be modelling.
 
 So what is modelling? In general we have one *dependent variable*, typically
-denoted as $y$. This variable has some varying values. Our goal in modelling is
-to estimate how these values are generated. Generating here refers to the 
+denoted as $y$. This variable has some varying values. Our goal in modelling is to estimate how these values are generated. Generating here refers to the 
 *data generating process* that we assume responsible for $y$ having the values
 it has. One or multiple *independent variables*, $x_1 \ x_2 \ ... \ x_k$, 
-influence how the values of $y$ are generated; thus $y$ *depends* on the values
-of our independent variable(s).
+influence how the values of $y$ are generated; thus $y$ *depends* on the values of our independent variable(s).
 
 When we model, we do not know the data generating process, but based on 
 theoretical considerations, careful thinking and exploratory data analysis, we
-can make assumptions on how we think the process operates. DAGs are a tool that
-can assist us in this step. We can use it to formally clarify our assumptions on
-the data generating process and to formulate a model based on its implications. 
+can make assumptions on how we think the process operates. DAGs are a tool that can assist us in this step. We can use it to formally clarify our assumptions on the data generating process and to formulate a model based on its implications. 
 
 
 ### Estimating effects vs. prediction

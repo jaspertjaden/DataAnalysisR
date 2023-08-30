@@ -2,15 +2,16 @@
 In this week, we will introduce to the concept of mediation analysis. 
 
 
-Mediation is a way of using linear regression with a different interest in mind.
+Mediation is a way of using (linear) regression with a different interest in mind.
 So far, we have been interested in estimating the effect of an x variable on a 
 y variable. In our example using NBA data, we were interested in the effect of 
 'points scored' by a player on player salary. We learned how to "adjust" or "condition"
 the effect by adding covariates to the model (i.e. control variables). Going back to
-out week on DAGs, we saw that we want to control for so-called confounders, i.e.
+our week on DAGs, we saw that we want to control for so-called confounders, i.e.
 those variables which have an effect on both x and y. The "adjusted" effect is the 
 "total causal effect" of x on y. 
-Mediation now is all about trying to explain "how" x affect y. Mediation analysis
+
+Mediation now is all about trying to explain "how" x affects y. Mediation analysis
 is about identifying the mechanism between x and y. In other words, what share 
 of the total effect can be explained by something else (i.e. the mediator). When 
 considering mediation, we can distinguish 3 types of effects:
@@ -37,7 +38,24 @@ So maybe, the fact guards and forwards simply score less than centers explains t
 
 To visualize this mini-theory and identification strategy, let's have a look at this DAG.
 
---> Jasper: visual here with the DAG from my powerpoint
+``` {r dag_final, echo = FALSE}
+library(dagitty)
+
+dagitty('dag {
+"Points scored" [pos="-0.653,1.324"]
+"Year of season" [adjusted,pos="-0.729,-1.087"]
+Postion [exposure,pos="-1.586,0.118"]
+Salary [outcome,pos="0.327,0.140"]
+"Points scored" -> Salary
+"Year of season" -> Postion
+"Year of season" -> Salary
+Postion -> "Points scored"
+Postion -> Salary
+}
+') %>% 
+  plot()
+```
+
 
 
 Now let's test this out using R. 

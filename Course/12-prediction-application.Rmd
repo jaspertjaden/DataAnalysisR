@@ -48,7 +48,7 @@ tidy(model, conf.int = TRUE)
 The results show that both NOX and RM are significant predictors of MEDV, with `RM` having a positive effect and `NOX` having a negative effect.
 
 
-*Task 3:* Use the glance() function from the broom package to create a data frame with the R-squared, adjusted R-squared, root mean squared error, and other summary statistics of the linear regression model from task 1.
+*Task 3:* Use the glance() function from the broom package to create a data frame with the R-squared, adjusted R-squared, root mean squared error, and other summary statistics of the linear regression model from task 1. Explain the output.
 
 
 ```{r task_3_p, warning=FALSE}
@@ -57,6 +57,9 @@ glance(model)
 The results show that the model has an R-squared value of 0.535, indicating that it explains about 53.5% of the variance in the median value of a home (MEDV). The adjusted R-squared value is slightly lower at 0.533, indicating that the model is not overfitting.
 
 *Task 4:* Use the predict() function to generate predicted values and prediction intervals for the median value of a home (MEDV) based on the linear regression model from task 1, and add them as new columns to the test data set. Use the caret package to create a train-test split of the data set with 70% of the data for training and 30% for testing.
+
+-> check whether predict in caret is differnt  than predict in base R.
+-> consider cart as kast task
 
 ```{r task_4_p, warning=FALSE}
 library(caret)

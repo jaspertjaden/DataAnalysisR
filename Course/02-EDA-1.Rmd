@@ -190,7 +190,18 @@ str(data_nba)
 ## Explore the whole dataset
 
 Now, let's explore some packages which help us to explore the dataframe as a whole.
-Let's start with the DataExplorer package. It is nice to get an overview of variables and the "missingness" of data. 
+Let's start with the `skimR` package: 
+
+```{r}
+#install.packages("skimr")
+library("skimr")
+
+skim(data_nba)
+```
+
+The `skim()` function provides a very handy overview of the whole dataset including the types of columns (i.e. variables), a summary of all variables, the extent of missing data etc. One advantage is that the output is "tidy" which means it is easy to work with further if needed. The output can be stored as dataframe, for example, which makes graphs much easier.
+
+Next, another alternative is the `DataExplorer` package. It is nice to get a graphical overview of variables and the "missingness" of data. 
 
 ```{r explore_dt_0, warning=FALSE}
 library(DataExplorer)

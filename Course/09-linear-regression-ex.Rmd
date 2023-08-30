@@ -22,7 +22,7 @@ summary(fit1)
 The output shows that the estimated intercept is -34.67 and the estimated slope is 9.10. This means that for each additional room, the median value of owner-occupied homes increases by $9,100. The R-squared value is 0.484, which means that about 48% of the variation in price can be explained by rm.
 
 
-*Task 2:* Check the assumptions of the linear regression model from Task 1. Identify any potential problems such as non-linearity, heteroscedasticity, outliers, or multicollinearity. Hint: `plot()`
+*Task 2:* Check the assumptions of the linear regression model from Task 1. Identify any potential problems such as non-linearity, heteroscedasticity, outliers, or multicollinearity; and suggest potential solutions. Hint: `plot()`
 
 ```{r task_2_0}
 # Plot the residuals vs. fitted values
@@ -54,6 +54,8 @@ plot(fit1, which = 5)
 The plot shows that there are no influential observations with high leverage values.
 
 *Task 3:* Draw a directed acyclic graph (DAG) to represent the causal relationships among the variables in the Boston housing dataset. Fit a multiple linear regression model with price as the dependent variable and the relevant variables (`rm`, `crim`, `chas`) as the independent variables. Interpret the estimated coefficients and their statistical significance.
+
+-> NIAZ, devide tasks into separate tasks
 
 ```{r task_3}
 # Draw a directed acyclic graph (DAG)
