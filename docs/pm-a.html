@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-08-29" />
+<meta name="date" content="2023-08-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -325,6 +325,80 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Tidy models</strong>: Use the <code>broom</code> package to convert linear regression models into tidy data frames using functions such as <code>tidy()</code>, <code>glance()</code>, and <code>augment()</code>. Manipulate and visualize the tidy data frames to gain insights into the models and their performance.</li>
 <li><strong>Prediction intervals</strong>: Generate prediction intervals for new observations using a fitted linear regression model. Interpret the prediction intervals and discuss their usefulness for making predictions in a social science context.</li>
 </ol>
+<p><em>Task 1:</em> Use the <code>mediation</code> package to perform a mediation analysis with <code>price</code> as the outcome variable, <code>rm</code> as the treatment variable, and <code>crim</code> as the mediator variable. Estimate and report the average causal mediation effect (ACME), the average direct effect (ADE), the total effect, and the proportion mediated. Explain what these effects mean and how to interpret them.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="pm-a.html#cb202-1" tabindex="-1"></a><span class="co"># Load the mediation package</span></span>
+<span id="cb202-2"><a href="pm-a.html#cb202-2" tabindex="-1"></a><span class="fu">library</span>(mediation)</span>
+<span id="cb202-3"><a href="pm-a.html#cb202-3" tabindex="-1"></a></span>
+<span id="cb202-4"><a href="pm-a.html#cb202-4" tabindex="-1"></a><span class="co"># Fit a linear regression model with crim as the mediator variable</span></span>
+<span id="cb202-5"><a href="pm-a.html#cb202-5" tabindex="-1"></a>fit3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(crim <span class="sc">~</span> rm, <span class="at">data =</span> BostonHousing)</span>
+<span id="cb202-6"><a href="pm-a.html#cb202-6" tabindex="-1"></a></span>
+<span id="cb202-7"><a href="pm-a.html#cb202-7" tabindex="-1"></a><span class="co"># Fit a linear regression model with price as the outcome variable</span></span>
+<span id="cb202-8"><a href="pm-a.html#cb202-8" tabindex="-1"></a>fit4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> rm <span class="sc">+</span> crim, <span class="at">data =</span> BostonHousing)</span>
+<span id="cb202-9"><a href="pm-a.html#cb202-9" tabindex="-1"></a></span>
+<span id="cb202-10"><a href="pm-a.html#cb202-10" tabindex="-1"></a><span class="co"># Perform a mediation analysis with price as the outcome variable, rm as the treatment variable, and crim as the mediator variable</span></span>
+<span id="cb202-11"><a href="pm-a.html#cb202-11" tabindex="-1"></a>med.out <span class="ot">&lt;-</span> <span class="fu">mediate</span>(fit3, fit4, <span class="at">treat =</span> <span class="st">&quot;rm&quot;</span>, <span class="at">mediator =</span> <span class="st">&quot;crim&quot;</span>, <span class="at">sims =</span> <span class="dv">1000</span>)</span>
+<span id="cb202-12"><a href="pm-a.html#cb202-12" tabindex="-1"></a></span>
+<span id="cb202-13"><a href="pm-a.html#cb202-13" tabindex="-1"></a><span class="co"># Estimate and report the average causal mediation effect (ACME), the average direct effect (ADE), the total effect, and the proportion mediated</span></span>
+<span id="cb202-14"><a href="pm-a.html#cb202-14" tabindex="-1"></a><span class="fu">summary</span>(med.out)</span></code></pre></div>
+<pre><code>## 
+## Causal Mediation Analysis 
+## 
+## Quasi-Bayesian Confidence Intervals
+## 
+##                Estimate 95% CI Lower 95% CI Upper p-value    
+## ACME             0.7042       0.4170         1.06  &lt;2e-16 ***
+## ADE              8.3994       7.5494         9.14  &lt;2e-16 ***
+## Total Effect     9.1036       8.2886         9.91  &lt;2e-16 ***
+## Prop. Mediated   0.0765       0.0465         0.11  &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Sample Size Used: 506 
+## 
+## 
+## Simulations: 1000</code></pre>
+<p>The ACME is estimated to be 0.7042, with a 95% confidence interval of [0.4170, 1.06]. This means that <code>crim</code> is estimated to increase price by 0.7042 units on average, for each unit increase in <code>rm</code>. The p-value is less than 2e-16, indicating that this effect is statistically significant at the 5% level.</p>
+<p>The ADE is estimated to be 8.3994, with a 95% confidence interval of [7.5494, 9.14]. This means that <code>rm</code> is estimated to increase price by 8.3994 units on average, after controlling for <code>crim</code>. The p-value is less than 2e-16, indicating that this effect is also statistically significant at the 5% level.</p>
+<p>The total effect is estimated to be 9.1036, with a 95% confidence interval of [8.2886, 9.91]. This means that <code>rm</code> is estimated to increase price by 9.1036 units on average, without controlling for <code>crim</code>. The p-value is less than 2e-16, indicating that this effect is also statistically significant at the 5% level.</p>
+<p>The proportion mediated is estimated to be 0.0765, with a 95% confidence interval of [0.0465, 0.11]. This means that about 7.65% of the total effect of <code>rm</code> on price is mediated by <code>crim</code>. The p-value is less than 2e-16, indicating that this proportion is also statistically significant at the 5% level.</p>
+<p><em>Task 2:</em> Use the tidy() function from the broom package to create a data frame with the coefficients, standard errors, p-values, and confidence intervals of a linear regression model that predicts the median value of a home (MEDV) based on the nitric oxides concentration (NOX) and the average number of rooms per dwelling (RM).</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="pm-a.html#cb204-1" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb204-2"><a href="pm-a.html#cb204-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> nox <span class="sc">+</span> rm, <span class="at">data =</span> BostonHousing)</span>
+<span id="cb204-3"><a href="pm-a.html#cb204-3" tabindex="-1"></a><span class="fu">tidy</span>(model, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 7
+##   term        estimate std.error statistic  p.value conf.low conf.high
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)   -18.2      3.34      -5.45 7.82e- 8   -24.8     -11.6 
+## 2 nox           -19.0      2.53      -7.50 2.97e-13   -23.9     -14.0 
+## 3 rm              8.16     0.417     19.5  1.04e-63     7.34      8.98</code></pre>
+<p>The results show that both NOX and RM are significant predictors of MEDV, with <code>RM</code> having a positive effect and <code>NOX</code> having a negative effect.</p>
+<p><em>Task 3:</em> Use the glance() function from the broom package to create a data frame with the R-squared, adjusted R-squared, root mean squared error, and other summary statistics of the linear regression model from task 1.</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="pm-a.html#cb206-1" tabindex="-1"></a><span class="fu">glance</span>(model)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 12
+##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     0.535         0.534  6.28      290. 1.83e-84     2 -1646. 3301. 3317.
+## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<p>The results show that the model has an R-squared value of 0.535, indicating that it explains about 53.5% of the variance in the median value of a home (MEDV). The adjusted R-squared value is slightly lower at 0.533, indicating that the model is not overfitting.</p>
+<p><em>Task 4:</em> Use the predict() function to generate predicted values and prediction intervals for the median value of a home (MEDV) based on the linear regression model from task 1, and add them as new columns to the test data set. Use the caret package to create a train-test split of the data set with 70% of the data for training and 30% for testing.</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="pm-a.html#cb208-1" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb208-2"><a href="pm-a.html#cb208-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb208-3"><a href="pm-a.html#cb208-3" tabindex="-1"></a>trainIndex <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(BostonHousing<span class="sc">$</span>medv, <span class="at">p =</span> .<span class="dv">7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb208-4"><a href="pm-a.html#cb208-4" tabindex="-1"></a>trainData <span class="ot">&lt;-</span> BostonHousing[trainIndex,]</span>
+<span id="cb208-5"><a href="pm-a.html#cb208-5" tabindex="-1"></a>testData <span class="ot">&lt;-</span> BostonHousing[<span class="sc">-</span>trainIndex,]</span>
+<span id="cb208-6"><a href="pm-a.html#cb208-6" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> nox <span class="sc">+</span> rm, <span class="at">data =</span> trainData)</span>
+<span id="cb208-7"><a href="pm-a.html#cb208-7" tabindex="-1"></a>testData<span class="sc">$</span>predicted_MEDV <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, testData)</span>
+<span id="cb208-8"><a href="pm-a.html#cb208-8" tabindex="-1"></a>testData<span class="sc">$</span>pred_interval <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, testData, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<p><em>Task 5:</em> Use the augment() function from the broom package to create a data frame with the observed and predicted values, residuals, and other diagnostic measures for the linear regression model from task 1. Use the geom_ribbon() function from the ggplot2 package to create a plot of the predicted values versus the observed values, with prediction intervals as ribbons. Use the rmse() function from the Metrics package to calculate the root mean squared error of the predictions on the test data set.</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="pm-a.html#cb209-1" tabindex="-1"></a>augmented_data <span class="ot">&lt;-</span> <span class="fu">augment</span>(model, <span class="at">interval=</span> <span class="st">&quot;prediction&quot;</span>)</span>
+<span id="cb209-2"><a href="pm-a.html#cb209-2" tabindex="-1"></a></span>
+<span id="cb209-3"><a href="pm-a.html#cb209-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>.fitted,<span class="at">y=</span>medv), <span class="at">data=</span>augmented_data)<span class="sc">+</span></span>
+<span id="cb209-4"><a href="pm-a.html#cb209-4" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb209-5"><a href="pm-a.html#cb209-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>.fitted,<span class="at">y=</span>medv))<span class="sc">+</span></span>
+<span id="cb209-6"><a href="pm-a.html#cb209-6" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymax=</span>.upper,<span class="at">ymin=</span>.lower),<span class="at">color=</span><span class="st">&quot;red&quot;</span>,<span class="at">alpha=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/task_5_p-1.png" width="672" /></p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="pm-a.html#cb210-1" tabindex="-1"></a><span class="fu">RMSE</span>(testData<span class="sc">$</span>medv, augmented_data<span class="sc">$</span>.fitted)</span></code></pre></div>
+<pre><code>## [1] 10.97645</code></pre>
 
 </div>
 </div>

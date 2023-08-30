@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.15)  29 AUG 2023 02:04
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.15)  30 AUG 2023 16:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1476,107 +1476,107 @@ Underfull \hbox (badness 10000) in paragraph at lines 844--845
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [21] [22]
-Overfull \hbox (6.75pt too wide) in paragraph at lines 874--874
+Overfull \hbox (6.75pt too wide) in paragraph at lines 866--866
 []\TU/lmtt/m/n/10 ## https://www.danieldsjoberg.com/gtsummary/articles/rmarkdown.html[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 874--874
+Overfull \hbox (54.0pt too wide) in paragraph at lines 866--866
 []\TU/lmtt/m/n/10 ## To suppress this message, include `message = FALSE` in code chunk header.[] 
  []
 
 [23]
-Overfull \hbox (43.5pt too wide) in paragraph at lines 992--992
+Overfull \hbox (43.5pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ##               term career_AST position_pg career_PTS career_G career_WS[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 992--992
+Overfull \hbox (43.5pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 6      position_sg        .19         .22        .12      .09       .01[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 992--992
+Overfull \hbox (43.5pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 7           salary        .35        -.04        .60      .48       .59[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 992--992
+Overfull \hbox (43.5pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 8              age        .18         .03        .18      .49       .36[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 992--992
+Overfull \hbox (43.5pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 9      position_sf       -.08        -.33        .12      .13       .07[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 992--992
+Overfull \hbox (43.5pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 10      season_end        .01         .01        .04     -.17      -.09[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 992--992
+Overfull \hbox (43.5pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 11    season_start        .01         .01        .04     -.17      -.09[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 992--992
+Overfull \hbox (43.5pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 12         index.y        .01         .00       -.01     -.04      -.03[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 992--992
+Overfull \hbox (43.5pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 13         index.x        .01         .00       -.01     -.04      -.03[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 992--992
+Overfull \hbox (43.5pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 14          height       -.31        -.46       -.01     -.02      -.00[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 992--992
+Overfull \hbox (43.5pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 15     position_pf       -.29        -.44        .01      .11       .12[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 992--992
+Overfull \hbox (43.5pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 16 position_center       -.36        -.39       -.10      .04       .08[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 992--992
+Overfull \hbox (43.5pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 17          weight       -.49        -.66       -.06     -.03       .05[] 
  []
 
 
-Overfull \hbox (80.25pt too wide) in paragraph at lines 992--992
+Overfull \hbox (80.25pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ##    position_sg salary  age position_sf season_end season_start index.y index.x[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 992--992
+Overfull \hbox (38.25pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 13        -.06   -.02 -.02         .01       -.03         -.03    1.00[] 
  []
 
 
-Overfull \hbox (80.25pt too wide) in paragraph at lines 992--992
+Overfull \hbox (80.25pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 14        -.03    .03 -.04         .30        .02          .02     .05     .05[] 
  []
 
 
-Overfull \hbox (80.25pt too wide) in paragraph at lines 992--992
+Overfull \hbox (80.25pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 15        -.46    .09  .03         .04       -.00         -.00     .01     .01[] 
  []
 
 
-Overfull \hbox (80.25pt too wide) in paragraph at lines 992--992
+Overfull \hbox (80.25pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 16        -.49    .10  .04        -.37       -.06         -.06     .01     .02[] 
  []
 
 
-Overfull \hbox (80.25pt too wide) in paragraph at lines 992--992
+Overfull \hbox (80.25pt too wide) in paragraph at lines 984--984
 []\TU/lmtt/m/n/10 ## 17        -.43    .12 -.07        -.01        .04          .04     .04     .04[] 
  []
 
@@ -1606,7 +1606,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [29]
 
 LaTeX Font Warning: Font shape `TU/lmtt/bx/it' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/sl' tried instead on input line 1130.
+(Font)              Font shape `TU/lmtt/b/sl' tried instead on input line 1122.
 
 File: _main_files/figure-latex/explore_dt_4-2.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/explore_dt_4-2.pdf>
@@ -1660,7 +1660,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [38] [39] [40]
 Chapter 3.
 
-Underfull \hbox (badness 4366) in paragraph at lines 1342--1343
+Underfull \hbox (badness 4366) in paragraph at lines 1334--1335
 \TU/lmr/m/n/10 package from CRAN. This can be done by running the command
  []
 
@@ -1671,162 +1671,162 @@ Missing character: There is no 😊 (U+1F60A) in font [lmroman10-regular]:mappin
 Missing character: There is no 😊 (U+1F60A) in font [lmroman10-regular]:mapping=tex-text;!
 Missing character: There is no 😊 (U+1F60A) in font [lmroman10-regular]:mapping=tex-text;!
 [42] [43]
-Overfull \hbox (64.5pt too wide) in paragraph at lines 1473--1473
+Overfull \hbox (64.5pt too wide) in paragraph at lines 1465--1465
 []\TU/lmtt/m/n/10 ##  $ town   : chr [1:506] "Nahant" "Swampscott" "Swampscott" "Marblehead" ...[] 
  []
 
 
-Overfull \hbox (64.5pt too wide) in paragraph at lines 1473--1473
+Overfull \hbox (64.5pt too wide) in paragraph at lines 1465--1465
 []\TU/lmtt/m/n/10 ##  $ medv   : num [1:506] 24 21.6 34.7 33.4 36.2 28.7 22.9 27.1 16.5 18.9 ...[] 
  []
 
 
-Overfull \hbox (64.5pt too wide) in paragraph at lines 1473--1473
+Overfull \hbox (64.5pt too wide) in paragraph at lines 1465--1465
 []\TU/lmtt/m/n/10 ##  $ cmedv  : num [1:506] 24 21.6 34.7 33.4 36.2 28.7 22.9 22.1 16.5 18.9 ...[] 
  []
 
 
-Overfull \hbox (22.5pt too wide) in paragraph at lines 1473--1473
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1465--1465
 []\TU/lmtt/m/n/10 ##  $ crim   : num [1:506] 0.00632 0.02731 0.02729 0.03237 0.06905 ...[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 1473--1473
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1465--1465
 []\TU/lmtt/m/n/10 ##  $ indus  : num [1:506] 2.31 7.07 7.07 2.18 2.18 2.18 7.87 7.87 7.87 7.87 ...[] 
  []
 
 
-Overfull \hbox (127.5pt too wide) in paragraph at lines 1473--1473
+Overfull \hbox (127.5pt too wide) in paragraph at lines 1465--1465
 []\TU/lmtt/m/n/10 ##  $ nox    : num [1:506] 0.538 0.469 0.469 0.458 0.458 0.458 0.524 0.524 0.524 0.524 ...[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 1473--1473
+Overfull \hbox (69.75pt too wide) in paragraph at lines 1465--1465
 []\TU/lmtt/m/n/10 ##  $ age    : num [1:506] 65.2 78.9 61.1 45.8 54.2 58.7 66.6 96.1 100 85.9 ...[] 
  []
 
 
-Overfull \hbox (22.5pt too wide) in paragraph at lines 1473--1473
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1465--1465
 []\TU/lmtt/m/n/10 ##  $ tax    : num [1:506] 296 242 242 222 222 222 311 311 311 311 ...[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 1473--1473
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1465--1465
 []\TU/lmtt/m/n/10 ##  $ ptratio: num [1:506] 15.3 17.8 17.8 18.7 18.7 18.7 15.2 15.2 15.2 15.2 ...[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ town    <chr> "Nahant", "Swampscott", "Swampscott", "Marblehead", "Marblehea~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ tract   <dbl> 2011, 2021, 2022, 2031, 2032, 2033, 2041, 2042, 2043, 2044, 20~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ lon     <dbl> -70.9550, -70.9500, -70.9360, -70.9280, -70.9220, -70.9165, -7~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ lat     <dbl> 42.2550, 42.2875, 42.2830, 42.2930, 42.2980, 42.3040, 42.2970,~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ medv    <dbl> 24.0, 21.6, 34.7, 33.4, 36.2, 28.7, 22.9, 27.1, 16.5, 18.9, 15~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ cmedv   <dbl> 24.0, 21.6, 34.7, 33.4, 36.2, 28.7, 22.9, 22.1, 16.5, 18.9, 15~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ crim    <dbl> 0.00632, 0.02731, 0.02729, 0.03237, 0.06905, 0.02985, 0.08829,~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ zn      <dbl> 18.0, 0.0, 0.0, 0.0, 0.0, 0.0, 12.5, 12.5, 12.5, 12.5, 12.5, 1~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ indus   <dbl> 2.31, 7.07, 7.07, 2.18, 2.18, 2.18, 7.87, 7.87, 7.87, 7.87, 7.~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ chas    <chr> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ nox     <dbl> 0.538, 0.469, 0.469, 0.458, 0.458, 0.458, 0.524, 0.524, 0.524,~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ rm      <dbl> 6.575, 6.421, 7.185, 6.998, 7.147, 6.430, 6.012, 6.172, 5.631,~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ age     <dbl> 65.2, 78.9, 61.1, 45.8, 54.2, 58.7, 66.6, 96.1, 100.0, 85.9, 9~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ dis     <dbl> 4.0900, 4.9671, 4.9671, 6.0622, 6.0622, 6.0622, 5.5605, 5.9505~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ rad     <dbl> 1, 2, 2, 3, 3, 3, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4,~[] 
  []
 
 [44]
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ tax     <dbl> 296, 242, 242, 222, 222, 222, 311, 311, 311, 311, 311, 311, 31~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ ptratio <dbl> 15.3, 17.8, 17.8, 18.7, 18.7, 18.7, 15.2, 15.2, 15.2, 15.2, 15~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ b       <dbl> 396.90, 396.90, 392.83, 394.63, 396.90, 394.12, 395.60, 396.90~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1495--1495
 []\TU/lmtt/m/n/10 ## $ lstat   <dbl> 4.98, 9.14, 4.03, 2.94, 5.33, 5.21, 12.43, 19.15, 29.93, 17.10~[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1517--1517
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1509--1509
 []\TU/lmtt/m/n/10 ##    town   tract     lon     lat    medv   cmedv    crim      zn   indus    chas[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1517--1517
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1509--1509
 []\TU/lmtt/m/n/10 ##       0       0       0       0       0       0       0       0       0       0[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 1517--1517
+Overfull \hbox (43.5pt too wide) in paragraph at lines 1509--1509
 []\TU/lmtt/m/n/10 ##     nox      rm     age     dis     rad     tax ptratio       b   lstat[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 1517--1517
+Overfull \hbox (43.5pt too wide) in paragraph at lines 1509--1509
 []\TU/lmtt/m/n/10 ##       0       0       0       0       0       0       0       0       0[] 
  []
 
@@ -1918,7 +1918,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 2334) has occurred while \output is active []
 
 [66]
-Underfull \hbox (badness 10000) in paragraph at lines 2157--2158
+Underfull \hbox (badness 10000) in paragraph at lines 2149--2150
 []\TU/lmr/m/n/10 Corresponding YouTube lecture: []$[][][][][] [] [] [] [][][] [] [][][][][][][] [] [][][] [] [][][][][] [] [] []
  []
 
@@ -1958,127 +1958,127 @@ Missing character: There is no ▇ (U+2587) in font [lmroman10-regular]:mapping=
 Missing character: There is no ▅ (U+2585) in font [lmroman10-regular]:mapping=tex-text;!
 Missing character: There is no ▁ (U+2581) in font [lmroman10-regular]:mapping=tex-text;!
 
-Overfull \hbox (944.0699pt too wide) in paragraph at lines 2286--2305
+Overfull \hbox (944.0699pt too wide) in paragraph at lines 2278--2297
 [][] 
  []
 
 [71]
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2348--2348
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2340--2340
 []\TU/lmtt/m/n/10 ##    grade hours previous_grades attendance contact   previous_grades_centered[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2348--2348
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2340--2340
 []\TU/lmtt/m/n/10 ##    <dbl> <int>           <dbl> <lgl>      <fct>                        <dbl>[] 
  []
 
 
-Overfull \hbox (64.5pt too wide) in paragraph at lines 2348--2348
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2340--2340
 []\TU/lmtt/m/n/10 ##  1     1    50             1.4 TRUE       E-Mail                      -1.54[] 
  []
 
 
-Overfull \hbox (64.5pt too wide) in paragraph at lines 2348--2348
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2340--2340
 []\TU/lmtt/m/n/10 ##  2     1    46             1   TRUE       E-Mail                      -1.94[] 
  []
 
 
-Overfull \hbox (64.5pt too wide) in paragraph at lines 2348--2348
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2340--2340
 []\TU/lmtt/m/n/10 ##  3     1    42             1   TRUE       In Person                   -1.94[] 
  []
 
 
-Overfull \hbox (64.5pt too wide) in paragraph at lines 2348--2348
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2340--2340
 []\TU/lmtt/m/n/10 ##  4     1    49             1   FALSE      In Person                   -1.94[] 
  []
 
 
-Overfull \hbox (64.5pt too wide) in paragraph at lines 2348--2348
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2340--2340
 []\TU/lmtt/m/n/10 ##  5     1    42             1.2 TRUE       In Person                   -1.74[] 
  []
 
 
-Overfull \hbox (64.5pt too wide) in paragraph at lines 2348--2348
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2340--2340
 []\TU/lmtt/m/n/10 ##  6     1    46             1.8 TRUE       In Person                   -1.14[] 
  []
 
 
-Overfull \hbox (64.5pt too wide) in paragraph at lines 2348--2348
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2340--2340
 []\TU/lmtt/m/n/10 ##  7     1    44             1.4 FALSE      In Person                   -1.54[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2348--2348
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2340--2340
 []\TU/lmtt/m/n/10 ##  8     1    45             2   TRUE       In Person                   -0.935[] 
  []
 
 
-Overfull \hbox (64.5pt too wide) in paragraph at lines 2348--2348
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2340--2340
 []\TU/lmtt/m/n/10 ##  9     1    48             1   TRUE       In Person                   -1.94[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2348--2348
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2340--2340
 []\TU/lmtt/m/n/10 ## 10     1    45             2   TRUE       In Person                   -0.935[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 2373--2373
+Overfull \hbox (75.0pt too wide) in paragraph at lines 2365--2365
 []\TU/lmtt/m/n/10 ##    grade hours previous_grades attendance contact    previous_grades_centered[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 2373--2373
+Overfull \hbox (75.0pt too wide) in paragraph at lines 2365--2365
 []\TU/lmtt/m/n/10 ##    <dbl> <int>           <dbl> <lgl>      <fct>                         <dbl>[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2373--2373
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2365--2365
 []\TU/lmtt/m/n/10 ##  1   4.8    37             4.2 TRUE       No contact                    1.27[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2373--2373
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2365--2365
 []\TU/lmtt/m/n/10 ##  2   4.8    38             4.3 TRUE       E-Mail                        1.36[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2373--2373
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2365--2365
 []\TU/lmtt/m/n/10 ##  3   4.8    35             4.4 TRUE       E-Mail                        1.47[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2373--2373
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2365--2365
 []\TU/lmtt/m/n/10 ##  4   4.9    40             4.2 TRUE       E-Mail                        1.27[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 2373--2373
+Overfull \hbox (75.0pt too wide) in paragraph at lines 2365--2365
 []\TU/lmtt/m/n/10 ##  5   5      35             3.9 FALSE      No contact                    0.965[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2373--2373
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2365--2365
 []\TU/lmtt/m/n/10 ##  6   5      41             4.9 TRUE       No contact                    1.97[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2373--2373
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2365--2365
 []\TU/lmtt/m/n/10 ##  7   5      24             4.7 TRUE       E-Mail                        1.76[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2373--2373
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2365--2365
 []\TU/lmtt/m/n/10 ##  8   5      33             5   TRUE       E-Mail                        2.06[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2373--2373
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2365--2365
 []\TU/lmtt/m/n/10 ##  9   5      29             4.1 FALSE      E-Mail                        1.16[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2373--2373
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2365--2365
 []\TU/lmtt/m/n/10 ## 10   5      50             4.6 FALSE      E-Mail                        1.66[] 
  []
 
@@ -2132,37 +2132,37 @@ Overfull \hbox (43.42451pt too wide) has occurred while \output is active
  []
 
 [78]
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2533--2533
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2525--2525
 []\TU/lmtt/m/n/10 ##   grade hours previous_grades attendance contact    previous_grades_centered[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2533--2533
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2525--2525
 []\TU/lmtt/m/n/10 ##   <dbl> <int>           <dbl> <lgl>      <fct>                         <dbl>[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2533--2533
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2525--2525
 []\TU/lmtt/m/n/10 ## 1   2.3    45             2.6 TRUE       No contact                   -0.335[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2533--2533
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2525--2525
 []\TU/lmtt/m/n/10 ## 2   1.9    44             2.8 TRUE       In Person                    -0.135[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2533--2533
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2525--2525
 []\TU/lmtt/m/n/10 ## 3   3.1    38             3.7 TRUE       In Person                     0.765[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2533--2533
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2525--2525
 []\TU/lmtt/m/n/10 ## 4   3.3    40             3.4 TRUE       E-Mail                        0.465[] 
  []
 
 
-Overfull \hbox (64.5pt too wide) in paragraph at lines 2533--2533
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2525--2525
 []\TU/lmtt/m/n/10 ## 5   4.6    54             4.5 TRUE       No contact                    1.56[] 
  []
 
@@ -2176,7 +2176,7 @@ Overfull \hbox (43.42451pt too wide) has occurred while \output is active
 
 [80]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 2606.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 2598.
 [81]
 File: _main_files/figure-latex/plot_lm_grade_hours-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/plot_lm_grade_hours-1.pdf>
@@ -2206,22 +2206,22 @@ Overfull \hbox (43.42451pt too wide) has occurred while \output is active
 ]
 Chapter 6.
 [87]
-Overfull \hbox (1.5pt too wide) in paragraph at lines 2814--2814
+Overfull \hbox (1.5pt too wide) in paragraph at lines 2806--2806
 []\TU/lmtt/m/n/10 ## lm(formula = grade ~ hours_centered + previous_grades_centered,[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 2814--2814
+Overfull \hbox (17.25pt too wide) in paragraph at lines 2806--2806
 []\TU/lmtt/m/n/10 ## (Intercept)               2.967500   0.038316  77.449   <2e-16 ***[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 2814--2814
+Overfull \hbox (17.25pt too wide) in paragraph at lines 2806--2806
 []\TU/lmtt/m/n/10 ## hours_centered           -0.056543   0.006114  -9.248   <2e-16 ***[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 2814--2814
+Overfull \hbox (17.25pt too wide) in paragraph at lines 2806--2806
 []\TU/lmtt/m/n/10 ## previous_grades_centered  0.904079   0.039830  22.699   <2e-16 ***[] 
  []
 
@@ -2231,37 +2231,37 @@ Overfull \hbox (61.89452pt too wide) has occurred while \output is active
  []
 
 [88] [89]
-Overfull \hbox (6.75pt too wide) in paragraph at lines 2899--2899
+Overfull \hbox (6.75pt too wide) in paragraph at lines 2891--2891
 []\TU/lmtt/m/n/10 ## lm(formula = grade ~ hours_centered + previous_grades_centered +[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 2899--2899
+Overfull \hbox (17.25pt too wide) in paragraph at lines 2891--2891
 []\TU/lmtt/m/n/10 ## (Intercept)               3.157411   0.078658  40.141  < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 2899--2899
+Overfull \hbox (17.25pt too wide) in paragraph at lines 2891--2891
 []\TU/lmtt/m/n/10 ## hours_centered           -0.053942   0.006088  -8.860 4.85e-16 ***[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 2899--2899
+Overfull \hbox (17.25pt too wide) in paragraph at lines 2891--2891
 []\TU/lmtt/m/n/10 ## previous_grades_centered  0.911802   0.039282  23.212  < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 2899--2899
+Overfull \hbox (12.0pt too wide) in paragraph at lines 2891--2891
 []\TU/lmtt/m/n/10 ## attendanceTRUE           -0.248250   0.090246  -2.751   0.0065 **[] 
  []
 
 
-Underfull \hbox (badness 2173) in paragraph at lines 2901--2909
+Underfull \hbox (badness 2173) in paragraph at lines 2893--2901
 []\TU/lmr/m/n/10 This gives us a new line in the R Output holding an estimate for
  []
 
 
-Overfull \hbox (150.78317pt too wide) detected at line 2912
+Overfull \hbox (150.78317pt too wide) detected at line 2904
 [] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][]
  []
 
@@ -2271,62 +2271,62 @@ Overfull \hbox (61.89452pt too wide) has occurred while \output is active
  []
 
 [90]
-Overfull \hbox (109.48117pt too wide) detected at line 2921
+Overfull \hbox (109.48117pt too wide) detected at line 2913
 [] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][] [] []
  []
 
 
-Overfull \hbox (109.48117pt too wide) detected at line 2925
+Overfull \hbox (109.48117pt too wide) detected at line 2917
 [] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][] [] []
  []
 
 
-Overfull \hbox (46.82918pt too wide) detected at line 2926
+Overfull \hbox (46.82918pt too wide) detected at line 2918
 [] [] [][] [] [][] [] [][] [] [][] [] [][]
  []
 
 
-Overfull \hbox (7.51205pt too wide) detected at line 2935
+Overfull \hbox (7.51205pt too wide) detected at line 2927
 [][][][][][][][] [] [][][][][][][][] [] [] [] [][][][][][][][] [] [] [] [][][][][][][][] [] [] [] [][][][][][][][] [] [][][][][][][][] [] [][][][][][][][]
  []
 
 
-Overfull \hbox (6.75pt too wide) in paragraph at lines 2979--2979
+Overfull \hbox (6.75pt too wide) in paragraph at lines 2971--2971
 []\TU/lmtt/m/n/10 ## lm(formula = grade ~ hours_centered + previous_grades_centered +[] 
  []
 
 [91]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 2979--2979
+Overfull \hbox (17.25pt too wide) in paragraph at lines 2971--2971
 []\TU/lmtt/m/n/10 ## (Intercept)               3.617949   0.068077  53.145  < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 2979--2979
+Overfull \hbox (17.25pt too wide) in paragraph at lines 2971--2971
 []\TU/lmtt/m/n/10 ## hours_centered           -0.050830   0.004433 -11.466  < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 2979--2979
+Overfull \hbox (17.25pt too wide) in paragraph at lines 2971--2971
 []\TU/lmtt/m/n/10 ## previous_grades_centered  0.874123   0.028657  30.503  < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 2979--2979
+Overfull \hbox (17.25pt too wide) in paragraph at lines 2971--2971
 []\TU/lmtt/m/n/10 ## attendanceTRUE           -0.324653   0.065781  -4.935 1.72e-06 ***[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 2979--2979
+Overfull \hbox (17.25pt too wide) in paragraph at lines 2971--2971
 []\TU/lmtt/m/n/10 ## contactE-Mail            -0.413808   0.069817  -5.927 1.39e-08 ***[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 2979--2979
+Overfull \hbox (17.25pt too wide) in paragraph at lines 2971--2971
 []\TU/lmtt/m/n/10 ## contactIn Person         -0.853252   0.063964 -13.340  < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (327.48523pt too wide) detected at line 2993
+Overfull \hbox (327.48523pt too wide) detected at line 2985
 [] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][]
  []
 
@@ -2336,7 +2336,7 @@ Overfull \hbox (61.89452pt too wide) has occurred while \output is active
  []
 
 [92]
-Overfull \hbox (26.95602pt too wide) detected at line 3025
+Overfull \hbox (26.95602pt too wide) detected at line 3017
 [][][][][][][][] [] [][][][][][][][] [] [][] [] [][][][][][][][] [] [] [] [][][][][][][][] [] [] [] [][][][][][][][] [] [] [] [][][][][][][][] [] [] [] [][][][][][][][]
  []
 
@@ -2369,37 +2369,37 @@ File: _main_files/figure-latex/plot_grade_distribution-1.pdf Graphic file (type 
 File: _main_files/figure-latex/plot_lm_grade_hours_centered-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/plot_lm_grade_hours_centered-1.pdf>
 [101] [102]
-Overfull \hbox (6.75pt too wide) in paragraph at lines 3393--3393
+Overfull \hbox (6.75pt too wide) in paragraph at lines 3385--3385
 []\TU/lmtt/m/n/10 ## lm(formula = grade ~ hours_centered + previous_grades_centered +[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 3393--3393
+Overfull \hbox (17.25pt too wide) in paragraph at lines 3385--3385
 []\TU/lmtt/m/n/10 ## (Intercept)               3.617949   0.068077  53.145  < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 3393--3393
+Overfull \hbox (17.25pt too wide) in paragraph at lines 3385--3385
 []\TU/lmtt/m/n/10 ## hours_centered           -0.050830   0.004433 -11.466  < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 3393--3393
+Overfull \hbox (17.25pt too wide) in paragraph at lines 3385--3385
 []\TU/lmtt/m/n/10 ## previous_grades_centered  0.874123   0.028657  30.503  < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 3393--3393
+Overfull \hbox (17.25pt too wide) in paragraph at lines 3385--3385
 []\TU/lmtt/m/n/10 ## attendanceTRUE           -0.324653   0.065781  -4.935 1.72e-06 ***[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 3393--3393
+Overfull \hbox (17.25pt too wide) in paragraph at lines 3385--3385
 []\TU/lmtt/m/n/10 ## contactE-Mail            -0.413808   0.069817  -5.927 1.39e-08 ***[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 3393--3393
+Overfull \hbox (17.25pt too wide) in paragraph at lines 3385--3385
 []\TU/lmtt/m/n/10 ## contactIn Person         -0.853252   0.063964 -13.340  < 2e-16 ***[] 
  []
 
@@ -2439,67 +2439,67 @@ File: _main_files/figure-latex/homoscedasticity-1.pdf Graphic file (type pdf)
 File: _main_files/figure-latex/residuals_leverage-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/residuals_leverage-1.pdf>
 [112] [113] [114]
-Overfull \hbox (6.75pt too wide) in paragraph at lines 3778--3778
+Overfull \hbox (6.75pt too wide) in paragraph at lines 3770--3770
 []\TU/lmtt/m/n/10 ## lm(formula = grade ~ hours_centered + contact + hours_centered *[] 
  []
 
 
-Overfull \hbox (27.75pt too wide) in paragraph at lines 3778--3778
+Overfull \hbox (27.75pt too wide) in paragraph at lines 3770--3770
 []\TU/lmtt/m/n/10 ##                                 Estimate Std. Error t value Pr(>|t|)[] 
  []
 
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 3778--3778
+Overfull \hbox (48.75pt too wide) in paragraph at lines 3770--3770
 []\TU/lmtt/m/n/10 ## (Intercept)                      3.44466    0.10345  33.298  < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 3778--3778
+Overfull \hbox (38.25pt too wide) in paragraph at lines 3770--3770
 []\TU/lmtt/m/n/10 ## hours_centered                  -0.02893    0.01535  -1.885  0.06098 .[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 3778--3778
+Overfull \hbox (43.5pt too wide) in paragraph at lines 3770--3770
 []\TU/lmtt/m/n/10 ## contactE-Mail                   -0.46775    0.16729  -2.796  0.00569 **[] 
  []
 
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 3778--3778
+Overfull \hbox (48.75pt too wide) in paragraph at lines 3770--3770
 []\TU/lmtt/m/n/10 ## contactIn Person                -1.01493    0.15171  -6.690 2.33e-10 ***[] 
  []
 
 
-Overfull \hbox (27.75pt too wide) in paragraph at lines 3778--3778
+Overfull \hbox (27.75pt too wide) in paragraph at lines 3770--3770
 []\TU/lmtt/m/n/10 ## hours_centered:contactE-Mail    -0.02377    0.02657  -0.895  0.37204[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 3778--3778
+Overfull \hbox (38.25pt too wide) in paragraph at lines 3770--3770
 []\TU/lmtt/m/n/10 ## hours_centered:contactIn Person -0.05017    0.02442  -2.055  0.04125 *[] 
  []
 
 [115]
-Overfull \hbox (366.8233pt too wide) detected at line 3797
+Overfull \hbox (366.8233pt too wide) detected at line 3789
 [] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][] [] [][]
  []
 
 
-Overfull \hbox (290.86823pt too wide) detected at line 3804
+Overfull \hbox (290.86823pt too wide) detected at line 3796
 [] [] [][][][][][][] [] [][][][][][][] [] [][] [] [][][][][][][] [] [][] [] [][][][][][][] [] [][] [] [][][][][][][] [] [][] [] [][] [] [][][][][][][] [] [][] [] [][]
  []
 
 
-Overfull \hbox (156.86615pt too wide) detected at line 3816
+Overfull \hbox (156.86615pt too wide) detected at line 3808
 [] [] [][][][][][][] [] [][][][][][][] [] [][] [] [][][][][][][] [] [] [] [][][][][][][] [] [] [] [][][][][][][] [] [][] [] [] [] [][][][][][][] [] [][] [] []
  []
 
 
-Overfull \hbox (156.86615pt too wide) detected at line 3834
+Overfull \hbox (156.86615pt too wide) detected at line 3826
 [] [] [][][][][][][] [] [][][][][][][] [] [][] [] [][][][][][][] [] [] [] [][][][][][][] [] [] [] [][][][][][][] [] [][] [] [] [] [][][][][][][] [] [][] [] []
  []
 
 [116]
-Overfull \hbox (156.86615pt too wide) detected at line 3854
+Overfull \hbox (156.86615pt too wide) detected at line 3846
 [] [] [][][][][][][] [] [][][][][][][] [] [][] [] [][][][][][][] [] [] [] [][][][][][][] [] [] [] [][][][][][][] [] [][] [] [] [] [][][][][][][] [] [][] [] []
  []
 
@@ -2525,7 +2525,7 @@ Chapter 8.
 File: _main_files/figure-latex/dag_final-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/dag_final-1.pdf>
 [124] [125] [126] [127]
-Overfull \hbox (27.75pt too wide) in paragraph at lines 4255--4255
+Overfull \hbox (27.75pt too wide) in paragraph at lines 4247--4247
 []\TU/lmtt/m/n/10 ## lm(formula = salary ~ PTS_centered + position_center + position_sf +[] 
  []
 
@@ -2533,12 +2533,12 @@ Overfull \hbox (27.75pt too wide) in paragraph at lines 4255--4255
 File: _main_files/figure-latex/m2_diag-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/m2_diag-1.pdf>
 [130]
-Overfull \hbox (85.5pt too wide) in paragraph at lines 4378--4378
+Overfull \hbox (85.5pt too wide) in paragraph at lines 4370--4370
 []\TU/lmtt/m/n/10 ##    PTS_centered position_center     position_sf     position_pf     position_sg[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 4378--4378
+Overfull \hbox (85.5pt too wide) in paragraph at lines 4370--4370
 []\TU/lmtt/m/n/10 ##        1.050400        2.035722        1.686736        1.512765        1.565004[] 
  []
 
@@ -2554,21 +2554,21 @@ File: _main_files/figure-latex/m3-1.pdf Graphic file (type pdf)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [133] [134]
-Overfull \hbox (48.75pt too wide) in paragraph at lines 4509--4509
+Overfull \hbox (48.75pt too wide) in paragraph at lines 4501--4501
 []\TU/lmtt/m/n/10 ## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'[] 
  []
 
 File: _main_files/figure-latex/non_linearity-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/non_linearity-1.pdf>
 [135]
-Overfull \hbox (48.75pt too wide) in paragraph at lines 4533--4533
+Overfull \hbox (48.75pt too wide) in paragraph at lines 4525--4525
 []\TU/lmtt/m/n/10 ## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'[] 
  []
 
 File: _main_files/figure-latex/centered_squared-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/centered_squared-1.pdf>
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 4559--4559
+Overfull \hbox (48.75pt too wide) in paragraph at lines 4551--4551
 []\TU/lmtt/m/n/10 ## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'[] 
  []
 
@@ -2581,22 +2581,22 @@ File: _main_files/figure-latex/m4_diag-1.pdf Graphic file (type pdf)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [137]
-Overfull \hbox (85.5pt too wide) in paragraph at lines 4615--4615
+Overfull \hbox (85.5pt too wide) in paragraph at lines 4607--4607
 []\TU/lmtt/m/n/10 ##      career_PTS I(career_PTS^2) position_center     position_sf     position_pf[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 4615--4615
+Overfull \hbox (85.5pt too wide) in paragraph at lines 4607--4607
 []\TU/lmtt/m/n/10 ##       12.135096       11.883255        2.040563        1.709312        1.520284[] 
  []
 
 [138]
-Overfull \hbox (59.25pt too wide) in paragraph at lines 4666--4666
+Overfull \hbox (59.25pt too wide) in paragraph at lines 4658--4658
 []\TU/lmtt/m/n/10 ## lm(formula = salary_log ~ career_PTS + I(career_PTS^2) + position_center +[] 
  []
 
 
-Overfull \hbox (64.5pt too wide) in paragraph at lines 4666--4666
+Overfull \hbox (64.5pt too wide) in paragraph at lines 4658--4658
 []\TU/lmtt/m/n/10 ##     position_sf + position_pf + position_sg + position_pg, data = data_nba)[] 
  []
 
@@ -2604,752 +2604,791 @@ Overfull \hbox (64.5pt too wide) in paragraph at lines 4666--4666
 
 ]
 Chapter 9.
-[143] [144]
-File: _main_files/figure-latex/model_diag-1.pdf Graphic file (type pdf)
-<use _main_files/figure-latex/model_diag-1.pdf>
-[145]
-File: _main_files/figure-latex/model_diag-2.pdf Graphic file (type pdf)
-<use _main_files/figure-latex/model_diag-2.pdf>
-[146]
-Chapter 10.
-[147
+[143]
+File: _main_files/figure-latex/task_2_0-1.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/task_2_0-1.pdf>
 
-] [148]
+Underfull \hbox (badness 10000) in paragraph at lines 4797--4799
+[][]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[144]
+File: _main_files/figure-latex/task_2_1-1.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/task_2_1-1.pdf>
+
+Underfull \hbox (badness 10000) in paragraph at lines 4807--4809
+[][]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[145]
+File: _main_files/figure-latex/task_2_2-1.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/task_2_2-1.pdf>
+
+Underfull \hbox (badness 10000) in paragraph at lines 4817--4819
+[][]
+ []
+
+[146]
+File: _main_files/figure-latex/task_2_3-1.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/task_2_3-1.pdf>
+[147]
+Overfull \hbox (227.25pt too wide) in paragraph at lines 4863--4863
+[]\TU/lmtt/m/n/10 ## Plot coordinates for graph not supplied! Generating coordinates, see ?coordinates for how to set your own.[] 
+ []
+
+File: _main_files/figure-latex/task_3-1.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/task_3-1.pdf>
+[148] [149]
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4947--4947
+[]\TU/lmtt/m/n/10 ## lm(formula = medv ~ rm + crim + chas + factor(rad), data = BostonHousing)[] 
+ []
+
+[150]
+Chapter 10.
+[151
+
+] [152]
 File: _main_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/unnamed-chunk-12-1.pdf>
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 5020--5020
+Overfull \hbox (1.5pt too wide) in paragraph at lines 5078--5078
 []\TU/lmtt/m/n/10 ## lm(formula = salary ~ as.factor(position_rec), data = data_nba,[] 
  []
 
-[149]
-Overfull \hbox (22.5pt too wide) in paragraph at lines 5020--5020
+[153]
+Overfull \hbox (22.5pt too wide) in paragraph at lines 5078--5078
 []\TU/lmtt/m/n/10 ##                                Estimate Std. Error t value Pr(>|t|)[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 5020--5020
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5078--5078
 []\TU/lmtt/m/n/10 ## (Intercept)                     4016014     126850  31.659  < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 5020--5020
+Overfull \hbox (38.25pt too wide) in paragraph at lines 5078--5078
 []\TU/lmtt/m/n/10 ## as.factor(position_rec)Forward  -439249     158703  -2.768  0.00566 **[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 5020--5020
+Overfull \hbox (38.25pt too wide) in paragraph at lines 5078--5078
 []\TU/lmtt/m/n/10 ## as.factor(position_rec)Guard    -438470     149803  -2.927  0.00343 **[] 
  []
 
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (48.75pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## lm(formula = salary ~ as.factor(position_rec) + as.factor(season_start),[] 
  []
 
 
-Overfull \hbox (22.5pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (22.5pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ##                                Estimate Std. Error t value Pr(>|t|)[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## (Intercept)                     2614310     272704   9.587  < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (38.25pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(position_rec)Forward  -510295     156308  -3.265 0.001102 **[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(position_rec)Guard    -523632     147538  -3.549 0.000389 ***[] 
  []
 
 
-Overfull \hbox (22.5pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (22.5pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)1999       22191     334992   0.066 0.947186[] 
  []
 
 
-Overfull \hbox (33.0pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (33.0pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2000      705147     348782   2.022 0.043245 *[] 
  []
 
 
-Overfull \hbox (33.0pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (33.0pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2001      818596     352465   2.322 0.020238 *[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (38.25pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2002     1035391     354870   2.918 0.003539 **[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (38.25pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2003     1069793     359704   2.974 0.002950 **[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (38.25pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2004     1117189     358397   3.117 0.001834 **[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (38.25pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2005     1090880     354570   3.077 0.002102 **[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (38.25pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2006      958637     352167   2.722 0.006504 **[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2007     1654377     357706   4.625 3.82e-06 ***[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2008     1944946     357392   5.442 5.46e-08 ***[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2009     1832838     359404   5.100 3.50e-07 ***[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2010     1748651     360028   4.857 1.22e-06 ***[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2011     1582423     353355   4.478 7.66e-06 ***[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2012     1651497     346695   4.764 1.94e-06 ***[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2013     2121273     361746   5.864 4.75e-09 ***[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2014     1243733     331916   3.747 0.000180 ***[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2015     1804493     332700   5.424 6.05e-08 ***[] 
  []
 
-[150]
-Overfull \hbox (43.5pt too wide) in paragraph at lines 5069--5069
+[154]
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2016     2645083     326043   8.113 5.89e-16 ***[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 5069--5069
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5127--5127
 []\TU/lmtt/m/n/10 ## as.factor(season_start)2017     3382563     324615  10.420  < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 5088--5088
+Overfull \hbox (1.5pt too wide) in paragraph at lines 5146--5146
 []\TU/lmtt/m/n/10 ## Warning: package 'modelsummary' was built under R version 4.2.3[] 
  []
 
 
-LaTeX Warning: Float too large for page by 126.1764pt on input line 5164.
+LaTeX Warning: Float too large for page by 126.1764pt on input line 5222.
 
-[151] [152] [153]
-Underfull \hbox (badness 10000) in paragraph at lines 5274--5276
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5276--5278
+[155] [156] [157]
+Underfull \hbox (badness 10000) in paragraph at lines 5332--5334
 
  []
 
-[154] [155] [156
+
+Underfull \hbox (badness 10000) in paragraph at lines 5334--5336
+
+ []
+
+[158] [159] [160
 
 ]
 Chapter 11.
 
 Underfull \vbox (badness 3312) has occurred while \output is active []
 
-[157]
-Overfull \vbox (1.88295pt too high) detected at line 5354
+[161]
+Overfull \vbox (1.88295pt too high) detected at line 5412
  []
 
-[158]
+[162]
 File: _main_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/unnamed-chunk-15-1.pdf>
-[159]
-Overfull \hbox (90.75pt too wide) in paragraph at lines 5404--5404
+[163]
+Overfull \hbox (90.75pt too wide) in paragraph at lines 5462--5462
 []\TU/lmtt/m/n/10 ##   r.squared adj.r.squared   sigma statistic p.value    df   logLik    AIC    BIC[] 
  []
 
 
-Overfull \hbox (90.75pt too wide) in paragraph at lines 5404--5404
+Overfull \hbox (90.75pt too wide) in paragraph at lines 5462--5462
 []\TU/lmtt/m/n/10 ##       <dbl>         <dbl>   <dbl>     <dbl>   <dbl> <dbl>    <dbl>  <dbl>  <dbl>[] 
  []
 
 
-Overfull \hbox (90.75pt too wide) in paragraph at lines 5404--5404
+Overfull \hbox (90.75pt too wide) in paragraph at lines 5462--5462
 []\TU/lmtt/m/n/10 ## 1     0.432         0.431 352361.      308.       0    24 -138041. 2.76e5 2.76e5[] 
  []
 
 
-Overfull \hbox (22.5pt too wide) in paragraph at lines 5404--5404
+Overfull \hbox (22.5pt too wide) in paragraph at lines 5462--5462
 []\TU/lmtt/m/n/10 ## # i 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>[] 
  []
 
-[160]
+[164]
 File: _main_files/figure-latex/unnamed-chunk-16-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/unnamed-chunk-16-1.pdf>
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 5492--5492
+Overfull \hbox (54.0pt too wide) in paragraph at lines 5550--5550
 []\TU/lmtt/m/n/10 ##  career_PTS   age position_recForward position_recGuard position_recMixed[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 5492--5492
+Overfull \hbox (54.0pt too wide) in paragraph at lines 5550--5550
 []\TU/lmtt/m/n/10 ##       53791 16809             -140645           -208234           -103661[] 
  []
 
 
-Overfull \hbox (27.75pt too wide) in paragraph at lines 5492--5492
+Overfull \hbox (27.75pt too wide) in paragraph at lines 5550--5550
 []\TU/lmtt/m/n/10 ##  season_start1999 season_start2000 season_start2001 season_start2002[] 
  []
 
 
-Overfull \hbox (27.75pt too wide) in paragraph at lines 5492--5492
+Overfull \hbox (27.75pt too wide) in paragraph at lines 5550--5550
 []\TU/lmtt/m/n/10 ##             29357            77209           106436           130348[] 
  []
 
 
-Overfull \hbox (27.75pt too wide) in paragraph at lines 5492--5492
+Overfull \hbox (27.75pt too wide) in paragraph at lines 5550--5550
 []\TU/lmtt/m/n/10 ##  season_start2003 season_start2004 season_start2005 season_start2006[] 
  []
 
 
-Overfull \hbox (27.75pt too wide) in paragraph at lines 5492--5492
+Overfull \hbox (27.75pt too wide) in paragraph at lines 5550--5550
 []\TU/lmtt/m/n/10 ##            135221           150576           174625           183653[] 
  []
 
-[161]
-Overfull \hbox (27.75pt too wide) in paragraph at lines 5492--5492
+[165]
+Overfull \hbox (27.75pt too wide) in paragraph at lines 5550--5550
 []\TU/lmtt/m/n/10 ##  season_start2007 season_start2008 season_start2009 season_start2010[] 
  []
 
 
-Overfull \hbox (27.75pt too wide) in paragraph at lines 5492--5492
+Overfull \hbox (27.75pt too wide) in paragraph at lines 5550--5550
 []\TU/lmtt/m/n/10 ##            206434           231505           204116           192220[] 
  []
 
 
-Overfull \hbox (27.75pt too wide) in paragraph at lines 5492--5492
+Overfull \hbox (27.75pt too wide) in paragraph at lines 5550--5550
 []\TU/lmtt/m/n/10 ##  season_start2011 season_start2012 season_start2013 season_start2014[] 
  []
 
 
-Overfull \hbox (27.75pt too wide) in paragraph at lines 5492--5492
+Overfull \hbox (27.75pt too wide) in paragraph at lines 5550--5550
 []\TU/lmtt/m/n/10 ##            183026           182509           199072           174359[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##              factor position_rec career_PTS         AME         SE       z[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##                 age       1.0000    10.0000  16809.4290   822.1461 20.4458[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##                 age       1.0000    14.0000  16809.4290   821.2659 20.4677[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##                 age       2.0000    10.0000  16809.4290   821.3697 20.4651[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##                 age       2.0000    14.0000  16809.4290   810.1705 20.7480[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##          career_PTS       1.0000    10.0000  53791.2088   673.5739 79.8594[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##          career_PTS       1.0000    14.0000  53791.2088   777.6596 69.1706[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##          career_PTS       2.0000    10.0000  53791.2088   672.1461 80.0290[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##          career_PTS       2.0000    14.0000  53791.2088   869.2152 61.8848[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##  position_reccenter       1.0000    10.0000 208234.2670 12165.6828 17.1165[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##  position_reccenter       1.0000    14.0000 208234.2670 12165.6828 17.1165[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##  position_reccenter       2.0000    10.0000 208234.2670 12165.6828 17.1165[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##  position_reccenter       2.0000    14.0000 208234.2670 12165.6828 17.1165[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start1999       1.0000    10.0000  29356.8409 22884.2755  1.2828[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start1999       1.0000    14.0000  29356.8409 22884.2755  1.2828[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start1999       2.0000    10.0000  29356.8409 22884.2755  1.2828[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start1999       2.0000    14.0000  29356.8409 22884.3468  1.2828[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2000       1.0000    10.0000  77209.1717 23559.4567  3.2772[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2000       1.0000    14.0000  77209.1717 23559.4567  3.2772[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2000       2.0000    10.0000  77209.1717 23559.4567  3.2772[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2000       2.0000    14.0000  77209.1717 23559.4567  3.2772[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2001       1.0000    10.0000 106435.5787 23624.8634  4.5052[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2001       1.0000    14.0000 106435.5787 23624.8634  4.5052[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2001       2.0000    10.0000 106435.5787 23624.8634  4.5052[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2001       2.0000    14.0000 106435.5787 23624.8621  4.5052[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2002       1.0000    10.0000 130348.2150 23627.2203  5.5169[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2002       1.0000    14.0000 130348.2150 23627.2203  5.5169[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2002       2.0000    10.0000 130348.2150 23627.2203  5.5169[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2002       2.0000    14.0000 130348.2150 23627.2203  5.5169[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2003       1.0000    10.0000 135220.5712 23648.3086  5.7180[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2003       1.0000    14.0000 135220.5712 23648.3086  5.7180[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2003       2.0000    10.0000 135220.5712 23648.3086  5.7180[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2003       2.0000    14.0000 135220.5712 23648.3047  5.7180[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2004       1.0000    10.0000 150575.6148 23423.7814  6.4283[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2004       1.0000    14.0000 150575.6148 23423.7814  6.4283[] 
  []
 
-[162]
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+[166]
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2004       2.0000    10.0000 150575.6148 23423.7814  6.4283[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2004       2.0000    14.0000 150575.6148 23416.9662  6.4302[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2005       1.0000    10.0000 174625.3789 23247.7154  7.5115[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2005       1.0000    14.0000 174625.3789 23247.7154  7.5115[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2005       2.0000    10.0000 174625.3789 23247.7154  7.5115[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2005       2.0000    14.0000 174625.3789 23240.9439  7.5137[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2006       1.0000    10.0000 183653.2187 23057.8278  7.9649[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2006       1.0000    14.0000 183653.2187 23071.2667  7.9603[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2006       2.0000    10.0000 183653.2187 23071.2569  7.9603[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2006       2.0000    14.0000 183653.2187 23071.2471  7.9603[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2007       1.0000    10.0000 206434.1344 23336.8298  8.8459[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2007       1.0000    14.0000 206434.1344 23336.8298  8.8459[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2007       2.0000    10.0000 206434.1344 23336.8298  8.8459[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2007       2.0000    14.0000 206434.1344 23330.0326  8.8484[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2008       1.0000    10.0000 231505.0635 23507.2919  9.8482[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2008       1.0000    14.0000 231505.0635 23507.2919  9.8482[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2008       2.0000    10.0000 231505.0635 23507.2919  9.8482[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2008       2.0000    14.0000 231505.0635 23500.4440  9.8511[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2009       1.0000    10.0000 204115.6638 23475.4934  8.6948[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2009       1.0000    14.0000 204115.6638 23489.1731  8.6898[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2009       2.0000    10.0000 204115.6638 23489.1731  8.6898[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2009       2.0000    14.0000 204115.6638 23489.1586  8.6898[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2010       1.0000    10.0000 192219.8545 23548.5054  8.1627[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2010       1.0000    14.0000 192219.8545 23548.5054  8.1627[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2010       2.0000    10.0000 192219.8545 23548.5054  8.1627[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2010       2.0000    14.0000 192219.8545 23555.3511  8.1603[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2011       1.0000    10.0000 183025.8381 23534.7356  7.7768[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2011       1.0000    14.0000 183025.8381 23534.7356  7.7768[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2011       2.0000    10.0000 183025.8381 23534.7356  7.7768[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2011       2.0000    14.0000 183025.8381 23534.7356  7.7768[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2012       1.0000    10.0000 182509.4584 23219.2518  7.8603[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2012       1.0000    14.0000 182509.4584 23219.2518  7.8603[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2012       2.0000    10.0000 182509.4584 23219.2518  7.8603[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2012       2.0000    14.0000 182509.4584 23212.4961  7.8626[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2013       1.0000    10.0000 199072.4713 24314.5882  8.1874[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2013       1.0000    14.0000 199072.4713 24314.5882  8.1874[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2013       2.0000    10.0000 199072.4713 24314.5882  8.1874[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2013       2.0000    14.0000 199072.4713 24321.6667  8.1850[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2014       1.0000    10.0000 174358.9208 22746.2703  7.6654[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2014       1.0000    14.0000 174358.9208 22733.0380  7.6698[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2014       2.0000    10.0000 174358.9208 22733.0380  7.6698[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2014       2.0000    14.0000 174358.9208 22733.0380  7.6698[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2015       1.0000    10.0000 206791.4964 22900.6232  9.0300[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2015       1.0000    14.0000 206791.4964 22887.2931  9.0352[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2015       2.0000    10.0000 206791.4964 22887.2931  9.0352[] 
  []
 
-[163]
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+[167]
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2015       2.0000    14.0000 206791.4964 22887.3012  9.0352[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2016       1.0000    10.0000 305227.6577 22617.9191 13.4949[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2016       1.0000    14.0000 305227.6577 22617.9191 13.4949[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2016       2.0000    10.0000 305227.6577 22617.9191 13.4949[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2016       2.0000    14.0000 305227.6577 22617.9191 13.4949[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2017       1.0000    10.0000 369398.3511 22665.9479 16.2975[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2017       1.0000    14.0000 369398.3511 22665.9479 16.2975[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2017       2.0000    10.0000 369398.3511 22665.9479 16.2975[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 5680--5680
+Overfull \hbox (59.25pt too wide) in paragraph at lines 5738--5738
 []\TU/lmtt/m/n/10 ##    season_start2017       2.0000    14.0000 369398.3511 22655.0335 16.3054[] 
  []
 
-[164] [165]
-Overfull \hbox (43.5pt too wide) in paragraph at lines 5711--5711
+[168] [169]
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5769--5769
 []\TU/lmtt/m/n/10 ##        1        2        3        4        5        6        7        8[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 5711--5711
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5769--5769
 []\TU/lmtt/m/n/10 ## 721959.3 346026.1 346026.1 346026.1 346026.1 346026.1 346026.1 346026.1[] 
  []
 
-[166]
+[170]
 File: _main_files/figure-latex/unnamed-chunk-18-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/unnamed-chunk-18-1.pdf>
 File: _main_files/figure-latex/unnamed-chunk-18-2.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/unnamed-chunk-18-2.pdf>
-[167]
+[171]
 File: _main_files/figure-latex/unnamed-chunk-18-3.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/unnamed-chunk-18-3.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[168]
-Overfull \hbox (38.25pt too wide) in paragraph at lines 5774--5774
+[172]
+Overfull \hbox (38.25pt too wide) in paragraph at lines 5832--5832
 []\TU/lmtt/m/n/10 ##   term        estimate std.error statistic  p.value conf.low conf.high[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 5774--5774
+Overfull \hbox (38.25pt too wide) in paragraph at lines 5832--5832
 []\TU/lmtt/m/n/10 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 5774--5774
+Overfull \hbox (38.25pt too wide) in paragraph at lines 5832--5832
 []\TU/lmtt/m/n/10 ## 1 (Intercept)  -85191.     7642.     -11.1 1.09e-28 -100171.   -70212.[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 5774--5774
+Overfull \hbox (38.25pt too wide) in paragraph at lines 5832--5832
 []\TU/lmtt/m/n/10 ## 2 career_PTS    55284.      745.      74.2 0          53823.    56745.[] 
  []
 
@@ -3358,43 +3397,43 @@ File: _main_files/figure-latex/unnamed-chunk-18-4.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[169]
-Overfull \hbox (90.75pt too wide) in paragraph at lines 5810--5810
+[173]
+Overfull \hbox (90.75pt too wide) in paragraph at lines 5868--5868
 []\TU/lmtt/m/n/10 ##   r.squared adj.r.squared   sigma statistic p.value    df   logLik    AIC    BIC[] 
  []
 
 
-Overfull \hbox (90.75pt too wide) in paragraph at lines 5810--5810
+Overfull \hbox (90.75pt too wide) in paragraph at lines 5868--5868
 []\TU/lmtt/m/n/10 ##       <dbl>         <dbl>   <dbl>     <dbl>   <dbl> <dbl>    <dbl>  <dbl>  <dbl>[] 
  []
 
 
-Overfull \hbox (90.75pt too wide) in paragraph at lines 5810--5810
+Overfull \hbox (90.75pt too wide) in paragraph at lines 5868--5868
 []\TU/lmtt/m/n/10 ## 1     0.432         0.431 352361.      308.       0    24 -138041. 2.76e5 2.76e5[] 
  []
 
 
-Overfull \hbox (22.5pt too wide) in paragraph at lines 5810--5810
+Overfull \hbox (22.5pt too wide) in paragraph at lines 5868--5868
 []\TU/lmtt/m/n/10 ## # i 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>[] 
  []
 
-[170]
-Overfull \hbox (90.75pt too wide) in paragraph at lines 5824--5824
+[174]
+Overfull \hbox (90.75pt too wide) in paragraph at lines 5882--5882
 []\TU/lmtt/m/n/10 ##   r.squared adj.r.squared   sigma statistic p.value    df   logLik    AIC    BIC[] 
  []
 
 
-Overfull \hbox (90.75pt too wide) in paragraph at lines 5824--5824
+Overfull \hbox (90.75pt too wide) in paragraph at lines 5882--5882
 []\TU/lmtt/m/n/10 ##       <dbl>         <dbl>   <dbl>     <dbl>   <dbl> <dbl>    <dbl>  <dbl>  <dbl>[] 
  []
 
 
-Overfull \hbox (90.75pt too wide) in paragraph at lines 5824--5824
+Overfull \hbox (90.75pt too wide) in paragraph at lines 5882--5882
 []\TU/lmtt/m/n/10 ## 1     0.361         0.361 373217.     5502.       0     1 -138612. 2.77e5 2.77e5[] 
  []
 
 
-Overfull \hbox (22.5pt too wide) in paragraph at lines 5824--5824
+Overfull \hbox (22.5pt too wide) in paragraph at lines 5882--5882
 []\TU/lmtt/m/n/10 ## # i 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>[] 
  []
 
@@ -3403,16 +3442,67 @@ File: _main_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[171] [172] [173] [174]
+[175] [176] [177] [178]
 Chapter 12.
-[175
+[179
 
-] [176]
+] [180]
+Overfull \hbox (38.25pt too wide) in paragraph at lines 6107--6107
+[]\TU/lmtt/m/n/10 ##   term        estimate std.error statistic  p.value conf.low conf.high[] 
+ []
+
+
+Overfull \hbox (38.25pt too wide) in paragraph at lines 6107--6107
+[]\TU/lmtt/m/n/10 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>[] 
+ []
+
+
+Overfull \hbox (33.0pt too wide) in paragraph at lines 6107--6107
+[]\TU/lmtt/m/n/10 ## 1 (Intercept)   -18.2      3.34      -5.45 7.82e- 8   -24.8     -11.6[] 
+ []
+
+
+Overfull \hbox (33.0pt too wide) in paragraph at lines 6107--6107
+[]\TU/lmtt/m/n/10 ## 2 nox           -19.0      2.53      -7.50 2.97e-13   -23.9     -14.0[] 
+ []
+
+
+Overfull \hbox (38.25pt too wide) in paragraph at lines 6107--6107
+[]\TU/lmtt/m/n/10 ## 3 rm              8.16     0.417     19.5  1.04e-63     7.34      8.98[] 
+ []
+
+
+Overfull \hbox (64.5pt too wide) in paragraph at lines 6125--6125
+[]\TU/lmtt/m/n/10 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC[] 
+ []
+
+
+Overfull \hbox (64.5pt too wide) in paragraph at lines 6125--6125
+[]\TU/lmtt/m/n/10 ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>[] 
+ []
+
+
+Overfull \hbox (64.5pt too wide) in paragraph at lines 6125--6125
+[]\TU/lmtt/m/n/10 ## 1     0.535         0.534  6.28      290. 1.83e-84     2 -1646. 3301. 3317.[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 6125--6125
+[]\TU/lmtt/m/n/10 ## # i 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>[] 
+ []
+
+[181]
+File: _main_files/figure-latex/task_5_p-1.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/task_5_p-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[182] [183] [184
+
+]
 Chapter 13.
 No file _main.bbl.
-[177
-
-] (./_main.aux)
+[185] (./_main.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-11>
@@ -3421,12 +3511,12 @@ Package rerunfilecheck Info: File `_main.out' has not changed.
 (rerunfilecheck)             Checksum: 6213AE266D1725870AD810B7C2853C52;11176.
  ) 
 Here is how much of TeX's memory you used:
- 22258 strings out of 477845
- 462301 string characters out of 5821207
+ 22294 strings out of 477845
+ 463807 string characters out of 5821207
  1945879 words of memory out of 5000000
- 42834 multiletter control sequences out of 15000+600000
+ 42866 multiletter control sequences out of 15000+600000
  564682 words of font info for 97 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,10n,120p,745b,934s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on _main.pdf (177 pages).
+Output written on _main.pdf (185 pages).

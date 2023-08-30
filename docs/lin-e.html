@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-08-29" />
+<meta name="date" content="2023-08-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -318,23 +318,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">9.1</span> Exercises of Linear Regression<a href="lin-e.html#exercises-of-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this exercise, you will use the Boston Housing Dataset to explore the relationship between housing prices and various features of the houses and their surroundings. The dataset contains 506 observations and 15 columns. The last column, MEDV, is the median value of owner-occupied homes in $1000’s. This is the target variable that you will try to predict using linear regression models. The other 14 columns represent different features of the houses and their surroundings, such as crime rate, nitric oxides concentration, pupil-teacher ratio, etc.</p>
 <p><strong>DRAFT</strong></p>
-<ol style="list-style-type: decimal">
-<li><strong>Simple linear regression</strong>: Use simple linear regression to predict the median value of owner-occupied homes (<code>MEDV</code>) based on a single predictor variable which is the average number of rooms per dwelling (<code>RM</code>). Fit the model.</li>
-</ol>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="lin-e.html#cb138-1" tabindex="-1"></a><span class="co"># loading dataset</span></span>
-<span id="cb138-2"><a href="lin-e.html#cb138-2" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb138-3"><a href="lin-e.html#cb138-3" tabindex="-1"></a>BostonHousing <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;../datasets/boston.xlsx&quot;</span>)</span>
-<span id="cb138-4"><a href="lin-e.html#cb138-4" tabindex="-1"></a><span class="co"># applying linear regression</span></span>
-<span id="cb138-5"><a href="lin-e.html#cb138-5" tabindex="-1"></a>model_l <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> rm, <span class="at">data =</span> BostonHousing)</span></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>Multiple linear regression</strong>: Use multiple linear regression to predict <code>MEDV</code> based on multiple predictor variables, such as <code>RM</code>, <code>CRIM</code> (per capita crime rate by town), and <code>LSTAT</code> (% lower status of the population). Fit the model, generate predictions, and calculate the R-squared value to assess the model’s performance.</li>
-</ol>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="lin-e.html#cb139-1" tabindex="-1"></a><span class="co"># applying linear regression</span></span>
-<span id="cb139-2"><a href="lin-e.html#cb139-2" tabindex="-1"></a>model_m <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> rm <span class="sc">+</span> crim <span class="sc">+</span> lstat, <span class="at">data =</span> BostonHousing)</span></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li><strong>Model summary</strong>: Generate summary of a both regression model, including information about the coefficients, standard errors, t-values, and p-values. Interpret the results. Calculate the R-squared value to assess both model’s performance. Which model has better goodness of fit (R-Squared) ?</li>
-</ol>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="lin-e.html#cb140-1" tabindex="-1"></a><span class="fu">summary</span>(model_l)</span></code></pre></div>
+<p><em>Task 1:</em> Fit a simple linear regression model with price as the dependent variable and rm as the independent variable. Interpret the estimated coefficients and the R-squared value.</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="lin-e.html#cb138-1" tabindex="-1"></a><span class="co"># Load the Boston housing dataset</span></span>
+<span id="cb138-2"><a href="lin-e.html#cb138-2" tabindex="-1"></a></span>
+<span id="cb138-3"><a href="lin-e.html#cb138-3" tabindex="-1"></a></span>
+<span id="cb138-4"><a href="lin-e.html#cb138-4" tabindex="-1"></a><span class="co"># Fit a simple linear regression model</span></span>
+<span id="cb138-5"><a href="lin-e.html#cb138-5" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> rm, <span class="at">data =</span> BostonHousing)</span>
+<span id="cb138-6"><a href="lin-e.html#cb138-6" tabindex="-1"></a></span>
+<span id="cb138-7"><a href="lin-e.html#cb138-7" tabindex="-1"></a><span class="co"># Display the estimated coefficients and R-squared value</span></span>
+<span id="cb138-8"><a href="lin-e.html#cb138-8" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = medv ~ rm, data = BostonHousing)
@@ -353,41 +345,114 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 6.616 on 504 degrees of freedom
 ## Multiple R-squared:  0.4835, Adjusted R-squared:  0.4825 
 ## F-statistic: 471.8 on 1 and 504 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="lin-e.html#cb142-1" tabindex="-1"></a><span class="fu">summary</span>(model_m)</span></code></pre></div>
+<p>The output shows that the estimated intercept is -34.67 and the estimated slope is 9.10. This means that for each additional room, the median value of owner-occupied homes increases by $9,100. The R-squared value is 0.484, which means that about 48% of the variation in price can be explained by rm.</p>
+<p><em>Task 2:</em> Check the assumptions of the linear regression model from Task 1. Identify any potential problems such as non-linearity, heteroscedasticity, outliers, or multicollinearity. Hint: <code>plot()</code></p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="lin-e.html#cb140-1" tabindex="-1"></a><span class="co"># Plot the residuals vs. fitted values</span></span>
+<span id="cb140-2"><a href="lin-e.html#cb140-2" tabindex="-1"></a><span class="fu">plot</span>(fit1, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/task_2_0-1.png" width="672" />
+The plot shows that there is a slight non-linearity in the relationship between rm and price, as well as some heteroscedasticity (unequal variance) in the residuals. There are also a few outliers with large residuals.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="lin-e.html#cb141-1" tabindex="-1"></a><span class="co"># Plot the Q-Q plot of standardized residuals</span></span>
+<span id="cb141-2"><a href="lin-e.html#cb141-2" tabindex="-1"></a><span class="fu">plot</span>(fit1, <span class="at">which =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/task_2_1-1.png" width="672" />
+The Q-Q plot shows that the residuals are approximately normally distributed, with some deviation in the tails.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="lin-e.html#cb142-1" tabindex="-1"></a><span class="co"># Plot the scale-location plot of standardized residuals</span></span>
+<span id="cb142-2"><a href="lin-e.html#cb142-2" tabindex="-1"></a><span class="fu">plot</span>(fit1, <span class="at">which =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/task_2_2-1.png" width="672" />
+The scale-location plot confirms that there is some heteroscedasticity in the residuals.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="lin-e.html#cb143-1" tabindex="-1"></a><span class="co"># Plot the residuals vs. leverage values</span></span>
+<span id="cb143-2"><a href="lin-e.html#cb143-2" tabindex="-1"></a><span class="fu">plot</span>(fit1, <span class="at">which =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/task_2_3-1.png" width="672" /></p>
+<p>The plot shows that there are no influential observations with high leverage values.</p>
+<p><em>Task 3:</em> Draw a directed acyclic graph (DAG) to represent the causal relationships among the variables in the Boston housing dataset. Fit a multiple linear regression model with price as the dependent variable and the relevant variables (<code>rm</code>, <code>crim</code>, <code>chas</code>) as the independent variables. Interpret the estimated coefficients and their statistical significance.</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="lin-e.html#cb144-1" tabindex="-1"></a><span class="co"># Draw a directed acyclic graph (DAG)</span></span>
+<span id="cb144-2"><a href="lin-e.html#cb144-2" tabindex="-1"></a><span class="co"># Note: This is just an example DAG, students should draw their own based on their understanding of the causal relationships among the variables</span></span>
+<span id="cb144-3"><a href="lin-e.html#cb144-3" tabindex="-1"></a><span class="fu">library</span>(dagitty)</span>
+<span id="cb144-4"><a href="lin-e.html#cb144-4" tabindex="-1"></a>dag <span class="ot">&lt;-</span> <span class="fu">dagitty</span>(<span class="st">&quot;dag {</span></span>
+<span id="cb144-5"><a href="lin-e.html#cb144-5" tabindex="-1"></a><span class="st">  crim -&gt; nox</span></span>
+<span id="cb144-6"><a href="lin-e.html#cb144-6" tabindex="-1"></a><span class="st">  crim -&gt; price</span></span>
+<span id="cb144-7"><a href="lin-e.html#cb144-7" tabindex="-1"></a><span class="st">  zn -&gt; price</span></span>
+<span id="cb144-8"><a href="lin-e.html#cb144-8" tabindex="-1"></a><span class="st">  indus -&gt; nox</span></span>
+<span id="cb144-9"><a href="lin-e.html#cb144-9" tabindex="-1"></a><span class="st">  indus -&gt; price</span></span>
+<span id="cb144-10"><a href="lin-e.html#cb144-10" tabindex="-1"></a><span class="st">  chas -&gt; price</span></span>
+<span id="cb144-11"><a href="lin-e.html#cb144-11" tabindex="-1"></a><span class="st">  nox -&gt; price</span></span>
+<span id="cb144-12"><a href="lin-e.html#cb144-12" tabindex="-1"></a><span class="st">  rm -&gt; price</span></span>
+<span id="cb144-13"><a href="lin-e.html#cb144-13" tabindex="-1"></a><span class="st">  age -&gt; dis</span></span>
+<span id="cb144-14"><a href="lin-e.html#cb144-14" tabindex="-1"></a><span class="st">  age -&gt; price</span></span>
+<span id="cb144-15"><a href="lin-e.html#cb144-15" tabindex="-1"></a><span class="st">  dis -&gt; price</span></span>
+<span id="cb144-16"><a href="lin-e.html#cb144-16" tabindex="-1"></a><span class="st">  rad -&gt; tax</span></span>
+<span id="cb144-17"><a href="lin-e.html#cb144-17" tabindex="-1"></a><span class="st">  rad -&gt; price</span></span>
+<span id="cb144-18"><a href="lin-e.html#cb144-18" tabindex="-1"></a><span class="st">  tax -&gt; price</span></span>
+<span id="cb144-19"><a href="lin-e.html#cb144-19" tabindex="-1"></a><span class="st">  ptratio -&gt; price</span></span>
+<span id="cb144-20"><a href="lin-e.html#cb144-20" tabindex="-1"></a><span class="st">  b -&gt; price</span></span>
+<span id="cb144-21"><a href="lin-e.html#cb144-21" tabindex="-1"></a><span class="st">  lstat -&gt; price</span></span>
+<span id="cb144-22"><a href="lin-e.html#cb144-22" tabindex="-1"></a><span class="st">}&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb144-23"><a href="lin-e.html#cb144-23" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code></pre></div>
+<pre><code>## Plot coordinates for graph not supplied! Generating coordinates, see ?coordinates for how to set your own.</code></pre>
+<p><img src="_main_files/figure-html/task_3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="lin-e.html#cb146-1" tabindex="-1"></a><span class="co"># Fit a multiple linear regression model with price as the dependent variable and the relevant variables</span></span>
+<span id="cb146-2"><a href="lin-e.html#cb146-2" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> rm <span class="sc">+</span> crim <span class="sc">+</span> chas , <span class="at">data =</span> BostonHousing)</span>
+<span id="cb146-3"><a href="lin-e.html#cb146-3" tabindex="-1"></a></span>
+<span id="cb146-4"><a href="lin-e.html#cb146-4" tabindex="-1"></a><span class="co"># Display the estimated coefficients and their statistical significance</span></span>
+<span id="cb146-5"><a href="lin-e.html#cb146-5" tabindex="-1"></a><span class="fu">summary</span>(fit2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = medv ~ rm + crim + lstat, data = BostonHousing)
+## lm(formula = medv ~ rm + crim + chas, data = BostonHousing)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -17.925  -3.566  -1.157   1.906  29.024 
+## -24.829  -2.968  -0.415   2.433  38.945 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -2.56225    3.16602  -0.809  0.41873    
-## rm           5.21695    0.44203  11.802  &lt; 2e-16 ***
-## crim        -0.10294    0.03202  -3.215  0.00139 ** 
-## lstat       -0.57849    0.04767 -12.135  &lt; 2e-16 ***
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -28.81068    2.56331 -11.240  &lt; 2e-16 ***
+## rm            8.27818    0.40182  20.602  &lt; 2e-16 ***
+## crim         -0.26072    0.03274  -7.964 1.12e-14 ***
+## chas1         3.76304    1.08620   3.464 0.000577 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 5.49 on 502 degrees of freedom
-## Multiple R-squared:  0.6459, Adjusted R-squared:  0.6437 
-## F-statistic: 305.2 on 3 and 502 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>XXX–INTERPRETATION HERE–XXX</p>
-<ol start="4" style="list-style-type: decimal">
-<li><strong>Model diagnostics</strong>: Create diagnostic plots to assess the assumptions of the models. Check whether your regression models from Tasks 1 and 2 satisfy the assumptions of linearity, multicollinearity, normality and homoscedasticity.Use numerical method variance inflation factor (VIF) to detect any multicollinearity issues among your predictor variables.</li>
-</ol>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="lin-e.html#cb144-1" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb144-2"><a href="lin-e.html#cb144-2" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb144-3"><a href="lin-e.html#cb144-3" tabindex="-1"></a><span class="fu">autoplot</span>(model_l)</span></code></pre></div>
-<p><img src="_main_files/figure-html/model_diag-1.png" width="672" /></p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="lin-e.html#cb145-1" tabindex="-1"></a><span class="fu">autoplot</span>(model_m)</span></code></pre></div>
-<p><img src="_main_files/figure-html/model_diag-2.png" width="672" /></p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="lin-e.html#cb146-1" tabindex="-1"></a><span class="fu">vif</span>(model_m)</span></code></pre></div>
-<pre><code>##       rm     crim    lstat 
-## 1.616468 1.271372 1.941883</code></pre>
-<p>XXX—INTERPRETATION HERE—XXX</p>
+## Residual standard error: 6.17 on 502 degrees of freedom
+## Multiple R-squared:  0.5527, Adjusted R-squared:   0.55 
+## F-statistic: 206.7 on 3 and 502 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>All the coefficients are statistically significant at the 5% level, as indicated by their p-values being less than 0.05. This means that there is strong evidence that each of the independent variables has a <code>non-zero</code> effect on the dependent variable.</p>
+<p>The intercept is estimated to be -28.81068, which represents the predicted value of <code>medv</code> when all the independent variables are equal to zero. The coefficient for <code>rm</code> is 8.27818, which means that for each additional room, the median value of owner-occupied homes increases by $8,278.18. The coefficient for <code>crim</code> is -0.26072, which means that for each additional unit of per capita crime rate, the median value decreases by $260.72. The coefficient for <code>chas1</code> is 3.76304, which means that for tracts that bound Charles River, the median value increases by $3,763.04.</p>
+<p>The residual standard error is 6.17, which measures the typical deviation of the observed values from the predicted values. The R-squared value is 0.5527, which means that about 55% of the variation in <code>medv</code> can be explained by <code>rm</code>, <code>crim</code>, and <code>chas</code>.</p>
+<p><em>Task 4:</em> Use the factor() function to convert rad into a categorical variable and add it to the linear regression model from Task 1. Compare the results with the model from Task 1 and explain how adding a categorical variable affects the estimation and interpretation of the coefficients.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="lin-e.html#cb148-1" tabindex="-1"></a><span class="co"># Convert rad into a categorical variable and add it to the linear regression model from Task 1</span></span>
+<span id="cb148-2"><a href="lin-e.html#cb148-2" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> rm <span class="sc">+</span> crim <span class="sc">+</span> chas <span class="sc">+</span> <span class="fu">factor</span>(rad), <span class="at">data =</span> BostonHousing)</span>
+<span id="cb148-3"><a href="lin-e.html#cb148-3" tabindex="-1"></a></span>
+<span id="cb148-4"><a href="lin-e.html#cb148-4" tabindex="-1"></a><span class="co"># Display the estimated coefficients and their statistical significance</span></span>
+<span id="cb148-5"><a href="lin-e.html#cb148-5" tabindex="-1"></a><span class="fu">summary</span>(fit2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = medv ~ rm + crim + chas + factor(rad), data = BostonHousing)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -21.046  -3.193  -0.552   2.309  40.827 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   -26.99015    3.00521  -8.981  &lt; 2e-16 ***
+## rm              7.80523    0.41075  19.002  &lt; 2e-16 ***
+## crim           -0.15430    0.04034  -3.825 0.000147 ***
+## chas1           3.81539    1.06955   3.567 0.000396 ***
+## factor(rad)2    1.93186    1.81623   1.064 0.288001    
+## factor(rad)3    4.20983    1.65637   2.542 0.011339 *  
+## factor(rad)4    0.29030    1.46782   0.198 0.843302    
+## factor(rad)5    2.53820    1.45499   1.744 0.081697 .  
+## factor(rad)6    0.34138    1.79289   0.190 0.849069    
+## factor(rad)7    2.23188    1.97868   1.128 0.259882    
+## factor(rad)8    2.35837    1.82921   1.289 0.197904    
+## factor(rad)24  -1.87284    1.53565  -1.220 0.223210    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 5.995 on 494 degrees of freedom
+## Multiple R-squared:  0.5844, Adjusted R-squared:  0.5752 
+## F-statistic: 63.16 on 11 and 494 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Comparing this output with the previous one, we can see that adding <code>rad</code> as a categorical variable improves the model fit, as indicated by an increase in R-squared value from 0.5527 to 0.5844. The estimated coefficients of <code>rm</code>, <code>crim</code>, and <code>chas</code> remain similar to those in the previous model.</p>
+<p>Overall, this output suggests that adding <code>rad</code> as a categorical variable improves the model fit and provides additional information about the relationship between rad and medv. However, it’s important to note that this model still does not account for any potential confounding variables or interactions among the independent variables.</p>
 
 </div>
 </div>

@@ -144,7 +144,7 @@
 
 \title{Data Analysis with R for Social Scientists}
 \author{Jakob Tures \& Jasper Tjaden}
-\date{2023-08-29}
+\date{2023-08-30}
 
 \begin{document}
 \maketitle
@@ -851,15 +851,7 @@ position, and right or left handed (i.e.~``shoots'')
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(gtsummary)}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-## #Uighur
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{select}\NormalTok{(age, seasons\_played, shoots, career\_PTS, salary, }\FunctionTok{contains}\NormalTok{(}\StringTok{"position"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
          \FunctionTok{tbl\_summary}\NormalTok{(}
@@ -4755,49 +4747,18 @@ In this exercise, you will use the Boston Housing Dataset to explore the relatio
 
 \textbf{DRAFT}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \textbf{Simple linear regression}: Use simple linear regression to predict the median value of owner-occupied homes (\texttt{MEDV}) based on a single predictor variable which is the average number of rooms per dwelling (\texttt{RM}). Fit the model.
-\end{enumerate}
+\emph{Task 1:} Fit a simple linear regression model with price as the dependent variable and rm as the independent variable. Interpret the estimated coefficients and the R-squared value.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# loading dataset}
-\FunctionTok{library}\NormalTok{(readxl)}
-\NormalTok{BostonHousing }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"../datasets/boston.xlsx"}\NormalTok{)}
-\CommentTok{\# applying linear regression}
-\NormalTok{model\_l }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(medv }\SpecialCharTok{\textasciitilde{}}\NormalTok{ rm, }\AttributeTok{data =}\NormalTok{ BostonHousing)}
-\end{Highlighting}
-\end{Shaded}
+\CommentTok{\# Load the Boston housing dataset}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  \textbf{Multiple linear regression}: Use multiple linear regression to predict \texttt{MEDV} based on multiple predictor variables, such as \texttt{RM}, \texttt{CRIM} (per capita crime rate by town), and \texttt{LSTAT} (\% lower status of the population). Fit the model, generate predictions, and calculate the R-squared value to assess the model's performance.
-\end{enumerate}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# applying linear regression}
-\NormalTok{model\_m }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(medv }\SpecialCharTok{\textasciitilde{}}\NormalTok{ rm }\SpecialCharTok{+}\NormalTok{ crim }\SpecialCharTok{+}\NormalTok{ lstat, }\AttributeTok{data =}\NormalTok{ BostonHousing)}
-\end{Highlighting}
-\end{Shaded}
+\CommentTok{\# Fit a simple linear regression model}
+\NormalTok{fit1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(medv }\SpecialCharTok{\textasciitilde{}}\NormalTok{ rm, }\AttributeTok{data =}\NormalTok{ BostonHousing)}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{2}
-\tightlist
-\item
-  \textbf{Model summary}: Generate summary of a both regression model, including information about the coefficients, standard errors, t-values, and p-values. Interpret the results. Calculate the R-squared value to assess both model's performance. Which model has better goodness of fit (R-Squared) ?
-\end{enumerate}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{summary}\NormalTok{(model\_l)}
+\CommentTok{\# Display the estimated coefficients and R{-}squared value}
+\FunctionTok{summary}\NormalTok{(fit1)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4822,75 +4783,172 @@ In this exercise, you will use the Boston Housing Dataset to explore the relatio
 ## F-statistic: 471.8 on 1 and 504 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
+The output shows that the estimated intercept is -34.67 and the estimated slope is 9.10. This means that for each additional room, the median value of owner-occupied homes increases by \$9,100. The R-squared value is 0.484, which means that about 48\% of the variation in price can be explained by rm.
+
+\emph{Task 2:} Check the assumptions of the linear regression model from Task 1. Identify any potential problems such as non-linearity, heteroscedasticity, outliers, or multicollinearity. Hint: \texttt{plot()}
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{summary}\NormalTok{(model\_m)}
+\CommentTok{\# Plot the residuals vs. fitted values}
+\FunctionTok{plot}\NormalTok{(fit1, }\AttributeTok{which =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/task_2_0-1.pdf}
+The plot shows that there is a slight non-linearity in the relationship between rm and price, as well as some heteroscedasticity (unequal variance) in the residuals. There are also a few outliers with large residuals.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot the Q{-}Q plot of standardized residuals}
+\FunctionTok{plot}\NormalTok{(fit1, }\AttributeTok{which =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/task_2_1-1.pdf}
+The Q-Q plot shows that the residuals are approximately normally distributed, with some deviation in the tails.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot the scale{-}location plot of standardized residuals}
+\FunctionTok{plot}\NormalTok{(fit1, }\AttributeTok{which =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/task_2_2-1.pdf}
+The scale-location plot confirms that there is some heteroscedasticity in the residuals.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot the residuals vs. leverage values}
+\FunctionTok{plot}\NormalTok{(fit1, }\AttributeTok{which =} \DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/task_2_3-1.pdf}
+
+The plot shows that there are no influential observations with high leverage values.
+
+\emph{Task 3:} Draw a directed acyclic graph (DAG) to represent the causal relationships among the variables in the Boston housing dataset. Fit a multiple linear regression model with price as the dependent variable and the relevant variables (\texttt{rm}, \texttt{crim}, \texttt{chas}) as the independent variables. Interpret the estimated coefficients and their statistical significance.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Draw a directed acyclic graph (DAG)}
+\CommentTok{\# Note: This is just an example DAG, students should draw their own based on their understanding of the causal relationships among the variables}
+\FunctionTok{library}\NormalTok{(dagitty)}
+\NormalTok{dag }\OtherTok{\textless{}{-}} \FunctionTok{dagitty}\NormalTok{(}\StringTok{"dag \{}
+\StringTok{  crim {-}\textgreater{} nox}
+\StringTok{  crim {-}\textgreater{} price}
+\StringTok{  zn {-}\textgreater{} price}
+\StringTok{  indus {-}\textgreater{} nox}
+\StringTok{  indus {-}\textgreater{} price}
+\StringTok{  chas {-}\textgreater{} price}
+\StringTok{  nox {-}\textgreater{} price}
+\StringTok{  rm {-}\textgreater{} price}
+\StringTok{  age {-}\textgreater{} dis}
+\StringTok{  age {-}\textgreater{} price}
+\StringTok{  dis {-}\textgreater{} price}
+\StringTok{  rad {-}\textgreater{} tax}
+\StringTok{  rad {-}\textgreater{} price}
+\StringTok{  tax {-}\textgreater{} price}
+\StringTok{  ptratio {-}\textgreater{} price}
+\StringTok{  b {-}\textgreater{} price}
+\StringTok{  lstat {-}\textgreater{} price}
+\StringTok{\}"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{plot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Plot coordinates for graph not supplied! Generating coordinates, see ?coordinates for how to set your own.
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/task_3-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fit a multiple linear regression model with price as the dependent variable and the relevant variables}
+\NormalTok{fit2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(medv }\SpecialCharTok{\textasciitilde{}}\NormalTok{ rm }\SpecialCharTok{+}\NormalTok{ crim }\SpecialCharTok{+}\NormalTok{ chas , }\AttributeTok{data =}\NormalTok{ BostonHousing)}
+
+\CommentTok{\# Display the estimated coefficients and their statistical significance}
+\FunctionTok{summary}\NormalTok{(fit2)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## 
 ## Call:
-## lm(formula = medv ~ rm + crim + lstat, data = BostonHousing)
+## lm(formula = medv ~ rm + crim + chas, data = BostonHousing)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -17.925  -3.566  -1.157   1.906  29.024 
+## -24.829  -2.968  -0.415   2.433  38.945 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) -2.56225    3.16602  -0.809  0.41873    
-## rm           5.21695    0.44203  11.802  < 2e-16 ***
-## crim        -0.10294    0.03202  -3.215  0.00139 ** 
-## lstat       -0.57849    0.04767 -12.135  < 2e-16 ***
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -28.81068    2.56331 -11.240  < 2e-16 ***
+## rm            8.27818    0.40182  20.602  < 2e-16 ***
+## crim         -0.26072    0.03274  -7.964 1.12e-14 ***
+## chas1         3.76304    1.08620   3.464 0.000577 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 5.49 on 502 degrees of freedom
-## Multiple R-squared:  0.6459, Adjusted R-squared:  0.6437 
-## F-statistic: 305.2 on 3 and 502 DF,  p-value: < 2.2e-16
+## Residual standard error: 6.17 on 502 degrees of freedom
+## Multiple R-squared:  0.5527, Adjusted R-squared:   0.55 
+## F-statistic: 206.7 on 3 and 502 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
-XXX--INTERPRETATION HERE--XXX
+All the coefficients are statistically significant at the 5\% level, as indicated by their p-values being less than 0.05. This means that there is strong evidence that each of the independent variables has a \texttt{non-zero} effect on the dependent variable.
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{3}
-\tightlist
-\item
-  \textbf{Model diagnostics}: Create diagnostic plots to assess the assumptions of the models. Check whether your regression models from Tasks 1 and 2 satisfy the assumptions of linearity, multicollinearity, normality and homoscedasticity.Use numerical method variance inflation factor (VIF) to detect any multicollinearity issues among your predictor variables.
-\end{enumerate}
+The intercept is estimated to be -28.81068, which represents the predicted value of \texttt{medv} when all the independent variables are equal to zero. The coefficient for \texttt{rm} is 8.27818, which means that for each additional room, the median value of owner-occupied homes increases by \$8,278.18. The coefficient for \texttt{crim} is -0.26072, which means that for each additional unit of per capita crime rate, the median value decreases by \$260.72. The coefficient for \texttt{chas1} is 3.76304, which means that for tracts that bound Charles River, the median value increases by \$3,763.04.
+
+The residual standard error is 6.17, which measures the typical deviation of the observed values from the predicted values. The R-squared value is 0.5527, which means that about 55\% of the variation in \texttt{medv} can be explained by \texttt{rm}, \texttt{crim}, and \texttt{chas}.
+
+\emph{Task 4:} Use the factor() function to convert rad into a categorical variable and add it to the linear regression model from Task 1. Compare the results with the model from Task 1 and explain how adding a categorical variable affects the estimation and interpretation of the coefficients.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(ggfortify)}
-\FunctionTok{library}\NormalTok{(car)}
-\FunctionTok{autoplot}\NormalTok{(model\_l)}
-\end{Highlighting}
-\end{Shaded}
+\CommentTok{\# Convert rad into a categorical variable and add it to the linear regression model from Task 1}
+\NormalTok{fit2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(medv }\SpecialCharTok{\textasciitilde{}}\NormalTok{ rm }\SpecialCharTok{+}\NormalTok{ crim }\SpecialCharTok{+}\NormalTok{ chas }\SpecialCharTok{+} \FunctionTok{factor}\NormalTok{(rad), }\AttributeTok{data =}\NormalTok{ BostonHousing)}
 
-\includegraphics{_main_files/figure-latex/model_diag-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{autoplot}\NormalTok{(model\_m)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/model_diag-2.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{vif}\NormalTok{(model\_m)}
+\CommentTok{\# Display the estimated coefficients and their statistical significance}
+\FunctionTok{summary}\NormalTok{(fit2)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##       rm     crim    lstat 
-## 1.616468 1.271372 1.941883
+## 
+## Call:
+## lm(formula = medv ~ rm + crim + chas + factor(rad), data = BostonHousing)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -21.046  -3.193  -0.552   2.309  40.827 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   -26.99015    3.00521  -8.981  < 2e-16 ***
+## rm              7.80523    0.41075  19.002  < 2e-16 ***
+## crim           -0.15430    0.04034  -3.825 0.000147 ***
+## chas1           3.81539    1.06955   3.567 0.000396 ***
+## factor(rad)2    1.93186    1.81623   1.064 0.288001    
+## factor(rad)3    4.20983    1.65637   2.542 0.011339 *  
+## factor(rad)4    0.29030    1.46782   0.198 0.843302    
+## factor(rad)5    2.53820    1.45499   1.744 0.081697 .  
+## factor(rad)6    0.34138    1.79289   0.190 0.849069    
+## factor(rad)7    2.23188    1.97868   1.128 0.259882    
+## factor(rad)8    2.35837    1.82921   1.289 0.197904    
+## factor(rad)24  -1.87284    1.53565  -1.220 0.223210    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.995 on 494 degrees of freedom
+## Multiple R-squared:  0.5844, Adjusted R-squared:  0.5752 
+## F-statistic: 63.16 on 11 and 494 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
-XXX---INTERPRETATION HERE---XXX
+Comparing this output with the previous one, we can see that adding \texttt{rad} as a categorical variable improves the model fit, as indicated by an increase in R-squared value from 0.5527 to 0.5844. The estimated coefficients of \texttt{rm}, \texttt{crim}, and \texttt{chas} remain similar to those in the previous model.
+
+Overall, this output suggests that adding \texttt{rad} as a categorical variable improves the model fit and provides additional information about the relationship between rad and medv. However, it's important to note that this model still does not account for any potential confounding variables or interactions among the independent variables.
 
 \hypertarget{med}{%
 \chapter{Mediation}\label{med}}
@@ -5979,6 +6037,134 @@ Here goes some texts.
 \item
   \textbf{Prediction intervals}: Generate prediction intervals for new observations using a fitted linear regression model. Interpret the prediction intervals and discuss their usefulness for making predictions in a social science context.
 \end{enumerate}
+
+\emph{Task 1:} Use the \texttt{mediation} package to perform a mediation analysis with \texttt{price} as the outcome variable, \texttt{rm} as the treatment variable, and \texttt{crim} as the mediator variable. Estimate and report the average causal mediation effect (ACME), the average direct effect (ADE), the total effect, and the proportion mediated. Explain what these effects mean and how to interpret them.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load the mediation package}
+\FunctionTok{library}\NormalTok{(mediation)}
+
+\CommentTok{\# Fit a linear regression model with crim as the mediator variable}
+\NormalTok{fit3 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(crim }\SpecialCharTok{\textasciitilde{}}\NormalTok{ rm, }\AttributeTok{data =}\NormalTok{ BostonHousing)}
+
+\CommentTok{\# Fit a linear regression model with price as the outcome variable}
+\NormalTok{fit4 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(medv }\SpecialCharTok{\textasciitilde{}}\NormalTok{ rm }\SpecialCharTok{+}\NormalTok{ crim, }\AttributeTok{data =}\NormalTok{ BostonHousing)}
+
+\CommentTok{\# Perform a mediation analysis with price as the outcome variable, rm as the treatment variable, and crim as the mediator variable}
+\NormalTok{med.out }\OtherTok{\textless{}{-}} \FunctionTok{mediate}\NormalTok{(fit3, fit4, }\AttributeTok{treat =} \StringTok{"rm"}\NormalTok{, }\AttributeTok{mediator =} \StringTok{"crim"}\NormalTok{, }\AttributeTok{sims =} \DecValTok{1000}\NormalTok{)}
+
+\CommentTok{\# Estimate and report the average causal mediation effect (ACME), the average direct effect (ADE), the total effect, and the proportion mediated}
+\FunctionTok{summary}\NormalTok{(med.out)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Causal Mediation Analysis 
+## 
+## Quasi-Bayesian Confidence Intervals
+## 
+##                Estimate 95% CI Lower 95% CI Upper p-value    
+## ACME             0.7042       0.4170         1.06  <2e-16 ***
+## ADE              8.3994       7.5494         9.14  <2e-16 ***
+## Total Effect     9.1036       8.2886         9.91  <2e-16 ***
+## Prop. Mediated   0.0765       0.0465         0.11  <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Sample Size Used: 506 
+## 
+## 
+## Simulations: 1000
+\end{verbatim}
+
+The ACME is estimated to be 0.7042, with a 95\% confidence interval of {[}0.4170, 1.06{]}. This means that \texttt{crim} is estimated to increase price by 0.7042 units on average, for each unit increase in \texttt{rm}. The p-value is less than 2e-16, indicating that this effect is statistically significant at the 5\% level.
+
+The ADE is estimated to be 8.3994, with a 95\% confidence interval of {[}7.5494, 9.14{]}. This means that \texttt{rm} is estimated to increase price by 8.3994 units on average, after controlling for \texttt{crim}. The p-value is less than 2e-16, indicating that this effect is also statistically significant at the 5\% level.
+
+The total effect is estimated to be 9.1036, with a 95\% confidence interval of {[}8.2886, 9.91{]}. This means that \texttt{rm} is estimated to increase price by 9.1036 units on average, without controlling for \texttt{crim}. The p-value is less than 2e-16, indicating that this effect is also statistically significant at the 5\% level.
+
+The proportion mediated is estimated to be 0.0765, with a 95\% confidence interval of {[}0.0465, 0.11{]}. This means that about 7.65\% of the total effect of \texttt{rm} on price is mediated by \texttt{crim}. The p-value is less than 2e-16, indicating that this proportion is also statistically significant at the 5\% level.
+
+\emph{Task 2:} Use the tidy() function from the broom package to create a data frame with the coefficients, standard errors, p-values, and confidence intervals of a linear regression model that predicts the median value of a home (MEDV) based on the nitric oxides concentration (NOX) and the average number of rooms per dwelling (RM).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(broom)}
+\NormalTok{model }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(medv }\SpecialCharTok{\textasciitilde{}}\NormalTok{ nox }\SpecialCharTok{+}\NormalTok{ rm, }\AttributeTok{data =}\NormalTok{ BostonHousing)}
+\FunctionTok{tidy}\NormalTok{(model, }\AttributeTok{conf.int =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 7
+##   term        estimate std.error statistic  p.value conf.low conf.high
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>
+## 1 (Intercept)   -18.2      3.34      -5.45 7.82e- 8   -24.8     -11.6 
+## 2 nox           -19.0      2.53      -7.50 2.97e-13   -23.9     -14.0 
+## 3 rm              8.16     0.417     19.5  1.04e-63     7.34      8.98
+\end{verbatim}
+
+The results show that both NOX and RM are significant predictors of MEDV, with \texttt{RM} having a positive effect and \texttt{NOX} having a negative effect.
+
+\emph{Task 3:} Use the glance() function from the broom package to create a data frame with the R-squared, adjusted R-squared, root mean squared error, and other summary statistics of the linear regression model from task 1.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glance}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 12
+##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
+## 1     0.535         0.534  6.28      290. 1.83e-84     2 -1646. 3301. 3317.
+## # i 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+\end{verbatim}
+
+The results show that the model has an R-squared value of 0.535, indicating that it explains about 53.5\% of the variance in the median value of a home (MEDV). The adjusted R-squared value is slightly lower at 0.533, indicating that the model is not overfitting.
+
+\emph{Task 4:} Use the predict() function to generate predicted values and prediction intervals for the median value of a home (MEDV) based on the linear regression model from task 1, and add them as new columns to the test data set. Use the caret package to create a train-test split of the data set with 70\% of the data for training and 30\% for testing.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(caret)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{trainIndex }\OtherTok{\textless{}{-}} \FunctionTok{createDataPartition}\NormalTok{(BostonHousing}\SpecialCharTok{$}\NormalTok{medv, }\AttributeTok{p =}\NormalTok{ .}\DecValTok{7}\NormalTok{, }\AttributeTok{list =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{trainData }\OtherTok{\textless{}{-}}\NormalTok{ BostonHousing[trainIndex,]}
+\NormalTok{testData }\OtherTok{\textless{}{-}}\NormalTok{ BostonHousing[}\SpecialCharTok{{-}}\NormalTok{trainIndex,]}
+\NormalTok{model }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(medv }\SpecialCharTok{\textasciitilde{}}\NormalTok{ nox }\SpecialCharTok{+}\NormalTok{ rm, }\AttributeTok{data =}\NormalTok{ trainData)}
+\NormalTok{testData}\SpecialCharTok{$}\NormalTok{predicted\_MEDV }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model, testData)}
+\NormalTok{testData}\SpecialCharTok{$}\NormalTok{pred\_interval }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model, testData, }\AttributeTok{interval =} \StringTok{"prediction"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{Task 5:} Use the augment() function from the broom package to create a data frame with the observed and predicted values, residuals, and other diagnostic measures for the linear regression model from task 1. Use the geom\_ribbon() function from the ggplot2 package to create a plot of the predicted values versus the observed values, with prediction intervals as ribbons. Use the rmse() function from the Metrics package to calculate the root mean squared error of the predictions on the test data set.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{augmented\_data }\OtherTok{\textless{}{-}} \FunctionTok{augment}\NormalTok{(model, }\AttributeTok{interval=} \StringTok{"prediction"}\NormalTok{)}
+
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{.fitted,}\AttributeTok{y=}\NormalTok{medv), }\AttributeTok{data=}\NormalTok{augmented\_data)}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{.fitted,}\AttributeTok{y=}\NormalTok{medv))}\SpecialCharTok{+}
+  \FunctionTok{geom\_ribbon}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{ymax=}\NormalTok{.upper,}\AttributeTok{ymin=}\NormalTok{.lower),}\AttributeTok{color=}\StringTok{"red"}\NormalTok{,}\AttributeTok{alpha=}\FloatTok{0.7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/task_5_p-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{RMSE}\NormalTok{(testData}\SpecialCharTok{$}\NormalTok{medv, augmented\_data}\SpecialCharTok{$}\NormalTok{.fitted)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10.97645
+\end{verbatim}
 
 \hypertarget{out-look}{%
 \chapter{Outlook}\label{out-look}}
