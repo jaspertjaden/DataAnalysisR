@@ -35,7 +35,7 @@ R Markdown is a powerful tool that offers many advantages for data analysis and 
 
 Overall, R Markdown is a powerful tool that offers many advantages for data analysis and reporting. It's a great way to create dynamic, reproducible documents that are easy to share and collaborate on 😊
 
-I hope this introduction helps you understand what R Markdown is and how it can be used. If you want to learn more, there are many great resources available online, including the [R Markdown website](^1^) 😊
+I hope this introduction helps you understand what R Markdown is and how it can be used. If you want to learn more, there are many great resources available online, including the [R Markdown website](https://bookdown.org/yihui/rmarkdown/) 😊
 
 
 
@@ -87,10 +87,11 @@ housing <- BostonHousing2
 write.xlsx(housing, "../datasets/boston.xlsx")
 ```
 
+::: {.assignx}
 
 1. **Read the dataset**: Read the Boston Housing Dataset from the Excel file.
 
-```{r}
+```{r, include=FALSE}
 library(readxl)
 BostonHousing <- read_excel("../datasets/boston.xlsx")
 ```
@@ -98,7 +99,7 @@ BostonHousing <- read_excel("../datasets/boston.xlsx")
 
 2. **Inspect the dataset**: Use the proper functions to inspect the structure and contents of the dataset. How many Categorical variables are there? How many numerical variables are there? Is there any null values?
 
-```{r}
+```{r, include=FALSE}
 str(BostonHousing)
 glimpse(BostonHousing)
 # Check for missing values in all columns
@@ -108,14 +109,14 @@ colSums(is.na(BostonHousing))
 
 3. **Summarize categorical variables**: Create frequency table for categorical variables CHAS (Charles River dummy variable).
 
-```{r}
+```{r, include=FALSE}
 table(BostonHousing$chas)
 ```
 
 
 4. **Summarize numerical variables**: Generate summary statistics for numerical variables CRIM (per capita crime rate by town) and RM (average number of rooms per dwelling).
 
-```{r}
+```{r, include=FALSE}
 summary(BostonHousing$crim)
 summary(BostonHousing$rm)
 ```
@@ -123,7 +124,7 @@ summary(BostonHousing$rm)
 
 5. **Create new variables**: Create new variable indicating whether a house is located near the Charles River or not.
 
-```{r}
+```{r, include=FALSE}
 library(dplyr)
 BostonHousing <- BostonHousing %>%
   mutate(near_river = case_when(chas == 1 ~ "Yes",
@@ -133,7 +134,7 @@ BostonHousing <- BostonHousing %>%
 
 6. **Recoding variables**: Create a new variable that groups houses by their proximity to employment centers.
 
-```{r}
+```{r, include=FALSE}
 BostonHousing <- BostonHousing %>%
   mutate(distance_group = case_when(
     dis < 2 ~ "Near",
@@ -145,7 +146,7 @@ BostonHousing <- BostonHousing %>%
 
 7. **Visualize relationships**: Create scatter plots to explore the relationship between housing prices and other numeric variables(`rm`, `age`, `dis`, `lstat`). Interpret the plots. Also show the distribution of ptratio by distance_group.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, include=FALSE}
 # Create a list of numeric variables to plot against MEDV
 vars <- c("rm", "age", "dis", "lstat")
 
@@ -181,9 +182,8 @@ ggarrange(rm_sp, age_sp,
           ncol = 2, nrow = 2)
 ```
 
-*boxplot*
 
-```{r}
+```{r, include=FALSE}
 # Create a boxplot of PTRATIO grouped by distance_group
 BostonHousing %>% ggplot() + 
 geom_boxplot(aes(y=ptratio)) +
@@ -194,7 +194,7 @@ geom_boxplot(aes(y=ptratio)) +
 
 8. **Correlation analysis**: Calculate correlation coefficients between housing prices and average number of rooms per dwelling, also between housing prices and crime rate. Interpret the result.
 
-```{r}
+```{r, include=FALSE}
 library(corrplot)
 corr_matrix0 <- cor(BostonHousing[, c("medv", "rm")])
 corr_matrix1 <- cor(BostonHousing[, c("medv", "crim")])
@@ -203,6 +203,7 @@ corrplot(corr_matrix1)
 ```
 
 
+:::
 
 
 

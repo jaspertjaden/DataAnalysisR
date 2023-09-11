@@ -4,16 +4,11 @@ Here goes some texts.
 
 ## Exercises
 
-1. **Variable selection**: Use variable selection methods, such as stepwise selection or best subset selection, to identify a subset of predictor variables that provide the best fit for a multiple linear regression model. Compare the performance of different models and discuss their relative strengths and weaknesses.
-2. **Interaction effects**: Include interaction terms in a multiple linear regression model to capture the effect of two or more predictor variables interacting with each other. Interpret the coefficients of the interaction terms and discuss their implications from a social science perspective.
-3. **Polynomial regression**: Use polynomial regression to model non-linear relationships between predictor variables and the response variable. Fit a polynomial regression model, generate predictions, and assess the model's performance.
-4. **Model comparison**: Use model comparison methods, such as adjusted R-squared or AIC, to compare the performance of different linear regression models. Select the best model based on these criteria and discuss its strengths and weaknesses.
-5. **Tidy models**: Use the `broom` package to convert linear regression models into tidy data frames using functions such as `tidy()`, `glance()`, and `augment()`. Manipulate and visualize the tidy data frames to gain insights into the models and their performance.
-6. **Prediction intervals**: Generate prediction intervals for new observations using a fitted linear regression model. Interpret the prediction intervals and discuss their usefulness for making predictions in a social science context.
+::: {.assignx}
 
-*Task 1:* Use the `mediation` package to perform a mediation analysis with `price` as the outcome variable, `rm` as the treatment variable, and `crim` as the mediator variable. Estimate and report the average causal mediation effect (ACME), the average direct effect (ADE), the total effect, and the proportion mediated. Explain what these effects mean and how to interpret them.
+- **Task 1:** Perform a mediation analysis with `price` as the outcome variable, `rm` as the treatment variable, and `crim` as the mediator variable. Estimate and report the average causal mediation effect (ACME), the average direct effect (ADE), the total effect, and the proportion mediated. Explain what these effects mean and how to interpret them.
 
-```{r task_1_p, warning=FALSE}
+```{r task_1_p, warning=FALSE, include=FALSE}
 # Load the mediation package
 library(mediation)
 
@@ -28,40 +23,43 @@ med.out <- mediate(fit3, fit4, treat = "rm", mediator = "crim", sims = 1000)
 
 # Estimate and report the average causal mediation effect (ACME), the average direct effect (ADE), the total effect, and the proportion mediated
 summary(med.out)
+
+#The ACME is estimated to be 0.7042, with a 95% confidence interval of [0.4170, 1.06]. This means that `crim` is estimated to increase price by 0.7042 units on average, for each unit increase in `rm`. The p-value is less than 2e-16, indicating that this effect is statistically significant at the 5% level.
+
+#The ADE is estimated to be 8.3994, with a 95% confidence interval of [7.5494, 9.14]. This means that `rm` is estimated to increase price by 8.3994 units on average, after controlling for `crim`. The p-value is less than 2e-16, indicating that this effect is also statistically significant at the 5% level.
+
+#The total effect is estimated to be 9.1036, with a 95% confidence interval of [8.2886, 9.91]. This means that `rm` is estimated to increase price by 9.1036 units on average, without controlling for `crim`. The p-value is less than 2e-16, indicating that this effect is also statistically significant at the 5% level.
+
+#The proportion mediated is estimated to be 0.0765, with a 95% confidence interval of [0.0465, 0.11]. This means that about 7.65% of the total effect of `rm` on price is mediated by `crim`. The p-value is less than 2e-16, indicating that this proportion is also statistically significant at the 5% level.
 ```
-The ACME is estimated to be 0.7042, with a 95% confidence interval of [0.4170, 1.06]. This means that `crim` is estimated to increase price by 0.7042 units on average, for each unit increase in `rm`. The p-value is less than 2e-16, indicating that this effect is statistically significant at the 5% level.
 
-The ADE is estimated to be 8.3994, with a 95% confidence interval of [7.5494, 9.14]. This means that `rm` is estimated to increase price by 8.3994 units on average, after controlling for `crim`. The p-value is less than 2e-16, indicating that this effect is also statistically significant at the 5% level.
 
-The total effect is estimated to be 9.1036, with a 95% confidence interval of [8.2886, 9.91]. This means that `rm` is estimated to increase price by 9.1036 units on average, without controlling for `crim`. The p-value is less than 2e-16, indicating that this effect is also statistically significant at the 5% level.
+- **Task 2:** Create or show a data frame with the coefficients, standard errors, p-values, and confidence intervals of a linear regression model that predicts the median value of a home (`MEDV`) based on the nitric oxides concentration (`NOX`) and the average number of rooms per dwelling (`RM`).
 
-The proportion mediated is estimated to be 0.0765, with a 95% confidence interval of [0.0465, 0.11]. This means that about 7.65% of the total effect of `rm` on price is mediated by `crim`. The p-value is less than 2e-16, indicating that this proportion is also statistically significant at the 5% level.
-
-*Task 2:* Use the tidy() function from the broom package to create a data frame with the coefficients, standard errors, p-values, and confidence intervals of a linear regression model that predicts the median value of a home (MEDV) based on the nitric oxides concentration (NOX) and the average number of rooms per dwelling (RM).
-
-```{r task_2_p, warning=FALSE}
+```{r task_2_p, warning=FALSE, include=FALSE}
 library(broom)
 model <- lm(medv ~ nox + rm, data = BostonHousing)
 tidy(model, conf.int = TRUE)
 
+#The results show that both NOX and RM are significant predictors of MEDV, with `RM` having a positive effect and `NOX` having a negative effect.
 ```
-The results show that both NOX and RM are significant predictors of MEDV, with `RM` having a positive effect and `NOX` having a negative effect.
 
 
-*Task 3:* Use the glance() function from the broom package to create a data frame with the R-squared, adjusted R-squared, root mean squared error, and other summary statistics of the linear regression model from task 1. Explain the output.
+
+- **Task 3:** Create a data frame with the R-squared, adjusted R-squared, root mean squared error, and other summary statistics of the linear regression model from task 1. Explain the output.
 
 
-```{r task_3_p, warning=FALSE}
+```{r task_3_p, warning=FALSE, include=FALSE}
 glance(model)
+
+#The results show that the model has an R-squared value of 0.535, indicating that it explains about 53.5% of the variance in the median value of a home (MEDV). The adjusted R-squared value is slightly lower at 0.533, indicating that the model is not overfitting.
+
 ```
-The results show that the model has an R-squared value of 0.535, indicating that it explains about 53.5% of the variance in the median value of a home (MEDV). The adjusted R-squared value is slightly lower at 0.533, indicating that the model is not overfitting.
 
-*Task 4:* Use the predict() function to generate predicted values and prediction intervals for the median value of a home (MEDV) based on the linear regression model from task 1, and add them as new columns to the test data set. Use the caret package to create a train-test split of the data set with 70% of the data for training and 30% for testing.
+- **Task 4:** Generate predicted values and prediction intervals for the median value of a home (`MEDV`) based on the linear regression model from task 1, and add them as new columns to the test data set. Create a train-test split of the data set with 70% of the data for training and 30% for testing.
 
--> check whether predict in caret is differnt  than predict in base R.
--> consider cart as kast task
 
-```{r task_4_p, warning=FALSE}
+```{r task_4_p, warning=FALSE, include=FALSE}
 library(caret)
 set.seed(123)
 trainIndex <- createDataPartition(BostonHousing$medv, p = .7, list = FALSE)
@@ -74,9 +72,9 @@ testData$pred_interval <- predict(model, testData, interval = "prediction")
 ```
 
 
-*Task 5:* Use the augment() function from the broom package to create a data frame with the observed and predicted values, residuals, and other diagnostic measures for the linear regression model from task 1. Use the geom_ribbon() function from the ggplot2 package to create a plot of the predicted values versus the observed values, with prediction intervals as ribbons. Use the rmse() function from the Metrics package to calculate the root mean squared error of the predictions on the test data set.
+- **Task 5:** Create a data frame with the observed and predicted values, residuals, and other diagnostic measures for the linear regression model from task 1. Create a plot of the predicted values versus the observed values, with prediction intervals as ribbons. Calculate the root mean squared error of the predictions on the test data set.
 
-```{r task_5_p, warning=FALSE}
+```{r task_5_p, warning=FALSE, include=FALSE}
 augmented_data <- augment(model, interval= "prediction")
 
   ggplot(aes(x=.fitted,y=medv), data=augmented_data)+
@@ -87,6 +85,7 @@ RMSE(testData$medv, augmented_data$.fitted)
 
 ```
 
+:::
 
 
 

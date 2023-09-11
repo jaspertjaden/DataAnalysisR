@@ -8,10 +8,14 @@ We will return to the NBA data in session 8 applying everything we
 learned to assess the effect of scored points on salary.
 
 ## Objectives
-
+::: {.objectives}
 * Understand simple linear regression
 * Understand the regression formula
 * Interpret the results
+
+:::
+
+
 
 ## What is Linear Regression
 
@@ -612,4 +616,13 @@ effect of interest. Working more hours results in receiving a better grade.
 But there could be other variables that influence this relationship. In the
 next session we learn how we can include these in our model, when we move from
 simple to multiple linear regression.
+
+## Further resources
+::: {.resources}
+1. [Linear Regression in R Tutorial](https://www.datacamp.com/tutorial/linear-regression-R): This tutorial covers the basics of linear regression in R, such as how to use the lm function, how to interpret the results, and how to visualize the relationship between variables.
+2. [Linear Regression in R | How to intrepret Linear Regression with Examples](https://www.educba.com/linear-regression-in-r/): This article explains the concept of linear regression, the assumptions and limitations of the model, and how to perform and evaluate a linear regression in R with examples.
+3. [Multiple Linear Regression in R (With Graphs & Examples)](https://www.upgrad.com/blog/multiple-linear-regression-in-r/): This guide shows how to extend the linear regression model to include more than one explanatory variable, how to use the caret package to train and test the model, and how to plot the results with ggplot2.
+4. [Linear Models in R](https://moderndive.com/5-regression.html#model1table): This chapter from the book ModernDive provides a comprehensive introduction to linear models in R, including simple and multiple linear regression, model selection, inference, diagnostics, and prediction.
+
+:::
 

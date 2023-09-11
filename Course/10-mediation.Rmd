@@ -1,8 +1,34 @@
 # Mediation {#med}
 In this week, we will introduce to the concept of mediation analysis. 
 
+## Objectives
+::: {.objectives}
 
-Mediation is a way of using (linear) regression with a different interest in mind.
+- here to be filled
+
+:::
+
+## R functions covered this week
+::: {.functions}
+- `dagitty()` : This function creates and analyzes Directed Acyclic Graphs (DAGs).
+- `load()` : This function is used to load an R object from a file. It takes a file name as an argument and returns the object stored in the file.
+- `mutate()` : This function is from the **dplyr** package. It is used to add new columns or modify existing columns in a data frame. It takes a data frame and one or more expressions that define the new or modified columns. It returns a modified data frame.
+- `case_when()` : This function is from the **dplyr** package. It is used to perform multiple conditional operations in a vectorized way. It takes one or more logical expressions and corresponding values, and returns a vector with the values that match the first true expression.
+- `group_by()` : This function is from the **dplyr** package. It is used to group a data frame by one or more variables. It takes a data frame and one or more grouping variables, and returns a grouped data frame that can be further manipulated with other **dplyr** functions.
+- `summarize()` : This function is from the **dplyr** package. It is used to summarize multiple values into a single value. It takes a grouped data frame and one or more expressions that calculate summary statistics, and returns a summarized data frame.
+- `ggplot()` : This function is from the **ggplot2** package. It is used to create a wide variety of static, dynamic, and interactive graphics in R. The function allows you to specify a mapping from data to aesthetics (color, shape, size) and geometric objects (points, lines, bars). It also allows you to add statistical transformations, coordinate systems, faceting, and themes.
+- `geom_bar()` : This function is from the **ggplot2** package. It is used to create bar charts in R. It takes a mapping from data to aesthetics and other arguments that control the appearance of the bars, such as stat, width, position, fill, color, etc. It returns a layer that can be added to a ggplot object.
+- `ylim()` : This function is from the **ggplot2** package. It is used to set the limits of the y-axis in a plot. It takes two numeric values that define the lower and upper limits of the y-axis. It returns a scale object that can be added to a ggplot object.
+- `theme_minimal()` : This function is from the **ggplot2** package. It is used to apply a minimal theme to a plot. It takes no arguments and returns a theme object that can be added to a ggplot object.
+- `lm()` : This function is used to fit a linear model to the data. It takes a formula that specifies the dependent and independent variables, and a data frame that contains the variables. It returns a model object that can be used for further analysis.
+- `summary()` : This function is used to get a summary of a model object, such as the coefficients, standard errors, t-values, p-values, R-squared, and F-statistic. It also provides information on the residuals, such as the minimum, maximum, median, and quartiles.
+- `modelsummary()` : This function is from the **modelsummary** package. It is used to create tables that summarize multiple models side by side. It takes a list of model objects and other arguments that control the appearance of the table, such as output format, statistics to include, variable labels, etc. It returns an object that can be printed or saved as an image or file.
+- `mediate()` : This function is from the **mediation** package. It is used to perform causal mediation analysis in R. It takes two model objects that specify the relationship between treatment and mediator (path_a), and between treatment, mediator and outcome (path_b), as well as other arguments that specify the treatment variable, mediator variable, treatment value, etc. It returns an object that contains the results of mediation analysis.
+- `summary.mediator()` : This function is from the **mediation** package. It is used to get a summary of an object returned by `mediate()`. It takes an object of class mediator and other arguments that control the confidence intervals and p-values for mediation effects. It prints out a summary of mediation effects.
+
+:::
+
+*Mediation* is a way of using (linear) regression with a different interest in mind.
 So far, we have been interested in estimating the effect of an x variable on a 
 y variable. In our example using NBA data, we were interested in the effect of 
 'points scored' by a player on player salary. We learned how to "adjust" or "condition"
@@ -38,7 +64,7 @@ So maybe, the fact guards and forwards simply score less than centers explains t
 
 To visualize this mini-theory and identification strategy, let's have a look at this DAG.
 
-``` {r dag_final, echo = FALSE}
+``` {r dag_final_m, echo = FALSE, warning=FALSE, message=FALSE}
 library(dagitty)
 
 dagitty('dag {
@@ -61,12 +87,12 @@ Postion -> Salary
 Now let's test this out using R. 
 
 + First, we load the data. 
-+ Second, we reduce the position variable to 4 categories: Center, Guards, Forwards, and Mixed. As we will see, it is actually not common that players take on several roles even within the same season. This likely affects their salary as well. Players that can play multiple positions may get more playing time and as a result, score more. We are interested, however, in the difference between "pure" guards, forwards and centers, so we will run the analysis excluding "mixed" position players. 
++ Second, we reduce the position variable to 4 categories: Center, Guards, Forwards, and Mixed. As we will see, it is actually not common that players take on several roles even within the same season. This likely affects their `salary` as well. Players that can play multiple positions may get more playing time and as a result, score more. We are interested, however, in the difference between "pure" guards, forwards and centers, so we will run the analysis excluding "mixed" position players. 
 + Third, we check whether there are any differences in average salaries by position using a graph and a table
-+ Fourth, we run a linear regression, regressing position (as factor variable) on salary while adjusting for year of season. 
++ Fourth, we run a linear regression, regressing position (as factor variable) on `salary` while adjusting for year of season. 
 
 
-```{r}
+```{r med_0, warning=FALSE, message=FALSE}
 # load packages
 
 load(file = "../datasets/nba/data_nba.RData")
@@ -106,7 +132,7 @@ summary(lm(salary ~ as.factor(position_rec) + as.factor(season_start), data=data
 
 ```
 
-Looking at the regression ouput, we see that, indeed, centers make more than guards and forwards. Actually, a lot less, approx. 500.000 USD less on average. 
+Looking at the regression output, we see that, indeed, centers make more than guards and forwards. Actually, a lot less, approx. 500.000 USD less on average. 
 
 Let's ignore for the moment that this is a terrible model. The r-squared is only 0.03 which means that position and season only explain ~ 3% of variation in salaries. 
 
@@ -114,7 +140,7 @@ Now, we want to know whether scoring explain this salary penalty. Here is a simp
 
 
 
-```{r}
+```{r med_1, warning=FALSE, message=FALSE}
 # let'S compare models side by side in a regression table
 
 #install.packages("modelsummary")
@@ -136,9 +162,9 @@ average points, compared to centers with average points, make even less than cen
 are important despite the fact that they score less. 
 
 
-Let's use a new package for "causal mediation analysis".
+Let's use a new package for *causal mediation analysis*.
 
-```{r, warning=FALSE, message=FALSE}
+```{r med_2, warning=FALSE, message=FALSE}
 
 
 # now let's try a dedidcated package for mediation
@@ -178,13 +204,13 @@ summary(results_mediation_guards)
 
 The output looks different. Let's go through it step by step:
 
-+ ACME: Average Causal Mediation Effect - "indirect effect", this is the effect of position through points on salary.         
++ ACME: Average Causal Mediation Effect - *indirect effect*, this is the effect of position through points on salary.         
 + ADE: Average Direct Effect - This is the direct effect of position on salary. + Total Effect: ADE and ACME together are the "total effect"  
 + Prop. Mediated. This is the proportion of the total effect that is "explained" by the indirect effect. 
 
 Let's interpret this for our model:
 
-+ ACME: If only points could explain salaries, Guards would make, on average 900.000 USD more than centers (because they actually score more points)
++ ACME: If only points could explain `salaries`, Guards would make, on average 900.000 USD more than centers (because they actually score more points)
 + ADE:  Adjusting for points, guards would make 1.4 Million USD less than centers
 + Total Effect: Overall, guards actually make 500.000 USD less.
 + Prop. Mediated. This is actually a negative value which makes no sense in this case. If points scored really "mediated" part of the total effect and had some explanatory power here, then we would see a positive percentage. 
@@ -197,7 +223,11 @@ The indirect effect is the total effect minus the direct effect (-1.400.000 - (-
 In sum, Guards are disadvantaged. They receive less money than center, although, if the points were considered, they should make even more. There must be other reasons why guards earn less. We need to go back to theory and come up with new hypothesis. 
 
 
-## Find out more
+## Further Resources
+::: {.resources}
+- [mediation: R Package for Causal Mediation Analysis](https://cran.r-project.org/web/packages/mediation/vignettes/mediation.pdf): This article describes the mediation package for conducting causal mediation analysis in R. It explains how to use the mediate() function to estimate various quantities of interest, such as average causal mediation effects, average direct effects, total effects, and proportions mediated. It also shows how to perform sensitivity analysis and deal with multiple mediators and treatment noncompliance.
+- [Mediation Analysis -- Advanced Statistics using R](https://advstats.psychstat.org/book/mediation/index.php): This web page provides an introduction to mediation analysis using R. It covers the basic concepts, how to draw path diagrams, how to test mediation effects using different methods, such as Baron and Kenny (1986) method, Sobel test, and bootstrapping. It also provides code examples and exercises.
+- [Mediation Analysis in R from Scratch (with R code)](https://tidypython.com/mediation-analysis-in-r-from-scratch-with-r-code/): This tutorial shows how to do mediation analysis in R from scratch. It demonstrates how to fit linear regression models for the mediator and the outcome, how to calculate the mediation effect and its standard error, and how to test its significance using a normal approximation or a bootstrap method.
+- [mediate function - RDocumentation](https://rdocumentation.org/packages/mediation/versions/4.5.0/topics/mediate): This web page documents the mediate() function from the mediation package. It provides a detailed description of the arguments, values, and methods of the function. It also gives some examples of how to use the function for different types of data and models.
 
-- provide resources here 
-- references etc. 
+:::

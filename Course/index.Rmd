@@ -8,9 +8,7 @@ bibliography: [book.bib, packages.bib]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |
-  This is a minimal example of using the bookdown package to write a book.
-  The HTML output format for this example is bookdown::gitbook,
-  set in the _output.yml file.
+  In this course, you will learn how to analyse data using regression in R.
 link-citations: yes
 github-repo: jaspertjaden/DataAnalysisR
 ---
@@ -19,7 +17,23 @@ github-repo: jaspertjaden/DataAnalysisR
 
 This course offers an accessible and easy introduction to one of the fastest growing statistical packages used in social science and data science more generally.
 
-Please download the data used in the course [here](https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp). To find more about me, have a look at [my website](https://jaspertjaden.com). Also, feel free to watch me as I walk you through each lesson [here](https://www.youtube.com/playlist?list=PLr43hk2e3hFMg4tZdJsN0qzG5YkQB3A1c).
+## Acknowlegdements
+::: {.preface}
+About the Authors 
+
+- Dr. Jasper Tjaden (to be filled)
+
+- Jakob Tures (to be filled)
+
+Assistants
+
+- Md Niaz Morshed (Student Research Assistant)
+:::
+
+Please download the data used in the course [here](https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp). To find more about me, have a look at [my website](https://jaspertjaden.com).
+
+
+::: {.appendix}
 
 **Overview over the Course :**
 
@@ -35,8 +49,10 @@ Please download the data used in the course [here](https://www.worldvaluessurvey
 - **[Week 10: Mediation](#med)**
 - **[Week 11: Prediction - Theory](#pm-t)**
 - **[Week 12: Prediction - Application](#pm-a)**
-- **[Week 13: Other Estimators](#other-est)**
+- **[Week 13: Logistic Regression](#log-est)**
 - **[Week 14: Course Paper - Discussion - Outlook](#out-look)**
+
+:::
 
 
 ```{r include=FALSE}

@@ -4,32 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title> 2 Exloratory Data Analysis - I | Data Analysis with R for Social Scientists</title>
-  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <title> 2 Exploratory Data Analysis - I | Data Analysis with R for Social Scientists</title>
+  <meta name="description" content="In this course, you will learn how to analyse data using regression in R." />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content=" 2 Exloratory Data Analysis - I | Data Analysis with R for Social Scientists" />
+  <meta property="og:title" content=" 2 Exploratory Data Analysis - I | Data Analysis with R for Social Scientists" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta property="og:description" content="In this course, you will learn how to analyse data using regression in R." />
   <meta name="github-repo" content="jaspertjaden/DataAnalysisR" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content=" 2 Exloratory Data Analysis - I | Data Analysis with R for Social Scientists" />
+  <meta name="twitter:title" content=" 2 Exploratory Data Analysis - I | Data Analysis with R for Social Scientists" />
   
-  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta name="twitter:description" content="In this course, you will learn how to analyse data using regression in R." />
   
 
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-08-30" />
+<meta name="date" content="2023-09-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,7 +142,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Data Analysis with R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Intro</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Intro</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#acknowlegdements"><i class="fa fa-check"></i><b>0.1</b> Acknowlegdements</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro-sem.html"><a href="intro-sem.html"><i class="fa fa-check"></i><b>1</b> Introduction to Seminar</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="intro-sem.html"><a href="intro-sem.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
@@ -158,7 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5" data-path="intro-sem.html"><a href="intro-sem.html#prerequisites"><i class="fa fa-check"></i><b>1.5</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.6" data-path="intro-sem.html"><a href="intro-sem.html#structure"><i class="fa fa-check"></i><b>1.6</b> Structure</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="eda-1.html"><a href="eda-1.html"><i class="fa fa-check"></i><b>2</b> Exloratory Data Analysis - I</a>
+<li class="chapter" data-level="2" data-path="eda-1.html"><a href="eda-1.html"><i class="fa fa-check"></i><b>2</b> Exploratory Data Analysis - I</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="eda-1.html"><a href="eda-1.html#objectives-1"><i class="fa fa-check"></i><b>2.1</b> Objectives</a></li>
 <li class="chapter" data-level="2.2" data-path="eda-1.html"><a href="eda-1.html#r-functions-covered-this-week"><i class="fa fa-check"></i><b>2.2</b> R functions covered this week</a></li>
@@ -170,6 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="eda-1.html"><a href="eda-1.html#change-variables"><i class="fa fa-check"></i><b>2.8</b> change variables</a></li>
 <li class="chapter" data-level="2.9" data-path="eda-1.html"><a href="eda-1.html#explore-the-whole-dataset"><i class="fa fa-check"></i><b>2.9</b> Explore the whole dataset</a></li>
 <li class="chapter" data-level="2.10" data-path="eda-1.html"><a href="eda-1.html#explore-individual-variables"><i class="fa fa-check"></i><b>2.10</b> explore individual variables</a></li>
+<li class="chapter" data-level="2.11" data-path="eda-1.html"><a href="eda-1.html#further-resources"><i class="fa fa-check"></i><b>2.11</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="eda-2.html"><a href="eda-2.html"><i class="fa fa-check"></i><b>3</b> Exploratory Data Analysis - II</a>
 <ul>
@@ -182,22 +180,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="dags-1.html"><a href="dags-1.html"><i class="fa fa-check"></i><b>4</b> DAGs</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="dags-1.html"><a href="dags-1.html#objectives-2"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
-<li class="chapter" data-level="4.2" data-path="dags-1.html"><a href="dags-1.html#modelling"><i class="fa fa-check"></i><b>4.2</b> Modelling</a>
+<li class="chapter" data-level="4.2" data-path="dags-1.html"><a href="dags-1.html#functions-covered"><i class="fa fa-check"></i><b>4.2</b> Functions Covered</a></li>
+<li class="chapter" data-level="4.3" data-path="dags-1.html"><a href="dags-1.html#modelling"><i class="fa fa-check"></i><b>4.3</b> Modelling</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="dags-1.html"><a href="dags-1.html#what-is-modelling"><i class="fa fa-check"></i><b>4.2.1</b> What is modelling?</a></li>
-<li class="chapter" data-level="4.2.2" data-path="dags-1.html"><a href="dags-1.html#estimating-effects-vs.-prediction"><i class="fa fa-check"></i><b>4.2.2</b> Estimating effects vs. prediction</a></li>
+<li class="chapter" data-level="4.3.1" data-path="dags-1.html"><a href="dags-1.html#what-is-modelling"><i class="fa fa-check"></i><b>4.3.1</b> What is modelling?</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dags-1.html"><a href="dags-1.html#estimating-effects-vs.-prediction"><i class="fa fa-check"></i><b>4.3.2</b> Estimating effects vs. prediction</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="dags-1.html"><a href="dags-1.html#dags"><i class="fa fa-check"></i><b>4.3</b> DAGs</a>
+<li class="chapter" data-level="4.4" data-path="dags-1.html"><a href="dags-1.html#dags"><i class="fa fa-check"></i><b>4.4</b> DAGs</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="dags-1.html"><a href="dags-1.html#directed-acyclical-graphs"><i class="fa fa-check"></i><b>4.3.1</b> Directed acyclical graphs</a></li>
-<li class="chapter" data-level="4.3.2" data-path="dags-1.html"><a href="dags-1.html#patterns-of-relationships"><i class="fa fa-check"></i><b>4.3.2</b> Patterns of relationships</a></li>
-<li class="chapter" data-level="4.3.3" data-path="dags-1.html"><a href="dags-1.html#adjustment-set"><i class="fa fa-check"></i><b>4.3.3</b> Adjustment set</a></li>
+<li class="chapter" data-level="4.4.1" data-path="dags-1.html"><a href="dags-1.html#directed-acyclical-graphs"><i class="fa fa-check"></i><b>4.4.1</b> Directed acyclical graphs</a></li>
+<li class="chapter" data-level="4.4.2" data-path="dags-1.html"><a href="dags-1.html#patterns-of-relationships"><i class="fa fa-check"></i><b>4.4.2</b> Patterns of relationships</a></li>
+<li class="chapter" data-level="4.4.3" data-path="dags-1.html"><a href="dags-1.html#adjustment-set"><i class="fa fa-check"></i><b>4.4.3</b> Adjustment set</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="dags-1.html"><a href="dags-1.html#nba-dag"><i class="fa fa-check"></i><b>4.4</b> NBA DAG</a></li>
-<li class="chapter" data-level="4.5" data-path="dags-1.html"><a href="dags-1.html#resources"><i class="fa fa-check"></i><b>4.5</b> Resources</a>
+<li class="chapter" data-level="4.5" data-path="dags-1.html"><a href="dags-1.html#nba-dag"><i class="fa fa-check"></i><b>4.5</b> NBA DAG</a></li>
+<li class="chapter" data-level="4.6" data-path="dags-1.html"><a href="dags-1.html#resources"><i class="fa fa-check"></i><b>4.6</b> Resources</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="dags-1.html"><a href="dags-1.html#dagitty.net"><i class="fa fa-check"></i><b>4.5.1</b> dagitty.net</a></li>
-<li class="chapter" data-level="4.5.2" data-path="dags-1.html"><a href="dags-1.html#more-on-dags"><i class="fa fa-check"></i><b>4.5.2</b> More on DAGs</a></li>
+<li class="chapter" data-level="4.6.1" data-path="dags-1.html"><a href="dags-1.html#dagitty.net"><i class="fa fa-check"></i><b>4.6.1</b> dagitty.net</a></li>
+<li class="chapter" data-level="4.6.2" data-path="dags-1.html"><a href="dags-1.html#how-to-use-dagitty"><i class="fa fa-check"></i><b>4.6.2</b> How to use dagitty()</a></li>
+<li class="chapter" data-level="4.6.3" data-path="dags-1.html"><a href="dags-1.html#more-on-dags"><i class="fa fa-check"></i><b>4.6.3</b> More on DAGs</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="lin-t-1.html"><a href="lin-t-1.html"><i class="fa fa-check"></i><b>5</b> Linear Regression Theory I: Simple Linear Regression</a>
@@ -211,6 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.2" data-path="lin-t-1.html"><a href="lin-t-1.html#regressing-grade-on-hours"><i class="fa fa-check"></i><b>5.4.2</b> Regressing <code>grade</code> on <code>hours</code></a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="lin-t-1.html"><a href="lin-t-1.html#moving-on"><i class="fa fa-check"></i><b>5.5</b> Moving on</a></li>
+<li class="chapter" data-level="5.6" data-path="lin-t-1.html"><a href="lin-t-1.html#further-resources-1"><i class="fa fa-check"></i><b>5.6</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="lin-t-2.html"><a href="lin-t-2.html"><i class="fa fa-check"></i><b>6</b> Linear Regression Theory II: Multiple Linear Regression</a>
 <ul>
@@ -224,6 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="lin-t-2.html"><a href="lin-t-2.html#returning-to-our-research-question"><i class="fa fa-check"></i><b>6.3</b> Returning to our research question</a></li>
 <li class="chapter" data-level="6.4" data-path="lin-t-2.html"><a href="lin-t-2.html#adressing-the-uncertainty"><i class="fa fa-check"></i><b>6.4</b> Adressing the uncertainty</a></li>
 <li class="chapter" data-level="6.5" data-path="lin-t-2.html"><a href="lin-t-2.html#moving-on-1"><i class="fa fa-check"></i><b>6.5</b> Moving on</a></li>
+<li class="chapter" data-level="6.6" data-path="lin-t-2.html"><a href="lin-t-2.html#further-resources-2"><i class="fa fa-check"></i><b>6.6</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="log-t-3.html"><a href="log-t-3.html"><i class="fa fa-check"></i><b>7</b> Linear Regression Theory III: Diagnostics</a>
 <ul>
@@ -243,6 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.4.2" data-path="log-t-3.html"><a href="log-t-3.html#regression-diagnostics-revisited"><i class="fa fa-check"></i><b>7.4.2</b> Regression diagnostics (revisited)</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="log-t-3.html"><a href="log-t-3.html#conclusion"><i class="fa fa-check"></i><b>7.5</b> Conclusion</a></li>
+<li class="chapter" data-level="7.6" data-path="log-t-3.html"><a href="log-t-3.html#further-resources-3"><i class="fa fa-check"></i><b>7.6</b> Further Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="lin-a.html"><a href="lin-a.html"><i class="fa fa-check"></i><b>8</b> Linear Regression - Application</a>
 <ul>
@@ -265,31 +268,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="lin-a.html"><a href="lin-a.html#returning-to-our-research-question-2"><i class="fa fa-check"></i><b>8.7</b> Returning to our research question</a></li>
 <li class="chapter" data-level="8.8" data-path="lin-a.html"><a href="lin-a.html#moving-on-2"><i class="fa fa-check"></i><b>8.8</b> Moving on</a></li>
+<li class="chapter" data-level="8.9" data-path="lin-a.html"><a href="lin-a.html#further-resources-4"><i class="fa fa-check"></i><b>8.9</b> Further Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="lin-e.html"><a href="lin-e.html"><i class="fa fa-check"></i><b>9</b> Linear Regression - Exercises</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="lin-e.html"><a href="lin-e.html#exercises-of-linear-regression"><i class="fa fa-check"></i><b>9.1</b> Exercises of Linear Regression</a></li>
+<li class="chapter" data-level="9.1" data-path="lin-e.html"><a href="lin-e.html#exercises"><i class="fa fa-check"></i><b>9.1</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="med.html"><a href="med.html"><i class="fa fa-check"></i><b>10</b> Mediation</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="med.html"><a href="med.html#find-out-more"><i class="fa fa-check"></i><b>10.1</b> Find out more</a></li>
+<li class="chapter" data-level="10.1" data-path="med.html"><a href="med.html#objectives-7"><i class="fa fa-check"></i><b>10.1</b> Objectives</a></li>
+<li class="chapter" data-level="10.2" data-path="med.html"><a href="med.html#r-functions-covered-this-week-2"><i class="fa fa-check"></i><b>10.2</b> R functions covered this week</a></li>
+<li class="chapter" data-level="10.3" data-path="med.html"><a href="med.html#further-resources-5"><i class="fa fa-check"></i><b>10.3</b> Further Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="pm-t.html"><a href="pm-t.html"><i class="fa fa-check"></i><b>11</b> Prediction - Theory</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="pm-t.html"><a href="pm-t.html#how-prediction-works"><i class="fa fa-check"></i><b>11.1</b> How prediction works</a></li>
-<li class="chapter" data-level="11.2" data-path="pm-t.html"><a href="pm-t.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.2</b> Intro to Machine learning</a></li>
-<li class="chapter" data-level="11.3" data-path="pm-t.html"><a href="pm-t.html#more-resources"><i class="fa fa-check"></i><b>11.3</b> More resources:</a></li>
+<li class="chapter" data-level="11.1" data-path="pm-t.html"><a href="pm-t.html#objectives-8"><i class="fa fa-check"></i><b>11.1</b> Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="pm-t.html"><a href="pm-t.html#r-functions-covered-this-week-3"><i class="fa fa-check"></i><b>11.2</b> R functions covered this week</a></li>
+<li class="chapter" data-level="11.3" data-path="pm-t.html"><a href="pm-t.html#how-prediction-works"><i class="fa fa-check"></i><b>11.3</b> How prediction works</a></li>
+<li class="chapter" data-level="11.4" data-path="pm-t.html"><a href="pm-t.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.4</b> Intro to Machine learning</a></li>
+<li class="chapter" data-level="11.5" data-path="pm-t.html"><a href="pm-t.html#further-resources-6"><i class="fa fa-check"></i><b>11.5</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="pm-a.html"><a href="pm-a.html"><i class="fa fa-check"></i><b>12</b> Prediction - Application</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises-1"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>13</b> Outlook</a>
+<li class="chapter" data-level="13" data-path="log-est.html"><a href="log-est.html"><i class="fa fa-check"></i><b>13</b> Logistic regression</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="out-look.html"><a href="out-look.html#summary-of-what-was-covered-in-course"><i class="fa fa-check"></i><b>13.1</b> Summary of what was covered in course</a></li>
-<li class="chapter" data-level="13.2" data-path="out-look.html"><a href="out-look.html#other-outcome-variables"><i class="fa fa-check"></i><b>13.2</b> Other outcome variables</a></li>
-<li class="chapter" data-level="13.3" data-path="out-look.html"><a href="out-look.html#data-structures"><i class="fa fa-check"></i><b>13.3</b> Data structures</a></li>
-<li class="chapter" data-level="13.4" data-path="out-look.html"><a href="out-look.html#where-to-go-next"><i class="fa fa-check"></i><b>13.4</b> Where to go next</a></li>
+<li class="chapter" data-level="13.1" data-path="log-est.html"><a href="log-est.html#objectives-9"><i class="fa fa-check"></i><b>13.1</b> Objectives</a></li>
+<li class="chapter" data-level="13.2" data-path="log-est.html"><a href="log-est.html#functions-covered-in-this-week"><i class="fa fa-check"></i><b>13.2</b> Functions covered in this week</a></li>
+<li class="chapter" data-level="13.3" data-path="log-est.html"><a href="log-est.html#basic-concepts"><i class="fa fa-check"></i><b>13.3</b> Basic concepts</a></li>
+<li class="chapter" data-level="13.4" data-path="log-est.html"><a href="log-est.html#application"><i class="fa fa-check"></i><b>13.4</b> Application</a></li>
+<li class="chapter" data-level="13.5" data-path="log-est.html"><a href="log-est.html#interpretation-2"><i class="fa fa-check"></i><b>13.5</b> Interpretation</a></li>
+<li class="chapter" data-level="13.6" data-path="log-est.html"><a href="log-est.html#model-fit-1"><i class="fa fa-check"></i><b>13.6</b> model fit</a></li>
+<li class="chapter" data-level="13.7" data-path="log-est.html"><a href="log-est.html#diagnostics"><i class="fa fa-check"></i><b>13.7</b> diagnostics</a></li>
+<li class="chapter" data-level="13.8" data-path="log-est.html"><a href="log-est.html#prediction"><i class="fa fa-check"></i><b>13.8</b> prediction</a></li>
+<li class="chapter" data-level="13.9" data-path="log-est.html"><a href="log-est.html#mediation-1"><i class="fa fa-check"></i><b>13.9</b> Mediation</a></li>
+<li class="chapter" data-level="13.10" data-path="log-est.html"><a href="log-est.html#comparing-linear-and-logistic-regression"><i class="fa fa-check"></i><b>13.10</b> comparing linear and logistic regression</a></li>
+<li class="chapter" data-level="13.11" data-path="log-est.html"><a href="log-est.html#logistic-regression-in-machine-learning-context"><i class="fa fa-check"></i><b>13.11</b> logistic regression in Machine Learning context</a></li>
+<li class="chapter" data-level="13.12" data-path="log-est.html"><a href="log-est.html#further-resources-7"><i class="fa fa-check"></i><b>13.12</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>14</b> Outlook</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="out-look.html"><a href="out-look.html#summary-of-what-was-covered-in-course"><i class="fa fa-check"></i><b>14.1</b> Summary of what was covered in course</a></li>
+<li class="chapter" data-level="14.2" data-path="out-look.html"><a href="out-look.html#other-outcome-variables"><i class="fa fa-check"></i><b>14.2</b> Other outcome variables</a></li>
+<li class="chapter" data-level="14.3" data-path="out-look.html"><a href="out-look.html#data-structures"><i class="fa fa-check"></i><b>14.3</b> Data structures</a></li>
+<li class="chapter" data-level="14.4" data-path="out-look.html"><a href="out-look.html#where-to-go-next"><i class="fa fa-check"></i><b>14.4</b> Where to go next</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -313,29 +336,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="eda-1" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number"> 2</span> Exloratory Data Analysis - I<a href="eda-1.html#eda-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<h1><span class="header-section-number"> 2</span> Exploratory Data Analysis - I<a href="eda-1.html#eda-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="objectives-1" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Objectives<a href="eda-1.html#objectives-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="objectives">
 <ul>
 <li>Remember how to load and explore datasets in R</li>
 <li>Conduct basic descriptive data analysis</li>
-<li>Undestand and visualize distribution of and relationship between variables</li>
+<li>Understand and visualize distribution of and relationship between variables</li>
 </ul>
+</div>
 </div>
 <div id="r-functions-covered-this-week" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> R functions covered this week<a href="eda-1.html#r-functions-covered-this-week" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="functions">
 <ul>
-<li><code>load()</code></li>
-<li><code>read_excel()</code></li>
-<li><code>str()</code></li>
-<li><code>glimpse()</code></li>
-<li><code>table()</code></li>
-<li><code>summary()</code></li>
-<li><code>mutate()</code></li>
-<li><code>case_when()</code></li>
-<li><code>ggplot()</code></li>
-<li><code>corr ()</code></li>
+<li><code>load()</code>: loads an R data file into the current session.</li>
+<li><code>read_excel()</code>: reads an Excel file into a data frame.</li>
+<li><code>str()</code>: displays the structure of an object.</li>
+<li><code>glimpse()</code>: provides a transposed version of <code>str()</code>.</li>
+<li><code>table()</code>: creates a contingency table of counts for categorical variables.</li>
+<li><code>summary()</code>: produces a summary of an object, such as its mean, median, quartiles, etc.</li>
+<li><code>mutate()</code>: adds new variables or modifies existing ones in a data frame.</li>
+<li><code>case_when()</code>: creates a new variable based on multiple conditions.</li>
+<li><code>ggplot()</code>: creates a plot using the grammar of graphics.</li>
+<li><code>corr()</code>: computes the correlation matrix of numeric variables.</li>
+<li><code>skim()</code>: provides a summary of the whole dataset with various statistics and types of variables.</li>
+<li><code>introduce()</code>: gives an overview of the types and missingness of variables in a data frame.</li>
+<li><code>plot_intro()</code>: plots the information from <code>introduce()</code> as a bar chart.</li>
+<li><code>plot_missing()</code>: plots the percentage of missing values for each variable in a data frame.</li>
+<li><code>plot_bar()</code>: plots the frequency distribution of categorical variables in a data frame.</li>
+<li><code>tbl_summary()</code>: creates a summary table for descriptive statistics of variables in a data frame.</li>
+<li><code>correlate()</code>: creates a correlation data frame from a numeric data frame.</li>
+<li><code>rearrange()</code>: rearranges the correlation data frame by the absolute value of correlations.</li>
+<li><code>shave()</code>: removes the upper triangle of the correlation matrix to avoid redundancy.</li>
+<li><code>fashion()</code>: formats the correlation data frame with rounded values and signs.</li>
+<li><code>rplot()</code>: plots the correlation matrix as a scatterplot matrix with regression lines.</li>
+<li><code>ggcorrplot()</code>: plots the correlation matrix as a heatmap with circles representing the magnitude of correlations.</li>
 </ul>
+</div>
 </div>
 <div id="why-is-eda-so-important" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Why is EDA so important?<a href="eda-1.html#why-is-eda-so-important" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -351,7 +390,7 @@ the model from working altogether.</li>
 <p>The first step of any data analysis is getting data into R. To get started, we first need to follow some preparatory steps</p>
 <ol style="list-style-type: decimal">
 <li><p>In this course, we will use data on NBA players (Basketball). Usually, you need to first download the data and documentation and save them in a folder on your own computer. We have already done this, and provide the data for you here.</p></li>
-<li><p>Install R and Rstudio. If you don’t already have R installed, here is a link to how it is done (hyperlink)</p></li>
+<li><p>Install R and Rstudio. If you don’t already have R installed, here is a <a href="https://rstudio-education.github.io/hopr/starting.html#rstudio">link</a> to how it is done.</p></li>
 <li><p>In the folder which you will use for this class, create a new R project. You will see that all files appear in the bottom right window in R studio.</p></li>
 </ol>
 <p>Now, Let’s get started.</p>
@@ -368,7 +407,7 @@ We can use <code>read_delim()</code> or <code>read_csv</code> function. Note tha
 <span id="cb2-2"><a href="eda-1.html#cb2-2" tabindex="-1"></a>nba_salaries <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;../datasets/nba/salaries_1985to2018.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb2-3"><a href="eda-1.html#cb2-3" tabindex="-1"></a>nba_players <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;../datasets/nba/players.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Great, the two dataframes should appear in your environment in the upper right side in R studio.</p>
-<p>Let’s take a quick look at these trend dataframe using str() function The str() function shows the number of rows (observations) and columns (variables). It also provides information on the name of each column, its type and an example of some of the values in each column.</p>
+<p>Let’s take a quick look at these trend dataframe using <code>str()</code> function The <code>str()</code> function shows the number of rows (observations) and columns (variables). It also provides information on the name of each column, its type and an example of some of the values in each column.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="eda-1.html#cb3-1" tabindex="-1"></a><span class="fu">str</span>(nba_players)</span></code></pre></div>
 <pre><code>## spc_tbl_ [4,685 × 25] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ index      : num [1:4685] 0 1 2 3 4 5 6 7 8 9 ...
@@ -447,12 +486,12 @@ We can use <code>read_delim()</code> or <code>read_csv</code> function. Note tha
 ##   ..   team = col_character()
 ##   .. )
 ##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
-<p>We see that most variables/ columns, already are in the type which we want. R automatically picked up on the format. Text variables are “chr” for “character”; Numeric variables are “num”. It is very important that you understand the types of columns/ variables that R recognized. If you need a refresher, go here [hyperlink].</p>
+<p>We see that most variables/ columns, already are in the type which we want. R automatically picked up on the format. Text variables are <em>chr</em> for <em>character</em>; Numeric variables are <em>num</em>. It is very important that you understand the types of columns/ variables that R recognized. If you need a refresher, go <a href="https://jaspertjaden.github.io/course-intro2r/">here</a>.</p>
 </div>
 <div id="merge-datasets" class="section level2 hasAnchor" number="2.6">
 <h2><span class="header-section-number">2.6</span> Merge datasets<a href="eda-1.html#merge-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We see that “nba_salaries” contains the salaries of players for various seasons.
-“players” contains many career statistics about players, for example, how many points they scored on average per game, across their whole career.</p>
+<p>We see that <code>nba_salaries</code> contains the salaries of players for various seasons.
+<code>players</code> contains many career statistics about players, for example, how many points they scored on average per game, across their whole career.</p>
 <p>Now we want to link both datasets. We can do this using the <code>merge()</code> function.
 An alternative would be <code>join()</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="eda-1.html#cb7-1" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> <span class="fu">merge</span>(nba_players, nba_salaries, <span class="at">by.x =</span> <span class="fu">c</span>(<span class="st">&quot;_id&quot;</span>), <span class="at">by.y=</span><span class="fu">c</span>(<span class="st">&quot;player_id&quot;</span>))</span>
@@ -460,10 +499,10 @@ An alternative would be <code>join()</code>.</p>
 </div>
 <div id="clean-dataset" class="section level2 hasAnchor" number="2.7">
 <h2><span class="header-section-number">2.7</span> Clean dataset<a href="eda-1.html#clean-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can use the select() function to kick out columns and the filter() function to kick out rows. First, we need to look at the codebook and the questionnaire to understand the what each variable refers to (see .txt file “data_description”).</p>
+<p>We can use the <code>select()</code> function to kick out columns and the <code>filter()</code> function to kick out rows. First, we need to look at the codebook and the questionnaire to understand the what each variable refers to (see <code>.txt</code> file <code>*data_description*</code>).</p>
 <p>When using the select function, we will also rename the variables to make them more intuitive.</p>
 <p>First, let’s filter out Let’s filter all years between 2012-2022.</p>
-<p>Afterwards, we use the save() function to store the data as a .Rdata file and the write_excel() function to store the reduced dataset. This way we can simply load that one next time and save time.</p>
+<p>Afterwards, we use the <code>save()</code> function to store the data as a <code>.Rdata</code> file and the <code>write_excel()</code> function to store the reduced dataset. This way we can simply load that one next time and save time.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="eda-1.html#cb8-1" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="eda-1.html#cb8-2" tabindex="-1"></a>        <span class="fu">select</span>(<span class="fu">everything</span>(), <span class="sc">-</span>league, <span class="sc">-</span>highSchool) <span class="sc">%&gt;%</span></span>
 <span id="cb8-3"><a href="eda-1.html#cb8-3" tabindex="-1"></a>        <span class="fu">filter</span>(season_start<span class="sc">&gt;=</span><span class="dv">1998</span>)</span>
@@ -474,7 +513,7 @@ An alternative would be <code>join()</code>.</p>
 <p>Let’s do some data cleaning. First, we want to calculate each players’ age at the
 beginning of each season. Currently, we only have the date of birth and the year
 for each season.</p>
-<p>Second, we want recode the “position” variable. Some players played multiple
+<p>Second, we want recode the <code>position</code> variable. Some players played multiple
 position, so that info is messy. We want to create varies dummy variables
 for each position.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="eda-1.html#cb9-1" tabindex="-1"></a><span class="co"># let&#39;s calculate age for every season</span></span>
@@ -644,64 +683,784 @@ use them in operations.</p>
 <div id="explore-the-whole-dataset" class="section level2 hasAnchor" number="2.9">
 <h2><span class="header-section-number">2.9</span> Explore the whole dataset<a href="eda-1.html#explore-the-whole-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now, let’s explore some packages which help us to explore the dataframe as a whole.
-Let’s start with the DataExplorer package. It is nice to get an overview of variables and the “missingness” of data.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="eda-1.html#cb21-1" tabindex="-1"></a><span class="fu">library</span>(DataExplorer)</span>
+Let’s start with the <code>skimR</code> package:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="eda-1.html#cb21-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;skimr&quot;</span>)</span>
 <span id="cb21-2"><a href="eda-1.html#cb21-2" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="eda-1.html#cb21-3" tabindex="-1"></a><span class="co"># overview of types of variables and missingness</span></span>
-<span id="cb21-4"><a href="eda-1.html#cb21-4" tabindex="-1"></a><span class="fu">introduce</span>(data_nba)</span></code></pre></div>
+<span id="cb21-3"><a href="eda-1.html#cb21-3" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">skim</span>(data_nba))</span></code></pre></div>
+<table>
+<colgroup>
+<col width="4%" />
+<col width="6%" />
+<col width="4%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="8%" />
+<col width="9%" />
+<col width="5%" />
+<col width="5%" />
+<col width="4%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_type</th>
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">character.min</th>
+<th align="right">character.max</th>
+<th align="right">character.empty</th>
+<th align="right">character.n_unique</th>
+<th align="right">character.whitespace</th>
+<th align="right">numeric.mean</th>
+<th align="right">numeric.sd</th>
+<th align="right">numeric.p0</th>
+<th align="right">numeric.p25</th>
+<th align="right">numeric.p50</th>
+<th align="right">numeric.p75</th>
+<th align="right">numeric.p100</th>
+<th align="left">numeric.hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">character</td>
+<td align="left">_id</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">6</td>
+<td align="right">9</td>
+<td align="right">0</td>
+<td align="right">1794</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">name</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">4</td>
+<td align="right">24</td>
+<td align="right">0</td>
+<td align="right">1790</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">character</td>
+<td align="left">birthPlace</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">5</td>
+<td align="right">44</td>
+<td align="right">0</td>
+<td align="right">849</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">career_FG%</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">333</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">character</td>
+<td align="left">career_FG3%</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">297</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">career_FT%</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">413</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">character</td>
+<td align="left">career_PER</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">274</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">career_TRB</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">113</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">character</td>
+<td align="left">career_eFG%</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">310</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">college</td>
+<td align="right">1541</td>
+<td align="right">0.8415913</td>
+<td align="right">6</td>
+<td align="right">89</td>
+<td align="right">0</td>
+<td align="right">379</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">character</td>
+<td align="left">draft_pick</td>
+<td align="right">1542</td>
+<td align="right">0.8414885</td>
+<td align="right">11</td>
+<td align="right">13</td>
+<td align="right">0</td>
+<td align="right">66</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">draft_round</td>
+<td align="right">1542</td>
+<td align="right">0.8414885</td>
+<td align="right">9</td>
+<td align="right">9</td>
+<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">character</td>
+<td align="left">draft_team</td>
+<td align="right">1542</td>
+<td align="right">0.8414885</td>
+<td align="right">9</td>
+<td align="right">33</td>
+<td align="right">0</td>
+<td align="right">39</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">draft_year</td>
+<td align="right">1542</td>
+<td align="right">0.8414885</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">38</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">character</td>
+<td align="left">shoots</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">4</td>
+<td align="right">10</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">season</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">7</td>
+<td align="right">7</td>
+<td align="right">0</td>
+<td align="right">20</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">character</td>
+<td align="left">team</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">9</td>
+<td align="right">33</td>
+<td align="right">0</td>
+<td align="right">36</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">“_id”</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">age</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">2.695066e+01</td>
+<td align="right">4.461299e+00</td>
+<td align="right">18.0</td>
+<td align="right">23.00</td>
+<td align="right">26.0</td>
+<td align="right">30.00</td>
+<td align="right">42.0</td>
+<td align="left">▃▇▅▂▁</td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">weight</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">2.208996e+02</td>
+<td align="right">2.772943e+01</td>
+<td align="right">135.0</td>
+<td align="right">200.00</td>
+<td align="right">220.0</td>
+<td align="right">240.00</td>
+<td align="right">360.0</td>
+<td align="left">▁▇▆▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">height</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">6.506777e+00</td>
+<td align="right">3.802496e-01</td>
+<td align="right">5.1</td>
+<td align="right">6.11</td>
+<td align="right">6.6</td>
+<td align="right">6.80</td>
+<td align="right">7.7</td>
+<td align="left">▁▅▆▇▁</td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">index.x</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">2.269877e+03</td>
+<td align="right">1.361799e+03</td>
+<td align="right">3.0</td>
+<td align="right">1088.00</td>
+<td align="right">2197.5</td>
+<td align="right">3392.00</td>
+<td align="right">4683.0</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">career_AST</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1.938065e+00</td>
+<td align="right">1.663442e+00</td>
+<td align="right">0.0</td>
+<td align="right">0.70</td>
+<td align="right">1.4</td>
+<td align="right">2.70</td>
+<td align="right">10.5</td>
+<td align="left">▇▃▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">career_G</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">5.689650e+02</td>
+<td align="right">3.471999e+02</td>
+<td align="right">1.0</td>
+<td align="right">281.00</td>
+<td align="right">564.0</td>
+<td align="right">827.00</td>
+<td align="right">1522.0</td>
+<td align="left">▇▇▇▃▁</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">career_PTS</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">8.907679e+00</td>
+<td align="right">5.077246e+00</td>
+<td align="right">0.0</td>
+<td align="right">5.10</td>
+<td align="right">8.0</td>
+<td align="right">12.00</td>
+<td align="right">30.1</td>
+<td align="left">▆▇▃▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">career_WS</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">3.342980e+01</td>
+<td align="right">3.705009e+01</td>
+<td align="right">-2.4</td>
+<td align="right">6.40</td>
+<td align="right">22.2</td>
+<td align="right">48.30</td>
+<td align="right">234.6</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">index.y</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">6.978557e+03</td>
+<td align="right">4.073106e+03</td>
+<td align="right">17.0</td>
+<td align="right">3436.75</td>
+<td align="right">6871.5</td>
+<td align="right">10428.25</td>
+<td align="right">14162.0</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">salary</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">4.072633e+06</td>
+<td align="right">4.669737e+06</td>
+<td align="right">2706.0</td>
+<td align="right">947907.00</td>
+<td align="right">2240000.0</td>
+<td align="right">5408700.00</td>
+<td align="right">34682550.0</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">season_end</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">2.008720e+03</td>
+<td align="right">5.825947e+00</td>
+<td align="right">1999.0</td>
+<td align="right">2004.00</td>
+<td align="right">2009.0</td>
+<td align="right">2014.00</td>
+<td align="right">2018.0</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">season_start</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">2.007720e+03</td>
+<td align="right">5.825947e+00</td>
+<td align="right">1998.0</td>
+<td align="right">2003.00</td>
+<td align="right">2008.0</td>
+<td align="right">2013.00</td>
+<td align="right">2017.0</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">position_center</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">3.069490e-01</td>
+<td align="right">4.612518e-01</td>
+<td align="right">0.0</td>
+<td align="right">0.00</td>
+<td align="right">0.0</td>
+<td align="right">1.00</td>
+<td align="right">1.0</td>
+<td align="left">▇▁▁▁▃</td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">position_sf</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">3.312089e-01</td>
+<td align="right">4.706722e-01</td>
+<td align="right">0.0</td>
+<td align="right">0.00</td>
+<td align="right">0.0</td>
+<td align="right">1.00</td>
+<td align="right">1.0</td>
+<td align="left">▇▁▁▁▃</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">position_pf</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">3.598890e-01</td>
+<td align="right">4.799923e-01</td>
+<td align="right">0.0</td>
+<td align="right">0.00</td>
+<td align="right">0.0</td>
+<td align="right">1.00</td>
+<td align="right">1.0</td>
+<td align="left">▇▁▁▁▅</td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">position_sg</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">3.543380e-01</td>
+<td align="right">4.783368e-01</td>
+<td align="right">0.0</td>
+<td align="right">0.00</td>
+<td align="right">0.0</td>
+<td align="right">1.00</td>
+<td align="right">1.0</td>
+<td align="left">▇▁▁▁▅</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">position_pg</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">2.558594e-01</td>
+<td align="right">4.363656e-01</td>
+<td align="right">0.0</td>
+<td align="right">0.00</td>
+<td align="right">0.0</td>
+<td align="right">1.00</td>
+<td align="right">1.0</td>
+<td align="left">▇▁▁▁▃</td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">seasons_played</td>
+<td align="right">0</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">9.728000e+03</td>
+<td align="right">0.000000e+00</td>
+<td align="right">9728.0</td>
+<td align="right">9728.00</td>
+<td align="right">9728.0</td>
+<td align="right">9728.00</td>
+<td align="right">9728.0</td>
+<td align="left">▁▁▇▁▁</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>skim()</code> function provides a very handy overview of the whole dataset including the types of columns (i.e. variables), a summary of all variables, the extent of missing data etc. One advantage is that the output is <code>tidy</code> which means it is easy to work with further if needed. The output can be stored as dataframe, for example, which makes graphs much easier.</p>
+<p>Next, another alternative is the <code>DataExplorer</code> package. It is nice to get a graphical overview of variables and the <em>missingness</em> of data.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="eda-1.html#cb22-1" tabindex="-1"></a><span class="fu">library</span>(DataExplorer)</span>
+<span id="cb22-2"><a href="eda-1.html#cb22-2" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="eda-1.html#cb22-3" tabindex="-1"></a><span class="co"># overview of types of variables and missingness</span></span>
+<span id="cb22-4"><a href="eda-1.html#cb22-4" tabindex="-1"></a><span class="fu">introduce</span>(data_nba)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 9
 ##    rows columns discrete_columns continuous_columns all_missing_columns
 ##   &lt;int&gt;   &lt;int&gt;            &lt;int&gt;              &lt;int&gt;               &lt;int&gt;
 ## 1  9728      36               18                 18                   0
 ## # ℹ 4 more variables: total_missing_values &lt;int&gt;, complete_rows &lt;int&gt;,
 ## #   total_observations &lt;int&gt;, memory_usage &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="eda-1.html#cb23-1" tabindex="-1"></a><span class="co"># plots the info from above</span></span>
-<span id="cb23-2"><a href="eda-1.html#cb23-2" tabindex="-1"></a><span class="fu">plot_intro</span>(data_nba)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="eda-1.html#cb24-1" tabindex="-1"></a><span class="co"># plots the info from above</span></span>
+<span id="cb24-2"><a href="eda-1.html#cb24-2" tabindex="-1"></a><span class="fu">plot_intro</span>(data_nba)</span></code></pre></div>
 <p><img src="_main_files/figure-html/explore_dt_0-1.png" width="672" /></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="eda-1.html#cb24-1" tabindex="-1"></a><span class="co">#plots percentages missing across variables</span></span>
-<span id="cb24-2"><a href="eda-1.html#cb24-2" tabindex="-1"></a><span class="fu">plot_missing</span>(data_nba)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="eda-1.html#cb25-1" tabindex="-1"></a><span class="co">#plots percentages missing across variables</span></span>
+<span id="cb25-2"><a href="eda-1.html#cb25-2" tabindex="-1"></a><span class="fu">plot_missing</span>(data_nba)</span></code></pre></div>
 <p><img src="_main_files/figure-html/explore_dt_0-2.png" width="672" /></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="eda-1.html#cb25-1" tabindex="-1"></a><span class="co"># plots frequencies across variables</span></span>
-<span id="cb25-2"><a href="eda-1.html#cb25-2" tabindex="-1"></a><span class="fu">plot_bar</span>(data_nba)</span></code></pre></div>
-<pre><code>## 11 columns ignored with more than 50 categories.
-## X_id: 1794 categories
-## name: 1790 categories
-## birthPlace: 849 categories
-## career_FG.: 333 categories
-## career_FG3.: 297 categories
-## career_FT.: 413 categories
-## career_PER: 274 categories
-## career_TRB: 113 categories
-## career_eFG.: 310 categories
-## college: 380 categories
-## draft_pick: 67 categories</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="eda-1.html#cb26-1" tabindex="-1"></a><span class="co"># plots frequencies across variables</span></span>
+<span id="cb26-2"><a href="eda-1.html#cb26-2" tabindex="-1"></a><span class="fu">plot_bar</span>(data_nba)</span></code></pre></div>
 <p><img src="_main_files/figure-html/explore_dt_0-3.png" width="672" /><img src="_main_files/figure-html/explore_dt_0-4.png" width="672" /></p>
-<p>Now, let’s try gtSummary for summary tables. A summary table is always a useful start once you have identified the type of variables you are interested in.</p>
-<p>Let’s assume we are interested in age, seasons played, career points, salary,
-position, and right or left handed (i.e. “shoots”)</p>
+<p>Now, let’s try <code>gtSummary</code> for summary tables. A summary table is always a useful start once you have identified the type of variables you are interested in.</p>
+<p>Let’s assume we are interested in <code>age</code>, <code>seasons played</code>, <code>career points</code>, <code>salary</code>, <code>position</code>, and <code>right or left handed</code> (i.e. “shoots”)</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="eda-1.html#cb27-1" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
 <span id="cb27-2"><a href="eda-1.html#cb27-2" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="eda-1.html#cb27-3" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
 <span id="cb27-4"><a href="eda-1.html#cb27-4" tabindex="-1"></a>  <span class="fu">select</span>(age, seasons_played, shoots, career_PTS, salary, <span class="fu">contains</span>(<span class="st">&quot;position&quot;</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb27-5"><a href="eda-1.html#cb27-5" tabindex="-1"></a>         <span class="fu">tbl_summary</span>(</span>
 <span id="cb27-6"><a href="eda-1.html#cb27-6" tabindex="-1"></a>           <span class="at">statistic =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="st">&quot;{mean} ({min}, {max})&quot;</span>)) </span></code></pre></div>
-<div id="tsfaiscjpa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tsfaiscjpa table {
+<div id="vatfekudqe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vatfekudqe table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tsfaiscjpa thead, #tsfaiscjpa tbody, #tsfaiscjpa tfoot, #tsfaiscjpa tr, #tsfaiscjpa td, #tsfaiscjpa th {
+#vatfekudqe thead, #vatfekudqe tbody, #vatfekudqe tfoot, #vatfekudqe tr, #vatfekudqe td, #vatfekudqe th {
   border-style: none;
 }
 
-#tsfaiscjpa p {
+#vatfekudqe p {
   margin: 0;
   padding: 0;
 }
 
-#tsfaiscjpa .gt_table {
+#vatfekudqe .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -727,12 +1486,12 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-left-color: #D3D3D3;
 }
 
-#tsfaiscjpa .gt_caption {
+#vatfekudqe .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tsfaiscjpa .gt_title {
+#vatfekudqe .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -744,7 +1503,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-bottom-width: 0;
 }
 
-#tsfaiscjpa .gt_subtitle {
+#vatfekudqe .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -756,7 +1515,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-top-width: 0;
 }
 
-#tsfaiscjpa .gt_heading {
+#vatfekudqe .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -768,13 +1527,13 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-right-color: #D3D3D3;
 }
 
-#tsfaiscjpa .gt_bottom_border {
+#vatfekudqe .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tsfaiscjpa .gt_col_headings {
+#vatfekudqe .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -789,7 +1548,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-right-color: #D3D3D3;
 }
 
-#tsfaiscjpa .gt_col_heading {
+#vatfekudqe .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -809,7 +1568,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   overflow-x: hidden;
 }
 
-#tsfaiscjpa .gt_column_spanner_outer {
+#vatfekudqe .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -821,15 +1580,15 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 4px;
 }
 
-#tsfaiscjpa .gt_column_spanner_outer:first-child {
+#vatfekudqe .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tsfaiscjpa .gt_column_spanner_outer:last-child {
+#vatfekudqe .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tsfaiscjpa .gt_column_spanner {
+#vatfekudqe .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -841,11 +1600,11 @@ position, and right or left handed (i.e. “shoots”)</p>
   width: 100%;
 }
 
-#tsfaiscjpa .gt_spanner_row {
+#vatfekudqe .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tsfaiscjpa .gt_group_heading {
+#vatfekudqe .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -871,7 +1630,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   text-align: left;
 }
 
-#tsfaiscjpa .gt_empty_group_heading {
+#vatfekudqe .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -886,15 +1645,15 @@ position, and right or left handed (i.e. “shoots”)</p>
   vertical-align: middle;
 }
 
-#tsfaiscjpa .gt_from_md > :first-child {
+#vatfekudqe .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tsfaiscjpa .gt_from_md > :last-child {
+#vatfekudqe .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tsfaiscjpa .gt_row {
+#vatfekudqe .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -913,7 +1672,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   overflow-x: hidden;
 }
 
-#tsfaiscjpa .gt_stub {
+#vatfekudqe .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -926,7 +1685,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 5px;
 }
 
-#tsfaiscjpa .gt_stub_row_group {
+#vatfekudqe .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -940,15 +1699,15 @@ position, and right or left handed (i.e. “shoots”)</p>
   vertical-align: top;
 }
 
-#tsfaiscjpa .gt_row_group_first td {
+#vatfekudqe .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tsfaiscjpa .gt_row_group_first th {
+#vatfekudqe .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tsfaiscjpa .gt_summary_row {
+#vatfekudqe .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -958,16 +1717,16 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 5px;
 }
 
-#tsfaiscjpa .gt_first_summary_row {
+#vatfekudqe .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tsfaiscjpa .gt_first_summary_row.thick {
+#vatfekudqe .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tsfaiscjpa .gt_last_summary_row {
+#vatfekudqe .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -977,7 +1736,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-bottom-color: #D3D3D3;
 }
 
-#tsfaiscjpa .gt_grand_summary_row {
+#vatfekudqe .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -987,7 +1746,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 5px;
 }
 
-#tsfaiscjpa .gt_first_grand_summary_row {
+#vatfekudqe .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -997,7 +1756,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-top-color: #D3D3D3;
 }
 
-#tsfaiscjpa .gt_last_grand_summary_row_top {
+#vatfekudqe .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1007,11 +1766,11 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-bottom-color: #D3D3D3;
 }
 
-#tsfaiscjpa .gt_striped {
+#vatfekudqe .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tsfaiscjpa .gt_table_body {
+#vatfekudqe .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1020,7 +1779,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-bottom-color: #D3D3D3;
 }
 
-#tsfaiscjpa .gt_footnotes {
+#vatfekudqe .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1034,7 +1793,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-right-color: #D3D3D3;
 }
 
-#tsfaiscjpa .gt_footnote {
+#vatfekudqe .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1043,7 +1802,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 5px;
 }
 
-#tsfaiscjpa .gt_sourcenotes {
+#vatfekudqe .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1057,7 +1816,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   border-right-color: #D3D3D3;
 }
 
-#tsfaiscjpa .gt_sourcenote {
+#vatfekudqe .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1065,63 +1824,63 @@ position, and right or left handed (i.e. “shoots”)</p>
   padding-right: 5px;
 }
 
-#tsfaiscjpa .gt_left {
+#vatfekudqe .gt_left {
   text-align: left;
 }
 
-#tsfaiscjpa .gt_center {
+#vatfekudqe .gt_center {
   text-align: center;
 }
 
-#tsfaiscjpa .gt_right {
+#vatfekudqe .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tsfaiscjpa .gt_font_normal {
+#vatfekudqe .gt_font_normal {
   font-weight: normal;
 }
 
-#tsfaiscjpa .gt_font_bold {
+#vatfekudqe .gt_font_bold {
   font-weight: bold;
 }
 
-#tsfaiscjpa .gt_font_italic {
+#vatfekudqe .gt_font_italic {
   font-style: italic;
 }
 
-#tsfaiscjpa .gt_super {
+#vatfekudqe .gt_super {
   font-size: 65%;
 }
 
-#tsfaiscjpa .gt_footnote_marks {
+#vatfekudqe .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tsfaiscjpa .gt_asterisk {
+#vatfekudqe .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tsfaiscjpa .gt_indent_1 {
+#vatfekudqe .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tsfaiscjpa .gt_indent_2 {
+#vatfekudqe .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tsfaiscjpa .gt_indent_3 {
+#vatfekudqe .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tsfaiscjpa .gt_indent_4 {
+#vatfekudqe .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tsfaiscjpa .gt_indent_5 {
+#vatfekudqe .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1171,7 +1930,7 @@ position, and right or left handed (i.e. “shoots”)</p>
   </tfoot>
 </table>
 </div>
-<p>Now, let’s look at a correlation matrix between all numeric
+<p>Now, let’s look at a <em>correlation matrix</em> between all numeric
 variables in the dataset.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="eda-1.html#cb28-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;corrr&quot;</span>)</span>
 <span id="cb28-2"><a href="eda-1.html#cb28-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;corrplot&quot;</span>)</span>
@@ -1273,7 +2032,7 @@ of whether players that score more on average are also paid more.</p>
 <p>Maybe roles are clearly divided on the team. Maybe really good passers are highly
 paid because they give great passes to people who then score. Or maybe teams
 don’t care about passers and just pay more to people who score more.</p>
-<p>So, now, let’s look at salary and average number of points scored by game.
+<p>So, now, let’s look at <code>salary</code> and average number of points scored by game.
 Also, we want to know whether point guards (short people who pass a lot) are
 paid less then other positions (who score more).</p>
 <p>First, let’s look how the two continuous variables are distributed:</p>
@@ -1291,8 +2050,8 @@ paid less then other positions (who score more).</p>
 <span id="cb34-3"><a href="eda-1.html#cb34-3" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>position_pg) <span class="sc">+</span></span>
 <span id="cb34-4"><a href="eda-1.html#cb34-4" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/explore_dt_3-3.png" width="672" /></p>
-<p>Let’s look at the relationship between salary and position as well as the
-relationship between position and points.</p>
+<p>Let’s look at the relationship between <code>salary</code> and <code>position</code> as well as the
+relationship between <code>position</code> and <code>points</code>.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="eda-1.html#cb35-1" tabindex="-1"></a><span class="fu">str</span>(data_nba<span class="sc">$</span>position_pg)</span></code></pre></div>
 <pre><code>##  num [1:9728] 1 0 0 0 0 0 0 0 0 0 ...</code></pre>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="eda-1.html#cb37-1" tabindex="-1"></a><span class="fu">str</span>(data_nba<span class="sc">$</span>salary)</span></code></pre></div>
@@ -1348,10 +2107,10 @@ relationship between position and points.</p>
 <span id="cb43-15"><a href="eda-1.html#cb43-15" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Points per game&quot;</span>) <span class="sc">+</span></span>
 <span id="cb43-16"><a href="eda-1.html#cb43-16" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/explore_dt_4-3.png" width="672" /></p>
-<p>So, it seems that point gards are paid a little less even though they make a few more points on average. Interesting puzzle to explore.</p>
+<p>So, it seems that point guards are paid a little less even though they make a few more points on average. Interesting puzzle to explore.</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="eda-1.html#cb44-1" tabindex="-1"></a><span class="co"># find example for using histogramm()</span></span>
 <span id="cb44-2"><a href="eda-1.html#cb44-2" tabindex="-1"></a><span class="co"># find example for first just creating cross tabs as perecntages tbl_cross(); summarize(); tabyl()</span></span></code></pre></div>
-<p>Now, let’s explore the relationship which is at the heart of our analysis from now on: salary and average points.</p>
+<p>Now, let’s explore the relationship which is at the heart of our analysis from now on: <code>salary</code> and average points.</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="eda-1.html#cb45-1" tabindex="-1"></a><span class="co"># simple scatterplot</span></span>
 <span id="cb45-2"><a href="eda-1.html#cb45-2" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb45-3"><a href="eda-1.html#cb45-3" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>salary, <span class="at">x=</span>career_PTS)) <span class="sc">+</span> </span>
@@ -1444,6 +2203,19 @@ if he scored 10 more points a game (regardless of the position he plays).</p></l
 <li><p>It can assess what explains the effect of one variable on another (i.e. mediation). Maybe we find that point guards earn less and we want to know why. Is it because they score less? Is it because they play less time on average?</p></li>
 <li><p>It can be used to predict salaries for players for whom we don’t know the salary or even for hypothetical players. We could also look at the performance trend of players and predict whether they earn more next season or not.</p></li>
 </ol>
+</div>
+<div id="further-resources" class="section level2 hasAnchor" number="2.11">
+<h2><span class="header-section-number">2.11</span> Further resources<a href="eda-1.html#further-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="resources">
+<ul>
+<li><a href="https://tuos-bio-data-skills.github.io/intro-eda-book/index.html">Exploratory Data Analysis with R</a>, a book that covers the basics of data visualization, manipulation, and analysis using R and the tidyverse package.</li>
+<li><a href="https://www.pluralsight.com/guides/exploratory-data-analysis-in-r">Exploratory Data Analysis in R with Tidyverse</a>, a guide that shows how to use the tidyverse package to perform common EDA tasks such as importing, cleaning, summarizing, and plotting data.</li>
+<li><a href="https://r4ds.had.co.nz/data-visualisation.html">Data Visualization with ggplot2</a>, a chapter from the book R for Data Science that explains how to create and customize different types of plots using the ggplot2 package.</li>
+<li><a href="https://r4ds.had.co.nz/transform.html">Data Transformation with dplyr</a>, another chapter from the book R for Data Science that demonstrates how to use the dplyr package to manipulate data frames, filter rows, select columns, create new variables, and more.</li>
+<li><a href="https://bookdown.org/rdpeng/exdata/">Exploratory Data Analysis with R - Bookdown</a></li>
+<li><a href="https://www.statology.org/exploratory-data-analysis-in-r/">How to Perform Exploratory Data Analysis in R (With Example)</a></li>
+</ul>
+</div>
 
 </div>
 </div>

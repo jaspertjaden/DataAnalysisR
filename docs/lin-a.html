@@ -5,31 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title> 8 Linear Regression - Application | Data Analysis with R for Social Scientists</title>
-  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta name="description" content="In this course, you will learn how to analyse data using regression in R." />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content=" 8 Linear Regression - Application | Data Analysis with R for Social Scientists" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta property="og:description" content="In this course, you will learn how to analyse data using regression in R." />
   <meta name="github-repo" content="jaspertjaden/DataAnalysisR" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content=" 8 Linear Regression - Application | Data Analysis with R for Social Scientists" />
   
-  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta name="twitter:description" content="In this course, you will learn how to analyse data using regression in R." />
   
 
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-08-30" />
+<meta name="date" content="2023-09-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,7 +142,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Data Analysis with R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Intro</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Intro</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#acknowlegdements"><i class="fa fa-check"></i><b>0.1</b> Acknowlegdements</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro-sem.html"><a href="intro-sem.html"><i class="fa fa-check"></i><b>1</b> Introduction to Seminar</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="intro-sem.html"><a href="intro-sem.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
@@ -158,7 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5" data-path="intro-sem.html"><a href="intro-sem.html#prerequisites"><i class="fa fa-check"></i><b>1.5</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.6" data-path="intro-sem.html"><a href="intro-sem.html#structure"><i class="fa fa-check"></i><b>1.6</b> Structure</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="eda-1.html"><a href="eda-1.html"><i class="fa fa-check"></i><b>2</b> Exloratory Data Analysis - I</a>
+<li class="chapter" data-level="2" data-path="eda-1.html"><a href="eda-1.html"><i class="fa fa-check"></i><b>2</b> Exploratory Data Analysis - I</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="eda-1.html"><a href="eda-1.html#objectives-1"><i class="fa fa-check"></i><b>2.1</b> Objectives</a></li>
 <li class="chapter" data-level="2.2" data-path="eda-1.html"><a href="eda-1.html#r-functions-covered-this-week"><i class="fa fa-check"></i><b>2.2</b> R functions covered this week</a></li>
@@ -170,6 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="eda-1.html"><a href="eda-1.html#change-variables"><i class="fa fa-check"></i><b>2.8</b> change variables</a></li>
 <li class="chapter" data-level="2.9" data-path="eda-1.html"><a href="eda-1.html#explore-the-whole-dataset"><i class="fa fa-check"></i><b>2.9</b> Explore the whole dataset</a></li>
 <li class="chapter" data-level="2.10" data-path="eda-1.html"><a href="eda-1.html#explore-individual-variables"><i class="fa fa-check"></i><b>2.10</b> explore individual variables</a></li>
+<li class="chapter" data-level="2.11" data-path="eda-1.html"><a href="eda-1.html#further-resources"><i class="fa fa-check"></i><b>2.11</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="eda-2.html"><a href="eda-2.html"><i class="fa fa-check"></i><b>3</b> Exploratory Data Analysis - II</a>
 <ul>
@@ -182,22 +180,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="dags-1.html"><a href="dags-1.html"><i class="fa fa-check"></i><b>4</b> DAGs</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="dags-1.html"><a href="dags-1.html#objectives-2"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
-<li class="chapter" data-level="4.2" data-path="dags-1.html"><a href="dags-1.html#modelling"><i class="fa fa-check"></i><b>4.2</b> Modelling</a>
+<li class="chapter" data-level="4.2" data-path="dags-1.html"><a href="dags-1.html#functions-covered"><i class="fa fa-check"></i><b>4.2</b> Functions Covered</a></li>
+<li class="chapter" data-level="4.3" data-path="dags-1.html"><a href="dags-1.html#modelling"><i class="fa fa-check"></i><b>4.3</b> Modelling</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="dags-1.html"><a href="dags-1.html#what-is-modelling"><i class="fa fa-check"></i><b>4.2.1</b> What is modelling?</a></li>
-<li class="chapter" data-level="4.2.2" data-path="dags-1.html"><a href="dags-1.html#estimating-effects-vs.-prediction"><i class="fa fa-check"></i><b>4.2.2</b> Estimating effects vs. prediction</a></li>
+<li class="chapter" data-level="4.3.1" data-path="dags-1.html"><a href="dags-1.html#what-is-modelling"><i class="fa fa-check"></i><b>4.3.1</b> What is modelling?</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dags-1.html"><a href="dags-1.html#estimating-effects-vs.-prediction"><i class="fa fa-check"></i><b>4.3.2</b> Estimating effects vs. prediction</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="dags-1.html"><a href="dags-1.html#dags"><i class="fa fa-check"></i><b>4.3</b> DAGs</a>
+<li class="chapter" data-level="4.4" data-path="dags-1.html"><a href="dags-1.html#dags"><i class="fa fa-check"></i><b>4.4</b> DAGs</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="dags-1.html"><a href="dags-1.html#directed-acyclical-graphs"><i class="fa fa-check"></i><b>4.3.1</b> Directed acyclical graphs</a></li>
-<li class="chapter" data-level="4.3.2" data-path="dags-1.html"><a href="dags-1.html#patterns-of-relationships"><i class="fa fa-check"></i><b>4.3.2</b> Patterns of relationships</a></li>
-<li class="chapter" data-level="4.3.3" data-path="dags-1.html"><a href="dags-1.html#adjustment-set"><i class="fa fa-check"></i><b>4.3.3</b> Adjustment set</a></li>
+<li class="chapter" data-level="4.4.1" data-path="dags-1.html"><a href="dags-1.html#directed-acyclical-graphs"><i class="fa fa-check"></i><b>4.4.1</b> Directed acyclical graphs</a></li>
+<li class="chapter" data-level="4.4.2" data-path="dags-1.html"><a href="dags-1.html#patterns-of-relationships"><i class="fa fa-check"></i><b>4.4.2</b> Patterns of relationships</a></li>
+<li class="chapter" data-level="4.4.3" data-path="dags-1.html"><a href="dags-1.html#adjustment-set"><i class="fa fa-check"></i><b>4.4.3</b> Adjustment set</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="dags-1.html"><a href="dags-1.html#nba-dag"><i class="fa fa-check"></i><b>4.4</b> NBA DAG</a></li>
-<li class="chapter" data-level="4.5" data-path="dags-1.html"><a href="dags-1.html#resources"><i class="fa fa-check"></i><b>4.5</b> Resources</a>
+<li class="chapter" data-level="4.5" data-path="dags-1.html"><a href="dags-1.html#nba-dag"><i class="fa fa-check"></i><b>4.5</b> NBA DAG</a></li>
+<li class="chapter" data-level="4.6" data-path="dags-1.html"><a href="dags-1.html#resources"><i class="fa fa-check"></i><b>4.6</b> Resources</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="dags-1.html"><a href="dags-1.html#dagitty.net"><i class="fa fa-check"></i><b>4.5.1</b> dagitty.net</a></li>
-<li class="chapter" data-level="4.5.2" data-path="dags-1.html"><a href="dags-1.html#more-on-dags"><i class="fa fa-check"></i><b>4.5.2</b> More on DAGs</a></li>
+<li class="chapter" data-level="4.6.1" data-path="dags-1.html"><a href="dags-1.html#dagitty.net"><i class="fa fa-check"></i><b>4.6.1</b> dagitty.net</a></li>
+<li class="chapter" data-level="4.6.2" data-path="dags-1.html"><a href="dags-1.html#how-to-use-dagitty"><i class="fa fa-check"></i><b>4.6.2</b> How to use dagitty()</a></li>
+<li class="chapter" data-level="4.6.3" data-path="dags-1.html"><a href="dags-1.html#more-on-dags"><i class="fa fa-check"></i><b>4.6.3</b> More on DAGs</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="lin-t-1.html"><a href="lin-t-1.html"><i class="fa fa-check"></i><b>5</b> Linear Regression Theory I: Simple Linear Regression</a>
@@ -211,6 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.2" data-path="lin-t-1.html"><a href="lin-t-1.html#regressing-grade-on-hours"><i class="fa fa-check"></i><b>5.4.2</b> Regressing <code>grade</code> on <code>hours</code></a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="lin-t-1.html"><a href="lin-t-1.html#moving-on"><i class="fa fa-check"></i><b>5.5</b> Moving on</a></li>
+<li class="chapter" data-level="5.6" data-path="lin-t-1.html"><a href="lin-t-1.html#further-resources-1"><i class="fa fa-check"></i><b>5.6</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="lin-t-2.html"><a href="lin-t-2.html"><i class="fa fa-check"></i><b>6</b> Linear Regression Theory II: Multiple Linear Regression</a>
 <ul>
@@ -224,6 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="lin-t-2.html"><a href="lin-t-2.html#returning-to-our-research-question"><i class="fa fa-check"></i><b>6.3</b> Returning to our research question</a></li>
 <li class="chapter" data-level="6.4" data-path="lin-t-2.html"><a href="lin-t-2.html#adressing-the-uncertainty"><i class="fa fa-check"></i><b>6.4</b> Adressing the uncertainty</a></li>
 <li class="chapter" data-level="6.5" data-path="lin-t-2.html"><a href="lin-t-2.html#moving-on-1"><i class="fa fa-check"></i><b>6.5</b> Moving on</a></li>
+<li class="chapter" data-level="6.6" data-path="lin-t-2.html"><a href="lin-t-2.html#further-resources-2"><i class="fa fa-check"></i><b>6.6</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="log-t-3.html"><a href="log-t-3.html"><i class="fa fa-check"></i><b>7</b> Linear Regression Theory III: Diagnostics</a>
 <ul>
@@ -243,6 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.4.2" data-path="log-t-3.html"><a href="log-t-3.html#regression-diagnostics-revisited"><i class="fa fa-check"></i><b>7.4.2</b> Regression diagnostics (revisited)</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="log-t-3.html"><a href="log-t-3.html#conclusion"><i class="fa fa-check"></i><b>7.5</b> Conclusion</a></li>
+<li class="chapter" data-level="7.6" data-path="log-t-3.html"><a href="log-t-3.html#further-resources-3"><i class="fa fa-check"></i><b>7.6</b> Further Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="lin-a.html"><a href="lin-a.html"><i class="fa fa-check"></i><b>8</b> Linear Regression - Application</a>
 <ul>
@@ -265,31 +268,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="lin-a.html"><a href="lin-a.html#returning-to-our-research-question-2"><i class="fa fa-check"></i><b>8.7</b> Returning to our research question</a></li>
 <li class="chapter" data-level="8.8" data-path="lin-a.html"><a href="lin-a.html#moving-on-2"><i class="fa fa-check"></i><b>8.8</b> Moving on</a></li>
+<li class="chapter" data-level="8.9" data-path="lin-a.html"><a href="lin-a.html#further-resources-4"><i class="fa fa-check"></i><b>8.9</b> Further Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="lin-e.html"><a href="lin-e.html"><i class="fa fa-check"></i><b>9</b> Linear Regression - Exercises</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="lin-e.html"><a href="lin-e.html#exercises-of-linear-regression"><i class="fa fa-check"></i><b>9.1</b> Exercises of Linear Regression</a></li>
+<li class="chapter" data-level="9.1" data-path="lin-e.html"><a href="lin-e.html#exercises"><i class="fa fa-check"></i><b>9.1</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="med.html"><a href="med.html"><i class="fa fa-check"></i><b>10</b> Mediation</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="med.html"><a href="med.html#find-out-more"><i class="fa fa-check"></i><b>10.1</b> Find out more</a></li>
+<li class="chapter" data-level="10.1" data-path="med.html"><a href="med.html#objectives-7"><i class="fa fa-check"></i><b>10.1</b> Objectives</a></li>
+<li class="chapter" data-level="10.2" data-path="med.html"><a href="med.html#r-functions-covered-this-week-2"><i class="fa fa-check"></i><b>10.2</b> R functions covered this week</a></li>
+<li class="chapter" data-level="10.3" data-path="med.html"><a href="med.html#further-resources-5"><i class="fa fa-check"></i><b>10.3</b> Further Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="pm-t.html"><a href="pm-t.html"><i class="fa fa-check"></i><b>11</b> Prediction - Theory</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="pm-t.html"><a href="pm-t.html#how-prediction-works"><i class="fa fa-check"></i><b>11.1</b> How prediction works</a></li>
-<li class="chapter" data-level="11.2" data-path="pm-t.html"><a href="pm-t.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.2</b> Intro to Machine learning</a></li>
-<li class="chapter" data-level="11.3" data-path="pm-t.html"><a href="pm-t.html#more-resources"><i class="fa fa-check"></i><b>11.3</b> More resources:</a></li>
+<li class="chapter" data-level="11.1" data-path="pm-t.html"><a href="pm-t.html#objectives-8"><i class="fa fa-check"></i><b>11.1</b> Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="pm-t.html"><a href="pm-t.html#r-functions-covered-this-week-3"><i class="fa fa-check"></i><b>11.2</b> R functions covered this week</a></li>
+<li class="chapter" data-level="11.3" data-path="pm-t.html"><a href="pm-t.html#how-prediction-works"><i class="fa fa-check"></i><b>11.3</b> How prediction works</a></li>
+<li class="chapter" data-level="11.4" data-path="pm-t.html"><a href="pm-t.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.4</b> Intro to Machine learning</a></li>
+<li class="chapter" data-level="11.5" data-path="pm-t.html"><a href="pm-t.html#further-resources-6"><i class="fa fa-check"></i><b>11.5</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="pm-a.html"><a href="pm-a.html"><i class="fa fa-check"></i><b>12</b> Prediction - Application</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises-1"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>13</b> Outlook</a>
+<li class="chapter" data-level="13" data-path="log-est.html"><a href="log-est.html"><i class="fa fa-check"></i><b>13</b> Logistic regression</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="out-look.html"><a href="out-look.html#summary-of-what-was-covered-in-course"><i class="fa fa-check"></i><b>13.1</b> Summary of what was covered in course</a></li>
-<li class="chapter" data-level="13.2" data-path="out-look.html"><a href="out-look.html#other-outcome-variables"><i class="fa fa-check"></i><b>13.2</b> Other outcome variables</a></li>
-<li class="chapter" data-level="13.3" data-path="out-look.html"><a href="out-look.html#data-structures"><i class="fa fa-check"></i><b>13.3</b> Data structures</a></li>
-<li class="chapter" data-level="13.4" data-path="out-look.html"><a href="out-look.html#where-to-go-next"><i class="fa fa-check"></i><b>13.4</b> Where to go next</a></li>
+<li class="chapter" data-level="13.1" data-path="log-est.html"><a href="log-est.html#objectives-9"><i class="fa fa-check"></i><b>13.1</b> Objectives</a></li>
+<li class="chapter" data-level="13.2" data-path="log-est.html"><a href="log-est.html#functions-covered-in-this-week"><i class="fa fa-check"></i><b>13.2</b> Functions covered in this week</a></li>
+<li class="chapter" data-level="13.3" data-path="log-est.html"><a href="log-est.html#basic-concepts"><i class="fa fa-check"></i><b>13.3</b> Basic concepts</a></li>
+<li class="chapter" data-level="13.4" data-path="log-est.html"><a href="log-est.html#application"><i class="fa fa-check"></i><b>13.4</b> Application</a></li>
+<li class="chapter" data-level="13.5" data-path="log-est.html"><a href="log-est.html#interpretation-2"><i class="fa fa-check"></i><b>13.5</b> Interpretation</a></li>
+<li class="chapter" data-level="13.6" data-path="log-est.html"><a href="log-est.html#model-fit-1"><i class="fa fa-check"></i><b>13.6</b> model fit</a></li>
+<li class="chapter" data-level="13.7" data-path="log-est.html"><a href="log-est.html#diagnostics"><i class="fa fa-check"></i><b>13.7</b> diagnostics</a></li>
+<li class="chapter" data-level="13.8" data-path="log-est.html"><a href="log-est.html#prediction"><i class="fa fa-check"></i><b>13.8</b> prediction</a></li>
+<li class="chapter" data-level="13.9" data-path="log-est.html"><a href="log-est.html#mediation-1"><i class="fa fa-check"></i><b>13.9</b> Mediation</a></li>
+<li class="chapter" data-level="13.10" data-path="log-est.html"><a href="log-est.html#comparing-linear-and-logistic-regression"><i class="fa fa-check"></i><b>13.10</b> comparing linear and logistic regression</a></li>
+<li class="chapter" data-level="13.11" data-path="log-est.html"><a href="log-est.html#logistic-regression-in-machine-learning-context"><i class="fa fa-check"></i><b>13.11</b> logistic regression in Machine Learning context</a></li>
+<li class="chapter" data-level="13.12" data-path="log-est.html"><a href="log-est.html#further-resources-7"><i class="fa fa-check"></i><b>13.12</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>14</b> Outlook</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="out-look.html"><a href="out-look.html#summary-of-what-was-covered-in-course"><i class="fa fa-check"></i><b>14.1</b> Summary of what was covered in course</a></li>
+<li class="chapter" data-level="14.2" data-path="out-look.html"><a href="out-look.html#other-outcome-variables"><i class="fa fa-check"></i><b>14.2</b> Other outcome variables</a></li>
+<li class="chapter" data-level="14.3" data-path="out-look.html"><a href="out-look.html#data-structures"><i class="fa fa-check"></i><b>14.3</b> Data structures</a></li>
+<li class="chapter" data-level="14.4" data-path="out-look.html"><a href="out-look.html#where-to-go-next"><i class="fa fa-check"></i><b>14.4</b> Where to go next</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -324,18 +347,31 @@ regression model and try to estimate the effect of interest as accurately as
 possible.</p>
 <div id="objectives-6" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Objectives<a href="lin-a.html#objectives-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="objectives">
 <ul>
 <li>Estimate the effect of interest, scored point on salary, using a linear regression</li>
 <li>Applying diagnostics to the model and correct mistakes</li>
 <li>Interpret the final model</li>
 </ul>
 </div>
+</div>
 <div id="r-functions-covered-this-week-1" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> R functions covered this week<a href="lin-a.html#r-functions-covered-this-week-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="functions">
 <ul>
-<li><code>lm()</code>
-XXX FILL IN XXX</li>
+<li><code>lm()</code> : This function is used to fit a linear model to the data. It takes a formula that specifies the dependent and independent variables, and a data frame that contains the variables. It returns a model object that can be used for further analysis.</li>
+<li><code>summary()</code> : This function is used to get a summary of a model object, such as the coefficients, standard errors, t-values, p-values, R-squared, and F-statistic. It also provides information on the residuals, such as the minimum, maximum, median, and quartiles.</li>
+<li><code>tidy()</code> : This function is from the <strong>broom</strong> package. It is used to convert a model object into a tidy tibble that contains one row per parameter estimate and columns for the term, estimate, standard error, statistic, and p-value.</li>
+<li><code>plot()</code> : This function is used to create various plots for a model object, such as the residuals vs fitted values, the Q-Q plot, the scale-location plot, and the residuals vs leverage plot. These plots are useful for checking the assumptions of linear regression, such as linearity, normality, homoscedasticity, and outliers¹[1].</li>
+<li><code>autoplot()</code> : This function is from the <strong>ggfortify</strong> package. It is used to create the same plots as <code>plot()</code> but in the style of <strong>ggplot2</strong>. It returns a list of four plots that can be customized further with <strong>ggplot2</strong> functions.</li>
+<li><code>vif()</code> : This function is from the <strong>car</strong> package. It is used to compute the variance inflation factors (VIF) for each independent variable in a linear model. The VIF measures how much the variance of a coefficient estimate is inflated due to multicollinearity. A high VIF indicates a potential problem of multicollinearity.</li>
+<li><code>log()</code> : This function is used to compute the natural logarithm of a numeric vector. It can be used to transform a skewed dependent variable into a more normal distribution²[2].</li>
+<li><code>I()</code> : This function is used to indicate that an expression should be evaluated as it is in a formula. It can be used to include non-linear transformations or interactions of independent variables in a linear model³[3].</li>
+<li><code>exp()</code> : This function is used to compute the exponential function of a numeric vector. It can be used to reverse the logarithmic transformation of a dependent variable.</li>
+<li><code>ggplot()</code>: It’s a key function from the <em>ggplot2</em> package and is used to create a wide variety of static, dynamic, and interactive graphics in R. The function allows you to specify a mapping from data to aesthetics (color, shape, size) and geometric objects (points, lines, bars). It also allows you to add statistical transformations, coordinate systems, faceting, and themes.</li>
+<li><code>glance()</code> : This function is from the <strong>broom</strong> package. It is used to get a summary of a model object, such as the R-squared, adjusted R-squared, RMSE, p-value, etc. It takes a model object and returns a tibble with one row per model and one column per statistic.</li>
 </ul>
+</div>
 </div>
 <div id="research-question" class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">8.3</span> Research question<a href="lin-a.html#research-question" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -352,8 +388,8 @@ was recorded in do not lie on an paths from our main independent to our
 dependent variable.
 Based on this we construct our model.</p>
 <p>Now let us get to it and load the NBA data we prepared in week 2.</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="lin-a.html#cb94-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb94-2"><a href="lin-a.html#cb94-2" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;../datasets/nba/data_nba.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="lin-a.html#cb74-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb74-2"><a href="lin-a.html#cb74-2" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;../datasets/nba/data_nba.RData&quot;</span>)</span></code></pre></div>
 </div>
 <div id="simple-linear-regression-in-r" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> Simple linear regression in R<a href="lin-a.html#simple-linear-regression-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -372,7 +408,7 @@ data.</p>
 <p>The goal of our research question is to estimate the effect of the points per
 game on the received salary. So to regress <code>salary</code> on <code>career_PTS</code>, we just
 write:</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="lin-a.html#cb95-1" tabindex="-1"></a><span class="fu">lm</span>(salary <span class="sc">~</span> career_PTS, <span class="at">data =</span> data_nba)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="lin-a.html#cb75-1" tabindex="-1"></a><span class="fu">lm</span>(salary <span class="sc">~</span> career_PTS, <span class="at">data =</span> data_nba)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salary ~ career_PTS, data = data_nba)
@@ -395,7 +431,7 @@ function that returns different summaries, depending on the object it is used
 on. We can for example use it on a data frame or tibble to get some descriptive
 statistics for the included variables. For example, we can information on the
 distribution of points per game by writing:</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="lin-a.html#cb97-1" tabindex="-1"></a><span class="fu">summary</span>(data_nba<span class="sc">$</span>career_PTS)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="lin-a.html#cb77-1" tabindex="-1"></a><span class="fu">summary</span>(data_nba<span class="sc">$</span>career_PTS)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   0.000   5.100   8.000   8.908  12.000  30.100</code></pre>
 <p>When we use <code>summary()</code> on a model object, like the one created by <code>lm()</code>, we
@@ -403,9 +439,9 @@ get a different output. Before we apply this we should save our model in an
 object. This is good practice in most cases as we can now apply all additional
 analysis of the model on this object and we do not have to rerun the model
 every time.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="lin-a.html#cb99-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> career_PTS, <span class="at">data =</span> data_nba)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="lin-a.html#cb79-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> career_PTS, <span class="at">data =</span> data_nba)</span></code></pre></div>
 <p>We can now apply <code>summary()</code> on the object <code>m1</code>, short for “model 1”:</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="lin-a.html#cb100-1" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="lin-a.html#cb80-1" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salary ~ career_PTS, data = data_nba)
@@ -429,9 +465,9 @@ better readable coefficient block as well as the information on the residuals
 and the model fit.</p>
 <p>An alternative method of displaying the coefficients in a regular tibble format,
 is to use <code>tidy()</code> from the <code>broom</code> package.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="lin-a.html#cb102-1" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
-<pre><code>## Warning: package &#39;broom&#39; was built under R version 4.2.3</code></pre>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="lin-a.html#cb104-1" tabindex="-1"></a><span class="fu">tidy</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="lin-a.html#cb82-1" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb82-2"><a href="lin-a.html#cb82-2" tabindex="-1"></a></span>
+<span id="cb82-3"><a href="lin-a.html#cb82-3" tabindex="-1"></a><span class="fu">tidy</span>(m1)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -446,15 +482,15 @@ intercept. This tells us that a player who makes no points per game has to pay
 the team about <span class="math inline">\(850,000\)</span>. Wait, this does not make sense…
 To make the intercept more readily interpretable we should again center our
 metric dependent variable <code>career_PTS</code> on its mean.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="lin-a.html#cb106-1" tabindex="-1"></a><span class="fu">mean</span>(data_nba<span class="sc">$</span>career_PTS)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="lin-a.html#cb84-1" tabindex="-1"></a><span class="fu">mean</span>(data_nba<span class="sc">$</span>career_PTS)</span></code></pre></div>
 <pre><code>## [1] 8.907679</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="lin-a.html#cb108-1" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb108-2"><a href="lin-a.html#cb108-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PTS_centered =</span> career_PTS <span class="sc">-</span> <span class="fu">mean</span>(career_PTS))</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="lin-a.html#cb86-1" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb86-2"><a href="lin-a.html#cb86-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PTS_centered =</span> career_PTS <span class="sc">-</span> <span class="fu">mean</span>(career_PTS))</span></code></pre></div>
 <p>As we have now centered the independent variable of interest on its mean of <span class="math inline">\(8.9\)</span>
 we can rerun the model.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="lin-a.html#cb109-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> PTS_centered, <span class="at">data =</span> data_nba)</span>
-<span id="cb109-2"><a href="lin-a.html#cb109-2" tabindex="-1"></a></span>
-<span id="cb109-3"><a href="lin-a.html#cb109-3" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="lin-a.html#cb87-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> PTS_centered, <span class="at">data =</span> data_nba)</span>
+<span id="cb87-2"><a href="lin-a.html#cb87-2" tabindex="-1"></a></span>
+<span id="cb87-3"><a href="lin-a.html#cb87-3" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salary ~ PTS_centered, data = data_nba)
@@ -482,6 +518,14 @@ points per game which is slightly upwards of <span class="math inline">\(4,000,0
 sense.</p>
 <p>This model model already achieved a considerable <span class="math inline">\(R^2\)</span> of <span class="math inline">\(0.36\)</span>. About <span class="math inline">\(36\%\)</span>
 of the variance in salaries is explained by the points per game a player scores.</p>
+<p>Another way to get the model statistics, such as <span class="math inline">\(r^2\)</span>, F-statistic, and p-value, is to use the <code>glance()</code> function from the broom package. This function returns a tibble with one row of model summaries. For example, we can apply <code>glance()</code> to our final model <code>m4</code> and get the following output:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="lin-a.html#cb89-1" tabindex="-1"></a><span class="fu">glance</span>(m1)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 12
+##   r.squared adj.r.squared    sigma statistic p.value    df  logLik    AIC    BIC
+##       &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1     0.361         0.361 3732168.     5502.       0     1 -1.61e5 3.22e5 3.22e5
+## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<p>We can see that the output includes the same information as the summary of <code>m1</code>, but in a different format. The advantage of using <code>glance()</code> is that it is easier to manipulate and compare the model statistics using tidyverse functions. For example, we can use <code>bind_rows()</code> to combine the outputs of different models and compare their performance.</p>
 </div>
 </div>
 <div id="multiple-linear-regression-in-r" class="section level2 hasAnchor" number="8.5">
@@ -492,9 +536,9 @@ We can add additional independent variables to the formula used in <code>lm()</c
 <code>+</code> and the name of the additional variable(s). This works the same way for all
 types of variables, i.e. metric, dummies or categorical variables.
 So let us do this now by adding the 5 dummies we constructed for the positions:</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="lin-a.html#cb111-1" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> PTS_centered <span class="sc">+</span> position_center <span class="sc">+</span> position_sf <span class="sc">+</span>  position_pf <span class="sc">+</span> position_sg <span class="sc">+</span> position_pg, <span class="at">data =</span> data_nba)</span>
-<span id="cb111-2"><a href="lin-a.html#cb111-2" tabindex="-1"></a></span>
-<span id="cb111-3"><a href="lin-a.html#cb111-3" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="lin-a.html#cb91-1" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> PTS_centered <span class="sc">+</span> position_center <span class="sc">+</span> position_sf <span class="sc">+</span>  position_pf <span class="sc">+</span> position_sg <span class="sc">+</span> position_pg, <span class="at">data =</span> data_nba)</span>
+<span id="cb91-2"><a href="lin-a.html#cb91-2" tabindex="-1"></a></span>
+<span id="cb91-3"><a href="lin-a.html#cb91-3" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salary ~ PTS_centered + position_center + position_sf + 
@@ -564,9 +608,9 @@ example, <code>plot(m2, 1)</code> gives us the residuals vs. fitted plot.</p>
 <code>autoplot()</code> function to automatically plot all four visual tests of interest.
 An added benefit, depending on your taste, is that the plots are rendered in the
 style of <code>ggplot2</code>.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="lin-a.html#cb114-1" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span></code></pre></div>
-<pre><code>## Warning: package &#39;ggfortify&#39; was built under R version 4.2.3</code></pre>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="lin-a.html#cb116-1" tabindex="-1"></a><span class="fu">autoplot</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="lin-a.html#cb94-1" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb94-2"><a href="lin-a.html#cb94-2" tabindex="-1"></a></span>
+<span id="cb94-3"><a href="lin-a.html#cb94-3" tabindex="-1"></a><span class="fu">autoplot</span>(m2)</span></code></pre></div>
 <p><img src="_main_files/figure-html/m2_diag-1.png" width="672" /></p>
 <p>The residuals vs. fitted does not show us a more or less straight line but
 starts mildly positive, then dips below <span class="math inline">\(0\)</span> and rises again for higher estimated
@@ -593,9 +637,9 @@ indicated by clusters in the lower or upper right corners. This time we can
 observe this in the lower right.</p>
 <p>We should also test for multicollinearity. We can compute the VIF measures using
 a function from the package <code>car</code>.</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="lin-a.html#cb117-1" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb117-2"><a href="lin-a.html#cb117-2" tabindex="-1"></a></span>
-<span id="cb117-3"><a href="lin-a.html#cb117-3" tabindex="-1"></a><span class="fu">vif</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="lin-a.html#cb95-1" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb95-2"><a href="lin-a.html#cb95-2" tabindex="-1"></a></span>
+<span id="cb95-3"><a href="lin-a.html#cb95-3" tabindex="-1"></a><span class="fu">vif</span>(m2)</span></code></pre></div>
 <pre><code>##    PTS_centered position_center     position_sf     position_pf     position_sg 
 ##        1.050400        2.035722        1.686736        1.512765        1.565004 
 ##     position_pg 
@@ -621,9 +665,9 @@ problems in the same way.</p>
 <p>The deviation from normality and the clearly present heteroscedasticity could
 both point to the same problem, namely a skewed dependent variable. Let us
 examine its distribution first.</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="lin-a.html#cb119-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb119-2"><a href="lin-a.html#cb119-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> salary)) <span class="sc">+</span></span>
-<span id="cb119-3"><a href="lin-a.html#cb119-3" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="lin-a.html#cb97-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb97-2"><a href="lin-a.html#cb97-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> salary)) <span class="sc">+</span></span>
+<span id="cb97-3"><a href="lin-a.html#cb97-3" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/distribution_dv_before-1.png" width="672" /></p>
 <p>Our outcome variable is not only skewed, it is <strong>highly skewed</strong>. While there
 are many salaries in the “lower” six to seven digits regions, we also see some
@@ -642,19 +686,19 @@ skewed distribution. A common transformation for income data is to take the
 <em>logarithmus naturalis</em> of the actual value and then use this as our
 dependent variable. To achieve the transformation we can simply use the base R
 function <code>log()</code> which as its default computes the <span class="math inline">\(ln\)</span>.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="lin-a.html#cb120-1" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb120-2"><a href="lin-a.html#cb120-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">salary_log =</span> <span class="fu">log</span>(salary))</span>
-<span id="cb120-3"><a href="lin-a.html#cb120-3" tabindex="-1"></a></span>
-<span id="cb120-4"><a href="lin-a.html#cb120-4" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb120-5"><a href="lin-a.html#cb120-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> salary_log)) <span class="sc">+</span></span>
-<span id="cb120-6"><a href="lin-a.html#cb120-6" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="lin-a.html#cb98-1" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb98-2"><a href="lin-a.html#cb98-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">salary_log =</span> <span class="fu">log</span>(salary))</span>
+<span id="cb98-3"><a href="lin-a.html#cb98-3" tabindex="-1"></a></span>
+<span id="cb98-4"><a href="lin-a.html#cb98-4" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb98-5"><a href="lin-a.html#cb98-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> salary_log)) <span class="sc">+</span></span>
+<span id="cb98-6"><a href="lin-a.html#cb98-6" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/transform_dv_log-1.png" width="672" /></p>
 <p>While the distribution of the transformed variable also is somewhat skewed, now
 to the left, overall it is much more evenly distributed.</p>
 <p>We should use the new variable as our outcome an check the tests again.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="lin-a.html#cb121-1" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary_log <span class="sc">~</span> PTS_centered <span class="sc">+</span> position_center <span class="sc">+</span> position_sf <span class="sc">+</span>  position_pf <span class="sc">+</span> position_sg <span class="sc">+</span> position_pg, <span class="at">data =</span> data_nba)</span>
-<span id="cb121-2"><a href="lin-a.html#cb121-2" tabindex="-1"></a></span>
-<span id="cb121-3"><a href="lin-a.html#cb121-3" tabindex="-1"></a><span class="fu">autoplot</span>(m3)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="lin-a.html#cb99-1" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary_log <span class="sc">~</span> PTS_centered <span class="sc">+</span> position_center <span class="sc">+</span> position_sf <span class="sc">+</span>  position_pf <span class="sc">+</span> position_sg <span class="sc">+</span> position_pg, <span class="at">data =</span> data_nba)</span>
+<span id="cb99-2"><a href="lin-a.html#cb99-2" tabindex="-1"></a></span>
+<span id="cb99-3"><a href="lin-a.html#cb99-3" tabindex="-1"></a><span class="fu">autoplot</span>(m3)</span></code></pre></div>
 <p><img src="_main_files/figure-html/m3-1.png" width="672" /></p>
 <p>Looking at the scale-location plot first, we can now see a straight line with
 our residuals fairly evenly distributed around it. Thus we now longer see any
@@ -687,11 +731,10 @@ difference and thus may not have the same strong effect on salary.</p>
 we add a LOWESS curve to the plot. This is often helpful in detecting
 non-linearity as the curve can change its slope over the range of the dependent
 variable. This is also the default for <code>geom_smooth()</code>.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="lin-a.html#cb122-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb122-2"><a href="lin-a.html#cb122-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> career_PTS, <span class="at">y =</span> salary)) <span class="sc">+</span></span>
-<span id="cb122-3"><a href="lin-a.html#cb122-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb122-4"><a href="lin-a.html#cb122-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="lin-a.html#cb100-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb100-2"><a href="lin-a.html#cb100-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> career_PTS, <span class="at">y =</span> salary)) <span class="sc">+</span></span>
+<span id="cb100-3"><a href="lin-a.html#cb100-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb100-4"><a href="lin-a.html#cb100-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/non_linearity-1.png" width="672" /></p>
 <p>While this is not as clear as we hoped, the line may still indicate some mild
 non-linearity as it flattens somewhat for really high point values. Also we have
@@ -700,11 +743,10 @@ additional variables, as our position dummies.</p>
 <p>One common way to address the non-linearity is taking the square of the
 dependent variable in question. We should not square our centered points
 variable though. Let us inspect what would happen if we squared it.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="lin-a.html#cb124-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb124-2"><a href="lin-a.html#cb124-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PTS_centered, <span class="at">y =</span> PTS_centered <span class="sc">^</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb124-3"><a href="lin-a.html#cb124-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb124-4"><a href="lin-a.html#cb124-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="lin-a.html#cb101-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb101-2"><a href="lin-a.html#cb101-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PTS_centered, <span class="at">y =</span> PTS_centered <span class="sc">^</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb101-3"><a href="lin-a.html#cb101-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb101-4"><a href="lin-a.html#cb101-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/centered_squared-1.png" width="672" /></p>
 <p>As the square of negative values is positive we would basically introduce the
 assumption into the model that there is non-linearity for low and high scorers
@@ -715,11 +757,10 @@ scorers should have the same effect. If at all, in these regions additional
 points could have an even larger effect.</p>
 <p>Because of this we should return to the uncentred version of our variable. What
 happens if we square this?</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="lin-a.html#cb126-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb126-2"><a href="lin-a.html#cb126-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> career_PTS, <span class="at">y =</span> career_PTS <span class="sc">^</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb126-3"><a href="lin-a.html#cb126-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb126-4"><a href="lin-a.html#cb126-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="lin-a.html#cb102-1" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb102-2"><a href="lin-a.html#cb102-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> career_PTS, <span class="at">y =</span> career_PTS <span class="sc">^</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb102-3"><a href="lin-a.html#cb102-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb102-4"><a href="lin-a.html#cb102-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/career_pts_squared-1.png" width="672" /></p>
 <p>This is what we wanted, a transformation that expects a stronger difference the
 higher the score value is. For the final model we will thus work with the
@@ -732,9 +773,9 @@ but we can also do so directly in the formula syntax. When we use the function
 expression. This is what we will do below. Note that we add the point variable
 as its untransformed and transformed versions. The first represents the linear
 parts and the second the non-linear parts of the effect.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="lin-a.html#cb128-1" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary_log <span class="sc">~</span> career_PTS <span class="sc">+</span> <span class="fu">I</span>(career_PTS<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> position_center <span class="sc">+</span> position_sf <span class="sc">+</span> position_pf <span class="sc">+</span> position_sg <span class="sc">+</span> position_pg, <span class="at">data =</span> data_nba)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="lin-a.html#cb103-1" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary_log <span class="sc">~</span> career_PTS <span class="sc">+</span> <span class="fu">I</span>(career_PTS<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> position_center <span class="sc">+</span> position_sf <span class="sc">+</span> position_pf <span class="sc">+</span> position_sg <span class="sc">+</span> position_pg, <span class="at">data =</span> data_nba)</span></code></pre></div>
 <p>We can now reassess the tests for the last model.</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="lin-a.html#cb129-1" tabindex="-1"></a><span class="fu">autoplot</span>(m4)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="lin-a.html#cb104-1" tabindex="-1"></a><span class="fu">autoplot</span>(m4)</span></code></pre></div>
 <p><img src="_main_files/figure-html/m4_diag-1.png" width="672" /></p>
 <p>The line in the residuals vs. fitted plot got more straight. It seems that we
 actually captured the mild non-linearity that was present before by adding the
@@ -747,7 +788,7 @@ large <span class="math inline">\(n\)</span>. Turning to the residuals vs. leve
 that do not meet the thresholds but at the same time we do not see any points
 with high values for both. Overall there seem to be no overly influential points
 which we had to address. Let us also reexamine the VIF.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="lin-a.html#cb130-1" tabindex="-1"></a><span class="fu">vif</span>(m4)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="lin-a.html#cb105-1" tabindex="-1"></a><span class="fu">vif</span>(m4)</span></code></pre></div>
 <pre><code>##      career_PTS I(career_PTS^2) position_center     position_sf     position_pf 
 ##       12.135096       11.883255        2.040563        1.709312        1.520284 
 ##     position_sg     position_pg 
@@ -768,7 +809,7 @@ thinking about what we are actually doing.</p>
 <h2><span class="header-section-number">8.7</span> Returning to our research question<a href="lin-a.html#returning-to-our-research-question-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As we now settled on <code>m4</code> as our best model, it is time to discuss what we
 actually found out about the effect of scored points on the received salary.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="lin-a.html#cb132-1" tabindex="-1"></a><span class="fu">summary</span>(m4)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="lin-a.html#cb107-1" tabindex="-1"></a><span class="fu">summary</span>(m4)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salary_log ~ career_PTS + I(career_PTS^2) + position_center + 
@@ -812,9 +853,9 @@ non-linear term.</p>
 <p>To find out what this means in hard dollars, we have to reverse the logarithmus
 naturalis. We can do this by calculating <span class="math inline">\(e^{\hat{y}}\)</span>. R gives us the function
 <code>exp()</code> to do just that.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="lin-a.html#cb134-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">16.17654</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="lin-a.html#cb109-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">16.17654</span>)</span></code></pre></div>
 <pre><code>## [1] 10601860</code></pre>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="lin-a.html#cb136-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">15.659565</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="lin-a.html#cb111-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">15.659565</span>)</span></code></pre></div>
 <pre><code>## [1] 6322119</code></pre>
 <p>For our center who scored <span class="math inline">\(20\)</span> points we thus estimate a salary of
 <span class="math inline">\(10,601,860\$\)</span>, for a point guard with the same amounts of points <span class="math inline">\(6,322,119\$\)</span>.
@@ -849,6 +890,17 @@ maybe the DAG is not entirely correct. Maybe we made some faulty assumptions or
 maybe we missed a variable with an important role in the data generating
 process. In the next session we will see, how we can come up with a different
 DAG that incorporates the same variables but makes some different assumptions.</p>
+</div>
+<div id="further-resources-4" class="section level2 hasAnchor" number="8.9">
+<h2><span class="header-section-number">8.9</span> Further Resources<a href="lin-a.html#further-resources-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="resources">
+<ul>
+<li><a href="https://www.datacamp.com/tutorial/linear-regression-R">Linear Regression in R Tutorial - DataCamp</a>: This tutorial explains how to perform linear regression using R, with code examples and exercises.</li>
+<li><a href="https://open.umn.edu/opentextbooks/textbooks/399">Linear Regression Using R: An Introduction to Data Modeling</a>: This book presents the basics of linear regression in an informal style, with step-by-step instructions to develop, train, and test reliable regression models.</li>
+<li><a href="https://www.scribbr.com/statistics/linear-regression-in-r/">Linear Regression in R | A Step-by-Step Guide &amp; Examples - Scribbr</a>: This guide shows how to check the assumptions, perform the analysis, and interpret the results of linear regression in R.</li>
+<li><a href="https://www.r-bloggers.com/2021/10/multiple-linear-regression-made-simple/">Linear Regression in R | R Tutorial 5.2 | MarinStatsLectures</a>: This video tutorial demonstrates how to fit a simple linear regression model in R, produce summaries, and interpret the coefficients.</li>
+</ul>
+</div>
 
 </div>
 </div>

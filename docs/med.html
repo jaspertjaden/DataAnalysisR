@@ -5,31 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title> 10 Mediation | Data Analysis with R for Social Scientists</title>
-  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta name="description" content="In this course, you will learn how to analyse data using regression in R." />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content=" 10 Mediation | Data Analysis with R for Social Scientists" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta property="og:description" content="In this course, you will learn how to analyse data using regression in R." />
   <meta name="github-repo" content="jaspertjaden/DataAnalysisR" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content=" 10 Mediation | Data Analysis with R for Social Scientists" />
   
-  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta name="twitter:description" content="In this course, you will learn how to analyse data using regression in R." />
   
 
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-08-30" />
+<meta name="date" content="2023-09-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,7 +142,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Data Analysis with R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Intro</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Intro</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#acknowlegdements"><i class="fa fa-check"></i><b>0.1</b> Acknowlegdements</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro-sem.html"><a href="intro-sem.html"><i class="fa fa-check"></i><b>1</b> Introduction to Seminar</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="intro-sem.html"><a href="intro-sem.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
@@ -158,7 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5" data-path="intro-sem.html"><a href="intro-sem.html#prerequisites"><i class="fa fa-check"></i><b>1.5</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.6" data-path="intro-sem.html"><a href="intro-sem.html#structure"><i class="fa fa-check"></i><b>1.6</b> Structure</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="eda-1.html"><a href="eda-1.html"><i class="fa fa-check"></i><b>2</b> Exloratory Data Analysis - I</a>
+<li class="chapter" data-level="2" data-path="eda-1.html"><a href="eda-1.html"><i class="fa fa-check"></i><b>2</b> Exploratory Data Analysis - I</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="eda-1.html"><a href="eda-1.html#objectives-1"><i class="fa fa-check"></i><b>2.1</b> Objectives</a></li>
 <li class="chapter" data-level="2.2" data-path="eda-1.html"><a href="eda-1.html#r-functions-covered-this-week"><i class="fa fa-check"></i><b>2.2</b> R functions covered this week</a></li>
@@ -170,6 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="eda-1.html"><a href="eda-1.html#change-variables"><i class="fa fa-check"></i><b>2.8</b> change variables</a></li>
 <li class="chapter" data-level="2.9" data-path="eda-1.html"><a href="eda-1.html#explore-the-whole-dataset"><i class="fa fa-check"></i><b>2.9</b> Explore the whole dataset</a></li>
 <li class="chapter" data-level="2.10" data-path="eda-1.html"><a href="eda-1.html#explore-individual-variables"><i class="fa fa-check"></i><b>2.10</b> explore individual variables</a></li>
+<li class="chapter" data-level="2.11" data-path="eda-1.html"><a href="eda-1.html#further-resources"><i class="fa fa-check"></i><b>2.11</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="eda-2.html"><a href="eda-2.html"><i class="fa fa-check"></i><b>3</b> Exploratory Data Analysis - II</a>
 <ul>
@@ -182,22 +180,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="dags-1.html"><a href="dags-1.html"><i class="fa fa-check"></i><b>4</b> DAGs</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="dags-1.html"><a href="dags-1.html#objectives-2"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
-<li class="chapter" data-level="4.2" data-path="dags-1.html"><a href="dags-1.html#modelling"><i class="fa fa-check"></i><b>4.2</b> Modelling</a>
+<li class="chapter" data-level="4.2" data-path="dags-1.html"><a href="dags-1.html#functions-covered"><i class="fa fa-check"></i><b>4.2</b> Functions Covered</a></li>
+<li class="chapter" data-level="4.3" data-path="dags-1.html"><a href="dags-1.html#modelling"><i class="fa fa-check"></i><b>4.3</b> Modelling</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="dags-1.html"><a href="dags-1.html#what-is-modelling"><i class="fa fa-check"></i><b>4.2.1</b> What is modelling?</a></li>
-<li class="chapter" data-level="4.2.2" data-path="dags-1.html"><a href="dags-1.html#estimating-effects-vs.-prediction"><i class="fa fa-check"></i><b>4.2.2</b> Estimating effects vs. prediction</a></li>
+<li class="chapter" data-level="4.3.1" data-path="dags-1.html"><a href="dags-1.html#what-is-modelling"><i class="fa fa-check"></i><b>4.3.1</b> What is modelling?</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dags-1.html"><a href="dags-1.html#estimating-effects-vs.-prediction"><i class="fa fa-check"></i><b>4.3.2</b> Estimating effects vs. prediction</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="dags-1.html"><a href="dags-1.html#dags"><i class="fa fa-check"></i><b>4.3</b> DAGs</a>
+<li class="chapter" data-level="4.4" data-path="dags-1.html"><a href="dags-1.html#dags"><i class="fa fa-check"></i><b>4.4</b> DAGs</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="dags-1.html"><a href="dags-1.html#directed-acyclical-graphs"><i class="fa fa-check"></i><b>4.3.1</b> Directed acyclical graphs</a></li>
-<li class="chapter" data-level="4.3.2" data-path="dags-1.html"><a href="dags-1.html#patterns-of-relationships"><i class="fa fa-check"></i><b>4.3.2</b> Patterns of relationships</a></li>
-<li class="chapter" data-level="4.3.3" data-path="dags-1.html"><a href="dags-1.html#adjustment-set"><i class="fa fa-check"></i><b>4.3.3</b> Adjustment set</a></li>
+<li class="chapter" data-level="4.4.1" data-path="dags-1.html"><a href="dags-1.html#directed-acyclical-graphs"><i class="fa fa-check"></i><b>4.4.1</b> Directed acyclical graphs</a></li>
+<li class="chapter" data-level="4.4.2" data-path="dags-1.html"><a href="dags-1.html#patterns-of-relationships"><i class="fa fa-check"></i><b>4.4.2</b> Patterns of relationships</a></li>
+<li class="chapter" data-level="4.4.3" data-path="dags-1.html"><a href="dags-1.html#adjustment-set"><i class="fa fa-check"></i><b>4.4.3</b> Adjustment set</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="dags-1.html"><a href="dags-1.html#nba-dag"><i class="fa fa-check"></i><b>4.4</b> NBA DAG</a></li>
-<li class="chapter" data-level="4.5" data-path="dags-1.html"><a href="dags-1.html#resources"><i class="fa fa-check"></i><b>4.5</b> Resources</a>
+<li class="chapter" data-level="4.5" data-path="dags-1.html"><a href="dags-1.html#nba-dag"><i class="fa fa-check"></i><b>4.5</b> NBA DAG</a></li>
+<li class="chapter" data-level="4.6" data-path="dags-1.html"><a href="dags-1.html#resources"><i class="fa fa-check"></i><b>4.6</b> Resources</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="dags-1.html"><a href="dags-1.html#dagitty.net"><i class="fa fa-check"></i><b>4.5.1</b> dagitty.net</a></li>
-<li class="chapter" data-level="4.5.2" data-path="dags-1.html"><a href="dags-1.html#more-on-dags"><i class="fa fa-check"></i><b>4.5.2</b> More on DAGs</a></li>
+<li class="chapter" data-level="4.6.1" data-path="dags-1.html"><a href="dags-1.html#dagitty.net"><i class="fa fa-check"></i><b>4.6.1</b> dagitty.net</a></li>
+<li class="chapter" data-level="4.6.2" data-path="dags-1.html"><a href="dags-1.html#how-to-use-dagitty"><i class="fa fa-check"></i><b>4.6.2</b> How to use dagitty()</a></li>
+<li class="chapter" data-level="4.6.3" data-path="dags-1.html"><a href="dags-1.html#more-on-dags"><i class="fa fa-check"></i><b>4.6.3</b> More on DAGs</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="lin-t-1.html"><a href="lin-t-1.html"><i class="fa fa-check"></i><b>5</b> Linear Regression Theory I: Simple Linear Regression</a>
@@ -211,6 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.2" data-path="lin-t-1.html"><a href="lin-t-1.html#regressing-grade-on-hours"><i class="fa fa-check"></i><b>5.4.2</b> Regressing <code>grade</code> on <code>hours</code></a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="lin-t-1.html"><a href="lin-t-1.html#moving-on"><i class="fa fa-check"></i><b>5.5</b> Moving on</a></li>
+<li class="chapter" data-level="5.6" data-path="lin-t-1.html"><a href="lin-t-1.html#further-resources-1"><i class="fa fa-check"></i><b>5.6</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="lin-t-2.html"><a href="lin-t-2.html"><i class="fa fa-check"></i><b>6</b> Linear Regression Theory II: Multiple Linear Regression</a>
 <ul>
@@ -224,6 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="lin-t-2.html"><a href="lin-t-2.html#returning-to-our-research-question"><i class="fa fa-check"></i><b>6.3</b> Returning to our research question</a></li>
 <li class="chapter" data-level="6.4" data-path="lin-t-2.html"><a href="lin-t-2.html#adressing-the-uncertainty"><i class="fa fa-check"></i><b>6.4</b> Adressing the uncertainty</a></li>
 <li class="chapter" data-level="6.5" data-path="lin-t-2.html"><a href="lin-t-2.html#moving-on-1"><i class="fa fa-check"></i><b>6.5</b> Moving on</a></li>
+<li class="chapter" data-level="6.6" data-path="lin-t-2.html"><a href="lin-t-2.html#further-resources-2"><i class="fa fa-check"></i><b>6.6</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="log-t-3.html"><a href="log-t-3.html"><i class="fa fa-check"></i><b>7</b> Linear Regression Theory III: Diagnostics</a>
 <ul>
@@ -243,6 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.4.2" data-path="log-t-3.html"><a href="log-t-3.html#regression-diagnostics-revisited"><i class="fa fa-check"></i><b>7.4.2</b> Regression diagnostics (revisited)</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="log-t-3.html"><a href="log-t-3.html#conclusion"><i class="fa fa-check"></i><b>7.5</b> Conclusion</a></li>
+<li class="chapter" data-level="7.6" data-path="log-t-3.html"><a href="log-t-3.html#further-resources-3"><i class="fa fa-check"></i><b>7.6</b> Further Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="lin-a.html"><a href="lin-a.html"><i class="fa fa-check"></i><b>8</b> Linear Regression - Application</a>
 <ul>
@@ -265,31 +268,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="lin-a.html"><a href="lin-a.html#returning-to-our-research-question-2"><i class="fa fa-check"></i><b>8.7</b> Returning to our research question</a></li>
 <li class="chapter" data-level="8.8" data-path="lin-a.html"><a href="lin-a.html#moving-on-2"><i class="fa fa-check"></i><b>8.8</b> Moving on</a></li>
+<li class="chapter" data-level="8.9" data-path="lin-a.html"><a href="lin-a.html#further-resources-4"><i class="fa fa-check"></i><b>8.9</b> Further Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="lin-e.html"><a href="lin-e.html"><i class="fa fa-check"></i><b>9</b> Linear Regression - Exercises</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="lin-e.html"><a href="lin-e.html#exercises-of-linear-regression"><i class="fa fa-check"></i><b>9.1</b> Exercises of Linear Regression</a></li>
+<li class="chapter" data-level="9.1" data-path="lin-e.html"><a href="lin-e.html#exercises"><i class="fa fa-check"></i><b>9.1</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="med.html"><a href="med.html"><i class="fa fa-check"></i><b>10</b> Mediation</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="med.html"><a href="med.html#find-out-more"><i class="fa fa-check"></i><b>10.1</b> Find out more</a></li>
+<li class="chapter" data-level="10.1" data-path="med.html"><a href="med.html#objectives-7"><i class="fa fa-check"></i><b>10.1</b> Objectives</a></li>
+<li class="chapter" data-level="10.2" data-path="med.html"><a href="med.html#r-functions-covered-this-week-2"><i class="fa fa-check"></i><b>10.2</b> R functions covered this week</a></li>
+<li class="chapter" data-level="10.3" data-path="med.html"><a href="med.html#further-resources-5"><i class="fa fa-check"></i><b>10.3</b> Further Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="pm-t.html"><a href="pm-t.html"><i class="fa fa-check"></i><b>11</b> Prediction - Theory</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="pm-t.html"><a href="pm-t.html#how-prediction-works"><i class="fa fa-check"></i><b>11.1</b> How prediction works</a></li>
-<li class="chapter" data-level="11.2" data-path="pm-t.html"><a href="pm-t.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.2</b> Intro to Machine learning</a></li>
-<li class="chapter" data-level="11.3" data-path="pm-t.html"><a href="pm-t.html#more-resources"><i class="fa fa-check"></i><b>11.3</b> More resources:</a></li>
+<li class="chapter" data-level="11.1" data-path="pm-t.html"><a href="pm-t.html#objectives-8"><i class="fa fa-check"></i><b>11.1</b> Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="pm-t.html"><a href="pm-t.html#r-functions-covered-this-week-3"><i class="fa fa-check"></i><b>11.2</b> R functions covered this week</a></li>
+<li class="chapter" data-level="11.3" data-path="pm-t.html"><a href="pm-t.html#how-prediction-works"><i class="fa fa-check"></i><b>11.3</b> How prediction works</a></li>
+<li class="chapter" data-level="11.4" data-path="pm-t.html"><a href="pm-t.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.4</b> Intro to Machine learning</a></li>
+<li class="chapter" data-level="11.5" data-path="pm-t.html"><a href="pm-t.html#further-resources-6"><i class="fa fa-check"></i><b>11.5</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="pm-a.html"><a href="pm-a.html"><i class="fa fa-check"></i><b>12</b> Prediction - Application</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises-1"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>13</b> Outlook</a>
+<li class="chapter" data-level="13" data-path="log-est.html"><a href="log-est.html"><i class="fa fa-check"></i><b>13</b> Logistic regression</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="out-look.html"><a href="out-look.html#summary-of-what-was-covered-in-course"><i class="fa fa-check"></i><b>13.1</b> Summary of what was covered in course</a></li>
-<li class="chapter" data-level="13.2" data-path="out-look.html"><a href="out-look.html#other-outcome-variables"><i class="fa fa-check"></i><b>13.2</b> Other outcome variables</a></li>
-<li class="chapter" data-level="13.3" data-path="out-look.html"><a href="out-look.html#data-structures"><i class="fa fa-check"></i><b>13.3</b> Data structures</a></li>
-<li class="chapter" data-level="13.4" data-path="out-look.html"><a href="out-look.html#where-to-go-next"><i class="fa fa-check"></i><b>13.4</b> Where to go next</a></li>
+<li class="chapter" data-level="13.1" data-path="log-est.html"><a href="log-est.html#objectives-9"><i class="fa fa-check"></i><b>13.1</b> Objectives</a></li>
+<li class="chapter" data-level="13.2" data-path="log-est.html"><a href="log-est.html#functions-covered-in-this-week"><i class="fa fa-check"></i><b>13.2</b> Functions covered in this week</a></li>
+<li class="chapter" data-level="13.3" data-path="log-est.html"><a href="log-est.html#basic-concepts"><i class="fa fa-check"></i><b>13.3</b> Basic concepts</a></li>
+<li class="chapter" data-level="13.4" data-path="log-est.html"><a href="log-est.html#application"><i class="fa fa-check"></i><b>13.4</b> Application</a></li>
+<li class="chapter" data-level="13.5" data-path="log-est.html"><a href="log-est.html#interpretation-2"><i class="fa fa-check"></i><b>13.5</b> Interpretation</a></li>
+<li class="chapter" data-level="13.6" data-path="log-est.html"><a href="log-est.html#model-fit-1"><i class="fa fa-check"></i><b>13.6</b> model fit</a></li>
+<li class="chapter" data-level="13.7" data-path="log-est.html"><a href="log-est.html#diagnostics"><i class="fa fa-check"></i><b>13.7</b> diagnostics</a></li>
+<li class="chapter" data-level="13.8" data-path="log-est.html"><a href="log-est.html#prediction"><i class="fa fa-check"></i><b>13.8</b> prediction</a></li>
+<li class="chapter" data-level="13.9" data-path="log-est.html"><a href="log-est.html#mediation-1"><i class="fa fa-check"></i><b>13.9</b> Mediation</a></li>
+<li class="chapter" data-level="13.10" data-path="log-est.html"><a href="log-est.html#comparing-linear-and-logistic-regression"><i class="fa fa-check"></i><b>13.10</b> comparing linear and logistic regression</a></li>
+<li class="chapter" data-level="13.11" data-path="log-est.html"><a href="log-est.html#logistic-regression-in-machine-learning-context"><i class="fa fa-check"></i><b>13.11</b> logistic regression in Machine Learning context</a></li>
+<li class="chapter" data-level="13.12" data-path="log-est.html"><a href="log-est.html#further-resources-7"><i class="fa fa-check"></i><b>13.12</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>14</b> Outlook</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="out-look.html"><a href="out-look.html#summary-of-what-was-covered-in-course"><i class="fa fa-check"></i><b>14.1</b> Summary of what was covered in course</a></li>
+<li class="chapter" data-level="14.2" data-path="out-look.html"><a href="out-look.html#other-outcome-variables"><i class="fa fa-check"></i><b>14.2</b> Other outcome variables</a></li>
+<li class="chapter" data-level="14.3" data-path="out-look.html"><a href="out-look.html#data-structures"><i class="fa fa-check"></i><b>14.3</b> Data structures</a></li>
+<li class="chapter" data-level="14.4" data-path="out-look.html"><a href="out-look.html#where-to-go-next"><i class="fa fa-check"></i><b>14.4</b> Where to go next</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -315,15 +338,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="med" class="section level1 hasAnchor" number="10">
 <h1><span class="header-section-number"> 10</span> Mediation<a href="med.html#med" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In this week, we will introduce to the concept of mediation analysis.</p>
-<p>Mediation is a way of using linear regression with a different interest in mind.
+<div id="objectives-7" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Objectives<a href="med.html#objectives-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="objectives">
+<ul>
+<li>here to be filled</li>
+</ul>
+</div>
+</div>
+<div id="r-functions-covered-this-week-2" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> R functions covered this week<a href="med.html#r-functions-covered-this-week-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="functions">
+<ul>
+<li><code>dagitty()</code> : This function creates and analyzes Directed Acyclic Graphs (DAGs).</li>
+<li><code>load()</code> : This function is used to load an R object from a file. It takes a file name as an argument and returns the object stored in the file.</li>
+<li><code>mutate()</code> : This function is from the <strong>dplyr</strong> package. It is used to add new columns or modify existing columns in a data frame. It takes a data frame and one or more expressions that define the new or modified columns. It returns a modified data frame.</li>
+<li><code>case_when()</code> : This function is from the <strong>dplyr</strong> package. It is used to perform multiple conditional operations in a vectorized way. It takes one or more logical expressions and corresponding values, and returns a vector with the values that match the first true expression.</li>
+<li><code>group_by()</code> : This function is from the <strong>dplyr</strong> package. It is used to group a data frame by one or more variables. It takes a data frame and one or more grouping variables, and returns a grouped data frame that can be further manipulated with other <strong>dplyr</strong> functions.</li>
+<li><code>summarize()</code> : This function is from the <strong>dplyr</strong> package. It is used to summarize multiple values into a single value. It takes a grouped data frame and one or more expressions that calculate summary statistics, and returns a summarized data frame.</li>
+<li><code>ggplot()</code> : This function is from the <strong>ggplot2</strong> package. It is used to create a wide variety of static, dynamic, and interactive graphics in R. The function allows you to specify a mapping from data to aesthetics (color, shape, size) and geometric objects (points, lines, bars). It also allows you to add statistical transformations, coordinate systems, faceting, and themes.</li>
+<li><code>geom_bar()</code> : This function is from the <strong>ggplot2</strong> package. It is used to create bar charts in R. It takes a mapping from data to aesthetics and other arguments that control the appearance of the bars, such as stat, width, position, fill, color, etc. It returns a layer that can be added to a ggplot object.</li>
+<li><code>ylim()</code> : This function is from the <strong>ggplot2</strong> package. It is used to set the limits of the y-axis in a plot. It takes two numeric values that define the lower and upper limits of the y-axis. It returns a scale object that can be added to a ggplot object.</li>
+<li><code>theme_minimal()</code> : This function is from the <strong>ggplot2</strong> package. It is used to apply a minimal theme to a plot. It takes no arguments and returns a theme object that can be added to a ggplot object.</li>
+<li><code>lm()</code> : This function is used to fit a linear model to the data. It takes a formula that specifies the dependent and independent variables, and a data frame that contains the variables. It returns a model object that can be used for further analysis.</li>
+<li><code>summary()</code> : This function is used to get a summary of a model object, such as the coefficients, standard errors, t-values, p-values, R-squared, and F-statistic. It also provides information on the residuals, such as the minimum, maximum, median, and quartiles.</li>
+<li><code>modelsummary()</code> : This function is from the <strong>modelsummary</strong> package. It is used to create tables that summarize multiple models side by side. It takes a list of model objects and other arguments that control the appearance of the table, such as output format, statistics to include, variable labels, etc. It returns an object that can be printed or saved as an image or file.</li>
+<li><code>mediate()</code> : This function is from the <strong>mediation</strong> package. It is used to perform causal mediation analysis in R. It takes two model objects that specify the relationship between treatment and mediator (path_a), and between treatment, mediator and outcome (path_b), as well as other arguments that specify the treatment variable, mediator variable, treatment value, etc. It returns an object that contains the results of mediation analysis.</li>
+<li><code>summary.mediator()</code> : This function is from the <strong>mediation</strong> package. It is used to get a summary of an object returned by <code>mediate()</code>. It takes an object of class mediator and other arguments that control the confidence intervals and p-values for mediation effects. It prints out a summary of mediation effects.</li>
+</ul>
+</div>
+<p><em>Mediation</em> is a way of using (linear) regression with a different interest in mind.
 So far, we have been interested in estimating the effect of an x variable on a
 y variable. In our example using NBA data, we were interested in the effect of
 ‘points scored’ by a player on player salary. We learned how to “adjust” or “condition”
 the effect by adding covariates to the model (i.e. control variables). Going back to
-out week on DAGs, we saw that we want to control for so-called confounders, i.e.
+our week on DAGs, we saw that we want to control for so-called confounders, i.e.
 those variables which have an effect on both x and y. The “adjusted” effect is the
-“total causal effect” of x on y.
-Mediation now is all about trying to explain “how” x affect y. Mediation analysis
+“total causal effect” of x on y.</p>
+<p>Mediation now is all about trying to explain “how” x affects y. Mediation analysis
 is about identifying the mechanism between x and y. In other words, what share
 of the total effect can be explained by something else (i.e. the mediator). When
 considering mediation, we can distinguish 3 types of effects:</p>
@@ -345,45 +397,45 @@ In the end, fans come to see spectacular dunks and shots, not rebounds and passe
 Certain positions play further away from the basket (e.g. guards) and thus have a harder time scoring. They also are supposed to pass the ball to the big guys (usually centers).
 So maybe, the fact guards and forwards simply score less than centers explains their salary gap. We can test this using mediation.</p>
 <p>To visualize this mini-theory and identification strategy, let’s have a look at this DAG.</p>
-<p>–&gt; Jasper: visual here with the DAG from my powerpoint</p>
+<p><img src="_main_files/figure-html/dag_final_m-1.png" width="672" /></p>
 <p>Now let’s test this out using R.</p>
 <ul>
 <li>First, we load the data.</li>
-<li>Second, we reduce the position variable to 4 categories: Center, Guards, Forwards, and Mixed. As we will see, it is actually not common that players take on several roles even within the same season. This likely affects their salary as well. Players that can play multiple positions may get more playing time and as a result, score more. We are interested, however, in the difference between “pure” guards, forwards and centers, so we will run the analysis excluding “mixed” position players.</li>
+<li>Second, we reduce the position variable to 4 categories: Center, Guards, Forwards, and Mixed. As we will see, it is actually not common that players take on several roles even within the same season. This likely affects their <code>salary</code> as well. Players that can play multiple positions may get more playing time and as a result, score more. We are interested, however, in the difference between “pure” guards, forwards and centers, so we will run the analysis excluding “mixed” position players.</li>
 <li>Third, we check whether there are any differences in average salaries by position using a graph and a table</li>
-<li>Fourth, we run a linear regression, regressing position (as factor variable) on salary while adjusting for year of season.</li>
+<li>Fourth, we run a linear regression, regressing position (as factor variable) on <code>salary</code> while adjusting for year of season.</li>
 </ul>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="med.html#cb150-1" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb150-2"><a href="med.html#cb150-2" tabindex="-1"></a></span>
-<span id="cb150-3"><a href="med.html#cb150-3" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file =</span> <span class="st">&quot;../datasets/nba/data_nba.RData&quot;</span>)</span>
-<span id="cb150-4"><a href="med.html#cb150-4" tabindex="-1"></a></span>
-<span id="cb150-5"><a href="med.html#cb150-5" tabindex="-1"></a></span>
-<span id="cb150-6"><a href="med.html#cb150-6" tabindex="-1"></a></span>
-<span id="cb150-7"><a href="med.html#cb150-7" tabindex="-1"></a><span class="co"># recode &quot;position&quot; variables&quot;</span></span>
-<span id="cb150-8"><a href="med.html#cb150-8" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
-<span id="cb150-9"><a href="med.html#cb150-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">position_num =</span> <span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">&quot;position_center&quot;</span>, <span class="st">&quot;position_pf&quot;</span>, <span class="st">&quot;position_sf&quot;</span>,</span>
-<span id="cb150-10"><a href="med.html#cb150-10" tabindex="-1"></a>                                         <span class="st">&quot;position_pg&quot;</span>, <span class="st">&quot;position_sg&quot;</span>))),</span>
-<span id="cb150-11"><a href="med.html#cb150-11" tabindex="-1"></a>         <span class="at">position_rec =</span> </span>
-<span id="cb150-12"><a href="med.html#cb150-12" tabindex="-1"></a>           <span class="fu">case_when</span>(</span>
-<span id="cb150-13"><a href="med.html#cb150-13" tabindex="-1"></a>             position_center<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;center&quot;</span>,</span>
-<span id="cb150-14"><a href="med.html#cb150-14" tabindex="-1"></a>             position_pf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
-<span id="cb150-15"><a href="med.html#cb150-15" tabindex="-1"></a>             position_sf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
-<span id="cb150-16"><a href="med.html#cb150-16" tabindex="-1"></a>             position_pg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
-<span id="cb150-17"><a href="med.html#cb150-17" tabindex="-1"></a>             position_sg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
-<span id="cb150-18"><a href="med.html#cb150-18" tabindex="-1"></a>             position_sg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_pg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
-<span id="cb150-19"><a href="med.html#cb150-19" tabindex="-1"></a>             position_pf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_sf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
-<span id="cb150-20"><a href="med.html#cb150-20" tabindex="-1"></a>             <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Mixed&quot;</span>))</span>
-<span id="cb150-21"><a href="med.html#cb150-21" tabindex="-1"></a></span>
-<span id="cb150-22"><a href="med.html#cb150-22" tabindex="-1"></a><span class="co"># pot mean salary by position</span></span>
-<span id="cb150-23"><a href="med.html#cb150-23" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(position_rec) <span class="sc">%&gt;%</span></span>
-<span id="cb150-24"><a href="med.html#cb150-24" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">salary_mean =</span> <span class="fu">mean</span>(salary, <span class="at">rm.na =</span>T)) <span class="sc">%&gt;%</span></span>
-<span id="cb150-25"><a href="med.html#cb150-25" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb150-26"><a href="med.html#cb150-26" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>position_rec, <span class="at">y=</span>salary_mean), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb150-27"><a href="med.html#cb150-27" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">6000000</span>) <span class="sc">+</span></span>
-<span id="cb150-28"><a href="med.html#cb150-28" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="med.html#cb151-1" tabindex="-1"></a><span class="co"># linear regression</span></span>
-<span id="cb151-2"><a href="med.html#cb151-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(position_rec), <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="med.html#cb113-1" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb113-2"><a href="med.html#cb113-2" tabindex="-1"></a></span>
+<span id="cb113-3"><a href="med.html#cb113-3" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file =</span> <span class="st">&quot;../datasets/nba/data_nba.RData&quot;</span>)</span>
+<span id="cb113-4"><a href="med.html#cb113-4" tabindex="-1"></a></span>
+<span id="cb113-5"><a href="med.html#cb113-5" tabindex="-1"></a></span>
+<span id="cb113-6"><a href="med.html#cb113-6" tabindex="-1"></a></span>
+<span id="cb113-7"><a href="med.html#cb113-7" tabindex="-1"></a><span class="co"># recode &quot;position&quot; variables&quot;</span></span>
+<span id="cb113-8"><a href="med.html#cb113-8" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
+<span id="cb113-9"><a href="med.html#cb113-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">position_num =</span> <span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">&quot;position_center&quot;</span>, <span class="st">&quot;position_pf&quot;</span>, <span class="st">&quot;position_sf&quot;</span>,</span>
+<span id="cb113-10"><a href="med.html#cb113-10" tabindex="-1"></a>                                         <span class="st">&quot;position_pg&quot;</span>, <span class="st">&quot;position_sg&quot;</span>))),</span>
+<span id="cb113-11"><a href="med.html#cb113-11" tabindex="-1"></a>         <span class="at">position_rec =</span> </span>
+<span id="cb113-12"><a href="med.html#cb113-12" tabindex="-1"></a>           <span class="fu">case_when</span>(</span>
+<span id="cb113-13"><a href="med.html#cb113-13" tabindex="-1"></a>             position_center<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;center&quot;</span>,</span>
+<span id="cb113-14"><a href="med.html#cb113-14" tabindex="-1"></a>             position_pf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
+<span id="cb113-15"><a href="med.html#cb113-15" tabindex="-1"></a>             position_sf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
+<span id="cb113-16"><a href="med.html#cb113-16" tabindex="-1"></a>             position_pg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
+<span id="cb113-17"><a href="med.html#cb113-17" tabindex="-1"></a>             position_sg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
+<span id="cb113-18"><a href="med.html#cb113-18" tabindex="-1"></a>             position_sg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_pg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
+<span id="cb113-19"><a href="med.html#cb113-19" tabindex="-1"></a>             position_pf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_sf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
+<span id="cb113-20"><a href="med.html#cb113-20" tabindex="-1"></a>             <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Mixed&quot;</span>))</span>
+<span id="cb113-21"><a href="med.html#cb113-21" tabindex="-1"></a></span>
+<span id="cb113-22"><a href="med.html#cb113-22" tabindex="-1"></a><span class="co"># pot mean salary by position</span></span>
+<span id="cb113-23"><a href="med.html#cb113-23" tabindex="-1"></a>data_nba <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(position_rec) <span class="sc">%&gt;%</span></span>
+<span id="cb113-24"><a href="med.html#cb113-24" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">salary_mean =</span> <span class="fu">mean</span>(salary, <span class="at">rm.na =</span>T)) <span class="sc">%&gt;%</span></span>
+<span id="cb113-25"><a href="med.html#cb113-25" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb113-26"><a href="med.html#cb113-26" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>position_rec, <span class="at">y=</span>salary_mean), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb113-27"><a href="med.html#cb113-27" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">6000000</span>) <span class="sc">+</span></span>
+<span id="cb113-28"><a href="med.html#cb113-28" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/med_0-1.png" width="672" /></p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="med.html#cb114-1" tabindex="-1"></a><span class="co"># linear regression</span></span>
+<span id="cb114-2"><a href="med.html#cb114-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(position_rec), <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>)))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salary ~ as.factor(position_rec), data = data_nba, 
@@ -404,8 +456,8 @@ So maybe, the fact guards and forwards simply score less than centers explains t
 ## Residual standard error: 4402000 on 6382 degrees of freedom
 ## Multiple R-squared:  0.001519,   Adjusted R-squared:  0.001206 
 ## F-statistic: 4.855 on 2 and 6382 DF,  p-value: 0.007821</code></pre>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="med.html#cb153-1" tabindex="-1"></a><span class="co"># adjust for confounder </span></span>
-<span id="cb153-2"><a href="med.html#cb153-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(position_rec) <span class="sc">+</span> <span class="fu">as.factor</span>(season_start), <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="med.html#cb116-1" tabindex="-1"></a><span class="co"># adjust for confounder </span></span>
+<span id="cb116-2"><a href="med.html#cb116-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(position_rec) <span class="sc">+</span> <span class="fu">as.factor</span>(season_start), <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>)))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salary ~ as.factor(position_rec) + as.factor(season_start), 
@@ -445,20 +497,19 @@ So maybe, the fact guards and forwards simply score less than centers explains t
 ## Residual standard error: 4327000 on 6363 degrees of freedom
 ## Multiple R-squared:  0.03774,    Adjusted R-squared:  0.03456 
 ## F-statistic: 11.88 on 21 and 6363 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>Looking at the regression ouput, we see that, indeed, centers make more than guards and forwards. Actually, a lot less, approx. 500.000 USD less on average.</p>
+<p>Looking at the regression output, we see that, indeed, centers make more than guards and forwards. Actually, a lot less, approx. 500.000 USD less on average.</p>
 <p>Let’s ignore for the moment that this is a terrible model. The r-squared is only 0.03 which means that position and season only explain ~ 3% of variation in salaries.</p>
 <p>Now, we want to know whether scoring explain this salary penalty. Here is a simple mediation.</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="med.html#cb155-1" tabindex="-1"></a><span class="co"># let&#39;S compare models side by side in a regression table</span></span>
-<span id="cb155-2"><a href="med.html#cb155-2" tabindex="-1"></a></span>
-<span id="cb155-3"><a href="med.html#cb155-3" tabindex="-1"></a><span class="co">#install.packages(&quot;modelsummary&quot;)</span></span>
-<span id="cb155-4"><a href="med.html#cb155-4" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span></code></pre></div>
-<pre><code>## Warning: package &#39;modelsummary&#39; was built under R version 4.2.3</code></pre>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="med.html#cb157-1" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb157-2"><a href="med.html#cb157-2" tabindex="-1"></a>  <span class="at">m1 =</span> <span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(position_rec) <span class="sc">+</span> <span class="fu">as.factor</span>(season_start), <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>)),</span>
-<span id="cb157-3"><a href="med.html#cb157-3" tabindex="-1"></a>  m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(position_rec) <span class="sc">+</span> career_PTS <span class="sc">+</span> <span class="fu">as.factor</span>(season_start), <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>))</span>
-<span id="cb157-4"><a href="med.html#cb157-4" tabindex="-1"></a>)</span>
-<span id="cb157-5"><a href="med.html#cb157-5" tabindex="-1"></a></span>
-<span id="cb157-6"><a href="med.html#cb157-6" tabindex="-1"></a><span class="fu">modelsummary</span>(models)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="med.html#cb118-1" tabindex="-1"></a><span class="co"># let&#39;S compare models side by side in a regression table</span></span>
+<span id="cb118-2"><a href="med.html#cb118-2" tabindex="-1"></a></span>
+<span id="cb118-3"><a href="med.html#cb118-3" tabindex="-1"></a><span class="co">#install.packages(&quot;modelsummary&quot;)</span></span>
+<span id="cb118-4"><a href="med.html#cb118-4" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span>
+<span id="cb118-5"><a href="med.html#cb118-5" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb118-6"><a href="med.html#cb118-6" tabindex="-1"></a>  <span class="at">m1 =</span> <span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(position_rec) <span class="sc">+</span> <span class="fu">as.factor</span>(season_start), <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>)),</span>
+<span id="cb118-7"><a href="med.html#cb118-7" tabindex="-1"></a>  m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(position_rec) <span class="sc">+</span> career_PTS <span class="sc">+</span> <span class="fu">as.factor</span>(season_start), <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>))</span>
+<span id="cb118-8"><a href="med.html#cb118-8" tabindex="-1"></a>)</span>
+<span id="cb118-9"><a href="med.html#cb118-9" tabindex="-1"></a></span>
+<span id="cb118-10"><a href="med.html#cb118-10" tabindex="-1"></a><span class="fu">modelsummary</span>(models)</span></code></pre></div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1048,35 +1099,35 @@ points scored, the gap between centers, forwards and guards. This means that
 guards don’t make less because they make less points. Guards and forwards with
 average points, compared to centers with average points, make even less than centers, compared to when we do not account for points at all. This could mean that teams know that guards
 are important despite the fact that they score less.</p>
-<p>Let’s use a new package for “causal mediation analysis”.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="med.html#cb158-1" tabindex="-1"></a><span class="co"># now let&#39;s try a dedidcated package for mediation</span></span>
-<span id="cb158-2"><a href="med.html#cb158-2" tabindex="-1"></a><span class="fu">library</span>(mediation)</span>
-<span id="cb158-3"><a href="med.html#cb158-3" tabindex="-1"></a></span>
-<span id="cb158-4"><a href="med.html#cb158-4" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">position_rec =</span> <span class="fu">as.factor</span>(position_rec),</span>
-<span id="cb158-5"><a href="med.html#cb158-5" tabindex="-1"></a>                                <span class="at">season_start =</span> <span class="fu">as.factor</span>(season_start),</span>
-<span id="cb158-6"><a href="med.html#cb158-6" tabindex="-1"></a>                                <span class="at">salary =</span> salary<span class="sc">/</span><span class="dv">10</span>)</span>
-<span id="cb158-7"><a href="med.html#cb158-7" tabindex="-1"></a></span>
-<span id="cb158-8"><a href="med.html#cb158-8" tabindex="-1"></a><span class="fu">mean</span>(data_nba<span class="sc">$</span>salary)</span></code></pre></div>
+<p>Let’s use a new package for <em>causal mediation analysis</em>.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="med.html#cb119-1" tabindex="-1"></a><span class="co"># now let&#39;s try a dedidcated package for mediation</span></span>
+<span id="cb119-2"><a href="med.html#cb119-2" tabindex="-1"></a><span class="fu">library</span>(mediation)</span>
+<span id="cb119-3"><a href="med.html#cb119-3" tabindex="-1"></a></span>
+<span id="cb119-4"><a href="med.html#cb119-4" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">position_rec =</span> <span class="fu">as.factor</span>(position_rec),</span>
+<span id="cb119-5"><a href="med.html#cb119-5" tabindex="-1"></a>                                <span class="at">season_start =</span> <span class="fu">as.factor</span>(season_start),</span>
+<span id="cb119-6"><a href="med.html#cb119-6" tabindex="-1"></a>                                <span class="at">salary =</span> salary<span class="sc">/</span><span class="dv">10</span>)</span>
+<span id="cb119-7"><a href="med.html#cb119-7" tabindex="-1"></a></span>
+<span id="cb119-8"><a href="med.html#cb119-8" tabindex="-1"></a><span class="fu">mean</span>(data_nba<span class="sc">$</span>salary)</span></code></pre></div>
 <pre><code>## [1] 407263.3</code></pre>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="med.html#cb160-1" tabindex="-1"></a><span class="co"># first path from x to mediator</span></span>
-<span id="cb160-2"><a href="med.html#cb160-2" tabindex="-1"></a>path_a <span class="ot">&lt;-</span> <span class="fu">lm</span>(career_PTS <span class="sc">~</span> position_rec <span class="sc">+</span> season_start, <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>))</span>
-<span id="cb160-3"><a href="med.html#cb160-3" tabindex="-1"></a></span>
-<span id="cb160-4"><a href="med.html#cb160-4" tabindex="-1"></a><span class="co"># Now full model, x to mediator to y</span></span>
-<span id="cb160-5"><a href="med.html#cb160-5" tabindex="-1"></a>path_b <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> position_rec <span class="sc">+</span> career_PTS <span class="sc">+</span> season_start, <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>))</span>
-<span id="cb160-6"><a href="med.html#cb160-6" tabindex="-1"></a></span>
-<span id="cb160-7"><a href="med.html#cb160-7" tabindex="-1"></a><span class="co"># centers vs. forwards</span></span>
-<span id="cb160-8"><a href="med.html#cb160-8" tabindex="-1"></a>results_mediation_forwards <span class="ot">&lt;-</span> <span class="fu">mediate</span>(path_a, path_b,</span>
-<span id="cb160-9"><a href="med.html#cb160-9" tabindex="-1"></a>                             <span class="at">treat =</span> <span class="st">&quot;position_rec&quot;</span>, <span class="co"># x or main independent variable</span></span>
-<span id="cb160-10"><a href="med.html#cb160-10" tabindex="-1"></a>                             <span class="at">mediator =</span> <span class="st">&quot;career_PTS&quot;</span>,</span>
-<span id="cb160-11"><a href="med.html#cb160-11" tabindex="-1"></a>                             <span class="at">treat.value =</span> <span class="dv">1</span>)</span>
-<span id="cb160-12"><a href="med.html#cb160-12" tabindex="-1"></a></span>
-<span id="cb160-13"><a href="med.html#cb160-13" tabindex="-1"></a><span class="co"># centers vs. guards</span></span>
-<span id="cb160-14"><a href="med.html#cb160-14" tabindex="-1"></a>results_mediation_guards <span class="ot">&lt;-</span> <span class="fu">mediate</span>(path_a, path_b,</span>
-<span id="cb160-15"><a href="med.html#cb160-15" tabindex="-1"></a>                             <span class="at">treat =</span> <span class="st">&quot;position_rec&quot;</span>, <span class="co"># x or main independent variable</span></span>
-<span id="cb160-16"><a href="med.html#cb160-16" tabindex="-1"></a>                             <span class="at">mediator =</span> <span class="st">&quot;career_PTS&quot;</span>,</span>
-<span id="cb160-17"><a href="med.html#cb160-17" tabindex="-1"></a>                             <span class="at">treat.value =</span> <span class="dv">2</span>)</span>
-<span id="cb160-18"><a href="med.html#cb160-18" tabindex="-1"></a></span>
-<span id="cb160-19"><a href="med.html#cb160-19" tabindex="-1"></a><span class="fu">summary</span>(results_mediation_forwards)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="med.html#cb121-1" tabindex="-1"></a><span class="co"># first path from x to mediator</span></span>
+<span id="cb121-2"><a href="med.html#cb121-2" tabindex="-1"></a>path_a <span class="ot">&lt;-</span> <span class="fu">lm</span>(career_PTS <span class="sc">~</span> position_rec <span class="sc">+</span> season_start, <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>))</span>
+<span id="cb121-3"><a href="med.html#cb121-3" tabindex="-1"></a></span>
+<span id="cb121-4"><a href="med.html#cb121-4" tabindex="-1"></a><span class="co"># Now full model, x to mediator to y</span></span>
+<span id="cb121-5"><a href="med.html#cb121-5" tabindex="-1"></a>path_b <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> position_rec <span class="sc">+</span> career_PTS <span class="sc">+</span> season_start, <span class="at">data=</span>data_nba, <span class="at">subset=</span>(position_rec<span class="sc">!=</span><span class="st">&quot;Mixed&quot;</span>))</span>
+<span id="cb121-6"><a href="med.html#cb121-6" tabindex="-1"></a></span>
+<span id="cb121-7"><a href="med.html#cb121-7" tabindex="-1"></a><span class="co"># centers vs. forwards</span></span>
+<span id="cb121-8"><a href="med.html#cb121-8" tabindex="-1"></a>results_mediation_forwards <span class="ot">&lt;-</span> <span class="fu">mediate</span>(path_a, path_b,</span>
+<span id="cb121-9"><a href="med.html#cb121-9" tabindex="-1"></a>                             <span class="at">treat =</span> <span class="st">&quot;position_rec&quot;</span>, <span class="co"># x or main independent variable</span></span>
+<span id="cb121-10"><a href="med.html#cb121-10" tabindex="-1"></a>                             <span class="at">mediator =</span> <span class="st">&quot;career_PTS&quot;</span>,</span>
+<span id="cb121-11"><a href="med.html#cb121-11" tabindex="-1"></a>                             <span class="at">treat.value =</span> <span class="dv">1</span>)</span>
+<span id="cb121-12"><a href="med.html#cb121-12" tabindex="-1"></a></span>
+<span id="cb121-13"><a href="med.html#cb121-13" tabindex="-1"></a><span class="co"># centers vs. guards</span></span>
+<span id="cb121-14"><a href="med.html#cb121-14" tabindex="-1"></a>results_mediation_guards <span class="ot">&lt;-</span> <span class="fu">mediate</span>(path_a, path_b,</span>
+<span id="cb121-15"><a href="med.html#cb121-15" tabindex="-1"></a>                             <span class="at">treat =</span> <span class="st">&quot;position_rec&quot;</span>, <span class="co"># x or main independent variable</span></span>
+<span id="cb121-16"><a href="med.html#cb121-16" tabindex="-1"></a>                             <span class="at">mediator =</span> <span class="st">&quot;career_PTS&quot;</span>,</span>
+<span id="cb121-17"><a href="med.html#cb121-17" tabindex="-1"></a>                             <span class="at">treat.value =</span> <span class="dv">2</span>)</span>
+<span id="cb121-18"><a href="med.html#cb121-18" tabindex="-1"></a></span>
+<span id="cb121-19"><a href="med.html#cb121-19" tabindex="-1"></a><span class="fu">summary</span>(results_mediation_forwards)</span></code></pre></div>
 <pre><code>## 
 ## Causal Mediation Analysis 
 ## 
@@ -1094,7 +1145,7 @@ are important despite the fact that they score less.</p>
 ## 
 ## 
 ## Simulations: 1000</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="med.html#cb162-1" tabindex="-1"></a><span class="fu">summary</span>(results_mediation_guards)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="med.html#cb123-1" tabindex="-1"></a><span class="fu">summary</span>(results_mediation_guards)</span></code></pre></div>
 <pre><code>## 
 ## Causal Mediation Analysis 
 ## 
@@ -1112,12 +1163,12 @@ are important despite the fact that they score less.</p>
 ## 
 ## 
 ## Simulations: 1000</code></pre>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="med.html#cb164-1" tabindex="-1"></a><span class="co"># note: this dies not yet work. FOrwads and guards are the same. CHeck how to </span></span>
-<span id="cb164-2"><a href="med.html#cb164-2" tabindex="-1"></a><span class="co"># take different groups of the treatment variable. Problem is that the treatment</span></span>
-<span id="cb164-3"><a href="med.html#cb164-3" tabindex="-1"></a><span class="co"># variable is categorical.</span></span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="med.html#cb125-1" tabindex="-1"></a><span class="co"># note: this dies not yet work. FOrwads and guards are the same. CHeck how to </span></span>
+<span id="cb125-2"><a href="med.html#cb125-2" tabindex="-1"></a><span class="co"># take different groups of the treatment variable. Problem is that the treatment</span></span>
+<span id="cb125-3"><a href="med.html#cb125-3" tabindex="-1"></a><span class="co"># variable is categorical.</span></span></code></pre></div>
 <p>The output looks different. Let’s go through it step by step:</p>
 <ul>
-<li>ACME: Average Causal Mediation Effect - “indirect effect”, this is the effect of position through points on salary.<br />
+<li>ACME: Average Causal Mediation Effect - <em>indirect effect</em>, this is the effect of position through points on salary.<br />
 </li>
 <li>ADE: Average Direct Effect - This is the direct effect of position on salary. + Total Effect: ADE and ACME together are the “total effect”<br />
 </li>
@@ -1125,7 +1176,7 @@ are important despite the fact that they score less.</p>
 </ul>
 <p>Let’s interpret this for our model:</p>
 <ul>
-<li>ACME: If only points could explain salaries, Guards would make, on average 900.000 USD more than centers (because they actually score more points)</li>
+<li>ACME: If only points could explain <code>salaries</code>, Guards would make, on average 900.000 USD more than centers (because they actually score more points)</li>
 <li>ADE: Adjusting for points, guards would make 1.4 Million USD less than centers</li>
 <li>Total Effect: Overall, guards actually make 500.000 USD less.</li>
 <li>Prop. Mediated. This is actually a negative value which makes no sense in this case. If points scored really “mediated” part of the total effect and had some explanatory power here, then we would see a positive percentage.</li>
@@ -1134,12 +1185,17 @@ are important despite the fact that they score less.</p>
 mediator in the model. The coefficient is the direct effect when we do include the mediator.
 The indirect effect is the total effect minus the direct effect (-1.400.000 - (-500.000) = -900.000).</p>
 <p>In sum, Guards are disadvantaged. They receive less money than center, although, if the points were considered, they should make even more. There must be other reasons why guards earn less. We need to go back to theory and come up with new hypothesis.</p>
-<div id="find-out-more" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> Find out more<a href="med.html#find-out-more" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="further-resources-5" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Further Resources<a href="med.html#further-resources-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="resources">
 <ul>
-<li>provide resources here</li>
-<li>references etc.</li>
+<li><a href="https://cran.r-project.org/web/packages/mediation/vignettes/mediation.pdf">mediation: R Package for Causal Mediation Analysis</a>: This article describes the mediation package for conducting causal mediation analysis in R. It explains how to use the mediate() function to estimate various quantities of interest, such as average causal mediation effects, average direct effects, total effects, and proportions mediated. It also shows how to perform sensitivity analysis and deal with multiple mediators and treatment noncompliance.</li>
+<li><a href="https://advstats.psychstat.org/book/mediation/index.php">Mediation Analysis – Advanced Statistics using R</a>: This web page provides an introduction to mediation analysis using R. It covers the basic concepts, how to draw path diagrams, how to test mediation effects using different methods, such as Baron and Kenny (1986) method, Sobel test, and bootstrapping. It also provides code examples and exercises.</li>
+<li><a href="https://tidypython.com/mediation-analysis-in-r-from-scratch-with-r-code/">Mediation Analysis in R from Scratch (with R code)</a>: This tutorial shows how to do mediation analysis in R from scratch. It demonstrates how to fit linear regression models for the mediator and the outcome, how to calculate the mediation effect and its standard error, and how to test its significance using a normal approximation or a bootstrap method.</li>
+<li><a href="https://rdocumentation.org/packages/mediation/versions/4.5.0/topics/mediate">mediate function - RDocumentation</a>: This web page documents the mediate() function from the mediation package. It provides a detailed description of the arguments, values, and methods of the function. It also gives some examples of how to use the function for different types of data and models.</li>
 </ul>
+</div>
 
 </div>
 </div>

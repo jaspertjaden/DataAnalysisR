@@ -5,31 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title> 4 DAGs | Data Analysis with R for Social Scientists</title>
-  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta name="description" content="In this course, you will learn how to analyse data using regression in R." />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content=" 4 DAGs | Data Analysis with R for Social Scientists" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta property="og:description" content="In this course, you will learn how to analyse data using regression in R." />
   <meta name="github-repo" content="jaspertjaden/DataAnalysisR" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content=" 4 DAGs | Data Analysis with R for Social Scientists" />
   
-  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta name="twitter:description" content="In this course, you will learn how to analyse data using regression in R." />
   
 
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-08-30" />
+<meta name="date" content="2023-09-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,7 +142,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Data Analysis with R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Intro</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Intro</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#acknowlegdements"><i class="fa fa-check"></i><b>0.1</b> Acknowlegdements</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro-sem.html"><a href="intro-sem.html"><i class="fa fa-check"></i><b>1</b> Introduction to Seminar</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="intro-sem.html"><a href="intro-sem.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
@@ -158,7 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5" data-path="intro-sem.html"><a href="intro-sem.html#prerequisites"><i class="fa fa-check"></i><b>1.5</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.6" data-path="intro-sem.html"><a href="intro-sem.html#structure"><i class="fa fa-check"></i><b>1.6</b> Structure</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="eda-1.html"><a href="eda-1.html"><i class="fa fa-check"></i><b>2</b> Exloratory Data Analysis - I</a>
+<li class="chapter" data-level="2" data-path="eda-1.html"><a href="eda-1.html"><i class="fa fa-check"></i><b>2</b> Exploratory Data Analysis - I</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="eda-1.html"><a href="eda-1.html#objectives-1"><i class="fa fa-check"></i><b>2.1</b> Objectives</a></li>
 <li class="chapter" data-level="2.2" data-path="eda-1.html"><a href="eda-1.html#r-functions-covered-this-week"><i class="fa fa-check"></i><b>2.2</b> R functions covered this week</a></li>
@@ -170,6 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="eda-1.html"><a href="eda-1.html#change-variables"><i class="fa fa-check"></i><b>2.8</b> change variables</a></li>
 <li class="chapter" data-level="2.9" data-path="eda-1.html"><a href="eda-1.html#explore-the-whole-dataset"><i class="fa fa-check"></i><b>2.9</b> Explore the whole dataset</a></li>
 <li class="chapter" data-level="2.10" data-path="eda-1.html"><a href="eda-1.html#explore-individual-variables"><i class="fa fa-check"></i><b>2.10</b> explore individual variables</a></li>
+<li class="chapter" data-level="2.11" data-path="eda-1.html"><a href="eda-1.html#further-resources"><i class="fa fa-check"></i><b>2.11</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="eda-2.html"><a href="eda-2.html"><i class="fa fa-check"></i><b>3</b> Exploratory Data Analysis - II</a>
 <ul>
@@ -182,22 +180,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="dags-1.html"><a href="dags-1.html"><i class="fa fa-check"></i><b>4</b> DAGs</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="dags-1.html"><a href="dags-1.html#objectives-2"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
-<li class="chapter" data-level="4.2" data-path="dags-1.html"><a href="dags-1.html#modelling"><i class="fa fa-check"></i><b>4.2</b> Modelling</a>
+<li class="chapter" data-level="4.2" data-path="dags-1.html"><a href="dags-1.html#functions-covered"><i class="fa fa-check"></i><b>4.2</b> Functions Covered</a></li>
+<li class="chapter" data-level="4.3" data-path="dags-1.html"><a href="dags-1.html#modelling"><i class="fa fa-check"></i><b>4.3</b> Modelling</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="dags-1.html"><a href="dags-1.html#what-is-modelling"><i class="fa fa-check"></i><b>4.2.1</b> What is modelling?</a></li>
-<li class="chapter" data-level="4.2.2" data-path="dags-1.html"><a href="dags-1.html#estimating-effects-vs.-prediction"><i class="fa fa-check"></i><b>4.2.2</b> Estimating effects vs. prediction</a></li>
+<li class="chapter" data-level="4.3.1" data-path="dags-1.html"><a href="dags-1.html#what-is-modelling"><i class="fa fa-check"></i><b>4.3.1</b> What is modelling?</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dags-1.html"><a href="dags-1.html#estimating-effects-vs.-prediction"><i class="fa fa-check"></i><b>4.3.2</b> Estimating effects vs. prediction</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="dags-1.html"><a href="dags-1.html#dags"><i class="fa fa-check"></i><b>4.3</b> DAGs</a>
+<li class="chapter" data-level="4.4" data-path="dags-1.html"><a href="dags-1.html#dags"><i class="fa fa-check"></i><b>4.4</b> DAGs</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="dags-1.html"><a href="dags-1.html#directed-acyclical-graphs"><i class="fa fa-check"></i><b>4.3.1</b> Directed acyclical graphs</a></li>
-<li class="chapter" data-level="4.3.2" data-path="dags-1.html"><a href="dags-1.html#patterns-of-relationships"><i class="fa fa-check"></i><b>4.3.2</b> Patterns of relationships</a></li>
-<li class="chapter" data-level="4.3.3" data-path="dags-1.html"><a href="dags-1.html#adjustment-set"><i class="fa fa-check"></i><b>4.3.3</b> Adjustment set</a></li>
+<li class="chapter" data-level="4.4.1" data-path="dags-1.html"><a href="dags-1.html#directed-acyclical-graphs"><i class="fa fa-check"></i><b>4.4.1</b> Directed acyclical graphs</a></li>
+<li class="chapter" data-level="4.4.2" data-path="dags-1.html"><a href="dags-1.html#patterns-of-relationships"><i class="fa fa-check"></i><b>4.4.2</b> Patterns of relationships</a></li>
+<li class="chapter" data-level="4.4.3" data-path="dags-1.html"><a href="dags-1.html#adjustment-set"><i class="fa fa-check"></i><b>4.4.3</b> Adjustment set</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="dags-1.html"><a href="dags-1.html#nba-dag"><i class="fa fa-check"></i><b>4.4</b> NBA DAG</a></li>
-<li class="chapter" data-level="4.5" data-path="dags-1.html"><a href="dags-1.html#resources"><i class="fa fa-check"></i><b>4.5</b> Resources</a>
+<li class="chapter" data-level="4.5" data-path="dags-1.html"><a href="dags-1.html#nba-dag"><i class="fa fa-check"></i><b>4.5</b> NBA DAG</a></li>
+<li class="chapter" data-level="4.6" data-path="dags-1.html"><a href="dags-1.html#resources"><i class="fa fa-check"></i><b>4.6</b> Resources</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="dags-1.html"><a href="dags-1.html#dagitty.net"><i class="fa fa-check"></i><b>4.5.1</b> dagitty.net</a></li>
-<li class="chapter" data-level="4.5.2" data-path="dags-1.html"><a href="dags-1.html#more-on-dags"><i class="fa fa-check"></i><b>4.5.2</b> More on DAGs</a></li>
+<li class="chapter" data-level="4.6.1" data-path="dags-1.html"><a href="dags-1.html#dagitty.net"><i class="fa fa-check"></i><b>4.6.1</b> dagitty.net</a></li>
+<li class="chapter" data-level="4.6.2" data-path="dags-1.html"><a href="dags-1.html#how-to-use-dagitty"><i class="fa fa-check"></i><b>4.6.2</b> How to use dagitty()</a></li>
+<li class="chapter" data-level="4.6.3" data-path="dags-1.html"><a href="dags-1.html#more-on-dags"><i class="fa fa-check"></i><b>4.6.3</b> More on DAGs</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="lin-t-1.html"><a href="lin-t-1.html"><i class="fa fa-check"></i><b>5</b> Linear Regression Theory I: Simple Linear Regression</a>
@@ -211,6 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.2" data-path="lin-t-1.html"><a href="lin-t-1.html#regressing-grade-on-hours"><i class="fa fa-check"></i><b>5.4.2</b> Regressing <code>grade</code> on <code>hours</code></a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="lin-t-1.html"><a href="lin-t-1.html#moving-on"><i class="fa fa-check"></i><b>5.5</b> Moving on</a></li>
+<li class="chapter" data-level="5.6" data-path="lin-t-1.html"><a href="lin-t-1.html#further-resources-1"><i class="fa fa-check"></i><b>5.6</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="lin-t-2.html"><a href="lin-t-2.html"><i class="fa fa-check"></i><b>6</b> Linear Regression Theory II: Multiple Linear Regression</a>
 <ul>
@@ -224,6 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="lin-t-2.html"><a href="lin-t-2.html#returning-to-our-research-question"><i class="fa fa-check"></i><b>6.3</b> Returning to our research question</a></li>
 <li class="chapter" data-level="6.4" data-path="lin-t-2.html"><a href="lin-t-2.html#adressing-the-uncertainty"><i class="fa fa-check"></i><b>6.4</b> Adressing the uncertainty</a></li>
 <li class="chapter" data-level="6.5" data-path="lin-t-2.html"><a href="lin-t-2.html#moving-on-1"><i class="fa fa-check"></i><b>6.5</b> Moving on</a></li>
+<li class="chapter" data-level="6.6" data-path="lin-t-2.html"><a href="lin-t-2.html#further-resources-2"><i class="fa fa-check"></i><b>6.6</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="log-t-3.html"><a href="log-t-3.html"><i class="fa fa-check"></i><b>7</b> Linear Regression Theory III: Diagnostics</a>
 <ul>
@@ -243,6 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.4.2" data-path="log-t-3.html"><a href="log-t-3.html#regression-diagnostics-revisited"><i class="fa fa-check"></i><b>7.4.2</b> Regression diagnostics (revisited)</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="log-t-3.html"><a href="log-t-3.html#conclusion"><i class="fa fa-check"></i><b>7.5</b> Conclusion</a></li>
+<li class="chapter" data-level="7.6" data-path="log-t-3.html"><a href="log-t-3.html#further-resources-3"><i class="fa fa-check"></i><b>7.6</b> Further Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="lin-a.html"><a href="lin-a.html"><i class="fa fa-check"></i><b>8</b> Linear Regression - Application</a>
 <ul>
@@ -265,31 +268,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="lin-a.html"><a href="lin-a.html#returning-to-our-research-question-2"><i class="fa fa-check"></i><b>8.7</b> Returning to our research question</a></li>
 <li class="chapter" data-level="8.8" data-path="lin-a.html"><a href="lin-a.html#moving-on-2"><i class="fa fa-check"></i><b>8.8</b> Moving on</a></li>
+<li class="chapter" data-level="8.9" data-path="lin-a.html"><a href="lin-a.html#further-resources-4"><i class="fa fa-check"></i><b>8.9</b> Further Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="lin-e.html"><a href="lin-e.html"><i class="fa fa-check"></i><b>9</b> Linear Regression - Exercises</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="lin-e.html"><a href="lin-e.html#exercises-of-linear-regression"><i class="fa fa-check"></i><b>9.1</b> Exercises of Linear Regression</a></li>
+<li class="chapter" data-level="9.1" data-path="lin-e.html"><a href="lin-e.html#exercises"><i class="fa fa-check"></i><b>9.1</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="med.html"><a href="med.html"><i class="fa fa-check"></i><b>10</b> Mediation</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="med.html"><a href="med.html#find-out-more"><i class="fa fa-check"></i><b>10.1</b> Find out more</a></li>
+<li class="chapter" data-level="10.1" data-path="med.html"><a href="med.html#objectives-7"><i class="fa fa-check"></i><b>10.1</b> Objectives</a></li>
+<li class="chapter" data-level="10.2" data-path="med.html"><a href="med.html#r-functions-covered-this-week-2"><i class="fa fa-check"></i><b>10.2</b> R functions covered this week</a></li>
+<li class="chapter" data-level="10.3" data-path="med.html"><a href="med.html#further-resources-5"><i class="fa fa-check"></i><b>10.3</b> Further Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="pm-t.html"><a href="pm-t.html"><i class="fa fa-check"></i><b>11</b> Prediction - Theory</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="pm-t.html"><a href="pm-t.html#how-prediction-works"><i class="fa fa-check"></i><b>11.1</b> How prediction works</a></li>
-<li class="chapter" data-level="11.2" data-path="pm-t.html"><a href="pm-t.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.2</b> Intro to Machine learning</a></li>
-<li class="chapter" data-level="11.3" data-path="pm-t.html"><a href="pm-t.html#more-resources"><i class="fa fa-check"></i><b>11.3</b> More resources:</a></li>
+<li class="chapter" data-level="11.1" data-path="pm-t.html"><a href="pm-t.html#objectives-8"><i class="fa fa-check"></i><b>11.1</b> Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="pm-t.html"><a href="pm-t.html#r-functions-covered-this-week-3"><i class="fa fa-check"></i><b>11.2</b> R functions covered this week</a></li>
+<li class="chapter" data-level="11.3" data-path="pm-t.html"><a href="pm-t.html#how-prediction-works"><i class="fa fa-check"></i><b>11.3</b> How prediction works</a></li>
+<li class="chapter" data-level="11.4" data-path="pm-t.html"><a href="pm-t.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.4</b> Intro to Machine learning</a></li>
+<li class="chapter" data-level="11.5" data-path="pm-t.html"><a href="pm-t.html#further-resources-6"><i class="fa fa-check"></i><b>11.5</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="pm-a.html"><a href="pm-a.html"><i class="fa fa-check"></i><b>12</b> Prediction - Application</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises-1"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>13</b> Outlook</a>
+<li class="chapter" data-level="13" data-path="log-est.html"><a href="log-est.html"><i class="fa fa-check"></i><b>13</b> Logistic regression</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="out-look.html"><a href="out-look.html#summary-of-what-was-covered-in-course"><i class="fa fa-check"></i><b>13.1</b> Summary of what was covered in course</a></li>
-<li class="chapter" data-level="13.2" data-path="out-look.html"><a href="out-look.html#other-outcome-variables"><i class="fa fa-check"></i><b>13.2</b> Other outcome variables</a></li>
-<li class="chapter" data-level="13.3" data-path="out-look.html"><a href="out-look.html#data-structures"><i class="fa fa-check"></i><b>13.3</b> Data structures</a></li>
-<li class="chapter" data-level="13.4" data-path="out-look.html"><a href="out-look.html#where-to-go-next"><i class="fa fa-check"></i><b>13.4</b> Where to go next</a></li>
+<li class="chapter" data-level="13.1" data-path="log-est.html"><a href="log-est.html#objectives-9"><i class="fa fa-check"></i><b>13.1</b> Objectives</a></li>
+<li class="chapter" data-level="13.2" data-path="log-est.html"><a href="log-est.html#functions-covered-in-this-week"><i class="fa fa-check"></i><b>13.2</b> Functions covered in this week</a></li>
+<li class="chapter" data-level="13.3" data-path="log-est.html"><a href="log-est.html#basic-concepts"><i class="fa fa-check"></i><b>13.3</b> Basic concepts</a></li>
+<li class="chapter" data-level="13.4" data-path="log-est.html"><a href="log-est.html#application"><i class="fa fa-check"></i><b>13.4</b> Application</a></li>
+<li class="chapter" data-level="13.5" data-path="log-est.html"><a href="log-est.html#interpretation-2"><i class="fa fa-check"></i><b>13.5</b> Interpretation</a></li>
+<li class="chapter" data-level="13.6" data-path="log-est.html"><a href="log-est.html#model-fit-1"><i class="fa fa-check"></i><b>13.6</b> model fit</a></li>
+<li class="chapter" data-level="13.7" data-path="log-est.html"><a href="log-est.html#diagnostics"><i class="fa fa-check"></i><b>13.7</b> diagnostics</a></li>
+<li class="chapter" data-level="13.8" data-path="log-est.html"><a href="log-est.html#prediction"><i class="fa fa-check"></i><b>13.8</b> prediction</a></li>
+<li class="chapter" data-level="13.9" data-path="log-est.html"><a href="log-est.html#mediation-1"><i class="fa fa-check"></i><b>13.9</b> Mediation</a></li>
+<li class="chapter" data-level="13.10" data-path="log-est.html"><a href="log-est.html#comparing-linear-and-logistic-regression"><i class="fa fa-check"></i><b>13.10</b> comparing linear and logistic regression</a></li>
+<li class="chapter" data-level="13.11" data-path="log-est.html"><a href="log-est.html#logistic-regression-in-machine-learning-context"><i class="fa fa-check"></i><b>13.11</b> logistic regression in Machine Learning context</a></li>
+<li class="chapter" data-level="13.12" data-path="log-est.html"><a href="log-est.html#further-resources-7"><i class="fa fa-check"></i><b>13.12</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>14</b> Outlook</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="out-look.html"><a href="out-look.html#summary-of-what-was-covered-in-course"><i class="fa fa-check"></i><b>14.1</b> Summary of what was covered in course</a></li>
+<li class="chapter" data-level="14.2" data-path="out-look.html"><a href="out-look.html#other-outcome-variables"><i class="fa fa-check"></i><b>14.2</b> Other outcome variables</a></li>
+<li class="chapter" data-level="14.3" data-path="out-look.html"><a href="out-look.html#data-structures"><i class="fa fa-check"></i><b>14.3</b> Data structures</a></li>
+<li class="chapter" data-level="14.4" data-path="out-look.html"><a href="out-look.html#where-to-go-next"><i class="fa fa-check"></i><b>14.4</b> Where to go next</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -316,46 +339,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number"> 4</span> DAGs<a href="dags-1.html#dags-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="objectives-2" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Objectives<a href="dags-1.html#objectives-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="objectives">
 <ul>
 <li>Getting to know DAGs</li>
 <li>Understand its implications on achieving unbiased estimates for effects of interest</li>
 <li>Building a DAG for the NBA data to model the effect of scored points on salary (in session 8)</li>
 </ul>
 </div>
-<div id="modelling" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Modelling<a href="dags-1.html#modelling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="functions-covered" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Functions Covered<a href="dags-1.html#functions-covered" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="functions">
+<ul>
+<li><code>dagitty()</code> : This function creates and analyzes Directed Acyclic Graphs (DAGs).</li>
+</ul>
+</div>
+</div>
+<div id="modelling" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Modelling<a href="dags-1.html#modelling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This session kicks off the block on linear regression as a statistic
 modelling technique, but before we jump into the deep end and learn what
 linear regression is and how we can apply it, we first have to understand
-what modelling is and why we might do it. We also need a way to find out what we
-actually have to include in the model and what we might not want or even can not
-include to achieve robust results. This is what this session is all about.</p>
-<div id="what-is-modelling" class="section level3 hasAnchor" number="4.2.1">
-<h3><span class="header-section-number">4.2.1</span> What is modelling?<a href="dags-1.html#what-is-modelling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+what modelling is and why we might do it. We also need a way to find out what we actually have to include in the model and what we might not want or even can not include to achieve robust results. This is what this session is all about.</p>
+<div id="what-is-modelling" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> What is modelling?<a href="dags-1.html#what-is-modelling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Before we approach this question, we should briefly think about what steps a
 typical data analysis project comprises. We usually start with an interesting
-problem and derive a research question from it. Based on this question we would
-go into the literature and read up on theories and already published research
-papers that are relevant to our question. We construct a theoretical framework
-for our particular problem and formulate some hypotheses, collect or identify
-appropriate data and conduct an exploratory data analysis. At this point we
-should already have a firm understanding about what we actually want to find out
-and how our data is structured. The next step would be modelling.</p>
+problem and derive a research question from it. Based on this question we would go into the literature and read up on theories and already published research papers that are relevant to our question. We construct a theoretical framework for our particular problem and formulate some hypotheses, collect or identify appropriate data and conduct an exploratory data analysis. At this point we should already have a firm understanding about what we actually want to find out and how our data is structured. The next step would be modelling.</p>
 <p>So what is modelling? In general we have one <em>dependent variable</em>, typically
-denoted as <span class="math inline">\(y\)</span>. This variable has some varying values. Our goal in modelling is
-to estimate how these values are generated. Generating here refers to the
+denoted as <span class="math inline">\(y\)</span>. This variable has some varying values. Our goal in modelling is to estimate how these values are generated. Generating here refers to the
 <em>data generating process</em> that we assume responsible for <span class="math inline">\(y\)</span> having the values
 it has. One or multiple <em>independent variables</em>, <span class="math inline">\(x_1 \ x_2 \ ... \ x_k\)</span>,
-influence how the values of <span class="math inline">\(y\)</span> are generated; thus <span class="math inline">\(y\)</span> <em>depends</em> on the values
-of our independent variable(s).</p>
+influence how the values of <span class="math inline">\(y\)</span> are generated; thus <span class="math inline">\(y\)</span> <em>depends</em> on the values of our independent variable(s).</p>
 <p>When we model, we do not know the data generating process, but based on
 theoretical considerations, careful thinking and exploratory data analysis, we
-can make assumptions on how we think the process operates. DAGs are a tool that
-can assist us in this step. We can use it to formally clarify our assumptions on
-the data generating process and to formulate a model based on its implications.</p>
+can make assumptions on how we think the process operates. DAGs are a tool that can assist us in this step. We can use it to formally clarify our assumptions on the data generating process and to formulate a model based on its implications.</p>
 </div>
-<div id="estimating-effects-vs.-prediction" class="section level3 hasAnchor" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Estimating effects vs. prediction<a href="dags-1.html#estimating-effects-vs.-prediction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="estimating-effects-vs.-prediction" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Estimating effects vs. prediction<a href="dags-1.html#estimating-effects-vs.-prediction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are two main reasons for modelling in the social sciences.</p>
 <p>Our goal can be <em>prediction</em>, as in predicting our dependent variable <span class="math inline">\(y\)</span> with
 the highest possible accuracy. This maybe is the less classical approach to
@@ -422,10 +443,10 @@ include in our model as they would potentially lead to incorrect estimations.
 This is where DAGs come in.</p>
 </div>
 </div>
-<div id="dags" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> DAGs<a href="dags-1.html#dags" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="directed-acyclical-graphs" class="section level3 hasAnchor" number="4.3.1">
-<h3><span class="header-section-number">4.3.1</span> Directed acyclical graphs<a href="dags-1.html#directed-acyclical-graphs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="dags" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> DAGs<a href="dags-1.html#dags" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="directed-acyclical-graphs" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Directed acyclical graphs<a href="dags-1.html#directed-acyclical-graphs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><em>DAG</em> is short for <em>directed acyclical graph</em>. DAGs are <em>graphs</em> that display
 the assumed relationship between variables as arrows, or missing arrows, between
 them. An arrow represents our assumption that one variable has an effect on the
@@ -468,10 +489,10 @@ and at the same time opening up all paths that do. For this to make sense, we
 need to know the three patterns of relationships between a set of three
 variables and how we can open or close paths with them.</p>
 </div>
-<div id="patterns-of-relationships" class="section level3 hasAnchor" number="4.3.2">
-<h3><span class="header-section-number">4.3.2</span> Patterns of relationships<a href="dags-1.html#patterns-of-relationships" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="chainspipe" class="section level4 hasAnchor" number="4.3.2.1">
-<h4><span class="header-section-number">4.3.2.1</span> Chains/Pipe<a href="dags-1.html#chainspipe" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="patterns-of-relationships" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Patterns of relationships<a href="dags-1.html#patterns-of-relationships" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="chainspipe" class="section level4 hasAnchor" number="4.4.2.1">
+<h4><span class="header-section-number">4.4.2.1</span> Chains/Pipe<a href="dags-1.html#chainspipe" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Three variables can be connected in a <em>chain</em> or <em>pipe</em> like this:</p>
 <p><img src="_main_files/figure-html/dag_pipe-1.png" width="672" /></p>
 <p><span class="math inline">\(X\)</span> has an effect on <span class="math inline">\(A\)</span> which in turn affects the value of <span class="math inline">\(Y\)</span>. This implies
@@ -490,8 +511,8 @@ would then conclude from our analysis that <span class="math inline">\(X\)</span
 hypotheses was wrong, while there actually could be an effect that we made
 “disappear” by blocking its path. Drawing a DAG based on our assumptions helps
 us to prevent this pitfall.</p>
-<div id="mediation" class="section level5 hasAnchor" number="4.3.2.1.1">
-<h5><span class="header-section-number">4.3.2.1.1</span> Mediation<a href="dags-1.html#mediation" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="mediation" class="section level5 hasAnchor" number="4.4.2.1.1">
+<h5><span class="header-section-number">4.4.2.1.1</span> Mediation<a href="dags-1.html#mediation" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>A special case of pipes is <em>mediation</em>. We will only take about this briefly
 here and return to the topic in session 10.</p>
 <p>Consider this DAG:</p>
@@ -511,8 +532,8 @@ of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</sp
 compute the indirect effect as the difference between total and direct effect.</p>
 </div>
 </div>
-<div id="confounders" class="section level4 hasAnchor" number="4.3.2.2">
-<h4><span class="header-section-number">4.3.2.2</span> Confounders<a href="dags-1.html#confounders" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="confounders" class="section level4 hasAnchor" number="4.4.2.2">
+<h4><span class="header-section-number">4.4.2.2</span> Confounders<a href="dags-1.html#confounders" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The second pattern we may see is the <em>fork</em> or <em>confounder</em>.</p>
 <p><img src="_main_files/figure-html/dag_mediation_0-1.png" width="672" /></p>
 <p>We see that there is no implied direct relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> but that
@@ -556,8 +577,8 @@ the type of region, let us say population density, this spurious association
 disappears and we can return to normalitty. Storks do not bring babies after all.</p>
 <p><img src="_main_files/figure-html/dag_storks-1.png" width="672" /></p>
 </div>
-<div id="colliders" class="section level4 hasAnchor" number="4.3.2.3">
-<h4><span class="header-section-number">4.3.2.3</span> Colliders<a href="dags-1.html#colliders" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="colliders" class="section level4 hasAnchor" number="4.4.2.3">
+<h4><span class="header-section-number">4.4.2.3</span> Colliders<a href="dags-1.html#colliders" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The last pattern we have to consider are <em>colliders</em>. A collider is a variable
 on a path that has two arrows pointing into it:</p>
 <p><img src="_main_files/figure-html/dag_mediation_1-1.png" width="672" /></p>
@@ -569,8 +590,8 @@ not control for colliders because we would open up a path that creates a spuriou
 association between two variables that are not related.</p>
 </div>
 </div>
-<div id="adjustment-set" class="section level3 hasAnchor" number="4.3.3">
-<h3><span class="header-section-number">4.3.3</span> Adjustment set<a href="dags-1.html#adjustment-set" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="adjustment-set" class="section level3 hasAnchor" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> Adjustment set<a href="dags-1.html#adjustment-set" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now we have all the building blocks for identifying which variables we have to
 include in our model and which we are not allowed to include. If we do not follow
 these rules we may statistically find relationships where there are none or miss
@@ -587,8 +608,8 @@ mistakes while building our DAG. While DAGs are a great tool for identifying the
 adjustment set, the technique alone can never replace careful thinking.</p>
 </div>
 </div>
-<div id="nba-dag" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> NBA DAG<a href="dags-1.html#nba-dag" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="nba-dag" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> NBA DAG<a href="dags-1.html#nba-dag" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We will now pick up where we left off in session 2 and return to the NBA data.
 Equipped with our new tool we can now draw a DAG with the goal of building a
 model to estimate the effect of points scored on the salary a player receives.
@@ -653,10 +674,10 @@ For prediction we would have included both variables because this should increas
 the accuracy of the prediction. We will return to this in more detail in
 sessions 11 and 12.</p>
 </div>
-<div id="resources" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> Resources<a href="dags-1.html#resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="dagitty.net" class="section level3 hasAnchor" number="4.5.1">
-<h3><span class="header-section-number">4.5.1</span> dagitty.net<a href="dags-1.html#dagitty.net" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="resources" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Resources<a href="dags-1.html#resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="dagitty.net" class="section level3 hasAnchor" number="4.6.1">
+<h3><span class="header-section-number">4.6.1</span> dagitty.net<a href="dags-1.html#dagitty.net" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>While the underlying rules of DAGs are relatively straightforward, identifying
 the adjustment set can get harder the more complex a DAG gets. Consider this for
 instance:</p>
@@ -685,8 +706,47 @@ for the total effect. This also is what we are interested in here. If we are
 interested in mediation, we can also set the panel to display the set for the
 direct effect.</p>
 </div>
-<div id="more-on-dags" class="section level3 hasAnchor" number="4.5.2">
-<h3><span class="header-section-number">4.5.2</span> More on DAGs<a href="dags-1.html#more-on-dags" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="how-to-use-dagitty" class="section level3 hasAnchor" number="4.6.2">
+<h3><span class="header-section-number">4.6.2</span> How to use dagitty()<a href="dags-1.html#how-to-use-dagitty" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dagitty is a web-based tool that allows you to create, analyze, and visualize DAGs. You can use it to check the validity of your causal assumptions, identify the adjustment set for estimating an effect of interest, and explore the consequences of different interventions. To use dagitty, follow these steps:</p>
+<ol style="list-style-type: decimal">
+<li>Go to <a href="https://dagitty.net">dagitty.net</a> and click on “Model” and then “New model”.</li>
+<li>Add variables by clicking on the canvas and naming them. You can also drag and drop variables from the left panel.</li>
+<li>Add arrows by clicking on the source variable and then on the target variable. You can also use the keyboard shortcuts listed on the left panel.</li>
+<li>Specify the exposure variable (the independent variable of interest) and the outcome variable (the dependent variable) by selecting them from the drop-down menus on the left panel under “Variable”.</li>
+<li>Check the causal effect identification panel on the top right corner. It will show you the adjustment set for estimating the total effect of the exposure on the outcome, as well as the direct effect if you specify a mediator variable.</li>
+<li>You can also perform various analyses on your DAG, such as testing for d-separation, finding minimal sufficient adjustment sets, simulating data, and more. You can access these features from the menus on the top bar.</li>
+<li>You can export your DAG as an image or a code for various software packages by clicking on “Export” and choosing your preferred format.</li>
+</ol>
+<p>Here is an example of how to use the <code>dagitty()</code> function in R:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="dags-1.html#cb53-1" tabindex="-1"></a><span class="co"># Load the dagitty package</span></span>
+<span id="cb53-2"><a href="dags-1.html#cb53-2" tabindex="-1"></a><span class="fu">library</span>(dagitty)</span>
+<span id="cb53-3"><a href="dags-1.html#cb53-3" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="dags-1.html#cb53-4" tabindex="-1"></a><span class="co"># Define a DAG</span></span>
+<span id="cb53-5"><a href="dags-1.html#cb53-5" tabindex="-1"></a>dag <span class="ot">&lt;-</span> <span class="fu">dagitty</span>( <span class="st">&#39;dag {</span></span>
+<span id="cb53-6"><a href="dags-1.html#cb53-6" tabindex="-1"></a><span class="st">  &quot;Exposure&quot; [exposure]</span></span>
+<span id="cb53-7"><a href="dags-1.html#cb53-7" tabindex="-1"></a><span class="st">  &quot;Outcome&quot; [outcome]</span></span>
+<span id="cb53-8"><a href="dags-1.html#cb53-8" tabindex="-1"></a><span class="st">  &quot;Confounding Variable&quot; [pos=&quot;1,0&quot;]</span></span>
+<span id="cb53-9"><a href="dags-1.html#cb53-9" tabindex="-1"></a><span class="st">  &quot;Mediator&quot; [mediator]</span></span>
+<span id="cb53-10"><a href="dags-1.html#cb53-10" tabindex="-1"></a><span class="st">  &quot;Exposure&quot; -&gt; &quot;Outcome&quot;</span></span>
+<span id="cb53-11"><a href="dags-1.html#cb53-11" tabindex="-1"></a><span class="st">  &quot;Exposure&quot; -&gt; &quot;Mediator&quot;</span></span>
+<span id="cb53-12"><a href="dags-1.html#cb53-12" tabindex="-1"></a><span class="st">  &quot;Mediator&quot; -&gt; &quot;Outcome&quot;</span></span>
+<span id="cb53-13"><a href="dags-1.html#cb53-13" tabindex="-1"></a><span class="st">  &quot;Confounding Variable&quot; -&gt; &quot;Exposure&quot;</span></span>
+<span id="cb53-14"><a href="dags-1.html#cb53-14" tabindex="-1"></a><span class="st">  &quot;Confounding Variable&quot; -&gt; &quot;Outcome&quot;</span></span>
+<span id="cb53-15"><a href="dags-1.html#cb53-15" tabindex="-1"></a><span class="st">}&#39;</span> )</span>
+<span id="cb53-16"><a href="dags-1.html#cb53-16" tabindex="-1"></a></span>
+<span id="cb53-17"><a href="dags-1.html#cb53-17" tabindex="-1"></a><span class="co"># Plot the DAG</span></span>
+<span id="cb53-18"><a href="dags-1.html#cb53-18" tabindex="-1"></a><span class="fu">plot</span>( dag )</span></code></pre></div>
+<p><img src="_main_files/figure-html/dag_example-1.png" width="672" /></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="dags-1.html#cb54-1" tabindex="-1"></a><span class="co"># Identify the minimal adjustment set for estimating the total effect of Exposure on Outcome</span></span>
+<span id="cb54-2"><a href="dags-1.html#cb54-2" tabindex="-1"></a><span class="fu">adjustmentSets</span>( dag, <span class="at">exposure =</span> <span class="st">&quot;Exposure&quot;</span>, <span class="at">outcome =</span> <span class="st">&quot;Outcome&quot;</span> )</span></code></pre></div>
+<pre><code>## { Confounding Variable }</code></pre>
+<p>In this example, we first define a DAG with four variables: Exposure, Outcome, Confounding Variable, and Mediator. We specify the relationships between these variables with arrows. Then we plot the DAG and identify the minimal adjustment sets for estimating the total effect and direct effect of Exposure on Outcome. The <code>adjustmentSets()</code> function returns a list of variables that we need to control for in order to estimate these effects without bias.</p>
+<p>Dagitty is a useful tool for building and testing your causal models based on DAGs. However, it is not a substitute for careful thinking and theoretical knowledge. You should always check if your DAG reflects your assumptions and hypotheses correctly and if it is consistent with the data and the literature.</p>
+</div>
+<div id="more-on-dags" class="section level3 hasAnchor" number="4.6.3">
+<h3><span class="header-section-number">4.6.3</span> More on DAGs<a href="dags-1.html#more-on-dags" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="resources">
 <p>If you are interested in diving deeper into DAGs, we can recommend this
 resources, which were also used for writing this session.</p>
 <p>Richard McElreath provides a great introduction into the topic with many clear
@@ -704,6 +764,7 @@ of Causal Analysis for Social Research, 245–273. Dordrecht [u.a.]: Springer.</
 establishing DAGs. An approachable starting point would be the “Book of Why”:</p>
 <p>Pearl, Judea &amp; Dana Mackenzie (2018). The book of why : the new science of cause
 and effect. New York: Basic Books.</p>
+</div>
 
 </div>
 </div>

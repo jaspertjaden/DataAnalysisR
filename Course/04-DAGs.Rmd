@@ -1,11 +1,18 @@
 # DAGs {#dags-1}
 
 ## Objectives
-
+::: {.objectives}
 * Getting to know DAGs
 * Understand its implications on achieving unbiased estimates for effects of interest
 * Building a DAG for the NBA data to model the effect of scored points on salary (in session 8)
 
+:::
+
+## Functions Covered
+
+::: {.functions}
+- `dagitty()` : This function creates and analyzes Directed Acyclic Graphs (DAGs).
+:::
 ## Modelling
 
 This session kicks off the block on linear regression as a statistic
@@ -565,7 +572,53 @@ for the total effect. This also is what we are interested in here. If we are
 interested in mediation, we can also set the panel to display the set for the 
 direct effect.
 
+### How to use dagitty()
+
+Dagitty is a web-based tool that allows you to create, analyze, and visualize DAGs. You can use it to check the validity of your causal assumptions, identify the adjustment set for estimating an effect of interest, and explore the consequences of different interventions. To use dagitty, follow these steps:
+
+1. Go to [dagitty.net](https://dagitty.net) and click on "Model" and then "New model".
+2. Add variables by clicking on the canvas and naming them. You can also drag and drop variables from the left panel.
+3. Add arrows by clicking on the source variable and then on the target variable. You can also use the keyboard shortcuts listed on the left panel.
+4. Specify the exposure variable (the independent variable of interest) and the outcome variable (the dependent variable) by selecting them from the drop-down menus on the left panel under "Variable".
+5. Check the causal effect identification panel on the top right corner. It will show you the adjustment set for estimating the total effect of the exposure on the outcome, as well as the direct effect if you specify a mediator variable.
+6. You can also perform various analyses on your DAG, such as testing for d-separation, finding minimal sufficient adjustment sets, simulating data, and more. You can access these features from the menus on the top bar.
+7. You can export your DAG as an image or a code for various software packages by clicking on "Export" and choosing your preferred format.
+
+Here is an example of how to use the `dagitty()` function in R:
+
+```{r, dag_example, message=FALSE, warning=FALSE}
+# Load the dagitty package
+library(dagitty)
+
+# Define a DAG
+dag <- dagitty( 'dag {
+  "Exposure" [exposure]
+  "Outcome" [outcome]
+  "Confounding Variable" [pos="1,0"]
+  "Mediator" [mediator]
+  "Exposure" -> "Outcome"
+  "Exposure" -> "Mediator"
+  "Mediator" -> "Outcome"
+  "Confounding Variable" -> "Exposure"
+  "Confounding Variable" -> "Outcome"
+}' )
+
+# Plot the DAG
+plot( dag )
+
+# Identify the minimal adjustment set for estimating the total effect of Exposure on Outcome
+adjustmentSets( dag, exposure = "Exposure", outcome = "Outcome" )
+
+```
+
+In this example, we first define a DAG with four variables: Exposure, Outcome, Confounding Variable, and Mediator. We specify the relationships between these variables with arrows. Then we plot the DAG and identify the minimal adjustment sets for estimating the total effect and direct effect of Exposure on Outcome. The `adjustmentSets()` function returns a list of variables that we need to control for in order to estimate these effects without bias.
+
+Dagitty is a useful tool for building and testing your causal models based on DAGs. However, it is not a substitute for careful thinking and theoretical knowledge. You should always check if your DAG reflects your assumptions and hypotheses correctly and if it is consistent with the data and the literature.
+
+
 ### More on DAGs
+
+::: {.resources}
 
 If you are interested in diving deeper into DAGs, we can recommend this 
 resources, which were also used for writing this session.
@@ -593,3 +646,5 @@ establishing DAGs. An approachable starting point would be the "Book of Why":
 
 Pearl, Judea & Dana Mackenzie (2018). The book of why : the new science of cause
 and effect. New York: Basic Books.
+
+:::

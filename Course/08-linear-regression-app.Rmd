@@ -10,16 +10,28 @@ regression model and try to estimate the effect of interest as accurately as
 possible.
 
 ## Objectives
-
+::: {.objectives}
 * Estimate the effect of interest, scored point on salary, using a linear regression
 * Applying diagnostics to the model and correct mistakes
 * Interpret the final model
 
+:::
+
 ## R functions covered this week
+::: {.functions}
+- `lm()` : This function is used to fit a linear model to the data. It takes a formula that specifies the dependent and independent variables, and a data frame that contains the variables. It returns a model object that can be used for further analysis.
+- `summary()` : This function is used to get a summary of a model object, such as the coefficients, standard errors, t-values, p-values, R-squared, and F-statistic. It also provides information on the residuals, such as the minimum, maximum, median, and quartiles.
+- `tidy()` : This function is from the **broom** package. It is used to convert a model object into a tidy tibble that contains one row per parameter estimate and columns for the term, estimate, standard error, statistic, and p-value.
+- `plot()` : This function is used to create various plots for a model object, such as the residuals vs fitted values, the Q-Q plot, the scale-location plot, and the residuals vs leverage plot. These plots are useful for checking the assumptions of linear regression, such as linearity, normality, homoscedasticity, and outliers¹[1].
+- `autoplot()` : This function is from the **ggfortify** package. It is used to create the same plots as `plot()` but in the style of **ggplot2**. It returns a list of four plots that can be customized further with **ggplot2** functions.
+- `vif()` : This function is from the **car** package. It is used to compute the variance inflation factors (VIF) for each independent variable in a linear model. The VIF measures how much the variance of a coefficient estimate is inflated due to multicollinearity. A high VIF indicates a potential problem of multicollinearity.
+- `log()` : This function is used to compute the natural logarithm of a numeric vector. It can be used to transform a skewed dependent variable into a more normal distribution²[2].
+- `I()` : This function is used to indicate that an expression should be evaluated as it is in a formula. It can be used to include non-linear transformations or interactions of independent variables in a linear model³[3].
+- `exp()` : This function is used to compute the exponential function of a numeric vector. It can be used to reverse the logarithmic transformation of a dependent variable.
+- `ggplot()`: It’s a key function from the *ggplot2* package and is used to create a wide variety of static, dynamic, and interactive graphics in R. The function allows you to specify a mapping from data to aesthetics (color, shape, size) and geometric objects (points, lines, bars). It also allows you to add statistical transformations, coordinate systems, faceting, and themes.
+- `glance()` : This function is from the **broom** package. It is used to get a summary of a model object, such as the R-squared, adjusted R-squared, RMSE, p-value, etc. It takes a model object and returns a tibble with one row per model and one column per statistic.
 
-- `lm()`
-XXX FILL IN XXX
-
+:::
 
 ## Research question
 
@@ -28,7 +40,7 @@ estimate for the effect from points scored on the salary an NBA player receives.
 We already constructed a DAG that reflects our assumptions for the underlying
 data generating process. Let us revist this briefly:
 
-``` {r dag_final, echo = FALSE}
+``` {r dag_final, echo = FALSE, warning=FALSE, message=FALSE}
 library(dagitty)
 
 dagitty('dag{
@@ -58,7 +70,7 @@ Based on this we construct our model.
 
 Now let us get to it and load the NBA data we prepared in week 2.
 
-``` {r nba_data}
+``` {r nba_data, warning=FALSE, message=FALSE}
 library(tidyverse)
 load("../datasets/nba/data_nba.RData")
 ```
@@ -84,7 +96,7 @@ The goal of our research question is to estimate the effect of the points per
 game on the received salary. So to regress `salary` on `career_PTS`, we just
 write:
 
-``` {r first_lm}
+``` {r first_lm, warning=FALSE, message=FALSE}
 lm(salary ~ career_PTS, data = data_nba)
 ```
 
@@ -106,7 +118,7 @@ on. We can for example use it on a data frame or tibble to get some descriptive
 statistics for the included variables. For example, we can information on the
 distribution of points per game by writing:
 
-``` {r summary_df}
+``` {r summary_df, warning=FALSE, message=FALSE}
 summary(data_nba$career_PTS)
 ```
 
@@ -116,13 +128,13 @@ object. This is good practice in most cases as we can now apply all additional
 analysis of the model on this object and we do not have to rerun the model
 every time.
 
-``` {r m1}
+``` {r m1, warning=FALSE, message=FALSE}
 m1 <- lm(salary ~ career_PTS, data = data_nba)
 ```
 
 We can now apply `summary()` on the object `m1`, short for "model 1":
 
-``` {r summary_m1}
+``` {r summary_m1, warning=FALSE, message=FALSE}
 summary(m1)
 ```
 
@@ -133,7 +145,7 @@ and the model fit.
 An alternative method of displaying the coefficients in a regular tibble format,
 is to use `tidy()` from the `broom` package.
 
-``` {r tidy_m1}
+``` {r tidy_m1, warning=FALSE, message=FALSE}
 library(broom)
 
 tidy(m1)
@@ -149,7 +161,7 @@ the team about $850,000$. Wait, this does not make sense...
 To make the intercept more readily interpretable we should again center our
 metric dependent variable `career_PTS` on its mean.
 
-``` {r center_pts}
+``` {r center_pts, warning=FALSE, message=FALSE}
 mean(data_nba$career_PTS)
 
 data_nba <- data_nba %>% 
@@ -159,7 +171,7 @@ data_nba <- data_nba %>%
 As we have now centered the independent variable of interest on its mean of $8.9$
 we can rerun the model.
 
-``` {r m1_rerun}
+``` {r m1_rerun, warning=FALSE, message=FALSE}
 m1 <- lm(salary ~ PTS_centered, data = data_nba)
 
 summary(m1)
@@ -176,6 +188,17 @@ sense.
 This model model already achieved a considerable $R^2$ of $0.36$. About $36\%$
 of the variance in salaries is explained by the points per game a player scores.
 
+Another way to get the model statistics, such as $r^2$, F-statistic, and p-value, is to use the `glance()` function from the broom package. This function returns a tibble with one row of model summaries. For example, we can apply `glance()` to our final model `m4` and get the following output:
+
+```{r glance_, warning=FALSE, message=FALSE}
+glance(m1)
+```
+
+
+We can see that the output includes the same information as the summary of `m1`, but in a different format. The advantage of using `glance()` is that it is easier to manipulate and compare the model statistics using tidyverse functions. For example, we can use `bind_rows()` to combine the outputs of different models and compare their performance.
+
+
+
 ## Multiple linear regression in R
 
 The DAG we have constructed above based on our research question indicated that
@@ -185,7 +208,7 @@ We can add additional independent variables to the formula used in `lm()` with a
 types of variables, i.e. metric, dummies or categorical variables.
 So let us do this now by adding the 5 dummies we constructed for the positions:
 
-``` {r m2}
+``` {r m2, warning=FALSE, message=FALSE}
 m2 <- lm(salary ~ PTS_centered + position_center + position_sf +  position_pf + position_sg + position_pg, data = data_nba)
 
 summary(m2)
@@ -250,7 +273,7 @@ But there is an easier way to see all four plots at once. The package
 An added benefit, depending on your taste, is that the plots are rendered in the
 style of `ggplot2`.
 
-``` {r m2_diag}
+``` {r m2_diag, warning=FALSE, message=FALSE}
 library(ggfortify)
 
 autoplot(m2)
@@ -286,7 +309,7 @@ observe this in the lower right.
 We should also test for multicollinearity. We can compute the VIF measures using
 a function from the package `car`.
 
-``` {r m2_vif, message = FALSE}
+``` {r m2_vif, warning=FALSE, message=FALSE}
 library(car)
 
 vif(m2)
@@ -318,7 +341,7 @@ The deviation from normality and the clearly present heteroscedasticity could
 both point to the same problem, namely a skewed dependent variable. Let us
 examine its distribution first.
 
-``` {r distribution_dv_before}
+``` {r distribution_dv_before, warning=FALSE, message=FALSE}
 data_nba %>% 
   ggplot(aes(x = salary)) +
   geom_density()
@@ -344,7 +367,7 @@ skewed distribution. A common transformation for income data is to take the
 dependent variable. To achieve the transformation we can simply use the base R
 function `log()` which as its default computes the $ln$. 
 
-``` {r transform_dv_log}
+``` {r transform_dv_log, warning=FALSE, message=FALSE}
 data_nba <- data_nba %>% 
   mutate(salary_log = log(salary))
 
@@ -358,7 +381,7 @@ to the left, overall it is much more evenly distributed.
 
 We should use the new variable as our outcome an check the tests again.
 
-``` {r m3}
+``` {r m3, warning=FALSE, message=FALSE}
 m3 <- lm(salary_log ~ PTS_centered + position_center + position_sf +  position_pf + position_sg + position_pg, data = data_nba)
 
 autoplot(m3)
@@ -397,7 +420,7 @@ we add a LOWESS curve to the plot. This is often helpful in detecting
 non-linearity as the curve can change its slope over the range of the dependent
 variable. This is also the default for `geom_smooth()`.
 
-``` {r non_linearity}
+``` {r non_linearity, warning=FALSE, message=FALSE}
 data_nba %>% 
   ggplot(aes(x = career_PTS, y = salary)) +
   geom_point() +
@@ -413,7 +436,7 @@ One common way to address the non-linearity is taking the square of the
 dependent variable in question. We should not square our centered points 
 variable though. Let us inspect what would happen if we squared it.
 
-``` {r centered_squared}
+``` {r centered_squared, warning=FALSE, message=FALSE}
 data_nba %>% 
   ggplot(aes(x = PTS_centered, y = PTS_centered ^ 2)) +
   geom_point() +
@@ -431,7 +454,7 @@ points could have an even larger effect.
 Because of this we should return to the uncentred version of our variable. What
 happens if we square this?
 
-``` {r career_pts_squared}
+``` {r career_pts_squared, warning=FALSE, message=FALSE}
 data_nba %>% 
   ggplot(aes(x = career_PTS, y = career_PTS ^ 2)) +
   geom_point() +
@@ -451,13 +474,13 @@ expression. This is what we will do below. Note that we add the point variable
 as its untransformed and transformed versions. The first represents the linear
 parts and the second the non-linear parts of the effect.
 
-``` {r m4}
+``` {r m4, warning=FALSE, message=FALSE}
 m4 <- lm(salary_log ~ career_PTS + I(career_PTS^2) + position_center + position_sf + position_pf + position_sg + position_pg, data = data_nba)
 ```
 
 We can now reassess the tests for the last model.
 
-``` {r m4_diag}
+``` {r m4_diag, warning=FALSE, message=FALSE}
 autoplot(m4)
 ```
 
@@ -473,7 +496,7 @@ that do not meet the thresholds but at the same time we do not see any points
 with high values for both. Overall there seem to be no overly influential points
 which we had to address. Let us also reexamine the VIF.
 
-``` {r m4_vif}
+``` {r m4_vif, warning=FALSE, message=FALSE}
 vif(m4)
 ```
 
@@ -493,7 +516,7 @@ thinking about what we are actually doing.
 As we now settled on `m4` as our best model, it is time to discuss what we
 actually found out about the effect of scored points on the received salary.
 
-``` {r m4_interpret}
+``` {r m4_interpret, warning=FALSE, message=FALSE}
 summary(m4)
 ```
 
@@ -521,7 +544,7 @@ To find out what this means in hard dollars, we have to reverse the logarithmus
 naturalis. We can do this by calculating $e^{\hat{y}}$. R gives us the function
 `exp()` to do just that.
 
-``` {r there_and_back_again}
+``` {r there_and_back_again, warning=FALSE, message=FALSE}
 exp(16.17654)
 exp(15.659565)
 ```
@@ -560,3 +583,12 @@ maybe the DAG is not entirely correct. Maybe we made some faulty assumptions or
 maybe we missed a variable with an important role in the data generating
 process. In the next session we will see, how we can come up with a different
 DAG that incorporates the same variables but makes some different assumptions.
+
+## Further Resources
+::: {.resources}
+- [Linear Regression in R Tutorial - DataCamp](https://www.datacamp.com/tutorial/linear-regression-R): This tutorial explains how to perform linear regression using R, with code examples and exercises.
+- [Linear Regression Using R: An Introduction to Data Modeling](https://open.umn.edu/opentextbooks/textbooks/399): This book presents the basics of linear regression in an informal style, with step-by-step instructions to develop, train, and test reliable regression models.
+- [Linear Regression in R | A Step-by-Step Guide & Examples - Scribbr](https://www.scribbr.com/statistics/linear-regression-in-r/): This guide shows how to check the assumptions, perform the analysis, and interpret the results of linear regression in R.
+- [Linear Regression in R | R Tutorial 5.2 | MarinStatsLectures](https://www.r-bloggers.com/2021/10/multiple-linear-regression-made-simple/): This video tutorial demonstrates how to fit a simple linear regression model in R, produce summaries, and interpret the coefficients.
+
+:::

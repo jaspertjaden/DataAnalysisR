@@ -1,23 +1,41 @@
-# Exloratory Data Analysis - I {#eda-1}
+# Exploratory Data Analysis - I {#eda-1}
 
 
 ## Objectives
+
+::: {.objectives}
 - Remember how to load and explore datasets in R
 - Conduct basic descriptive data analysis 
-- Undestand and visualize distribution of and relationship between variables
+- Understand and visualize distribution of and relationship between variables
+:::
 
 ## R functions covered this week
-- `load()`
-- `read_excel()`
-- `str()`
-- `glimpse()`
-- `table()`
-- `summary()`
-- `mutate()`
-- `case_when()`
-- `ggplot()`
-- `corr ()`
 
+::: {.functions}
+- `load()`: loads an R data file into the current session.
+- `read_excel()`: reads an Excel file into a data frame.
+- `str()`: displays the structure of an object.
+- `glimpse()`: provides a transposed version of `str()`.
+- `table()`: creates a contingency table of counts for categorical variables.
+- `summary()`: produces a summary of an object, such as its mean, median, quartiles, etc.
+- `mutate()`: adds new variables or modifies existing ones in a data frame.
+- `case_when()`: creates a new variable based on multiple conditions.
+- `ggplot()`: creates a plot using the grammar of graphics.
+- `corr()`: computes the correlation matrix of numeric variables.
+- `skim()`: provides a summary of the whole dataset with various statistics and types of variables.
+- `introduce()`: gives an overview of the types and missingness of variables in a data frame.
+- `plot_intro()`: plots the information from `introduce()` as a bar chart.
+- `plot_missing()`: plots the percentage of missing values for each variable in a data frame.
+- `plot_bar()`: plots the frequency distribution of categorical variables in a data frame.
+- `tbl_summary()`: creates a summary table for descriptive statistics of variables in a data frame.
+- `correlate()`: creates a correlation data frame from a numeric data frame.
+- `rearrange()`: rearranges the correlation data frame by the absolute value of correlations.
+- `shave()`: removes the upper triangle of the correlation matrix to avoid redundancy.
+- `fashion()`: formats the correlation data frame with rounded values and signs.
+- `rplot()`: plots the correlation matrix as a scatterplot matrix with regression lines.
+- `ggcorrplot()`: plots the correlation matrix as a heatmap with circles representing the magnitude of correlations.
+
+:::
 
 ## Why is EDA so important?
 
@@ -32,7 +50,7 @@ The first step of any data analysis is getting data into R. To get started, we f
 
 1. In this course, we will use data on NBA players (Basketball). Usually, you need to first download the data and documentation and save them in a folder on your own computer. We have already done this, and provide the data for you here. 
 
-2. Install R and Rstudio. If you don't already have R installed, here is a link to how it is done (hyperlink)
+2. Install R and Rstudio. If you don't already have R installed, here is a [link](https://rstudio-education.github.io/hopr/starting.html#rstudio) to how it is done.
 
 3. In the folder which you will use for this class, create a new R project. You will see that all files appear in the bottom right window in R studio. 
 
@@ -54,7 +72,7 @@ We can use `read_delim()` or `read_csv` function. Note that you need other funct
 Make sure you name the correct sub-directory in case you saved the data a sub-folder of your project folder (which I have done).
 
 
-```{r import_csv, warning=FALSE}
+```{r import_csv, warning=FALSE, message=FALSE}
 # import data 
 nba_salaries <- read_csv("../datasets/nba/salaries_1985to2018.csv", show_col_types = FALSE)
 nba_players <- read_csv("../datasets/nba/players.csv", show_col_types = FALSE)
@@ -63,24 +81,24 @@ nba_players <- read_csv("../datasets/nba/players.csv", show_col_types = FALSE)
 Great, the two dataframes should appear in your environment in the upper right side in R studio. 
 
 
-Let's take a quick look at these trend dataframe using str() function The str() function shows the number of rows (observations) and columns (variables). It also provides information on the name of each column, its type and an example of some of the values in each column.
+Let's take a quick look at these trend dataframe using `str()` function The `str()` function shows the number of rows (observations) and columns (variables). It also provides information on the name of each column, its type and an example of some of the values in each column.
 
-```{r firstlook}
+```{r firstlook, warning=FALSE, message=FALSE}
 str(nba_players)
 str(nba_salaries)
 ```
 
-We see that most variables/ columns, already are in the type which we want. R automatically picked up on the format. Text variables are "chr" for "character"; Numeric variables are "num". It is very important that you understand the types of columns/ variables that R recognized. If you need a refresher, go here [hyperlink].
+We see that most variables/ columns, already are in the type which we want. R automatically picked up on the format. Text variables are *chr* for *character*; Numeric variables are *num*. It is very important that you understand the types of columns/ variables that R recognized. If you need a refresher, go [here](https://jaspertjaden.github.io/course-intro2r/).
 
 ## Merge datasets
 
-We see that "nba_salaries" contains the salaries of players for various seasons.
-"players" contains many career statistics about players, for example, how many points they scored on average per game, across their whole career. 
+We see that `nba_salaries` contains the salaries of players for various seasons.
+`players` contains many career statistics about players, for example, how many points they scored on average per game, across their whole career. 
 
 Now we want to link both datasets. We can do this using the `merge()` function.
 An alternative would be `join()`. 
 
-```{r merge}
+```{r merge, warning=FALSE, message=FALSE}
 data_nba <- merge(nba_players, nba_salaries, by.x = c("_id"), by.y=c("player_id"))
 rm(nba_players, nba_salaries)
 ```
@@ -88,15 +106,15 @@ rm(nba_players, nba_salaries)
 
 ## Clean dataset
 
-We can use the select() function to kick out columns and the filter() function to kick out rows. First, we need to look at the codebook and the questionnaire to understand the what each variable refers to (see .txt file "data_description"). 
+We can use the `select()` function to kick out columns and the `filter()` function to kick out rows. First, we need to look at the codebook and the questionnaire to understand the what each variable refers to (see `.txt` file `*data_description*`). 
 
 When using the select function, we will also rename the variables to make them more intuitive.
 
 First, let's filter out Let's filter all years between 2012-2022. 
 
-Afterwards, we use the save() function to store the data as a .Rdata file and the write_excel() function to store the reduced dataset. This way we can simply load that one next time and save time.
+Afterwards, we use the `save()` function to store the data as a `.Rdata` file and the `write_excel()` function to store the reduced dataset. This way we can simply load that one next time and save time.
 
-```{r select}
+```{r select, warning=FALSE, message=FALSE}
 data_nba <- data_nba %>%
         select(everything(), -league, -highSchool) %>%
         filter(season_start>=1998)
@@ -111,12 +129,12 @@ Let's do some data cleaning. First, we want to calculate each players' age at th
 beginning of each season. Currently, we only have the date of birth and the year
 for each season.
 
-Second, we want recode the "position" variable. Some players played multiple
+Second, we want recode the `position` variable. Some players played multiple
 position, so that info is messy. We want to create varies dummy variables 
 for each position. 
 
 
-```{r recode}
+```{r recode, warning=FALSE, message=FALSE}
 
 # let's calculate age for every season
 class(data_nba$birthDate) # nice, it is already a date variable
@@ -161,7 +179,7 @@ that each player played. Since the dataset is organized in seasons, each row
 is one season. Counting the rows per player gives us the years they played.
 
 
-```{r change_vr_0}
+```{r change_vr_0, warning=FALSE, message=FALSE}
 data_nba <- data_nba %>%
   group_by("_id") %>%
   mutate(seasons_played = n()) %>%
@@ -173,7 +191,7 @@ data_nba <- data_nba %>%
 Almost done. When we browse the dataset, we recognize that the height and weight variables are stored as characters. Let's convert them to numeric, so we can
 use them in operations. 
 
-```{r change_vr_1}
+```{r change_vr_1, warning=FALSE, message=FALSE}
 str(data_nba$weight)
 str(data_nba$height)
 
@@ -192,18 +210,17 @@ str(data_nba)
 Now, let's explore some packages which help us to explore the dataframe as a whole.
 Let's start with the `skimR` package: 
 
-```{r}
-#install.packages("skimr")
+```{r, warning=FALSE, message=FALSE}
 library("skimr")
 
-skim(data_nba)
+knitr::kable(skim(data_nba))
 ```
 
-The `skim()` function provides a very handy overview of the whole dataset including the types of columns (i.e. variables), a summary of all variables, the extent of missing data etc. One advantage is that the output is "tidy" which means it is easy to work with further if needed. The output can be stored as dataframe, for example, which makes graphs much easier.
+The `skim()` function provides a very handy overview of the whole dataset including the types of columns (i.e. variables), a summary of all variables, the extent of missing data etc. One advantage is that the output is `tidy` which means it is easy to work with further if needed. The output can be stored as dataframe, for example, which makes graphs much easier.
 
-Next, another alternative is the `DataExplorer` package. It is nice to get a graphical overview of variables and the "missingness" of data. 
+Next, another alternative is the `DataExplorer` package. It is nice to get a graphical overview of variables and the *missingness* of data. 
 
-```{r explore_dt_0, warning=FALSE}
+```{r explore_dt_0, warning=FALSE, message=FALSE}
 library(DataExplorer)
 
 # overview of types of variables and missingness
@@ -219,12 +236,11 @@ plot_missing(data_nba)
 plot_bar(data_nba)
 ```
 
-Now, let's try gtSummary for summary tables. A summary table is always a useful start once you have identified the type of variables you are interested in. 
+Now, let's try `gtSummary` for summary tables. A summary table is always a useful start once you have identified the type of variables you are interested in. 
 
-Let's assume we are interested in age, seasons played, career points, salary,
-position, and right or left handed (i.e. "shoots")
+Let's assume we are interested in `age`, `seasons played`, `career points`, `salary`, `position`, and `right or left handed` (i.e. "shoots")
 
-```{r explore_dt_1, warning=FALSE}
+```{r explore_dt_1, warning=FALSE, message=FALSE}
 library(gtsummary)
 
 data_nba %>% 
@@ -235,7 +251,7 @@ data_nba %>%
 ```
 
 
-Now, let's look at a correlation matrix between all numeric
+Now, let's look at a *correlation matrix* between all numeric
 variables in the dataset.
 
 ```{r explore_dt_2, warning=FALSE, message=FALSE}
@@ -291,7 +307,7 @@ Maybe roles are clearly divided on the team. Maybe really good passers are highl
 paid because they give great passes to people who then score. Or maybe teams
 don't care about passers and just pay more to people who score more. 
 
-So, now, let's look at salary and average number of points scored by game. 
+So, now, let's look at `salary` and average number of points scored by game. 
 Also, we want to know whether point guards (short people who pass a lot) are
 paid less then other positions (who score more). 
 
@@ -316,8 +332,8 @@ geom_boxplot(aes(y=career_PTS)) +
 ```
 
 
-Let's look at the relationship between salary and position as well as the 
-relationship between position and points.
+Let's look at the relationship between `salary` and `position` as well as the 
+relationship between `position` and `points`.
 
 
 ```{r explore_dt_4, warning=FALSE, message=FALSE}
@@ -378,7 +394,7 @@ data_nba %>%
   
 ```
 
-So, it seems that point gards are paid a little less even though they make a few more points on average. Interesting puzzle to explore. 
+So, it seems that point guards are paid a little less even though they make a few more points on average. Interesting puzzle to explore. 
 
 ```{r explore_dt_5, warning=FALSE, message=FALSE}
 
@@ -387,7 +403,7 @@ So, it seems that point gards are paid a little less even though they make a few
 
 ```
 
-Now, let's explore the relationship which is at the heart of our analysis from now on: salary and average points. 
+Now, let's explore the relationship which is at the heart of our analysis from now on: `salary` and average points. 
 
 ```{r explore_dt_6, warning=FALSE, message=FALSE}
 
@@ -494,7 +510,13 @@ if he scored 10 more points a game (regardless of the position he plays).
 3) It can be used to predict salaries for players for whom we don't know the salary or even for hypothetical players. We could also look at the performance trend of players and predict whether they earn more next season or not.
 
 
-
-
-
+## Further resources
+::: {.resources}
+- [Exploratory Data Analysis with R](https://tuos-bio-data-skills.github.io/intro-eda-book/index.html), a book that covers the basics of data visualization, manipulation, and analysis using R and the tidyverse package.
+- [Exploratory Data Analysis in R with Tidyverse](https://www.pluralsight.com/guides/exploratory-data-analysis-in-r), a guide that shows how to use the tidyverse package to perform common EDA tasks such as importing, cleaning, summarizing, and plotting data.
+- [Data Visualization with ggplot2](https://r4ds.had.co.nz/data-visualisation.html), a chapter from the book R for Data Science that explains how to create and customize different types of plots using the ggplot2 package.
+- [Data Transformation with dplyr](https://r4ds.had.co.nz/transform.html), another chapter from the book R for Data Science that demonstrates how to use the dplyr package to manipulate data frames, filter rows, select columns, create new variables, and more.
+- [Exploratory Data Analysis with R - Bookdown](https://bookdown.org/rdpeng/exdata/)
+- [How to Perform Exploratory Data Analysis in R (With Example)](https://www.statology.org/exploratory-data-analysis-in-r/)
+:::
 

@@ -14,10 +14,12 @@ model accordingly. Before we do this, we should briefly consider another part
 of the regression output, the model fit.
 
 ## Objectives
-
+::: {.objectives}
 * Learn about model fit and its limits
 * Understand the statistical assumptions underlying linear regression
 * Test for violated assumptions and learn how to correct for those
+
+:::
 
 ## Model fit
 
@@ -672,3 +674,11 @@ way.
 
 In the next session we will return to our NBA data and try to apply everything
 that we have learned over the last sessions.
+
+## Further Resources
+::: {.resources}
+- [Lecture 7 Linear Regression Diagnostics - University of Washington](https://courses.washington.edu/b515/l7.pdf): This lecture slides explain the major assumptions of linear regression, the characteristics of residuals, and the methods for standardizing and testing residuals.
+- [Linear Regression Assumptions and Diagnostics in R: Essentials - STHDA](http://sthda.com/english/articles/39-regression-model-diagnostics/161-linear-regression-assumptions-and-diagnostics-in-r-essentials): This article provides an overview of linear regression assumptions and how to check them using diagnostic plots in R programming language.
+- [Regression Diagnostics - Boston University School of Public Health](https://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R5_Correlation-Regression/R5_Correlation-Regression7.html): This web page describes how to evaluate the model assumptions and identify potential problems using residual analysis and influence measures.
+
+:::

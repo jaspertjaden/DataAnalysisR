@@ -64,7 +64,7 @@ Welcome to this course! In this course, you will learn how to analyse data using
 
 ```{r load, include=FALSE, message=FALSE, warning=FALSE}
 # Define the required packages
-required_packages <- c("ggplot2", "dplyr", "tidyr", "dagitty", "mlbench")
+required_packages <- c("ggplot2", "dplyr", "tidyr", "dagitty", "mlbench", "caret", "broom", "performance", "ggeffects", "margins", "skimr", "tidyverse", "readxl", "lubridate", "gtsummary", "DataExplorer", "ggpubr", "knitr", "ggfortify")
 
 # Check if all required packages are loaded
 all(required_packages %in% search())

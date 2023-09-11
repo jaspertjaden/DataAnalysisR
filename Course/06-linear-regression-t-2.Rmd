@@ -17,10 +17,12 @@ maybe it is weaker, or maybe there is no effect at all.
 To assess this, we have to move from simple to multiple linear regression.
 
 ## Objectives
-
+::: {.objectives}
 * Expand the idea to multiple linear regression
 * How can we interpret different types of independent variables?
 * Understand measures of uncertainty
+
+:::
 
 ## Multiple Linear Regression
 
@@ -397,3 +399,12 @@ model actually works as intended. Linear regression, as well as every modelling
 technique, has some underlying assumptions that we have to meet for the model
 to accurately estimate an effect. In the next session we will get to know this
 assumptions and how we can test for them.
+
+## Further resources
+::: {.resources}
+- [Multiple Linear Regression | A Quick Guide (Examples)](https://www.scribbr.com/statistics/multiple-linear-regression/): This article provides an overview of multiple linear regression, its assumptions, how to perform it, and how to interpret the results.
+- [Lesson 5: Multiple Linear Regression | STAT 501](https://online.stat.psu.edu/stat501/lesson/5): This lesson covers the basics of multiple linear regression, including matrix notation, model assumptions, hypothesis testing, and R-squared.
+- [Multiple Linear Regression in R | R Tutorial 5.3 | MarinStatsLectures](https://www.youtube.com/watch?v=q1RD5ECsSB0): This video tutorial shows how to fit a multiple linear regression model in R, produce summaries, and interpret the coefficients.
+- [Mastering Multiple Linear Regression: A Comprehensive Guide](https://www.analyticsvidhya.com/blog/2021/05/multiple-linear-regression-using-python-and-scikit-learn/): This article explains how to perform multiple linear regression using Python and scikit-learn, with examples and code snippets.
+
+:::

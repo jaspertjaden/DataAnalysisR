@@ -12,3 +12,45 @@ pre {
 pre code {
   white-space: inherit;
 }
+
+.assignx {
+  background-color: #AED2FF;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.objectives {
+  background-color: #FAF1E4;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.functions {
+  background-color: #CEDEBD;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.resources {
+  background-color: #FFC6AC;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.preface {
+  background-color: #A1CCD1;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.appendix {
+  background-color: #F5E9CF;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+}
