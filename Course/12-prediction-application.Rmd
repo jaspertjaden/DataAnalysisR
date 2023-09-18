@@ -6,7 +6,8 @@ Here goes some texts.
 
 ::: {.assignx}
 
-- **Task 1:** Perform a mediation analysis with `price` as the outcome variable, `rm` as the treatment variable, and `crim` as the mediator variable. Estimate and report the average causal mediation effect (ACME), the average direct effect (ADE), the total effect, and the proportion mediated. Explain what these effects mean and how to interpret them.
+- **Task 1:** How the number of rooms in a house affects its price, you also have to consider how the crime rate might be influencing this relationship. Estimate and report the average causal mediation effect (ACME), the average direct effect (ADE), the total effect, and the proportion mediated. Explain what these effects mean and how to interpret them.
+
 
 ```{r task_1_p, warning=FALSE, include=FALSE}
 # Load the mediation package

@@ -31,8 +31,6 @@ When you render this document, the text and code will be combined to create an H
 You can easily add images to an R Markdown document using the standard markdown syntax for images. The basic syntax for adding an image is `![Alt text](image_url)`, where `Alt text` is the text that will be displayed if the image cannot be loaded, and `image_url` is the URL of the image you want to include.
 
 
-I hope this helps you understand how to add images to an R Markdown document! Let me know if you have any further questions 😊
-
 R Markdown is a powerful tool that offers many advantages for data analysis and reporting. Some of the key benefits of using R Markdown include:
 
 1. **Reproducibility**: R Markdown documents are fully reproducible, meaning that anyone can re-run the code and generate the same results. This makes it easy to share your work with others and ensure that your results are accurate and reliable.
@@ -66,16 +64,22 @@ Housing data contains 506 census tracts of Boston from the 1970 census. The data
 The dataset has two prototasks: `nox`, in which the nitrous oxide level is to be predicted; and `price`, in which the median value of a home is to be predicted.
 
 **Other Details:** 
+
   *Origin*
     -The origin of the boston housing data is Natural.
+    
   *Usage*
     -This dataset may be used for Assessment.
+    
   *Number of Cases*
     -The dataset contains a total of 506 cases.
+    
   *Order*
     -The order of the cases is mysterious.
+    
   *Variables*
     -There are 14 attributes in each case of the dataset. They are:
+    
     1. CRIM - per capita crime rate by town
     2. ZN - proportion of residential land zoned for lots over 25,000 sq.ft.
     3. INDUS - proportion of non-retail business acres per town.

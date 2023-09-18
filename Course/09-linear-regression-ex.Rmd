@@ -6,6 +6,8 @@ In this exercise, you will use the Boston Housing Dataset to explore the relatio
 ::: {.assignx}
 
 - **Task 1:** Fit a simple linear regression model with price as the dependent variable and rm as the independent variable. Interpret the estimated coefficients and the R-squared value.
+
+**[We start by looking at the relationship between the number of rooms in a house and its price. We notice a pattern - houses with more rooms tend to be more expensive. But how strong is this relationship? Can we predict the price of a house just by knowing the number of rooms?]**
 ```{r task_1, include=FALSE}
 # Load the Boston housing dataset
 
@@ -20,6 +22,8 @@ summary(fit1)
 ```
 
 - **Task 2:** Check the assumptions of the linear regression model from Task 1. Identify any potential problems such as non-linearity, heteroscedasticity, outliers, or multicollinearity; and suggest potential solutions. Hint: `plot()`
+
+**[start investigating if our model is reliable. Are there any hidden factors we’re not considering? Are there any unusual cases that don’t fit the pattern?]**
 
 ```{r task_2_0, include=FALSE}
 # Plot the residuals vs. fitted values
@@ -55,6 +59,8 @@ plot(fit1, which = 5)
 
 - **Task 3:** Draw a directed acyclic graph (DAG) to represent the causal relationships among the variables in the Boston housing dataset. 
 
+**[To better understand the housing market, we draw a map showing how different factors like crime rate, proximity to the river, and average number of rooms are related to each other and to the price of houses.]**
+
 ```{r task_3, include=FALSE}
 # Draw a directed acyclic graph (DAG)
 # Note: This is just an example DAG, students should draw their own based on their understanding of the causal relationships among the variables
@@ -84,6 +90,8 @@ dag <- dagitty("dag {
 
 - **Task 4:** Fit a multiple linear regression model with price as the dependent variable and the relevant variables (`rm`, `crim`, `chas`) as the independent variables. Interpret the estimated coefficients and their statistical significance.
 
+**[we decide to create a more sophisticated model that considers multiple factors (`RM`, `CRIM` and `CHAS`) at once. Can we predict the price more accurately now? Which factors are more significant?]**
+
 
 ```{r task_4_0, include=FALSE}
 # Fit a multiple linear regression model with price as the dependent variable and the relevant variables
@@ -100,14 +108,16 @@ summary(fit2)
 ```
 
 
-- **Task 5:** Convert rad into a categorical variable and add it to the linear regression model from Task 1. Compare the results with the model from Task 1 and explain how adding a categorical variable affects the estimation and interpretation of the coefficients.
+- **Task 5:** Convert rad into a categorical variable and add it to the linear regression model from Task 4. Compare the results with the model from Task 1 and explain how adding a categorical variable affects the estimation and interpretation of the coefficients.
+
+**[Finally, we decide to consider the accessibility to radial highways as a categorical factor - either a house has easy access or it doesn’t. How does this new factor change our predictions from task 4?]**
 
 ```{r task_5, include=FALSE}
-# Convert rad into a categorical variable and add it to the linear regression model from Task 1
-fit2 <- lm(medv ~ rm + crim + chas + factor(rad), data = BostonHousing)
+# Convert rad into a categorical variable and add it to the linear regression model from Task 4
+fit3 <- lm(medv ~ rm + crim + chas + factor(rad), data = BostonHousing)
 
 # Display the estimated coefficients and their statistical significance
-summary(fit2)
+summary(fit3)
 
 #Comparing this output with the previous one, we can see that adding `rad` as a categorical variable improves the model fit, as indicated by an increase in R-squared value from 0.5527 to 0.5844. The estimated coefficients of `rm`, `crim`, and `chas` remain similar to those in the previous model.
 
