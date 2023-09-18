@@ -1486,8 +1486,6 @@ When you render this document, the text and code will be combined to create an H
 
 You can easily add images to an R Markdown document using the standard markdown syntax for images. The basic syntax for adding an image is \texttt{!{[}Alt\ text{]}(image\_url)}, where \texttt{Alt\ text} is the text that will be displayed if the image cannot be loaded, and \texttt{image\_url} is the URL of the image you want to include.
 
-I hope this helps you understand how to add images to an R Markdown document! Let me know if you have any further questions 😊
-
 R Markdown is a powerful tool that offers many advantages for data analysis and reporting. Some of the key benefits of using R Markdown include:
 
 \begin{enumerate}
@@ -1521,16 +1519,23 @@ Housing data contains 506 census tracts of Boston from the 1970 census. The data
 The dataset has two prototasks: \texttt{nox}, in which the nitrous oxide level is to be predicted; and \texttt{price}, in which the median value of a home is to be predicted.
 
 \textbf{Other Details:}
+
 \emph{Origin}
 -The origin of the boston housing data is Natural.
+
 \emph{Usage}
 -This dataset may be used for Assessment.
+
 \emph{Number of Cases}
 -The dataset contains a total of 506 cases.
+
 \emph{Order}
 -The order of the cases is mysterious.
+
 \emph{Variables}
 -There are 14 attributes in each case of the dataset. They are:
+
+\begin{verbatim}
 1. CRIM - per capita crime rate by town
 2. ZN - proportion of residential land zoned for lots over 25,000 sq.ft.
 3. INDUS - proportion of non-retail business acres per town.
@@ -1540,11 +1545,12 @@ The dataset has two prototasks: \texttt{nox}, in which the nitrous oxide level i
 7. AGE - proportion of owner-occupied units built prior to 1940
 8. DIS - weighted distances to five Boston employment centres
 9. RAD - index of accessibility to radial highways
-10. TAX - full-value property-tax rate per \$10,000
+10. TAX - full-value property-tax rate per $10,000
 11. PTRATIO - pupil-teacher ratio by town
-12. B - 1000(Bk - 0.63)\^{}2 where Bk is the proportion of blacks by town
-13. LSTAT - \% lower status of the population
-14. MEDV - Median value of owner-occupied homes in \$1000's
+12. B - 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town
+13. LSTAT - % lower status of the population
+14. MEDV - Median value of owner-occupied homes in $1000's
+\end{verbatim}
 
 You can include this data by installing mlbench library:
 
@@ -4755,17 +4761,44 @@ DAG that incorporates the same variables but makes some different assumptions.
 In this exercise, you will use the Boston Housing Dataset to explore the relationship between housing prices and various features of the houses and their surroundings. The dataset contains 506 observations and 15 columns. The last column, MEDV, is the median value of owner-occupied homes in \$1000's. This is the target variable that you will try to predict using linear regression models. The other 14 columns represent different features of the houses and their surroundings, such as crime rate, nitric oxides concentration, pupil-teacher ratio, etc.
 
 \begin{itemize}
+\tightlist
 \item
   \textbf{Task 1:} Fit a simple linear regression model with price as the dependent variable and rm as the independent variable. Interpret the estimated coefficients and the R-squared value.
+\end{itemize}
+
+\textbf{{[}We start by looking at the relationship between the number of rooms in a house and its price. We notice a pattern - houses with more rooms tend to be more expensive. But how strong is this relationship? Can we predict the price of a house just by knowing the number of rooms?{]}}
+
+\begin{itemize}
+\tightlist
 \item
   \textbf{Task 2:} Check the assumptions of the linear regression model from Task 1. Identify any potential problems such as non-linearity, heteroscedasticity, outliers, or multicollinearity; and suggest potential solutions. Hint: \texttt{plot()}
+\end{itemize}
+
+\textbf{{[}start investigating if our model is reliable. Are there any hidden factors we're not considering? Are there any unusual cases that don't fit the pattern?{]}}
+
+\begin{itemize}
+\tightlist
 \item
   \textbf{Task 3:} Draw a directed acyclic graph (DAG) to represent the causal relationships among the variables in the Boston housing dataset.
+\end{itemize}
+
+\textbf{{[}To better understand the housing market, we draw a map showing how different factors like crime rate, proximity to the river, and average number of rooms are related to each other and to the price of houses.{]}}
+
+\begin{itemize}
+\tightlist
 \item
   \textbf{Task 4:} Fit a multiple linear regression model with price as the dependent variable and the relevant variables (\texttt{rm}, \texttt{crim}, \texttt{chas}) as the independent variables. Interpret the estimated coefficients and their statistical significance.
-\item
-  \textbf{Task 5:} Convert rad into a categorical variable and add it to the linear regression model from Task 1. Compare the results with the model from Task 1 and explain how adding a categorical variable affects the estimation and interpretation of the coefficients.
 \end{itemize}
+
+\textbf{{[}we decide to create a more sophisticated model that considers multiple factors (\texttt{RM}, \texttt{CRIM} and \texttt{CHAS}) at once. Can we predict the price more accurately now? Which factors are more significant?{]}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Task 5:} Convert rad into a categorical variable and add it to the linear regression model from Task 4. Compare the results with the model from Task 1 and explain how adding a categorical variable affects the estimation and interpretation of the coefficients.
+\end{itemize}
+
+\textbf{{[}Finally, we decide to consider the accessibility to radial highways as a categorical factor - either a house has easy access or it doesn't. How does this new factor change our predictions from task 4?{]}}
 
 \hypertarget{med}{%
 \chapter{Mediation}\label{med}}
@@ -6002,7 +6035,7 @@ Here goes some texts.
 
 \begin{itemize}
 \item
-  \textbf{Task 1:} Perform a mediation analysis with \texttt{price} as the outcome variable, \texttt{rm} as the treatment variable, and \texttt{crim} as the mediator variable. Estimate and report the average causal mediation effect (ACME), the average direct effect (ADE), the total effect, and the proportion mediated. Explain what these effects mean and how to interpret them.
+  \textbf{Task 1:} How the number of rooms in a house affects its price, you also have to consider how the crime rate might be influencing this relationship. Estimate and report the average causal mediation effect (ACME), the average direct effect (ADE), the total effect, and the proportion mediated. Explain what these effects mean and how to interpret them.
 \item
   \textbf{Task 2:} Create or show a data frame with the coefficients, standard errors, p-values, and confidence intervals of a linear regression model that predicts the median value of a home (\texttt{MEDV}) based on the nitric oxides concentration (\texttt{NOX}) and the average number of rooms per dwelling (\texttt{RM}).
 \item

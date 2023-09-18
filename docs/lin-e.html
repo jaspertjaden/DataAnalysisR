@@ -343,12 +343,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this exercise, you will use the Boston Housing Dataset to explore the relationship between housing prices and various features of the houses and their surroundings. The dataset contains 506 observations and 15 columns. The last column, MEDV, is the median value of owner-occupied homes in $1000’s. This is the target variable that you will try to predict using linear regression models. The other 14 columns represent different features of the houses and their surroundings, such as crime rate, nitric oxides concentration, pupil-teacher ratio, etc.</p>
 <div class="assignx">
 <ul>
-<li><p><strong>Task 1:</strong> Fit a simple linear regression model with price as the dependent variable and rm as the independent variable. Interpret the estimated coefficients and the R-squared value.</p></li>
-<li><p><strong>Task 2:</strong> Check the assumptions of the linear regression model from Task 1. Identify any potential problems such as non-linearity, heteroscedasticity, outliers, or multicollinearity; and suggest potential solutions. Hint: <code>plot()</code></p></li>
-<li><p><strong>Task 3:</strong> Draw a directed acyclic graph (DAG) to represent the causal relationships among the variables in the Boston housing dataset.</p></li>
-<li><p><strong>Task 4:</strong> Fit a multiple linear regression model with price as the dependent variable and the relevant variables (<code>rm</code>, <code>crim</code>, <code>chas</code>) as the independent variables. Interpret the estimated coefficients and their statistical significance.</p></li>
-<li><p><strong>Task 5:</strong> Convert rad into a categorical variable and add it to the linear regression model from Task 1. Compare the results with the model from Task 1 and explain how adding a categorical variable affects the estimation and interpretation of the coefficients.</p></li>
+<li><strong>Task 1:</strong> Fit a simple linear regression model with price as the dependent variable and rm as the independent variable. Interpret the estimated coefficients and the R-squared value.</li>
 </ul>
+<p><strong>[We start by looking at the relationship between the number of rooms in a house and its price. We notice a pattern - houses with more rooms tend to be more expensive. But how strong is this relationship? Can we predict the price of a house just by knowing the number of rooms?]</strong></p>
+<ul>
+<li><strong>Task 2:</strong> Check the assumptions of the linear regression model from Task 1. Identify any potential problems such as non-linearity, heteroscedasticity, outliers, or multicollinearity; and suggest potential solutions. Hint: <code>plot()</code></li>
+</ul>
+<p><strong>[start investigating if our model is reliable. Are there any hidden factors we’re not considering? Are there any unusual cases that don’t fit the pattern?]</strong></p>
+<ul>
+<li><strong>Task 3:</strong> Draw a directed acyclic graph (DAG) to represent the causal relationships among the variables in the Boston housing dataset.</li>
+</ul>
+<p><strong>[To better understand the housing market, we draw a map showing how different factors like crime rate, proximity to the river, and average number of rooms are related to each other and to the price of houses.]</strong></p>
+<ul>
+<li><strong>Task 4:</strong> Fit a multiple linear regression model with price as the dependent variable and the relevant variables (<code>rm</code>, <code>crim</code>, <code>chas</code>) as the independent variables. Interpret the estimated coefficients and their statistical significance.</li>
+</ul>
+<p><strong>[we decide to create a more sophisticated model that considers multiple factors (<code>RM</code>, <code>CRIM</code> and <code>CHAS</code>) at once. Can we predict the price more accurately now? Which factors are more significant?]</strong></p>
+<ul>
+<li><strong>Task 5:</strong> Convert rad into a categorical variable and add it to the linear regression model from Task 4. Compare the results with the model from Task 1 and explain how adding a categorical variable affects the estimation and interpretation of the coefficients.</li>
+</ul>
+<p><strong>[Finally, we decide to consider the accessibility to radial highways as a categorical factor - either a house has easy access or it doesn’t. How does this new factor change our predictions from task 4?]</strong></p>
 </div>
 
 </div>
