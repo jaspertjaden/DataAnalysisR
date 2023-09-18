@@ -144,7 +144,7 @@
 
 \title{Data Analysis with R for Social Scientists}
 \author{Jakob Tures \& Jasper Tjaden}
-\date{2023-09-11}
+\date{2023-09-18}
 
 \begin{document}
 \maketitle
@@ -1457,6 +1457,22 @@ This week we will try to apply our last weeks knowledge into analysis.
 \section{Markdown Introduction}\label{markdown-introduction}}
 
 R Markdown is a powerful tool that allows you to create dynamic documents, presentations, and reports using R code. It combines the core syntax of markdown (an easy-to-write plain text format) with embedded R code chunks that are run when the document is rendered¹.
+
+\hypertarget{what-is-r-markdown}{%
+\section{What is R Markdown?}\label{what-is-r-markdown}}
+
+R Markdown is a file format that combines R code and plain text. The file extension is \texttt{.Rmd}. You can write R Markdown files in any text editor, but it is recommended to use an IDE (integrated development environment) like RStudio, which provides many features to help you write and preview your documents.
+
+R Markdown files consist of three main parts:
+
+\begin{itemize}
+\item
+  A YAML header that contains metadata and options for your document, such as title, author, date, output format, etc. The header starts and ends with three dashes (\texttt{-\/-\/-}).
+\item
+  A body that contains the main content of your document, written in plain text with Markdown syntax. Markdown is a simple way to format your text using symbols like \texttt{\#} for headings, \texttt{*} for emphasis, \texttt{{[}link{]}(url)} for hyperlinks, etc. You can also embed R code chunks in your document using three backticks (\texttt{markdown}) followed by \texttt{\{r\}} and some optional chunk options. The code chunks will be executed when you knit your document and the results will be displayed in the output.
+\item
+  A final code chunk that contains any cleanup or summary code that you want to run at the end of your document. This chunk is optional and starts with three backticks followed by \texttt{\{r,\ echo\ =\ FALSE\}}.
+\end{itemize}
 
 R Markdown documents are fully reproducible, meaning that anyone can re-run the code and generate the same results. This makes it easy to share your work with others and ensure that your results are accurate and reliable.
 

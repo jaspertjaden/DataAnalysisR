@@ -5,6 +5,18 @@ This week we will try to apply our last weeks knowledge into analysis.
 
 R Markdown is a powerful tool that allows you to create dynamic documents, presentations, and reports using R code. It combines the core syntax of markdown (an easy-to-write plain text format) with embedded R code chunks that are run when the document is rendered¹.
 
+## What is R Markdown?
+
+R Markdown is a file format that combines R code and plain text. The file extension is `.Rmd`. You can write R Markdown files in any text editor, but it is recommended to use an IDE (integrated development environment) like RStudio, which provides many features to help you write and preview your documents.
+
+R Markdown files consist of three main parts:
+
+- A YAML header that contains metadata and options for your document, such as title, author, date, output format, etc. The header starts and ends with three dashes (`---`).
+
+- A body that contains the main content of your document, written in plain text with Markdown syntax. Markdown is a simple way to format your text using symbols like `#` for headings, `*` for emphasis, `[link](url)` for hyperlinks, etc. You can also embed R code chunks in your document using three backticks (` markdown`) followed by `{r}` and some optional chunk options. The code chunks will be executed when you knit your document and the results will be displayed in the output.
+
+- A final code chunk that contains any cleanup or summary code that you want to run at the end of your document. This chunk is optional and starts with three backticks followed by `{r, echo = FALSE}`.
+
 R Markdown documents are fully reproducible, meaning that anyone can re-run the code and generate the same results. This makes it easy to share your work with others and ensure that your results are accurate and reliable.
 
 One of the great things about R Markdown is its flexibility. You can use it to create a wide variety of output formats, including HTML, PDF, and Microsoft Word documents. You can even create interactive documents with Shiny components¹.
@@ -36,6 +48,9 @@ R Markdown is a powerful tool that offers many advantages for data analysis and 
 Overall, R Markdown is a powerful tool that offers many advantages for data analysis and reporting. It's a great way to create dynamic, reproducible documents that are easy to share and collaborate on 😊
 
 I hope this introduction helps you understand what R Markdown is and how it can be used. If you want to learn more, there are many great resources available online, including the [R Markdown website](https://bookdown.org/yihui/rmarkdown/) 😊
+
+
+
 
 
 

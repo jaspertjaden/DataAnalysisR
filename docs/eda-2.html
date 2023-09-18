@@ -23,7 +23,7 @@
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-09-11" />
+<meta name="date" content="2023-09-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -172,9 +172,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="eda-2.html"><a href="eda-2.html"><i class="fa fa-check"></i><b>3</b> Exploratory Data Analysis - II</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="eda-2.html"><a href="eda-2.html#markdown-introduction"><i class="fa fa-check"></i><b>3.1</b> Markdown Introduction</a></li>
-<li class="chapter" data-level="3.2" data-path="eda-2.html"><a href="eda-2.html#applying-edawvsown-data"><i class="fa fa-check"></i><b>3.2</b> Applying EDA(WVS/own data)</a>
+<li class="chapter" data-level="3.2" data-path="eda-2.html"><a href="eda-2.html#what-is-r-markdown"><i class="fa fa-check"></i><b>3.2</b> What is R Markdown?</a></li>
+<li class="chapter" data-level="3.3" data-path="eda-2.html"><a href="eda-2.html#applying-edawvsown-data"><i class="fa fa-check"></i><b>3.3</b> Applying EDA(WVS/own data)</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="eda-2.html"><a href="eda-2.html#exercise---1"><i class="fa fa-check"></i><b>3.2.1</b> Exercise - 1</a></li>
+<li class="chapter" data-level="3.3.1" data-path="eda-2.html"><a href="eda-2.html#exercise---1"><i class="fa fa-check"></i><b>3.3.1</b> Exercise - 1</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="dags-1.html"><a href="dags-1.html"><i class="fa fa-check"></i><b>4</b> DAGs</a>
@@ -341,6 +342,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="markdown-introduction" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Markdown Introduction<a href="eda-2.html#markdown-introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>R Markdown is a powerful tool that allows you to create dynamic documents, presentations, and reports using R code. It combines the core syntax of markdown (an easy-to-write plain text format) with embedded R code chunks that are run when the document is rendered¹.</p>
+</div>
+<div id="what-is-r-markdown" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> What is R Markdown?<a href="eda-2.html#what-is-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R Markdown is a file format that combines R code and plain text. The file extension is <code>.Rmd</code>. You can write R Markdown files in any text editor, but it is recommended to use an IDE (integrated development environment) like RStudio, which provides many features to help you write and preview your documents.</p>
+<p>R Markdown files consist of three main parts:</p>
+<ul>
+<li><p>A YAML header that contains metadata and options for your document, such as title, author, date, output format, etc. The header starts and ends with three dashes (<code>---</code>).</p></li>
+<li><p>A body that contains the main content of your document, written in plain text with Markdown syntax. Markdown is a simple way to format your text using symbols like <code>#</code> for headings, <code>*</code> for emphasis, <code>[link](url)</code> for hyperlinks, etc. You can also embed R code chunks in your document using three backticks (<code>markdown</code>) followed by <code>{r}</code> and some optional chunk options. The code chunks will be executed when you knit your document and the results will be displayed in the output.</p></li>
+<li><p>A final code chunk that contains any cleanup or summary code that you want to run at the end of your document. This chunk is optional and starts with three backticks followed by <code>{r, echo = FALSE}</code>.</p></li>
+</ul>
 <p>R Markdown documents are fully reproducible, meaning that anyone can re-run the code and generate the same results. This makes it easy to share your work with others and ensure that your results are accurate and reliable.</p>
 <p>One of the great things about R Markdown is its flexibility. You can use it to create a wide variety of output formats, including HTML, PDF, and Microsoft Word documents. You can even create interactive documents with Shiny components¹.</p>
 <p>To get started with R Markdown, you’ll need to install the <code>rmarkdown</code> package from CRAN. This can be done by running the command <code>install.packages("rmarkdown")</code> in the R console². Once you have the package installed, you can create a new R Markdown document in RStudio by going to <code>File &gt; New File &gt; R Markdown</code>.</p>
@@ -359,10 +370,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Overall, R Markdown is a powerful tool that offers many advantages for data analysis and reporting. It’s a great way to create dynamic, reproducible documents that are easy to share and collaborate on 😊</p>
 <p>I hope this introduction helps you understand what R Markdown is and how it can be used. If you want to learn more, there are many great resources available online, including the <a href="https://bookdown.org/yihui/rmarkdown/">R Markdown website</a> 😊</p>
 </div>
-<div id="applying-edawvsown-data" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Applying EDA(WVS/own data)<a href="eda-2.html#applying-edawvsown-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="exercise---1" class="section level3 hasAnchor" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> Exercise - 1<a href="eda-2.html#exercise---1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="applying-edawvsown-data" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Applying EDA(WVS/own data)<a href="eda-2.html#applying-edawvsown-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise---1" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Exercise - 1<a href="eda-2.html#exercise---1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Boston Housing Dataset</strong></p>
 <p>Housing data contains 506 census tracts of Boston from the 1970 census. The dataframe BostonHousing contains the original data by Harrison and Rubinfeld (1979), the dataframe BostonHousing2 the corrected version with additional spatial information.</p>
 <p>The dataset has two prototasks: <code>nox</code>, in which the nitrous oxide level is to be predicted; and <code>price</code>, in which the median value of a home is to be predicted.</p>

@@ -23,7 +23,7 @@
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-09-11" />
+<meta name="date" content="2023-09-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -172,9 +172,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="eda-2.html"><a href="eda-2.html"><i class="fa fa-check"></i><b>3</b> Exploratory Data Analysis - II</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="eda-2.html"><a href="eda-2.html#markdown-introduction"><i class="fa fa-check"></i><b>3.1</b> Markdown Introduction</a></li>
-<li class="chapter" data-level="3.2" data-path="eda-2.html"><a href="eda-2.html#applying-edawvsown-data"><i class="fa fa-check"></i><b>3.2</b> Applying EDA(WVS/own data)</a>
+<li class="chapter" data-level="3.2" data-path="eda-2.html"><a href="eda-2.html#what-is-r-markdown"><i class="fa fa-check"></i><b>3.2</b> What is R Markdown?</a></li>
+<li class="chapter" data-level="3.3" data-path="eda-2.html"><a href="eda-2.html#applying-edawvsown-data"><i class="fa fa-check"></i><b>3.3</b> Applying EDA(WVS/own data)</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="eda-2.html"><a href="eda-2.html#exercise---1"><i class="fa fa-check"></i><b>3.2.1</b> Exercise - 1</a></li>
+<li class="chapter" data-level="3.3.1" data-path="eda-2.html"><a href="eda-2.html#exercise---1"><i class="fa fa-check"></i><b>3.3.1</b> Exercise - 1</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="dags-1.html"><a href="dags-1.html"><i class="fa fa-check"></i><b>4</b> DAGs</a>
@@ -1444,23 +1445,23 @@ Let’s start with the <code>skimR</code> package:</p>
 <span id="cb27-4"><a href="eda-1.html#cb27-4" tabindex="-1"></a>  <span class="fu">select</span>(age, seasons_played, shoots, career_PTS, salary, <span class="fu">contains</span>(<span class="st">&quot;position&quot;</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb27-5"><a href="eda-1.html#cb27-5" tabindex="-1"></a>         <span class="fu">tbl_summary</span>(</span>
 <span id="cb27-6"><a href="eda-1.html#cb27-6" tabindex="-1"></a>           <span class="at">statistic =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="st">&quot;{mean} ({min}, {max})&quot;</span>)) </span></code></pre></div>
-<div id="vatfekudqe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vatfekudqe table {
+<div id="vrlsjrlzdj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vrlsjrlzdj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vatfekudqe thead, #vatfekudqe tbody, #vatfekudqe tfoot, #vatfekudqe tr, #vatfekudqe td, #vatfekudqe th {
+#vrlsjrlzdj thead, #vrlsjrlzdj tbody, #vrlsjrlzdj tfoot, #vrlsjrlzdj tr, #vrlsjrlzdj td, #vrlsjrlzdj th {
   border-style: none;
 }
 
-#vatfekudqe p {
+#vrlsjrlzdj p {
   margin: 0;
   padding: 0;
 }
 
-#vatfekudqe .gt_table {
+#vrlsjrlzdj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1486,12 +1487,12 @@ Let’s start with the <code>skimR</code> package:</p>
   border-left-color: #D3D3D3;
 }
 
-#vatfekudqe .gt_caption {
+#vrlsjrlzdj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vatfekudqe .gt_title {
+#vrlsjrlzdj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1503,7 +1504,7 @@ Let’s start with the <code>skimR</code> package:</p>
   border-bottom-width: 0;
 }
 
-#vatfekudqe .gt_subtitle {
+#vrlsjrlzdj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1515,7 +1516,7 @@ Let’s start with the <code>skimR</code> package:</p>
   border-top-width: 0;
 }
 
-#vatfekudqe .gt_heading {
+#vrlsjrlzdj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1527,13 +1528,13 @@ Let’s start with the <code>skimR</code> package:</p>
   border-right-color: #D3D3D3;
 }
 
-#vatfekudqe .gt_bottom_border {
+#vrlsjrlzdj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vatfekudqe .gt_col_headings {
+#vrlsjrlzdj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1548,7 +1549,7 @@ Let’s start with the <code>skimR</code> package:</p>
   border-right-color: #D3D3D3;
 }
 
-#vatfekudqe .gt_col_heading {
+#vrlsjrlzdj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1568,7 +1569,7 @@ Let’s start with the <code>skimR</code> package:</p>
   overflow-x: hidden;
 }
 
-#vatfekudqe .gt_column_spanner_outer {
+#vrlsjrlzdj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1580,15 +1581,15 @@ Let’s start with the <code>skimR</code> package:</p>
   padding-right: 4px;
 }
 
-#vatfekudqe .gt_column_spanner_outer:first-child {
+#vrlsjrlzdj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vatfekudqe .gt_column_spanner_outer:last-child {
+#vrlsjrlzdj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vatfekudqe .gt_column_spanner {
+#vrlsjrlzdj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1600,11 +1601,11 @@ Let’s start with the <code>skimR</code> package:</p>
   width: 100%;
 }
 
-#vatfekudqe .gt_spanner_row {
+#vrlsjrlzdj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vatfekudqe .gt_group_heading {
+#vrlsjrlzdj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1630,7 +1631,7 @@ Let’s start with the <code>skimR</code> package:</p>
   text-align: left;
 }
 
-#vatfekudqe .gt_empty_group_heading {
+#vrlsjrlzdj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1645,15 +1646,15 @@ Let’s start with the <code>skimR</code> package:</p>
   vertical-align: middle;
 }
 
-#vatfekudqe .gt_from_md > :first-child {
+#vrlsjrlzdj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vatfekudqe .gt_from_md > :last-child {
+#vrlsjrlzdj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vatfekudqe .gt_row {
+#vrlsjrlzdj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1672,7 +1673,7 @@ Let’s start with the <code>skimR</code> package:</p>
   overflow-x: hidden;
 }
 
-#vatfekudqe .gt_stub {
+#vrlsjrlzdj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1685,7 +1686,7 @@ Let’s start with the <code>skimR</code> package:</p>
   padding-right: 5px;
 }
 
-#vatfekudqe .gt_stub_row_group {
+#vrlsjrlzdj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1699,15 +1700,15 @@ Let’s start with the <code>skimR</code> package:</p>
   vertical-align: top;
 }
 
-#vatfekudqe .gt_row_group_first td {
+#vrlsjrlzdj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vatfekudqe .gt_row_group_first th {
+#vrlsjrlzdj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vatfekudqe .gt_summary_row {
+#vrlsjrlzdj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1717,16 +1718,16 @@ Let’s start with the <code>skimR</code> package:</p>
   padding-right: 5px;
 }
 
-#vatfekudqe .gt_first_summary_row {
+#vrlsjrlzdj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vatfekudqe .gt_first_summary_row.thick {
+#vrlsjrlzdj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vatfekudqe .gt_last_summary_row {
+#vrlsjrlzdj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1736,7 +1737,7 @@ Let’s start with the <code>skimR</code> package:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#vatfekudqe .gt_grand_summary_row {
+#vrlsjrlzdj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1746,7 +1747,7 @@ Let’s start with the <code>skimR</code> package:</p>
   padding-right: 5px;
 }
 
-#vatfekudqe .gt_first_grand_summary_row {
+#vrlsjrlzdj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1756,7 +1757,7 @@ Let’s start with the <code>skimR</code> package:</p>
   border-top-color: #D3D3D3;
 }
 
-#vatfekudqe .gt_last_grand_summary_row_top {
+#vrlsjrlzdj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1766,11 +1767,11 @@ Let’s start with the <code>skimR</code> package:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#vatfekudqe .gt_striped {
+#vrlsjrlzdj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vatfekudqe .gt_table_body {
+#vrlsjrlzdj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1779,7 +1780,7 @@ Let’s start with the <code>skimR</code> package:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#vatfekudqe .gt_footnotes {
+#vrlsjrlzdj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1793,7 +1794,7 @@ Let’s start with the <code>skimR</code> package:</p>
   border-right-color: #D3D3D3;
 }
 
-#vatfekudqe .gt_footnote {
+#vrlsjrlzdj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1802,7 +1803,7 @@ Let’s start with the <code>skimR</code> package:</p>
   padding-right: 5px;
 }
 
-#vatfekudqe .gt_sourcenotes {
+#vrlsjrlzdj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1816,7 +1817,7 @@ Let’s start with the <code>skimR</code> package:</p>
   border-right-color: #D3D3D3;
 }
 
-#vatfekudqe .gt_sourcenote {
+#vrlsjrlzdj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1824,63 +1825,63 @@ Let’s start with the <code>skimR</code> package:</p>
   padding-right: 5px;
 }
 
-#vatfekudqe .gt_left {
+#vrlsjrlzdj .gt_left {
   text-align: left;
 }
 
-#vatfekudqe .gt_center {
+#vrlsjrlzdj .gt_center {
   text-align: center;
 }
 
-#vatfekudqe .gt_right {
+#vrlsjrlzdj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vatfekudqe .gt_font_normal {
+#vrlsjrlzdj .gt_font_normal {
   font-weight: normal;
 }
 
-#vatfekudqe .gt_font_bold {
+#vrlsjrlzdj .gt_font_bold {
   font-weight: bold;
 }
 
-#vatfekudqe .gt_font_italic {
+#vrlsjrlzdj .gt_font_italic {
   font-style: italic;
 }
 
-#vatfekudqe .gt_super {
+#vrlsjrlzdj .gt_super {
   font-size: 65%;
 }
 
-#vatfekudqe .gt_footnote_marks {
+#vrlsjrlzdj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vatfekudqe .gt_asterisk {
+#vrlsjrlzdj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vatfekudqe .gt_indent_1 {
+#vrlsjrlzdj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vatfekudqe .gt_indent_2 {
+#vrlsjrlzdj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vatfekudqe .gt_indent_3 {
+#vrlsjrlzdj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vatfekudqe .gt_indent_4 {
+#vrlsjrlzdj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vatfekudqe .gt_indent_5 {
+#vrlsjrlzdj .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
