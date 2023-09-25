@@ -260,8 +260,8 @@ train_indices <- createDataPartition(data_nba$salary, p = 0.7, list = FALSE)
 train_data <- data_nba[train_indices, ]
 test_data <- data_nba[-train_indices, ]
 
-# Create a train control object
-ctrl <- trainControl(method = "none") 
+# Create a train control object with "cross-validation" for comparing results
+ctrl <- trainControl(method = "cv") 
 
 # Train a linear regression model using caret
 model1 <- train(
@@ -317,7 +317,16 @@ model2$results
 model3$results
 ```
 
--> Comaprison should be here
+
+*$R^2$ is a measure of how well a model fits the data. It ranges from 0 to 1, with higher values indicating better fit.*
+
+- `model1` is a linear regression model that uses `career_PTS`, `position_rec`, `season_start` and `age` as predictors of `salary`. It has an $R^2$ value of *0.432*, which means that it explains about *43%* of the variation in salary.
+
+- `model2` is a linear regression model that uses only `career_PTS` as a predictor of `salary`. It has an $R^2$ value of *0.361*, which means that it explains about *36%* of the variation in salary.
+
+- `model3` is a machine learning model that uses the caret package to train a predictive model using `log` transformation on `salary`, centered and squared on `career_PTS`. It has an $R^2$ value of *0.415*, which means that it explains about *41%* of the variation in salary.
+
+Based on these results, we can see that `model1` has the highest $R^2$ value among the three models, followed by `model3` and then `model2`. This suggests that `model1` is the best model for predicting salary based on the given data.
 
 
 Now machine learning usually involves several more steps:

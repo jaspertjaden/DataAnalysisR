@@ -30,7 +30,7 @@ Assistants
 - Md Niaz Morshed (Student Research Assistant)
 :::
 
-Please download the data used in the course [here](https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp). To find more about me, have a look at [my website](https://jaspertjaden.com).
+Please download the data used in the course [here](https://www.kaggle.com/datasets/thedevastator/exploring-nba-player-performance-and-salaries-19?select=salaries_1985to2018.csv). To find more about me, have a look at [my website](https://jaspertjaden.com).
 
 
 ::: {.appendix}

@@ -144,7 +144,7 @@
 
 \title{Data Analysis with R for Social Scientists}
 \author{Jakob Tures \& Jasper Tjaden}
-\date{2023-09-18}
+\date{2023-09-25}
 
 \begin{document}
 \maketitle
@@ -179,7 +179,7 @@ Assistants
   Md Niaz Morshed (Student Research Assistant)
 \end{itemize}
 
-Please download the data used in the course \href{https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp}{here}. To find more about me, have a look at \href{https://jaspertjaden.com}{my website}.
+Please download the data used in the course \href{https://www.kaggle.com/datasets/thedevastator/exploring-nba-player-performance-and-salaries-19?select=salaries_1985to2018.csv}{here}. To find more about me, have a look at \href{https://jaspertjaden.com}{my website}.
 
 \textbf{Overview over the Course :}
 
@@ -5889,8 +5889,8 @@ Let's use the \texttt{caret} package, a common package for machine learning.
 \NormalTok{train\_data }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba[train\_indices, ]}
 \NormalTok{test\_data }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba[}\SpecialCharTok{{-}}\NormalTok{train\_indices, ]}
 
-\CommentTok{\# Create a train control object}
-\NormalTok{ctrl }\OtherTok{\textless{}{-}} \FunctionTok{trainControl}\NormalTok{(}\AttributeTok{method =} \StringTok{"none"}\NormalTok{) }
+\CommentTok{\# Create a train control object with "cross{-}validation" for comparing results}
+\NormalTok{ctrl }\OtherTok{\textless{}{-}} \FunctionTok{trainControl}\NormalTok{(}\AttributeTok{method =} \StringTok{"cv"}\NormalTok{) }
 
 \CommentTok{\# Train a linear regression model using caret}
 \NormalTok{model1 }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(}
@@ -5967,8 +5967,8 @@ We can compare the \(R^2\) for all these 3 models:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] RMSE      Rsquared  MAE       intercept
-## <0 rows> (or 0-length row.names)
+##   intercept     RMSE  Rsquared      MAE   RMSESD RsquaredSD    MAESD
+## 1      TRUE 357678.7 0.4269381 255031.8 13553.71 0.04805627 7978.429
 \end{verbatim}
 
 \begin{Shaded}
@@ -5978,8 +5978,8 @@ We can compare the \(R^2\) for all these 3 models:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] RMSE      Rsquared  MAE       intercept
-## <0 rows> (or 0-length row.names)
+##   intercept   RMSE  Rsquared      MAE   RMSESD RsquaredSD   MAESD
+## 1      TRUE 378428 0.3573984 263345.1 14136.21 0.02909487 7617.53
 \end{verbatim}
 
 \begin{Shaded}
@@ -5989,11 +5989,22 @@ We can compare the \(R^2\) for all these 3 models:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] RMSE      Rsquared  MAE       intercept
-## <0 rows> (or 0-length row.names)
+##   intercept     RMSE  Rsquared       MAE     RMSESD RsquaredSD      MAESD
+## 1      TRUE 1.033246 0.4146554 0.7875945 0.03299419 0.02357306 0.01866733
 \end{verbatim}
 
--\textgreater{} Comaprison should be here
+\emph{\(R^2\) is a measure of how well a model fits the data. It ranges from 0 to 1, with higher values indicating better fit.}
+
+\begin{itemize}
+\item
+  \texttt{model1} is a linear regression model that uses \texttt{career\_PTS}, \texttt{position\_rec}, \texttt{season\_start} and \texttt{age} as predictors of \texttt{salary}. It has an \(R^2\) value of \emph{0.432}, which means that it explains about \emph{43\%} of the variation in salary.
+\item
+  \texttt{model2} is a linear regression model that uses only \texttt{career\_PTS} as a predictor of \texttt{salary}. It has an \(R^2\) value of \emph{0.361}, which means that it explains about \emph{36\%} of the variation in salary.
+\item
+  \texttt{model3} is a machine learning model that uses the caret package to train a predictive model using \texttt{log} transformation on \texttt{salary}, centered and squared on \texttt{career\_PTS}. It has an \(R^2\) value of \emph{0.415}, which means that it explains about \emph{41\%} of the variation in salary.
+\end{itemize}
+
+Based on these results, we can see that \texttt{model1} has the highest \(R^2\) value among the three models, followed by \texttt{model3} and then \texttt{model2}. This suggests that \texttt{model1} is the best model for predicting salary based on the given data.
 
 Now machine learning usually involves several more steps:
 

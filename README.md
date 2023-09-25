@@ -19,10 +19,9 @@ Focus is on applied data analysis, sessions will involve basic introduction to m
 
 Dataset: 
 
-In-class: WVS (https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp)
+In-class: NBA Performance and Salaries (https://www.kaggle.com/datasets/thedevastator/exploring-nba-player-performance-and-salaries-19?select=salaries_1985to2018.csv)
 
-Excersises/Report: WVS, but allow other datasets if the student have specific thematic
-interests and dataset is available(?)
+Excersises/Report: Boston Housing Dataset
 
 
 ## Implementation: 
