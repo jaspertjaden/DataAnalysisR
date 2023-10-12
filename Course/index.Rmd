@@ -25,6 +25,7 @@ This course offers an accessible and easy introduction to one of the fastest gro
 -   Jakob Tures (Research associate and PhD candidate at the chair for Methods of Empirical Social Research at the University of Potsdam)
     -   [My website](https://www.uni-potsdam.de/de/soziologie-methoden/team/jakob-tures)
 -   Md Niaz Morshed (Student Research Assistant)
+    -   [My website](https://n1az.github.io/)
 :::
 
 <!-- ::: {.appendix} -->

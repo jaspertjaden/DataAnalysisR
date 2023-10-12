@@ -144,7 +144,7 @@
 
 \title{Data Analysis with R for Social Scientists}
 \author{Jakob Tures \& Jasper Tjaden}
-\date{2023-09-25}
+\date{2023-10-12}
 
 \begin{document}
 \maketitle
@@ -159,80 +159,57 @@
 
 This course offers an accessible and easy introduction to one of the fastest growing statistical packages used in social science and data science more generally.
 
-\hypertarget{acknowledgements}{%
-\section{Acknowledgements}\label{acknowledgements}}
-
-About the Authors
-
-\begin{itemize}
-\item
-  Dr.~Jasper Tjaden (to be filled)
-\item
-  Jakob Tures (to be filled)
-\end{itemize}
-
-Assistants
+\hypertarget{about-the-authors}{%
+\section{About the Authors}\label{about-the-authors}}
 
 \begin{itemize}
 \tightlist
+\item
+  Prof.~Dr.~Jasper Tjaden (Professor for Applied Social Research and Public Policy at the University of Potsdam)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://jaspertjaden.com}{My website}
+  \end{itemize}
+\item
+  Jakob Tures (Research associate and PhD candidate at the chair for Methods of Empirical Social Research at the University of Potsdam)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://www.uni-potsdam.de/de/soziologie-methoden/team/jakob-tures}{My website}
+  \end{itemize}
 \item
   Md Niaz Morshed (Student Research Assistant)
-\end{itemize}
 
-Please download the data used in the course \href{https://www.kaggle.com/datasets/thedevastator/exploring-nba-player-performance-and-salaries-19?select=salaries_1985to2018.csv}{here}. To find more about me, have a look at \href{https://jaspertjaden.com}{my website}.
-
-\textbf{Overview over the Course :}
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{\protect\hyperlink{intro-sem}{Week 1: Introduction to Seminar}}
-\item
-  \textbf{\protect\hyperlink{eda-1}{Week 2: Exploratory Data Analysis-I}}
-\item
-  \textbf{\protect\hyperlink{eda-2}{Week 3: Exploratory Data Analysis-II}}
-\item
-  \textbf{\protect\hyperlink{dags-1}{Week 4: DAGs}}
-\item
-  \textbf{\protect\hyperlink{lin-t-1}{Week 5: Linear Regression Theory I: Simple Linear Regression}}
-\item
-  \textbf{\protect\hyperlink{lin-t-2}{Week 6: Linear Regression Theory II: Multiple Linear Regression}}
-\item
-  \textbf{\protect\hyperlink{lin-t-3}{Week 7: Linear Regression Theory III: Diagnostics}}
-\item
-  \textbf{\protect\hyperlink{lin-a}{Week 8: Linear Regression - Application}}
-\item
-  \textbf{\protect\hyperlink{lin-e}{Week 9: Logistic Regression - Exercises}}
-\item
-  \textbf{\protect\hyperlink{med}{Week 10: Mediation}}
-\item
-  \textbf{\protect\hyperlink{pm-t}{Week 11: Prediction - Theory}}
-\item
-  \textbf{\protect\hyperlink{pm-a}{Week 12: Prediction - Application}}
-\item
-  \textbf{\protect\hyperlink{log-est}{Week 13: Logistic Regression}}
-\item
-  \textbf{\protect\hyperlink{out-look}{Week 14: Course Paper - Discussion - Outlook}}
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://n1az.github.io/}{My website}
+  \end{itemize}
 \end{itemize}
 
 \hypertarget{intro-sem}{%
 \chapter{Introduction to Seminar}\label{intro-sem}}
 
-\hypertarget{introduction}{%
-\section{Introduction}\label{introduction}}
+In this course, students will learn the basics of data analysis using the R programming language. At the end of the course, students will be able to write an empirical seminar paper or BA-thesis using quantitative statistical modeling techniques. To achieve this, we will not only focus on how to apply this techniques in R, but also why certain approaches are chosen for certain problems and how to use them correctly with the aim of producing reliable statistical results.
 
-Welcome to this course! In this course, you will learn how to analyse data using multiple regression in R. The course is aimed at undergraduate students who have completed the course ``Intro to R for Social Scientists.
+The course starts with an introduction to exploratory data analysis; getting to know your data, your variables and the relationships between them. After this we will we go into statistical modeling. Before we can even start to model, we have to understand what modeling is, what approaches do exist and what we should and should not include in our model. You will learn how to use acyclical directed graphs (DAGs) to construct a model based on theoretical assumptions. We continue with a thorough introduction to simple and multiple linear regression. This will be the basis for more advanced topics that conclude the course, including introductions to logistic regression, mediation analysis and prediction. The course also includes a brief introduction to fundamentals of machine learning.
 
-\hypertarget{why-should-i-take-this-course}{%
-\section{Why should I take this course?}\label{why-should-i-take-this-course}}
+\hypertarget{prerequisites}{%
+\section{Prerequisites}\label{prerequisites}}
 
-\begin{itemize}
-\tightlist
-\item
-  What is regression?
-\item
-  What do you use it for?
-\end{itemize}
+Prior knowledge in the basics of using R is required. You should already know how the R syntax works, how to import, clean and manage data, how to compute descriptive statistics and how to create plots. Experience with the \texttt{tidyverse} packages is also required.
+We highly encourage you to go through the following introduction to R written by Prof.~Dr.~Jasper Tjaden. This will equip you with all R knowledge you will need to successfully complete the seminar.
+\href{https://jaspertjaden.github.io/course-intro2r/}{Intro to R for Social Scientists}
+
+Prepare by installing R and Rstudio. Here is a \href{https://rstudio-education.github.io/hopr/starting.html}{link} that guides you through the installation process. If you already have an installation, you should make sure that it is updated to the most current versions.
+
+You can also, this is optional, create a new R project in the folder which you will use for this seminar.
+
+\hypertarget{eda-1}{%
+\chapter{Exploratory Data Analysis}\label{eda-1}}
 
 \hypertarget{objectives}{%
 \section{Objectives}\label{objectives}}
@@ -240,116 +217,15 @@ Welcome to this course! In this course, you will learn how to analyse data using
 \begin{itemize}
 \tightlist
 \item
+  Load, merge and clean data sets
 \item
-\end{itemize}
-
-\hypertarget{what-is-not-covered}{%
-\section{What is not covered}\label{what-is-not-covered}}
-
-\begin{itemize}
-\tightlist
-\item
-\item
-\end{itemize}
-
-\hypertarget{prerequisites}{%
-\section{Prerequisites}\label{prerequisites}}
-
-\begin{itemize}
-\tightlist
-\item
-  Basic knowledge of how to use R (data cleaning, management etc.) (include hyperlink to ``Intro to R course'')
-\item
-  Descriptive statistics
-\item
-  Data visualization using ggplot()
-\end{itemize}
-
-\hypertarget{structure}{%
-\section{Structure}\label{structure}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Intro to seminar
-\end{enumerate}
-
-\emph{BLOCK I - Pre-processing/ EDA}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  Exploratory data analysis (EDA) - I (ggplot; gtsummary; x)
-\item
-  EDA - II -\textgreater{} in class exercise
-\end{enumerate}
-
---\textgreater{} add visualization/ reporting here.
-
---\textgreater{} knitting
-
-\emph{BLOCK II - Modelling/ Linear regression}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{3}
-\tightlist
-\item
-  DAGS
-\item
-  Linear Regression - theory I: Simple Linear Regression
-\item
-  Linear Regression - theory II: Multiple Linear Regression
-\item
-  Linear Regression - theory III: Diagnostics
-\end{enumerate}
-
-\emph{Block III - Application}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{7}
-\tightlist
-\item
-  Linear Regression -- application
-\item
-  Linear Regression - exercise
-\end{enumerate}
-
-\emph{Block IV - Advanced uses}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{9}
-\item
-  Mediation (?)
-\item
-  Prediction - Theory
-\item
-  Prediction - Application
-\item
-  Other estimators: Logistic/ Poisson/ Multilevel/ FE
-\item
-  Course paper/Discussion/ Outlook
-\end{enumerate}
-
-\hypertarget{eda-1}{%
-\chapter{Exploratory Data Analysis - I}\label{eda-1}}
-
-\hypertarget{objectives-1}{%
-\section{Objectives}\label{objectives-1}}
-
-\begin{itemize}
-\tightlist
-\item
-  Remember how to load and explore datasets in R
+  Explore data sets
 \item
   Conduct basic descriptive data analysis
 \item
-  Understand and visualize distribution of and relationship between variables
+  Understand and visualize the distribution of variables
+\item
+  Understand and visualize the relationship between variables
 \end{itemize}
 
 \hypertarget{r-functions-covered-this-week}{%
@@ -358,110 +234,121 @@ Welcome to this course! In this course, you will learn how to analyse data using
 \begin{itemize}
 \tightlist
 \item
-  \texttt{load()}: loads an R data file into the current session.
+  Importing and saving data
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{read\_csv()}: reads a \texttt{csv} file into a data frame
+  \item
+    \texttt{read\_excel()}: reads an Excel file into a data frame.
+  \item
+    \texttt{load()}: loads an \texttt{RData} file into the current session.
+  \item
+    \texttt{save()}: saves objects from the current session as a \texttt{RData} file
+  \end{itemize}
 \item
-  \texttt{read\_excel()}: reads an Excel file into a data frame.
+  Handling data
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{str()}: displays the structure of an object.
+  \item
+    \texttt{merge()}: combines two data frames into one.
+  \item
+    \texttt{na.omit()}: removes missing values from a data frame.
+  \item
+    \texttt{rm()}: removes objects from the current session.
+  \end{itemize}
 \item
-  \texttt{str()}: displays the structure of an object.
-\item
-  \texttt{glimpse()}: provides a transposed version of \texttt{str()}.
-\item
-  \texttt{table()}: creates a contingency table of counts for categorical variables.
-\item
-  \texttt{summary()}: produces a summary of an object, such as its mean, median, quartiles, etc.
-\item
-  \texttt{mutate()}: adds new variables or modifies existing ones in a data frame.
-\item
-  \texttt{case\_when()}: creates a new variable based on multiple conditions.
+  \texttt{dplyr} verbs for data wrangling
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{as\_tibble()}, \texttt{select()}, \texttt{filter()}, \texttt{rename()}, \texttt{mutate()}, \texttt{case\_when()}, \texttt{group\_by()}, \texttt{ungroup()}, \texttt{summarise()}
+  \end{itemize}
 \item
   \texttt{ggplot()}: creates a plot using the grammar of graphics.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{geom\_boxplot()}, \texttt{geom\_histogram()}, \texttt{geom\_density()}, \texttt{geom\_point()}, \texttt{geom\_smooth()}
+  \end{itemize}
 \item
-  \texttt{corr()}: computes the correlation matrix of numeric variables.
+  Producing descriptive statistics and summaries
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{table()}: creates a contingency table of counts for categorical variables.
+  \item
+    \texttt{summary()}: produces a summary of an object, including its mean, median, quartiles, etc.
+  \item
+    \texttt{skim()}: provides a summary of the whole dataset with various statistics and types of variables.
+  \item
+    \texttt{DataExplorer} functions that return information on the data set and descriptive statistics.
+  \item
+    \texttt{introduce()}, \texttt{plot\_intro()}, \texttt{plot\_missing()}, \texttt{plot\_bar()}
+  \item
+    \texttt{tbl\_summary()}: creates a summary table for descriptive statistics of variables in a data frame.
+  \end{itemize}
 \item
-  \texttt{skim()}: provides a summary of the whole dataset with various statistics and types of variables.
-\item
-  \texttt{introduce()}: gives an overview of the types and missingness of variables in a data frame.
-\item
-  \texttt{plot\_intro()}: plots the information from \texttt{introduce()} as a bar chart.
-\item
-  \texttt{plot\_missing()}: plots the percentage of missing values for each variable in a data frame.
-\item
-  \texttt{plot\_bar()}: plots the frequency distribution of categorical variables in a data frame.
-\item
-  \texttt{tbl\_summary()}: creates a summary table for descriptive statistics of variables in a data frame.
-\item
-  \texttt{correlate()}: creates a correlation data frame from a numeric data frame.
-\item
-  \texttt{rearrange()}: rearranges the correlation data frame by the absolute value of correlations.
-\item
-  \texttt{shave()}: removes the upper triangle of the correlation matrix to avoid redundancy.
-\item
-  \texttt{fashion()}: formats the correlation data frame with rounded values and signs.
-\item
-  \texttt{rplot()}: plots the correlation matrix as a scatterplot matrix with regression lines.
-\item
-  \texttt{ggcorrplot()}: plots the correlation matrix as a heatmap with circles representing the magnitude of correlations.
+  Calculating and plotting correlations
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{correlate()}, \texttt{rearrange()}, \texttt{shave()}, \texttt{fashion()}
+  \item
+    \texttt{cor()}, \texttt{ggcorrplot()}
+  \end{itemize}
 \end{itemize}
 
-\hypertarget{why-is-eda-so-important}{%
-\section{Why is EDA so important?}\label{why-is-eda-so-important}}
+\hypertarget{what-is-eda-and-why-is-it-so-important}{%
+\section{\texorpdfstring{What is \emph{EDA} and why is it so important?}{What is EDA and why is it so important?}}\label{what-is-eda-and-why-is-it-so-important}}
 
-\begin{itemize}
-\tightlist
-\item
-  Every regression analysis is based on proper EDA; EDA often used for ``hypothesis generation'' (i.e.~finding things that could be interesting to study).
-\item
-  \texttt{EDA} helps understand the data and issues in the data. The better we understand the data, the better we can ``fine-tune'' our regression model later.
-\item
-  \texttt{EDA} helps prepping data for regression (i.e.~``cleaning''; ``pre-processing''). Small errors in the data can lead to completely wrong conclusions or even prevent
-  the model from working altogether.
-\end{itemize}
+\emph{Exploratory Data Analysis}, or \emph{EDA} for short, is the first step in every data analysis project. Before we can start modelling the relationships in our data, we have to get to know the data set. What variables are included? What are their minimum, maximum and mean values? How are they distributed? What relationships exist between several variables? Etc, etc\ldots{} EDA helps us with answering these and related questions by using a set of techniques aimed at \emph{exploring} the data.
+
+But why is this important? Why do we not just throw all variables in our data set into a statistical model, let the computer do the crunching and get the answer to our research question before lunch break? On the technical side, given enough processing power, nothing prevents us from taking this approach. But if our goal is to produce reliable, robust and \emph{good} science, we can not, or even must not, take this shortcut and rather put in the hours into thorough thinking and learning about our data before even starting to apply all the fancy and powerful statistical methods we will address later in this seminar.
+
+EDA helps us in understanding the data. It is not only important to know \emph{which} variables are even present but also what their \emph{types} are and how they are \emph{distributed}. This is important to know because the choice of model and its appropriateness very much depends on it. Again, in most cases our computer or \texttt{R} will not stop us from building an unreliable or even flat out \emph{wrong} statistical model. The only way to prevent this is to think and make informed decisions based on our knowledge, experience and understanding of our data. After choosing and building our model we have to check it for problems and assess if we have met all the underlying statistical assumptions. When we return to this at a \protect\hyperlink{lin-t-3}{later point in the seminar}, we will again see that understanding our variables and their distributions is necessary to ``fine-tune'' our regression model and actually produce reliable scientific research results.
+
+EDA is also necessary to make informed decisions on \emph{pre-processing} and \emph{data cleaning}. It will be a rare treat indeed to download a data set that includes all variables necessary for modelling in a format that we can use \emph{out-of-the-box} for our specific research question. We may have to convert variables into different types, recode categories, normalize scales or even construct completely new variables based on the values of others; and this is just a small subset of all the possibly necessary pre-processing steps we may have to apply. There may also be issues in our data. Maybe there are extreme values on some variables that we have to deal with or plain mistakes that were introduced when data set was assembled. Small errors in the data can lead to completely wrong conclusions or even prevent the model from working altogether. As there is no \emph{gold standard} for pre-processing and data cleaning, we have to understand and explore our data beforehand and again make our own informed decisions.
+
+Moving beyond understanding individual variables and their distributions, another part of EDA is exploring the relationships between multiple variables. How are the values of one variable distributed based on the values of another? Do variables correlate with each other and in which direction? Etc, etc\ldots{} This again helps us in building a robust model and making informed decisions but may also support the process of \emph{hypothesis generation}, i.e.~finding things that could be interesting to study.
 
 \hypertarget{importing-data-into-r}{%
 \section{Importing data into R}\label{importing-data-into-r}}
 
-The first step of any data analysis is getting data into R. To get started, we first need to follow some preparatory steps
+Before we can start exploring our data, we first have to load it into \texttt{R}.
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  In this course, we will use data on NBA players (Basketball). Usually, you need to first download the data and documentation and save them in a folder on your own computer. We have already done this, and provide the data for you here.
-\item
-  Install R and Rstudio. If you don't already have R installed, here is a \href{https://rstudio-education.github.io/hopr/starting.html\#rstudio}{link} to how it is done.
-\item
-  In the folder which you will use for this class, create a new R project. You will see that all files appear in the bottom right window in R studio.
-\end{enumerate}
+In this course, we will use a data set on NBA players compiled by Chris Davis and made available on \href{https://www.kaggle.com/}{\emph{kaggle.com}}. You should inspect the documentation for the data set following this \href{https://www.kaggle.com/datasets/thedevastator/exploring-nba-player-performance-and-salaries-19}{link} and download both \texttt{.csv} files either directly from the linked page or from the Moodle course accompanying this seminar. Make sure to save the files in your project folder, or a sub-folder thereof.
 
-Now, Let's get started.
-
-\hypertarget{import-data-into-r}{%
-\section{Import data into R}\label{import-data-into-r}}
-
-First, we need to install some packages.
+To import the data, we have to load some packages. Luckily, the \emph{tidyverse} package, or rather collection of packages, provides all we need here. As a quick reminder, you can install packages using the function \texttt{install.packages("tidyverse")}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(}\StringTok{"readxl"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-Now, let's import the data.You can see in the folder that we have 2 csv files.
-We can use \texttt{read\_delim()} or \texttt{read\_csv} function. Note that you need other function for Stata datasets (\texttt{read\_data} from the haven package). To load Rdata files, you use the \texttt{load()} function.
+Now, let us import the data. You can see in the folder that we have 2 \texttt{.csv} files. To import those, we can use the the \texttt{read\_csv()} or the more general \texttt{read\_delim()} functions. For other formats we would have to use different functions. Here are some of the more common cases you may encounter. To load \texttt{.RData} files, the native R format, we use the \texttt{load()} function. To import Stata data sets, you can use \texttt{read\_data()} from the \texttt{haven} package. Several other packages for specific data formats are also available.
 
-Make sure you name the correct sub-directory in case you saved the data a sub-folder of your project folder (which I have done).
+Make sure you name the correct sub-directory in case you saved the data a sub-folder of your project folder (which we have done).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# import data }
 \NormalTok{nba\_salaries }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"../datasets/nba/salaries\_1985to2018.csv"}\NormalTok{, }\AttributeTok{show\_col\_types =} \ConstantTok{FALSE}\NormalTok{)}
 \NormalTok{nba\_players }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"../datasets/nba/players.csv"}\NormalTok{, }\AttributeTok{show\_col\_types =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-Great, the two dataframes should appear in your environment in the upper right side in R studio.
+Great, the two data frames should appear in your environment in the upper right side in R studio.
 
-Let's take a quick look at these trend dataframe using \texttt{str()} function The \texttt{str()} function shows the number of rows (observations) and columns (variables). It also provides information on the name of each column, its type and an example of some of the values in each column.
+Let us take a quick look at these using the \texttt{str()} function. \texttt{str()} shows us the number of rows (observations) and columns (variables). It also provides information on the name of each column, its type and an example of some of the values in each column.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -557,16 +444,14 @@ Let's take a quick look at these trend dataframe using \texttt{str()} function T
 ##  - attr(*, "problems")=<externalptr>
 \end{verbatim}
 
-We see that most variables/ columns, already are in the type which we want. R automatically picked up on the format. Text variables are \emph{chr} for \emph{character}; Numeric variables are \emph{num}. It is very important that you understand the types of columns/ variables that R recognized. If you need a refresher, go \href{https://jaspertjaden.github.io/course-intro2r/}{here}.
+We see that most variables already use the correct type, automatically picked by \texttt{read\_csv()} based on the data is sees when importing. Text variables are \emph{chr} for \emph{character}; Numeric variables are \emph{num}. It is very important that you understand the types of variables that R uses. If you need a refresher, go \href{https://jaspertjaden.github.io/course-intro2r/week2.html\#data-types}{here}.
 
 \hypertarget{merge-datasets}{%
-\section{Merge datasets}\label{merge-datasets}}
+\subsection{Merge datasets}\label{merge-datasets}}
 
-We see that \texttt{nba\_salaries} contains the salaries of players for various seasons.
-\texttt{players} contains many career statistics about players, for example, how many points they scored on average per game, across their whole career.
+We see that \texttt{nba\_salaries} contains the salaries of players for various seasons. \texttt{players} contains many career statistics about players, for example, how many points they scored on average per game, across their whole career.
 
-Now we want to link both datasets. We can do this using the \texttt{merge()} function.
-An alternative would be \texttt{join()}.
+Now we want to link both data sets. We can do this using the \texttt{merge()} function. An alternative would be \texttt{*\_join()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -578,55 +463,39 @@ An alternative would be \texttt{join()}.
 \hypertarget{clean-dataset}{%
 \section{Clean dataset}\label{clean-dataset}}
 
-We can use the \texttt{select()} function to kick out columns and the \texttt{filter()} function to kick out rows. First, we need to look at the codebook and the questionnaire to understand the what each variable refers to (see \texttt{.txt} file \texttt{*data\_description*}).
+We can use the \texttt{select()} function to kick out columns and the \texttt{filter()} function to kick out rows. First, we need to look at the codebook and the questionnaire to understand the what each variable refers to (see the file \texttt{data\_description.txt}).
 
-When using the select function, we will also rename the variables to make them more intuitive.
-
-First, let's filter out Let's filter all years between 2012-2022.
-
-Afterwards, we use the \texttt{save()} function to store the data as a \texttt{.Rdata} file and the \texttt{write\_excel()} function to store the reduced dataset. This way we can simply load that one next time and save time.
+Let us start by removing some variables of which we are already sure we will not use and reducing the data set to more recent observations. We should also rename our \texttt{\_id} variable to a name that is compliant with the R naming conventions. At the same time we convert the data frame into a tibble. This is not necessary and will not have any impact on the results but we can benefit from the much nicer printing into the console.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%}
-        \FunctionTok{select}\NormalTok{(}\FunctionTok{everything}\NormalTok{(), }\SpecialCharTok{{-}}\NormalTok{league, }\SpecialCharTok{{-}}\NormalTok{highSchool) }\SpecialCharTok{\%\textgreater{}\%}
-        \FunctionTok{filter}\NormalTok{(season\_start}\SpecialCharTok{\textgreater{}=}\DecValTok{1998}\NormalTok{)}
-\FunctionTok{save}\NormalTok{(data\_nba, }\AttributeTok{file =}\StringTok{"../datasets/nba/data\_nba.RData"}\NormalTok{)}
+        \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{index.x, }\SpecialCharTok{{-}}\NormalTok{index.y, }\SpecialCharTok{{-}}\NormalTok{league, }\SpecialCharTok{{-}}\NormalTok{highSchool) }\SpecialCharTok{\%\textgreater{}\%}
+        \FunctionTok{filter}\NormalTok{(season\_start }\SpecialCharTok{\textgreater{}=} \DecValTok{1998}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+        \FunctionTok{rename}\NormalTok{(}\AttributeTok{id =} \StringTok{"\_id"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+        \FunctionTok{as\_tibble}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{change-variables}{%
-\section{change variables}\label{change-variables}}
+\hypertarget{mutating-variables}{%
+\subsection{Mutating variables}\label{mutating-variables}}
 
-Let's do some data cleaning. First, we want to calculate each players' age at the
-beginning of each season. Currently, we only have the date of birth and the year
-for each season.
+Let us do some additional data cleaning.
 
-Second, we want recode the \texttt{position} variable. Some players played multiple
-position, so that info is messy. We want to create varies dummy variables
-for each position.
+First, we want to calculate each players' age at the beginning of each season. Currently, we only have the date of birth and the year for each season.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# let\textquotesingle{}s calculate age for every season}
-\FunctionTok{class}\NormalTok{(data\_nba}\SpecialCharTok{$}\NormalTok{birthDate) }\CommentTok{\# nice, it is already a date variable}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "character"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(lubridate)}
 \NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{year\_of\_birth =} \FunctionTok{year}\NormalTok{(}\FunctionTok{mdy}\NormalTok{(birthDate)),}
          \AttributeTok{age =}\NormalTok{ season\_start }\SpecialCharTok{{-}}\NormalTok{ year\_of\_birth)}
+\end{Highlighting}
+\end{Shaded}
 
+Second, we want recode the \texttt{position} variable. Some players played multiple position, so that info is messy. We want to create dummy variables for each position.
 
-\CommentTok{\# let\textquotesingle{}s clean the position}
-
+\begin{Shaded}
+\begin{Highlighting}[]
 \FunctionTok{table}\NormalTok{(data\_nba}\SpecialCharTok{$}\NormalTok{position)}
 \end{Highlighting}
 \end{Shaded}
@@ -724,30 +593,21 @@ for each position.
     \AttributeTok{position\_pg =} 
       \FunctionTok{case\_when}\NormalTok{(}\AttributeTok{position =} \FunctionTok{str\_detect}\NormalTok{(position,}\StringTok{"Point Guard"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \DecValTok{1}\NormalTok{,}
                 \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \DecValTok{0}\NormalTok{))}
-
-
-
-\NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{select}\NormalTok{(}\StringTok{"\_id"}\NormalTok{, name, age, weight, height, birthPlace, }\FunctionTok{everything}\NormalTok{(), }\SpecialCharTok{{-}}\NormalTok{position, }\SpecialCharTok{{-}}\NormalTok{birthDate, }\SpecialCharTok{{-}}\NormalTok{year\_of\_birth)}
-\FunctionTok{save}\NormalTok{(data\_nba, }\AttributeTok{file =}\StringTok{"../datasets/nba/data\_nba.RData"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-Now, we want to create a variable that gives us the number of seasons (i.e.years)
-that each player played. Since the dataset is organized in seasons, each row
-is one season. Counting the rows per player gives us the years they played.
+Now we want to create a variable that gives us the number of seasons (i.e.~years) that each player played in the NBA. Since the data set is organized in seasons, each row is one season. Counting the rows per player gives us the years they played.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(}\StringTok{"\_id"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{seasons\_played =} \FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(id) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{seasons\_played =} \FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{ungroup}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-Almost done. When we browse the dataset, we recognize that the height and weight variables are stored as characters. Let's convert them to numeric, so we can
-use them in operations.
+Almost done. When we browse the data set, we recognize that the height and weight variables are stored as characters. Let's convert them to numeric, so we can use them in computations.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -775,57 +635,42 @@ use them in operations.
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{weight =} \FunctionTok{str\_replace}\NormalTok{(weight, }\StringTok{"lb"}\NormalTok{, }\StringTok{""}\NormalTok{),}
          \AttributeTok{weight =} \FunctionTok{as.numeric}\NormalTok{(weight),}
          \AttributeTok{height =} \FunctionTok{str\_replace}\NormalTok{(height, }\StringTok{"{-}"}\NormalTok{, }\StringTok{"."}\NormalTok{),}
-         \AttributeTok{height =} \FunctionTok{as.numeric}\NormalTok{(height))}
+         \AttributeTok{height =} \FunctionTok{as.numeric}\NormalTok{(height)}
+\NormalTok{         )}
 
-\FunctionTok{str}\NormalTok{(data\_nba)}
+\FunctionTok{str}\NormalTok{(data\_nba}\SpecialCharTok{$}\NormalTok{weight)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## tibble [9,728 x 36] (S3: tbl_df/tbl/data.frame)
-##  $ _id            : chr [1:9728] "abdulma02" "abdulta01" "abdulta01" "abdulta01" ...
-##  $ name           : chr [1:9728] "Mahmoud Abdul-Rauf" "Tariq Abdul-Wahad" "Tariq Abdul-Wahad" "Tariq Abdul-Wahad" ...
-##  $ age            : num [1:9728] 31 24 25 26 27 28 29 30 31 32 ...
-##  $ weight         : num [1:9728] 162 223 223 223 223 223 223 223 223 223 ...
-##  $ height         : num [1:9728] 6.1 6.6 6.6 6.6 6.6 6.6 6.6 6.6 6.6 6.6 ...
-##  $ birthPlace     : chr [1:9728] "Gulfport, Mississippi" "Maisons Alfort, France" "Maisons Alfort, France" "Maisons Alfort, France" ...
-##  $ index.x        : num [1:9728] 3 4 4 4 4 4 4 4 4 4 ...
-##  $ career_AST     : num [1:9728] 3.5 1.1 1.1 1.1 1.1 1.1 1.1 1.1 1.1 1.1 ...
-##  $ career_FG%     : chr [1:9728] "44.2" "41.7" "41.7" "41.7" ...
-##  $ career_FG3%    : chr [1:9728] "35.4" "23.7" "23.7" "23.7" ...
-##  $ career_FT%     : chr [1:9728] "90.5" "70.3" "70.3" "70.3" ...
-##  $ career_G       : num [1:9728] 586 236 236 236 236 236 236 236 236 236 ...
-##  $ career_PER     : chr [1:9728] "15.4" "11.4" "11.4" "11.4" ...
-##  $ career_PTS     : num [1:9728] 14.6 7.8 7.8 7.8 7.8 7.8 7.8 7.8 7.8 7.8 ...
-##  $ career_TRB     : chr [1:9728] "1.9" "3.3" "3.3" "3.3" ...
-##  $ career_WS      : num [1:9728] 25.2 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 ...
-##  $ career_eFG%    : chr [1:9728] "47.2" "42.2" "42.2" "42.2" ...
-##  $ college        : chr [1:9728] "Louisiana State University" "University of Michigan, San Jose State University" "University of Michigan, San Jose State University" "University of Michigan, San Jose State University" ...
-##  $ draft_pick     : chr [1:9728] "3rd overall" "11th overall" "11th overall" "11th overall" ...
-##  $ draft_round    : chr [1:9728] "1st round" "1st round" "1st round" "1st round" ...
-##  $ draft_team     : chr [1:9728] "Denver Nuggets" "Sacramento Kings" "Sacramento Kings" "Sacramento Kings" ...
-##  $ draft_year     : chr [1:9728] "1990" "1997" "1997" "1997" ...
-##  $ shoots         : chr [1:9728] "Right" "Right" "Right" "Right" ...
-##  $ index.y        : num [1:9728] 17 19 20 21 22 23 24 25 26 27 ...
-##  $ salary         : num [1:9728] 798500 1411000 1594920 4500000 5062500 ...
-##  $ season         : chr [1:9728] "2000-01" "1998-99" "1999-00" "2000-01" ...
-##  $ season_end     : num [1:9728] 2001 1999 2000 2001 2002 ...
-##  $ season_start   : num [1:9728] 2000 1998 1999 2000 2001 ...
-##  $ team           : chr [1:9728] "Vancouver Grizzlies" "Sacramento Kings" "Denver Nuggets" "Denver Nuggets" ...
-##  $ position_center: num [1:9728] 0 0 0 0 0 0 0 0 0 0 ...
-##  $ position_sf    : num [1:9728] 0 0 0 0 0 0 0 0 0 0 ...
-##  $ position_pf    : num [1:9728] 0 0 0 0 0 0 0 0 0 0 ...
-##  $ position_sg    : num [1:9728] 0 1 1 1 1 1 1 1 1 1 ...
-##  $ position_pg    : num [1:9728] 1 0 0 0 0 0 0 0 0 0 ...
-##  $ "_id"          : chr [1:9728] "_id" "_id" "_id" "_id" ...
-##  $ seasons_played : int [1:9728] 9728 9728 9728 9728 9728 9728 9728 9728 9728 9728 ...
+##  num [1:9728] 162 223 223 223 223 223 223 223 223 223 ...
 \end{verbatim}
 
-\hypertarget{explore-the-whole-dataset}{%
-\section{Explore the whole dataset}\label{explore-the-whole-dataset}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(data\_nba}\SpecialCharTok{$}\NormalTok{height)}
+\end{Highlighting}
+\end{Shaded}
 
-Now, let's explore some packages which help us to explore the dataframe as a whole.
-Let's start with the \texttt{skimR} package:
+\begin{verbatim}
+##  num [1:9728] 6.1 6.6 6.6 6.6 6.6 6.6 6.6 6.6 6.6 6.6 ...
+\end{verbatim}
+
+Now we again use \texttt{select()} to remove some unneeded variables and at the same time reorder the remaining ones before applying \texttt{save()} to store the cleaned data as a \texttt{.Rdata} file. This way we can simply load the resulting data set the next time around and spare ourselves from repeating the pre-processing each session.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(id, name, age, weight, height, birthPlace, }\FunctionTok{everything}\NormalTok{(), }\SpecialCharTok{{-}}\NormalTok{position, }\SpecialCharTok{{-}}\NormalTok{birthDate, }\SpecialCharTok{{-}}\NormalTok{year\_of\_birth)}
+
+\FunctionTok{save}\NormalTok{(data\_nba, }\AttributeTok{file =}\StringTok{"../datasets/nba/data\_nba.RData"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{explore-the-complete-dataset}{%
+\section{Explore the complete dataset}\label{explore-the-complete-dataset}}
+
+Now, let us look at some packages which help us in exploring the data set as a whole. Let's start with the \texttt{skimr} package:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -839,7 +684,7 @@ Let's start with the \texttt{skimR} package:
 \hline
 skim\_type & skim\_variable & n\_missing & complete\_rate & character.min & character.max & character.empty & character.n\_unique & character.whitespace & numeric.mean & numeric.sd & numeric.p0 & numeric.p25 & numeric.p50 & numeric.p75 & numeric.p100 & numeric.hist\\
 \hline
-character & \_id & 0 & 1.0000000 & 6 & 9 & 0 & 1794 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
+character & id & 0 & 1.0000000 & 6 & 9 & 0 & 1794 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
 \hline
 character & name & 0 & 1.0000000 & 4 & 24 & 0 & 1790 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
 \hline
@@ -873,49 +718,43 @@ character & season & 0 & 1.0000000 & 7 & 7 & 0 & 20 & 0 & NA & NA & NA & NA & NA
 \hline
 character & team & 0 & 1.0000000 & 9 & 33 & 0 & 36 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
 \hline
-character & "\_id" & 0 & 1.0000000 & 3 & 3 & 0 & 1 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
+numeric & age & 0 & 1.0000000 & NA & NA & NA & NA & NA & 2.695066e+01 & 4.461299e+00 & 18.0 & 23.00 & 26.0 & 30.0 & 42.0 & ▃▇▅▂▁\\
 \hline
-numeric & age & 0 & 1.0000000 & NA & NA & NA & NA & NA & 2.695066e+01 & 4.461299e+00 & 18.0 & 23.00 & 26.0 & 30.00 & 42.0 & ▃▇▅▂▁\\
+numeric & weight & 0 & 1.0000000 & NA & NA & NA & NA & NA & 2.208996e+02 & 2.772943e+01 & 135.0 & 200.00 & 220.0 & 240.0 & 360.0 & ▁▇▆▁▁\\
 \hline
-numeric & weight & 0 & 1.0000000 & NA & NA & NA & NA & NA & 2.208996e+02 & 2.772943e+01 & 135.0 & 200.00 & 220.0 & 240.00 & 360.0 & ▁▇▆▁▁\\
+numeric & height & 0 & 1.0000000 & NA & NA & NA & NA & NA & 6.506777e+00 & 3.802496e-01 & 5.1 & 6.11 & 6.6 & 6.8 & 7.7 & ▁▅▆▇▁\\
 \hline
-numeric & height & 0 & 1.0000000 & NA & NA & NA & NA & NA & 6.506777e+00 & 3.802496e-01 & 5.1 & 6.11 & 6.6 & 6.80 & 7.7 & ▁▅▆▇▁\\
+numeric & career\_AST & 0 & 1.0000000 & NA & NA & NA & NA & NA & 1.938065e+00 & 1.663442e+00 & 0.0 & 0.70 & 1.4 & 2.7 & 10.5 & ▇▃▁▁▁\\
 \hline
-numeric & index.x & 0 & 1.0000000 & NA & NA & NA & NA & NA & 2.269877e+03 & 1.361799e+03 & 3.0 & 1088.00 & 2197.5 & 3392.00 & 4683.0 & ▇▇▇▇▇\\
+numeric & career\_G & 0 & 1.0000000 & NA & NA & NA & NA & NA & 5.689650e+02 & 3.471999e+02 & 1.0 & 281.00 & 564.0 & 827.0 & 1522.0 & ▇▇▇▃▁\\
 \hline
-numeric & career\_AST & 0 & 1.0000000 & NA & NA & NA & NA & NA & 1.938065e+00 & 1.663442e+00 & 0.0 & 0.70 & 1.4 & 2.70 & 10.5 & ▇▃▁▁▁\\
+numeric & career\_PTS & 0 & 1.0000000 & NA & NA & NA & NA & NA & 8.907679e+00 & 5.077246e+00 & 0.0 & 5.10 & 8.0 & 12.0 & 30.1 & ▆▇▃▁▁\\
 \hline
-numeric & career\_G & 0 & 1.0000000 & NA & NA & NA & NA & NA & 5.689650e+02 & 3.471999e+02 & 1.0 & 281.00 & 564.0 & 827.00 & 1522.0 & ▇▇▇▃▁\\
+numeric & career\_WS & 0 & 1.0000000 & NA & NA & NA & NA & NA & 3.342980e+01 & 3.705009e+01 & -2.4 & 6.40 & 22.2 & 48.3 & 234.6 & ▇▂▁▁▁\\
 \hline
-numeric & career\_PTS & 0 & 1.0000000 & NA & NA & NA & NA & NA & 8.907679e+00 & 5.077246e+00 & 0.0 & 5.10 & 8.0 & 12.00 & 30.1 & ▆▇▃▁▁\\
+numeric & salary & 0 & 1.0000000 & NA & NA & NA & NA & NA & 4.072633e+06 & 4.669737e+06 & 2706.0 & 947907.00 & 2240000.0 & 5408700.0 & 34682550.0 & ▇▁▁▁▁\\
 \hline
-numeric & career\_WS & 0 & 1.0000000 & NA & NA & NA & NA & NA & 3.342980e+01 & 3.705009e+01 & -2.4 & 6.40 & 22.2 & 48.30 & 234.6 & ▇▂▁▁▁\\
+numeric & season\_end & 0 & 1.0000000 & NA & NA & NA & NA & NA & 2.008720e+03 & 5.825947e+00 & 1999.0 & 2004.00 & 2009.0 & 2014.0 & 2018.0 & ▇▇▇▇▇\\
 \hline
-numeric & index.y & 0 & 1.0000000 & NA & NA & NA & NA & NA & 6.978557e+03 & 4.073106e+03 & 17.0 & 3436.75 & 6871.5 & 10428.25 & 14162.0 & ▇▇▇▇▇\\
+numeric & season\_start & 0 & 1.0000000 & NA & NA & NA & NA & NA & 2.007720e+03 & 5.825947e+00 & 1998.0 & 2003.00 & 2008.0 & 2013.0 & 2017.0 & ▇▇▇▇▇\\
 \hline
-numeric & salary & 0 & 1.0000000 & NA & NA & NA & NA & NA & 4.072633e+06 & 4.669737e+06 & 2706.0 & 947907.00 & 2240000.0 & 5408700.00 & 34682550.0 & ▇▁▁▁▁\\
+numeric & position\_center & 0 & 1.0000000 & NA & NA & NA & NA & NA & 3.069490e-01 & 4.612518e-01 & 0.0 & 0.00 & 0.0 & 1.0 & 1.0 & ▇▁▁▁▃\\
 \hline
-numeric & season\_end & 0 & 1.0000000 & NA & NA & NA & NA & NA & 2.008720e+03 & 5.825947e+00 & 1999.0 & 2004.00 & 2009.0 & 2014.00 & 2018.0 & ▇▇▇▇▇\\
+numeric & position\_sf & 0 & 1.0000000 & NA & NA & NA & NA & NA & 3.312089e-01 & 4.706722e-01 & 0.0 & 0.00 & 0.0 & 1.0 & 1.0 & ▇▁▁▁▃\\
 \hline
-numeric & season\_start & 0 & 1.0000000 & NA & NA & NA & NA & NA & 2.007720e+03 & 5.825947e+00 & 1998.0 & 2003.00 & 2008.0 & 2013.00 & 2017.0 & ▇▇▇▇▇\\
+numeric & position\_pf & 0 & 1.0000000 & NA & NA & NA & NA & NA & 3.598890e-01 & 4.799923e-01 & 0.0 & 0.00 & 0.0 & 1.0 & 1.0 & ▇▁▁▁▅\\
 \hline
-numeric & position\_center & 0 & 1.0000000 & NA & NA & NA & NA & NA & 3.069490e-01 & 4.612518e-01 & 0.0 & 0.00 & 0.0 & 1.00 & 1.0 & ▇▁▁▁▃\\
+numeric & position\_sg & 0 & 1.0000000 & NA & NA & NA & NA & NA & 3.543380e-01 & 4.783368e-01 & 0.0 & 0.00 & 0.0 & 1.0 & 1.0 & ▇▁▁▁▅\\
 \hline
-numeric & position\_sf & 0 & 1.0000000 & NA & NA & NA & NA & NA & 3.312089e-01 & 4.706722e-01 & 0.0 & 0.00 & 0.0 & 1.00 & 1.0 & ▇▁▁▁▃\\
+numeric & position\_pg & 0 & 1.0000000 & NA & NA & NA & NA & NA & 2.558594e-01 & 4.363656e-01 & 0.0 & 0.00 & 0.0 & 1.0 & 1.0 & ▇▁▁▁▃\\
 \hline
-numeric & position\_pf & 0 & 1.0000000 & NA & NA & NA & NA & NA & 3.598890e-01 & 4.799923e-01 & 0.0 & 0.00 & 0.0 & 1.00 & 1.0 & ▇▁▁▁▅\\
-\hline
-numeric & position\_sg & 0 & 1.0000000 & NA & NA & NA & NA & NA & 3.543380e-01 & 4.783368e-01 & 0.0 & 0.00 & 0.0 & 1.00 & 1.0 & ▇▁▁▁▅\\
-\hline
-numeric & position\_pg & 0 & 1.0000000 & NA & NA & NA & NA & NA & 2.558594e-01 & 4.363656e-01 & 0.0 & 0.00 & 0.0 & 1.00 & 1.0 & ▇▁▁▁▃\\
-\hline
-numeric & seasons\_played & 0 & 1.0000000 & NA & NA & NA & NA & NA & 9.728000e+03 & 0.000000e+00 & 9728.0 & 9728.00 & 9728.0 & 9728.00 & 9728.0 & ▁▁▇▁▁\\
+numeric & seasons\_played & 0 & 1.0000000 & NA & NA & NA & NA & NA & 8.758224e+00 & 4.622518e+00 & 1.0 & 5.00 & 9.0 & 12.0 & 21.0 & ▇▇▇▃▁\\
 \hline
 \end{tabular}
 
-The \texttt{skim()} function provides a very handy overview of the whole dataset including the types of columns (i.e.~variables), a summary of all variables, the extent of missing data etc. One advantage is that the output is \texttt{tidy} which means it is easy to work with further if needed. The output can be stored as dataframe, for example, which makes graphs much easier.
+The \texttt{skim()} function provides a very handy overview of the whole data set including the types of columns (i.e.~variables), a summary of all variables, the extent of missing data etc. One advantage is that the output is \texttt{tidy} which means it is easy to work with further if needed, for example to plot the resulting summary.
 
-Next, another alternative is the \texttt{DataExplorer} package. It is nice to get a graphical overview of variables and the \emph{missingness} of data.
+An alternative is the \texttt{DataExplorer} package. It is useful to get a graphical overview of variables and the \emph{missingness} of data.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -930,7 +769,7 @@ Next, another alternative is the \texttt{DataExplorer} package. It is nice to ge
 ## # A tibble: 1 x 9
 ##    rows columns discrete_columns continuous_columns all_missing_columns
 ##   <int>   <int>            <int>              <int>               <int>
-## 1  9728      36               18                 18                   0
+## 1  9728      33               17                 16                   0
 ## # i 4 more variables: total_missing_values <int>, complete_rows <int>,
 ## #   total_observations <int>, memory_usage <dbl>
 \end{verbatim}
@@ -946,8 +785,8 @@ Next, another alternative is the \texttt{DataExplorer} package. It is nice to ge
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#plots percentages missing across variables}
-\FunctionTok{plot\_missing}\NormalTok{(data\_nba)}
+\CommentTok{\# plots percentages missing across variables}
+\FunctionTok{plot\_missing}\NormalTok{(data\_nba, }\AttributeTok{missing\_only =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -955,16 +794,18 @@ Next, another alternative is the \texttt{DataExplorer} package. It is nice to ge
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# plots frequencies across variables}
-\FunctionTok{plot\_bar}\NormalTok{(data\_nba)}
+\CommentTok{\# plots frequencies across variables (here for a selected subset)}
+\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(shoots, }\FunctionTok{contains}\NormalTok{(}\StringTok{"position"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{plot\_bar}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/explore_dt_0-3.pdf} \includegraphics{_main_files/figure-latex/explore_dt_0-4.pdf}
+\includegraphics{_main_files/figure-latex/explore_dt_0-3.pdf}
 
-Now, let's try \texttt{gtSummary} for summary tables. A summary table is always a useful start once you have identified the type of variables you are interested in.
+Now, let us try \texttt{gtSummary} for summary tables. A summary table is always a useful start, once you have identified the variables you are interested in.
 
-Let's assume we are interested in \texttt{age}, \texttt{seasons\ played}, \texttt{career\ points}, \texttt{salary}, \texttt{position}, and \texttt{right\ or\ left\ handed} (i.e.~``shoots'')
+Let us assume we are interested in \texttt{age}, \texttt{seasons\_played}, \texttt{shoots} (shooting hand), \texttt{career\_PTS} (career points), \texttt{salary} and \texttt{position}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -983,9 +824,7 @@ Let's assume we are interested in \texttt{age}, \texttt{seasons\ played}, \textt
 \hline
 age & 27.0 (18.0, 42.0)\\
 \hline
-seasons\_played & \\
-\hline
-9728 & 9,728 (100\%)\\
+seasons\_played & 9 (1, 21)\\
 \hline
 shoots & \\
 \hline
@@ -1011,30 +850,24 @@ position\_pg & 2,489 (26\%)\\
 \hline
 \end{tabular}
 
-Now, let's look at a \emph{correlation matrix} between all numeric
-variables in the dataset.
+To explore correlations between all numeric variables in the data set, we can inspect the \emph{correlation matrix} or plot it.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"corrr"}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(}\StringTok{"corrplot"}\NormalTok{)}
-
+\CommentTok{\# selct only numeric variables and remove missing values}
 \NormalTok{data\_nba\_numeric }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{select}\NormalTok{(}\FunctionTok{where}\NormalTok{(is.numeric)) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{na.omit}\NormalTok{()}
 
-\CommentTok{\# Find constant columns}
-\NormalTok{constant\_columns }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(data\_nba\_numeric, }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{length}\NormalTok{(}\FunctionTok{unique}\NormalTok{(x)) }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
+\CommentTok{\# as a matrix using the corrr package}
+\FunctionTok{library}\NormalTok{(}\StringTok{"corrr"}\NormalTok{)}
 
-\CommentTok{\# Remove constant columns}
-\NormalTok{data\_nba\_numeric }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba\_numeric[, }\SpecialCharTok{!}\NormalTok{constant\_columns]}
-\CommentTok{\# as number}
 \NormalTok{corrmatrix }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba\_numeric }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{correlate}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}    \CommentTok{\# Create correlation data frame (cor\_df)}
-  \FunctionTok{rearrange}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\# rearrange by correlations}
-  \FunctionTok{shave}\NormalTok{() }
+  \FunctionTok{correlate}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\# create correlation data frame (cor\_df)}
+  \FunctionTok{rearrange}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\# rearrange by correlations}
+  \FunctionTok{shave}\NormalTok{() }\CommentTok{\# remove the upper triangle of the matrix}
 
-\FunctionTok{fashion}\NormalTok{(corrmatrix)}
+\FunctionTok{fashion}\NormalTok{(corrmatrix) }\CommentTok{\# gives a clean display of the matrix}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1045,36 +878,34 @@ variables in the dataset.
 ## 3       career_PTS        .61         .08                              
 ## 4         career_G        .47         .04        .65                   
 ## 5        career_WS        .52        -.01        .76      .83          
-## 6      position_sg        .19         .22        .12      .09       .01
-## 7           salary        .35        -.04        .60      .48       .59
-## 8              age        .18         .03        .18      .49       .36
-## 9      position_sf       -.08        -.33        .12      .13       .07
-## 10      season_end        .01         .01        .04     -.17      -.09
-## 11    season_start        .01         .01        .04     -.17      -.09
-## 12         index.y        .01         .00       -.01     -.04      -.03
-## 13         index.x        .01         .00       -.01     -.04      -.03
-## 14          height       -.31        -.46       -.01     -.02      -.00
-## 15     position_pf       -.29        -.44        .01      .11       .12
-## 16 position_center       -.36        -.39       -.10      .04       .08
-## 17          weight       -.49        -.66       -.06     -.03       .05
-##    position_sg salary  age position_sf season_end season_start index.y index.x
-## 1                                                                             
-## 2                                                                             
-## 3                                                                             
-## 4                                                                             
-## 5                                                                             
-## 6                                                                             
-## 7         -.03                                                                
-## 8          .03    .25                                                         
-## 9          .18    .03  .03                                                    
-## 10         .02    .16 -.07        -.04                                        
-## 11         .02    .16 -.07        -.04       1.00                             
-## 12        -.05   -.02 -.02         .01       -.03         -.03                
-## 13        -.06   -.02 -.02         .01       -.03         -.03    1.00        
-## 14        -.03    .03 -.04         .30        .02          .02     .05     .05
-## 15        -.46    .09  .03         .04       -.00         -.00     .01     .01
-## 16        -.49    .10  .04        -.37       -.06         -.06     .01     .02
-## 17        -.43    .12 -.07        -.01        .04          .04     .04     .04
+## 6   seasons_played        .33         .04        .48      .79       .61
+## 7      position_sg        .19         .22        .12      .09       .01
+## 8           salary        .35        -.04        .60      .48       .59
+## 9              age        .18         .03        .18      .49       .36
+## 10     position_sf       -.08        -.33        .12      .13       .07
+## 11      season_end        .01         .01        .04     -.17      -.09
+## 12    season_start        .01         .01        .04     -.17      -.09
+## 13          height       -.31        -.46       -.01     -.02      -.00
+## 14     position_pf       -.29        -.44        .01      .11       .12
+## 15 position_center       -.36        -.39       -.10      .04       .08
+## 16          weight       -.49        -.66       -.06     -.03       .05
+##    seasons_played position_sg salary  age position_sf season_end season_start
+## 1                                                                            
+## 2                                                                            
+## 3                                                                            
+## 4                                                                            
+## 5                                                                            
+## 6                                                                            
+## 7             .09                                                            
+## 8             .41        -.03                                                
+## 9             .26         .03    .25                                         
+## 10            .12         .18    .03  .03                                    
+## 11            .00         .02    .16 -.07        -.04                        
+## 12            .00         .02    .16 -.07        -.04       1.00             
+## 13           -.03        -.03    .03 -.04         .30        .02          .02
+## 14            .12        -.46    .09  .03         .04       -.00         -.00
+## 15            .07        -.49    .10  .04        -.37       -.06         -.06
+## 16            .04        -.43    .12 -.07        -.01        .04          .04
 ##    height position_pf position_center weight
 ## 1                                           
 ## 2                                           
@@ -1089,345 +920,292 @@ variables in the dataset.
 ## 11                                          
 ## 12                                          
 ## 13                                          
-## 14                                          
-## 15    .15                                   
-## 16    .12         .33                       
-## 17    .41         .45             .66
+## 14    .15                                   
+## 15    .12         .33                       
+## 16    .41         .45             .66
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# as plot}
-\FunctionTok{rplot}\NormalTok{(corrmatrix)}
+\CommentTok{\# or plot it using a ggplot approach}
+\FunctionTok{library}\NormalTok{(}\StringTok{"ggcorrplot"}\NormalTok{)}
+
+\NormalTok{corrmatrix }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(}\FunctionTok{cor}\NormalTok{(data\_nba\_numeric), }\DecValTok{1}\NormalTok{) }\CommentTok{\# create correlation matrix}
+
+\FunctionTok{ggcorrplot}\NormalTok{(corrmatrix,}
+           \AttributeTok{method =} \StringTok{"circle"}\NormalTok{,}
+           \AttributeTok{type=}\StringTok{"lower"}\NormalTok{) }\CommentTok{\# plots the matrix}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{_main_files/figure-latex/explore_dt_2-1.pdf}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# or...ggplot approach}
-\FunctionTok{library}\NormalTok{(}\StringTok{"ggcorrplot"}\NormalTok{)}
-
-\NormalTok{corrmatrix }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(}\FunctionTok{cor}\NormalTok{(data\_nba\_numeric), }\DecValTok{1}\NormalTok{)}
-
-\FunctionTok{ggcorrplot}\NormalTok{(corrmatrix,}
-           \AttributeTok{method =} \StringTok{"circle"}\NormalTok{,}
-           \AttributeTok{type=}\StringTok{"lower"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/explore_dt_2-2.pdf}
-
-This is interesting for a first look. For example, it seems that the weight is
-strongly correlated with whatever position you play. Centers are heavy, point
-guards are light weights.
-We also see that most performance metrics (``career\_\ldots{}'') are correlated with each
-other and also with salary. Good players seem to be good in many things, and
-good players seem to be paid more.
+This is interesting. For example, it seems that the weight is strongly correlated with the position a player occupies. Centers are heavy, point guards are light weights. We also see that most performance metrics (\texttt{career\_*}) are correlated with each other and also with salary. Good players seem to be good in many things, and good players seem to be paid more.
 
 \hypertarget{explore-individual-variables}{%
-\section{explore individual variables}\label{explore-individual-variables}}
+\section{Explore individual variables}\label{explore-individual-variables}}
 
-Now, that we have a feeling for the whole dataset, we want to explore individual
-variables. To keep it focused, we want to further explore the question
-of whether players that score more on average are also paid more.
+Now that we have a feeling for the whole data set, we want to explore individual variables. To keep it focused, we will follow up on the question of whether players that perform better are also paid more, for now limiting ourselves to the relationship between the average points per game and the received salary. We will also explore if this relationship depends on the position a player occupies.
 
-Maybe roles are clearly divided on the team. Maybe really good passers are highly
-paid because they give great passes to people who then score. Or maybe teams
-don't care about passers and just pay more to people who score more.
+Why might the position be relevant for this? We can expect that the justification for the salary differs by the occupied position, i.e.~the role a player fills for the team. To explore this we will limit ourselves to two positions for now, point guards and centers. Point guards are really good passers. Their salary may thus depend more on enabling others to score and not so much on their own point average. Centers on the other hand will mostly be on the receiving end, transforming passes into points. For them their salary may more strongly depend on the actual points they are able to score. This clearly still is an oversimplification of how basketball works but may be a first avenue to approach the relationship between salary and point average.
 
-So, now, let's look at \texttt{salary} and average number of points scored by game.
-Also, we want to know whether point guards (short people who pass a lot) are
-paid less then other positions (who score more).
-
-First, let's look how the two continuous variables are distributed:
+Let us first build a new variable that discerns between centers, point guards and all other positions and that is easier to work with when comparing the distributions. As we have seen above, there are players that play several positions. We should first check if there are centers who are also point guards, and vice versa. For simple cross tabulations, we can use the base R function \texttt{table()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
-\FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{salary)) }\SpecialCharTok{+}
-  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{position\_pg) }\SpecialCharTok{+}
-  \FunctionTok{theme\_light}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/explore_dt_3-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
-\FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{career\_PTS)) }\SpecialCharTok{+} 
-  \FunctionTok{theme\_light}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/explore_dt_3-2.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
-\FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{career\_PTS)) }\SpecialCharTok{+}
-  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{position\_pg) }\SpecialCharTok{+}
-  \FunctionTok{theme\_light}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/explore_dt_3-3.pdf}
-
-Let's look at the relationship between \texttt{salary} and \texttt{position} as well as the
-relationship between \texttt{position} and \texttt{points}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{str}\NormalTok{(data\_nba}\SpecialCharTok{$}\NormalTok{position\_pg)}
+\FunctionTok{table}\NormalTok{(data\_nba}\SpecialCharTok{$}\NormalTok{position\_center, data\_nba}\SpecialCharTok{$}\NormalTok{position\_pg)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  num [1:9728] 1 0 0 0 0 0 0 0 0 0 ...
+##    
+##        0    1
+##   0 4253 2489
+##   1 2986    0
 \end{verbatim}
+
+We can see that there are \(0\) observations for which both variables equal \(1\). This saves us some headaches and we can construct the new variable in a straightforward way.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{str}\NormalTok{(data\_nba}\SpecialCharTok{$}\NormalTok{salary)}
+\NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{role =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{    position\_pg }\SpecialCharTok{==} \DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"pg"}\NormalTok{,}
+\NormalTok{    position\_center }\SpecialCharTok{==} \DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"center"}\NormalTok{,}
+    \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \StringTok{"other"}
+\NormalTok{  ))}
+\end{Highlighting}
+\end{Shaded}
+
+Let us start with the \texttt{salary} variable. There are several possible approaches to exploring the distributions of our variables of interest. We could for one use functions like \texttt{skim()} or \texttt{summary()}, but we can also construct a table with some summary statistics of interest ourselves using \texttt{summarise()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{min =} \FunctionTok{min}\NormalTok{(salary),}
+            \AttributeTok{p25 =} \FunctionTok{quantile}\NormalTok{(salary, }\AttributeTok{probs =} \FloatTok{0.25}\NormalTok{),}
+            \AttributeTok{median =} \FunctionTok{median}\NormalTok{(salary),}
+            \AttributeTok{mean =} \FunctionTok{mean}\NormalTok{(salary),}
+            \AttributeTok{p75 =} \FunctionTok{quantile}\NormalTok{(salary, }\AttributeTok{probs =} \FloatTok{0.75}\NormalTok{),}
+            \AttributeTok{max =} \FunctionTok{max}\NormalTok{(salary)}
+\NormalTok{            )}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  num [1:9728] 798500 1411000 1594920 4500000 5062500 ...
+## # A tibble: 1 x 6
+##     min    p25  median     mean     p75      max
+##   <dbl>  <dbl>   <dbl>    <dbl>   <dbl>    <dbl>
+## 1  2706 947907 2240000 4072633. 5408700 34682550
 \end{verbatim}
+
+This already gives us some indication on the distribution of the variable but we may ease the interpretation using plots.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{str}\NormalTok{(data\_nba}\SpecialCharTok{$}\NormalTok{career\_pts)}
+\CommentTok{\# using a boxplot}
+\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ salary)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/plot_distribution_salary-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# using a histogram}
+\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ salary)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{50}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/plot_distribution_salary-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# using a density plot}
+\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ salary)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/plot_distribution_salary-3.pdf}
+
+The different approaches to visualizing the distribution for \texttt{salary} basically show us the same thing, the distribution is heavily skewed as we see many players with comparably modest salaries and increasingly few with very high compensations. We should keep this in mind when we turn to building a regression model.
+
+We can also compute and visualize the distribution by the role a player fills. Using \texttt{summarise()} with \texttt{group\_by()} enables us to get the same measurements as above, but separately for each category of \texttt{role}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(role) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{min =} \FunctionTok{min}\NormalTok{(salary),}
+            \AttributeTok{p25 =} \FunctionTok{quantile}\NormalTok{(salary, }\AttributeTok{probs =} \FloatTok{0.25}\NormalTok{),}
+            \AttributeTok{median =} \FunctionTok{median}\NormalTok{(salary),}
+            \AttributeTok{mean =} \FunctionTok{mean}\NormalTok{(salary),}
+            \AttributeTok{p75 =} \FunctionTok{quantile}\NormalTok{(salary, }\AttributeTok{probs =} \FloatTok{0.75}\NormalTok{),}
+            \AttributeTok{max =} \FunctionTok{max}\NormalTok{(salary)}
+\NormalTok{            )}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  NULL
+## # A tibble: 3 x 7
+##   role     min     p25  median     mean     p75      max
+##   <chr>  <dbl>   <dbl>   <dbl>    <dbl>   <dbl>    <dbl>
+## 1 center  4529 1115340 2880000 4770707. 6400000 28000000
+## 2 other   2706  863640 2000000 3757860. 5000000 33285709
+## 3 pg      2853  895248 2100000 3773028. 5000000 34682550
+\end{verbatim}
+
+For plotting by role, let us limit ourselves to boxplots.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ salary, }\AttributeTok{colour =}\NormalTok{ role)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/plot_distribution_salary_role-1.pdf}
+
+We can see, that while point guards barely differ from their peers, centers do. The average salary for centers is higher compared to all other roles. At the same time while many of them reach very high salaries, the top earner spots are reserved for other roles. The highest earning point guard makes almost \(6,700,000\$\) more compared to the highest earning center; a substantial difference. As the boxplot indicates, the players with such extreme salaries are also in the extreme minority so we should not over interpret this finding. Still, the puzzle seems to be more complex than we thought.
+
+Let us turn to \texttt{career\_PTS} now and repeat the analysis from above.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{min =} \FunctionTok{min}\NormalTok{(career\_PTS),}
+            \AttributeTok{p25 =} \FunctionTok{quantile}\NormalTok{(career\_PTS, }\AttributeTok{probs =} \FloatTok{0.25}\NormalTok{),}
+            \AttributeTok{median =} \FunctionTok{median}\NormalTok{(career\_PTS),}
+            \AttributeTok{mean =} \FunctionTok{mean}\NormalTok{(career\_PTS),}
+            \AttributeTok{p75 =} \FunctionTok{quantile}\NormalTok{(career\_PTS, }\AttributeTok{probs =} \FloatTok{0.75}\NormalTok{),}
+            \AttributeTok{max =} \FunctionTok{max}\NormalTok{(career\_PTS)}
+\NormalTok{            )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 6
+##     min   p25 median  mean   p75   max
+##   <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>
+## 1     0   5.1      8  8.91    12  30.1
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ position\_pg, }
-               \AttributeTok{y =}\NormalTok{ salary),}
-           \AttributeTok{position =} \StringTok{"dodge"}\NormalTok{,}
-           \AttributeTok{stat =} \StringTok{"summary"}\NormalTok{,}
-           \AttributeTok{fun =} \StringTok{"mean"}\NormalTok{) }\SpecialCharTok{+} 
-  \CommentTok{\#xlim(0, 10000000) +}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Average salary (Point guard vs other positions)"}\NormalTok{,}
-       \AttributeTok{subtitle =} \StringTok{"this is not that interesting"}\NormalTok{,}
-       \AttributeTok{caption =} \StringTok{"Authors\textquotesingle{} calculation; NBA data 1998{-}2018"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{xlab}\NormalTok{(}\StringTok{"Player\textquotesingle{}s position"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{ylab}\NormalTok{(}\StringTok{"Player\textquotesingle{}s salary"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme\_minimal}\NormalTok{()}
+\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ career\_PTS)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/explore_dt_4-1.pdf}
+\includegraphics{_main_files/figure-latex/summarise_distribution_points-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DocumentationTok{\#\# alternatively:}
-
-\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{group\_by}\NormalTok{(position\_pg) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{mean\_salary =} \FunctionTok{mean}\NormalTok{(salary, }\AttributeTok{na.rm=}\NormalTok{T)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{as.factor}\NormalTok{(position\_pg), }
-               \AttributeTok{y =}\NormalTok{ mean\_salary),}
-           \AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+} 
-  \FunctionTok{ylim}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{6000000}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Average salary (Point guard vs other positions)"}\NormalTok{,}
-       \AttributeTok{subtitle =} \StringTok{"this is not that interesting"}\NormalTok{,}
-       \AttributeTok{caption =} \StringTok{"Authors\textquotesingle{} calculation; NBA data 1998{-}2018"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{xlab}\NormalTok{(}\StringTok{"Player\textquotesingle{}s position"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{ylab}\NormalTok{(}\StringTok{"Player\textquotesingle{}s salary (in million USD)"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme\_minimal}\NormalTok{()}
+\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ career\_PTS)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{50}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/explore_dt_4-2.pdf}
+\includegraphics{_main_files/figure-latex/summarise_distribution_points-2.pdf}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Now the relationship between position and points:}
+While the distribution of average career points is also somewhat skewed, it is way less so compared to \texttt{salary}.
 
-\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{group\_by}\NormalTok{(position\_pg) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{mean\_points =} \FunctionTok{mean}\NormalTok{(career\_PTS, }\AttributeTok{na.rm=}\NormalTok{T)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{as.factor}\NormalTok{(position\_pg), }
-               \AttributeTok{y =}\NormalTok{ mean\_points),}
-           \AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+} 
-  \FunctionTok{ylim}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{15}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Average points per game (Point guard vs other positions)"}\NormalTok{,}
-       \AttributeTok{subtitle =} \StringTok{"this is not that interesting"}\NormalTok{,}
-       \AttributeTok{caption =} \StringTok{"Authors\textquotesingle{} calculation; NBA data 1998{-}2018"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{xlab}\NormalTok{(}\StringTok{"Player\textquotesingle{}s position"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{ylab}\NormalTok{(}\StringTok{"Points per game"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme\_minimal}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/explore_dt_4-3.pdf}
-
-So, it seems that point guards are paid a little less even though they make a few more points on average. Interesting puzzle to explore.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# find example for using histogramm()}
-\CommentTok{\# find example for first just creating cross tabs as perecntages tbl\_cross(); summarize(); tabyl()}
-\end{Highlighting}
-\end{Shaded}
-
-Now, let's explore the relationship which is at the heart of our analysis from now on: \texttt{salary} and average points.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# simple scatterplot}
-\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
-\FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{salary, }\AttributeTok{x=}\NormalTok{career\_PTS)) }\SpecialCharTok{+} 
-  \FunctionTok{theme\_minimal}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/explore_dt_6-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Now, let\textquotesingle{}s add a line}
-\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{salary, }\AttributeTok{x=}\NormalTok{career\_PTS)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
-     \FunctionTok{stat\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{) }\SpecialCharTok{+} 
-       \FunctionTok{theme\_minimal}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/explore_dt_6-2.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# let\textquotesingle{}s look the relatiship separate for every year}
-\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{salary, }\AttributeTok{x=}\NormalTok{career\_PTS)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
-     \FunctionTok{stat\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{) }\SpecialCharTok{+} 
-        \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{season\_start) }\SpecialCharTok{+} 
-       \FunctionTok{theme\_minimal}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/explore_dt_6-3.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# let\textquotesingle{}s look the relatiship for separate teams}
-\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{salary, }\AttributeTok{x=}\NormalTok{career\_PTS)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
-     \FunctionTok{stat\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{) }\SpecialCharTok{+} 
-        \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{team) }\SpecialCharTok{+} 
-       \FunctionTok{theme\_minimal}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/explore_dt_6-4.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# let\textquotesingle{}s look at it by position}
-\NormalTok{scatter\_pg }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(position\_pg }\SpecialCharTok{==}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{salary, }\AttributeTok{x=}\NormalTok{career\_PTS)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
-     \FunctionTok{stat\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{) }\SpecialCharTok{+} 
-       \FunctionTok{theme\_minimal}\NormalTok{()}
-
-\NormalTok{scatter\_center }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(position\_center }\SpecialCharTok{==}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{salary, }\AttributeTok{x=}\NormalTok{career\_PTS)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
-     \FunctionTok{stat\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{) }\SpecialCharTok{+} 
-       \FunctionTok{theme\_minimal}\NormalTok{()}
-
-\NormalTok{scatter\_pf }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(position\_pf }\SpecialCharTok{==}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{salary, }\AttributeTok{x=}\NormalTok{career\_PTS)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
-     \FunctionTok{stat\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{) }\SpecialCharTok{+} 
-       \FunctionTok{theme\_minimal}\NormalTok{()}
-
-\NormalTok{scatter\_sf }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(position\_sf }\SpecialCharTok{==}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{salary, }\AttributeTok{x=}\NormalTok{career\_PTS)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
-     \FunctionTok{stat\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{) }\SpecialCharTok{+} 
-       \FunctionTok{theme\_minimal}\NormalTok{()}
-
-\FunctionTok{library}\NormalTok{(}\StringTok{"ggpubr"}\NormalTok{)}
-\FunctionTok{ggarrange}\NormalTok{(scatter\_center, scatter\_pf,}
-\NormalTok{          scatter\_sf, scatter\_pg,}
-          \AttributeTok{ncol =} \DecValTok{2}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{,}
-          \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Center"}\NormalTok{,}
-                     \StringTok{"Power Forward"}\NormalTok{,}
-                     \StringTok{"Small Forward"}\NormalTok{,}
-                     \StringTok{"Point Guard"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/explore_dt_6-5.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# yet a better way to compare this could be:}
-
-\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{salary, }\AttributeTok{x=}\NormalTok{career\_PTS, }\AttributeTok{color=}\FunctionTok{as.factor}\NormalTok{(position\_pg))) }\SpecialCharTok{+}
-    \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
-     \FunctionTok{stat\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{,}
-                 \FunctionTok{aes}\NormalTok{(}\AttributeTok{group=}\FunctionTok{as.factor}\NormalTok{(position\_pg))) }\SpecialCharTok{+} 
-       \FunctionTok{theme\_minimal}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/explore_dt_6-6.pdf}
+We should also look at \texttt{career\_PTS} by role.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{salary, }\AttributeTok{x=}\NormalTok{career\_PTS, }\AttributeTok{color=}\FunctionTok{as.factor}\NormalTok{(position\_center))) }\SpecialCharTok{+}
-    \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
-     \FunctionTok{stat\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{,}
-                 \FunctionTok{aes}\NormalTok{(}\AttributeTok{group=}\FunctionTok{as.factor}\NormalTok{(position\_center))) }\SpecialCharTok{+} 
-       \FunctionTok{theme\_minimal}\NormalTok{()}
+  \FunctionTok{group\_by}\NormalTok{(role) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{min =} \FunctionTok{min}\NormalTok{(career\_PTS),}
+            \AttributeTok{p25 =} \FunctionTok{quantile}\NormalTok{(career\_PTS, }\AttributeTok{probs =} \FloatTok{0.25}\NormalTok{),}
+            \AttributeTok{median =} \FunctionTok{median}\NormalTok{(career\_PTS),}
+            \AttributeTok{mean =} \FunctionTok{mean}\NormalTok{(career\_PTS),}
+            \AttributeTok{p75 =} \FunctionTok{quantile}\NormalTok{(career\_PTS, }\AttributeTok{probs =} \FloatTok{0.75}\NormalTok{),}
+            \AttributeTok{max =} \FunctionTok{max}\NormalTok{(career\_PTS)}
+\NormalTok{            )}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/explore_dt_6-7.pdf}
+\begin{verbatim}
+## # A tibble: 3 x 7
+##   role     min   p25 median  mean   p75   max
+##   <chr>  <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>
+## 1 center     0   4.5    7    8.17  11.2  24.3
+## 2 other      0   5.2    8.2  9.04  12    30.1
+## 3 pg         0   6.3    8.9  9.57  12.6  26.7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ career\_PTS, }\AttributeTok{colour =}\NormalTok{ role)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/summarise_distribution_points_role-1.pdf}
+
+Centers actually make less points on average compared to all other roles and point guards score the highest on average. That is an interesting puzzle to explore. It seems that point guards are paid a little less even though they make a few more points on average. What does this tell us? We can not be sure yet, but it seems that the relationship between points and salary gets translated differently based on the role a player occupies.
+
+Let us now explore this relationship between the two variables, which will be central to our analysis from now on. We can use a scatter plot to inspect the shared distribution of both variables. We also added a line describing the relationship. This actually is a regression line and we will talk about it in detail \protect\hyperlink{lin-t-1}{later}, for now let us just accept that the direction of the line tells us how both variables are related.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ salary, }\AttributeTok{x =}\NormalTok{ career\_PTS)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/salary_points_scatter-1.pdf}
+
+We can see that there is a positive relationship between the average score and the earned salary. The more points a player scores the more he earns, on average.
+
+We can build the same plot by \texttt{role}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ salary, }\AttributeTok{x =}\NormalTok{ career\_PTS, }\AttributeTok{colour =}\NormalTok{ role)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.25}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/salary_points_role_scatter-1.pdf}
 
 Let's reflect a moment what we can learn from all this.
 
-First, there seems to be a somewhat linear relationship between how many points
-a player scores and how much they are paid. This relationship seems pretty robust across years and teams. It also holds true for point guards just as much as for non-point guards. However, the average salary for point guards is lower in comparison. We also learn that the link between salary and points is stronger for centers. They seems to be paid more, the more they score.
+First, there seems to be a somewhat linear relationship between how many points a player scores and how much they are paid. This also holds true for point guards just as much as for non-point guards. However, the average salary for point guards is lower in comparison. We also learn that the link between salary and points is stronger for centers as the red line is somewhat steeper. They seem to be paid more, the more they score.
 
-We have set the stage now for linear regression (next week). Linear regression
-is all about further exploring the relationship between two variables, one outcome (often called ``y'') and one independent variable (often called ``x''). Independent variables have many names. They are sometimes called ``covariates''; ``predictors''; ``exposure'', depending on the context.
+\hypertarget{moving-on}{%
+\section{Moving on}\label{moving-on}}
+
+We have now explored our data and gained a better understanding of the variables of interest. We also have identified an interesting puzzle to explre further, and we will pick up on this over the seminar. In \protect\hyperlink{dags-1}{week 4}, we will construct a theoretical model that tries to explain the relationship between points and salary and in \protect\hyperlink{lin-a}{week 8} we will then compute a linear regression model that will hopefully shed some more light on our puzzle. Linear regression is all about further exploring the relationship between two or more variables, one outcome (often called \texttt{y}) and one or multiple independent variables (often called \texttt{x}). Independent variables have many names. They are sometimes called ``covariates''; ``predictors''; ``exposure'', depending on the context.
 
 There are a number of cool things that regression can do for us that simple EDA cannot:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
 \item
-  It can model the relationship between two variables while considering simultaneously the potential influence of other factors. Image we are interested
-  in the effect of points per game on salary regardless of position, season or team.
-  With regression we can estimate how much more a player would ear every season
-  if he scored 10 more points a game (regardless of the position he plays).
+  It can model the relationship between two variables while considering simultaneously the potential influence of other factors. Imagine we are interested in the effect of points per game on salary regardless of position, season, team or other independent variables. With regression we can estimate how much more a player would earn every season if he scored 10 more points a game (regardless of other factors as for example the position he plays).
 \item
   It can assess what explains the effect of one variable on another (i.e.~mediation). Maybe we find that point guards earn less and we want to know why. Is it because they score less? Is it because they play less time on average?
 \item
   It can be used to predict salaries for players for whom we don't know the salary or even for hypothetical players. We could also look at the performance trend of players and predict whether they earn more next season or not.
 \end{enumerate}
+
+We will address all these applications over the course of the seminar.
 
 \hypertarget{further-resources}{%
 \section{Further resources}\label{further-resources}}
@@ -1449,148 +1227,274 @@ There are a number of cool things that regression can do for us that simple EDA 
 \end{itemize}
 
 \hypertarget{eda-2}{%
-\chapter{Exploratory Data Analysis - II}\label{eda-2}}
+\chapter{Exploratory Data Analysis - Exercise}\label{eda-2}}
 
-This week we will try to apply our last weeks knowledge into analysis.
-
-\hypertarget{markdown-introduction}{%
-\section{Markdown Introduction}\label{markdown-introduction}}
-
-R Markdown is a powerful tool that allows you to create dynamic documents, presentations, and reports using R code. It combines the core syntax of markdown (an easy-to-write plain text format) with embedded R code chunks that are run when the document is rendered¹.
+This week we will apply the concepts from last week in an exercise where you will conduct an exploratory data analysis on a different data set. To document your work on these exercises, you will use \emph{R Markdown}.
 
 \hypertarget{what-is-r-markdown}{%
 \section{What is R Markdown?}\label{what-is-r-markdown}}
 
-R Markdown is a file format that combines R code and plain text. The file extension is \texttt{.Rmd}. You can write R Markdown files in any text editor, but it is recommended to use an IDE (integrated development environment) like RStudio, which provides many features to help you write and preview your documents.
+R Markdown allows you to combine written text that is easy to format with R Code that is executed when \emph{knitting} or \emph{compiling} the document into the chosen output format. This allows us to describe our research, analyse our data, display results as tables or plots and interpret these, all in one file. In this way we can not only create reports on seminar exercises but also write websites - like the one your are looking at in this very moment -, seminar papers, articles or create presentations.
 
-R Markdown files consist of three main parts:
+It is also a great notebook for projects you are working on. More often than not, our work on a specific analysis will span multiple days, weeks or even months and it is often hard to remember what we were thinking the last time we worked on our code.
+
+\begin{quote}
+``I am sure I had my reasons for writing this piece of code, but I can not for the life of me remember any of them\ldots{}''
+
+--- Anonymous Coder 2023
+\end{quote}
+
+If we use R Markdown to document our work we can add text that explains our reasons, thoughts, ideas and plans at that very moment and pick up our work from there the next time we open the file.
+
+R Markdown allows output to different file formats, including \texttt{html}, \texttt{docx}, \texttt{pptx} and \texttt{pdf}. Note that you need a LaTeX installation to knit to \texttt{pdf}. LaTeX is a typesetting language and used for producing high quality \texttt{pdf} documents. For simple \texttt{pdf} reports or presentations - sidenote: if you bring a \texttt{pptx} to a talk something will most probably go wrong or stop working\ldots{} - you do not really need to know how LaTeX works, you just need an installed distribution. For these purposes the package \texttt{tinytex} gives you all you need and is easy to install from within R. \href{https://bookdown.org/yihui/rmarkdown/installation.html\#installation}{This site} explains how to install it. You can also get an overview of all possible output formats \href{https://rmarkdown.rstudio.com/lesson-9.html}{here}.
+
+\hypertarget{creating-a-r-markdown-file}{%
+\section{Creating a R Markdown file}\label{creating-a-r-markdown-file}}
+
+Before you can create and compile R Markdown documents, you first have to install the package by writing \texttt{install.packages("rmarkdown")} in your console.
+
+Creating a new R Markdown file is as straightforward as it can be. In RStudio you can click of \texttt{File\ \textgreater{}\ New\ File\ \textgreater{}\ R\ Markdown...}. In the new window you can set up some basic information on the document - which will be displayed in the output - and chose your desired format. You can basically write R Markdown files in any text editor, just make sure that the file extension is saved as \texttt{.Rmd}. We still recommend using RStudio because it gives you some convenient options that a text editor will not, e.g.~displaying a preview of your document and easy knitting of the final file.
+
+\hypertarget{writing-in-r-markdown}{%
+\section{Writing in R Markdown}\label{writing-in-r-markdown}}
+
+\hypertarget{document-components}{%
+\subsection{Document components}\label{document-components}}
+
+When you followed the steps above, a new R Markdown file will have been created. It basically consists of two main parts:
 
 \begin{itemize}
 \item
-  A YAML header that contains metadata and options for your document, such as title, author, date, output format, etc. The header starts and ends with three dashes (\texttt{-\/-\/-}).
+  A \texttt{YAML} header - surrounded by three dashes \texttt{-\/-\/-} - where options for the document can be set. The good news is that you do not have to do anything here until you get more profound with using R Markdown. For now it is enough that all the options you set when creating the new file - the title, author, date and format of the output - are present and will be included in your output file.
 \item
-  A body that contains the main content of your document, written in plain text with Markdown syntax. Markdown is a simple way to format your text using symbols like \texttt{\#} for headings, \texttt{*} for emphasis, \texttt{{[}link{]}(url)} for hyperlinks, etc. You can also embed R code chunks in your document using three backticks (\texttt{markdown}) followed by \texttt{\{r\}} and some optional chunk options. The code chunks will be executed when you knit your document and the results will be displayed in the output.
-\item
-  A final code chunk that contains any cleanup or summary code that you want to run at the end of your document. This chunk is optional and starts with three backticks followed by \texttt{\{r,\ echo\ =\ FALSE\}}.
+  A body that contains the actual content of your document. Text is directly written in the body at the location where it is to be displayed in the output. We can use the simple Markdown syntax for formatting using a set of symbols, some of which we will explain below. We can also include R code in so called \texttt{chunks}, specifying if we also want it and/or the results to be displayed or ``just'' to be executed in the background. The code chunks will be executed when we compile the final document and everything that we want to include in the output - e.g.~tables, plots or code examples - will be displayed where it occurs.
 \end{itemize}
 
-R Markdown documents are fully reproducible, meaning that anyone can re-run the code and generate the same results. This makes it easy to share your work with others and ensure that your results are accurate and reliable.
+\hypertarget{formatting}{%
+\subsection{Formatting}\label{formatting}}
 
-One of the great things about R Markdown is its flexibility. You can use it to create a wide variety of output formats, including HTML, PDF, and Microsoft Word documents. You can even create interactive documents with Shiny components¹.
+Here are some of the more common formatting elements you will need when starting out using R Markdown:
 
-To get started with R Markdown, you'll need to install the \texttt{rmarkdown} package from CRAN. This can be done by running the command \texttt{install.packages("rmarkdown")} in the R console². Once you have the package installed, you can create a new R Markdown document in RStudio by going to \texttt{File\ \textgreater{}\ New\ File\ \textgreater{}\ R\ Markdown}.
+\hypertarget{headers}{%
+\subsubsection{Headers}\label{headers}}
 
-An R Markdown document is made up of text written in markdown syntax and chunks of R code. When you render the document, the R code is executed and its output (such as plots or tables) is inserted into the final document¹.
+To include sections in a document we use \texttt{\#} followed by the header we want to be displayed. We can define levels for sections by using multiple \texttt{\#} in this way:
 
-When you render this document, the text and code will be combined to create an HTML file that includes both the markdown text and the output of the R code chunks.
+\begin{verbatim}
+# Section 1
+## Section 1.1
+## Section 1.2
+### Section 1.2.1
+### Section 1.2.2
+## Section 1.3
+# Section 2
+\end{verbatim}
 
-You can easily add images to an R Markdown document using the standard markdown syntax for images. The basic syntax for adding an image is \texttt{!{[}Alt\ text{]}(image\_url)}, where \texttt{Alt\ text} is the text that will be displayed if the image cannot be loaded, and \texttt{image\_url} is the URL of the image you want to include.
+\hypertarget{text}{%
+\subsubsection{Text}\label{text}}
 
-R Markdown is a powerful tool that offers many advantages for data analysis and reporting. Some of the key benefits of using R Markdown include:
+We write the text between the section headers at the place where it should be displayed in the final document. We can insert line breaks at any point but these will not be rendered in the output. To include an actual paragraph we will have to include a blank line between between two blocks of text. Two emphasize certain words or phrases, we can wrap them in \texttt{*} for italics or \texttt{**} for bold face.
+
+Consider this Markdown code:
+
+\begin{verbatim}
+This is the first paragraph.
+This still is the first paragraph.
+
+Here begins the second paragraph.
+It includes emphasis, by using *italics* and also **bold face** words.
+\end{verbatim}
+
+It is rendered as:
+
+This is the first paragraph. This still is the first paragraph.
+
+Here begins the second paragraph. It includes emphasis, by using \emph{italics} and also \textbf{bold face} words.
+
+\hypertarget{lists}{%
+\subsubsection{Lists}\label{lists}}
+
+Unordered lists or bullet points can be inserted by adding a \texttt{-}, \texttt{*} or \texttt{+} at the beginning of a line. To create levels, we have to indent lines using tab stops.
+
+\begin{verbatim}
+* Level 1
+* Level 1
+  * Level 2
+    * Level 3
+  * Level 2
+    * Level 3
+* Level 1
+\end{verbatim}
+
+The above will be rendered as:
+
+\begin{itemize}
+\tightlist
+\item
+  Level 1
+\item
+  Level 1
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Level 2
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Level 3
+    \end{itemize}
+  \item
+    Level 2
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Level 3
+    \end{itemize}
+  \end{itemize}
+\item
+  Level 1
+\end{itemize}
+
+We can also create ordered lists by using numbers followed by a \texttt{.} instead of the \texttt{*} etc.
+
+\begin{verbatim}
+1.  Bulletpoint 1
+2.  Bulletpoint 2
+3.  Bulletpoint 3
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Bulletpoint 1
+\item
+  Bulletpoint 2
+\item
+  Bulletpoint 3
+\end{enumerate}
+
+\hypertarget{hyperlinks}{%
+\subsubsection{Hyperlinks}\label{hyperlinks}}
+
+Hyperlinks can be included as \texttt{\textless{}url\textgreater{}} or \texttt{{[}text{]}(url)}.
+
+\begin{verbatim}
+To include a plain url we can use <https://jaspertjaden.github.io/DataAnalysisR/>.
+We can also [link](https://jaspertjaden.github.io/DataAnalysisR/) in this way.
+\end{verbatim}
+
+To include a plain url we can use \url{https://jaspertjaden.github.io/DataAnalysisR/}. We can also \href{https://jaspertjaden.github.io/DataAnalysisR/}{link} in this way.
+
+\hypertarget{code-chunks}{%
+\subsection{Code chunks}\label{code-chunks}}
+
+Codechunks have to be started and ended with three backticks \texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}}. After the first set of backticks we also have to include \texttt{\{r\}} to let Markdown know that we want to run the code as R code. The code that is written after this and up to the second set of backticks will be executed when knitting the file.
+
+You can see some examples of this in the newly created R Markdown file if you followed the steps above.
+
+We can also always run the code in a chunk before knitting by clicking on the green arrow in the upper right corner of the chunk. We can also execute individual lines of code by placing our keyboard cursor in the line and pressing \texttt{Shift\ +\ Enter}.
+
+\hypertarget{chunk-options}{%
+\subsubsection{Chunk options}\label{chunk-options}}
+
+We can change the way code chunks are handled when knitting by adding one or multiple chunk options between the curly brackets like this: \texttt{\{r\ option=value\}}. If we want to use multiple options they have to be written like this: \texttt{\{r\ option1=value1,\ option2=value2\}}.
+
+There are many options available but most are not needed when starting out. The ones that may be of interest to you are:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{\{r\ echo=FALSE\}}: This prevents the code to be displayed in the output while the results will be included. This is useful if you want to show the results of a computation or a plot but do not want the document to be cluttered with the underlying code.
+\item
+  \texttt{\{r\ include=FALSE\}}: This prevents the code as well as the output from being displayed. The code is still run in the background.
+\item
+  \texttt{\{r\ eval=FALSE\}}: This prevents the code from being run but displays it. This can be useful if you want to show code examples for illustrative purposes.
+\end{itemize}
+
+\hypertarget{further-resources-1}{%
+\section{Further resources}\label{further-resources-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://rmarkdown.rstudio.com/lesson-1.html}{R Markdown Website by RStudio}: A comprehensive introduction to using R Markdown from within RStudio
+\item
+  \href{https://bookdown.org/yihui/rmarkdown/}{Yihui Xie, J. J. Allaire, Garrett Grolemund. R Markdown: The Definitive Guide}: An in-depth overview over basically everything R Markdown can do
+\item
+  \href{https://rstudio.github.io/cheatsheets/rmarkdown.pdf}{R Markdown Cheat Sheet}: A cheat sheet for R Markdown, those are always helpful
+\end{itemize}
+
+\hypertarget{eda---exercise}{%
+\section{EDA - Exercise}\label{eda---exercise}}
+
+In this exercise, we will work with the \textbf{Boston Housing Data}. The data set contains information on 506 census tracts in the US city of Boston from the 1970 census. It contains information on the median value of owner-occupied homes and additional statistics on houses and socio-demographics for each tract.
+
+This is an overview of all variables included in the data set:
+
+\begin{verbatim}
+1. crim - per capita crime rate by town
+2. zn - proportion of residential land zoned for lots over 25,000 sq.ft.
+3. indus - proportion of non-retail business acres per town.
+4. chas - Charles River dummy variable (1 if tract bounds river; 0 otherwise)
+5. nox - nitric oxides concentration (parts per 10 million)
+6. rm - average number of rooms per dwelling
+7. age - proportion of owner-occupied units built prior to 1940
+8. dis - weighted distances to five Boston employment centres
+9. rad - index of accessibility to radial highways
+10. tax - full-value property-tax rate per $10,000
+11. ptratio - pupil-teacher ratio by town
+12. b - 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town
+13. lstat - % lower status of the population
+14. medv - Median value of owner-occupied homes in $1000's
+\end{verbatim}
+
+For more information on the data set and its implementation in \texttt{mlbench} please follow this \href{https://search.r-project.org/CRAN/refmans/mlbench/html/BostonHousing.html}{link}.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{Reproducibility}: R Markdown documents are fully reproducible, meaning that anyone can re-run the code and generate the same results. This makes it easy to share your work with others and ensure that your results are accurate and reliable.
+  \textbf{Prepare your R Markdown File}: Create a new R Markdown file setting the output format to \texttt{html} or \texttt{pdf} (if you have a LaTeX distribution installed) and setting the title, author and date to appropriate values. Remove the sample text and code chunks taking care to not remove the \texttt{YAML} header. Write all solutions in this file using code chunks as well as text to structure the file (headers) and answer the questions. Do not forget to save the file in the format \texttt{your\_name\_exercise\_1.Rmd}. You will have to turn in this file to the lecturers through Moodle.
 \item
-  \textbf{Flexibility}: R Markdown is incredibly flexible and can be used to create a wide variety of output formats, including HTML, PDF, and Microsoft Word documents. You can even create interactive documents with Shiny components.
-\item
-  \textbf{Ease of use}: R Markdown is easy to use, even for people with little or no programming experience. The core syntax of markdown is simple and intuitive, and the ability to embed R code directly into the document makes it easy to include dynamic content.
-\item
-  \textbf{Integration with R}: R Markdown is tightly integrated with R, making it easy to access and use the full power of the R language for data analysis and visualization.
-\item
-  \textbf{Collaboration}: R Markdown makes it easy to collaborate with others on data analysis projects. You can share your code and results with others, and they can easily reproduce your work and build on it.
+  \textbf{Import the dataset}: Import the data set by using the code below. The package \texttt{mlbench} conveniently includes the data set. You have to install the package beforehand by writing: \texttt{install.packages("mlbench")}. You should also load the \texttt{tidyverse} package to ease the further analysis. Not that this code also has to be included in your R Markdown file.
 \end{enumerate}
-
-Overall, R Markdown is a powerful tool that offers many advantages for data analysis and reporting. It's a great way to create dynamic, reproducible documents that are easy to share and collaborate on 😊
-
-I hope this introduction helps you understand what R Markdown is and how it can be used. If you want to learn more, there are many great resources available online, including the \href{https://bookdown.org/yihui/rmarkdown/}{R Markdown website} 😊
-
-\hypertarget{applying-edawvsown-data}{%
-\section{Applying EDA(WVS/own data)}\label{applying-edawvsown-data}}
-
-\hypertarget{exercise---1}{%
-\subsection{Exercise - 1}\label{exercise---1}}
-
-\textbf{Boston Housing Dataset}
-
-Housing data contains 506 census tracts of Boston from the 1970 census. The dataframe BostonHousing contains the original data by Harrison and Rubinfeld (1979), the dataframe BostonHousing2 the corrected version with additional spatial information.
-
-The dataset has two prototasks: \texttt{nox}, in which the nitrous oxide level is to be predicted; and \texttt{price}, in which the median value of a home is to be predicted.
-
-\textbf{Other Details:}
-
-\emph{Origin}
--The origin of the boston housing data is Natural.
-
-\emph{Usage}
--This dataset may be used for Assessment.
-
-\emph{Number of Cases}
--The dataset contains a total of 506 cases.
-
-\emph{Order}
--The order of the cases is mysterious.
-
-\emph{Variables}
--There are 14 attributes in each case of the dataset. They are:
-
-\begin{verbatim}
-1. CRIM - per capita crime rate by town
-2. ZN - proportion of residential land zoned for lots over 25,000 sq.ft.
-3. INDUS - proportion of non-retail business acres per town.
-4. CHAS - Charles River dummy variable (1 if tract bounds river; 0 otherwise)
-5. NOX - nitric oxides concentration (parts per 10 million)
-6. RM - average number of rooms per dwelling
-7. AGE - proportion of owner-occupied units built prior to 1940
-8. DIS - weighted distances to five Boston employment centres
-9. RAD - index of accessibility to radial highways
-10. TAX - full-value property-tax rate per $10,000
-11. PTRATIO - pupil-teacher ratio by town
-12. B - 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town
-13. LSTAT - % lower status of the population
-14. MEDV - Median value of owner-occupied homes in $1000's
-\end{verbatim}
-
-You can include this data by installing mlbench library:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#install.packages("mlbench") \#\# installing the library}
-\FunctionTok{library}\NormalTok{(mlbench) }\CommentTok{\#adding the library}
-\FunctionTok{library}\NormalTok{(openxlsx)}
-\FunctionTok{library}\NormalTok{(dplyr)}
-\FunctionTok{data}\NormalTok{(BostonHousing2)}
-\NormalTok{housing }\OtherTok{\textless{}{-}}\NormalTok{ BostonHousing2}
-\FunctionTok{write.xlsx}\NormalTok{(housing, }\StringTok{"../datasets/boston.xlsx"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(mlbench)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+
+\FunctionTok{data}\NormalTok{(BostonHousing)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
 \item
-  \textbf{Read the dataset}: Read the Boston Housing Dataset from the Excel file.
+  \textbf{Inspect the dataset}: Use the proper functions to inspect the structure and contents of the data set. How many categorical variables are there? How many numerical variables are there? Are there any missing values?
 \item
-  \textbf{Inspect the dataset}: Use the proper functions to inspect the structure and contents of the dataset. How many Categorical variables are there? How many numerical variables are there? Is there any null values?
+  \textbf{Summarize categorical variables}: Create a frequency table for the categorical variable \texttt{chas} (Charles River dummy variable).
 \item
-  \textbf{Summarize categorical variables}: Create frequency table for categorical variables CHAS (Charles River dummy variable).
+  \textbf{Summarize numerical variables}: Generate summary statistics for the numerical variables crim (per capita crime rate by town), rm (average number of rooms per dwelling) and dis (weighted distances to five Boston employment centres).
 \item
-  \textbf{Summarize numerical variables}: Generate summary statistics for numerical variables CRIM (per capita crime rate by town) and RM (average number of rooms per dwelling).
+  \textbf{Create new variables}: Create a new variable that groups houses by their proximity to employment centers as indicated in the variable \texttt{dis}. Create the three categories \texttt{Near}, \texttt{Medium} and \texttt{Far} based on the value of \texttt{dis}. Choose appropriate cutoff values based on the summary statistics you computed above. Briefly describe your decision.
 \item
-  \textbf{Create new variables}: Create new variable indicating whether a house is located near the Charles River or not.
+  \textbf{Compare distributions}: Compare the distribution of \texttt{ptratio} by the newly created variable \texttt{distance\_group} using boxplots. Briefly interpret the results.
 \item
-  \textbf{Recoding variables}: Create a new variable that groups houses by their proximity to employment centers.
+  \textbf{Visualize relationships}: Create scatter plots with an added regression line to explore the relationship between housing prices (\texttt{medv}) and the numeric variables : \texttt{rm}, \texttt{age}, \texttt{dis}, \texttt{lstat}. Briefly interpret the plots.
 \item
-  \textbf{Visualize relationships}: Create scatter plots to explore the relationship between housing prices and other numeric variables(\texttt{rm}, \texttt{age}, \texttt{dis}, \texttt{lstat}). Interpret the plots. Also show the distribution of ptratio by distance\_group.
-\item
-  \textbf{Correlation analysis}: Calculate correlation coefficients between housing prices and average number of rooms per dwelling, also between housing prices and crime rate. Interpret the result.
+  \textbf{Correlation analysis}: Calculate correlation coefficients between housing prices (\texttt{medv}), the average number of rooms per dwelling (\texttt{rm}) and the crime rate (\texttt{crim}). Display the correlations as a matrix or as a plot. Interpret the result.
 \end{enumerate}
 
 \hypertarget{dags-1}{%
 \chapter{DAGs}\label{dags-1}}
 
-\hypertarget{objectives-2}{%
-\section{Objectives}\label{objectives-2}}
+\hypertarget{objectives-1}{%
+\section{Objectives}\label{objectives-1}}
 
 \begin{itemize}
 \tightlist
@@ -1599,7 +1503,7 @@ You can include this data by installing mlbench library:
 \item
   Understand its implications on achieving unbiased estimates for effects of interest
 \item
-  Building a DAG for the NBA data to model the effect of scored points on salary (in session 8)
+  Building a DAG for the NBA data to model the effect of scored points on salary
 \end{itemize}
 
 \hypertarget{functions-covered}{%
@@ -1608,7 +1512,11 @@ You can include this data by installing mlbench library:
 \begin{itemize}
 \tightlist
 \item
-  \texttt{dagitty()} : This function creates and analyzes Directed Acyclic Graphs (DAGs).
+  \texttt{dagitty()}: Define Directed Acyclic Graphs.
+\item
+  \texttt{plot()}: A generic base R function that can be used to plot a DAG.
+\item
+  \texttt{adjustmentSets()}: Derive the adjustment set from a DAG.
 \end{itemize}
 
 \hypertarget{modelling}{%
@@ -1658,9 +1566,9 @@ of text, hundred thousands of social media posts, and you want to explore the
 sentiment expressed in those. Do they lean to the positive or to the negative?
 You can now go and take a ``small'' sample, let us say a few thousands and
 annotate them by hand. A lot of work, but based on those manually annotated
-posts you can train a machine learning model that learns from those posts and
+posts we can train a machine learning model that learns from those posts and
 then, if everything goes well, is able to automatically annotate the remaining
-hundred thousands of posts for you. Again, this is all about prediction; here
+hundred thousands of posts for us. Again, this is all about prediction; here
 predicting the sentiment of a post, the dependent variable, based on the words
 it contains, the independent variables.
 
@@ -1676,7 +1584,7 @@ statistics, at least for the social sciences.
 Here our goal is to estimate an effect of interest as accurately as possible.
 \(y\) is still our dependent variable but our focus lies on understanding which
 \(x\) variables influence \(y\), in which direction this influence goes and what the
-magnitude is.
+magnitude of the effect is.
 
 Let us say we are interested in why people cast their vote for a certain party.
 We may have some hypotheses that proposes that voters who find certain issues
@@ -1692,7 +1600,7 @@ scored and the salary received for NBA players. We could approach this as a
 prediction problem, i.e.~trying to predict the salary as accurately as possible
 based on a model that incorporates the scored points as well as other factors
 that we assume of having an effect on the salary. We will return to this in
-session 11. We could also approach this as estimation problem, i.e.~trying to
+\protect\hyperlink{pm-t}{session 11}. We could also approach this as estimation problem, i.e.~trying to
 estimate the effect of scored points on the salary. We will most probably have
 to include other variables that affect the relationship of score on salary as
 well, but the model used will not necessarily be the same. This approach is what
@@ -1743,7 +1651,7 @@ to the dependent variable.
 In the first example we only have the one path \(X \rightarrow Y\), but in most
 ``real'' DAGs we will have multiple paths between \(X\) and \(Y\).
 
-Consider this DAG, were we introduce a second variable \(A\):
+Consider this DAG, where we introduce a second variable \(A\):
 
 \includegraphics{_main_files/figure-latex/dag_paths-1.pdf}
 
@@ -1804,7 +1712,7 @@ us to prevent this pitfall.
 \paragraph{Mediation}\label{mediation}}
 
 A special case of pipes is \emph{mediation}. We will only take about this briefly
-here and return to the topic in session 10.
+here and return to the topic in \protect\hyperlink{med}{session 10}.
 
 Consider this DAG:
 
@@ -1832,7 +1740,7 @@ compute the indirect effect as the difference between total and direct effect.
 
 The second pattern we may see is the \emph{fork} or \emph{confounder}.
 
-\includegraphics{_main_files/figure-latex/dag_mediation_0-1.pdf}
+\includegraphics{_main_files/figure-latex/dag_confounder-1.pdf}
 
 We see that there is no implied direct relationship between \(X\) and \(Y\) but that
 both variables are influenced by \(A\). If we would measure the relationship
@@ -1843,7 +1751,7 @@ assume that both effects are positive the value of \(X\) would rise with the val
 of \(A\) and the value of \(Y\) would rise with the value of \(A\) also.
 The opposite would be true if both effects were negative. Lower values for \(A\)
 would lead to lower values for \(X\) and \(Y\).
-But even the effects would be opposite, they would never cancel each other out
+But even if the effects would be opposite, they would never cancel each other out
 perfectly. \(X\) and \(Y\) vary together.
 If we just include \(X\) and \(Y\) in our model this would show up as an
 effect from \(X\) on \(Y\).
@@ -1874,7 +1782,7 @@ variables have lower values in more urban regions. Our dependent and independent
 variables both vary by the value of the confounder and thus it seems that there
 is a correlation where there actually is none. If we now include a measure for
 the type of region, let us say population density, this spurious association
-disappears and we can return to normalitty. Storks do not bring babies after all.
+disappears and we can return to normality. Storks do not bring babies after all.
 
 \includegraphics{_main_files/figure-latex/dag_storks-1.pdf}
 
@@ -1887,7 +1795,7 @@ on a path that has two arrows pointing into it:
 \includegraphics{_main_files/figure-latex/dag_mediation_1-1.pdf}
 
 Here \(A\) is influenced by the value of \(X\) as well as \(Y\). Again, there should
-be no effect of \(X\) on \(Y\) and in this case there is none if just include \(X\)
+be no effect of \(X\) on \(Y\) and in this case there is none if we just include \(X\)
 and \(Y\) in our model. If we also include \(A\) we introduce an association
 between \(X\) and \(Y\) even if there should be none. This implies that we should
 not control for colliders because we would open up a path that creates a spurious
@@ -1992,7 +1900,7 @@ other conclusions. The team a player is employed by and the season where an
 observation was measured are both relevant predictors for the received salary.
 For prediction we would have included both variables because this should increase
 the accuracy of the prediction. We will return to this in more detail in
-sessions 11 and 12.
+\protect\hyperlink{pm-t}{session 11}.
 
 \hypertarget{resources}{%
 \section{Resources}\label{resources}}
@@ -2023,7 +1931,7 @@ clicking on the canvas and naming them, arrows are added by first clicking on
 the variable where the arrow should start and then on the variable where it
 should end. For everything to work you should also declare the independent
 variable of interest the ``Exposure'' and the dependent variable the ``Outcome''.
-Both can be set on the left under ``Variable'' When the DAG is drawn correctly,
+Both can be set on the left under ``Variable''. When the DAG is drawn correctly,
 the top right panel ``Causal effect identification'' should show which variables
 need to be part of the adjustment set to estimate the effect of interest.
 
@@ -2035,28 +1943,18 @@ direct effect.
 \hypertarget{how-to-use-dagitty}{%
 \subsection{How to use dagitty()}\label{how-to-use-dagitty}}
 
-Dagitty is a web-based tool that allows you to create, analyze, and visualize DAGs. You can use it to check the validity of your causal assumptions, identify the adjustment set for estimating an effect of interest, and explore the consequences of different interventions. To use dagitty, follow these steps:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Go to \href{https://dagitty.net}{dagitty.net} and click on ``Model'' and then ``New model''.
-\item
-  Add variables by clicking on the canvas and naming them. You can also drag and drop variables from the left panel.
-\item
-  Add arrows by clicking on the source variable and then on the target variable. You can also use the keyboard shortcuts listed on the left panel.
-\item
-  Specify the exposure variable (the independent variable of interest) and the outcome variable (the dependent variable) by selecting them from the drop-down menus on the left panel under ``Variable''.
-\item
-  Check the causal effect identification panel on the top right corner. It will show you the adjustment set for estimating the total effect of the exposure on the outcome, as well as the direct effect if you specify a mediator variable.
-\item
-  You can also perform various analyses on your DAG, such as testing for d-separation, finding minimal sufficient adjustment sets, simulating data, and more. You can access these features from the menus on the top bar.
-\item
-  You can export your DAG as an image or a code for various software packages by clicking on ``Export'' and choosing your preferred format.
-\end{enumerate}
-
-Here is an example of how to use the \texttt{dagitty()} function in R:
+We can also draw DAGs directly in R, using the \texttt{dagitty} package.
+To start drawing a DAG we write \texttt{dagitty(\textquotesingle{}dag\ \{\})}.
+The actual definition of the DAG takes place between the squirly brackets.
+First we list all variables in the model by writing their names between
+quotation marks. For each variable we can optionally add additional options between square
+brackets following the name. In the example below we define one variable as \texttt{exposure}
+and one as \texttt{outcome}, just like we would do on dagitty.net. We also give values
+for the relative positions. If we skip those, \texttt{dagitty()} will decide on the positions
+itself which may or may not look nice and tidy. After all variables are defined
+we write out the paths that should be present connecting the variable names with
+\texttt{\textless{}-} or \texttt{-\textgreater{}}, depending on the direction an arrow should point. We can than use \texttt{plot()}
+to see the DAG.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2064,29 +1962,29 @@ Here is an example of how to use the \texttt{dagitty()} function in R:
 \FunctionTok{library}\NormalTok{(dagitty)}
 
 \CommentTok{\# Define a DAG}
-\NormalTok{dag }\OtherTok{\textless{}{-}} \FunctionTok{dagitty}\NormalTok{( }\StringTok{\textquotesingle{}dag \{}
-\StringTok{  "Exposure" [exposure]}
-\StringTok{  "Outcome" [outcome]}
-\StringTok{  "Confounding Variable" [pos="1,0"]}
-\StringTok{  "Mediator" [mediator]}
+\NormalTok{dag }\OtherTok{\textless{}{-}} \FunctionTok{dagitty}\NormalTok{(}\StringTok{\textquotesingle{}dag \{}
+\StringTok{  "Exposure" [exposure, pos="{-}1,0"]}
+\StringTok{  "Outcome" [outcome, pos="1,0"]}
+\StringTok{  "Confounding Variable" [pos="0,{-}1"] }
+\StringTok{  "Mediator" [pos="0,1"]}
 \StringTok{  "Exposure" {-}\textgreater{} "Outcome"}
-\StringTok{  "Exposure" {-}\textgreater{} "Mediator"}
-\StringTok{  "Mediator" {-}\textgreater{} "Outcome"}
-\StringTok{  "Confounding Variable" {-}\textgreater{} "Exposure"}
-\StringTok{  "Confounding Variable" {-}\textgreater{} "Outcome"}
+\StringTok{  "Exposure" {-}\textgreater{} "Mediator" {-}\textgreater{} "Outcome"}
+\StringTok{  "Exposure" \textless{}{-} "Confounding Variable" {-}\textgreater{} "Outcome"}
 \StringTok{\}\textquotesingle{}}\NormalTok{ )}
 
 \CommentTok{\# Plot the DAG}
-\FunctionTok{plot}\NormalTok{( dag )}
+\FunctionTok{plot}\NormalTok{(dag)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/dag_example-1.pdf}
+\includegraphics{_main_files/figure-latex/dagitty_example-1.pdf}
+
+We can also usethe function \texttt{adjustmentSets()\ to\ derive\ our\ adjustment\ set.\ The\ argument}effect = \texttt{lets\ us\ control\ if\ we\ want\ to\ see\ the\ adjustment\ set\ for\ the}``total''\texttt{or}``direct''` effect-
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Identify the minimal adjustment set for estimating the total effect of Exposure on Outcome}
-\FunctionTok{adjustmentSets}\NormalTok{( dag, }\AttributeTok{exposure =} \StringTok{"Exposure"}\NormalTok{, }\AttributeTok{outcome =} \StringTok{"Outcome"}\NormalTok{ )}
+\FunctionTok{adjustmentSets}\NormalTok{(dag, }\AttributeTok{effect =} \StringTok{"total"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2094,9 +1992,16 @@ Here is an example of how to use the \texttt{dagitty()} function in R:
 ## { Confounding Variable }
 \end{verbatim}
 
-In this example, we first define a DAG with four variables: Exposure, Outcome, Confounding Variable, and Mediator. We specify the relationships between these variables with arrows. Then we plot the DAG and identify the minimal adjustment sets for estimating the total effect and direct effect of Exposure on Outcome. The \texttt{adjustmentSets()} function returns a list of variables that we need to control for in order to estimate these effects without bias.
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Identify the minimal adjustment set for estimating the direct effect of Exposure on Outcome}
+\FunctionTok{adjustmentSets}\NormalTok{(dag, }\AttributeTok{effect =} \StringTok{"direct"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-Dagitty is a useful tool for building and testing your causal models based on DAGs. However, it is not a substitute for careful thinking and theoretical knowledge. You should always check if your DAG reflects your assumptions and hypotheses correctly and if it is consistent with the data and the literature.
+\begin{verbatim}
+## { Confounding Variable, Mediator }
+\end{verbatim}
 
 \hypertarget{more-on-dags}{%
 \subsection{More on DAGs}\label{more-on-dags}}
@@ -2136,8 +2041,8 @@ keep the NBA data aside and use some simulated data that plays nice with us.
 We will return to the NBA data in session 8 applying everything we
 learned to assess the effect of scored points on salary.
 
-\hypertarget{objectives-3}{%
-\section{Objectives}\label{objectives-3}}
+\hypertarget{objectives-2}{%
+\section{Objectives}\label{objectives-2}}
 
 \begin{itemize}
 \tightlist
@@ -2663,8 +2568,8 @@ changed the interpretation of the intercept. Its new value of \(2.9675\) now
 indicates the estimate for a student who invests the mean value of \texttt{hours} in
 their work, i.e.~\(40.33\).
 
-\hypertarget{moving-on}{%
-\section{Moving on}\label{moving-on}}
+\hypertarget{moving-on-1}{%
+\section{Moving on}\label{moving-on-1}}
 
 Based on our simple linear regression model we achieved an estimate for our
 effect of interest. Working more hours results in receiving a better grade.
@@ -2672,8 +2577,8 @@ But there could be other variables that influence this relationship. In the
 next session we learn how we can include these in our model, when we move from
 simple to multiple linear regression.
 
-\hypertarget{further-resources-1}{%
-\section{Further resources}\label{further-resources-1}}
+\hypertarget{further-resources-2}{%
+\section{Further resources}\label{further-resources-2}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2700,8 +2605,8 @@ for our effect of interest. Maybe the actual effect for \texttt{hours} is even s
 maybe it is weaker, or maybe there is no effect at all.
 To assess this, we have to move from simple to multiple linear regression.
 
-\hypertarget{objectives-4}{%
-\section{Objectives}\label{objectives-4}}
+\hypertarget{objectives-3}{%
+\section{Objectives}\label{objectives-3}}
 
 \begin{itemize}
 \tightlist
@@ -3144,8 +3049,8 @@ highly significant. We can thus conclude, that we have observed an actual effect
 from \texttt{hours} on \texttt{grade}. Our estimate is large enough and our standard error
 small enough to reach this conclusion.
 
-\hypertarget{moving-on-1}{%
-\section{Moving on}\label{moving-on-1}}
+\hypertarget{moving-on-2}{%
+\section{Moving on}\label{moving-on-2}}
 
 We have attained an estimate for our effect of interest which supports our
 hypotheses that investing more hours into writing a paper leads to better grades.
@@ -3156,8 +3061,8 @@ technique, has some underlying assumptions that we have to meet for the model
 to accurately estimate an effect. In the next session we will get to know this
 assumptions and how we can test for them.
 
-\hypertarget{further-resources-2}{%
-\section{Further resources}\label{further-resources-2}}
+\hypertarget{further-resources-3}{%
+\section{Further resources}\label{further-resources-3}}
 
 \begin{itemize}
 \tightlist
@@ -3171,8 +3076,8 @@ assumptions and how we can test for them.
   \href{https://www.analyticsvidhya.com/blog/2021/05/multiple-linear-regression-using-python-and-scikit-learn/}{Mastering Multiple Linear Regression: A Comprehensive Guide}: This article explains how to perform multiple linear regression using Python and scikit-learn, with examples and code snippets.
 \end{itemize}
 
-\hypertarget{log-t-3}{%
-\chapter{Linear Regression Theory III: Diagnostics}\label{log-t-3}}
+\hypertarget{lin-t-3}{%
+\chapter{Linear Regression Theory III: Diagnostics}\label{lin-t-3}}
 
 In this session we will get to know the central underlying assumptions for linear
 regression models. To find out if our model actually works as intended and thus
@@ -3181,8 +3086,8 @@ check if we have met this assumptions, and if we did not, we have to correct our
 model accordingly. Before we do this, we should briefly consider another part
 of the regression output, the model fit.
 
-\hypertarget{objectives-5}{%
-\section{Objectives}\label{objectives-5}}
+\hypertarget{objectives-4}{%
+\section{Objectives}\label{objectives-4}}
 
 \begin{itemize}
 \tightlist
@@ -3907,8 +3812,8 @@ way.
 In the next session we will return to our NBA data and try to apply everything
 that we have learned over the last sessions.
 
-\hypertarget{further-resources-3}{%
-\section{Further Resources}\label{further-resources-3}}
+\hypertarget{further-resources-4}{%
+\section{Further Resources}\label{further-resources-4}}
 
 \begin{itemize}
 \tightlist
@@ -3932,8 +3837,8 @@ generating process. Based on the DAGs implications we can now build a linear
 regression model and try to estimate the effect of interest as accurately as
 possible.
 
-\hypertarget{objectives-6}{%
-\section{Objectives}\label{objectives-6}}
+\hypertarget{objectives-5}{%
+\section{Objectives}\label{objectives-5}}
 
 \begin{itemize}
 \tightlist
@@ -4728,8 +4633,8 @@ for fans. This could change the relationship between points and salary for
 players with a high ``starpower''. Such a variable would be hard to measure,
 but could maybe solve the parts of the puzzle that still remain.
 
-\hypertarget{moving-on-2}{%
-\section{Moving on}\label{moving-on-2}}
+\hypertarget{moving-on-3}{%
+\section{Moving on}\label{moving-on-3}}
 
 But there is another possibility. We built the best model based on our DAG, but
 maybe the DAG is not entirely correct. Maybe we made some faulty assumptions or
@@ -4737,8 +4642,8 @@ maybe we missed a variable with an important role in the data generating
 process. In the next session we will see, how we can come up with a different
 DAG that incorporates the same variables but makes some different assumptions.
 
-\hypertarget{further-resources-4}{%
-\section{Further Resources}\label{further-resources-4}}
+\hypertarget{further-resources-5}{%
+\section{Further Resources}\label{further-resources-5}}
 
 \begin{itemize}
 \tightlist
@@ -4753,7 +4658,7 @@ DAG that incorporates the same variables but makes some different assumptions.
 \end{itemize}
 
 \hypertarget{lin-e}{%
-\chapter{Linear Regression - Exercises}\label{lin-e}}
+\chapter{Linear Regression - Exercise}\label{lin-e}}
 
 \hypertarget{exercises}{%
 \section{Exercises}\label{exercises}}
@@ -4805,8 +4710,8 @@ In this exercise, you will use the Boston Housing Dataset to explore the relatio
 
 In this week, we will introduce to the concept of mediation analysis.
 
-\hypertarget{objectives-7}{%
-\section{Objectives}\label{objectives-7}}
+\hypertarget{objectives-6}{%
+\section{Objectives}\label{objectives-6}}
 
 \begin{itemize}
 \tightlist
@@ -5244,8 +5149,8 @@ The indirect effect is the total effect minus the direct effect (-1.400.000 - (-
 
 In sum, Guards are disadvantaged. They receive less money than center, although, if the points were considered, they should make even more. There must be other reasons why guards earn less. We need to go back to theory and come up with new hypothesis.
 
-\hypertarget{further-resources-5}{%
-\section{Further Resources}\label{further-resources-5}}
+\hypertarget{further-resources-6}{%
+\section{Further Resources}\label{further-resources-6}}
 
 \begin{itemize}
 \tightlist
@@ -5265,8 +5170,8 @@ In sum, Guards are disadvantaged. They receive less money than center, although,
 In prior weeks, you learned how to build a linear regression model. The main interest
 we pursued so far was to arrive at a good estimate of one independent variable (points scored in NBA basketball league) on an outcome (salary of NBA players).
 
-\hypertarget{objectives-8}{%
-\section{Objectives}\label{objectives-8}}
+\hypertarget{objectives-7}{%
+\section{Objectives}\label{objectives-7}}
 
 \begin{itemize}
 \tightlist
@@ -5340,7 +5245,7 @@ Machine learning is basically predicting outcomes that are no known based on ver
 
 \CommentTok{\# base R way to get predicted values}
 \NormalTok{data\_nba}\SpecialCharTok{$}\NormalTok{predicted\_values }\OtherTok{\textless{}{-}}\NormalTok{ model1}\SpecialCharTok{$}\NormalTok{fitted.values}
-\NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(}\StringTok{\textquotesingle{}\_id\textquotesingle{}}\NormalTok{, name, salary, predicted\_values, }\FunctionTok{everything}\NormalTok{())}
+\NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(}\StringTok{\textquotesingle{}id\textquotesingle{}}\NormalTok{, name, salary, predicted\_values, }\FunctionTok{everything}\NormalTok{())}
 
 \NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{salary, }\AttributeTok{y=}\NormalTok{predicted\_values)) }\SpecialCharTok{+}
@@ -6021,8 +5926,8 @@ Now machine learning usually involves several more steps:
   for other algorithms (e.g.~\texttt{random\ forests}), we can also \emph{tune} the model using \emph{hyper-parameters}.
 \end{itemize}
 
-\hypertarget{further-resources-6}{%
-\section{Further resources}\label{further-resources-6}}
+\hypertarget{further-resources-7}{%
+\section{Further resources}\label{further-resources-7}}
 
 \begin{itemize}
 \tightlist
@@ -6037,7 +5942,7 @@ Now machine learning usually involves several more steps:
 \end{itemize}
 
 \hypertarget{pm-a}{%
-\chapter{Prediction - Application}\label{pm-a}}
+\chapter{Prediction - Exercise}\label{pm-a}}
 
 Here goes some texts.
 
@@ -6060,8 +5965,8 @@ Here goes some texts.
 \hypertarget{log-est}{%
 \chapter{Logistic regression}\label{log-est}}
 
-\hypertarget{objectives-9}{%
-\section{Objectives}\label{objectives-9}}
+\hypertarget{objectives-8}{%
+\section{Objectives}\label{objectives-8}}
 
 \begin{itemize}
 \tightlist
@@ -6915,8 +6820,8 @@ Instead, a common metric for assessing model performance is ``accuracy''. Accura
 
 The confusion matrix shows that the model predicted short careers (0) for 668 players who actually had long careers (1). It correctely predicted the career for 2249 players. Overall, the career that players had was predicted accurately in 77\% of cases.
 
-\hypertarget{further-resources-7}{%
-\section{Further resources}\label{further-resources-7}}
+\hypertarget{further-resources-8}{%
+\section{Further resources}\label{further-resources-8}}
 
 \begin{itemize}
 \tightlist

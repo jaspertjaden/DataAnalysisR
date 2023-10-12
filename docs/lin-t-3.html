@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title> 7 Linear Regression Theory III: Diagnostics | Data Analysis with R for Social Scientists</title>
+  <meta name="description" content="In this course, you will learn how to analyse data using regression in R." />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content=" 7 Linear Regression Theory III: Diagnostics | Data Analysis with R for Social Scientists" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="In this course, you will learn how to analyse data using regression in R." />
+  <meta name="github-repo" content="jaspertjaden/DataAnalysisR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content=" 7 Linear Regression Theory III: Diagnostics | Data Analysis with R for Social Scientists" />
+  
+  <meta name="twitter:description" content="In this course, you will learn how to analyse data using regression in R." />
+  
+
+<meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
+
+
+<meta name="date" content="2023-10-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="lin-t-2.html"/>
+<link rel="next" href="lin-a.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Analysis with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Intro</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#about-the-authors"><i class="fa fa-check"></i><b>0.1</b> About the Authors</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro-sem.html"><a href="intro-sem.html"><i class="fa fa-check"></i><b>1</b> Introduction to Seminar</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro-sem.html"><a href="intro-sem.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="eda-1.html"><a href="eda-1.html"><i class="fa fa-check"></i><b>2</b> Exploratory Data Analysis</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="eda-1.html"><a href="eda-1.html#objectives"><i class="fa fa-check"></i><b>2.1</b> Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="eda-1.html"><a href="eda-1.html#r-functions-covered-this-week"><i class="fa fa-check"></i><b>2.2</b> R functions covered this week</a></li>
+<li class="chapter" data-level="2.3" data-path="eda-1.html"><a href="eda-1.html#what-is-eda-and-why-is-it-so-important"><i class="fa fa-check"></i><b>2.3</b> What is <em>EDA</em> and why is it so important?</a></li>
+<li class="chapter" data-level="2.4" data-path="eda-1.html"><a href="eda-1.html#importing-data-into-r"><i class="fa fa-check"></i><b>2.4</b> Importing data into R</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="eda-1.html"><a href="eda-1.html#merge-datasets"><i class="fa fa-check"></i><b>2.4.1</b> Merge datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="eda-1.html"><a href="eda-1.html#clean-dataset"><i class="fa fa-check"></i><b>2.5</b> Clean dataset</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="eda-1.html"><a href="eda-1.html#mutating-variables"><i class="fa fa-check"></i><b>2.5.1</b> Mutating variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="eda-1.html"><a href="eda-1.html#explore-the-complete-dataset"><i class="fa fa-check"></i><b>2.6</b> Explore the complete dataset</a></li>
+<li class="chapter" data-level="2.7" data-path="eda-1.html"><a href="eda-1.html#explore-individual-variables"><i class="fa fa-check"></i><b>2.7</b> Explore individual variables</a></li>
+<li class="chapter" data-level="2.8" data-path="eda-1.html"><a href="eda-1.html#moving-on"><i class="fa fa-check"></i><b>2.8</b> Moving on</a></li>
+<li class="chapter" data-level="2.9" data-path="eda-1.html"><a href="eda-1.html#further-resources"><i class="fa fa-check"></i><b>2.9</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="eda-2.html"><a href="eda-2.html"><i class="fa fa-check"></i><b>3</b> Exploratory Data Analysis - Exercise</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="eda-2.html"><a href="eda-2.html#what-is-r-markdown"><i class="fa fa-check"></i><b>3.1</b> What is R Markdown?</a></li>
+<li class="chapter" data-level="3.2" data-path="eda-2.html"><a href="eda-2.html#creating-a-r-markdown-file"><i class="fa fa-check"></i><b>3.2</b> Creating a R Markdown file</a></li>
+<li class="chapter" data-level="3.3" data-path="eda-2.html"><a href="eda-2.html#writing-in-r-markdown"><i class="fa fa-check"></i><b>3.3</b> Writing in R Markdown</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="eda-2.html"><a href="eda-2.html#document-components"><i class="fa fa-check"></i><b>3.3.1</b> Document components</a></li>
+<li class="chapter" data-level="3.3.2" data-path="eda-2.html"><a href="eda-2.html#formatting"><i class="fa fa-check"></i><b>3.3.2</b> Formatting</a></li>
+<li class="chapter" data-level="3.3.3" data-path="eda-2.html"><a href="eda-2.html#code-chunks"><i class="fa fa-check"></i><b>3.3.3</b> Code chunks</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="eda-2.html"><a href="eda-2.html#further-resources-1"><i class="fa fa-check"></i><b>3.4</b> Further resources</a></li>
+<li class="chapter" data-level="3.5" data-path="eda-2.html"><a href="eda-2.html#eda---exercise"><i class="fa fa-check"></i><b>3.5</b> EDA - Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dags-1.html"><a href="dags-1.html"><i class="fa fa-check"></i><b>4</b> DAGs</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dags-1.html"><a href="dags-1.html#objectives-1"><i class="fa fa-check"></i><b>4.1</b> Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="dags-1.html"><a href="dags-1.html#functions-covered"><i class="fa fa-check"></i><b>4.2</b> Functions Covered</a></li>
+<li class="chapter" data-level="4.3" data-path="dags-1.html"><a href="dags-1.html#modelling"><i class="fa fa-check"></i><b>4.3</b> Modelling</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="dags-1.html"><a href="dags-1.html#what-is-modelling"><i class="fa fa-check"></i><b>4.3.1</b> What is modelling?</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dags-1.html"><a href="dags-1.html#estimating-effects-vs.-prediction"><i class="fa fa-check"></i><b>4.3.2</b> Estimating effects vs. prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dags-1.html"><a href="dags-1.html#dags"><i class="fa fa-check"></i><b>4.4</b> DAGs</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="dags-1.html"><a href="dags-1.html#directed-acyclical-graphs"><i class="fa fa-check"></i><b>4.4.1</b> Directed acyclical graphs</a></li>
+<li class="chapter" data-level="4.4.2" data-path="dags-1.html"><a href="dags-1.html#patterns-of-relationships"><i class="fa fa-check"></i><b>4.4.2</b> Patterns of relationships</a></li>
+<li class="chapter" data-level="4.4.3" data-path="dags-1.html"><a href="dags-1.html#adjustment-set"><i class="fa fa-check"></i><b>4.4.3</b> Adjustment set</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="dags-1.html"><a href="dags-1.html#nba-dag"><i class="fa fa-check"></i><b>4.5</b> NBA DAG</a></li>
+<li class="chapter" data-level="4.6" data-path="dags-1.html"><a href="dags-1.html#resources"><i class="fa fa-check"></i><b>4.6</b> Resources</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="dags-1.html"><a href="dags-1.html#dagitty.net"><i class="fa fa-check"></i><b>4.6.1</b> dagitty.net</a></li>
+<li class="chapter" data-level="4.6.2" data-path="dags-1.html"><a href="dags-1.html#how-to-use-dagitty"><i class="fa fa-check"></i><b>4.6.2</b> How to use dagitty()</a></li>
+<li class="chapter" data-level="4.6.3" data-path="dags-1.html"><a href="dags-1.html#more-on-dags"><i class="fa fa-check"></i><b>4.6.3</b> More on DAGs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lin-t-1.html"><a href="lin-t-1.html"><i class="fa fa-check"></i><b>5</b> Linear Regression Theory I: Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="lin-t-1.html"><a href="lin-t-1.html#objectives-2"><i class="fa fa-check"></i><b>5.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.2" data-path="lin-t-1.html"><a href="lin-t-1.html#what-is-linear-regression"><i class="fa fa-check"></i><b>5.2</b> What is Linear Regression</a></li>
+<li class="chapter" data-level="5.3" data-path="lin-t-1.html"><a href="lin-t-1.html#examplary-research-question-data"><i class="fa fa-check"></i><b>5.3</b> Examplary research question &amp; data</a></li>
+<li class="chapter" data-level="5.4" data-path="lin-t-1.html"><a href="lin-t-1.html#simple-linear-regression"><i class="fa fa-check"></i><b>5.4</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="lin-t-1.html"><a href="lin-t-1.html#regression-formula"><i class="fa fa-check"></i><b>5.4.1</b> Regression Formula</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lin-t-1.html"><a href="lin-t-1.html#regressing-grade-on-hours"><i class="fa fa-check"></i><b>5.4.2</b> Regressing <code>grade</code> on <code>hours</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="lin-t-1.html"><a href="lin-t-1.html#moving-on-1"><i class="fa fa-check"></i><b>5.5</b> Moving on</a></li>
+<li class="chapter" data-level="5.6" data-path="lin-t-1.html"><a href="lin-t-1.html#further-resources-2"><i class="fa fa-check"></i><b>5.6</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lin-t-2.html"><a href="lin-t-2.html"><i class="fa fa-check"></i><b>6</b> Linear Regression Theory II: Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="lin-t-2.html"><a href="lin-t-2.html#objectives-3"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="lin-t-2.html"><a href="lin-t-2.html#multiple-linear-regression"><i class="fa fa-check"></i><b>6.2</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-additional-metric-variables"><i class="fa fa-check"></i><b>6.2.1</b> Adding additional metric variables</a></li>
+<li class="chapter" data-level="6.2.2" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-dummy-variables"><i class="fa fa-check"></i><b>6.2.2</b> Adding dummy variables</a></li>
+<li class="chapter" data-level="6.2.3" data-path="lin-t-2.html"><a href="lin-t-2.html#adding-categorical-variables"><i class="fa fa-check"></i><b>6.2.3</b> Adding categorical variables</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="lin-t-2.html"><a href="lin-t-2.html#returning-to-our-research-question"><i class="fa fa-check"></i><b>6.3</b> Returning to our research question</a></li>
+<li class="chapter" data-level="6.4" data-path="lin-t-2.html"><a href="lin-t-2.html#adressing-the-uncertainty"><i class="fa fa-check"></i><b>6.4</b> Adressing the uncertainty</a></li>
+<li class="chapter" data-level="6.5" data-path="lin-t-2.html"><a href="lin-t-2.html#moving-on-2"><i class="fa fa-check"></i><b>6.5</b> Moving on</a></li>
+<li class="chapter" data-level="6.6" data-path="lin-t-2.html"><a href="lin-t-2.html#further-resources-3"><i class="fa fa-check"></i><b>6.6</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="lin-t-3.html"><a href="lin-t-3.html"><i class="fa fa-check"></i><b>7</b> Linear Regression Theory III: Diagnostics</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="lin-t-3.html"><a href="lin-t-3.html#objectives-4"><i class="fa fa-check"></i><b>7.1</b> Objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="lin-t-3.html"><a href="lin-t-3.html#model-fit"><i class="fa fa-check"></i><b>7.2</b> Model fit</a></li>
+<li class="chapter" data-level="7.3" data-path="lin-t-3.html"><a href="lin-t-3.html#regression-diagnostics"><i class="fa fa-check"></i><b>7.3</b> Regression diagnostics</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="lin-t-3.html"><a href="lin-t-3.html#linearity"><i class="fa fa-check"></i><b>7.3.1</b> Linearity</a></li>
+<li class="chapter" data-level="7.3.2" data-path="lin-t-3.html"><a href="lin-t-3.html#normally-distributed-residuals"><i class="fa fa-check"></i><b>7.3.2</b> Normally distributed residuals</a></li>
+<li class="chapter" data-level="7.3.3" data-path="lin-t-3.html"><a href="lin-t-3.html#homoscedasticity"><i class="fa fa-check"></i><b>7.3.3</b> Homoscedasticity</a></li>
+<li class="chapter" data-level="7.3.4" data-path="lin-t-3.html"><a href="lin-t-3.html#no-overly-influential-data-points"><i class="fa fa-check"></i><b>7.3.4</b> No overly influential data points</a></li>
+<li class="chapter" data-level="7.3.5" data-path="lin-t-3.html"><a href="lin-t-3.html#no-multicollinearity"><i class="fa fa-check"></i><b>7.3.5</b> No (multi)collinearity</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="lin-t-3.html"><a href="lin-t-3.html#returning-to-our-research-question-1"><i class="fa fa-check"></i><b>7.4</b> Returning to our research question</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="lin-t-3.html"><a href="lin-t-3.html#interactions"><i class="fa fa-check"></i><b>7.4.1</b> Interactions</a></li>
+<li class="chapter" data-level="7.4.2" data-path="lin-t-3.html"><a href="lin-t-3.html#regression-diagnostics-revisited"><i class="fa fa-check"></i><b>7.4.2</b> Regression diagnostics (revisited)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="lin-t-3.html"><a href="lin-t-3.html#conclusion"><i class="fa fa-check"></i><b>7.5</b> Conclusion</a></li>
+<li class="chapter" data-level="7.6" data-path="lin-t-3.html"><a href="lin-t-3.html#further-resources-4"><i class="fa fa-check"></i><b>7.6</b> Further Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="lin-a.html"><a href="lin-a.html"><i class="fa fa-check"></i><b>8</b> Linear Regression - Application</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="lin-a.html"><a href="lin-a.html#objectives-5"><i class="fa fa-check"></i><b>8.1</b> Objectives</a></li>
+<li class="chapter" data-level="8.2" data-path="lin-a.html"><a href="lin-a.html#r-functions-covered-this-week-1"><i class="fa fa-check"></i><b>8.2</b> R functions covered this week</a></li>
+<li class="chapter" data-level="8.3" data-path="lin-a.html"><a href="lin-a.html#research-question"><i class="fa fa-check"></i><b>8.3</b> Research question</a></li>
+<li class="chapter" data-level="8.4" data-path="lin-a.html"><a href="lin-a.html#simple-linear-regression-in-r"><i class="fa fa-check"></i><b>8.4</b> Simple linear regression in R</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="lin-a.html"><a href="lin-a.html#interpretation"><i class="fa fa-check"></i><b>8.4.1</b> Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="lin-a.html"><a href="lin-a.html#multiple-linear-regression-in-r"><i class="fa fa-check"></i><b>8.5</b> Multiple linear regression in R</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="lin-a.html"><a href="lin-a.html#interpretation-1"><i class="fa fa-check"></i><b>8.5.1</b> Interpretation</a></li>
+<li class="chapter" data-level="8.5.2" data-path="lin-a.html"><a href="lin-a.html#sidenote-adding-interactions"><i class="fa fa-check"></i><b>8.5.2</b> Sidenote: Adding interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="lin-a.html"><a href="lin-a.html#regression-diagnostics-1"><i class="fa fa-check"></i><b>8.6</b> Regression Diagnostics</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="lin-a.html"><a href="lin-a.html#skewed-outcome-variable"><i class="fa fa-check"></i><b>8.6.1</b> Skewed outcome variable</a></li>
+<li class="chapter" data-level="8.6.2" data-path="lin-a.html"><a href="lin-a.html#non-linearity"><i class="fa fa-check"></i><b>8.6.2</b> Non-linearity</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="lin-a.html"><a href="lin-a.html#returning-to-our-research-question-2"><i class="fa fa-check"></i><b>8.7</b> Returning to our research question</a></li>
+<li class="chapter" data-level="8.8" data-path="lin-a.html"><a href="lin-a.html#moving-on-3"><i class="fa fa-check"></i><b>8.8</b> Moving on</a></li>
+<li class="chapter" data-level="8.9" data-path="lin-a.html"><a href="lin-a.html#further-resources-5"><i class="fa fa-check"></i><b>8.9</b> Further Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="lin-e.html"><a href="lin-e.html"><i class="fa fa-check"></i><b>9</b> Linear Regression - Exercise</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="lin-e.html"><a href="lin-e.html#exercises"><i class="fa fa-check"></i><b>9.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="med.html"><a href="med.html"><i class="fa fa-check"></i><b>10</b> Mediation</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="med.html"><a href="med.html#objectives-6"><i class="fa fa-check"></i><b>10.1</b> Objectives</a></li>
+<li class="chapter" data-level="10.2" data-path="med.html"><a href="med.html#r-functions-covered-this-week-2"><i class="fa fa-check"></i><b>10.2</b> R functions covered this week</a></li>
+<li class="chapter" data-level="10.3" data-path="med.html"><a href="med.html#further-resources-6"><i class="fa fa-check"></i><b>10.3</b> Further Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="pm-t.html"><a href="pm-t.html"><i class="fa fa-check"></i><b>11</b> Prediction - Theory</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="pm-t.html"><a href="pm-t.html#objectives-7"><i class="fa fa-check"></i><b>11.1</b> Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="pm-t.html"><a href="pm-t.html#r-functions-covered-this-week-3"><i class="fa fa-check"></i><b>11.2</b> R functions covered this week</a></li>
+<li class="chapter" data-level="11.3" data-path="pm-t.html"><a href="pm-t.html#how-prediction-works"><i class="fa fa-check"></i><b>11.3</b> How prediction works</a></li>
+<li class="chapter" data-level="11.4" data-path="pm-t.html"><a href="pm-t.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.4</b> Intro to Machine learning</a></li>
+<li class="chapter" data-level="11.5" data-path="pm-t.html"><a href="pm-t.html#further-resources-7"><i class="fa fa-check"></i><b>11.5</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="pm-a.html"><a href="pm-a.html"><i class="fa fa-check"></i><b>12</b> Prediction - Exercise</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises-1"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="log-est.html"><a href="log-est.html"><i class="fa fa-check"></i><b>13</b> Logistic regression</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="log-est.html"><a href="log-est.html#objectives-8"><i class="fa fa-check"></i><b>13.1</b> Objectives</a></li>
+<li class="chapter" data-level="13.2" data-path="log-est.html"><a href="log-est.html#functions-covered-in-this-week"><i class="fa fa-check"></i><b>13.2</b> Functions covered in this week</a></li>
+<li class="chapter" data-level="13.3" data-path="log-est.html"><a href="log-est.html#basic-concepts"><i class="fa fa-check"></i><b>13.3</b> Basic concepts</a></li>
+<li class="chapter" data-level="13.4" data-path="log-est.html"><a href="log-est.html#application"><i class="fa fa-check"></i><b>13.4</b> Application</a></li>
+<li class="chapter" data-level="13.5" data-path="log-est.html"><a href="log-est.html#interpretation-2"><i class="fa fa-check"></i><b>13.5</b> Interpretation</a></li>
+<li class="chapter" data-level="13.6" data-path="log-est.html"><a href="log-est.html#model-fit-1"><i class="fa fa-check"></i><b>13.6</b> model fit</a></li>
+<li class="chapter" data-level="13.7" data-path="log-est.html"><a href="log-est.html#diagnostics"><i class="fa fa-check"></i><b>13.7</b> diagnostics</a></li>
+<li class="chapter" data-level="13.8" data-path="log-est.html"><a href="log-est.html#prediction"><i class="fa fa-check"></i><b>13.8</b> prediction</a></li>
+<li class="chapter" data-level="13.9" data-path="log-est.html"><a href="log-est.html#mediation-1"><i class="fa fa-check"></i><b>13.9</b> Mediation</a></li>
+<li class="chapter" data-level="13.10" data-path="log-est.html"><a href="log-est.html#comparing-linear-and-logistic-regression"><i class="fa fa-check"></i><b>13.10</b> comparing linear and logistic regression</a></li>
+<li class="chapter" data-level="13.11" data-path="log-est.html"><a href="log-est.html#logistic-regression-in-machine-learning-context"><i class="fa fa-check"></i><b>13.11</b> logistic regression in Machine Learning context</a></li>
+<li class="chapter" data-level="13.12" data-path="log-est.html"><a href="log-est.html#further-resources-8"><i class="fa fa-check"></i><b>13.12</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="out-look.html"><a href="out-look.html"><i class="fa fa-check"></i><b>14</b> Outlook</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="out-look.html"><a href="out-look.html#summary-of-what-was-covered-in-course"><i class="fa fa-check"></i><b>14.1</b> Summary of what was covered in course</a></li>
+<li class="chapter" data-level="14.2" data-path="out-look.html"><a href="out-look.html#other-outcome-variables"><i class="fa fa-check"></i><b>14.2</b> Other outcome variables</a></li>
+<li class="chapter" data-level="14.3" data-path="out-look.html"><a href="out-look.html#data-structures"><i class="fa fa-check"></i><b>14.3</b> Data structures</a></li>
+<li class="chapter" data-level="14.4" data-path="out-look.html"><a href="out-look.html#where-to-go-next"><i class="fa fa-check"></i><b>14.4</b> Where to go next</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis with R for Social Scientists</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lin-t-3" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number"> 7</span> Linear Regression Theory III: Diagnostics<a href="lin-t-3.html#lin-t-3" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this session we will get to know the central underlying assumptions for linear
+regression models. To find out if our model actually works as intended and thus
+gives us a reliable estimate for the effect of <code>hours</code> on <code>grade</code>, we have to
+check if we have met this assumptions, and if we did not, we have to correct our
+model accordingly. Before we do this, we should briefly consider another part
+of the regression output, the model fit.</p>
+<div id="objectives-4" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Objectives<a href="lin-t-3.html#objectives-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="objectives">
+<ul>
+<li>Learn about model fit and its limits</li>
+<li>Understand the statistical assumptions underlying linear regression</li>
+<li>Test for violated assumptions and learn how to correct for those</li>
+</ul>
+</div>
+</div>
+<div id="model-fit" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Model fit<a href="lin-t-3.html#model-fit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let us again inspect the output from the simplest model we computed, regressing
+the grade solely on the invested hours:</p>
+<pre><code>## 
+## Call:
+## lm(formula = grade ~ hours_centered, data = grades)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.88006 -0.83961 -0.08006  0.77006  2.53881 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)     2.96750    0.07267  40.835  &lt; 2e-16 ***
+## hours_centered -0.05236    0.01159  -4.517 1.07e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.028 on 198 degrees of freedom
+## Multiple R-squared:  0.09344,    Adjusted R-squared:  0.08886 
+## F-statistic: 20.41 on 1 and 198 DF,  p-value: 1.075e-05</code></pre>
+<p>Up to now, we exclusively talked about the coefficient block. We will return to
+the “Call” next session and to the “Residuals” later in this session. For now
+let us focus on the bottom block in the output.</p>
+<p><span class="math inline">\(R^2\)</span> or <em>R-squared</em> is a measure for the amount of variance in the data that is
+“explained” by the model. Real world data will always have variance. Not every
+value will neatly fall onto the mean value of a variable. Rather the data is
+dispersed around it. The same is true for our dependent variable:</p>
+<p><img src="_main_files/figure-html/plot_grade_distribution-1.png" width="672" /></p>
+<p>This is a density plot and shows the distribution of a metric variable as a
+smoothed line. We do not see every individual actual value but the general shape
+of the data. The red line represent the mean of <code>grade</code>, which is about <span class="math inline">\(2.97\)</span>.
+Most actual values are not exactly at the mean but are rather dispersed around
+it, ranging between <span class="math inline">\(1.0\)</span> and <span class="math inline">\(5.0\)</span>. This is the variance in our outcome
+variable.</p>
+<p>Let us now plot <code>grade</code> against <code>hours_centered</code> and add the regression line
+from our model above:</p>
+<p><img src="_main_files/figure-html/plot_lm_grade_hours_centered-1.png" width="672" /></p>
+<p>Without our regression line, all we would have is a cloud of points without much
+order to it. What linear regression does, is trying to bring order into this by
+fitting a line that best explains the variance of the dependent variable, <code>grade</code>
+in our case by its relationship to one or multiple dependent variables, here
+<code>hours_centered</code>.
+But this linear line can never explain the variance completely.
+For this it had to pass through every data point. Our line does not. Actually
+most data points do not lie on the regression line but at some distance to it.
+You will remember that OLS computes <em>the</em> regression line for which the squared
+distances are smallest. This is the line that explains most of the variance of <span class="math inline">\(y\)</span>
+by its relationship to <span class="math inline">\(x\)</span>, but not all variance is explained. An unexplained part
+remains. These are the residuals, the distance that points fall from the
+regression line. <span class="math inline">\(R^2\)</span> tells us the relative amount of how much we reduced the
+initial variance by fitting the line and thus explaining a part of said
+variance.</p>
+<p>A <span class="math inline">\(R^2\)</span> of <span class="math inline">\(0\)</span> would mean that no variance is explained, a value of <span class="math inline">\(1\)</span> that all
+variance is explained. Two highly unlikely outcomes. We will almost always
+explain something and never explain everything.</p>
+<p>In our model <span class="math inline">\(R^2\)</span> equals <span class="math inline">\(0.09344\)</span>. This means we explained about <span class="math inline">\(9.3\%\)</span> of the
+variance of <code>grade</code> by its relationship with <code>hours_centered</code>. That’s nice,
+but this also means that over <span class="math inline">\(90\%\)</span> are still unexplained. We will not explain
+all of the variance, i.e. <span class="math inline">\(R^2 = 1\)</span>, but in general a higher <span class="math inline">\(R^2\)</span> is desirable.</p>
+<p>So what can we do? We can try to add additional variables to the model that help
+to explain the variance in the outcome variable. Last session we concluded
+that the best model to measure the effect of invested hours on the achieved
+grade would also have to include <code>contact</code>:</p>
+<pre><code>## 
+## Call:
+## lm(formula = grade ~ hours_centered + contact, data = grades)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.85595 -0.74624 -0.02106  0.66648  2.50161 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       3.44352    0.10404  33.098  &lt; 2e-16 ***
+## hours_centered   -0.04967    0.01052  -4.723 4.43e-06 ***
+## contactE-Mail    -0.46482    0.16785  -2.769  0.00616 ** 
+## contactIn Person -1.02804    0.15240  -6.746 1.67e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.9305 on 196 degrees of freedom
+## Multiple R-squared:  0.2643, Adjusted R-squared:  0.253 
+## F-statistic: 23.47 on 3 and 196 DF,  p-value: 5.072e-13</code></pre>
+<p>We can use <span class="math inline">\(R^2\)</span> to compare the <em>model fit</em> of multiple models. Here the larger
+model achieved a considerably higher value of <span class="math inline">\(R^2 = 0.2643\)</span>. The model fit
+improved as we can now explain a higher ratio of the variance in <code>grade</code>.</p>
+<p>After <span class="math inline">\(R^2\)</span> we see another value, <em>Adjusted R-squared</em>. This becomes relevant
+if we add additional variables to our model. <span class="math inline">\(R^2\)</span> almost always increases, and
+never decreases, when adding additional variables to the model,
+especially if we have few observations. Because of this <span class="math inline">\(R^2\)</span> can get less
+reliable when we have many variables and few observations. <em>Adjusted R-squared</em>
+corrects for this by including both factors in the calculation. When we have
+many observations the differences are negligible. This is true for our case.
+We have relatively many observations and few variables in our model, so the
+values of both measures are rather close. But in cases where this relationship
+is not as favorable, adjusted R-squared should be used in place of the regular
+<span class="math inline">\(R^2\)</span>.</p>
+<p>The block in our output also gives us the <em>Residual standard error</em>. As we have
+seen above, most actual data point do not lie on the regression line but some
+distance away from it. These are the residuals. Thus their standard error basically
+tells us how much we miss the spot on average. As it is given in units of the
+dependent variable, we can say that the estimates for <code>grade</code> based on our
+second model are on average <span class="math inline">\(0.93\)</span> off. A considerable amount, as this is almost
+one whole grading step. This is still an improvement from the <span class="math inline">\(1.028\)</span> in the
+first model but nevertheless a substantial error.</p>
+<p>The last line in the output gives us two connected measures. The <em>F-statistic</em>
+is the test statistic for <span class="math inline">\(R^2\)</span> and is used the compute the corresponding
+<em>p-value</em>.
+In this case we are testing if the <span class="math inline">\(R^2\)</span> our model returned based on our sample
+is possible, when the actual population value of <span class="math inline">\(R^2\)</span> is <span class="math inline">\(0\)</span>. In other words,
+could we have achieved this <span class="math inline">\(R^2\)</span> by chance if the independent variables in our
+model actually do not explain part of the variance in the population?
+Both of our models have very small p-values, so it is highly unlikely that we
+have just explained some variance by chance. This gives further credibility to
+our model specification.</p>
+<p>We can conclude that the second model was an improvement over the first. But can
+we do more? Sure! We can add additional explanatory variables:</p>
+<pre><code>## 
+## Call:
+## lm(formula = grade ~ hours_centered + previous_grades_centered + 
+##     attendance + contact, data = grades)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.3835 -0.2525  0.0167  0.2678  0.9347 
+## 
+## Coefficients:
+##                           Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)               3.617949   0.068077  53.145  &lt; 2e-16 ***
+## hours_centered           -0.050830   0.004433 -11.466  &lt; 2e-16 ***
+## previous_grades_centered  0.874123   0.028657  30.503  &lt; 2e-16 ***
+## attendanceTRUE           -0.324653   0.065781  -4.935 1.72e-06 ***
+## contactE-Mail            -0.413808   0.069817  -5.927 1.39e-08 ***
+## contactIn Person         -0.853252   0.063964 -13.340  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.3869 on 194 degrees of freedom
+## Multiple R-squared:  0.8741, Adjusted R-squared:  0.8709 
+## F-statistic: 269.4 on 5 and 194 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>The p-value is even lower, and the F-statistic even higher, compared to our
+second model, but this was never an issue. What is more interesting is that we
+have substantially increased <span class="math inline">\(R^2\)</span> and decreased the residual standard error.
+As we have concluded last week, this larger model is better at predicting the
+actual values of <code>grade</code>. Thus the explained variance has to increase and the
+average error in estimating y has to decrease. But is this the better model? The
+values on the model fit would suggest so. And this also is true, if our aim is
+predicting <code>grade</code> to the best of our abilities. But if our aim is still
+measuring the effect of <code>hours</code> on <code>grade</code> we know from our DAG that we do not
+have to or even should not control for the additional variables to get an
+unbiased estimator for the effect of interest.</p>
+<p>What can we take away from this? While the model fit measures are an important
+tool for comparing multiple possible models and better values are desirable in
+general, it should not be our goal to just max out all measures and declare this
+model the “winner”. It is never that easy in statistics.
+One thing we can never replace is thorough theoretical work before even
+computing our first model. Based on our DAG, if it is correct, we know that we do not
+have to control for previous grades and attendance. Including them may give us a
+larger <span class="math inline">\(R^2\)</span>, but is still not the correct way to build our model.</p>
+<p>Based on this our best model is still the second one:</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="lin-t-3.html#cb77-1" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = grade ~ hours_centered + contact, data = grades)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.85595 -0.74624 -0.02106  0.66648  2.50161 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       3.44352    0.10404  33.098  &lt; 2e-16 ***
+## hours_centered   -0.04967    0.01052  -4.723 4.43e-06 ***
+## contactE-Mail    -0.46482    0.16785  -2.769  0.00616 ** 
+## contactIn Person -1.02804    0.15240  -6.746 1.67e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.9305 on 196 degrees of freedom
+## Multiple R-squared:  0.2643, Adjusted R-squared:  0.253 
+## F-statistic: 23.47 on 3 and 196 DF,  p-value: 5.072e-13</code></pre>
+</div>
+<div id="regression-diagnostics" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Regression diagnostics<a href="lin-t-3.html#regression-diagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As linear regression is a statistical technique, there are certain statistical
+assumptions we have to meet. If we violate those, the best laid plans may
+falter and our results may be not as robust as we hoped.
+Let us go through these assumptions and the tests to check for them one by one.</p>
+<div id="linearity" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Linearity<a href="lin-t-3.html#linearity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The name already gives it away, a <em>linear</em> regression is used to estimate
+<strong>linear</strong> relationships between variables. For this to work, the relationships
+actually have to be linear. But a relationship between two variables can have
+other functional forms. Consider this for example:</p>
+<p><img src="_main_files/figure-html/non_linear-1.png" width="672" /></p>
+<p>The relationship is clearly not linear. But we can still fit a regression and
+get a result:</p>
+<p><img src="_main_files/figure-html/non_linear_reg-1.png" width="672" /></p>
+<p>The regression line shows us that <code>x</code> and <code>y</code> are completely uncorrelated. This
+is clearly not true, but as our linear regression assumes linearity, it tries to
+model the relationship in linear terms.</p>
+<p>What we can do in such cases is to transform the variable in question in a
+non-linear way. Here the quadratic relationship is easy to spot, so if we
+transform <span class="math inline">\(x\)</span> to <span class="math inline">\(x^2\)</span>, this happens:</p>
+<p><img src="_main_files/figure-html/non_linear_reg_squared-1.png" width="672" /></p>
+<p>The non-linear relationship between <code>x</code> and <code>y</code> has been transformed into a
+linear one.</p>
+<p>For real world data, the non-linearity most often is not as straightforward to
+spot as in this example. A first step to approach this, is inspecting a
+scatterplot matrix. This is usually done before starting to model to identify
+relationships between the variables used.</p>
+<pre><code>## Warning: package &#39;GGally&#39; was built under R version 4.2.3</code></pre>
+<p><img src="_main_files/figure-html/scatterplot_matrix-1.png" width="672" /></p>
+<p>The diagonal displays the distribution of all variables included. Here metric
+variables are displayed as density plots and categorical variables as bar plots.
+Below and above the diagonal the relationship between two variables is shown.
+The scatterplot on the left of the second row is the one between <code>hours</code> and
+<code>grade</code> we have already seen several times. There is no indication of
+non-linearity here. What we have not inspected yet, is the relationship
+between <code>contact</code> and the two other variables.</p>
+<p>The bottom row contains histograms of the two metric variables by the category
+of contact, the right column boxplots for the same combination. Without going
+into too much detail on both types of plots, both show us how the distribution
+for both metric variables changes by category. The more personal the contact
+with the lecturer, the lower the distribution of final grades is. This makes
+sense, as we have already seen this correlation in the results of our model.
+Between <code>hours</code> and <code>contact</code> there seems to be no correlation. The amount of
+hours a student invests in writing the paper, does not lower the hours invested
+in a systematic way.</p>
+<p>But this does not clear the model of suspicions of non-linearity just yet. Even
+when all pairwise relationships are linear, controlling for multiple variables
+at the same time can introduce non-linearity for this specific combination.
+One way to approach this is to inspect the <em>Residuals vs. Fitted</em> plot. As the
+name suggests, this plots the fitted values, i.e. the estimates for our
+dependent variables based on the model, against the residuals of the dependent
+variable. When the relationship is linear, we should see a more or less straight
+line along the x-axis, where <span class="math inline">\(y = 0\)</span>.</p>
+<p><img src="_main_files/figure-html/residuals_fitted-1.png" width="672" /></p>
+<p>For many use cases, the line is straight enough, indicating no clear and strong
+patterns of non-linearity. Still the residuals seem to be slightly off for very
+good and very bad estimated grades.</p>
+<p>Besides violating the assumption of linearity, patterns in the residuals vs.
+fitted plot can also indicate that there is some important explanatory variable
+missing from the model.
+We will return to this after we have applied the further tests and
+discussed the remaining assumptions.</p>
+</div>
+<div id="normally-distributed-residuals" class="section level3 hasAnchor" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Normally distributed residuals<a href="lin-t-3.html#normally-distributed-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Another assumptions in linear regression is that the residuals are normally
+distributed. This is especially relevant for sample with a small <span class="math inline">\(n\)</span> as the
+test statistics tend to get unreliable in these cases if the residuals are not
+normally distributed. For larger samples, as in our case, this is not as
+problematic. Still, systematic deviations from normality can indicate that the
+model is not <em>parsimonious</em>. This means that either not all relevant variables
+are included or that variables are included that are not necessary for the model.</p>
+<p>We get a first idea of the distribution from the model summary. This shows us
+the median as well as the 25- &amp; 75-percentiles and the minimum and maximum values.
+While strong and clear violations against the normality assumption could already
+be visible here, these measures are not enough to actually test for normality.
+A more informative and accurate approach is using a <em>Q-Q plot</em>. This plots the
+standardizes residuals, the residuals divided by their standard error, against
+a theoretical normal distribution. If the residuals are perfectly normally
+distributed, each data point lies on the diagonal, if they are not they move
+away from the line. Small deviations, especially in the tails, should not be
+over emphasized. What we are looking for are clear and systematic deviations.</p>
+<p><img src="_main_files/figure-html/qq-1.png" width="672" /></p>
+<p>In the case of our model, most data points lie on the diagonal, while there are
+some small deviations in the tails. As our n is large enough, this should not be
+problematic. It may indicate that the model is not parsimonious but there is
+no clear cause for concern here.</p>
+</div>
+<div id="homoscedasticity" class="section level3 hasAnchor" number="7.3.3">
+<h3><span class="header-section-number">7.3.3</span> Homoscedasticity<a href="lin-t-3.html#homoscedasticity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <em>homoscedasticity</em> assumption states that the residuals are expected to have
+a constant variance over the whole range of the dependent variable. Let us
+assume that the variance of our residuals would be lower for very good grades
+and higher for very bad ones. This would indicate that we can make more accurate
+estimates for better grades than for worse ones as a small variance would
+indicate smaller residuals and thus a smaller error. For the assumption to hold
+we must be able to make about the same quality, be it high or low, for all
+values of <code>grade</code>.</p>
+<p>The problem is that the computation of the standard errors, test statistics and
+p-values depends on this assumption. If the assumption is violated, if we have
+<em>heteroscedasticity</em>, these measures are not reliable anymore.</p>
+<p>The problem often occurs when the dependent variable is not symmetric. In the
+scatterplot matrix above, we already saw that <code>grade</code> is fairly symmetrically
+distributed, so we would not expect problems here. If our dependent variable was
+unsymmetrical, transforming it to be more symmetrical, e.g. by using the
+logarithm or a square root, could help.</p>
+<p>To check for problems with heteroscedasticity, we can use the <em>Scale-Location</em>
+plot. This plots the fitted values against the square root of the standardized
+residuals. For homoscedasticity to hold, we should see our data points as a
+horizontal band with more or less constant width running from the left to the
+right. The same goes for the plotted line.</p>
+<p><img src="_main_files/figure-html/homoscedasticity-1.png" width="672" /></p>
+<p>In our case the homoscedasticity assumption holds. Slight variations are not
+problematic and overall the variance is constant.</p>
+</div>
+<div id="no-overly-influential-data-points" class="section level3 hasAnchor" number="7.3.4">
+<h3><span class="header-section-number">7.3.4</span> No overly influential data points<a href="lin-t-3.html#no-overly-influential-data-points" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Observations can get highly influential if they have unusual values. Sometimes
+these are extremely low or high values on some variable. But even “normal” values
+on two or more variables can get unusual in their combination. Imagine a student
+with <span class="math inline">\(60\)</span> invested hours. A high value but not overly extreme. Now the same student
+had in person contact with their lecturer but still received a <span class="math inline">\(5.0\)</span>. This could
+potentially be an influential data point as this combination is unusual in terms of what the
+model expects. In case of our model this observation would most probably not be
+overly influential. But imagine the same observation with <span class="math inline">\(300\)</span> invested hours.
+Such extreme cases can influence the fit by figuratively “puling” the regression
+line in their direction.</p>
+<p>We can divide influential data points into unusual values on the dependent
+variable, <em>outliers</em>, and unusual values on independent variables,
+<em>high leverage points</em>. The latter have high leverage because they “pull” on the
+regression lines and thus change the slope. As a rule of thumb, we can consider
+values with standardized residuals over <span class="math inline">\(3\)</span> or under <span class="math inline">\(-3\)</span> outliers.
+Concerning the dependent variables we can compute the <em>leverage statistic</em>.
+Here values that exceed <span class="math inline">\(2 * (p + 1) / n\)</span>, where <span class="math inline">\(p\)</span> is the number of
+predictors, are considered as having high leverage.
+We can inspect both at the same time in the <em>Residuals vs. Leverage</em> plot.</p>
+<p><img src="_main_files/figure-html/residuals_leverage-1.png" width="672" /></p>
+<p>We can see that there are no clear outliers. To assess points with high leverage
+we first have to compute the threshold as: <span class="math inline">\(2 * (3 + 1) / 200 = 0.04\)</span>. Note that
+while we have two independent variables in our model, we actually have three
+predictors due to our categorical variable. Thus we have to compute with <span class="math inline">\(p = 3\)</span>
+instead of <span class="math inline">\(p = 2\)</span>.
+We can
+see that there are a number of points that exceed this value. The question is,
+why do these values exist? Sometimes these are measurement errors, extreme values
+or unusual combinations that come down to the researcher recording the wrong
+values into the data set. In these cases we can try to fix the errors or remove
+the observations from the data. As we have several values with high leverage,
+this seems highly unlikely. But if we had not simulated the data ourselves and
+knew that there is no error, we should at least check. What seems more probable
+though, and is often the actual root of high leverage, is that there are
+variables missing from the model that could explain the high values.
+In this case the values should be lower after we include the missing
+variables into the model. We will return to this later.</p>
+<p>We also may not have a serious problem here. Leverage on its own does not have
+to be problematic. Some data points will always be more influential than others
+and remember that the cutoff is always just a rule of thumb. As said above, it
+is the combination of unusual values that tends to get problematic. We can check
+for observations that are outliers and have high leverage visually in our plot.
+Problematic observations tend to gather in the upper and lower right corners.
+As neither are populated for our model, we can not really conclude that we have
+overly influential data points.</p>
+<p>XXX IS LEVERAGE CORRECTLY COMPUTED? XXX</p>
+</div>
+<div id="no-multicollinearity" class="section level3 hasAnchor" number="7.3.5">
+<h3><span class="header-section-number">7.3.5</span> No (multi)collinearity<a href="lin-t-3.html#no-multicollinearity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The final assumption we will discuss here, is the absence of (high) collinearity
+between the predictor variables. Collinearity is present, if two independent
+variables are highly correlated with each other. This can become a problem as it
+gets harder to individually estimate the effects for both variables on the
+outcome as the collinear variables vary together at the same time.</p>
+<p>Often collinearity can already be spotted in the correlation matrix. Considering
+our matrix above we saw no clear indication that <code>hours</code> and <code>contact</code> are
+correlated. But the problem can get more complicated if we include three or more
+independent variables in our model. While none of the pairs of variables may be
+highly correlated, correlation may exist for a set of three or more of those
+variables. In these cases we speak of <em>multicollinearity</em>. We can not spot this
+in a correlation matrix, but there is an easy to use measure available.</p>
+<p>The <em>variance inflation factor</em> (VIF) can be used to inspect (multi)collinearity
+between two or more independent variables accurately. A VIF of <span class="math inline">\(1\)</span> would
+indicate no collinearity. For real world data this is almost never true as some
+amount of collinearity always exists. But in general we can say that the VIF
+should be near <span class="math inline">\(1\)</span> and should not exceed a value of <span class="math inline">\(5\)</span>.</p>
+<p>Let us compute the measure for our model with <code>hours_centered</code> and <code>contact</code>:</p>
+<pre><code>## Warning: package &#39;car&#39; was built under R version 4.2.3</code></pre>
+<pre><code>## hours_centered        contact 
+##       1.004352       1.004352</code></pre>
+<p>Both values are very close to <span class="math inline">\(1\)</span> so we can conclude that we did not violate
+the assumption. But what could we do, if we did? One approach is to just delete
+one of the highly correlated independent variables from the model. As they vary
+together, it may be save to exclude one of them without losing to much
+information. Another approach would be to combine both variables into a new
+measure. Let us imagine that besides <code>contact</code> we would have another variable in
+our model, measuring how well a student feels supported by their lecturer in
+writing the paper. We could also imagine both variables being strongly
+correlated as they measure comparable concepts. We could then either drop one of
+the variables, maybe losing some information in the process, or we could combine
+both into a new variable which measures the form and the feeling of support at
+the same time, maybe leading to a more accurate estimate while at the same time
+eliminating the problem of collinearity. Which one is the right solution
+depends on the specific case.</p>
+</div>
+</div>
+<div id="returning-to-our-research-question-1" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Returning to our research question<a href="lin-t-3.html#returning-to-our-research-question-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we tested for linearity above, we saw a mild pattern in the data which is
+not explainable by a violation of the assumption of linearity and thus could be
+an indication of a missing relevant explanatory variable in our model. Some of
+the other tests also supported this notion. The Q-Q plot showed us that the
+residuals have some slight deviations from normality in the tails. While these
+deviations are small enough to not cause concern on their own, taken together
+with the residuals vs. fitted plot this gives more weight to the suspicion that
+some important variable is missing. We also identified some of observations with
+high leverage. While we can rule out errors in our data, the high leverage could
+also be explainable by a missing variable.</p>
+<p>But which variable could be missing from the model?
+If our DAG is correct, we can rule out <code>attendance</code> and
+<code>previous_grades</code>. We did assume that <code>contact</code> is a confounder for <code>hours</code> and
+<code>grade</code> and thus included it in our model. Of course we
+could also miss a variable that is not in our data at all, or even one that is
+not measureable. As we did simulate the data, we know this is not true, but with
+real world data this is always a possibility.</p>
+<p>Let us think about the <code>contact</code>variable once more.
+We did assume, that the more personal the contact, the more efficiently the time
+working on the paper can be used. And here may lie the problem. The way we included
+<code>contact</code> in the model is not the way we reasoned in our DAG. It would be
+correct if we assumed that the more personal the contact, the less time has to
+be invested. But we already saw in the scatterplot matrix that there is no such
+relationship between the variables. To specify the effect of <code>contact</code> in the
+model correctly, reflecting the idea of a more efficient use of time the closer
+the contact was, we have to include it as an interaction with <code>hours</code>.</p>
+<div id="interactions" class="section level3 hasAnchor" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Interactions<a href="lin-t-3.html#interactions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In an <em>interaction</em>, we assume that the effect of one variable differs based on
+the value of another variable. Let us return to the formula for a multiple
+regression with two variables:</p>
+<p><span class="math display">\[y = \beta_0 + \beta_1*x_1 + \beta_2*x_2 + \epsilon\]</span></p>
+<p>Here we assume that the value of <span class="math inline">\(y\)</span> varies with the value of <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> as
+indicated by the coefficients <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>.</p>
+<p>But we could also follow the notion that the value of <span class="math inline">\(x_1\)</span> influences <span class="math inline">\(y\)</span>
+differently based on the value of <span class="math inline">\(x_2\)</span>. For example the effect of <span class="math inline">\(x_1\)</span> on <span class="math inline">\(y\)</span>
+could be higher when <span class="math inline">\(x_2\)</span> also has a high value. This is an interaction and is
+reflected in the formula by adding an additional multiplicative term between
+the two dependent variables with an additional associated coefficient:</p>
+<p><span class="math display">\[y = \beta_0 + \beta_1*x_1 + \beta_2*x_2 + \beta_3 * x_1 * x_2 + \epsilon\]</span></p>
+<p>To get a better understanding of this, let us return to our model and add an
+interaction between <code>hours_centered</code> and <code>contact</code>.</p>
+<pre><code>## 
+## Call:
+## lm(formula = grade ~ hours_centered + contact + hours_centered * 
+##     contact, data = grades)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.77816 -0.72882 -0.08719  0.56140  2.53271 
+## 
+## Coefficients:
+##                                 Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                      3.44466    0.10345  33.298  &lt; 2e-16 ***
+## hours_centered                  -0.02893    0.01535  -1.885  0.06098 .  
+## contactE-Mail                   -0.46775    0.16729  -2.796  0.00569 ** 
+## contactIn Person                -1.01493    0.15171  -6.690 2.33e-10 ***
+## hours_centered:contactE-Mail    -0.02377    0.02657  -0.895  0.37204    
+## hours_centered:contactIn Person -0.05017    0.02442  -2.055  0.04125 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.9253 on 194 degrees of freedom
+## Multiple R-squared:   0.28,  Adjusted R-squared:  0.2615 
+## F-statistic: 15.09 on 5 and 194 DF,  p-value: 1.63e-12</code></pre>
+<p>How can we interpret these results?
+While the estimates for the intercept and for having e-mail or personal contact
+in comparison to having no contact at all have barely changed, the coefficient
+for the amount of hours invested substantially shrunk to almost half its former
+value. Untll now, we assumed that the effect of <code>hours</code> would be the same for
+each student. Now that we have included an interaction we assume that the effect
+of <code>hours</code> differs, based on the form of contact a student had.</p>
+<p>Let us rewrite our formula for <span class="math inline">\(\hat{y}\)</span> including the interaction.
+As we are interacting with a categorical variable with three categories, we have
+to add two interaction terms. The first for the effect of invested hours when
+e-mail contact was made and the second for the effect of hours when contact was
+made in person, in both cases compared to having had no contact.</p>
+<p><span class="math display">\[\hat{y} = b_0 + b_{hours\_centered} * x_{hours\_centered} + b_{E-Mail} * x_{E-Mail} +
+b_{In Person} * x_{In Person} +
+b_{hours\_E-Mail} * x_{hours\_centered} * x_{E-Mail} +
+b_{hours\_{In Person}} * x_{hours\_centered} * x_{In Person}\]</span></p>
+<p>Let us now also add the coefficients from the model:</p>
+<p><span class="math display">\[\hat{y} = 3.44466 -0.02893 * x_{hours\_centered} -0.46775 * x_{E-Mail}
+-1.01493 * x_{In Person}
+-0.02377 * x_{hours\_centered} * x_{E-Mail}
+-0.05017 * x_{hours\_centered} * x_{In Person}\]</span></p>
+<p>We can now consider the three possible forms of contact one by one.</p>
+<p>What happens, when a student had no contact? To explore this, we return to the
+regression formula and equal <span class="math inline">\(x_{E-Mail}\)</span> and <span class="math inline">\(x_{In Person}\)</span> to <span class="math inline">\(0\)</span>, which
+means that no contact was made beforehand. Note that for now we do not care
+about the actual value of <code>hours_centered</code>.</p>
+<p><span class="math display">\[\hat{y} = 3.44466 -0.02893 *x_{hours\_centered} -0.46775 * 0
+-1.01493 * 0
+-0.02377 * x_{hours\_centered} * 0
+-0.05017 * x_{hours\_centered} * 0\]</span></p>
+<p>This shortens to:</p>
+<p><span class="math display">\[\hat{y} = 3.44466 -0.02893 *x_{hours\_centered}\]</span></p>
+<p>For a student who did not make contact, we would estimate the final grade as the
+intercept minus <span class="math inline">\(0.02893\)</span> per hour invested more than the mean of
+<code>hours_centered</code>. Having equaled <span class="math inline">\(x_{E-Mail}\)</span> and <span class="math inline">\(x_{In Person}\)</span> to <span class="math inline">\(0\)</span> not
+only “switched off” the effects of <code>contact</code> but also removed the interaction
+effects from the equation, the estimated effect for <code>hours_centered</code> is only its
+coefficient of <span class="math inline">\(-0.02893\)</span>.</p>
+<p>What happens, when a student had e-mail contact?</p>
+<p><span class="math display">\[\hat{y} = 3.44466 -0.02893 * x_{hours\_centered} -0.46775 * 1
+-1.01493 * 0
+-0.02377 * x_{hours\_centered} * 1
+-0.05017 * x_{hours\_centered} * 0\]</span></p>
+<p>This shortens to:</p>
+<p><span class="math display">\[\hat{y} = 3.44466 -0.02893 *x_{hours\_centered} -0.46775 -0.02377 * x_{hours\_centered}\]</span></p>
+<p>and further to:</p>
+<p><span class="math display">\[\hat{y} = 2.97691 -0.0527 *x_{hours\_centered}\]</span></p>
+<p>The intercept is reduced by the coefficient of having e-mail contact, but what
+is actually of interest here is the effect that <code>hours_centerd</code> has. For a
+student who had e-mail contact, each hour invested above the mean reduces the
+estimated grade by <span class="math inline">\(-0.0527\)</span>.</p>
+<p>We can compute the same for a student with personal contact:</p>
+<p><span class="math display">\[\hat{y} = 3.44466 -0.02893 * x_{hours\_centered} -0.46775 * 0
+-1.01493 * 1
+-0.02377 * x_{hours\_centered} * 0
+-0.05017 * x_{hours\_centered} * 1\]</span></p>
+<p><span class="math display">\[\hat{y} = 3.44466 -0.02893 *x_{hours\_centered} -1.01493 -0.05017 * x_{hours\_centered}\]</span></p>
+<p><span class="math display">\[\hat{y} = 2.42973 -0.0791 *x_{hours\_centered}\]</span></p>
+<p>For a student who had in person contact, each hour invested above the mean
+reduces the estimated grade by <span class="math inline">\(-0.0791\)</span>.</p>
+<p>In practice we would have reached these conclusions more quickly by inspecting
+the output from our model and just subtracting the corresponding interaction
+effect from the effect for <code>hours_centered</code>, but it is important to
+understand what happens in the formula to get a full grasp on linear
+regression models.</p>
+<p>In the model without the added interaction we concluded that on average each
+hour invested above the mean decreases the final grade by about <span class="math inline">\(-0.5\)</span>. Now we
+see that the effect of hours depends on the form of contact had. This reflects
+the theoretical assumption from our DAG that time can be used more efficiently
+the more personal the form of contact was.</p>
+<p>The same DAG that informed our best model from last week now lead us to
+including the interaction. This underlines the importance of thorough
+theoretical thinking before starting to model. It was not even the case that
+the DAG was wrong, but our conclusions we draw from it were at least not
+completely right. If we had invested more time, we
+could have build the correct model directly. In our case we first needed the
+regression diagnostics to tell us that something might be off before we figured
+out our error.</p>
+</div>
+<div id="regression-diagnostics-revisited" class="section level3 hasAnchor" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Regression diagnostics (revisited)<a href="lin-t-3.html#regression-diagnostics-revisited" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We now have a theoretically sound model, but did we also solve the problems
+indicated in the regression diagnostics?</p>
+<p><img src="_main_files/figure-html/residuals_fitted_revisit-1.png" width="672" /></p>
+<p>The residuals vs. fitted plot now shows an almost straight horizontal line with
+no clear visible patterns.
+This indicates that the problem we saw with our former model actually came down
+to a missing variable, or to be more precise a missing term in our case.</p>
+<p><img src="_main_files/figure-html/qq_revisited-1.png" width="672" /></p>
+<p>The Q-Q plot now also shows more normally distributed residuals. While there are
+still some small deviations at the lower tail these do not indicate a remaining
+severe problem. The deviations are smaller than before and also not drastic in
+absolute terms. Also, as stated above, violating the normality assumption is less
+problematic with a high <span class="math inline">\(n\)</span> and few variables in the model, which is still true for
+our case.</p>
+<p><img src="_main_files/figure-html/residuals_leverage_revisited-1.png" width="672" /></p>
+<p>Adding the interaction term actually increased the leverage of the more
+influential observations. When we recompute the threshold as
+<span class="math inline">\(2 * (5 + 1) / 200 = 0.06\)</span>, we see that there still some observations with
+values higher than this. What has not changed, is that there are no clusters
+of observations in the lower or upper right corners. Overall we can conclude,
+that this problem is present but negligible. When there are observations that
+are problematic on both values at the same time, these also get marked by a red
+dashed line in the plot. This is also not present.</p>
+</div>
+</div>
+<div id="conclusion" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Conclusion<a href="lin-t-3.html#conclusion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Over the last three sessions we have learned what a linear regression is, how
+its formula worked, how to interpret the results for different kinds of
+variables as well as how to check and correct violations of its underlying
+assumptions.</p>
+<p>At the same time we built a model, which in its final version is able to
+accurately estimate our effect of interest. But we had one immeasurable
+advantage: We simulated the data ourselves and thus knew where the journey was
+going to end up from the start. We new our DAG was correct because the data was
+simulated in this way and we also knew that there was going to be a interaction
+effect to solve the remaining diagnostic problems. Sneaky, right? But in real
+world data, we do not have these advantages. Our DAGs can be incorrect and we
+may or may not find the missing part of the puzzle that elevates an OK model to
+a great one. All we can do is think, explore our data, think again, run
+diagnostics, think again and maybe most importantly do not give up along the
+way.</p>
+<p>In the next session we will return to our NBA data and try to apply everything
+that we have learned over the last sessions.</p>
+</div>
+<div id="further-resources-4" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Further Resources<a href="lin-t-3.html#further-resources-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="resources">
+<ul>
+<li><a href="https://courses.washington.edu/b515/l7.pdf">Lecture 7 Linear Regression Diagnostics - University of Washington</a>: This lecture slides explain the major assumptions of linear regression, the characteristics of residuals, and the methods for standardizing and testing residuals.</li>
+<li><a href="http://sthda.com/english/articles/39-regression-model-diagnostics/161-linear-regression-assumptions-and-diagnostics-in-r-essentials">Linear Regression Assumptions and Diagnostics in R: Essentials - STHDA</a>: This article provides an overview of linear regression assumptions and how to check them using diagnostic plots in R programming language.</li>
+<li><a href="https://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R5_Correlation-Regression/R5_Correlation-Regression7.html">Regression Diagnostics - Boston University School of Public Health</a>: This web page describes how to evaluate the model assumptions and identify potential problems using residual analysis and influence measures.</li>
+</ul>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="lin-t-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lin-a.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-linear-regression-t-3.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

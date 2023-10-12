@@ -59,7 +59,7 @@ model1 <- lm(salary ~ career_PTS + position_rec + season_start +
 
 # base R way to get predicted values
 data_nba$predicted_values <- model1$fitted.values
-data_nba <- data_nba %>% dplyr::select('_id', name, salary, predicted_values, everything())
+data_nba <- data_nba %>% dplyr::select('id', name, salary, predicted_values, everything())
 
 data_nba %>%
   ggplot(aes(x=salary, y=predicted_values)) +
