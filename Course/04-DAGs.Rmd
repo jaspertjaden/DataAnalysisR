@@ -4,15 +4,19 @@
 ::: {.objectives}
 * Getting to know DAGs
 * Understand its implications on achieving unbiased estimates for effects of interest
-* Building a DAG for the NBA data to model the effect of scored points on salary (in session 8)
+* Building a DAG for the NBA data to model the effect of scored points on salary
 
 :::
 
 ## Functions Covered
 
 ::: {.functions}
-- `dagitty()` : This function creates and analyzes Directed Acyclic Graphs (DAGs).
+- `dagitty()`: Define Directed Acyclic Graphs.
+- `plot()`: A generic base R function that can be used to plot a DAG.
+- `adjustmentSets()`: Derive the adjustment set from a DAG.
+
 :::
+
 ## Modelling
 
 This session kicks off the block on linear regression as a statistic
@@ -58,9 +62,9 @@ of text, hundred thousands of social media posts, and you want to explore the
 sentiment expressed in those. Do they lean to the positive or to the negative?
 You can now go and take a "small" sample, let us say a few thousands and 
 annotate them by hand. A lot of work, but based on those manually annotated
-posts you can train a machine learning model that learns from those posts and
+posts we can train a machine learning model that learns from those posts and
 then, if everything goes well, is able to automatically annotate the remaining
-hundred thousands of posts for you. Again, this is all about prediction; here 
+hundred thousands of posts for us. Again, this is all about prediction; here 
 predicting the sentiment of a post, the dependent variable, based on the words
 it contains, the independent variables.
 
@@ -76,7 +80,7 @@ statistics, at least for the social sciences.
 Here our goal is to estimate an effect of interest as accurately as possible.
 $y$ is still our dependent variable but our focus lies on understanding which
 $x$ variables influence $y$, in which direction this influence goes and what the
-magnitude is.
+magnitude of the effect is.
 
 Let us say we are interested in why people cast their vote for a certain party.
 We may have some hypotheses that proposes that voters who find certain issues
@@ -92,7 +96,7 @@ scored and the salary received for NBA players. We could approach this as a
 prediction problem, i.e. trying to predict the salary as accurately as possible 
 based on a model that incorporates the scored points as well as other factors
 that we assume of having an effect on the salary. We will return to this in 
-session 11. We could also approach this as estimation problem, i.e. trying to
+[session 11](#pm-t). We could also approach this as estimation problem, i.e. trying to
 estimate the effect of scored points on the salary. We will most probably have
 to include other variables that affect the relationship of score on salary as
 well, but the model used will not necessarily be the same. This approach is what
@@ -153,7 +157,7 @@ to the dependent variable.
 In the first example we only have the one path $X \rightarrow Y$, but in most
 "real" DAGs we will have multiple paths between $X$ and $Y$.
 
-Consider this DAG, were we introduce a second variable $A$:
+Consider this DAG, where we introduce a second variable $A$:
 
 ``` {r dag_paths, echo = FALSE}
 dagitty('dag{
@@ -243,7 +247,7 @@ us to prevent this pitfall.
 ##### Mediation
 
 A special case of pipes is *mediation*. We will only take about this briefly
-here and return to the topic in session 10.
+here and return to the topic in [session 10](#med).
 
 Consider this DAG:
 
@@ -281,7 +285,7 @@ compute the indirect effect as the difference between total and direct effect.
 
 The second pattern we may see is the *fork* or *confounder*.
 
-``` {r dag_mediation_0, echo = FALSE}
+``` {r dag_confounder, echo = FALSE}
 dagitty('dag{
         X [pos = "1,0"]
         Y [pos = "3, 0"]
@@ -302,7 +306,7 @@ assume that both effects are positive the value of $X$ would rise with the value
 of $A$ and the value of $Y$ would rise with the value of $A$ also.
 The opposite would be true if both effects were negative. Lower values for $A$ 
 would lead to lower values for $X$ and $Y$.
-But even the effects would be opposite, they would never cancel each other out
+But even if the effects would be opposite, they would never cancel each other out
 perfectly. $X$ and $Y$ vary together.
 If we just include $X$ and $Y$ in our model this would show up as an
 effect from $X$ on $Y$.
@@ -333,7 +337,7 @@ variables have lower values in more urban regions. Our dependent and independent
 variables both vary by the value of the confounder and thus it seems that there
 is a correlation where there actually is none. If we now include a measure for
 the type of region, let us say population density, this spurious association
-disappears and we can return to normalitty. Storks do not bring babies after all.
+disappears and we can return to normality. Storks do not bring babies after all.
 
 ``` {r dag_storks, echo = FALSE}
 dagitty('dag{
@@ -364,7 +368,7 @@ dagitty('dag{
 ```
 
 Here $A$ is influenced by the value of $X$ as well as $Y$. Again, there should
-be no effect of $X$ on $Y$ and in this case there is none if just include $X$ 
+be no effect of $X$ on $Y$ and in this case there is none if we just include $X$ 
 and $Y$ in our model. If we also include $A$ we introduce an association
 between $X$ and $Y$ even if there should be none. This implies that we should
 not control for colliders because we would open up a path that creates a spurious
@@ -514,7 +518,7 @@ other conclusions. The team a player is employed by and the season where an
 observation was measured are both relevant predictors for the received salary.
 For prediction we would have included both variables because this should increase
 the accuracy of the prediction. We will return to this in more detail in 
-sessions 11 and 12.
+[session 11](#pm-t).
 
 
 ## Resources
@@ -555,7 +559,7 @@ $X$ on $Y$. Spoiler: In this case the only path we want to keep open is the
 direct effect $X \rightarrow Y$.
 
 While this is doable, you may be unsure if you found the correct set. Luckily there
-is a convenient way to find out. https://dagitty.net/ provides a browser tool
+is a convenient way to find out. <https://dagitty.net/> provides a browser tool
 where you can draw DAGs - as well as export them for your papers - and check for
 the correct adjustment set. After launching the tool you should click on "Model"
 and then "New model". Now you can start drawing. New variables are added by 
@@ -563,7 +567,7 @@ clicking on the canvas and naming them, arrows are added by first clicking on
 the variable where the arrow should start and then on the variable where it
 should end. For everything to work you should also declare the independent
 variable of interest the "Exposure" and the dependent variable the "Outcome".
-Both can be set on the left under "Variable" When the DAG is drawn correctly,
+Both can be set on the left under "Variable". When the DAG is drawn correctly,
 the top right panel "Causal effect identification" should show which variables
 need to be part of the adjustment set to estimate the effect of interest.
 
@@ -574,46 +578,49 @@ direct effect.
 
 ### How to use dagitty()
 
-Dagitty is a web-based tool that allows you to create, analyze, and visualize DAGs. You can use it to check the validity of your causal assumptions, identify the adjustment set for estimating an effect of interest, and explore the consequences of different interventions. To use dagitty, follow these steps:
+We can also draw DAGs directly in R, using the `dagitty` package.
+To start drawing a DAG we write `dagitty('dag {})`.
+The actual definition of the DAG takes place between the squirly brackets.
+First we list all variables in the model by writing their names between
+quotation marks. For each variable we can optionally add additional options between square
+brackets following the name. In the example below we define one variable as `exposure`
+and one as `outcome`, just like we would do on dagitty.net. We also give values
+for the relative positions. If we skip those, `dagitty()` will decide on the positions
+itself which may or may not look nice and tidy. After all variables are defined
+we write out the paths that should be present connecting the variable names with
+`<-` or `->`, depending on the direction an arrow should point. We can than use `plot()`
+to see the DAG.
 
-1. Go to [dagitty.net](https://dagitty.net) and click on "Model" and then "New model".
-2. Add variables by clicking on the canvas and naming them. You can also drag and drop variables from the left panel.
-3. Add arrows by clicking on the source variable and then on the target variable. You can also use the keyboard shortcuts listed on the left panel.
-4. Specify the exposure variable (the independent variable of interest) and the outcome variable (the dependent variable) by selecting them from the drop-down menus on the left panel under "Variable".
-5. Check the causal effect identification panel on the top right corner. It will show you the adjustment set for estimating the total effect of the exposure on the outcome, as well as the direct effect if you specify a mediator variable.
-6. You can also perform various analyses on your DAG, such as testing for d-separation, finding minimal sufficient adjustment sets, simulating data, and more. You can access these features from the menus on the top bar.
-7. You can export your DAG as an image or a code for various software packages by clicking on "Export" and choosing your preferred format.
-
-Here is an example of how to use the `dagitty()` function in R:
-
-```{r, dag_example, message=FALSE, warning=FALSE}
+```{r, dagitty_example, message=FALSE, warning=FALSE}
 # Load the dagitty package
 library(dagitty)
 
 # Define a DAG
-dag <- dagitty( 'dag {
-  "Exposure" [exposure]
-  "Outcome" [outcome]
-  "Confounding Variable" [pos="1,0"]
-  "Mediator" [mediator]
+dag <- dagitty('dag {
+  "Exposure" [exposure, pos="-1,0"]
+  "Outcome" [outcome, pos="1,0"]
+  "Confounding Variable" [pos="0,-1"] 
+  "Mediator" [pos="0,1"]
   "Exposure" -> "Outcome"
-  "Exposure" -> "Mediator"
-  "Mediator" -> "Outcome"
-  "Confounding Variable" -> "Exposure"
-  "Confounding Variable" -> "Outcome"
+  "Exposure" -> "Mediator" -> "Outcome"
+  "Exposure" <- "Confounding Variable" -> "Outcome"
 }' )
 
 # Plot the DAG
-plot( dag )
-
-# Identify the minimal adjustment set for estimating the total effect of Exposure on Outcome
-adjustmentSets( dag, exposure = "Exposure", outcome = "Outcome" )
-
+plot(dag)
 ```
 
-In this example, we first define a DAG with four variables: Exposure, Outcome, Confounding Variable, and Mediator. We specify the relationships between these variables with arrows. Then we plot the DAG and identify the minimal adjustment sets for estimating the total effect and direct effect of Exposure on Outcome. The `adjustmentSets()` function returns a list of variables that we need to control for in order to estimate these effects without bias.
+We can also usethe function `adjustmentSets() to derive our adjustment set.
+The argument `effect = ` lets us control if we want to see the adjustment set
+for the `"total"` or `"direct"` effect-
 
-Dagitty is a useful tool for building and testing your causal models based on DAGs. However, it is not a substitute for careful thinking and theoretical knowledge. You should always check if your DAG reflects your assumptions and hypotheses correctly and if it is consistent with the data and the literature.
+```{r, dagitty_adj, message=FALSE, warning=FALSE}
+# Identify the minimal adjustment set for estimating the total effect of Exposure on Outcome
+adjustmentSets(dag, effect = "total")
+
+# Identify the minimal adjustment set for estimating the direct effect of Exposure on Outcome
+adjustmentSets(dag, effect = "direct")
+```
 
 
 ### More on DAGs
@@ -631,7 +638,7 @@ McElreath, Richard (2020). Statistical Rethinking: A Bayesian Course with
 Examples in R and STAN. Second Edition. Boca Raton & Oxon: CRC Press.
 Chapter 5: The Many Variables & The Spurious Waffles, 123-160.
 
-Corresponding YouTube lecture: https://www.youtube.com/watch?v=mBEA7PKDmiY
+Corresponding YouTube lecture: <https://www.youtube.com/watch?v=mBEA7PKDmiY>
 
 
 Felix Elwert wrote a concise paper on DAGs with a perspective that is more 

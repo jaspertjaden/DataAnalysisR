@@ -1,4 +1,4 @@
-# Linear Regression - Exercises {#lin-e}
+# Linear Regression - Exercise {#lin-e}
 
 ## Exercises
 In this exercise, you will use the Boston Housing Dataset to explore the relationship between housing prices and various features of the houses and their surroundings. The dataset contains 506 observations and 15 columns. The last column, MEDV, is the median value of owner-occupied homes in $1000’s. This is the target variable that you will try to predict using linear regression models. The other 14 columns represent different features of the houses and their surroundings, such as crime rate, nitric oxides concentration, pupil-teacher ratio, etc.

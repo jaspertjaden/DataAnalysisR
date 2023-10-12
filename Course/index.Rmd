@@ -1,4 +1,4 @@
---- 
+---
 title: "Data Analysis with R for Social Scientists"
 author: "Jakob Tures & Jasper Tjaden"
 date: "`r Sys.Date()`"
@@ -13,47 +13,53 @@ link-citations: yes
 github-repo: jaspertjaden/DataAnalysisR
 ---
 
-# Intro {-}
+# Intro {.unnumbered}
 
 This course offers an accessible and easy introduction to one of the fastest growing statistical packages used in social science and data science more generally.
 
-## Acknowledgements
-::: {.preface}
-About the Authors 
+## About the Authors
 
-- Dr. Jasper Tjaden (to be filled)
-
-- Jakob Tures (to be filled)
-
-Assistants
-
-- Md Niaz Morshed (Student Research Assistant)
+::: preface
+-   Prof. Dr. Jasper Tjaden (Professor for Applied Social Research and Public Policy at the University of Potsdam)
+    -   [My website](https://jaspertjaden.com)
+-   Jakob Tures (Research associate and PhD candidate at the chair for Methods of Empirical Social Research at the University of Potsdam)
+    -   [My website](https://www.uni-potsdam.de/de/soziologie-methoden/team/jakob-tures)
+-   Md Niaz Morshed (Student Research Assistant)
 :::
 
-Please download the data used in the course [here](https://www.kaggle.com/datasets/thedevastator/exploring-nba-player-performance-and-salaries-19?select=salaries_1985to2018.csv). To find more about me, have a look at [my website](https://jaspertjaden.com).
+<!-- ::: {.appendix} -->
 
+<!-- **Overview over the Course :** -->
 
-::: {.appendix}
+<!-- - **[Week 1: Introduction to Seminar](#intro-sem)** -->
 
-**Overview over the Course :**
+<!-- - **[Week 2: Exploratory Data Analysis-I](#eda-1)** -->
 
-- **[Week 1: Introduction to Seminar](#intro-sem)**
-- **[Week 2: Exploratory Data Analysis-I](#eda-1)**
-- **[Week 3: Exploratory Data Analysis-II](#eda-2)**
-- **[Week 4: DAGs](#dags-1)**
-- **[Week 5: Linear Regression Theory I: Simple Linear Regression](#lin-t-1)**
-- **[Week 6: Linear Regression Theory II: Multiple Linear Regression](#lin-t-2)**
-- **[Week 7: Linear Regression Theory III: Diagnostics](#lin-t-3)**
-- **[Week 8: Linear Regression - Application](#lin-a)**
-- **[Week 9: Logistic Regression - Exercises](#lin-e)**
-- **[Week 10: Mediation](#med)**
-- **[Week 11: Prediction - Theory](#pm-t)**
-- **[Week 12: Prediction - Application](#pm-a)**
-- **[Week 13: Logistic Regression](#log-est)**
-- **[Week 14: Course Paper - Discussion - Outlook](#out-look)**
+<!-- - **[Week 3: Exploratory Data Analysis-II](#eda-2)** -->
 
-:::
+<!-- - **[Week 4: DAGs](#dags-1)** -->
 
+<!-- - **[Week 5: Linear Regression Theory I: Simple Linear Regression](#lin-t-1)** -->
+
+<!-- - **[Week 6: Linear Regression Theory II: Multiple Linear Regression](#lin-t-2)** -->
+
+<!-- - **[Week 7: Linear Regression Theory III: Diagnostics](#lin-t-3)** -->
+
+<!-- - **[Week 8: Linear Regression - Application](#lin-a)** -->
+
+<!-- - **[Week 9: Logistic Regression - Exercises](#lin-e)** -->
+
+<!-- - **[Week 10: Mediation](#med)** -->
+
+<!-- - **[Week 11: Prediction - Theory](#pm-t)** -->
+
+<!-- - **[Week 12: Prediction - Application](#pm-a)** -->
+
+<!-- - **[Week 13: Logistic Regression](#log-est)** -->
+
+<!-- - **[Week 14: Course Paper - Discussion - Outlook](#out-look)** -->
+
+<!-- ::: -->
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages

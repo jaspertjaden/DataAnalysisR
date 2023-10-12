@@ -1,122 +1,186 @@
-# Exploratory Data Analysis - II {#eda-2}
-This week we will try to apply our last weeks knowledge into analysis.
+# Exploratory Data Analysis - Exercise {#eda-2}
 
-## Markdown Introduction
-
-R Markdown is a powerful tool that allows you to create dynamic documents, presentations, and reports using R code. It combines the core syntax of markdown (an easy-to-write plain text format) with embedded R code chunks that are run when the document is rendered¹.
+This week we will apply the concepts from last week in an exercise where you will conduct an exploratory data analysis on a different data set. To document your work on these exercises, you will use *R Markdown*.
 
 ## What is R Markdown?
 
-R Markdown is a file format that combines R code and plain text. The file extension is `.Rmd`. You can write R Markdown files in any text editor, but it is recommended to use an IDE (integrated development environment) like RStudio, which provides many features to help you write and preview your documents.
+R Markdown allows you to combine written text that is easy to format with R Code that is executed when *knitting* or *compiling* the document into the chosen output format. This allows us to describe our research, analyse our data, display results as tables or plots and interpret these, all in one file. In this way we can not only create reports on seminar exercises but also write websites - like the one your are looking at in this very moment -, seminar papers, articles or create presentations.
 
-R Markdown files consist of three main parts:
+It is also a great notebook for projects you are working on. More often than not, our work on a specific analysis will span multiple days, weeks or even months and it is often hard to remember what we were thinking the last time we worked on our code.
 
-- A YAML header that contains metadata and options for your document, such as title, author, date, output format, etc. The header starts and ends with three dashes (`---`).
+> "I am sure I had my reasons for writing this piece of code, but I can not for the life of me remember any of them..."
+>
+> --- Anonymous Coder 2023
 
-- A body that contains the main content of your document, written in plain text with Markdown syntax. Markdown is a simple way to format your text using symbols like `#` for headings, `*` for emphasis, `[link](url)` for hyperlinks, etc. You can also embed R code chunks in your document using three backticks (` markdown`) followed by `{r}` and some optional chunk options. The code chunks will be executed when you knit your document and the results will be displayed in the output.
+If we use R Markdown to document our work we can add text that explains our reasons, thoughts, ideas and plans at that very moment and pick up our work from there the next time we open the file.
 
-- A final code chunk that contains any cleanup or summary code that you want to run at the end of your document. This chunk is optional and starts with three backticks followed by `{r, echo = FALSE}`.
+R Markdown allows output to different file formats, including `html`, `docx`, `pptx` and `pdf`. Note that you need a LaTeX installation to knit to `pdf`. LaTeX is a typesetting language and used for producing high quality `pdf` documents. For simple `pdf` reports or presentations - sidenote: if you bring a `pptx` to a talk something will most probably go wrong or stop working... - you do not really need to know how LaTeX works, you just need an installed distribution. For these purposes the package `tinytex` gives you all you need and is easy to install from within R. [This site](https://bookdown.org/yihui/rmarkdown/installation.html#installation) explains how to install it. You can also get an overview of all possible output formats [here](https://rmarkdown.rstudio.com/lesson-9.html).
 
-R Markdown documents are fully reproducible, meaning that anyone can re-run the code and generate the same results. This makes it easy to share your work with others and ensure that your results are accurate and reliable.
+## Creating a R Markdown file
 
-One of the great things about R Markdown is its flexibility. You can use it to create a wide variety of output formats, including HTML, PDF, and Microsoft Word documents. You can even create interactive documents with Shiny components¹.
+Before you can create and compile R Markdown documents, you first have to install the package by writing `install.packages("rmarkdown")` in your console.
 
-To get started with R Markdown, you'll need to install the `rmarkdown` package from CRAN. This can be done by running the command `install.packages("rmarkdown")` in the R console². Once you have the package installed, you can create a new R Markdown document in RStudio by going to `File > New File > R Markdown`.
+Creating a new R Markdown file is as straightforward as it can be. In RStudio you can click of `File > New File > R Markdown...`. In the new window you can set up some basic information on the document - which will be displayed in the output - and chose your desired format. You can basically write R Markdown files in any text editor, just make sure that the file extension is saved as `.Rmd`. We still recommend using RStudio because it gives you some convenient options that a text editor will not, e.g. displaying a preview of your document and easy knitting of the final file.
 
-An R Markdown document is made up of text written in markdown syntax and chunks of R code. When you render the document, the R code is executed and its output (such as plots or tables) is inserted into the final document¹.
+## Writing in R Markdown
 
+### Document components
 
-When you render this document, the text and code will be combined to create an HTML file that includes both the markdown text and the output of the R code chunks.
+When you followed the steps above, a new R Markdown file will have been created. It basically consists of two main parts:
 
-You can easily add images to an R Markdown document using the standard markdown syntax for images. The basic syntax for adding an image is `![Alt text](image_url)`, where `Alt text` is the text that will be displayed if the image cannot be loaded, and `image_url` is the URL of the image you want to include.
+-   A `YAML` header - surrounded by three dashes `---` - where options for the document can be set. The good news is that you do not have to do anything here until you get more profound with using R Markdown. For now it is enough that all the options you set when creating the new file - the title, author, date and format of the output - are present and will be included in your output file.
 
+-   A body that contains the actual content of your document. Text is directly written in the body at the location where it is to be displayed in the output. We can use the simple Markdown syntax for formatting using a set of symbols, some of which we will explain below. We can also include R code in so called `chunks`, specifying if we also want it and/or the results to be displayed or "just" to be executed in the background. The code chunks will be executed when we compile the final document and everything that we want to include in the output - e.g. tables, plots or code examples - will be displayed where it occurs.
 
-R Markdown is a powerful tool that offers many advantages for data analysis and reporting. Some of the key benefits of using R Markdown include:
+### Formatting
 
-1. **Reproducibility**: R Markdown documents are fully reproducible, meaning that anyone can re-run the code and generate the same results. This makes it easy to share your work with others and ensure that your results are accurate and reliable.
+Here are some of the more common formatting elements you will need when starting out using R Markdown:
 
-2. **Flexibility**: R Markdown is incredibly flexible and can be used to create a wide variety of output formats, including HTML, PDF, and Microsoft Word documents. You can even create interactive documents with Shiny components.
+#### Headers
 
-3. **Ease of use**: R Markdown is easy to use, even for people with little or no programming experience. The core syntax of markdown is simple and intuitive, and the ability to embed R code directly into the document makes it easy to include dynamic content.
+To include sections in a document we use `#` followed by the header we want to be displayed. We can define levels for sections by using multiple `#` in this way:
 
-4. **Integration with R**: R Markdown is tightly integrated with R, making it easy to access and use the full power of the R language for data analysis and visualization.
-
-5. **Collaboration**: R Markdown makes it easy to collaborate with others on data analysis projects. You can share your code and results with others, and they can easily reproduce your work and build on it.
-
-Overall, R Markdown is a powerful tool that offers many advantages for data analysis and reporting. It's a great way to create dynamic, reproducible documents that are easy to share and collaborate on 😊
-
-I hope this introduction helps you understand what R Markdown is and how it can be used. If you want to learn more, there are many great resources available online, including the [R Markdown website](https://bookdown.org/yihui/rmarkdown/) 😊
-
-
-
-
-
-
-
-## Applying EDA(WVS/own data)
-
-### Exercise - 1
-
-**Boston Housing Dataset**
-
-Housing data contains 506 census tracts of Boston from the 1970 census. The dataframe BostonHousing contains the original data by Harrison and Rubinfeld (1979), the dataframe BostonHousing2 the corrected version with additional spatial information.
-
-The dataset has two prototasks: `nox`, in which the nitrous oxide level is to be predicted; and `price`, in which the median value of a home is to be predicted.
-
-**Other Details:** 
-
-  *Origin*
-    -The origin of the boston housing data is Natural.
-    
-  *Usage*
-    -This dataset may be used for Assessment.
-    
-  *Number of Cases*
-    -The dataset contains a total of 506 cases.
-    
-  *Order*
-    -The order of the cases is mysterious.
-    
-  *Variables*
-    -There are 14 attributes in each case of the dataset. They are:
-    
-    1. CRIM - per capita crime rate by town
-    2. ZN - proportion of residential land zoned for lots over 25,000 sq.ft.
-    3. INDUS - proportion of non-retail business acres per town.
-    4. CHAS - Charles River dummy variable (1 if tract bounds river; 0 otherwise)
-    5. NOX - nitric oxides concentration (parts per 10 million)
-    6. RM - average number of rooms per dwelling
-    7. AGE - proportion of owner-occupied units built prior to 1940
-    8. DIS - weighted distances to five Boston employment centres
-    9. RAD - index of accessibility to radial highways
-    10. TAX - full-value property-tax rate per $10,000
-    11. PTRATIO - pupil-teacher ratio by town
-    12. B - 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town
-    13. LSTAT - % lower status of the population
-    14. MEDV - Median value of owner-occupied homes in $1000's
-
-You can include this data by installing mlbench library:
-```{r, warning=FALSE, message=FALSE}
-#install.packages("mlbench") ## installing the library
-library(mlbench) #adding the library
-library(openxlsx)
-library(dplyr)
-data(BostonHousing2)
-housing <- BostonHousing2
-write.xlsx(housing, "../datasets/boston.xlsx")
+```         
+# Section 1
+## Section 1.1
+## Section 1.2
+### Section 1.2.1
+### Section 1.2.2
+## Section 1.3
+# Section 2
 ```
 
-::: {.assignx}
+#### Text
 
-1. **Read the dataset**: Read the Boston Housing Dataset from the Excel file.
+We write the text between the section headers at the place where it should be displayed in the final document. We can insert line breaks at any point but these will not be rendered in the output. To include an actual paragraph we will have to include a blank line between between two blocks of text. Two emphasize certain words or phrases, we can wrap them in `*` for italics or `**` for bold face.
 
-```{r, include=FALSE}
-library(readxl)
-BostonHousing <- read_excel("../datasets/boston.xlsx")
+Consider this Markdown code:
+
+```         
+This is the first paragraph.
+This still is the first paragraph.
+
+Here begins the second paragraph.
+It includes emphasis, by using *italics* and also **bold face** words.
 ```
 
+It is rendered as:
 
-2. **Inspect the dataset**: Use the proper functions to inspect the structure and contents of the dataset. How many Categorical variables are there? How many numerical variables are there? Is there any null values?
+This is the first paragraph. This still is the first paragraph.
+
+Here begins the second paragraph. It includes emphasis, by using *italics* and also **bold face** words.
+
+#### Lists
+
+Unordered lists or bullet points can be inserted by adding a `-`, `*` or `+` at the beginning of a line. To create levels, we have to indent lines using tab stops.
+
+```         
+* Level 1
+* Level 1
+  * Level 2
+    * Level 3
+  * Level 2
+    * Level 3
+* Level 1
+```
+
+The above will be rendered as:
+
+-   Level 1
+-   Level 1
+    -   Level 2
+        -   Level 3
+    -   Level 2
+        -   Level 3
+-   Level 1
+
+We can also create ordered lists by using numbers followed by a `.` instead of the `*` etc.
+
+```         
+1.  Bulletpoint 1
+2.  Bulletpoint 2
+3.  Bulletpoint 3
+```
+
+1.  Bulletpoint 1
+2.  Bulletpoint 2
+3.  Bulletpoint 3
+
+#### Hyperlinks
+
+Hyperlinks can be included as `<url>` or `[text](url)`.
+
+```         
+To include a plain url we can use <https://jaspertjaden.github.io/DataAnalysisR/>.
+We can also [link](https://jaspertjaden.github.io/DataAnalysisR/) in this way.
+```
+
+To include a plain url we can use <https://jaspertjaden.github.io/DataAnalysisR/>. We can also [link](https://jaspertjaden.github.io/DataAnalysisR/) in this way.
+
+### Code chunks
+
+Codechunks have to be started and ended with three backticks ```` ``` ````. After the first set of backticks we also have to include `{r}` to let Markdown know that we want to run the code as R code. The code that is written after this and up to the second set of backticks will be executed when knitting the file.
+
+You can see some examples of this in the newly created R Markdown file if you followed the steps above.
+
+We can also always run the code in a chunk before knitting by clicking on the green arrow in the upper right corner of the chunk. We can also execute individual lines of code by placing our keyboard cursor in the line and pressing `Shift + Enter`.
+
+#### Chunk options
+
+We can change the way code chunks are handled when knitting by adding one or multiple chunk options between the curly brackets like this: `{r option=value}`. If we want to use multiple options they have to be written like this: `{r option1=value1, option2=value2}`.
+
+There are many options available but most are not needed when starting out. The ones that may be of interest to you are:
+
+-   `{r echo=FALSE}`: This prevents the code to be displayed in the output while the results will be included. This is useful if you want to show the results of a computation or a plot but do not want the document to be cluttered with the underlying code.
+-   `{r include=FALSE}`: This prevents the code as well as the output from being displayed. The code is still run in the background.
+-   `{r eval=FALSE}`: This prevents the code from being run but displays it. This can be useful if you want to show code examples for illustrative purposes.
+
+## Further resources
+
+::: resources
+-   [R Markdown Website by RStudio](https://rmarkdown.rstudio.com/lesson-1.html): A comprehensive introduction to using R Markdown from within RStudio
+-   [Yihui Xie, J. J. Allaire, Garrett Grolemund. R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/): An in-depth overview over basically everything R Markdown can do
+-   [R Markdown Cheat Sheet](https://rstudio.github.io/cheatsheets/rmarkdown.pdf): A cheat sheet for R Markdown, those are always helpful
+:::
+
+## EDA - Exercise
+
+In this exercise, we will work with the **Boston Housing Data**. The data set contains information on 506 census tracts in the US city of Boston from the 1970 census. It contains information on the median value of owner-occupied homes and additional statistics on houses and socio-demographics for each tract.
+
+This is an overview of all variables included in the data set:
+
+```         
+1. crim - per capita crime rate by town
+2. zn - proportion of residential land zoned for lots over 25,000 sq.ft.
+3. indus - proportion of non-retail business acres per town.
+4. chas - Charles River dummy variable (1 if tract bounds river; 0 otherwise)
+5. nox - nitric oxides concentration (parts per 10 million)
+6. rm - average number of rooms per dwelling
+7. age - proportion of owner-occupied units built prior to 1940
+8. dis - weighted distances to five Boston employment centres
+9. rad - index of accessibility to radial highways
+10. tax - full-value property-tax rate per $10,000
+11. ptratio - pupil-teacher ratio by town
+12. b - 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town
+13. lstat - % lower status of the population
+14. medv - Median value of owner-occupied homes in $1000's
+```
+
+For more information on the data set and its implementation in `mlbench` please follow this [link](https://search.r-project.org/CRAN/refmans/mlbench/html/BostonHousing.html).
+
+::: assignx
+1.  **Prepare your R Markdown File**: Create a new R Markdown file setting the output format to `html` or `pdf` (if you have a LaTeX distribution installed) and setting the title, author and date to appropriate values. Remove the sample text and code chunks taking care to not remove the `YAML` header. Write all solutions in this file using code chunks as well as text to structure the file (headers) and answer the questions. Do not forget to save the file in the format `your_name_exercise_1.Rmd`. You will have to turn in this file to the lecturers through Moodle.
+
+2.  **Import the dataset**: Import the data set by using the code below. The package `mlbench` conveniently includes the data set. You have to install the package beforehand by writing: `install.packages("mlbench")`. You should also load the `tidyverse` package to ease the further analysis. Not that this code also has to be included in your R Markdown file.
+
+```{r}
+library(mlbench)
+library(tidyverse)
+
+data(BostonHousing)
+```
+
+3.  **Inspect the dataset**: Use the proper functions to inspect the structure and contents of the data set. How many categorical variables are there? How many numerical variables are there? Are there any missing values?
 
 ```{r, include=FALSE}
 str(BostonHousing)
@@ -125,33 +189,21 @@ glimpse(BostonHousing)
 colSums(is.na(BostonHousing))
 ```
 
-
-3. **Summarize categorical variables**: Create frequency table for categorical variables CHAS (Charles River dummy variable).
+4.  **Summarize categorical variables**: Create a frequency table for the categorical variable `chas` (Charles River dummy variable).
 
 ```{r, include=FALSE}
 table(BostonHousing$chas)
 ```
 
-
-4. **Summarize numerical variables**: Generate summary statistics for numerical variables CRIM (per capita crime rate by town) and RM (average number of rooms per dwelling).
+5.  **Summarize numerical variables**: Generate summary statistics for the numerical variables crim (per capita crime rate by town), rm (average number of rooms per dwelling) and dis (weighted distances to five Boston employment centres).
 
 ```{r, include=FALSE}
 summary(BostonHousing$crim)
 summary(BostonHousing$rm)
+summary(BostonHousing$dis)
 ```
 
-
-5. **Create new variables**: Create new variable indicating whether a house is located near the Charles River or not.
-
-```{r, include=FALSE}
-library(dplyr)
-BostonHousing <- BostonHousing %>%
-  mutate(near_river = case_when(chas == 1 ~ "Yes",
-                                chas != 1 ~ "No"))
-```
-
-
-6. **Recoding variables**: Create a new variable that groups houses by their proximity to employment centers.
+6.  **Create new variables**: Create a new variable that groups houses by their proximity to employment centers as indicated in the variable `dis`. Create the three categories `Near`, `Medium` and `Far` based on the value of `dis`. Choose appropriate cutoff values based on the summary statistics you computed above. Briefly describe your decision.
 
 ```{r, include=FALSE}
 BostonHousing <- BostonHousing %>%
@@ -162,8 +214,17 @@ BostonHousing <- BostonHousing %>%
   ))
 ```
 
+7.  **Compare distributions**: Compare the distribution of `ptratio` by the newly created variable `distance_group` using boxplots. Briefly interpret the results.
 
-7. **Visualize relationships**: Create scatter plots to explore the relationship between housing prices and other numeric variables(`rm`, `age`, `dis`, `lstat`). Interpret the plots. Also show the distribution of ptratio by distance_group.
+```{r, include=FALSE}
+# Create a boxplot of PTRATIO grouped by distance_group
+BostonHousing %>% ggplot() + 
+geom_boxplot(aes(y=ptratio)) +
+  facet_wrap(~distance_group) +
+  theme_light()
+```
+
+8.  **Visualize relationships**: Create scatter plots with an added regression line to explore the relationship between housing prices (`medv`) and the numeric variables : `rm`, `age`, `dis`, `lstat`. Briefly interpret the plots.
 
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
 # Create a list of numeric variables to plot against MEDV
@@ -201,29 +262,11 @@ ggarrange(rm_sp, age_sp,
           ncol = 2, nrow = 2)
 ```
 
-
-```{r, include=FALSE}
-# Create a boxplot of PTRATIO grouped by distance_group
-BostonHousing %>% ggplot() + 
-geom_boxplot(aes(y=ptratio)) +
-  facet_wrap(~distance_group) +
-  theme_light()
-```
-
-
-8. **Correlation analysis**: Calculate correlation coefficients between housing prices and average number of rooms per dwelling, also between housing prices and crime rate. Interpret the result.
+9.  **Correlation analysis**: Calculate correlation coefficients between housing prices (`medv`), the average number of rooms per dwelling (`rm`) and the crime rate (`crim`). Display the correlations as a matrix or as a plot. Interpret the result.
 
 ```{r, include=FALSE}
 library(corrplot)
-corr_matrix0 <- cor(BostonHousing[, c("medv", "rm")])
-corr_matrix1 <- cor(BostonHousing[, c("medv", "crim")])
-corrplot(corr_matrix0)
-corrplot(corr_matrix1)
+corr_matrix <- cor(BostonHousing[, c("medv", "rm", "crim")])
+corrplot(corr_matrix)
 ```
-
-
 :::
-
-
-
-

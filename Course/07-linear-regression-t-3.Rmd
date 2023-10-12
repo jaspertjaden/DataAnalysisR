@@ -1,4 +1,4 @@
-# Linear Regression Theory III: Diagnostics {#log-t-3}
+# Linear Regression Theory III: Diagnostics {#lin-t-3}
 
 ``` {r init, include = FALSE}
 library(tidyverse)

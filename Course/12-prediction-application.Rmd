@@ -1,4 +1,4 @@
-# Prediction - Application {#pm-a}
+# Prediction - Exercise {#pm-a}
 Here goes some texts.
 
 
