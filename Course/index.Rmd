@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
-# url: your book url like https://bookdown.org/yihui/bookdown
+url: your book url https://github.com/jaspertjaden/DataAnalysisR
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |
   In this course, you will learn how to analyse data using regression in R.
@@ -26,7 +26,7 @@ This course offers an accessible and easy introduction to one of the fastest gro
     -   [My website](https://n1az.github.io/)
 :::
 
-# GitHub Repo
+## GitHub Repo  {.unnumbered}
 
 You can access the GitHub repository that contains the R Markdown files used in creating this website here: <https://github.com/jaspertjaden/DataAnalysisR>
 
