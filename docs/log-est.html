@@ -300,12 +300,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3" data-path="log-est.html"><a href="log-est.html#basic-concepts"><i class="fa fa-check"></i><b>13.3</b> Basic concepts</a></li>
 <li class="chapter" data-level="13.4" data-path="log-est.html"><a href="log-est.html#application"><i class="fa fa-check"></i><b>13.4</b> Application</a></li>
 <li class="chapter" data-level="13.5" data-path="log-est.html"><a href="log-est.html#interpretation-2"><i class="fa fa-check"></i><b>13.5</b> Interpretation</a></li>
-<li class="chapter" data-level="13.6" data-path="log-est.html"><a href="log-est.html#model-fit-1"><i class="fa fa-check"></i><b>13.6</b> model fit</a></li>
-<li class="chapter" data-level="13.7" data-path="log-est.html"><a href="log-est.html#diagnostics"><i class="fa fa-check"></i><b>13.7</b> diagnostics</a></li>
-<li class="chapter" data-level="13.8" data-path="log-est.html"><a href="log-est.html#prediction"><i class="fa fa-check"></i><b>13.8</b> prediction</a></li>
+<li class="chapter" data-level="13.6" data-path="log-est.html"><a href="log-est.html#model-fit-1"><i class="fa fa-check"></i><b>13.6</b> Model fit</a></li>
+<li class="chapter" data-level="13.7" data-path="log-est.html"><a href="log-est.html#diagnostics"><i class="fa fa-check"></i><b>13.7</b> Diagnostics</a></li>
+<li class="chapter" data-level="13.8" data-path="log-est.html"><a href="log-est.html#prediction"><i class="fa fa-check"></i><b>13.8</b> Prediction</a></li>
 <li class="chapter" data-level="13.9" data-path="log-est.html"><a href="log-est.html#mediation-1"><i class="fa fa-check"></i><b>13.9</b> Mediation</a></li>
-<li class="chapter" data-level="13.10" data-path="log-est.html"><a href="log-est.html#comparing-linear-and-logistic-regression"><i class="fa fa-check"></i><b>13.10</b> comparing linear and logistic regression</a></li>
-<li class="chapter" data-level="13.11" data-path="log-est.html"><a href="log-est.html#logistic-regression-in-machine-learning-context"><i class="fa fa-check"></i><b>13.11</b> logistic regression in Machine Learning context</a></li>
+<li class="chapter" data-level="13.10" data-path="log-est.html"><a href="log-est.html#comparing-linear-and-logistic-regression"><i class="fa fa-check"></i><b>13.10</b> Comparing linear and logistic regression</a></li>
+<li class="chapter" data-level="13.11" data-path="log-est.html"><a href="log-est.html#logistic-regression-in-machine-learning-context"><i class="fa fa-check"></i><b>13.11</b> Logistic regression in Machine Learning context</a></li>
 <li class="chapter" data-level="13.12" data-path="log-est.html"><a href="log-est.html#further-resources-4"><i class="fa fa-check"></i><b>13.12</b> Further resources</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -690,7 +690,7 @@ in x.</p>
 the NBA players are ~ 3 percentage points less likely to have a long career.</p>
 </div>
 <div id="model-fit-1" class="section level2 hasAnchor" number="13.6">
-<h2><span class="header-section-number">13.6</span> model fit<a href="log-est.html#model-fit-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">13.6</span> Model fit<a href="log-est.html#model-fit-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As we have seen with linear regression, there are different ways to assess whether a model is actually “good”. For linear regression, a popular measure is the R-squared which reports the “percentage of variance in y which is explained by the model”.
 For logistic regression, there is no consensus on what the best measure is. There are dozens of different ways to calculate different r-squares. It’s complicated. See <a href="https://www.youtube.com/watch?v=xxFYro8QuXA&amp;ab_channel=StatQuestwithJoshStarmer">here</a> for more in-depth technical discussion.</p>
 <p>One way to get model performance measures is the <code>performance</code> package. One r2
@@ -732,12 +732,12 @@ tool. Larger values are better than smaller values.</p>
 ## model_logit2 |   glm | 10405.8 (&gt;.999) | 10405.8 (&gt;.999) | 10448.9 (&gt;.999) |     0.008 | 0.419 | 1.034 |    0.534 |      -Inf | 0.649 |       1.322e-04</code></pre>
 </div>
 <div id="diagnostics" class="section level2 hasAnchor" number="13.7">
-<h2><span class="header-section-number">13.7</span> diagnostics<a href="log-est.html#diagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">13.7</span> Diagnostics<a href="log-est.html#diagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Testing model assumptions and performing diagnostics is trickier for logistic regression compared to linear regression. Many diagnostics revolve around analyzing residuals (difference between predictions and actual values). In the context of logistic regression, given that the predicted values are probabilities and the actual values are either 0 and 1, it is not very clear what residuals mean.</p>
 <p>We won’t cover diagnostic tests for logistic regression here, mainly to save time. A deeper dive into diagnostics can be found <a href="http://www.sthda.com/english/articles/36-classification-methods-essentials/148-logistic-regression-assumptions-and-diagnostics-in-r/">here</a>. A more recent package used in machine learning, called “performance” can also be used for diagnostics using the <code>check_model</code> function.</p>
 </div>
 <div id="prediction" class="section level2 hasAnchor" number="13.8">
-<h2><span class="header-section-number">13.8</span> prediction<a href="log-est.html#prediction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">13.8</span> Prediction<a href="log-est.html#prediction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Predicting outcomes based on logistic regression was already covered above because predicted probabilities are an easier way of interpreting coefficients.</p>
 <p>Here, let’s predict whether certain “fake” players
 will have a long career or a shorter career based on our model.</p>
@@ -761,7 +761,7 @@ There are dedicated packages that help users apply mediation analysis following
 <code>glm(models)</code> such as the <code>khb</code> package.</p>
 </div>
 <div id="comparing-linear-and-logistic-regression" class="section level2 hasAnchor" number="13.10">
-<h2><span class="header-section-number">13.10</span> comparing linear and logistic regression<a href="log-est.html#comparing-linear-and-logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">13.10</span> Comparing linear and logistic regression<a href="log-est.html#comparing-linear-and-logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As we have seen above, logistic regression can cause many headaches because
 assessing the model fit, testing diagnostics, prediction and diagnostics are
 all very complicated to perform and interpret.</p>
@@ -816,7 +816,7 @@ between .000001 and .20. In that situation, the linear model just isn’t viable
 <p>For a more in-depth discussion see <a href="https://statisticalhorizons.com/linear-vs-logistic/">here</a>.</p>
 </div>
 <div id="logistic-regression-in-machine-learning-context" class="section level2 hasAnchor" number="13.11">
-<h2><span class="header-section-number">13.11</span> logistic regression in Machine Learning context<a href="log-est.html#logistic-regression-in-machine-learning-context" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">13.11</span> Logistic regression in Machine Learning context<a href="log-est.html#logistic-regression-in-machine-learning-context" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Such like linear regression, logistic regression is one of the algorithms which
 are used in the context of Machine Learning to predict outcomes.</p>
 <p>There are many alternatives to logistic regression when predicting binary outcomes such as …,…,…. These appraoches go far beyond the scope of this course. Predicting binary outcomes is often called “classification” in machine learning.

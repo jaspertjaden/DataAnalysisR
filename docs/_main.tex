@@ -6206,7 +6206,7 @@ The AME for height is -0.029. This means that for every additional inch in heigh
 the NBA players are \textasciitilde{} 3 percentage points less likely to have a long career.
 
 \hypertarget{model-fit-1}{%
-\section{model fit}\label{model-fit-1}}
+\section{Model fit}\label{model-fit-1}}
 
 As we have seen with linear regression, there are different ways to assess whether a model is actually ``good''. For linear regression, a popular measure is the R-squared which reports the ``percentage of variance in y which is explained by the model''.
 For logistic regression, there is no consensus on what the best measure is. There are dozens of different ways to calculate different r-squares. It's complicated. See \href{https://www.youtube.com/watch?v=xxFYro8QuXA\&ab_channel=StatQuestwithJoshStarmer}{here} for more in-depth technical discussion.
@@ -6299,14 +6299,14 @@ Another way to compare models is the performance package:
 \end{verbatim}
 
 \hypertarget{diagnostics}{%
-\section{diagnostics}\label{diagnostics}}
+\section{Diagnostics}\label{diagnostics}}
 
 Testing model assumptions and performing diagnostics is trickier for logistic regression compared to linear regression. Many diagnostics revolve around analyzing residuals (difference between predictions and actual values). In the context of logistic regression, given that the predicted values are probabilities and the actual values are either 0 and 1, it is not very clear what residuals mean.
 
 We won't cover diagnostic tests for logistic regression here, mainly to save time. A deeper dive into diagnostics can be found \href{http://www.sthda.com/english/articles/36-classification-methods-essentials/148-logistic-regression-assumptions-and-diagnostics-in-r/}{here}. A more recent package used in machine learning, called ``performance'' can also be used for diagnostics using the \texttt{check\_model} function.
 
 \hypertarget{prediction}{%
-\section{prediction}\label{prediction}}
+\section{Prediction}\label{prediction}}
 
 Predicting outcomes based on logistic regression was already covered above because predicted probabilities are an easier way of interpreting coefficients.
 
@@ -6342,7 +6342,7 @@ There are dedicated packages that help users apply mediation analysis following
 \texttt{glm(models)} such as the \texttt{khb} package.
 
 \hypertarget{comparing-linear-and-logistic-regression}{%
-\section{comparing linear and logistic regression}\label{comparing-linear-and-logistic-regression}}
+\section{Comparing linear and logistic regression}\label{comparing-linear-and-logistic-regression}}
 
 As we have seen above, logistic regression can cause many headaches because
 assessing the model fit, testing diagnostics, prediction and diagnostics are
@@ -6418,7 +6418,7 @@ between .000001 and .20. In that situation, the linear model just isn't viable, 
 For a more in-depth discussion see \href{https://statisticalhorizons.com/linear-vs-logistic/}{here}.
 
 \hypertarget{logistic-regression-in-machine-learning-context}{%
-\section{logistic regression in Machine Learning context}\label{logistic-regression-in-machine-learning-context}}
+\section{Logistic regression in Machine Learning context}\label{logistic-regression-in-machine-learning-context}}
 
 Such like linear regression, logistic regression is one of the algorithms which
 are used in the context of Machine Learning to predict outcomes.

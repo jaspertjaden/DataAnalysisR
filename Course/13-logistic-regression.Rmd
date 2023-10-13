@@ -271,7 +271,7 @@ The AME for height is -0.029. This means that for every additional inch in heigh
 the NBA players are ~ 3 percentage points less likely to have a long career.
 
 
-## model fit
+## Model fit
 
 As we have seen with linear regression, there are different ways to assess whether a model is actually "good". For linear regression, a popular measure is the R-squared which reports the "percentage of variance in y which is explained by the model". 
 For logistic regression, there is no consensus on what the best measure is. There are dozens of different ways to calculate different r-squares. It's complicated. See [here](https://www.youtube.com/watch?v=xxFYro8QuXA&ab_channel=StatQuestwithJoshStarmer) for more in-depth technical discussion. 
@@ -311,7 +311,7 @@ performance::compare_performance(model_logit1, model_logit2)
 ```
 
 
-## diagnostics
+## Diagnostics
 
 Testing model assumptions and performing diagnostics is trickier for logistic regression compared to linear regression. Many diagnostics revolve around analyzing residuals (difference between predictions and actual values). In the context of logistic regression, given that the predicted values are probabilities and the actual values are either 0 and 1, it is not very clear what residuals mean.
 
@@ -319,7 +319,7 @@ We won't cover diagnostic tests for logistic regression here, mainly to save tim
 
 
 
-## prediction
+## Prediction
 
 Predicting outcomes based on logistic regression was already covered above because predicted probabilities are an easier way of interpreting coefficients. 
 
@@ -347,7 +347,7 @@ Mediation is also possible for logistic regression, however, it is more complica
 There are dedicated packages that help users apply mediation analysis following
 `glm(models)` such as the `khb` package.
 
-## comparing linear and logistic regression
+## Comparing linear and logistic regression
 
 As we have seen above, logistic regression can cause many headaches because
 assessing the model fit, testing diagnostics, prediction and diagnostics are
@@ -389,7 +389,7 @@ For a more in-depth discussion see [here](https://statisticalhorizons.com/linear
 
 
 
-## logistic regression in Machine Learning context
+## Logistic regression in Machine Learning context
 
 Such like linear regression, logistic regression is one of the algorithms which
 are used in the context of Machine Learning to predict outcomes. 
