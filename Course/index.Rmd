@@ -26,6 +26,10 @@ This course offers an accessible and easy introduction to one of the fastest gro
     -   [My website](https://n1az.github.io/)
 :::
 
+# GitHub Repo
+
+You can access the GitHub repository that contains the R Markdown files used in creating this website here: <https://github.com/jaspertjaden/DataAnalysisR>
+
 <!-- ::: {.appendix} -->
 
 <!-- **Overview over the Course :** -->
