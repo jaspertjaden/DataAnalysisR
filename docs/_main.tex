@@ -144,7 +144,7 @@
 
 \title{Data Analysis with R for Social Scientists}
 \author{Jakob Tures \& Jasper Tjaden}
-\date{2023-10-12}
+\date{2023-10-13}
 
 \begin{document}
 \maketitle
@@ -153,14 +153,11 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{intro}{%
-\chapter*{Intro}\label{intro}}
-\addcontentsline{toc}{chapter}{Intro}
-
 This course offers an accessible and easy introduction to one of the fastest growing statistical packages used in social science and data science more generally.
 
 \hypertarget{about-the-authors}{%
-\section{About the Authors}\label{about-the-authors}}
+\chapter*{About the Authors}\label{about-the-authors}}
+\addcontentsline{toc}{chapter}{About the Authors}
 
 \begin{itemize}
 \tightlist
@@ -189,6 +186,11 @@ This course offers an accessible and easy introduction to one of the fastest gro
     \href{https://n1az.github.io/}{My website}
   \end{itemize}
 \end{itemize}
+
+\hypertarget{github-repo}{%
+\chapter{GitHub Repo}\label{github-repo}}
+
+You can access the GitHub repository that contains the R Markdown files used in creating this website here: \url{https://github.com/jaspertjaden/DataAnalysisR}
 
 \hypertarget{intro-sem}{%
 \chapter{Introduction to Seminar}\label{intro-sem}}
@@ -676,81 +678,79 @@ Now, let us look at some packages which help us in exploring the data set as a w
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(}\StringTok{"skimr"}\NormalTok{)}
 
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\FunctionTok{skim}\NormalTok{(data\_nba))}
+\FunctionTok{skim}\NormalTok{(data\_nba)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{tabular}{l|l|r|r|r|r|r|r|r|r|r|r|r|r|r|r|l}
-\hline
-skim\_type & skim\_variable & n\_missing & complete\_rate & character.min & character.max & character.empty & character.n\_unique & character.whitespace & numeric.mean & numeric.sd & numeric.p0 & numeric.p25 & numeric.p50 & numeric.p75 & numeric.p100 & numeric.hist\\
-\hline
-character & id & 0 & 1.0000000 & 6 & 9 & 0 & 1794 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-character & name & 0 & 1.0000000 & 4 & 24 & 0 & 1790 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-character & birthPlace & 0 & 1.0000000 & 5 & 44 & 0 & 849 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-character & career\_FG\% & 0 & 1.0000000 & 1 & 5 & 0 & 333 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-character & career\_FG3\% & 0 & 1.0000000 & 1 & 5 & 0 & 297 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-character & career\_FT\% & 0 & 1.0000000 & 1 & 5 & 0 & 413 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-character & career\_PER & 0 & 1.0000000 & 1 & 5 & 0 & 274 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-character & career\_TRB & 0 & 1.0000000 & 3 & 4 & 0 & 113 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-character & career\_eFG\% & 0 & 1.0000000 & 1 & 5 & 0 & 310 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-character & college & 1541 & 0.8415913 & 6 & 89 & 0 & 379 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-character & draft\_pick & 1542 & 0.8414885 & 11 & 13 & 0 & 66 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-character & draft\_round & 1542 & 0.8414885 & 9 & 9 & 0 & 5 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-character & draft\_team & 1542 & 0.8414885 & 9 & 33 & 0 & 39 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-character & draft\_year & 1542 & 0.8414885 & 4 & 4 & 0 & 38 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-character & shoots & 0 & 1.0000000 & 4 & 10 & 0 & 3 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-character & season & 0 & 1.0000000 & 7 & 7 & 0 & 20 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-character & team & 0 & 1.0000000 & 9 & 33 & 0 & 36 & 0 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-numeric & age & 0 & 1.0000000 & NA & NA & NA & NA & NA & 2.695066e+01 & 4.461299e+00 & 18.0 & 23.00 & 26.0 & 30.0 & 42.0 & ▃▇▅▂▁\\
-\hline
-numeric & weight & 0 & 1.0000000 & NA & NA & NA & NA & NA & 2.208996e+02 & 2.772943e+01 & 135.0 & 200.00 & 220.0 & 240.0 & 360.0 & ▁▇▆▁▁\\
-\hline
-numeric & height & 0 & 1.0000000 & NA & NA & NA & NA & NA & 6.506777e+00 & 3.802496e-01 & 5.1 & 6.11 & 6.6 & 6.8 & 7.7 & ▁▅▆▇▁\\
-\hline
-numeric & career\_AST & 0 & 1.0000000 & NA & NA & NA & NA & NA & 1.938065e+00 & 1.663442e+00 & 0.0 & 0.70 & 1.4 & 2.7 & 10.5 & ▇▃▁▁▁\\
-\hline
-numeric & career\_G & 0 & 1.0000000 & NA & NA & NA & NA & NA & 5.689650e+02 & 3.471999e+02 & 1.0 & 281.00 & 564.0 & 827.0 & 1522.0 & ▇▇▇▃▁\\
-\hline
-numeric & career\_PTS & 0 & 1.0000000 & NA & NA & NA & NA & NA & 8.907679e+00 & 5.077246e+00 & 0.0 & 5.10 & 8.0 & 12.0 & 30.1 & ▆▇▃▁▁\\
-\hline
-numeric & career\_WS & 0 & 1.0000000 & NA & NA & NA & NA & NA & 3.342980e+01 & 3.705009e+01 & -2.4 & 6.40 & 22.2 & 48.3 & 234.6 & ▇▂▁▁▁\\
-\hline
-numeric & salary & 0 & 1.0000000 & NA & NA & NA & NA & NA & 4.072633e+06 & 4.669737e+06 & 2706.0 & 947907.00 & 2240000.0 & 5408700.0 & 34682550.0 & ▇▁▁▁▁\\
-\hline
-numeric & season\_end & 0 & 1.0000000 & NA & NA & NA & NA & NA & 2.008720e+03 & 5.825947e+00 & 1999.0 & 2004.00 & 2009.0 & 2014.0 & 2018.0 & ▇▇▇▇▇\\
-\hline
-numeric & season\_start & 0 & 1.0000000 & NA & NA & NA & NA & NA & 2.007720e+03 & 5.825947e+00 & 1998.0 & 2003.00 & 2008.0 & 2013.0 & 2017.0 & ▇▇▇▇▇\\
-\hline
-numeric & position\_center & 0 & 1.0000000 & NA & NA & NA & NA & NA & 3.069490e-01 & 4.612518e-01 & 0.0 & 0.00 & 0.0 & 1.0 & 1.0 & ▇▁▁▁▃\\
-\hline
-numeric & position\_sf & 0 & 1.0000000 & NA & NA & NA & NA & NA & 3.312089e-01 & 4.706722e-01 & 0.0 & 0.00 & 0.0 & 1.0 & 1.0 & ▇▁▁▁▃\\
-\hline
-numeric & position\_pf & 0 & 1.0000000 & NA & NA & NA & NA & NA & 3.598890e-01 & 4.799923e-01 & 0.0 & 0.00 & 0.0 & 1.0 & 1.0 & ▇▁▁▁▅\\
-\hline
-numeric & position\_sg & 0 & 1.0000000 & NA & NA & NA & NA & NA & 3.543380e-01 & 4.783368e-01 & 0.0 & 0.00 & 0.0 & 1.0 & 1.0 & ▇▁▁▁▅\\
-\hline
-numeric & position\_pg & 0 & 1.0000000 & NA & NA & NA & NA & NA & 2.558594e-01 & 4.363656e-01 & 0.0 & 0.00 & 0.0 & 1.0 & 1.0 & ▇▁▁▁▃\\
-\hline
-numeric & seasons\_played & 0 & 1.0000000 & NA & NA & NA & NA & NA & 8.758224e+00 & 4.622518e+00 & 1.0 & 5.00 & 9.0 & 12.0 & 21.0 & ▇▇▇▃▁\\
-\hline
-\end{tabular}
+\begin{verbatim}
+## -- Data Summary ------------------------
+##                            Values  
+## Name                       data_nba
+## Number of rows             9728    
+## Number of columns          33      
+## _______________________            
+## Column type frequency:             
+##   character                17      
+##   numeric                  16      
+## ________________________           
+## Group variables            None    
+## 
+## -- Variable type: character ----------------------------------------------------
+##    skim_variable n_missing complete_rate min max empty n_unique whitespace
+##  1 id                    0         1       6   9     0     1794          0
+##  2 name                  0         1       4  24     0     1790          0
+##  3 birthPlace            0         1       5  44     0      849          0
+##  4 career_FG%            0         1       1   5     0      333          0
+##  5 career_FG3%           0         1       1   5     0      297          0
+##  6 career_FT%            0         1       1   5     0      413          0
+##  7 career_PER            0         1       1   5     0      274          0
+##  8 career_TRB            0         1       3   4     0      113          0
+##  9 career_eFG%           0         1       1   5     0      310          0
+## 10 college            1541         0.842   6  89     0      379          0
+## 11 draft_pick         1542         0.841  11  13     0       66          0
+## 12 draft_round        1542         0.841   9   9     0        5          0
+## 13 draft_team         1542         0.841   9  33     0       39          0
+## 14 draft_year         1542         0.841   4   4     0       38          0
+## 15 shoots                0         1       4  10     0        3          0
+## 16 season                0         1       7   7     0       20          0
+## 17 team                  0         1       9  33     0       36          0
+## 
+## -- Variable type: numeric ------------------------------------------------------
+##    skim_variable   n_missing complete_rate        mean          sd     p0
+##  1 age                     0             1      27.0         4.46    18  
+##  2 weight                  0             1     221.         27.7    135  
+##  3 height                  0             1       6.51        0.380    5.1
+##  4 career_AST              0             1       1.94        1.66     0  
+##  5 career_G                0             1     569.        347.       1  
+##  6 career_PTS              0             1       8.91        5.08     0  
+##  7 career_WS               0             1      33.4        37.1     -2.4
+##  8 salary                  0             1 4072633.    4669737.    2706  
+##  9 season_end              0             1    2009.          5.83  1999  
+## 10 season_start            0             1    2008.          5.83  1998  
+## 11 position_center         0             1       0.307       0.461    0  
+## 12 position_sf             0             1       0.331       0.471    0  
+## 13 position_pf             0             1       0.360       0.480    0  
+## 14 position_sg             0             1       0.354       0.478    0  
+## 15 position_pg             0             1       0.256       0.436    0  
+## 16 seasons_played          0             1       8.76        4.62     1  
+##          p25       p50       p75       p100 hist 
+##  1     23         26        30         42   ▃▇▅▂▁
+##  2    200        220       240        360   ▁▇▆▁▁
+##  3      6.11       6.6       6.8        7.7 ▁▅▆▇▁
+##  4      0.7        1.4       2.7       10.5 ▇▃▁▁▁
+##  5    281        564       827       1522   ▇▇▇▃▁
+##  6      5.1        8        12         30.1 ▆▇▃▁▁
+##  7      6.4       22.2      48.3      235.  ▇▂▁▁▁
+##  8 947907    2240000   5408700   34682550   ▇▁▁▁▁
+##  9   2004       2009      2014       2018   ▇▇▇▇▇
+## 10   2003       2008      2013       2017   ▇▇▇▇▇
+## 11      0          0         1          1   ▇▁▁▁▃
+## 12      0          0         1          1   ▇▁▁▁▃
+## 13      0          0         1          1   ▇▁▁▁▅
+## 14      0          0         1          1   ▇▁▁▁▅
+## 15      0          0         1          1   ▇▁▁▁▃
+## 16      5          9        12         21   ▇▇▇▃▁
+\end{verbatim}
 
 The \texttt{skim()} function provides a very handy overview of the whole data set including the types of columns (i.e.~variables), a summary of all variables, the extent of missing data etc. One advantage is that the output is \texttt{tidy} which means it is easy to work with further if needed, for example to plot the resulting summary.
 
@@ -1431,7 +1431,7 @@ There are many options available but most are not needed when starting out. The 
 \hypertarget{eda---exercise}{%
 \section{EDA - Exercise}\label{eda---exercise}}
 
-In this exercise, we will work with the \textbf{Boston Housing Data}. The data set contains information on 506 census tracts in the US city of Boston from the 1970 census. It contains information on the median value of owner-occupied homes and additional statistics on houses and socio-demographics for each tract.
+In this and all following exercises, we will work with the \textbf{Boston Housing Data}. The data set contains information on 506 census tracts in the US city of Boston from the 1970 census. It contains information on the median value of owner-occupied homes and additional statistics on houses and socio-demographics for each tract.
 
 This is an overview of all variables included in the data set:
 
@@ -1501,9 +1501,11 @@ For more information on the data set and its implementation in \texttt{mlbench} 
 \item
   Getting to know DAGs
 \item
-  Understand its implications on achieving unbiased estimates for effects of interest
+  Understand its implications on achieving unbiased estimates for
+  effects of interest
 \item
-  Building a DAG for the NBA data to model the effect of scored points on salary
+  Building a DAG for the NBA data to model the effect of scored points
+  on salary
 \end{itemize}
 
 \hypertarget{functions-covered}{%
@@ -1524,101 +1526,122 @@ For more information on the data set and its implementation in \texttt{mlbench} 
 
 This session kicks off the block on linear regression as a statistic
 modelling technique, but before we jump into the deep end and learn what
-linear regression is and how we can apply it, we first have to understand
-what modelling is and why we might do it. We also need a way to find out what we actually have to include in the model and what we might not want or even can not include to achieve robust results. This is what this session is all about.
+linear regression is and how we can apply it, we first have to
+understand what modelling is and why we might do it. We also need a way
+to find out what we actually have to include in the model and what we
+might not want or even can not include to achieve robust results. This
+is what this session is all about.
 
 \hypertarget{what-is-modelling}{%
 \subsection{What is modelling?}\label{what-is-modelling}}
 
-Before we approach this question, we should briefly think about what steps a
-typical data analysis project comprises. We usually start with an interesting
-problem and derive a research question from it. Based on this question we would go into the literature and read up on theories and already published research papers that are relevant to our question. We construct a theoretical framework for our particular problem and formulate some hypotheses, collect or identify appropriate data and conduct an exploratory data analysis. At this point we should already have a firm understanding about what we actually want to find out and how our data is structured. The next step would be modelling.
+Before we approach this question, we should briefly think about what
+steps a typical data analysis project comprises. We usually start with
+an interesting problem and derive a research question from it. Based on
+this question we would go into the literature and read up on theories
+and already published research papers that are relevant to our question.
+We construct a theoretical framework for our particular problem and
+formulate some hypotheses, collect or identify appropriate data and
+conduct an exploratory data analysis. At this point we should already
+have a firm understanding about what we actually want to find out and
+how our data is structured. The next step would be modelling.
 
-So what is modelling? In general we have one \emph{dependent variable}, typically
-denoted as \(y\). This variable has some varying values. Our goal in modelling is to estimate how these values are generated. Generating here refers to the
-\emph{data generating process} that we assume responsible for \(y\) having the values
-it has. One or multiple \emph{independent variables}, \(x_1 \ x_2 \ ... \ x_k\),
-influence how the values of \(y\) are generated; thus \(y\) \emph{depends} on the values of our independent variable(s).
+So what is modelling? In general we have one \emph{dependent variable},
+typically denoted as \(y\). This variable has some varying values. Our
+goal in modelling is to estimate how these values are generated.
+Generating here refers to the \emph{data generating process} that we assume
+responsible for \(y\) having the values it has. One or multiple
+\emph{independent variables}, \(x_1 \ x_2 \ ... \ x_k\), influence how the
+values of \(y\) are generated; thus \(y\) \emph{depends} on the values of our
+independent variable(s).
 
 When we model, we do not know the data generating process, but based on
-theoretical considerations, careful thinking and exploratory data analysis, we
-can make assumptions on how we think the process operates. DAGs are a tool that can assist us in this step. We can use it to formally clarify our assumptions on the data generating process and to formulate a model based on its implications.
+theoretical considerations, careful thinking and exploratory data
+analysis, we can make assumptions on how we think the process operates.
+DAGs are a tool that can assist us in this step. We can use it to
+formally clarify our assumptions on the data generating process and to
+formulate a model based on its implications.
 
 \hypertarget{estimating-effects-vs.-prediction}{%
 \subsection{Estimating effects vs.~prediction}\label{estimating-effects-vs.-prediction}}
 
 There are two main reasons for modelling in the social sciences.
 
-Our goal can be \emph{prediction}, as in predicting our dependent variable \(y\) with
-the highest possible accuracy. This maybe is the less classical approach to
-modelling, but one that has come to the forefront in recent years, especially in
-the context of \emph{machine learning}.
+Our goal can be \emph{prediction}, as in predicting our dependent variable
+\(y\) with the highest possible accuracy. This maybe is the less classical
+approach to modelling, but one that has come to the forefront in recent
+years, especially in the context of \emph{machine learning}.
 
-Take ChatGPT for instance. The underlying GPT model, a large language model
-(LLM), is used to predict what the next word in a sequence of words should be.
-Based on the context of the question and the prior words in the answer, which we
-can understand as independent variables for our example, it calculates what word
-has the highest probability of being the correct next one. It is all about
-prediction.
+Take ChatGPT for instance. The underlying GPT model, a large language
+model (LLM), is used to predict what the next word in a sequence of
+words should be. Based on the context of the question and the prior
+words in the answer, which we can understand as independent variables
+for our example, it calculates what word has the highest probability of
+being the correct next one. It is all about prediction.
 
-An example closer to home are annotations for text data. Imagine you have a lot
-of text, hundred thousands of social media posts, and you want to explore the
-sentiment expressed in those. Do they lean to the positive or to the negative?
-You can now go and take a ``small'' sample, let us say a few thousands and
-annotate them by hand. A lot of work, but based on those manually annotated
-posts we can train a machine learning model that learns from those posts and
-then, if everything goes well, is able to automatically annotate the remaining
-hundred thousands of posts for us. Again, this is all about prediction; here
-predicting the sentiment of a post, the dependent variable, based on the words
-it contains, the independent variables.
+An example closer to home are annotations for text data. Imagine you
+have a lot of text, hundred thousands of social media posts, and you
+want to explore the sentiment expressed in those. Do they lean to the
+positive or to the negative? You can now go and take a ``small'' sample,
+let us say a few thousands and annotate them by hand. A lot of work, but
+based on those manually annotated posts we can train a machine learning
+model that learns from those posts and then, if everything goes well, is
+able to automatically annotate the remaining hundred thousands of posts
+for us. Again, this is all about prediction; here predicting the
+sentiment of a post, the dependent variable, based on the words it
+contains, the independent variables.
 
-When prediction is our goal, we most often are not primarily interested in
-understanding what independent variables influence the dependent variables in
-which direction and with which magnitude. We are interested in the most accurate
-prediction for the dependent variable possible. These approaches are therefore
-also called \emph{y-centered}.
+When prediction is our goal, we most often are not primarily interested
+in understanding what independent variables influence the dependent
+variables in which direction and with which magnitude. We are interested
+in the most accurate prediction for the dependent variable possible.
+These approaches are therefore also called \emph{y-centered}.
 
-When our interest is focused on one or multiple independent variables, our
-approach is \emph{x-centered}. This is the more classical usage of modelling in
-statistics, at least for the social sciences.
-Here our goal is to estimate an effect of interest as accurately as possible.
-\(y\) is still our dependent variable but our focus lies on understanding which
-\(x\) variables influence \(y\), in which direction this influence goes and what the
-magnitude of the effect is.
+When our interest is focused on one or multiple independent variables,
+our approach is \emph{x-centered}. This is the more classical usage of
+modelling in statistics, at least for the social sciences. Here our goal
+is to estimate an effect of interest as accurately as possible. \(y\) is
+still our dependent variable but our focus lies on understanding which
+\(x\) variables influence \(y\), in which direction this influence goes and
+what the magnitude of the effect is.
 
-Let us say we are interested in why people cast their vote for a certain party.
-We may have some hypotheses that proposes that voters who find certain issues
-important have a higher probability of casting their ballot for this party. Our
-interest would not be predicting the vote accurately but explaining why someone
-votes the way they do. We can build a model from our assumptions, maybe there
-are other important factors that correlate with the issues and the vote, and
-test our hypotheses based on the results. Does holding certain issues important
-really increase the chances of voting for this party or is there no effect?
+Let us say we are interested in why people cast their vote for a certain
+party. We may have some hypotheses that proposes that voters who find
+certain issues important have a higher probability of casting their
+ballot for this party. Our interest would not be predicting the vote
+accurately but explaining why someone votes the way they do. We can
+build a model from our assumptions, maybe there are other important
+factors that correlate with the issues and the vote, and test our
+hypotheses based on the results. Does holding certain issues important
+really increase the chances of voting for this party or is there no
+effect?
 
-Over the last sessions we build an interest in the relationship between points
-scored and the salary received for NBA players. We could approach this as a
-prediction problem, i.e.~trying to predict the salary as accurately as possible
-based on a model that incorporates the scored points as well as other factors
-that we assume of having an effect on the salary. We will return to this in
-\protect\hyperlink{pm-t}{session 11}. We could also approach this as estimation problem, i.e.~trying to
-estimate the effect of scored points on the salary. We will most probably have
-to include other variables that affect the relationship of score on salary as
-well, but the model used will not necessarily be the same. This approach is what
-we will tackle in this and the next 5 sessions.
+Over the last sessions we build an interest in the relationship between
+points scored and the salary received for NBA players. We could approach
+this as a prediction problem, i.e.~trying to predict the salary as
+accurately as possible based on a model that incorporates the scored
+points as well as other factors that we assume of having an effect on
+the salary. We will return to this in \protect\hyperlink{pm-t}{session 11}. We could also
+approach this as estimation problem, i.e.~trying to estimate the effect
+of scored points on the salary. We will most probably have to include
+other variables that affect the relationship of score on salary as well,
+but the model used will not necessarily be the same. This approach is
+what we will tackle in this and the next 5 sessions.
 
-Having settled on estimating the effect of score on salary, how can we find out
-which variables we have to include in the model? The first step, and we can
-never replace this with ever so fancy a statistical technique, is thinking about
-the problem. We should also have a theoretical understanding of our problem,
-know the current research on the topic and do some exploratory data analysis.
-Based on this we will already have developed some assumptions concerning our
-proposed underlying data generating process. Should we now throw everything into
-our model that we deem interesting or relevant for the relationship between
-score and salary? No, we should not. What we should do is use a tool that helps
-us formalise our assumptions and figure out which variables are actually
-relevant for measuring our effect of interest; and which variables we can not
-include in our model as they would potentially lead to incorrect estimations.
-This is where DAGs come in.
+Having settled on estimating the effect of score on salary, how can we
+find out which variables we have to include in the model? The first
+step, and we can never replace this with ever so fancy a statistical
+technique, is thinking about the problem. We should also have a
+theoretical understanding of our problem, know the current research on
+the topic and do some exploratory data analysis. Based on this we will
+already have developed some assumptions concerning our proposed
+underlying data generating process. Should we now throw everything into
+our model that we deem interesting or relevant for the relationship
+between score and salary? No, we should not. What we should do is use a
+tool that helps us formalise our assumptions and figure out which
+variables are actually relevant for measuring our effect of interest;
+and which variables we can not include in our model as they would
+potentially lead to incorrect estimations. This is where DAGs come in.
 
 \hypertarget{dags}{%
 \section{DAGs}\label{dags}}
@@ -1626,58 +1649,63 @@ This is where DAGs come in.
 \hypertarget{directed-acyclical-graphs}{%
 \subsection{Directed acyclical graphs}\label{directed-acyclical-graphs}}
 
-\emph{DAG} is short for \emph{directed acyclical graph}. DAGs are \emph{graphs} that display
-the assumed relationship between variables as arrows, or missing arrows, between
-them. An arrow represents our assumption that one variable has an effect on the
-other, a missing arrow represents our assumption that one variable has no effect
-on the other. These arrows are \emph{directed}. This represents our assumptions about
-the direction of the effect. We do not only assume that two variables are
-somehow associated, but we explicitly state which one influences the other.
+\emph{DAG} is short for \emph{directed acyclical graph}. DAGs are \emph{graphs} that
+display the assumed relationship between variables as arrows, or missing
+arrows, between them. An arrow represents our assumption that one
+variable has an effect on the other, a missing arrow represents our
+assumption that one variable has no effect on the other. These arrows
+are \emph{directed}. This represents our assumptions about the direction of
+the effect. We do not only assume that two variables are somehow
+associated, but we explicitly state which one influences the other.
 
 A simple DAG could look like this:
 
 \includegraphics{_main_files/figure-latex/dag_directed-1.pdf}
 
-What are the assumptions about the data generating process we have encoded here?
-We have one dependent variable \(X\) that we assume to have a direct effect on the
-independent variable \(Y\). We know that our assumption was that \(X\) has an effect
-on \(Y\) and not the other way around, because the arrow is \emph{directed} from \(X\) to
-\(Y\).
+What are the assumptions about the data generating process we have
+encoded here? We have one dependent variable \(X\) that we assume to have
+a direct effect on the independent variable \(Y\). We know that our
+assumption was that \(X\) has an effect on \(Y\) and not the other way
+around, because the arrow is \emph{directed} from \(X\) to \(Y\).
 
-We call the sequence of one or many arrows that do not pass a single variable
-more than once a \emph{path}. When trying to estimate an effect of interest we are
-foremost interested in the paths going from our independent variable of interest
-to the dependent variable.
-In the first example we only have the one path \(X \rightarrow Y\), but in most
-``real'' DAGs we will have multiple paths between \(X\) and \(Y\).
+We call the sequence of one or many arrows that do not pass a single
+variable more than once a \emph{path}. When trying to estimate an effect of
+interest we are foremost interested in the paths going from our
+independent variable of interest to the dependent variable. In the first
+example we only have the one path \(X \rightarrow Y\), but in most ``real''
+DAGs we will have multiple paths between \(X\) and \(Y\).
 
 Consider this DAG, where we introduce a second variable \(A\):
 
 \includegraphics{_main_files/figure-latex/dag_paths-1.pdf}
 
 Here there are two paths from \(X\) to \(Y\), \(X \rightarrow Y\) and
-\(X \rightarrow A \rightarrow Y\). Our assumption here was that \(X\) directly
-influences \(Y\), but that \(X\) also directly influences \(A\) which in turn directly
-influences \(Y\). The latter is an indirect effect from \(X\) on \(Y\) through \(A\).
+\(X \rightarrow A \rightarrow Y\). Our assumption here was that \(X\)
+directly influences \(Y\), but that \(X\) also directly influences \(A\) which
+in turn directly influences \(Y\). The latter is an indirect effect from
+\(X\) on \(Y\) through \(A\).
 
 DAGs are also \emph{acyclical}, meaning that there can not be any cyclical
-relationships between variables. A cyclical relationship would be present if we
-start from one variable and follow a path that leads us back to this variable.
+relationships between variables. A cyclical relationship would be
+present if we start from one variable and follow a path that leads us
+back to this variable.
 
 \includegraphics{_main_files/figure-latex/dag_acyclical-1.pdf}
 
-In this example there is a path \(X \rightarrow Y \rightarrow A \rightarrow X\)
-that leads us from \(X\) back to \(X\). This is not allowed in a DAG.
+In this example there is a path
+\(X \rightarrow Y \rightarrow A \rightarrow X\) that leads us from \(X\)
+back to \(X\). This is not allowed in a DAG.
 
-Now that we know the basics, what do we actually do with a DAG? A DAG is a way
-to graphically formalise our assumptions about the data generating process. But
-it is about more than drawing nice formalisations, it is also about figuring out
-which variables we have to include and which we are not allowed to include to
-get an unbiased estimate of our effect of interest. We do this by \emph{blocking} all
-paths from \(X\) to \(Y\) that do not represent the relationship we want to estimate
-and at the same time opening up all paths that do. For this to make sense, we
-need to know the three patterns of relationships between a set of three
-variables and how we can open or close paths with them.
+Now that we know the basics, what do we actually do with a DAG? A DAG is
+a way to graphically formalise our assumptions about the data generating
+process. But it is about more than drawing nice formalisations, it is
+also about figuring out which variables we have to include and which we
+are not allowed to include to get an unbiased estimate of our effect of
+interest. We do this by \emph{blocking} all paths from \(X\) to \(Y\) that do not
+represent the relationship we want to estimate and at the same time
+opening up all paths that do. For this to make sense, we need to know
+the three patterns of relationships between a set of three variables and
+how we can open or close paths with them.
 
 \hypertarget{patterns-of-relationships}{%
 \subsection{Patterns of relationships}\label{patterns-of-relationships}}
@@ -1689,51 +1717,54 @@ Three variables can be connected in a \emph{chain} or \emph{pipe} like this:
 
 \includegraphics{_main_files/figure-latex/dag_pipe-1.pdf}
 
-\(X\) has an effect on \(A\) which in turn affects the value of \(Y\). This implies
-that \(X\) and \(Y\) are statistically correlated. When the value of \(X\) changes,
-the value of \(Y\) also changes, ``transmitted'' by the indirect effect \(X\) has
-on \(Y\) through \(A\). Remember we are still interested in measuring the effect of \(X\) on
-\(Y\), so we also want to measure this indirect effect.
+\(X\) has an effect on \(A\) which in turn affects the value of \(Y\). This
+implies that \(X\) and \(Y\) are statistically correlated. When the value of
+\(X\) changes, the value of \(Y\) also changes, ``transmitted'' by the
+indirect effect \(X\) has on \(Y\) through \(A\). Remember we are still
+interested in measuring the effect of \(X\) on \(Y\), so we also want to
+measure this indirect effect.
 
-The DAG tells us that there is a relationship between all three variables. We
-therefore could be tempted to include \(A\) in our model as well. But what would
-happen is that by including \(A\) we would \emph{block} the path between \(X\) and \(Y\).
-We would not be able to measure the association we are actually interested in.
-Including such a variable and thereby blocking a path of interest is called
-\emph{overcontrol bias}.
+The DAG tells us that there is a relationship between all three
+variables. We therefore could be tempted to include \(A\) in our model as
+well. But what would happen is that by including \(A\) we would \emph{block}
+the path between \(X\) and \(Y\). We would not be able to measure the
+association we are actually interested in. Including such a variable and
+thereby blocking a path of interest is called \emph{overcontrol bias}.
 
-In some cases overcontrolling can make the effect of interest unmeasurable. We
-would then conclude from our analysis that \(X\) has no effect on \(Y\) and that our
-hypotheses was wrong, while there actually could be an effect that we made
-``disappear'' by blocking its path. Drawing a DAG based on our assumptions helps
-us to prevent this pitfall.
+In some cases overcontrolling can make the effect of interest
+unmeasurable. We would then conclude from our analysis that \(X\) has no
+effect on \(Y\) and that our hypotheses was wrong, while there actually
+could be an effect that we made ``disappear'' by blocking its path.
+Drawing a DAG based on our assumptions helps us to prevent this pitfall.
 
 \hypertarget{mediation}{%
 \paragraph{Mediation}\label{mediation}}
 
-A special case of pipes is \emph{mediation}. We will only take about this briefly
-here and return to the topic in \protect\hyperlink{med}{session 10}.
+A special case of pipes is \emph{mediation}. We will only take about this
+briefly here and return to the topic in \protect\hyperlink{med}{session 10}.
 
 Consider this DAG:
 
 \includegraphics{_main_files/figure-latex/dag_mediation-1.pdf}
 
-We see a direct effect through the path \(X \rightarrow Y\) as well as indirect
-effect through \(X \rightarrow A \rightarrow Y\). Should we include \(A\) in our
-model? This depends on what we want to measure.
+We see a direct effect through the path \(X \rightarrow Y\) as well as
+indirect effect through \(X \rightarrow A \rightarrow Y\). Should we
+include \(A\) in our model? This depends on what we want to measure.
 
-If we are interested in the \emph{total effect} of \(X\) on \(Y\), we should not. Both
-effects, the direct and the indirect paths, are of interest here, so we keep
-both paths open by not controlling for \(A\).
+If we are interested in the \emph{total effect} of \(X\) on \(Y\), we should not.
+Both effects, the direct and the indirect paths, are of interest here,
+so we keep both paths open by not controlling for \(A\).
 
-Our interest could also lie exclusively in the \emph{direct effect}. Here we would
-want to measure the effect of \(X\) stripped by all indirect effects. In this case
-we want the path \(X \rightarrow Y\) to keep open, but we would close the path
-\(X \rightarrow A \rightarrow Y\) by controlling for \(A\).
+Our interest could also lie exclusively in the \emph{direct effect}. Here we
+would want to measure the effect of \(X\) stripped by all indirect
+effects. In this case we want the path \(X \rightarrow Y\) to keep open,
+but we would close the path \(X \rightarrow A \rightarrow Y\) by
+controlling for \(A\).
 
-We could also only be interested in the \emph{indirect effect}, the effect
-of \(X\) on \(Y\) that goes through \(A\). We can not directly model this, but we can
-compute the indirect effect as the difference between total and direct effect.
+We could also only be interested in the \emph{indirect effect}, the effect of
+\(X\) on \(Y\) that goes through \(A\). We can not directly model this, but we
+can compute the indirect effect as the difference between total and
+direct effect.
 
 \hypertarget{confounders}{%
 \subsubsection{Confounders}\label{confounders}}
@@ -1742,165 +1773,179 @@ The second pattern we may see is the \emph{fork} or \emph{confounder}.
 
 \includegraphics{_main_files/figure-latex/dag_confounder-1.pdf}
 
-We see that there is no implied direct relationship between \(X\) and \(Y\) but that
-both variables are influenced by \(A\). If we would measure the relationship
-between \(X\) and \(Y\) we \emph{should} see no statistical correlation. The problem is,
-that we \emph{would} see a correlation despite this. Why is that?
-The values of \(X\) and \(Y\) both depend on the value of \(A\). If we for example
-assume that both effects are positive the value of \(X\) would rise with the value
-of \(A\) and the value of \(Y\) would rise with the value of \(A\) also.
-The opposite would be true if both effects were negative. Lower values for \(A\)
-would lead to lower values for \(X\) and \(Y\).
-But even if the effects would be opposite, they would never cancel each other out
-perfectly. \(X\) and \(Y\) vary together.
-If we just include \(X\) and \(Y\) in our model this would show up as an
-effect from \(X\) on \(Y\).
+We see that there is no implied direct relationship between \(X\) and \(Y\)
+but that both variables are influenced by \(A\). If we would measure the
+relationship between \(X\) and \(Y\) we \emph{should} see no statistical
+correlation. The problem is, that we \emph{would} see a correlation despite
+this. Why is that? The values of \(X\) and \(Y\) both depend on the value of
+\(A\). If we for example assume that both effects are positive the value
+of \(X\) would rise with the value of \(A\) and the value of \(Y\) would rise
+with the value of \(A\) also. The opposite would be true if both effects
+were negative. Lower values for \(A\) would lead to lower values for \(X\)
+and \(Y\). But even if the effects would be opposite, they would never
+cancel each other out perfectly. \(X\) and \(Y\) vary together. If we just
+include \(X\) and \(Y\) in our model this would show up as an effect from
+\(X\) on \(Y\).
 
-In DAG terms, there is an open path between \(X\) and \(Y\) although we did not
-draw a direct path: \(X \leftarrow A \rightarrow Y\). This may seem
-counterintuitive at first, as the arrows go in opposite directions, but for
-paths in a DAG to exist, the direction of the arrows does not matter. Every
-connection between variables is a path. So there is an open path, in this case
-a so called \emph{backdoor path}, that leads to a statistical association between
-\(X\) and \(Y\), but we can close it by controlling for \(A\). If we do this, we would
-see no remaining association between \(X\) and \(Y\) and thus get an unbiased
-estimate for the effect of interest, i.e.~no effect.
+In DAG terms, there is an open path between \(X\) and \(Y\) although we did
+not draw a direct path: \(X \leftarrow A \rightarrow Y\). This may seem
+counterintuitive at first, as the arrows go in opposite directions, but
+for paths in a DAG to exist, the direction of the arrows does not
+matter. Every connection between variables is a path. So there is an
+open path, in this case a so called \emph{backdoor path}, that leads to a
+statistical association between \(X\) and \(Y\), but we can close it by
+controlling for \(A\). If we do this, we would see no remaining
+association between \(X\) and \(Y\) and thus get an unbiased estimate for
+the effect of interest, i.e.~no effect.
 
-If this still seems unintuitive consider the following example, which you can
-also find in many statistical textbooks. Do storks bring babies? We could tackle
-this analytically by taking a measure of babies born in a region as our dependent
-variable and the number of storksightings in the same region as our dependent
-variable. Let statistics come to the rescue and help us discard the notion of
-the baby bringing stork once and for all. But alas, our model will tell us that
-there is a positive effect from storksightings on the number of newborns. Should
-we conclude that everything we learned from our parents and teachers was one big
-lie to hide away the magical truth about reproduction? Before we do that, let us
-return to rationality. Maybe we have missed something important. It turns out
-that there is a confounder we did not include in our model. More rural areas
-have higher birthrates and also have a higher rate of storksightings while both
-variables have lower values in more urban regions. Our dependent and independent
-variables both vary by the value of the confounder and thus it seems that there
-is a correlation where there actually is none. If we now include a measure for
-the type of region, let us say population density, this spurious association
-disappears and we can return to normality. Storks do not bring babies after all.
+If this still seems unintuitive consider the following example, which
+you can also find in many statistical textbooks. Do storks bring babies?
+We could tackle this analytically by taking a measure of babies born in
+a region as our dependent variable and the number of storksightings in
+the same region as our dependent variable. Let statistics come to the
+rescue and help us discard the notion of the baby bringing stork once
+and for all. But alas, our model will tell us that there is a positive
+effect from storksightings on the number of newborns. Should we conclude
+that everything we learned from our parents and teachers was one big lie
+to hide away the magical truth about reproduction? Before we do that,
+let us return to rationality. Maybe we have missed something important.
+It turns out that there is a confounder we did not include in our model.
+More rural areas have higher birthrates and also have a higher rate of
+storksightings while both variables have lower values in more urban
+regions. Our dependent and independent variables both vary by the value
+of the confounder and thus it seems that there is a correlation where
+there actually is none. If we now include a measure for the type of
+region, let us say population density, this spurious association
+disappears and we can return to normality. Storks do not bring babies
+after all.
 
 \includegraphics{_main_files/figure-latex/dag_storks-1.pdf}
 
 \hypertarget{colliders}{%
 \subsubsection{Colliders}\label{colliders}}
 
-The last pattern we have to consider are \emph{colliders}. A collider is a variable
-on a path that has two arrows pointing into it:
+The last pattern we have to consider are \emph{colliders}. A collider is a
+variable on a path that has two arrows pointing into it:
 
 \includegraphics{_main_files/figure-latex/dag_mediation_1-1.pdf}
 
-Here \(A\) is influenced by the value of \(X\) as well as \(Y\). Again, there should
-be no effect of \(X\) on \(Y\) and in this case there is none if we just include \(X\)
-and \(Y\) in our model. If we also include \(A\) we introduce an association
-between \(X\) and \(Y\) even if there should be none. This implies that we should
-not control for colliders because we would open up a path that creates a spurious
-association between two variables that are not related.
+Here \(A\) is influenced by the value of \(X\) as well as \(Y\). Again, there
+should be no effect of \(X\) on \(Y\) and in this case there is none if we
+just include \(X\) and \(Y\) in our model. If we also include \(A\) we
+introduce an association between \(X\) and \(Y\) even if there should be
+none. This implies that we should not control for colliders because we
+would open up a path that creates a spurious association between two
+variables that are not related.
 
 \hypertarget{adjustment-set}{%
 \subsection{Adjustment set}\label{adjustment-set}}
 
-Now we have all the building blocks for identifying which variables we have to
-include in our model and which we are not allowed to include. If we do not follow
-these rules we may statistically find relationships where there are none or miss
-relationships that actually exist. We then would draw the wrong conclusions for
-our hypotheses and research question. We would produce bad science.
+Now we have all the building blocks for identifying which variables we
+have to include in our model and which we are not allowed to include. If
+we do not follow these rules we may statistically find relationships
+where there are none or miss relationships that actually exist. We then
+would draw the wrong conclusions for our hypotheses and research
+question. We would produce bad science.
 
 If we draw out our DAG and use its implications to identify the correct
-\emph{adjustment set} \(Z\) of control variables, we do not fall into this trap.
-We only control what we have to, and nothing that we should not. We thus create
-the best model to get an unbiased estimate for our effect of interest;
-but there is always a caveat and this is a big one. The model is only correct if
-our DAG is also correct and we can never know for certain if it is. We could
-make wrong assumptions, forget important relationships, and make all matters of
-mistakes while building our DAG. While DAGs are a great tool for identifying the
-adjustment set, the technique alone can never replace careful thinking.
+\emph{adjustment set} \(Z\) of control variables, we do not fall into this
+trap. We only control what we have to, and nothing that we should not.
+We thus create the best model to get an unbiased estimate for our effect
+of interest; but there is always a caveat and this is a big one. The
+model is only correct if our DAG is also correct and we can never know
+for certain if it is. We could make wrong assumptions, forget important
+relationships, and make all matters of mistakes while building our DAG.
+While DAGs are a great tool for identifying the adjustment set, the
+technique alone can never replace careful thinking.
 
 \hypertarget{nba-dag}{%
 \section{NBA DAG}\label{nba-dag}}
 
-We will now pick up where we left off in session 2 and return to the NBA data.
-Equipped with our new tool we can now draw a DAG with the goal of building a
-model to estimate the effect of points scored on the salary a player receives.
-The assumption is, that the higher the point average, the higher the salary.
-This makes intuitive sense as a high scoring player is more valuable to the team
-and thus may receive a higher monetary compensation.
+We will now pick up where we left off in session 2 and return to the NBA
+data. Equipped with our new tool we can now draw a DAG with the goal of
+building a model to estimate the effect of points scored on the salary a
+player receives. The assumption is, that the higher the point average,
+the higher the salary. This makes intuitive sense as a high scoring
+player is more valuable to the team and thus may receive a higher
+monetary compensation.
 
 Let us start building a DAG with the information we already have.
 
 \includegraphics{_main_files/figure-latex/dag_1-1.pdf}
 
-Now we have to think about other factors that could influence the relationship
-between points and salary. One variable we already identified as having an
-effect on both was the position a player occupies. The position influences how
-many points per game a player can score and we also already saw that centers
-make more money compared to point guards. Right now we have no reason to believe
-that other positions do not also have an effect on the received salary.
-Following this reasoning, position is a confounder for points and salary.
+Now we have to think about other factors that could influence the
+relationship between points and salary. One variable we already
+identified as having an effect on both was the position a player
+occupies. The position influences how many points per game a player can
+score and we also already saw that centers make more money compared to
+point guards. Right now we have no reason to believe that other
+positions do not also have an effect on the received salary. Following
+this reasoning, position is a confounder for points and salary.
 
 \includegraphics{_main_files/figure-latex/dag_2-1.pdf}
 
 It is also reasonable that body height influences which position a
-player can occupy. Centers have to be big while smaller players tend to play on
-other positions. At the same time, height is an advantage if you want to score
-in a basketball game. Thus height is a confounder for points and position.
+player can occupy. Centers have to be big while smaller players tend to
+play on other positions. At the same time, height is an advantage if you
+want to score in a basketball game. Thus height is a confounder for
+points and position.
 
 \includegraphics{_main_files/figure-latex/dag_3-1.pdf}
 
-Another factor that will have an effect on the salary is the team a player plays
-for. More successful teams will be able to pay higher salaries. The season an
-observation was recorded in should also influence the paid salary as we can
-expect a general inflation of salaries over time.
+Another factor that will have an effect on the salary is the team a
+player plays for. More successful teams will be able to pay higher
+salaries. The season an observation was recorded in should also
+influence the paid salary as we can expect a general inflation of
+salaries over time.
 
 \includegraphics{_main_files/figure-latex/dag_final_0-1.pdf}
 
-This is our final DAG. Does it correctly depict the underlying data generating
-process? We do not know for sure, but the DAG correctly reflects our assumptions
-at this point. Those may be wrong. Maybe the data generating process actually
-works slightly or even completely different; but to the best of our current
-knowledge, this is how the scored points affect the salary a player receives.
+This is our final DAG. Does it correctly depict the underlying data
+generating process? We do not know for sure, but the DAG correctly
+reflects our assumptions at this point. Those may be wrong. Maybe the
+data generating process actually works slightly or even completely
+different; but to the best of our current knowledge, this is how the
+scored points affect the salary a player receives.
 
-We can now inspect what implications the DAG has for our model. To do this,
-let us list the paths from our independent to the dependent variable.
+We can now inspect what implications the DAG has for our model. To do
+this, let us list the paths from our independent to the dependent
+variable.
 
 \[A: Points \rightarrow Salary\]
 \[B: Points \leftarrow Position \rightarrow Salary\]
 
 \[C: Points \leftarrow Height \rightarrow Position \rightarrow Salary\]
-Path A is a direct path from our independent variable to our dependent variable.
-We will have to include scored points and salary into our model, but that is a
-given.
+Path A is a direct path from our independent variable to our dependent
+variable. We will have to include scored points and salary into our
+model, but that is a given.
 
-Paths B \& C are both backdoor paths - these are easily spotable by an arrow
-pointing into the independent variable - that we have to address somehow.
-Let us consider B first. Position is a confounder for points and salary. Above
-we already learned how to deal with this, we control for it. This removes
-the spurious part of the association between points and salary introduced by the
-confounder. Path C also includes a confounder, namely the body height of a player.
-Do we also control for this variable to close path C? No, we do not. If we
-further examine path C we will see that it also includes position as a pipe.
-When we control for a variable in a pipe, the path gets closed. As we have to
-include position to close path B, path C is also already closed.
+Paths B \& C are both backdoor paths - these are easily spotable by an
+arrow pointing into the independent variable - that we have to address
+somehow. Let us consider B first. Position is a confounder for points
+and salary. Above we already learned how to deal with this, we control
+for it. This removes the spurious part of the association between points
+and salary introduced by the confounder. Path C also includes a
+confounder, namely the body height of a player. Do we also control for
+this variable to close path C? No, we do not. If we further examine path
+C we will see that it also includes position as a pipe. When we control
+for a variable in a pipe, the path gets closed. As we have to include
+position to close path B, path C is also already closed.
 
 The two remaining variables, team and season, have direct effects on the
-salary but do not lie on a path from points to salary. This implies, that we
-do \textbf{not} have to control for them if our goal is estimating the effect of
-points on salary.
+salary but do not lie on a path from points to salary. This implies,
+that we do \textbf{not} have to control for them if our goal is estimating
+the effect of points on salary.
 
-Above we briefly talked about the two possible goals of modelling. Here and over
-the next sessions our goal is estimating an effect of interest without bias. We
-used the DAG to identify an adjustment set of variables we have to control for
-to reach this goal.
-If our goal was predicting the salary as accurately as possible we would made
-other conclusions. The team a player is employed by and the season where an
-observation was measured are both relevant predictors for the received salary.
-For prediction we would have included both variables because this should increase
-the accuracy of the prediction. We will return to this in more detail in
-\protect\hyperlink{pm-t}{session 11}.
+Above we briefly talked about the two possible goals of modelling. Here
+and over the next sessions our goal is estimating an effect of interest
+without bias. We used the DAG to identify an adjustment set of variables
+we have to control for to reach this goal. If our goal was predicting
+the salary as accurately as possible we would made other conclusions.
+The team a player is employed by and the season where an observation was
+measured are both relevant predictors for the received salary. For
+prediction we would have included both variables because this should
+increase the accuracy of the prediction. We will return to this in more
+detail in \protect\hyperlink{pm-t}{session 11}.
 
 \hypertarget{resources}{%
 \section{Resources}\label{resources}}
@@ -1908,53 +1953,57 @@ the accuracy of the prediction. We will return to this in more detail in
 \hypertarget{dagitty.net}{%
 \subsection{dagitty.net}\label{dagitty.net}}
 
-While the underlying rules of DAGs are relatively straightforward, identifying
-the adjustment set can get harder the more complex a DAG gets. Consider this for
-instance:
+While the underlying rules of DAGs are relatively straightforward,
+identifying the adjustment set can get harder the more complex a DAG
+gets. Consider this for instance:
 
 \includegraphics{_main_files/figure-latex/dag_final_1-1.pdf}
 
-What variables do we have to include in our adjustment set to get unbiased
-measure for the effect from \(X\) on \(Y\)? We would suggest you take out pen and paper
-and try to figure it out. You can approach this as above. List all paths from
-\(X\) to \(Y\) that do not include a variable twice and try to find the adjustment
-set that closes all paths besides the one(s) needed to measure the effect from
-\(X\) on \(Y\). Spoiler: In this case the only path we want to keep open is the
-direct effect \(X \rightarrow Y\).
+What variables do we have to include in our adjustment set to get
+unbiased measure for the effect from \(X\) on \(Y\)? We would suggest you
+take out pen and paper and try to figure it out. You can approach this
+as above. List all paths from \(X\) to \(Y\) that do not include a variable
+twice and try to find the adjustment set that closes all paths besides
+the one(s) needed to measure the effect from \(X\) on \(Y\). Spoiler: In
+this case the only path we want to keep open is the direct effect
+\(X \rightarrow Y\).
 
-While this is doable, you may be unsure if you found the correct set. Luckily there
-is a convenient way to find out. \url{https://dagitty.net/} provides a browser tool
-where you can draw DAGs - as well as export them for your papers - and check for
-the correct adjustment set. After launching the tool you should click on ``Model''
-and then ``New model''. Now you can start drawing. New variables are added by
-clicking on the canvas and naming them, arrows are added by first clicking on
-the variable where the arrow should start and then on the variable where it
-should end. For everything to work you should also declare the independent
-variable of interest the ``Exposure'' and the dependent variable the ``Outcome''.
-Both can be set on the left under ``Variable''. When the DAG is drawn correctly,
-the top right panel ``Causal effect identification'' should show which variables
-need to be part of the adjustment set to estimate the effect of interest.
+While this is doable, you may be unsure if you found the correct set.
+Luckily there is a convenient way to find out. \url{https://dagitty.net/}
+provides a browser tool where you can draw DAGs - as well as export them
+for your papers - and check for the correct adjustment set. After
+launching the tool you should click on ``Model'' and then ``New model''. Now
+you can start drawing. New variables are added by clicking on the canvas
+and naming them, arrows are added by first clicking on the variable
+where the arrow should start and then on the variable where it should
+end. For everything to work you should also declare the independent
+variable of interest the ``Exposure'' and the dependent variable the
+``Outcome''. Both can be set on the left under ``Variable''. When the DAG is
+drawn correctly, the top right panel ``Causal effect identification''
+should show which variables need to be part of the adjustment set to
+estimate the effect of interest.
 
-Note that ``Causal effect identification'' is set to display the adjustment set
-for the total effect. This also is what we are interested in here. If we are
-interested in mediation, we can also set the panel to display the set for the
-direct effect.
+Note that ``Causal effect identification'' is set to display the
+adjustment set for the total effect. This also is what we are interested
+in here. If we are interested in mediation, we can also set the panel to
+display the set for the direct effect.
 
 \hypertarget{how-to-use-dagitty}{%
 \subsection{How to use dagitty()}\label{how-to-use-dagitty}}
 
-We can also draw DAGs directly in R, using the \texttt{dagitty} package.
-To start drawing a DAG we write \texttt{dagitty(\textquotesingle{}dag\ \{\})}.
-The actual definition of the DAG takes place between the squirly brackets.
-First we list all variables in the model by writing their names between
-quotation marks. For each variable we can optionally add additional options between square
-brackets following the name. In the example below we define one variable as \texttt{exposure}
-and one as \texttt{outcome}, just like we would do on dagitty.net. We also give values
-for the relative positions. If we skip those, \texttt{dagitty()} will decide on the positions
-itself which may or may not look nice and tidy. After all variables are defined
-we write out the paths that should be present connecting the variable names with
-\texttt{\textless{}-} or \texttt{-\textgreater{}}, depending on the direction an arrow should point. We can than use \texttt{plot()}
-to see the DAG.
+We can also draw DAGs directly in R, using the \texttt{dagitty} package. To
+start drawing a DAG we write \texttt{dagitty(\textquotesingle{}dag\ \{\})}. The actual definition
+of the DAG takes place between the squirly brackets. First we list all
+variables in the model by writing their names between quotation marks.
+For each variable we can optionally add additional options between
+square brackets following the name. In the example below we define one
+variable as \texttt{exposure} and one as \texttt{outcome}, just like we would do on
+dagitty.net. We also give values for the relative positions. If we skip
+those, \texttt{dagitty()} will decide on the positions itself which may or may
+not look nice and tidy. After all variables are defined we write out the
+paths that should be present connecting the variable names with \texttt{\textless{}-} or
+\texttt{-\textgreater{}}, depending on the direction an arrow should point. We can than use
+\texttt{plot()} to see the DAG.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1979,7 +2028,9 @@ to see the DAG.
 
 \includegraphics{_main_files/figure-latex/dagitty_example-1.pdf}
 
-We can also usethe function \texttt{adjustmentSets()\ to\ derive\ our\ adjustment\ set.\ The\ argument}effect = \texttt{lets\ us\ control\ if\ we\ want\ to\ see\ the\ adjustment\ set\ for\ the}``total''\texttt{or}``direct''` effect-
+We can also use the function \texttt{adjustmentSets()} to derive our adjustment
+set. The argument \texttt{effect\ =} lets us control if we want to see the
+adjustment set for the \texttt{"total"} or \texttt{"direct"} effect.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2009,32 +2060,40 @@ We can also usethe function \texttt{adjustmentSets()\ to\ derive\ our\ adjustmen
 If you are interested in diving deeper into DAGs, we can recommend this
 resources, which were also used for writing this session.
 
-Richard McElreath provides a great introduction into the topic with many clear
-examples. While the book chapter on DAGs may require some knowledge of advanced
-statistical topics, the corresponding lecture on YouTube is more approachable:
+Richard McElreath provides a great introduction into the topic with many
+clear examples. While the book chapter on DAGs may require some
+knowledge of advanced statistical topics, the corresponding lecture on
+YouTube is more approachable:
 
-McElreath, Richard (2020). Statistical Rethinking: A Bayesian Course with
-Examples in R and STAN. Second Edition. Boca Raton \& Oxon: CRC Press.
-Chapter 5: The Many Variables \& The Spurious Waffles, 123-160.
+McElreath, Richard (2020). Statistical Rethinking: A Bayesian Course
+with Examples in R and STAN. Second Edition. Boca Raton \& Oxon: CRC
+Press. Chapter 5: The Many Variables \& The Spurious Waffles, 123-160.
 
-Corresponding YouTube lecture: \url{https://www.youtube.com/watch?v=mBEA7PKDmiY}
+Corresponding YouTube lecture:
+\url{https://www.youtube.com/watch?v=mBEA7PKDmiY}
 
-Felix Elwert wrote a concise paper on DAGs with a perspective that is more
-focused on causality than we have presented here:
+\hfill\break
 
-Elwert, Felix (2013). Graphical Causal Models. In S. L. Morgan (Hrsg.), Handbook
-of Causal Analysis for Social Research, 245--273. Dordrecht {[}u.a.{]}: Springer.
+Felix Elwert wrote a concise paper on DAGs with a perspective that is
+more focused on causality than we have presented here:
 
-If you really want to get into it, the work of Judea Pearl was central for
-establishing DAGs. An approachable starting point would be the ``Book of Why'':
+Elwert, Felix (2013). Graphical Causal Models. In S. L. Morgan (Hrsg.),
+Handbook of Causal Analysis for Social Research, 245--273. Dordrecht
+{[}u.a.{]}: Springer.
 
-Pearl, Judea \& Dana Mackenzie (2018). The book of why : the new science of cause
-and effect. New York: Basic Books.
+\hfill\break
+
+If you really want to get into it, the work of Judea Pearl was central
+for establishing DAGs. An approachable starting point would be the ``Book
+of Why'':
+
+Pearl, Judea \& Dana Mackenzie (2018). The book of why : the new science
+of cause and effect. New York: Basic Books.
 
 \hypertarget{lin-t-1}{%
-\chapter{Linear Regression Theory I: Simple Linear Regression}\label{lin-t-1}}
+\chapter{Linear Regression - Theory I: Simple Linear Regression}\label{lin-t-1}}
 
-The next three sessions will be an introduction for linear regressions.
+The next three sessions will comprise an introduction for linear regressions.
 We will look at the theoretical underpinnings, the interpretation of results
 and the underlying assumptions of these models. For this introduction we will
 keep the NBA data aside and use some simulated data that plays nice with us.
@@ -2071,20 +2130,21 @@ variables and one dependent variable. We try to predict the latter for actual
 or hypothetical cases based on their values for the independent variables.
 This approach lies at the heart of \emph{machine learning} and drives many of the
 technologies we use on a daily basis from E-Mail spam filters to ChatGPT.
-Returning to the example above, we are not interested in measuring the effect
-of money on life satisfaction, but in predicting the value for life satisfaction
+Returning to the example above, we are not interested in measuring the \emph{effect}
+of money on life satisfaction, but in \emph{predicting} the value for life satisfaction
 based on money and a host of other variables as accurately as possible.
 
 Linear regression is one of the many available modelling techniques and it can
 serve both approaches. Over the next sessions we will focus on using
 linear regression for estimating an effect of interest but we will return to
-prediction in session 11 \& 12.
+prediction in \protect\hyperlink{pm-t}{session 11}.
 
 How do we know if we should choose linear regression for a specific task?
 This is not easy to answer as there are many alternatives and even variations of
 linear regression which may be better suited for a specific empirical problem.
 As this is an introduction to modelling and time is of the essence we opted to
-solely focus on linear regression. This technique is suited for many problems and
+mainly focus on an in-depth introduction to linear regression.
+This technique is suited for many problems and
 is comparably easy to understand and use. Also, after learning the ins and outs
 of linear regression, we are in a good position to build upon that knowledge and
 learn all of those more complex and specific models that we will encounter in
@@ -2093,17 +2153,19 @@ textbooks and scientific papers.
 With the pool of options trimmed down to one, the central question remains unanswered.
 Should I use linear regression for my task? As we have no alternatives to chose
 from, we can change the question to: Can I use linear regression for my task?
-The answer no mostly depends on what type of dependent variable we want to use.
-If it is metric, we can use linear regression. In our cases, the simulated data
-and our NBA data, our dependent variables both are metric. If we had other types
-of dependent variables, e.g.~binary or categorical, we would have to use different
-models. We will give you some pointers for these at a later point.
+The answer mainly depends on what type of dependent variable we want to use.
+If it is metric, we can use linear regression.
+In our cases the dependent variable is metric, as you will find out below.
+If we had other types of dependent variables we would have to use different
+models.
+For example a common choice for binary or categorical dependent variables is
+logistic regression, which we will introduce at a \protect\hyperlink{log-est}{later point in the course}.
 
 \hypertarget{examplary-research-question-data}{%
 \section{Examplary research question \& data}\label{examplary-research-question-data}}
 
-For this introduction, et us imagine that we are interested in a research
-question that asks what makes a good grade in a seminar paper. In particular we
+For this introduction, let us imagine that we are interested in a research
+question that asks: \emph{What makes a good grade in a seminar paper?} In particular we
 are interested in the effect that the hours a student invests in working on it
 has on the grade. Based on some theoretical considerations, and maybe some
 idealistic views, we derive our main hypotheses that putting in more hours will
@@ -2125,27 +2187,45 @@ takes to achieve a good grade. But remember, no real students were harmed in
 making up this data.
 
 Let us have a first look on the data:
-XXX ALIGN WITH EDA XXX
 
-\begin{tabular}{l|l|r|r|l|r|l|r|l|r|r|r|r|r|r|r|l}
-\hline
-skim\_type & skim\_variable & n\_missing & complete\_rate & factor.ordered & factor.n\_unique & factor.top\_counts & logical.mean & logical.count & numeric.mean & numeric.sd & numeric.p0 & numeric.p25 & numeric.p50 & numeric.p75 & numeric.p100 & numeric.hist\\
-\hline
-factor & contact & 0 & 1 & FALSE & 3 & No : 80, In : 70, E-M: 50 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-logical & attendance & 0 & 1 & NA & NA & NA & 0.765 & TRU: 153, FAL: 47 & NA & NA & NA & NA & NA & NA & NA & NA\\
-\hline
-numeric & grade & 0 & 1 & NA & NA & NA & NA & NA & 2.9675 & 1.076657 & 1.000 & 2.100 & 3.000 & 3.725 & 5.000 & ▅▆▇▆▅\\
-\hline
-numeric & hours & 0 & 1 & NA & NA & NA & NA & NA & 40.3300 & 6.285590 & 23.000 & 36.000 & 41.000 & 45.000 & 57.000 & ▁▅▇▅▁\\
-\hline
-numeric & previous\_grades & 0 & 1 & NA & NA & NA & NA & NA & 2.9350 & 0.964847 & 1.000 & 2.300 & 2.950 & 3.625 & 5.000 & ▅▇▇▆▂\\
-\hline
-numeric & previous\_grades\_centered & 0 & 1 & NA & NA & NA & NA & NA & 0.0000 & 0.964847 & -1.935 & -0.635 & 0.015 & 0.690 & 2.065 & ▅▇▇▆▂\\
-\hline
-numeric & hours\_centered & 0 & 1 & NA & NA & NA & NA & NA & 0.0000 & 6.285590 & -17.330 & -4.330 & 0.670 & 4.670 & 16.670 & ▁▅▇▅▁\\
-\hline
-\end{tabular}
+\begin{verbatim}
+## -- Data Summary ------------------------
+##                            Values
+## Name                       grades
+## Number of rows             200   
+## Number of columns          7     
+## _______________________          
+## Column type frequency:           
+##   factor                   1     
+##   logical                  1     
+##   numeric                  5     
+## ________________________         
+## Group variables            None  
+## 
+## -- Variable type: factor -------------------------------------------------------
+##   skim_variable n_missing complete_rate ordered n_unique
+## 1 contact               0             1 FALSE          3
+##   top_counts               
+## 1 No : 80, In : 70, E-M: 50
+## 
+## -- Variable type: logical ------------------------------------------------------
+##   skim_variable n_missing complete_rate  mean count            
+## 1 attendance            0             1 0.765 TRU: 153, FAL: 47
+## 
+## -- Variable type: numeric ------------------------------------------------------
+##   skim_variable            n_missing complete_rate      mean    sd     p0    p25
+## 1 grade                            0             1  2.97e+ 0 1.08    1     2.1  
+## 2 hours                            0             1  4.03e+ 1 6.29   23    36    
+## 3 previous_grades                  0             1  2.94e+ 0 0.965   1     2.3  
+## 4 previous_grades_centered         0             1 -7.21e-17 0.965  -1.94 -0.635
+## 5 hours_centered                   0             1  1.70e-15 6.29  -17.3  -4.33 
+##       p50   p75  p100 hist 
+## 1  3       3.73  5    ▅▆▇▆▅
+## 2 41      45    57    ▁▅▇▅▁
+## 3  2.95    3.62  5    ▅▇▇▆▂
+## 4  0.0150  0.69  2.06 ▅▇▇▆▂
+## 5  0.670   4.67 16.7  ▁▅▇▅▁
+\end{verbatim}
 
 Right now, the observations are ordered by the grade of the seminar paper which
 run from \(1.0\) to \(5.0\) in increments of \(0.1\). While this is somewhat
@@ -2167,7 +2247,7 @@ the imaginary question on how much contact the student had to the lecturer
 before starting the writing process. Besides \texttt{No\ contact} the students could
 have had \texttt{E-Mail} contact to state their research question and get some short
 written feedback or meet the lecturer \texttt{In\ Person} to achieve a deeper discussion
-of the question and laid out plan for writing the paper.
+of the question and the laid out plan for writing the paper.
 The two additional variables are versions of \texttt{previous\_grades} and \texttt{hours} that
 are centered on their respective means. They will come into play at a later
 point in this session.
@@ -2233,7 +2313,7 @@ of these effects is, we now turn to linear regression.
 
 In a \emph{simple linear regression}, the model is used to describe the relationship
 between \emph{one} dependent and \emph{one} independent or explanatory variable. The
-question this model can answer for us is, by how much does the dependent
+question this model can answer for us is: By how much does the dependent
 variable increase or decrease, when the explanatory variable increases by \(1\)?
 
 Returning to our exemplary research question on what makes a good grade in a
@@ -2250,7 +2330,7 @@ variables against each other.
 \includegraphics{_main_files/figure-latex/plot_grade_hours-1.pdf}
 
 When we are talking about dependent and independent variables, there is the
-convention to plot former on the x-axis and the latter on the y-axis. So the
+convention to plot the former on the y-axis and the latter on the x-axis. So the
 \emph{y-variable} is to be explained and the \emph{x-variable} is used to explain it.
 This convention will also be used in all formulas in this seminar.
 
@@ -2267,7 +2347,7 @@ lower right.
 
 \includegraphics{_main_files/figure-latex/plot_grade_hours_wild_guess-1.pdf}
 
-This describes the realtionship between the two variables as linear. Each hour
+This describes the relationship between the two variables as linear. Each hour
 invested decreases the grade by a certain amount, for this proposed line by
 exactly \(0.08\) points. Remember that decreasing the value of the grade actually
 means getting a better grade.
@@ -2364,18 +2444,6 @@ We can visualize this. To keep the plot readable, we only do this for some
 random observations but in reality the distance of every data point from the
 regression line is taken into account.
 
-\begin{verbatim}
-## # A tibble: 5 x 7
-##   grade hours previous_grades attendance contact    previous_grades_centered
-##   <dbl> <int>           <dbl> <lgl>      <fct>                         <dbl>
-## 1   2.3    45             2.6 TRUE       No contact                   -0.335
-## 2   1.9    44             2.8 TRUE       In Person                    -0.135
-## 3   3.1    38             3.7 TRUE       In Person                     0.765
-## 4   3.3    40             3.4 TRUE       E-Mail                        0.465
-## 5   4.6    54             4.5 TRUE       No contact                    1.56 
-## # i 1 more variable: hours_centered <dbl>
-\end{verbatim}
-
 \includegraphics{_main_files/figure-latex/plot_grade_hours_wild_guess_expl_residuals-1.pdf}
 
 The distance of these or rather all points from the line, the \emph{residuals}, are
@@ -2385,11 +2453,11 @@ for sure, but there are two common main reasons.
 
 For one, there may be other variables that also influence the relationship
 between invested hours and achieved grade, something that we will return to
-in the next session, when we expand the idea of linear regression to multiple
+in the \protect\hyperlink{lin-t-2}{next session}, when we expand the idea of linear regression to multiple
 independent variables.
 
 But there is also random variation present in every bit of real world data.
-While our data is simulated we also added random variation on purpose. Because
+While our data is simulated, we also added random variation on purpose. Because
 this is what real world data is, it is messy and it is noisy.
 
 Not every seminar paper that had the same time investment, e.g.~40 hours, will
@@ -2478,7 +2546,7 @@ estimating the effect of \texttt{hours} on \texttt{grade} or in other words, reg
 This is the output from a simple linear regression for \texttt{grade} on \texttt{hours} R
 returns to us.
 How we can do this in practice and what the first two lines mean will be the
-topic of session 8. For now we will focus on the estimates in the coefficient
+topic of \protect\hyperlink{lin-a}{session 8}. For now we will focus on the estimates in the coefficient
 block and introduce the additional elements of the output on by one over the
 next sessions.
 
@@ -2518,7 +2586,7 @@ with zero hours of time invested, the grade would be a firm \(5.0\) and the same
 would be true for low single digits, i.e.~turning in a two-pager as a seminar
 paper. The takeaway is, that the model is highly dependent on the data that it
 is trained on. If the data would have included such cases we could expect a
-higher intercept and a steeper slope, i.e.~stronger negative coefficient.
+higher intercept and a steeper slope, i.e.~a stronger negative coefficient.
 
 Luckily all our simulated students have put in at least some hours. But as we do
 not have data for zero to \(22\) hours, we can not really make reliable estimates
@@ -2574,30 +2642,14 @@ their work, i.e.~\(40.33\).
 Based on our simple linear regression model we achieved an estimate for our
 effect of interest. Working more hours results in receiving a better grade.
 But there could be other variables that influence this relationship. In the
-next session we learn how we can include these in our model, when we move from
+\protect\hyperlink{lin-t-2}{next session} we learn how we can include these in our model, when we move from
 simple to multiple linear regression.
 
-\hypertarget{further-resources-2}{%
-\section{Further resources}\label{further-resources-2}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \href{https://www.datacamp.com/tutorial/linear-regression-R}{Linear Regression in R Tutorial}: This tutorial covers the basics of linear regression in R, such as how to use the lm function, how to interpret the results, and how to visualize the relationship between variables.
-\item
-  \href{https://www.educba.com/linear-regression-in-r/}{Linear Regression in R \textbar{} How to intrepret Linear Regression with Examples}: This article explains the concept of linear regression, the assumptions and limitations of the model, and how to perform and evaluate a linear regression in R with examples.
-\item
-  \href{https://www.upgrad.com/blog/multiple-linear-regression-in-r/}{Multiple Linear Regression in R (With Graphs \& Examples)}: This guide shows how to extend the linear regression model to include more than one explanatory variable, how to use the caret package to train and test the model, and how to plot the results with ggplot2.
-\item
-  \href{https://moderndive.com/5-regression.html\#model1table}{Linear Models in R}: This chapter from the book ModernDive provides a comprehensive introduction to linear models in R, including simple and multiple linear regression, model selection, inference, diagnostics, and prediction.
-\end{enumerate}
-
 \hypertarget{lin-t-2}{%
-\chapter{Linear Regression Theory II: Multiple Linear Regression}\label{lin-t-2}}
+\chapter{Linear Regression - Theory II: Multiple Linear Regression}\label{lin-t-2}}
 
 Maybe explaining the grade a student receives solely based on the hours of
-invested time, does not paint the whole picture. As we have alluded to, there
+invested time does not paint the whole picture. As we have alluded to, there
 may be other variables that could affect the relationship between \texttt{hours} and
 \texttt{grade}.
 If we fail to include these in our model, we may not get an unbiased estimate
@@ -2613,7 +2665,7 @@ To assess this, we have to move from simple to multiple linear regression.
 \item
   Expand the idea to multiple linear regression
 \item
-  How can we interpret different types of independent variables?
+  Interpreting different types of independent variables
 \item
   Understand measures of uncertainty
 \end{itemize}
@@ -2635,7 +2687,7 @@ additional variables and their coefficients additively to the formula.
 
 So to add a second variable and its coefficient we add the term \(+ \beta_2*x_2\)
 and so on until we added all independent variables of interest \(k\) to the model.
-Everything else works exactly as described above for the simple model.
+Everything else works exactly as for the simple model.
 
 \hypertarget{adding-additional-metric-variables}{%
 \subsection{Adding additional metric variables}\label{adding-additional-metric-variables}}
@@ -2685,7 +2737,7 @@ effect of \texttt{previous\_grades\_centered}. This is what multiple linear regr
 does, giving us the coefficients for our variables of interest while keeping all
 other independent variables at specific values. As we have centered the variable
 for previous grades, the coefficient for \texttt{hours\ centered} gives us the effect
-when the previous grades were exactly at the mean of \(2,935\).
+when the previous grades were exactly at the mean of \(2.935\).
 
 In the same way, the coefficient for \texttt{previous\_grades\_centered} gives us the
 effect of previous grades when the invested hours are controlled for, in this
@@ -2703,11 +2755,11 @@ we can calculate it again.
 
 \[b_0 + b_{hours\_centered}*0 + b_{previous\_grades\_centered}*0 = 2.9675\]
 
-For this case we can see, that the previous grade actually is a strong
+For this case we can see that the previous grade actually is a strong
 predictor, as the previous and new grades are substantially the same.
 
 What if a student whose previous grades were \(1\) above the mean, so just below
-\(4.0\) but who decides to invest \(10\) hours more than the mean for the new paper?
+\(4.0\), but who decides to invest \(10\) hours more than the mean in writing the new paper?
 
 \[2.9675 - 0.056543 * 10 + 0.904079 * 1 = 3.306149\]
 
@@ -2769,7 +2821,9 @@ the output shows us, is the effect of attendance being \texttt{TRUE} compared to
 
 We can observe what happens in the formula:
 
-\[\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd} + b_{attendance} * x_{attendance}\]
+\[\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + \\
+b_{previous\_grades\_centered} * x_{previous\_grades\_centered} +\\ 
+b_{attendance} * x_{attendance}\]
 
 If you calculate with \texttt{TRUE} and \texttt{FALSE} in R, the values \(1\) and \(0\) are used
 respectively. So \(x_{attendance}\) can either have the value \(1\) for regular
@@ -2778,12 +2832,20 @@ attendance or \(0\) for not so regular attendance.
 If a student did regularly attend, the coefficient \$b\_\{attendance\} becomes a
 part of the estimate \(\hat{y}\):
 
-\[\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd} + b_{attendance} * 1\]
+\[\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} +\\
+b_{previous\_grades\_centered}*x_{previous\_grades\_centered} +\\ 
+b_{attendance} * 1\]
 
 If student did not regularly attended, this happens:
 
-\[\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd} + b_{attendance} * 0\]
-\[\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd}\]
+\[\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} \\
++ b_{previous\_grades\_centered}*x_{previous\_grades\_centered} +\\
+b_{attendance} * 0\]
+
+Which shortens to:
+
+\[\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} +\\
+b_{previous\_grades\_centered}*x_{previous\_grades\_centered}\]
 
 The coefficient is no longer a part of the estimate. One can basically say, the
 coefficient gets switched on or off by the value of the dummy variable.
@@ -2792,7 +2854,8 @@ So while the estimate for a student with mean values for invested hours and
 previous grades who did not attend is equal to the intercept of \(3.157411\),
 for a similar student who attended we can calculate the estimate as:
 
-\[3.157411 - 0.053942*0 + 0.911802*0 - 0.248250 * 1 = 3.157411 - 0.248250 = 2.909161\]
+\[3.157411 - 0.053942*0 + 0.911802*0 - 0.248250 * 1 = 3.157411 - 0.248250 \\
+= 2.909161\]
 
 It seems attending class is an easy way to raise one's grades.
 
@@ -2800,7 +2863,7 @@ It seems attending class is an easy way to raise one's grades.
 \subsection{Adding categorical variables}\label{adding-categorical-variables}}
 
 We have one further variable in our simulated data set that could be of interest
-in explaining, what makes a good grade in a seminar paper.\texttt{contact} is a
+in explaining, what makes a good grade in a seminar paper. \texttt{contact} is a
 categorical variable, or a factor variable in R terms.
 It can take three different categories. \texttt{No\ contact} indicates that
 the student did not contact the lecturer to discuss a research question or the
@@ -2843,24 +2906,28 @@ them. What happened? What R does is to create two dummy variables on the fly.
 The first discerns between having E-Mail contact and no contact at all. The
 second one between having contact in person and no contact at all. So for
 categorical variables in regression models we always compare being in one of the
-category to being in the \emph{base category}. In this case the base category is
+categories to being in the \emph{base category}. In this case the base category is
 \texttt{No\ contact}, but we could also change the base category. It depends on what we
 are interested in comparing to. For our example comparing the effects of having
 more in depth contact to having none makes sense.
 
 Let us look at our formula again:
 
-\[\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd} + b_{attendance} * x_{attendance} + b_{E-Mail} * x_{E-Mail} + b_{In Person} * x_{In Person}\]
+\[\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} +\\
+b_{previous\_grades\_centered} * x_{previous\_grades\_centeerd} +\\
+b_{attendance} * x_{attendance} +\\
+b_{E-Mail} * x_{E-Mail} + b_{In Person} * x_{In Person}\]
 
 Now there are three possibilities. A student can have no contact at all. In this
-case both dummy variables equal \(0\). To make our formula easier to read, we have
+case both dummy variables are equal to \(0\). To make our formula easier to read, we have
 abbreviated the middle part for now:
 
 \[\hat{y} = b_0 + ... + b_{E-Mail} * 0 + b_{In Person} * 0\]
+
 So in this case controlling all other independent variables at their default
 values, the mean for the metric variables and \texttt{FALSE} for \texttt{attendance}, the
-intercept gives us the estimate for the grade as both dummy variables that
-were created for \texttt{contact} are ``switched off''.
+intercept gives us the estimate for the grade when the student had no contact to
+the lecturer, as both dummy variables that were created for \texttt{contact} are ``switched off''.
 
 The two other possibilities are that a student either had E-Mail contact or an
 in person discussion:
@@ -2882,7 +2949,8 @@ but who decided to put in 20 hours more compared to their peers, regularly
 attend the seminar and have an in-depth personal discussion before writing their
 paper expect on average as their new grade?
 
-\[3.617949 - 0.050830 * 20 + 0.874123 * 0 - 0.324653 * 1 - 0.413808 * 0 - 0.853252 * 1 = 1.423444\]
+\[3.617949 - 0.050830 * 20 + 0.874123 * 0 - 0.324653 * 1 - 0.413808 * 0 - 0.853252 * 1 
+\\ = 1.423444\]
 
 Putting in the hours, attending and working with your lecturer seems to pay off,
 at least in our simulated data set.
@@ -2895,7 +2963,7 @@ a seminar paper. In particular we were interested in the effect of the invested
 hours, as our main hypothesis was that more hours lead to better grades. What do
 we know now?
 
-All analysis point towards a clear effect from \texttt{hours} on \texttt{grade}. This effect
+Our analysis points towards a clear effect from \texttt{hours} on \texttt{grade}. This effect
 was consistently visible in all of our models. But did we correctly identify
 and estimate the effect of interest? Maybe. The problem is, we actually did not
 approach the analysis correctly. In a real analysis we should \textbf{absolutely}
@@ -2979,12 +3047,12 @@ changes the grade by about \(-0.05\) points. This supports our hypotheses and we
 can conclude, that investing more hours into writing a seminar paper actually
 is a worthwhile investment.
 
-But remember: This is correct as long as our DAG is drawn correctly. This is
+But remember: This is correct as long as our DAG is drawn correctly, which is
 always debatable. Maybe we should assume an effect from skill level on \texttt{hours}.
 The higher the skill level the more efficiently the available time can be used.
 For this example we know the DAG is correct, because we have simulated the data
 exactly in this way. For real world applications we never know if our DAG is
-correct. All we can - and have to - do is base it on thorough thought,
+correct. All we can and \emph{have to} do is base it on thorough thinking,
 theoretical work, exploratory data analysis and sound arguments.
 
 This all is true \emph{if} our goal is to estimate an effect of interest as precisely
@@ -3023,12 +3091,18 @@ The \emph{p-value} tells us the probability to observe an association
 between the independent and the dependent variable as large or larger than our
 estimate suggests, if the true association would actually be \(0\). If the p-value
 is small enough, we can reject \(H_0\) and conclude that we observed an actual
-effect. There are certain agreed upon cutoffs in statistics while values that
+effect. There are certain agreed upon cutoffs in statistics, while values that
 meet this cutoffs are considered \emph{statistically significant}. The most common
 cutoff in social sciences is \(0.05\) indicated by one \texttt{*} in the output.
-Other common cutoffs are indicated by more asterisks.
+Other common cutoffs are indicated by more asterisks. It is important to note,
+that we can not say that more \texttt{*} behind an effect mean that this effect has a
+higher statistical significance. We have to decide on a level of statistical
+significance that we want to test for before we see the results. If we decide on
+testing for a significance level of \(5\%\), seeing more than one star then only
+means that the effect is also statistically significant at the \(5\%\) level.
 
-Interpreting p-values correctly and not falling into the common pitfalls is a
+Interpreting p-values correctly and not falling into the common pitfalls like the
+one mentioned above is a
 topic on its own. We do not have the time to dive into this here, so for now we
 can agree that p-values below \(0.05\) indicate that we can reject \(H_0\) and thus
 conclude that we have actually observed an effect. Still, our interpretation of
@@ -3041,11 +3115,12 @@ can have p-values larger than \(0.05\) for effects that are still relevant. Mayb
 the problem is not that there is no effect but that we were not able to measure
 the variable in question precisely enough or that we just did not have enough
 observations. We can not go any deeper than this here, but we should remember
-that the practice of declaring every effect with stars a win and disregarding
+that the practice of declaring every effect with stars a win, or even with more
+stars a bigger win, and disregarding
 everything without them may still be common but is not the way to go forward.
 
 In our model, we can see that the effect of interest is statistically
-highly significant. We can thus conclude, that we have observed an actual effect
+significant. We can thus conclude, that we have observed an actual effect
 from \texttt{hours} on \texttt{grade}. Our estimate is large enough and our standard error
 small enough to reach this conclusion.
 
@@ -3056,35 +3131,15 @@ We have attained an estimate for our effect of interest which supports our
 hypotheses that investing more hours into writing a paper leads to better grades.
 So can we wrap a bow on the question and move on to finally figuring out what
 is going on in our NBA data? Almost, but not yet. We still do not know, if our
-model actually works as intended. Linear regression, as well as every modelling
-technique, has some underlying assumptions that we have to meet for the model
-to accurately estimate an effect. In the next session we will get to know this
+model actually works as intended. Linear regression, as well as every other modelling
+technique, has some underlying statistical assumptions that we have to meet for the model
+to accurately estimate an effect. In the \protect\hyperlink{lin-t-3}{next session} we will get to know these
 assumptions and how we can test for them.
 
-\hypertarget{further-resources-3}{%
-\section{Further resources}\label{further-resources-3}}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://www.scribbr.com/statistics/multiple-linear-regression/}{Multiple Linear Regression \textbar{} A Quick Guide (Examples)}: This article provides an overview of multiple linear regression, its assumptions, how to perform it, and how to interpret the results.
-\item
-  \href{https://online.stat.psu.edu/stat501/lesson/5}{Lesson 5: Multiple Linear Regression \textbar{} STAT 501}: This lesson covers the basics of multiple linear regression, including matrix notation, model assumptions, hypothesis testing, and R-squared.
-\item
-  \href{https://www.youtube.com/watch?v=q1RD5ECsSB0}{Multiple Linear Regression in R \textbar{} R Tutorial 5.3 \textbar{} MarinStatsLectures}: This video tutorial shows how to fit a multiple linear regression model in R, produce summaries, and interpret the coefficients.
-\item
-  \href{https://www.analyticsvidhya.com/blog/2021/05/multiple-linear-regression-using-python-and-scikit-learn/}{Mastering Multiple Linear Regression: A Comprehensive Guide}: This article explains how to perform multiple linear regression using Python and scikit-learn, with examples and code snippets.
-\end{itemize}
-
 \hypertarget{lin-t-3}{%
-\chapter{Linear Regression Theory III: Diagnostics}\label{lin-t-3}}
+\chapter{Linear Regression - Theory III: Diagnostics}\label{lin-t-3}}
 
-In this session we will get to know the central underlying assumptions for linear
-regression models. To find out if our model actually works as intended and thus
-gives us a reliable estimate for the effect of \texttt{hours} on \texttt{grade}, we have to
-check if we have met this assumptions, and if we did not, we have to correct our
-model accordingly. Before we do this, we should briefly consider another part
-of the regression output, the model fit.
+In this session we will get to know the central underlying assumptions for linear regression models. To find out if our model actually works as intended and thus gives us a reliable estimate for the effect of \texttt{hours} on \texttt{grade}, we have to check if we have met these assumptions, and if we did not, we have to correct our model accordingly. Before we do this, we should briefly consider another part of the regression output, the model fit.
 
 \hypertarget{objectives-4}{%
 \section{Objectives}\label{objectives-4}}
@@ -3102,8 +3157,7 @@ of the regression output, the model fit.
 \hypertarget{model-fit}{%
 \section{Model fit}\label{model-fit}}
 
-Let us again inspect the output from the simplest model we computed, regressing
-the grade solely on the invested hours:
+Let us again inspect the output from the simplest model we computed, regressing the grade solely on the invested hours:
 
 \begin{verbatim}
 ## 
@@ -3126,58 +3180,25 @@ the grade solely on the invested hours:
 ## F-statistic: 20.41 on 1 and 198 DF,  p-value: 1.075e-05
 \end{verbatim}
 
-Up to now, we exclusively talked about the coefficient block. We will return to
-the ``Call'' next session and to the ``Residuals'' later in this session. For now
-let us focus on the bottom block in the output.
+Up to now, we exclusively talked about the coefficient block. We will return to the ``Call'' \protect\hyperlink{lin-a}{next session} and to the ``Residuals'' later in this session. For now let us focus on the bottom block in the output.
 
-\(R^2\) or \emph{R-squared} is a measure for the amount of variance in the data that is
-``explained'' by the model. Real world data will always have variance. Not every
-value will neatly fall onto the mean value of a variable. Rather the data is
-dispersed around it. The same is true for our dependent variable:
+\(R^2\) or \emph{R-squared} is a measure for the amount of variance in the data that is ``explained'' by the model. Real world data will always have variance. Not every value will neatly fall onto the mean value of a variable. Rather the data is dispersed around it. The same is true for our dependent variable:
 
 \includegraphics{_main_files/figure-latex/plot_grade_distribution-1.pdf}
 
-This is a density plot and shows the distribution of a metric variable as a
-smoothed line. We do not see every individual actual value but the general shape
-of the data. The red line represent the mean of \texttt{grade}, which is about \(2.97\).
-Most actual values are not exactly at the mean but are rather dispersed around
-it, ranging between \(1.0\) and \(5.0\). This is the variance in our outcome
-variable.
+This is a density plot and shows the distribution of a metric variable as a smoothed line. We do not see every individual actual value but the general shape of the data. The red line represent the mean of \texttt{grade}, which is about \(2.97\). Most actual values are not exactly at the mean but are rather dispersed around it, ranging between \(1.0\) and \(5.0\). This is the variance in our outcome variable.
 
-Let us now plot \texttt{grade} against \texttt{hours\_centered} and add the regression line
-from our model above:
+Let us now plot \texttt{grade} against \texttt{hours\_centered} and add the regression line from our model above:
 
 \includegraphics{_main_files/figure-latex/plot_lm_grade_hours_centered-1.pdf}
 
-Without our regression line, all we would have is a cloud of points without much
-order to it. What linear regression does, is trying to bring order into this by
-fitting a line that best explains the variance of the dependent variable, \texttt{grade}
-in our case by its relationship to one or multiple dependent variables, here
-\texttt{hours\_centered}.
-But this linear line can never explain the variance completely.
-For this it had to pass through every data point. Our line does not. Actually
-most data points do not lie on the regression line but at some distance to it.
-You will remember that OLS computes \emph{the} regression line for which the squared
-distances are smallest. This is the line that explains most of the variance of \(y\)
-by its relationship to \(x\), but not all variance is explained. An unexplained part
-remains. These are the residuals, the distance that points fall from the
-regression line. \(R^2\) tells us the relative amount of how much we reduced the
-initial variance by fitting the line and thus explaining a part of said
-variance.
+Without our regression line, all we would have is a cloud of points without much order to it. What linear regression does, is trying to bring order into this by fitting a line that best explains the variance of the dependent variable, \texttt{grade} in our case by its relationship to one or multiple dependent variables, here \texttt{hours\_centered}. But this linear line can never explain the variance completely. For this it had to pass through every data point. Our line does not. Actually most data points do not lie on the regression line but at some distance to it. You will remember that OLS computes \emph{the} regression line for which the squared distances are smallest. This is the line that explains most of the variance of \(y\) by its relationship to \(x\), but not all variance is explained. An unexplained part remains. These are the residuals; the distance that points fall from the regression line. \(R^2\) tells us the relative amount of how much we reduced the initial variance by fitting the line and thus explaining a part of said variance.
 
-A \(R^2\) of \(0\) would mean that no variance is explained, a value of \(1\) that all
-variance is explained. Two highly unlikely outcomes. We will almost always
-explain something and never explain everything.
+A \(R^2\) of \(0\) would mean that no variance is explained, a value of \(1\) that all variance is explained. Two highly unlikely outcomes. We will almost always explain something and never explain everything.
 
-In our model \(R^2\) equals \(0.09344\). This means we explained about \(9.3\%\) of the
-variance of \texttt{grade} by its relationship with \texttt{hours\_centered}. That's nice,
-but this also means that over \(90\%\) are still unexplained. We will not explain
-all of the variance, i.e.~\(R^2 = 1\), but in general a higher \(R^2\) is desirable.
+In our model \(R^2\) equals \(0.09344\). This means we explained about \(9.3\%\) of the variance of \texttt{grade} by its relationship with \texttt{hours\_centered}. That's nice, but this also means that over \(90\%\) are still unexplained. We will not explain all of the variance, i.e.~\(R^2 = 1\), but in general a higher \(R^2\) is desirable.
 
-So what can we do? We can try to add additional variables to the model that help
-to explain the variance in the outcome variable. Last session we concluded
-that the best model to measure the effect of invested hours on the achieved
-grade would also have to include \texttt{contact}:
+So what can we do? We can try to add additional variables to the model that help in explaining the variance of the outcome variable. Last session we concluded that the best model to measure the effect of invested hours on the achieved grade would also have to include \texttt{contact}:
 
 \begin{verbatim}
 ## 
@@ -3202,44 +3223,15 @@ grade would also have to include \texttt{contact}:
 ## F-statistic: 23.47 on 3 and 196 DF,  p-value: 5.072e-13
 \end{verbatim}
 
-We can use \(R^2\) to compare the \emph{model fit} of multiple models. Here the larger
-model achieved a considerably higher value of \(R^2 = 0.2643\). The model fit
-improved as we can now explain a higher ratio of the variance in \texttt{grade}.
+We can use \(R^2\) to compare the \emph{model fit} of multiple models. Here the larger model achieved a considerably higher value of \(R^2 = 0.2643\). The model fit improved as we can now explain a higher ratio of the variance in \texttt{grade}.
 
-After \(R^2\) we see another value, \emph{Adjusted R-squared}. This becomes relevant
-if we add additional variables to our model. \(R^2\) almost always increases, and
-never decreases, when adding additional variables to the model,
-especially if we have few observations. Because of this \(R^2\) can get less
-reliable when we have many variables and few observations. \emph{Adjusted R-squared}
-corrects for this by including both factors in the calculation. When we have
-many observations the differences are negligible. This is true for our case.
-We have relatively many observations and few variables in our model, so the
-values of both measures are rather close. But in cases where this relationship
-is not as favorable, adjusted R-squared should be used in place of the regular
-\(R^2\).
+After \(R^2\) we see another value, \emph{Adjusted R-squared}. This becomes relevant if we add additional variables to our model. \(R^2\) almost always increases, and never decreases, when adding additional variables to the model, especially if we have few observations. Because of this \(R^2\) can get less reliable when we have many variables and few observations. \emph{Adjusted R-squared} corrects for this by including both factors in the calculation. When we have many observations the differences are negligible. This is true for our case. We have relatively many observations and few variables in our model, so the values of both measures are rather close. But in cases where this relationship is not as favorable, adjusted R-squared should be used in place of the regular \(R^2\).
 
-The block in our output also gives us the \emph{Residual standard error}. As we have
-seen above, most actual data point do not lie on the regression line but some
-distance away from it. These are the residuals. Thus their standard error basically
-tells us how much we miss the spot on average. As it is given in units of the
-dependent variable, we can say that the estimates for \texttt{grade} based on our
-second model are on average \(0.93\) off. A considerable amount, as this is almost
-one whole grading step. This is still an improvement from the \(1.028\) in the
-first model but nevertheless a substantial error.
+The block in our output also gives us the \emph{Residual standard error}. As we have seen above, most actual data point do not lie on the regression line but some distance away from it. These are the residuals. Thus their standard error basically tells us how much we miss the spot on average. As it is given in units of the dependent variable, we can say that the estimates for \texttt{grade} based on our second model are on average \(0.93\) off. A considerable amount, as this is almost one whole grading step. This is still an improvement from the \(1.028\) in the first model but nevertheless a substantial error.
 
-The last line in the output gives us two connected measures. The \emph{F-statistic}
-is the test statistic for \(R^2\) and is used the compute the corresponding
-\emph{p-value}.
-In this case we are testing if the \(R^2\) our model returned based on our sample
-is possible, when the actual population value of \(R^2\) is \(0\). In other words,
-could we have achieved this \(R^2\) by chance if the independent variables in our
-model actually do not explain part of the variance in the population?
-Both of our models have very small p-values, so it is highly unlikely that we
-have just explained some variance by chance. This gives further credibility to
-our model specification.
+The last line in the output gives us two connected measures. The \emph{F-statistic} is the test statistic for \(R^2\) and is used the compute the corresponding \emph{p-value}. In this case we are testing if the \(R^2\) our model returned based on our sample is possible, when the actual population value of \(R^2\) is \(0\). In other words, could we have achieved this \(R^2\) by chance if the independent variables in our model actually do not explain part of the variance in the population? Both of our models have very small p-values, so it is highly unlikely that we have just explained some variance by chance. This gives further credibility to our model specification.
 
-We can conclude that the second model was an improvement over the first. But can
-we do more? Sure! We can add additional explanatory variables:
+We can conclude that the second model was an improvement over the first. But can we do more? Sure; we can always add additional explanatory variables:
 
 \begin{verbatim}
 ## 
@@ -3267,26 +3259,9 @@ we do more? Sure! We can add additional explanatory variables:
 ## F-statistic: 269.4 on 5 and 194 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
-The p-value is even lower, and the F-statistic even higher, compared to our
-second model, but this was never an issue. What is more interesting is that we
-have substantially increased \(R^2\) and decreased the residual standard error.
-As we have concluded last week, this larger model is better at predicting the
-actual values of \texttt{grade}. Thus the explained variance has to increase and the
-average error in estimating y has to decrease. But is this the better model? The
-values on the model fit would suggest so. And this also is true, if our aim is
-predicting \texttt{grade} to the best of our abilities. But if our aim is still
-measuring the effect of \texttt{hours} on \texttt{grade} we know from our DAG that we do not
-have to or even should not control for the additional variables to get an
-unbiased estimator for the effect of interest.
+The p-value is even lower, and the F-statistic even higher, compared to our second model, but this was never an issue. What is more interesting is that we have substantially increased \(R^2\) and decreased the residual standard error. As we have concluded last week, this larger model is better at predicting the actual values of \texttt{grade}. Thus the explained variance has to increase and the average error in estimating \texttt{y} has to decrease. But is this the better model? The values on the model fit would suggest so. And this also is true, if our aim is predicting \texttt{grade} to the best of our abilities. But if our aim is still measuring the effect of \texttt{hours} on \texttt{grade} we know from our DAG that we do not have to or even should not control for the additional variables to get an unbiased estimator for the effect of interest.
 
-What can we take away from this? While the model fit measures are an important
-tool for comparing multiple possible models and better values are desirable in
-general, it should not be our goal to just max out all measures and declare this
-model the ``winner''. It is never that easy in statistics.
-One thing we can never replace is thorough theoretical work before even
-computing our first model. Based on our DAG, if it is correct, we know that we do not
-have to control for previous grades and attendance. Including them may give us a
-larger \(R^2\), but is still not the correct way to build our model.
+What can we take away from this? While the model fit measures are an important tool for comparing multiple possible models and better values are desirable in general, it should not be our goal to just max out all measures and declare this model the ``winner''. It is never that easy in statistics. One thing we can never replace is thorough theoretical work before even computing our first model. Based on our DAG, if it is correct, we know that we do not have to control for previous grades and attendance. Including them may give us a larger \(R^2\), but is still not the correct way to build our model.
 
 Based on this our best model is still the second one:
 
@@ -3322,43 +3297,28 @@ Based on this our best model is still the second one:
 \hypertarget{regression-diagnostics}{%
 \section{Regression diagnostics}\label{regression-diagnostics}}
 
-As linear regression is a statistical technique, there are certain statistical
-assumptions we have to meet. If we violate those, the best laid plans may
-falter and our results may be not as robust as we hoped.
-Let us go through these assumptions and the tests to check for them one by one.
+As linear regression is a statistical technique, there are certain statistical assumptions we have to meet. If we violate those, the best laid plans may falter and our results may be not as robust as we hoped. Let us go through these assumptions and the tests to check for them one by one.
 
 \hypertarget{linearity}{%
 \subsection{Linearity}\label{linearity}}
 
-The name already gives it away, a \emph{linear} regression is used to estimate
-\textbf{linear} relationships between variables. For this to work, the relationships
-actually have to be linear. But a relationship between two variables can have
-other functional forms. Consider this for example:
+The name already gives it away, a \emph{linear} regression is used to estimate \textbf{linear} relationships between variables. For this to work, the relationships actually have to be linear. But a relationship between two variables can have other functional forms. Consider this for example:
 
 \includegraphics{_main_files/figure-latex/non_linear-1.pdf}
 
-The relationship is clearly not linear. But we can still fit a regression and
-get a result:
+The relationship is clearly not linear. But we can still fit a regression and get a result:
 
 \includegraphics{_main_files/figure-latex/non_linear_reg-1.pdf}
 
-The regression line shows us that \texttt{x} and \texttt{y} are completely uncorrelated. This
-is clearly not true, but as our linear regression assumes linearity, it tries to
-model the relationship in linear terms.
+The regression line shows us that \texttt{x} and \texttt{y} are completely uncorrelated. This is clearly not true, but as our linear regression assumes linearity, it tries to model the relationship in linear terms.
 
-What we can do in such cases is to transform the variable in question in a
-non-linear way. Here the quadratic relationship is easy to spot, so if we
-transform \(x\) to \(x^2\), this happens:
+What we can do in such cases is to transform the variable in question in a non-linear way. Here the quadratic relationship is easy to spot, so if we transform \(x\) to \(x^2\), this happens:
 
 \includegraphics{_main_files/figure-latex/non_linear_reg_squared-1.pdf}
 
-The non-linear relationship between \texttt{x} and \texttt{y} has been transformed into a
-linear one.
+The non-linear relationship between \texttt{x} and \texttt{y} has been transformed into a linear one.
 
-For real world data, the non-linearity most often is not as straightforward to
-spot as in this example. A first step to approach this, is inspecting a
-scatterplot matrix. This is usually done before starting to model to identify
-relationships between the variables used.
+For real world data, the non-linearity most often is not as straightforward to spot as in this example. A first step to approach this, is inspecting a scatterplot matrix. This is usually done before starting to model to identify relationships between the variables used.
 
 \begin{verbatim}
 ## Warning: package 'GGally' was built under R version 4.2.3
@@ -3366,184 +3326,65 @@ relationships between the variables used.
 
 \includegraphics{_main_files/figure-latex/scatterplot_matrix-1.pdf}
 
-The diagonal displays the distribution of all variables included. Here metric
-variables are displayed as density plots and categorical variables as bar plots.
-Below and above the diagonal the relationship between two variables is shown.
-The scatterplot on the left of the second row is the one between \texttt{hours} and
-\texttt{grade} we have already seen several times. There is no indication of
-non-linearity here. What we have not inspected yet, is the relationship
-between \texttt{contact} and the two other variables.
+The diagonal displays the distribution of all variables included. Here metric variables are displayed as density plots and categorical variables as bar plots. Below and above the diagonal the relationship between two variables is shown. The scatterplot on the left of the second row is the one between \texttt{hours} and \texttt{grade} we have already seen several times. There is no indication of non-linearity here. What we have not inspected yet, is the relationship between \texttt{contact} and the two other variables.
 
-The bottom row contains histograms of the two metric variables by the category
-of contact, the right column boxplots for the same combination. Without going
-into too much detail on both types of plots, both show us how the distribution
-for both metric variables changes by category. The more personal the contact
-with the lecturer, the lower the distribution of final grades is. This makes
-sense, as we have already seen this correlation in the results of our model.
-Between \texttt{hours} and \texttt{contact} there seems to be no correlation. The amount of
-hours a student invests in writing the paper, does not lower the hours invested
-in a systematic way.
+The bottom row contains histograms of the two metric variables by the category of contact, the right column boxplots for the same combination. Without going into too much detail on both types of plots, both show us how the distribution for both metric variables changes by category. The more personal the contact with the lecturer, the lower the center of the distribution of final grades is. This makes sense, as we have already seen this correlation in the results of our model. Between \texttt{hours} and \texttt{contact} there seems to be no correlation. The amount of hours a student invests in writing the paper, does not lower the hours invested in a systematic way.
 
-But this does not clear the model of suspicions of non-linearity just yet. Even
-when all pairwise relationships are linear, controlling for multiple variables
-at the same time can introduce non-linearity for this specific combination.
-One way to approach this is to inspect the \emph{Residuals vs.~Fitted} plot. As the
-name suggests, this plots the fitted values, i.e.~the estimates for our
-dependent variables based on the model, against the residuals of the dependent
-variable. When the relationship is linear, we should see a more or less straight
-line along the x-axis, where \(y = 0\).
+But this does not clear the model of suspicions of non-linearity just yet. Even when all pairwise relationships are linear, controlling for multiple variables at the same time can introduce non-linearity for this specific combination. One way to approach this is to inspect the \emph{Residuals vs.~Fitted} plot. As the name suggests, this plots the fitted values, i.e.~the estimates for our dependent variables based on the model, against the residuals of the dependent variable. When the relationship is linear, we should see a more or less straight line along the x-axis, where \(y = 0\).
 
 \includegraphics{_main_files/figure-latex/residuals_fitted-1.pdf}
 
-For many use cases, the line is straight enough, indicating no clear and strong
-patterns of non-linearity. Still the residuals seem to be slightly off for very
-good and very bad estimated grades.
+For many use cases, the line is straight enough, indicating no clear and strong patterns of non-linearity. Still the residuals seem to be slightly off for very good and very bad estimated grades.
 
-Besides violating the assumption of linearity, patterns in the residuals vs.
-fitted plot can also indicate that there is some important explanatory variable
-missing from the model.
-We will return to this after we have applied the further tests and
-discussed the remaining assumptions.
+Besides violating the assumption of linearity, patterns in the residuals vs.~fitted plot can also indicate that there is some important explanatory variable missing from the model. We will return to this after we have applied the further tests and discussed the remaining assumptions.
 
 \hypertarget{normally-distributed-residuals}{%
 \subsection{Normally distributed residuals}\label{normally-distributed-residuals}}
 
-Another assumptions in linear regression is that the residuals are normally
-distributed. This is especially relevant for sample with a small \(n\) as the
-test statistics tend to get unreliable in these cases if the residuals are not
-normally distributed. For larger samples, as in our case, this is not as
-problematic. Still, systematic deviations from normality can indicate that the
-model is not \emph{parsimonious}. This means that either not all relevant variables
-are included or that variables are included that are not necessary for the model.
+Another assumptions in linear regression is that the residuals are normally distributed. This is especially relevant for a sample with a small \(n\) as the test statistics tend to get unreliable in these cases if the residuals are not normally distributed. For larger samples, as in our case, this is not as problematic. Still, systematic deviations from normality can indicate that the model is not \emph{parsimonious}. This means that either not all relevant variables are included or that variables are included that are not necessary for the model.
 
-We get a first idea of the distribution from the model summary. This shows us
-the median as well as the 25- \& 75-percentiles and the minimum and maximum values.
-While strong and clear violations against the normality assumption could already
-be visible here, these measures are not enough to actually test for normality.
-A more informative and accurate approach is using a \emph{Q-Q plot}. This plots the
-standardizes residuals, the residuals divided by their standard error, against
-a theoretical normal distribution. If the residuals are perfectly normally
-distributed, each data point lies on the diagonal, if they are not they move
-away from the line. Small deviations, especially in the tails, should not be
-over emphasized. What we are looking for are clear and systematic deviations.
+We get a first idea of the distribution from the model summary. This shows us the median as well as the 25- \& 75-percentiles and the minimum and maximum values. While strong and clear violations against the normality assumption could already be visible here, these measures are not enough to actually test for normality. A more informative and accurate approach is using a \emph{Q-Q plot}. This plots the standardizes residuals, the residuals divided by their standard error, against a theoretical normal distribution. If the residuals are perfectly normally distributed, each data point lies on the diagonal, if they are not they move away from the line. Small deviations, especially in the tails, should not be over emphasized. What we are looking for are clear and systematic deviations.
 
 \includegraphics{_main_files/figure-latex/qq-1.pdf}
 
-In the case of our model, most data points lie on the diagonal, while there are
-some small deviations in the tails. As our n is large enough, this should not be
-problematic. It may indicate that the model is not parsimonious but there is
-no clear cause for concern here.
+In the case of our model, most data points lie on the diagonal, while there are some small deviations in the tails. As our n is large enough, this should not be problematic. It may indicate that the model is not perfectly parsimonious but there is no clear cause for concern here.
 
 \hypertarget{homoscedasticity}{%
 \subsection{Homoscedasticity}\label{homoscedasticity}}
 
-The \emph{homoscedasticity} assumption states that the residuals are expected to have
-a constant variance over the whole range of the dependent variable. Let us
-assume that the variance of our residuals would be lower for very good grades
-and higher for very bad ones. This would indicate that we can make more accurate
-estimates for better grades than for worse ones as a small variance would
-indicate smaller residuals and thus a smaller error. For the assumption to hold
-we must be able to make about the same quality, be it high or low, for all
-values of \texttt{grade}.
+The \emph{homoscedasticity} assumption states that the residuals are expected to have a constant variance over the whole range of the dependent variable. Let us assume that the variance of our residuals would be lower for very good grades and higher for very bad ones. This would indicate that we can make more accurate estimates for better grades than for worse ones as a small variance would indicate smaller residuals and thus a smaller error. For the assumption to hold we must be able to make about the same quality of estimates, be it high or low, for all values of \texttt{grade}.
 
-The problem is that the computation of the standard errors, test statistics and
-p-values depends on this assumption. If the assumption is violated, if we have
-\emph{heteroscedasticity}, these measures are not reliable anymore.
+The problem is that the computation of the standard errors, test statistics and p-values depends on this assumption. If the assumption is violated, if we have \emph{heteroscedasticity}, these measures are not reliable anymore.
 
-The problem often occurs when the dependent variable is not symmetric. In the
-scatterplot matrix above, we already saw that \texttt{grade} is fairly symmetrically
-distributed, so we would not expect problems here. If our dependent variable was
-unsymmetrical, transforming it to be more symmetrical, e.g.~by using the
-logarithm or a square root, could help.
+The problem often occurs when the dependent variable is not symmetric. In the scatterplot matrix above, we already saw that \texttt{grade} is fairly symmetrically distributed, so we would not expect problems here. If our dependent variable was asymmetrical, transforming it to be more symmetrical, e.g.~by using the logarithm or a square root, could help.
 
-To check for problems with heteroscedasticity, we can use the \emph{Scale-Location}
-plot. This plots the fitted values against the square root of the standardized
-residuals. For homoscedasticity to hold, we should see our data points as a
-horizontal band with more or less constant width running from the left to the
-right. The same goes for the plotted line.
+To check for problems with heteroscedasticity, we can use the \emph{Scale-Location} plot. This plots the fitted values against the square root of the standardized residuals. For homoscedasticity to hold, we should see our data points as a horizontal band with more or less constant width running from the left to the right. The same goes for the plotted line.
 
 \includegraphics{_main_files/figure-latex/homoscedasticity-1.pdf}
 
-In our case the homoscedasticity assumption holds. Slight variations are not
-problematic and overall the variance is constant.
+In our case the homoscedasticity assumption holds. Slight variations are not problematic and overall the variance is constant.
 
 \hypertarget{no-overly-influential-data-points}{%
 \subsection{No overly influential data points}\label{no-overly-influential-data-points}}
 
-Observations can get highly influential if they have unusual values. Sometimes
-these are extremely low or high values on some variable. But even ``normal'' values
-on two or more variables can get unusual in their combination. Imagine a student
-with \(60\) invested hours. A high value but not overly extreme. Now the same student
-had in person contact with their lecturer but still received a \(5.0\). This could
-potentially be an influential data point as this combination is unusual in terms of what the
-model expects. In case of our model this observation would most probably not be
-overly influential. But imagine the same observation with \(300\) invested hours.
-Such extreme cases can influence the fit by figuratively ``puling'' the regression
-line in their direction.
+Observations can get highly influential if they have unusual values. Sometimes these are extremely low or high values on some variable. But even ``normal'' values on two or more variables can get unusual in their combination. Imagine a student with \(60\) invested hours. A high value but not overly extreme. Now the same student had in person contact with their lecturer but still received a \(5.0\). This could potentially be an influential data point as this combination is unusual in terms of what the model expects. In case of our model this observation would most probably not be overly influential. But imagine the same observation with \(300\) invested hours. Such extreme cases can influence the fit by figuratively ``pulling'' the regression line in their direction.
 
-We can divide influential data points into unusual values on the dependent
-variable, \emph{outliers}, and unusual values on independent variables,
-\emph{high leverage points}. The latter have high leverage because they ``pull'' on the
-regression lines and thus change the slope. As a rule of thumb, we can consider
-values with standardized residuals over \(3\) or under \(-3\) outliers.
-Concerning the dependent variables we can compute the \emph{leverage statistic}.
-Here values that exceed \(2 * (p + 1) / n\), where \(p\) is the number of
-predictors, are considered as having high leverage.
-We can inspect both at the same time in the \emph{Residuals vs.~Leverage} plot.
+We can divide influential data points into unusual values on the dependent variable, \emph{outliers}, and unusual values on independent variables, \emph{high leverage points}. The latter have high leverage because they ``pull'' on the regression lines and thus change the slope. As a rule of thumb, we can consider values with standardized residuals over \(3\) or under \(-3\) outliers. Concerning the dependent variables we can compute the \emph{leverage statistic}. Here values that exceed \(2 * (p + 1) / n\), where \(p\) is the number of predictors, are considered as having high leverage. We can inspect both at the same time in the \emph{Residuals vs.~Leverage} plot.
 
 \includegraphics{_main_files/figure-latex/residuals_leverage-1.pdf}
 
-We can see that there are no clear outliers. To assess points with high leverage
-we first have to compute the threshold as: \(2 * (3 + 1) / 200 = 0.04\). Note that
-while we have two independent variables in our model, we actually have three
-predictors due to our categorical variable. Thus we have to compute with \(p = 3\)
-instead of \(p = 2\).
-We can
-see that there are a number of points that exceed this value. The question is,
-why do these values exist? Sometimes these are measurement errors, extreme values
-or unusual combinations that come down to the researcher recording the wrong
-values into the data set. In these cases we can try to fix the errors or remove
-the observations from the data. As we have several values with high leverage,
-this seems highly unlikely. But if we had not simulated the data ourselves and
-knew that there is no error, we should at least check. What seems more probable
-though, and is often the actual root of high leverage, is that there are
-variables missing from the model that could explain the high values.
-In this case the values should be lower after we include the missing
-variables into the model. We will return to this later.
+We can see that there are no clear outliers. To assess points with high leverage we first have to compute the threshold as: \(2 * (3 + 1) / 200 = 0.04\). Note that while we have two independent variables in our model, we actually have three predictors due to our categorical variable. Thus we have to compute with \(p = 3\) instead of \(p = 2\). We can see that there are a number of points that exceed this value. The question is, why do these values exist? Sometimes these are measurement errors, extreme values or unusual combinations that come down to the researcher recording the wrong values into the data set. In these cases we can try to fix the errors or remove the observations from the data. As we have several values with high leverage, this seems highly unlikely. But if we had not simulated the data ourselves and knew that there is no error, we should at least check. What seems more probable though, and is often the actual root of high leverage, is that there are variables missing from the model that could explain the high values. In this case the values should be lower after we include the missing variables into the model. We will return to this later.
 
-We also may not have a serious problem here. Leverage on its own does not have
-to be problematic. Some data points will always be more influential than others
-and remember that the cutoff is always just a rule of thumb. As said above, it
-is the combination of unusual values that tends to get problematic. We can check
-for observations that are outliers and have high leverage visually in our plot.
-Problematic observations tend to gather in the upper and lower right corners.
-As neither are populated for our model, we can not really conclude that we have
-overly influential data points.
-
-XXX IS LEVERAGE CORRECTLY COMPUTED? XXX
+We also may not have a serious problem here. Leverage on its own does not have to be problematic. Some data points will always be more influential than others and remember that the cutoff is always just a rule of thumb. As said above, it is the combination of unusual values that tends to get problematic. We can check for observations that are outliers and have high leverage visually in our plot. Problematic observations tend to gather in the upper and lower right corners. As neither are populated for our model, we can not really conclude that we have overly influential data points.
 
 \hypertarget{no-multicollinearity}{%
 \subsection{No (multi)collinearity}\label{no-multicollinearity}}
 
-The final assumption we will discuss here, is the absence of (high) collinearity
-between the predictor variables. Collinearity is present, if two independent
-variables are highly correlated with each other. This can become a problem as it
-gets harder to individually estimate the effects for both variables on the
-outcome as the collinear variables vary together at the same time.
+The final assumption we will discuss here, is the absence of (high) collinearity between the predictor variables. \emph{Collinearity} is present, if two independent variables are highly correlated with each other. This can become a problem as it gets harder to individually estimate the effects for both variables on the outcome as the collinear variables vary together at the same time.
 
-Often collinearity can already be spotted in the correlation matrix. Considering
-our matrix above we saw no clear indication that \texttt{hours} and \texttt{contact} are
-correlated. But the problem can get more complicated if we include three or more
-independent variables in our model. While none of the pairs of variables may be
-highly correlated, correlation may exist for a set of three or more of those
-variables. In these cases we speak of \emph{multicollinearity}. We can not spot this
-in a correlation matrix, but there is an easy to use measure available.
+Often collinearity can already be spotted in the correlation matrix. Considering our matrix above we saw no clear indication that \texttt{hours} and \texttt{contact} are correlated. But the problem can get more complicated if we include three or more independent variables in our model. While none of the pairs of variables may be highly correlated, correlation may exist for a set of three or more of those variables. In these cases we speak of \emph{multicollinearity}. We can not spot this in a correlation matrix, but there is an easy to use measure available.
 
-The \emph{variance inflation factor} (VIF) can be used to inspect (multi)collinearity
-between two or more independent variables accurately. A VIF of \(1\) would
-indicate no collinearity. For real world data this is almost never true as some
-amount of collinearity always exists. But in general we can say that the VIF
-should be near \(1\) and should not exceed a value of \(5\).
+The \emph{variance inflation factor} (VIF) can be used to inspect (multi)collinearity between two or more independent variables accurately. A VIF of \(1\) would indicate no collinearity. For real world data this is almost never true as some amount of collinearity always exists. But in general we can say that the VIF should be near \(1\) and should not exceed a value of \(5\).
 
 Let us compute the measure for our model with \texttt{hours\_centered} and \texttt{contact}:
 
@@ -3556,75 +3397,31 @@ Let us compute the measure for our model with \texttt{hours\_centered} and \text
 ##       1.004352       1.004352
 \end{verbatim}
 
-Both values are very close to \(1\) so we can conclude that we did not violate
-the assumption. But what could we do, if we did? One approach is to just delete
-one of the highly correlated independent variables from the model. As they vary
-together, it may be save to exclude one of them without losing to much
-information. Another approach would be to combine both variables into a new
-measure. Let us imagine that besides \texttt{contact} we would have another variable in
-our model, measuring how well a student feels supported by their lecturer in
-writing the paper. We could also imagine both variables being strongly
-correlated as they measure comparable concepts. We could then either drop one of
-the variables, maybe losing some information in the process, or we could combine
-both into a new variable which measures the form and the feeling of support at
-the same time, maybe leading to a more accurate estimate while at the same time
-eliminating the problem of collinearity. Which one is the right solution
-depends on the specific case.
+Both values are very close to \(1\) so we can conclude that we did not violate the assumption. But what could we do, if we did? One approach is to just delete one of the highly correlated independent variables from the model. As they vary together, it may be save to exclude one of them without losing to much information. Another approach would be to combine both variables into a new measure. Let us imagine that besides \texttt{contact} we would have another variable in our model, measuring how well a student feels supported by their lecturer in writing the paper. We could also imagine both variables being strongly correlated as they measure comparable concepts. We could then either drop one of the variables, maybe losing some information in the process, or we could combine both into a new variable which measures the form and the feeling of support at the same time, maybe leading to a more accurate estimate while at the same time eliminating the problem of collinearity. Which one is the right solution depends on the specific case.
 
 \hypertarget{returning-to-our-research-question-1}{%
 \section{Returning to our research question}\label{returning-to-our-research-question-1}}
 
-When we tested for linearity above, we saw a mild pattern in the data which is
-not explainable by a violation of the assumption of linearity and thus could be
-an indication of a missing relevant explanatory variable in our model. Some of
-the other tests also supported this notion. The Q-Q plot showed us that the
-residuals have some slight deviations from normality in the tails. While these
-deviations are small enough to not cause concern on their own, taken together
-with the residuals vs.~fitted plot this gives more weight to the suspicion that
-some important variable is missing. We also identified some of observations with
-high leverage. While we can rule out errors in our data, the high leverage could
-also be explainable by a missing variable.
+When we tested for linearity above, we saw a mild pattern in the data which is not explainable by a violation of the assumption of linearity and thus could be an indication of a missing relevant explanatory variable in our model. Some of the other tests also supported this notion. The Q-Q plot showed us that the residuals have some slight deviations from normality in the tails. While these deviations are small enough to not cause concern on their own, taken together with the residuals vs.~fitted plot this gives more weight to the suspicion that some important variable is missing. We also identified some observations with high leverage. While we can rule out errors in our data, the high leverage could also be explainable by a missing variable.
 
-But which variable could be missing from the model?
-If our DAG is correct, we can rule out \texttt{attendance} and
-\texttt{previous\_grades}. We did assume that \texttt{contact} is a confounder for \texttt{hours} and
-\texttt{grade} and thus included it in our model. Of course we
-could also miss a variable that is not in our data at all, or even one that is
-not measureable. As we did simulate the data, we know this is not true, but with
-real world data this is always a possibility.
+But which variable could be missing from the model? If our DAG is correct, we can rule out \texttt{attendance} and \texttt{previous\_grades}. We did assume that \texttt{contact} is a confounder for \texttt{hours} and \texttt{grade} and thus included it in our model. Of course we could also miss a variable that is not in our data at all, or even one that is not measureable. As we did simulate the data, we know this is not true, but with real world data this is always a possibility.
 
-Let us think about the \texttt{contact}variable once more.
-We did assume, that the more personal the contact, the more efficiently the time
-working on the paper can be used. And here may lie the problem. The way we included
-\texttt{contact} in the model is not the way we reasoned in our DAG. It would be
-correct if we assumed that the more personal the contact, the less time has to
-be invested. But we already saw in the scatterplot matrix that there is no such
-relationship between the variables. To specify the effect of \texttt{contact} in the
-model correctly, reflecting the idea of a more efficient use of time the closer
-the contact was, we have to include it as an interaction with \texttt{hours}.
+Let us think about the \texttt{contact}variable once more. We did assume, that the more personal the contact, the more efficiently the time working on the paper can be used. And here may lie the problem. The way we included \texttt{contact} in the model is not the way we reasoned in our DAG. It would be correct if we assumed that the more personal the contact, the less time is invested. But we already saw in the scatterplot matrix that there is no such relationship between the variables. To specify the effect of \texttt{contact} in the model correctly, reflecting the idea of a more efficient use of time the closer the contact was, we have to include it as an interaction with \texttt{hours}.
 
 \hypertarget{interactions}{%
 \subsection{Interactions}\label{interactions}}
 
-In an \emph{interaction}, we assume that the effect of one variable differs based on
-the value of another variable. Let us return to the formula for a multiple
-regression with two variables:
+In an \emph{interaction}, we assume that the effect of one variable differs based on the value of another variable. Let us return to the formula for a multiple regression with two variables:
 
 \[y = \beta_0 + \beta_1*x_1 + \beta_2*x_2 + \epsilon\]
 
-Here we assume that the value of \(y\) varies with the value of \(x_1\) and \(x_2\) as
-indicated by the coefficients \(\beta_1\) and \(\beta_2\).
+Here we assume that the value of \(y\) varies with the value of \(x_1\) and \(x_2\) as indicated by the coefficients \(\beta_1\) and \(\beta_2\).
 
-But we could also follow the notion that the value of \(x_1\) influences \(y\)
-differently based on the value of \(x_2\). For example the effect of \(x_1\) on \(y\)
-could be higher when \(x_2\) also has a high value. This is an interaction and is
-reflected in the formula by adding an additional multiplicative term between
-the two dependent variables with an additional associated coefficient:
+But we could also follow the notion that the value of \(x_1\) influences \(y\) differently based on the value of \(x_2\). For example the effect of \(x_1\) on \(y\) could be higher when \(x_2\) also has a high value. This is an interaction and is reflected in the formula by adding an additional multiplicative term between the two dependent variables with an additional associated coefficient:
 
 \[y = \beta_0 + \beta_1*x_1 + \beta_2*x_2 + \beta_3 * x_1 * x_2 + \epsilon\]
 
-To get a better understanding of this, let us return to our model and add an
-interaction between \texttt{hours\_centered} and \texttt{contact}.
+To get a better understanding of this, let us return to our model and add an interaction between \texttt{hours\_centered} and \texttt{contact}.
 
 \begin{verbatim}
 ## 
@@ -3652,187 +3449,130 @@ interaction between \texttt{hours\_centered} and \texttt{contact}.
 ## F-statistic: 15.09 on 5 and 194 DF,  p-value: 1.63e-12
 \end{verbatim}
 
-How can we interpret these results?
-While the estimates for the intercept and for having e-mail or personal contact
-in comparison to having no contact at all have barely changed, the coefficient
-for the amount of hours invested substantially shrunk to almost half its former
-value. Untll now, we assumed that the effect of \texttt{hours} would be the same for
-each student. Now that we have included an interaction we assume that the effect
-of \texttt{hours} differs, based on the form of contact a student had.
+How can we interpret these results? While the estimates for the intercept and for having e-mail or personal contact in comparison to having no contact at all have barely changed, the coefficient for the amount of hours invested substantially shrunk to almost half its former value. Until now we assumed that the effect of \texttt{hours} would be the same for each student. Now that we have included an interaction we assume that the effect of \texttt{hours} differs, based on the form of contact a student had.
 
-Let us rewrite our formula for \(\hat{y}\) including the interaction.
-As we are interacting with a categorical variable with three categories, we have
-to add two interaction terms. The first for the effect of invested hours when
-e-mail contact was made and the second for the effect of hours when contact was
-made in person, in both cases compared to having had no contact.
+Let us rewrite our formula for \(\hat{y}\) including the interaction. As we are interacting with a categorical variable with three categories, we have to add two interaction terms. The first for the effect of invested hours when e-mail contact was made and the second for the effect of hours when contact was made in person, in both cases compared to having had no contact.
 
-\[\hat{y} = b_0 + b_{hours\_centered} * x_{hours\_centered} + b_{E-Mail} * x_{E-Mail} +
-b_{In Person} * x_{In Person} +
-b_{hours\_E-Mail} * x_{hours\_centered} * x_{E-Mail} +
+\[\hat{y} = b_0 + b_{hours\_centered} * x_{hours\_centered} +\\
+b_{E-Mail} * x_{E-Mail} + b_{In Person} * x_{In Person} +\\
+b_{hours\_E-Mail} * x_{hours\_centered} * x_{E-Mail} +\\
 b_{hours\_{In Person}} * x_{hours\_centered} * x_{In Person}\]
 
 Let us now also add the coefficients from the model:
 
-\[\hat{y} = 3.44466 -0.02893 * x_{hours\_centered} -0.46775 * x_{E-Mail}
--1.01493 * x_{In Person}
--0.02377 * x_{hours\_centered} * x_{E-Mail}
--0.05017 * x_{hours\_centered} * x_{In Person}\]
+\[\hat{y} = 3.44466 -0.02893 * x_{hours\_centered} -\\
+0.46775 * x_{E-Mail} -1.01493 * x_{In Person} -\\
+0.02377 * x_{hours\_centered} * x_{E-Mail} -\\
+0.05017 * x_{hours\_centered} * x_{In Person}\]
 
 We can now consider the three possible forms of contact one by one.
 
-What happens, when a student had no contact? To explore this, we return to the
-regression formula and equal \(x_{E-Mail}\) and \(x_{In Person}\) to \(0\), which
-means that no contact was made beforehand. Note that for now we do not care
-about the actual value of \texttt{hours\_centered}.
+What happens, when a student had no contact? To explore this, we return to the regression formula and equal \(x_{E-Mail}\) and \(x_{In Person}\) to \(0\), which means that no contact was made beforehand. Note that for now we do not care about the actual value of \texttt{hours\_centered}.
 
-\[\hat{y} = 3.44466 -0.02893 *x_{hours\_centered} -0.46775 * 0 
--1.01493 * 0 
--0.02377 * x_{hours\_centered} * 0 
--0.05017 * x_{hours\_centered} * 0\]
+\[\hat{y} = 3.44466 -0.02893 *x_{hours\_centered} -\\
+0.46775 * 0 -1.01493 * 0 -\\
+0.02377 * x_{hours\_centered} * 0 -\\
+0.05017 * x_{hours\_centered} * 0\]
 
 This shortens to:
 
 \[\hat{y} = 3.44466 -0.02893 *x_{hours\_centered}\]
 
-For a student who did not make contact, we would estimate the final grade as the
-intercept minus \(0.02893\) per hour invested more than the mean of
-\texttt{hours\_centered}. Having equaled \(x_{E-Mail}\) and \(x_{In Person}\) to \(0\) not
-only ``switched off'' the effects of \texttt{contact} but also removed the interaction
-effects from the equation, the estimated effect for \texttt{hours\_centered} is only its
-coefficient of \(-0.02893\).
+For a student who did not make contact, we would estimate the final grade as the intercept minus \(0.02893\) per hour invested more than the mean of \texttt{hours\_centered}. Having equaled \(x_{E-Mail}\) and \(x_{In Person}\) to \(0\) not only ``switched off'' the effects of \texttt{contact} but also removed the interaction effects from the equation, the estimated effect for \texttt{hours\_centered} is only its coefficient of \(-0.02893\).
 
 What happens, when a student had e-mail contact?
 
-\[\hat{y} = 3.44466 -0.02893 * x_{hours\_centered} -0.46775 * 1 
--1.01493 * 0 
--0.02377 * x_{hours\_centered} * 1 
--0.05017 * x_{hours\_centered} * 0\]
+\[\hat{y} = 3.44466 -0.02893 * x_{hours\_centered} -\\
+0.46775 * 1 -1.01493 * 0 -\\
+0.02377 * x_{hours\_centered} * 1 -\\
+0.05017 * x_{hours\_centered} * 0\]
 
 This shortens to:
 
-\[\hat{y} = 3.44466 -0.02893 *x_{hours\_centered} -0.46775 -0.02377 * x_{hours\_centered}\]
+\[\hat{y} = 3.44466 -0.02893 *x_{hours\_centered} -\\
+0.46775 -\\
+0.02377 * x_{hours\_centered}\]
 
 and further to:
 
 \[\hat{y} = 2.97691 -0.0527 *x_{hours\_centered}\]
 
-The intercept is reduced by the coefficient of having e-mail contact, but what
-is actually of interest here is the effect that \texttt{hours\_centerd} has. For a
-student who had e-mail contact, each hour invested above the mean reduces the
-estimated grade by \(-0.0527\).
+The intercept is reduced by the coefficient of having e-mail contact, but what is actually of interest here is the effect that \texttt{hours\_centerd} has. For a student who had e-mail contact, each hour invested above the mean reduces the estimated grade by \(-0.0527\).
 
 We can compute the same for a student with personal contact:
 
-\[\hat{y} = 3.44466 -0.02893 * x_{hours\_centered} -0.46775 * 0
--1.01493 * 1 
--0.02377 * x_{hours\_centered} * 0 
--0.05017 * x_{hours\_centered} * 1\]
+\[\hat{y} = 3.44466 -0.02893 * x_{hours\_centered} -\\
+0.46775 * 0 - 1.01493 * 1  -\\
+0.02377 * x_{hours\_centered} * 0 -\\
+0.05017 * x_{hours\_centered} * 1\]
 
-\[\hat{y} = 3.44466 -0.02893 *x_{hours\_centered} -1.01493 -0.05017 * x_{hours\_centered}\]
+\[\hat{y} = 3.44466 -0.02893 *x_{hours\_centered} -\\
+1.01493 -\\
+0.05017 * x_{hours\_centered}\]
 
 \[\hat{y} = 2.42973 -0.0791 *x_{hours\_centered}\]
 
-For a student who had in person contact, each hour invested above the mean
-reduces the estimated grade by \(-0.0791\).
+For a student who had in person contact, each hour invested above the mean reduces the estimated grade by \(-0.0791\).
 
-In practice we would have reached these conclusions more quickly by inspecting
-the output from our model and just subtracting the corresponding interaction
-effect from the effect for \texttt{hours\_centered}, but it is important to
-understand what happens in the formula to get a full grasp on linear
-regression models.
+In practice we would have reached these conclusions more quickly by inspecting the output from our model and just subtracting the corresponding interaction effect from the effect for \texttt{hours\_centered}, but it is important to understand what happens in the formula to get a full grasp on linear regression models.
 
-In the model without the added interaction we concluded that on average each
-hour invested above the mean decreases the final grade by about \(-0.5\). Now we
-see that the effect of hours depends on the form of contact had. This reflects
-the theoretical assumption from our DAG that time can be used more efficiently
-the more personal the form of contact was.
+In the model without the added interaction we concluded that on average each hour invested above the mean decreases the final grade by about \(-0.5\). Now we see that the effect of hours depends on the form of contact had. This reflects the theoretical assumption from our DAG that time can be used more efficiently the more personal the form of contact was.
 
-The same DAG that informed our best model from last week now lead us to
-including the interaction. This underlines the importance of thorough
-theoretical thinking before starting to model. It was not even the case that
-the DAG was wrong, but our conclusions we draw from it were at least not
-completely right. If we had invested more time, we
-could have build the correct model directly. In our case we first needed the
-regression diagnostics to tell us that something might be off before we figured
-out our error.
+The same DAG that informed our best model from last week now lead us to including the interaction. This underlines the importance of thorough theoretical thinking before starting to model. It was not even the case that the DAG was wrong, but our conclusions we drew from it were at least not completely right. If we had invested more time, we could have build the correct model directly. In our case we first needed the regression diagnostics to tell us that something might be off before we figured out our error.
 
 \hypertarget{regression-diagnostics-revisited}{%
 \subsection{Regression diagnostics (revisited)}\label{regression-diagnostics-revisited}}
 
-We now have a theoretically sound model, but did we also solve the problems
-indicated in the regression diagnostics?
+We now have a theoretically sound model, but did we also solve the problems indicated in the regression diagnostics?
 
 \includegraphics{_main_files/figure-latex/residuals_fitted_revisit-1.pdf}
 
-The residuals vs.~fitted plot now shows an almost straight horizontal line with
-no clear visible patterns.
-This indicates that the problem we saw with our former model actually came down
-to a missing variable, or to be more precise a missing term in our case.
+The residuals vs.~fitted plot now shows an almost straight horizontal line with no clear visible patterns. This indicates that the problem we saw with our former model actually came down to a missing variable, or to be more precise a missing term in our case.
 
 \includegraphics{_main_files/figure-latex/qq_revisited-1.pdf}
 
-The Q-Q plot now also shows more normally distributed residuals. While there are
-still some small deviations at the lower tail these do not indicate a remaining
-severe problem. The deviations are smaller than before and also not drastic in
-absolute terms. Also, as stated above, violating the normality assumption is less
-problematic with a high \(n\) and few variables in the model, which is still true for
-our case.
+The Q-Q plot now also shows more normally distributed residuals. While there are still some small deviations at the lower tail these do not indicate a remaining severe problem. The deviations are smaller than before and also not drastic in absolute terms. Also, as stated above, violating the normality assumption is less problematic with a high \(n\) and few variables in the model, which is still true for our case.
 
 \includegraphics{_main_files/figure-latex/residuals_leverage_revisited-1.pdf}
 
-Adding the interaction term actually increased the leverage of the more
-influential observations. When we recompute the threshold as
-\(2 * (5 + 1) / 200 = 0.06\), we see that there still some observations with
-values higher than this. What has not changed, is that there are no clusters
-of observations in the lower or upper right corners. Overall we can conclude,
-that this problem is present but negligible. When there are observations that
-are problematic on both values at the same time, these also get marked by a red
-dashed line in the plot. This is also not present.
+Adding the interaction term actually increased the leverage of the more influential observations. When we recompute the threshold as \(2 * (5 + 1) / 200 = 0.06\), we see that there still some observations with values higher than this. What has not changed, is that there are no clusters of observations in the lower or upper right corners. Overall we can conclude, that this problem is present but negligible. When there are observations that are problematic on both values at the same time, these also get marked by a red dashed line in the plot. This is also not present.
 
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
 
-Over the last three sessions we have learned what a linear regression is, how
-its formula worked, how to interpret the results for different kinds of
-variables as well as how to check and correct violations of its underlying
-assumptions.
+Over the last three sessions we have learned what a linear regression is, how its formula works, how to interpret the results for different kinds of variables as well as how to check and correct violations of its underlying assumptions.
 
-At the same time we built a model, which in its final version is able to
-accurately estimate our effect of interest. But we had one immeasurable
-advantage: We simulated the data ourselves and thus knew where the journey was
-going to end up from the start. We new our DAG was correct because the data was
-simulated in this way and we also knew that there was going to be a interaction
-effect to solve the remaining diagnostic problems. Sneaky, right? But in real
-world data, we do not have these advantages. Our DAGs can be incorrect and we
-may or may not find the missing part of the puzzle that elevates an OK model to
-a great one. All we can do is think, explore our data, think again, run
-diagnostics, think again and maybe most importantly do not give up along the
-way.
+At the same time we built a model, which in its final version is able to accurately estimate our effect of interest. But we had one immeasurable advantage: We simulated the data ourselves and thus knew where the journey was going to end up from the start. We knew our DAG was correct because the data was simulated in this way and we also knew that there was going to be a interaction effect to solve the remaining diagnostic problems. Sneaky, right? But in real world data, we do not have these advantages. Our DAGs can be incorrect and we may or may not find the missing part of the puzzle that elevates an OK model to a great one. All we can do is think, explore our data, think again, run diagnostics, think again and maybe most importantly do not give up along the way.
 
-In the next session we will return to our NBA data and try to apply everything
-that we have learned over the last sessions.
+In the \protect\hyperlink{lin-a}{next session} we will return to our NBA data and try to apply everything that we have learned over the last sessions.
 
-\hypertarget{further-resources-4}{%
-\section{Further Resources}\label{further-resources-4}}
+\hypertarget{resources-1}{%
+\section{Resources}\label{resources-1}}
 
-\begin{itemize}
-\tightlist
-\item
-  \href{https://courses.washington.edu/b515/l7.pdf}{Lecture 7 Linear Regression Diagnostics - University of Washington}: This lecture slides explain the major assumptions of linear regression, the characteristics of residuals, and the methods for standardizing and testing residuals.
-\item
-  \href{http://sthda.com/english/articles/39-regression-model-diagnostics/161-linear-regression-assumptions-and-diagnostics-in-r-essentials}{Linear Regression Assumptions and Diagnostics in R: Essentials - STHDA}: This article provides an overview of linear regression assumptions and how to check them using diagnostic plots in R programming language.
-\item
-  \href{https://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R5_Correlation-Regression/R5_Correlation-Regression7.html}{Regression Diagnostics - Boston University School of Public Health}: This web page describes how to evaluate the model assumptions and identify potential problems using residual analysis and influence measures.
-\end{itemize}
+Most textbooks on statistics include introductions and discussion on using linear regressions. The following resources were the ones actually used in writing the last three sessions:
+
+The textbook from Kohler and Kreuter gives a thorough introduction to linear regression and other statistical concepts. While all code examples are written in Stata, the underlying statistics are the same, no matter the coding language. The book is also available in English.
+
+Kohler, Ulrich \& Frauke Kreuter (2017). Datenanalyse mit Stata. Allgemeine Konzepte der Datenanalyse und ihre praktische Anwendung. 5. aktualisierte Auflage. Berlin, Boston: De Gruyter Oldenbourg.
+
+\hfill\break
+
+James, Gareth; Daniela Witten; Trevor Hastie \& Robert Tibshirani (2021). An Introduction to Statistical Learning. with Applications in R. Second Edition. New York: Springer.
+
+\hfill\break
+
+Manderscheid, Katharina (2017). Sozialwissenschaftliche Datenanalyse mit R. Eine Einführung. 2. Auflage.Wiesbaden: Springer VS.
 
 \hypertarget{lin-a}{%
 \chapter{Linear Regression - Application}\label{lin-a}}
 
+\textbf{Still WIP!}
+
 After we have learned the ins and outs of linear regression we will now
 return to our NBA data.
 We already saw, that there was an interesting relationship between the
-points a player makes per game and the salary he receives in session 2. In
-session 4 we also built a DAG that reflects our assumptions about the data
+points a player makes per game and the salary he receives in \protect\hyperlink{eda-1}{session 2}. In
+\protect\hyperlink{dags-1}{session 4} we also built a DAG that reflects our assumptions about the data
 generating process. Based on the DAGs implications we can now build a linear
 regression model and try to estimate the effect of interest as accurately as
 possible.
@@ -3883,9 +3623,9 @@ possible.
 \section{Research question}\label{research-question}}
 
 Picking up from session 2 \& 4, our research question is still to get an unbiased
-estimate for the effect from points scored on the salary an NBA player receives.
+estimate for the effect from points scored on the salary a NBA player receives.
 We already constructed a DAG that reflects our assumptions for the underlying
-data generating process. Let us revist this briefly:
+data generating process. Let us revisit this briefly:
 
 \includegraphics{_main_files/figure-latex/dag_final-1.pdf}
 
@@ -3921,7 +3661,7 @@ by again writing out its name. If we have multiple independent variables in our
 model - when we are running a \emph{multiple linear regression} - we can add those by
 writing a \texttt{+} followed by the name of the variable to be added.
 
-As a second argument, the function needs the name of the object that holds our
+As an additional argument, the function needs the name of the object that holds our
 data.
 
 The goal of our research question is to estimate the effect of the points per
@@ -3959,7 +3699,7 @@ associated with the model.
 The easiest way is to use the base R function \texttt{summary()}. This is a generic R
 function that returns different summaries, depending on the object it is used
 on. We can for example use it on a data frame or tibble to get some descriptive
-statistics for the included variables. For example, we can information on the
+statistics for the included variables. For example, we can get information on the
 distribution of points per game by writing:
 
 \begin{Shaded}
@@ -3975,7 +3715,7 @@ distribution of points per game by writing:
 
 When we use \texttt{summary()} on a model object, like the one created by \texttt{lm()}, we
 get a different output. Before we apply this we should save our model in an
-object. This is good practice in most cases as we can now apply all additional
+object. This is good practice in most cases, as we can now apply all additional
 analysis of the model on this object and we do not have to rerun the model
 every time.
 
@@ -4014,11 +3754,11 @@ We can now apply \texttt{summary()} on the object \texttt{m1}, short for ``model
 ## F-statistic:  5502 on 1 and 9726 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
-This is the output we saw over the last weeks and it includes extended and
+This is the output we saw over the last weeks and it includes an extended and
 better readable coefficient block as well as the information on the residuals
 and the model fit.
 
-An alternative method of displaying the coefficients in a regular tibble format,
+An alternative method of displaying the coefficients in a regular tibble format
 is to use \texttt{tidy()} from the \texttt{broom} package.
 
 \begin{Shaded}
@@ -4102,13 +3842,13 @@ For each point per game over the mean of \(8.9\) points per game, the salary is
 estimated to increase by about \(552,000\$\). At the same time, for each point
 below the mean the salary is estimated to decrease by the same amount.
 The intercept now shows us the estimated salary of a player who scores \(8.9\)
-points per game which is slightly upwards of \(4,000,000\$\) This makes way more
+points per game, which is slightly upwards of \(4,000,000\$\). This makes way more
 sense.
 
 This model model already achieved a considerable \(R^2\) of \(0.36\). About \(36\%\)
-of the variance in salaries is explained by the points per game a player scores.
+of the variance in salaries is explained by points per game.
 
-Another way to get the model statistics, such as \(r^2\), F-statistic, and p-value, is to use the \texttt{glance()} function from the broom package. This function returns a tibble with one row of model summaries. For example, we can apply \texttt{glance()} to our final model \texttt{m4} and get the following output:
+Another way to get the model statistics, such as \(r^2\), F-statistic, and p-value, is to use the \texttt{glance()} function from the broom package. This function returns a tibble with one row of model summaries.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4187,7 +3927,7 @@ about \(20\) points per game. What is the estimated salary for them?
 As we have extensively worked with the formulas over the last sessions, we can
 now keep it short and calculate the estimate directly. Remember that we
 centered the points per game on the mean of about \(8.9\), so making \(20\) per game
-would mean making about \(11.1\) than the average player. We will keep it simple
+would mean scoring about \(11.1\) more compared to the average player. We will keep it simple
 here and calculate with \(11\).
 
 \[\hat{y_{center\_20}} = 3679728 + 568019 * 11 + 1380246 = 11,308,183\]
@@ -4220,7 +3960,7 @@ So how does our model perform? Did we meet all the regression assumptions that
 were introduced last week?
 
 To access the visual tests we used last session, we can just use the base R
-function \texttt{plot()}, applied to the model object. If we just write \texttt{plot(m2)}, the
+function \texttt{plot()}, applied to the model object. If we write \texttt{plot(m2)}, the
 console asks us to press \texttt{ENTER} to go through each plot one by one. We can also
 add a number as a second argument, specifying which plot we want to see. For
 example, \texttt{plot(m2,\ 1)} gives us the residuals vs.~fitted plot.
@@ -4263,7 +4003,7 @@ observations that have larger or smaller standardized residuals compared to the
 thresholds of \(3\) and \(-3\). The threshold for leverage is computed as
 \(2 * (6 + 1) / 9728 = 0.001439145\). We also see some observations with higher
 values. While both are rules of thumb and may not necessarily point to severe
-problems by themselves, things can get problematic when there are observation
+problems by themselves, things can get problematic when there are observations
 that do not meet the thresholds for both measures at the same time. This is
 indicated by clusters in the lower or upper right corners. This time we can
 observe this in the lower right.
@@ -4296,9 +4036,9 @@ still far away from the threshold of \(5\), there is no need for concern here.
 Overall, we have problems! While we do not see signs of problematic
 multicollinearity, all other tests indicated clear and in parts severe problems.
 We have to put in some more work before we can be confident that our model
-accurately predicts the effect of points per game on the received salary.
+accurately estimates the effect of points per game on the received salary.
 
-Before we start addressing the problems, we should not that the four plots are
+Before we start addressing the problems, we should note that the four plots are
 highly interactive. It is entirely possible that solving one of the problems
 also solves the others or, for added fun, even generates new ones. This means
 that we should refrain from turning too many dials at once and rather change the
@@ -4376,8 +4116,8 @@ signs of heteroscedasticity. The Q-Q plot now also indicates a somewhat more
 normal distribution of our residuals but there are substantial deviations still.
 While high residuals now appear to more or less follow the normal distribution,
 small residuals now deviate stronger than they have before. This reflects the
-transformation and its distribution, which now has long tail on the left and not
-on the right anymore. Turning to the residuals vs.~leverage plot we still see
+transformation and its distribution, which now has long tail on the left instead of
+on the right, as before. Turning to the residuals vs.~leverage plot we still see
 some observations that do not meet the respective thresholds. At the same time,
 there appear to be less that simultaneously have high absolute standardized
 residuals and high leverage. The residuals vs.~fitted plot now also shows a more
@@ -4393,7 +4133,7 @@ We can approach non-linear relationships in our inherently linear model by
 adding non-linear transformations of a dependent variable to the model. But
 before we start squaring random variables, we should think about what could be
 non-linear in our case. We can rule out our dummy variables for position. This
-leaves the points scored. The model already tells us that our suspicion that
+leaves the points scored. The model already indicates that our suspicion that
 salary rises with the points scored could be true. But maybe this relationship
 is not linear over its whole range. If you already are among high scorers,
 scoring one or two points more than your peers may not be such a substantial
@@ -4435,7 +4175,7 @@ variable though. Let us inspect what would happen if we squared it.
 
 \includegraphics{_main_files/figure-latex/centered_squared-1.pdf}
 
-As the square of negative values is positive we would basically introduce the
+As the square of negative values is positive, we would basically introduce the
 assumption into the model that there is non-linearity for low and high scorers
 and that the effect will be in the same direction. While our assumption is that
 there are diminishing returns between being a high scorer and a \textbf{really} high
@@ -4459,9 +4199,9 @@ happens if we square this?
 
 This is what we wanted, a transformation that expects a stronger difference the
 higher the score value is. For the final model we will thus work with the
-uncentred variable. We included the centered version because it is more
+uncentered variable. We included the centered version because it is more
 straightforward to interpret. This is not really a concern anymore because
-dreams of easy interpretability are long gone after transforming two variables.
+dreams of easy interpretability have long passed after transforming two variables.
 
 We could again transform the variable in our data and thus add a second version,
 but we can also do so directly in the formula syntax. When we use the function
@@ -4490,7 +4230,7 @@ The line in the residuals vs.~fitted plot got more straight. It seems that we
 actually captured the mild non-linearity that was present before by adding the
 squared points value to our model. The scale-location plot also still indicates
 no more problems of heteroscedasticity. Contrary, the data points now are even
-more evenly distributed compared to \texttt{m3}. The Q-Q plot also has not substantially changed,
+more evenly distributed compared to \texttt{m3}. The Q-Q plot has not substantially changed,
 still showing non-normally distributed residuals. We can not really fix this
 now, but we also learned that this test is less consequential if we have a
 large \(n\). Turning to the residuals vs.~leverage plot, we still see several points
@@ -4518,7 +4258,7 @@ it, no. All this means is that both versions of our variable are highly
 correlated. Of course they are. One is computed from the other. We can
 perfectly predict the value of \texttt{career\_PTS\^{}2} from \texttt{career\_PTS}. There is
 collinearity by design. If we want to assess multicollinearity we should apply
-the function to \texttt{m3}. If would have used interactions, the situation would be
+the function to \texttt{m3}. If we would have used interactions, the situation would be
 similar. This is just a small reminder that all our tests do not work without
 thinking about what we are actually doing.
 
@@ -4578,9 +4318,11 @@ Let us revisit our example of a center and a point guard making \(20\) points
 per game from above. Note that we also have to take the square of points for the
 non-linear term.
 
-\[\hat{y_{center\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.5482072 = 16.17654\]
+\[\hat{y_{center\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.5482072 \\
+= 16.17654\]
 
-\[\hat{y_{pg\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.0312286 = 15.659565\]
+\[\hat{y_{pg\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.0312286 \\
+= 15.659565\]
 
 To find out what this means in hard dollars, we have to reverse the logarithmus
 naturalis. We can do this by calculating \(e^{\hat{y}}\). R gives us the function
@@ -4639,26 +4381,13 @@ but could maybe solve the parts of the puzzle that still remain.
 But there is another possibility. We built the best model based on our DAG, but
 maybe the DAG is not entirely correct. Maybe we made some faulty assumptions or
 maybe we missed a variable with an important role in the data generating
-process. In the next session we will see, how we can come up with a different
+process. In the \protect\hyperlink{med}{session 10} we will see, how we can come up with a different
 DAG that incorporates the same variables but makes some different assumptions.
-
-\hypertarget{further-resources-5}{%
-\section{Further Resources}\label{further-resources-5}}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://www.datacamp.com/tutorial/linear-regression-R}{Linear Regression in R Tutorial - DataCamp}: This tutorial explains how to perform linear regression using R, with code examples and exercises.
-\item
-  \href{https://open.umn.edu/opentextbooks/textbooks/399}{Linear Regression Using R: An Introduction to Data Modeling}: This book presents the basics of linear regression in an informal style, with step-by-step instructions to develop, train, and test reliable regression models.
-\item
-  \href{https://www.scribbr.com/statistics/linear-regression-in-r/}{Linear Regression in R \textbar{} A Step-by-Step Guide \& Examples - Scribbr}: This guide shows how to check the assumptions, perform the analysis, and interpret the results of linear regression in R.
-\item
-  \href{https://www.r-bloggers.com/2021/10/multiple-linear-regression-made-simple/}{Linear Regression in R \textbar{} R Tutorial 5.2 \textbar{} MarinStatsLectures}: This video tutorial demonstrates how to fit a simple linear regression model in R, produce summaries, and interpret the coefficients.
-\end{itemize}
 
 \hypertarget{lin-e}{%
 \chapter{Linear Regression - Exercise}\label{lin-e}}
+
+\textbf{Still WIP!}
 
 \hypertarget{exercises}{%
 \section{Exercises}\label{exercises}}
@@ -4707,6 +4436,8 @@ In this exercise, you will use the Boston Housing Dataset to explore the relatio
 
 \hypertarget{med}{%
 \chapter{Mediation}\label{med}}
+
+\textbf{Still WIP!}
 
 In this week, we will introduce to the concept of mediation analysis.
 
@@ -5070,10 +4801,10 @@ Let's use a new package for \emph{causal mediation analysis}.
 ## Quasi-Bayesian Confidence Intervals
 ## 
 ##                 Estimate 95% CI Lower 95% CI Upper p-value    
-## ACME            9.03e+04     7.11e+04     109770.6  <2e-16 ***
-## ADE            -1.42e+05    -1.65e+05    -117872.5  <2e-16 ***
-## Total Effect   -5.13e+04    -8.29e+04     -21008.8  <2e-16 ***
-## Prop. Mediated -1.82e+00    -4.92e+00         -0.9  <2e-16 ***
+## ACME            9.01e+04     7.21e+04     1.10e+05  <2e-16 ***
+## ADE            -1.41e+05    -1.65e+05    -1.17e+05  <2e-16 ***
+## Total Effect   -5.07e+04    -8.09e+04    -1.91e+04  <2e-16 ***
+## Prop. Mediated -1.77e+00    -5.40e+00    -9.60e-01  <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -5096,10 +4827,10 @@ Let's use a new package for \emph{causal mediation analysis}.
 ## Quasi-Bayesian Confidence Intervals
 ## 
 ##                 Estimate 95% CI Lower 95% CI Upper p-value    
-## ACME            9.06e+04     7.07e+04     1.09e+05  <2e-16 ***
-## ADE            -1.42e+05    -1.65e+05    -1.17e+05  <2e-16 ***
-## Total Effect   -5.11e+04    -8.12e+04    -2.22e+04  <2e-16 ***
-## Prop. Mediated -1.79e+00    -4.36e+00    -9.10e-01  <2e-16 ***
+## ACME            8.99e+04     6.90e+04     1.07e+05  <2e-16 ***
+## ADE            -1.42e+05    -1.67e+05    -1.19e+05  <2e-16 ***
+## Total Effect   -5.20e+04    -8.34e+04    -2.34e+04   0.002 ** 
+## Prop. Mediated -1.73e+00    -4.15e+00    -8.80e-01   0.002 ** 
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -5149,8 +4880,8 @@ The indirect effect is the total effect minus the direct effect (-1.400.000 - (-
 
 In sum, Guards are disadvantaged. They receive less money than center, although, if the points were considered, they should make even more. There must be other reasons why guards earn less. We need to go back to theory and come up with new hypothesis.
 
-\hypertarget{further-resources-6}{%
-\section{Further Resources}\label{further-resources-6}}
+\hypertarget{further-resources-2}{%
+\section{Further Resources}\label{further-resources-2}}
 
 \begin{itemize}
 \tightlist
@@ -5165,7 +4896,9 @@ In sum, Guards are disadvantaged. They receive less money than center, although,
 \end{itemize}
 
 \hypertarget{pm-t}{%
-\chapter{Prediction - Theory}\label{pm-t}}
+\chapter{Prediction}\label{pm-t}}
+
+\textbf{Still WIP!}
 
 In prior weeks, you learned how to build a linear regression model. The main interest
 we pursued so far was to arrive at a good estimate of one independent variable (points scored in NBA basketball league) on an outcome (salary of NBA players).
@@ -5926,8 +5659,8 @@ Now machine learning usually involves several more steps:
   for other algorithms (e.g.~\texttt{random\ forests}), we can also \emph{tune} the model using \emph{hyper-parameters}.
 \end{itemize}
 
-\hypertarget{further-resources-7}{%
-\section{Further resources}\label{further-resources-7}}
+\hypertarget{further-resources-3}{%
+\section{Further resources}\label{further-resources-3}}
 
 \begin{itemize}
 \tightlist
@@ -5944,7 +5677,7 @@ Now machine learning usually involves several more steps:
 \hypertarget{pm-a}{%
 \chapter{Prediction - Exercise}\label{pm-a}}
 
-Here goes some texts.
+\textbf{Still WIP!}
 
 \hypertarget{exercises-1}{%
 \section{Exercises}\label{exercises-1}}
@@ -5964,6 +5697,8 @@ Here goes some texts.
 
 \hypertarget{log-est}{%
 \chapter{Logistic regression}\label{log-est}}
+
+\textbf{Still WIP!}
 
 \hypertarget{objectives-8}{%
 \section{Objectives}\label{objectives-8}}
@@ -6820,8 +6555,8 @@ Instead, a common metric for assessing model performance is ``accuracy''. Accura
 
 The confusion matrix shows that the model predicted short careers (0) for 668 players who actually had long careers (1). It correctely predicted the career for 2249 players. Overall, the career that players had was predicted accurately in 77\% of cases.
 
-\hypertarget{further-resources-8}{%
-\section{Further resources}\label{further-resources-8}}
+\hypertarget{further-resources-4}{%
+\section{Further resources}\label{further-resources-4}}
 
 \begin{itemize}
 \tightlist
@@ -6833,49 +6568,6 @@ The confusion matrix shows that the model predicted short careers (0) for 668 pl
   \href{http://sthda.com/english/articles/36-classification-methods-essentials/151-logistic-regression-essentials-in-r/}{Logistic Regression Essentials in R}: This is a web page that introduces the basic concepts and techniques of logistic regression in R. It covers topics such as model assumptions, diagnostics, odds ratios, marginal effects, and model comparison. It also provides examples of applying logistic regression methods to real-world data sets.
 \item
   \href{https://www.statology.org/r-logistic-regression-predict/}{How to Use predict() with Logistic Regression Model in R}: This is a web page that shows how to use the predict() function in R to make predictions from a fitted logistic regression model. It also explains the difference between type = ``response'' and type = ``link'' arguments, and how to use new data for prediction.
-\end{itemize}
-
-\hypertarget{out-look}{%
-\chapter{Outlook}\label{out-look}}
-
-\hypertarget{summary-of-what-was-covered-in-course}{%
-\section{Summary of what was covered in course}\label{summary-of-what-was-covered-in-course}}
-
-\hypertarget{other-outcome-variables}{%
-\section{Other outcome variables}\label{other-outcome-variables}}
-
-\begin{itemize}
-\tightlist
-\item
-  generalized linear models
-\item
-  logistic
-\item
-  poisson
-\end{itemize}
-
-\hypertarget{data-structures}{%
-\section{Data structures}\label{data-structures}}
-
-\begin{itemize}
-\tightlist
-\item
-  multilevel
-\end{itemize}
-
-\hypertarget{where-to-go-next}{%
-\section{Where to go next}\label{where-to-go-next}}
-
-\begin{itemize}
-\tightlist
-\item
-  econometrics
-\item
-  machine learning
-\item
-  geo-data
-\item
-  web-scraping
 \end{itemize}
 
   \bibliography{book.bib,packages.bib}
