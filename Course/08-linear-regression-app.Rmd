@@ -1,10 +1,12 @@
 # Linear Regression - Application {#lin-a}
 
+**Still WIP!**
+
 After we have learned the ins and outs of linear regression we will now
 return to our NBA data. 
 We already saw, that there was an interesting relationship between the
-points a player makes per game and the salary he receives in session 2. In
-session 4 we also built a DAG that reflects our assumptions about the data
+points a player makes per game and the salary he receives in [session 2](#eda-1). In
+[session 4](#dags-1) we also built a DAG that reflects our assumptions about the data
 generating process. Based on the DAGs implications we can now build a linear
 regression model and try to estimate the effect of interest as accurately as
 possible.
@@ -36,9 +38,9 @@ possible.
 ## Research question
 
 Picking up from session 2 & 4, our research question is still to get an unbiased
-estimate for the effect from points scored on the salary an NBA player receives.
+estimate for the effect from points scored on the salary a NBA player receives.
 We already constructed a DAG that reflects our assumptions for the underlying
-data generating process. Let us revist this briefly:
+data generating process. Let us revisit this briefly:
 
 ``` {r dag_final, echo = FALSE, warning=FALSE, message=FALSE}
 library(dagitty)
@@ -89,7 +91,7 @@ by again writing out its name. If we have multiple independent variables in our
 model - when we are running a *multiple linear regression* - we can add those by
 writing a `+` followed by the name of the variable to be added.
 
-As a second argument, the function needs the name of the object that holds our
+As an additional argument, the function needs the name of the object that holds our
 data.
 
 The goal of our research question is to estimate the effect of the points per
@@ -115,7 +117,7 @@ associated with the model.
 The easiest way is to use the base R function `summary()`. This is a generic R
 function that returns different summaries, depending on the object it is used 
 on. We can for example use it on a data frame or tibble to get some descriptive
-statistics for the included variables. For example, we can information on the
+statistics for the included variables. For example, we can get information on the
 distribution of points per game by writing:
 
 ``` {r summary_df, warning=FALSE, message=FALSE}
@@ -124,7 +126,7 @@ summary(data_nba$career_PTS)
 
 When we use `summary()` on a model object, like the one created by `lm()`, we
 get a different output. Before we apply this we should save our model in an
-object. This is good practice in most cases as we can now apply all additional
+object. This is good practice in most cases, as we can now apply all additional
 analysis of the model on this object and we do not have to rerun the model
 every time.
 
@@ -138,11 +140,11 @@ We can now apply `summary()` on the object `m1`, short for "model 1":
 summary(m1)
 ```
 
-This is the output we saw over the last weeks and it includes extended and
+This is the output we saw over the last weeks and it includes an extended and
 better readable coefficient block as well as the information on the residuals
 and the model fit.
 
-An alternative method of displaying the coefficients in a regular tibble format,
+An alternative method of displaying the coefficients in a regular tibble format
 is to use `tidy()` from the `broom` package.
 
 ``` {r tidy_m1, warning=FALSE, message=FALSE}
@@ -182,13 +184,13 @@ For each point per game over the mean of $8.9$ points per game, the salary is
 estimated to increase by about $552,000\$$. At the same time, for each point 
 below the mean the salary is estimated to decrease by the same amount.
 The intercept now shows us the estimated salary of a player who scores $8.9$
-points per game which is slightly upwards of $4,000,000\$$ This makes way more
+points per game, which is slightly upwards of $4,000,000\$$. This makes way more
 sense.
 
 This model model already achieved a considerable $R^2$ of $0.36$. About $36\%$
-of the variance in salaries is explained by the points per game a player scores.
+of the variance in salaries is explained by points per game.
 
-Another way to get the model statistics, such as $r^2$, F-statistic, and p-value, is to use the `glance()` function from the broom package. This function returns a tibble with one row of model summaries. For example, we can apply `glance()` to our final model `m4` and get the following output:
+Another way to get the model statistics, such as $r^2$, F-statistic, and p-value, is to use the `glance()` function from the broom package. This function returns a tibble with one row of model summaries.
 
 ```{r glance_, warning=FALSE, message=FALSE}
 glance(m1)
@@ -230,7 +232,7 @@ about $20$ points per game. What is the estimated salary for them?
 As we have extensively worked with the formulas over the last sessions, we can
 now keep it short and calculate the estimate directly. Remember that we
 centered the points per game on the mean of about $8.9$, so making $20$ per game
-would mean making about $11.1$ than the average player. We will keep it simple
+would mean scoring about $11.1$ more compared to the average player. We will keep it simple
 here and calculate with $11$.
 
 $$\hat{y_{center\_20}} = 3679728 + 568019 * 11 + 1380246 = 11,308,183$$
@@ -262,7 +264,7 @@ So how does our model perform? Did we meet all the regression assumptions that
 were introduced last week?
 
 To access the visual tests we used last session, we can just use the base R
-function `plot()`, applied to the model object. If we just write `plot(m2)`, the
+function `plot()`, applied to the model object. If we write `plot(m2)`, the
 console asks us to press `ENTER` to go through each plot one by one. We can also
 add a number as a second argument, specifying which plot we want to see. For
 example, `plot(m2, 1)` gives us the residuals vs. fitted plot. 
@@ -301,7 +303,7 @@ observations that have larger or smaller standardized residuals compared to the
 thresholds of $3$ and $-3$. The threshold for leverage is computed as
 $2 * (6 + 1) / 9728 = 0.001439145$. We also see some observations with higher
 values. While both are rules of thumb and may not necessarily point to severe
-problems by themselves, things can get problematic when there are observation
+problems by themselves, things can get problematic when there are observations
 that do not meet the thresholds for both measures at the same time. This is
 indicated by clusters in the lower or upper right corners. This time we can
 observe this in the lower right.
@@ -325,9 +327,9 @@ still far away from the threshold of $5$, there is no need for concern here.
 Overall, we have problems! While we do not see signs of problematic 
 multicollinearity, all other tests indicated clear and in parts severe problems.
 We have to put in some more work before we can be confident that our model
-accurately predicts the effect of points per game on the received salary.
+accurately estimates the effect of points per game on the received salary.
 
-Before we start addressing the problems, we should not that the four plots are
+Before we start addressing the problems, we should note that the four plots are
 highly interactive. It is entirely possible that solving one of the problems
 also solves the others or, for added fun, even generates new ones. This means
 that we should refrain from turning too many dials at once and rather change the
@@ -393,8 +395,8 @@ signs of heteroscedasticity. The Q-Q plot now also indicates a somewhat more
 normal distribution of our residuals but there are substantial deviations still.
 While high residuals now appear to more or less follow the normal distribution,
 small residuals now deviate stronger than they have before. This reflects the
-transformation and its distribution, which now has long tail on the left and not
-on the right anymore. Turning to the residuals vs. leverage plot we still see 
+transformation and its distribution, which now has long tail on the left instead of
+on the right, as before. Turning to the residuals vs. leverage plot we still see 
 some observations that do not meet the respective thresholds. At the same time,
 there appear to be less that simultaneously have high absolute standardized
 residuals and high leverage. The residuals vs. fitted plot now also shows a more
@@ -409,7 +411,7 @@ We can approach non-linear relationships in our inherently linear model by
 adding non-linear transformations of a dependent variable to the model. But
 before we start squaring random variables, we should think about what could be
 non-linear in our case. We can rule out our dummy variables for position. This
-leaves the points scored. The model already tells us that our suspicion that 
+leaves the points scored. The model already indicates that our suspicion that 
 salary rises with the points scored could be true. But maybe this relationship 
 is not linear over its whole range. If you already are among high scorers, 
 scoring one or two points more than your peers may not be such a substantial 
@@ -443,7 +445,7 @@ data_nba %>%
   geom_smooth(se = FALSE)
 ```
 
-As the square of negative values is positive we would basically introduce the
+As the square of negative values is positive, we would basically introduce the
 assumption into the model that there is non-linearity for low and high scorers
 and that the effect will be in the same direction. While our assumption is that
 there are diminishing returns between being a high scorer and a **really** high
@@ -463,9 +465,9 @@ data_nba %>%
 
 This is what we wanted, a transformation that expects a stronger difference the
 higher the score value is. For the final model we will thus work with the
-uncentred variable. We included the centered version because it is more 
+uncentered variable. We included the centered version because it is more 
 straightforward to interpret. This is not really a concern anymore because 
-dreams of easy interpretability are long gone after transforming two variables.
+dreams of easy interpretability have long passed after transforming two variables.
 
 We could again transform the variable in our data and thus add a second version,
 but we can also do so directly in the formula syntax. When we use the function
@@ -488,7 +490,7 @@ The line in the residuals vs. fitted plot got more straight. It seems that we
 actually captured the mild non-linearity that was present before by adding the
 squared points value to our model. The scale-location plot also still indicates
 no more problems of heteroscedasticity. Contrary, the data points now are even
-more evenly distributed compared to `m3`. The Q-Q plot also has not substantially changed, 
+more evenly distributed compared to `m3`. The Q-Q plot has not substantially changed, 
 still showing non-normally distributed residuals. We can not really fix this 
 now, but we also learned that this test is less consequential if we have a 
 large $n$. Turning to the residuals vs. leverage plot, we still see several points
@@ -507,7 +509,7 @@ it, no. All this means is that both versions of our variable are highly
 correlated. Of course they are. One is computed from the other. We can
 perfectly predict the value of `career_PTS^2` from `career_PTS`. There is
 collinearity by design. If we want to assess multicollinearity we should apply
-the function to `m3`. If would have used interactions, the situation would be 
+the function to `m3`. If we would have used interactions, the situation would be 
 similar. This is just a small reminder that all our tests do not work without
 thinking about what we are actually doing.
 
@@ -536,9 +538,11 @@ Let us revisit our example of a center and a point guard making $20$ points
 per game from above. Note that we also have to take the square of points for the
 non-linear term.
 
-$$\hat{y_{center\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.5482072 = 16.17654$$
+$$\hat{y_{center\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.5482072 \\
+= 16.17654$$
 
-$$\hat{y_{pg\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.0312286 = 15.659565$$
+$$\hat{y_{pg\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.0312286 \\
+= 15.659565$$
 
 To find out what this means in hard dollars, we have to reverse the logarithmus
 naturalis. We can do this by calculating $e^{\hat{y}}$. R gives us the function
@@ -581,14 +585,6 @@ but could maybe solve the parts of the puzzle that still remain.
 But there is another possibility. We built the best model based on our DAG, but
 maybe the DAG is not entirely correct. Maybe we made some faulty assumptions or
 maybe we missed a variable with an important role in the data generating
-process. In the next session we will see, how we can come up with a different
+process. In the [session 10](#med) we will see, how we can come up with a different
 DAG that incorporates the same variables but makes some different assumptions.
 
-## Further Resources
-::: {.resources}
-- [Linear Regression in R Tutorial - DataCamp](https://www.datacamp.com/tutorial/linear-regression-R): This tutorial explains how to perform linear regression using R, with code examples and exercises.
-- [Linear Regression Using R: An Introduction to Data Modeling](https://open.umn.edu/opentextbooks/textbooks/399): This book presents the basics of linear regression in an informal style, with step-by-step instructions to develop, train, and test reliable regression models.
-- [Linear Regression in R | A Step-by-Step Guide & Examples - Scribbr](https://www.scribbr.com/statistics/linear-regression-in-r/): This guide shows how to check the assumptions, perform the analysis, and interpret the results of linear regression in R.
-- [Linear Regression in R | R Tutorial 5.2 | MarinStatsLectures](https://www.r-bloggers.com/2021/10/multiple-linear-regression-made-simple/): This video tutorial demonstrates how to fit a simple linear regression model in R, produce summaries, and interpret the coefficients.
-
-:::

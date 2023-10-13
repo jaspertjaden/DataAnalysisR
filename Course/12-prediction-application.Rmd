@@ -1,6 +1,6 @@
 # Prediction - Exercise {#pm-a}
 
-**Still WIP!*
+**Still WIP!**
 
 ## Exercises
 

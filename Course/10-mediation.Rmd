@@ -1,6 +1,6 @@
 # Mediation {#med}
 
-**Still WIP!*
+**Still WIP!**
 
 In this week, we will introduce to the concept of mediation analysis. 
 

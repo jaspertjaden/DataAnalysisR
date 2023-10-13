@@ -1,6 +1,6 @@
 # Logistic regression {#log-est}
 
-**Still WIP!*
+**Still WIP!**
 
 ## Objectives
 ::: {.objectives}

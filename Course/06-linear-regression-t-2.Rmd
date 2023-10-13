@@ -8,7 +8,7 @@ load("../datasets/grades.RData")
 
 
 Maybe explaining the grade a student receives solely based on the hours of
-invested time, does not paint the whole picture. As we have alluded to, there
+invested time does not paint the whole picture. As we have alluded to, there
 may be other variables that could affect the relationship between `hours` and
 `grade`. 
 If we fail to include these in our model, we may not get an unbiased estimate
@@ -19,7 +19,7 @@ To assess this, we have to move from simple to multiple linear regression.
 ## Objectives
 ::: {.objectives}
 * Expand the idea to multiple linear regression
-* How can we interpret different types of independent variables?
+* Interpreting different types of independent variables
 * Understand measures of uncertainty
 
 :::
@@ -40,7 +40,7 @@ $$y = \beta_0 + \beta_1*x_1 + \beta_2*x_2 + ... + \beta_k*x_k + \epsilon$$
 
 So to add a second variable and its coefficient we add the term $+ \beta_2*x_2$
 and so on until we added all independent variables of interest $k$ to the model.
-Everything else works exactly as described above for the simple model.
+Everything else works exactly as for the simple model.
 
 ### Adding additional metric variables
 
@@ -70,7 +70,7 @@ effect of `previous_grades_centered`. This is what multiple linear regression
 does, giving us the coefficients for our variables of interest while keeping all
 other independent variables at specific values. As we have centered the variable
 for previous grades, the coefficient for `hours centered` gives us the effect 
-when the previous grades were exactly at the mean of $2,935$.
+when the previous grades were exactly at the mean of $2.935$.
 
 In the same way, the coefficient for `previous_grades_centered` gives us the 
 effect of previous grades when the invested hours are controlled for, in this
@@ -88,11 +88,11 @@ we can calculate it again.
 
 $$b_0 + b_{hours\_centered}*0 + b_{previous\_grades\_centered}*0 = 2.9675$$
 
-For this case we can see, that the previous grade actually is a strong
+For this case we can see that the previous grade actually is a strong
 predictor, as the previous and new grades are substantially the same.
 
 What if a student whose previous grades were $1$ above the mean, so just below
-$4.0$ but who decides to invest $10$ hours more than the mean for the new paper?
+$4.0$, but who decides to invest $10$ hours more than the mean in writing the new paper?
 
 $$2.9675 - 0.056543 * 10 + 0.904079 * 1 = 3.306149$$
 
@@ -134,7 +134,9 @@ $-0.248250$ lower compared to when they did not.
 
 We can observe what happens in the formula:
 
-$$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd} + b_{attendance} * x_{attendance}$$
+$$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + \\
+b_{previous\_grades\_centered} * x_{previous\_grades\_centered} +\\ 
+b_{attendance} * x_{attendance}$$
 
 If you calculate with `TRUE` and `FALSE` in R, the values $1$ and $0$ are used
 respectively. So $x_{attendance}$ can either have the value $1$ for regular
@@ -143,12 +145,20 @@ attendance or $0$ for not so regular attendance.
 If a student did regularly attend, the coefficient $b_{attendance} becomes a
 part of the estimate $\hat{y}$:
 
-$$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd} + b_{attendance} * 1$$
+$$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} +\\
+b_{previous\_grades\_centered}*x_{previous\_grades\_centered} +\\ 
+b_{attendance} * 1$$
 
 If student did not regularly attended, this happens: 
 
-$$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd} + b_{attendance} * 0$$
-$$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd}$$
+$$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} \\
++ b_{previous\_grades\_centered}*x_{previous\_grades\_centered} +\\
+b_{attendance} * 0$$
+
+Which shortens to:
+
+$$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} +\\
+b_{previous\_grades\_centered}*x_{previous\_grades\_centered}$$
 
 The coefficient is no longer a part of the estimate. One can basically say, the
 coefficient gets switched on or off by the value of the dummy variable.
@@ -157,14 +167,15 @@ So while the estimate for a student with mean values for invested hours and
 previous grades who did not attend is equal to the intercept of $3.157411$,
 for a similar student who attended we can calculate the estimate as:
 
-$$3.157411 - 0.053942*0 + 0.911802*0 - 0.248250 * 1 = 3.157411 - 0.248250 = 2.909161$$
+$$3.157411 - 0.053942*0 + 0.911802*0 - 0.248250 * 1 = 3.157411 - 0.248250 \\
+= 2.909161$$
 
 It seems attending class is an easy way to raise one's grades.
 
 ### Adding categorical variables
 
 We have one further variable in our simulated data set that could be of interest
-in explaining, what makes a good grade in a seminar paper.`contact` is a 
+in explaining, what makes a good grade in a seminar paper. `contact` is a 
 categorical variable, or a factor variable in R terms.
 It can take three different categories. `No contact` indicates that
 the student did not contact the lecturer to discuss a research question or the
@@ -185,24 +196,28 @@ them. What happened? What R does is to create two dummy variables on the fly.
 The first discerns between having E-Mail contact and no contact at all. The 
 second one between having contact in person and no contact at all. So for
 categorical variables in regression models we always compare being in one of the
-category to being in the *base category*. In this case the base category is
+categories to being in the *base category*. In this case the base category is
 `No contact`, but we could also change the base category. It depends on what we
 are interested in comparing to. For our example comparing the effects of having 
 more in depth contact to having none makes sense.
 
 Let us look at our formula again:
 
-$$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} + b_{previous\_grades\_centeterd}*x_{previous\_grades\_centeterd} + b_{attendance} * x_{attendance} + b_{E-Mail} * x_{E-Mail} + b_{In Person} * x_{In Person}$$
+$$\hat{y} = b_0 + b_{hours\_centered}*x_{hours\_centered} +\\
+b_{previous\_grades\_centered} * x_{previous\_grades\_centeerd} +\\
+b_{attendance} * x_{attendance} +\\
+b_{E-Mail} * x_{E-Mail} + b_{In Person} * x_{In Person}$$
 
 Now there are three possibilities. A student can have no contact at all. In this 
-case both dummy variables equal $0$. To make our formula easier to read, we have
+case both dummy variables are equal to $0$. To make our formula easier to read, we have
 abbreviated the middle part for now:
 
 $$\hat{y} = b_0 + ... + b_{E-Mail} * 0 + b_{In Person} * 0$$
+
 So in this case controlling all other independent variables at their default
 values, the mean for the metric variables and `FALSE` for `attendance`, the 
-intercept gives us the estimate for the grade as both dummy variables that
-were created for `contact` are "switched off".
+intercept gives us the estimate for the grade when the student had no contact to
+the lecturer, as both dummy variables that were created for `contact` are "switched off".
 
 The two other possibilities are that a student either had E-Mail contact or an
 in person discussion:
@@ -224,7 +239,8 @@ but who decided to put in 20 hours more compared to their peers, regularly
 attend the seminar and have an in-depth personal discussion before writing their
 paper expect on average as their new grade?
 
-$$3.617949 - 0.050830 * 20 + 0.874123 * 0 - 0.324653 * 1 - 0.413808 * 0 - 0.853252 * 1 = 1.423444$$
+$$3.617949 - 0.050830 * 20 + 0.874123 * 0 - 0.324653 * 1 - 0.413808 * 0 - 0.853252 * 1 
+\\ = 1.423444$$
 
 Putting in the hours, attending and working with your lecturer seems to pay off,
 at least in our simulated data set.
@@ -237,7 +253,7 @@ a seminar paper. In particular we were interested in the effect of the invested
 hours, as our main hypothesis was that more hours lead to better grades. What do
 we know now? 
 
-All analysis point towards a clear effect from `hours` on `grade`. This effect
+Our analysis points towards a clear effect from `hours` on `grade`. This effect
 was consistently visible in all of our models. But did we correctly identify
 and estimate the effect of interest? Maybe. The problem is, we actually did not
 approach the analysis correctly. In a real analysis we should **absolutely**
@@ -265,7 +281,7 @@ dagitty('dag{
         Grade [pos = "3, 0"]
         
         Hours -> Grade
-        Prev_Grades -> Skill_Level -> Grade
+        Prev_Grades <- Skill_Level -> Grade
         Attendance -> Grade
         Hours <- Contact -> Grade
 }') %>% 
@@ -319,12 +335,12 @@ changes the grade by about $-0.05$ points. This supports our hypotheses and we
 can conclude, that investing more hours into writing a seminar paper actually
 is a worthwhile investment.
 
-But remember: This is correct as long as our DAG is drawn correctly. This is
+But remember: This is correct as long as our DAG is drawn correctly, which is
 always debatable. Maybe we should assume an effect from skill level on `hours`.
 The higher the skill level the more efficiently the available time can be used.
 For this example we know the DAG is correct, because we have simulated the data
 exactly in this way. For real world applications we never know if our DAG is
-correct. All we can - and have to - do is base it on thorough thought, 
+correct. All we can and *have to* do is base it on thorough thinking, 
 theoretical work, exploratory data analysis and sound arguments. 
 
 This all is true *if* our goal is to estimate an effect of interest as precisely
@@ -363,12 +379,18 @@ The *p-value* tells us the probability to observe an association
 between the independent and the dependent variable as large or larger than our
 estimate suggests, if the true association would actually be $0$. If the p-value
 is small enough, we can reject $H_0$ and conclude that we observed an actual 
-effect. There are certain agreed upon cutoffs in statistics while values that
+effect. There are certain agreed upon cutoffs in statistics, while values that
 meet this cutoffs are considered *statistically significant*. The most common
 cutoff in social sciences is $0.05$ indicated by one `*` in the output.
-Other common cutoffs are indicated by more asterisks.
+Other common cutoffs are indicated by more asterisks. It is important to note,
+that we can not say that more `*` behind an effect mean that this effect has a
+higher statistical significance. We have to decide on a level of statistical
+significance that we want to test for before we see the results. If we decide on
+testing for a significance level of $5\%$, seeing more than one star then only
+means that the effect is also statistically significant at the $5\%$ level.
 
-Interpreting p-values correctly and not falling into the common pitfalls is a
+Interpreting p-values correctly and not falling into the common pitfalls like the
+one mentioned above is a
 topic on its own. We do not have the time to dive into this here, so for now we
 can agree that p-values below $0.05$ indicate that we can reject $H_0$ and thus
 conclude that we have actually observed an effect. Still, our interpretation of
@@ -381,11 +403,12 @@ can have p-values larger than $0.05$ for effects that are still relevant. Maybe
 the problem is not that there is no effect but that we were not able to measure
 the variable in question precisely enough or that we just did not have enough 
 observations. We can not go any deeper than this here, but we should remember
-that the practice of declaring every effect with stars a win and disregarding
+that the practice of declaring every effect with stars a win, or even with more
+stars a bigger win, and disregarding
 everything without them may still be common but is not the way to go forward.
 
 In our model, we can see that the effect of interest is statistically 
-highly significant. We can thus conclude, that we have observed an actual effect
+significant. We can thus conclude, that we have observed an actual effect
 from `hours` on `grade`. Our estimate is large enough and our standard error
 small enough to reach this conclusion.
 
@@ -395,16 +418,8 @@ We have attained an estimate for our effect of interest which supports our
 hypotheses that investing more hours into writing a paper leads to better grades.
 So can we wrap a bow on the question and move on to finally figuring out what
 is going on in our NBA data? Almost, but not yet. We still do not know, if our
-model actually works as intended. Linear regression, as well as every modelling
-technique, has some underlying assumptions that we have to meet for the model
-to accurately estimate an effect. In the next session we will get to know this
+model actually works as intended. Linear regression, as well as every other modelling
+technique, has some underlying statistical assumptions that we have to meet for the model
+to accurately estimate an effect. In the [next session](#lin-t-3) we will get to know these
 assumptions and how we can test for them.
 
-## Further resources
-::: {.resources}
-- [Multiple Linear Regression | A Quick Guide (Examples)](https://www.scribbr.com/statistics/multiple-linear-regression/): This article provides an overview of multiple linear regression, its assumptions, how to perform it, and how to interpret the results.
-- [Lesson 5: Multiple Linear Regression | STAT 501](https://online.stat.psu.edu/stat501/lesson/5): This lesson covers the basics of multiple linear regression, including matrix notation, model assumptions, hypothesis testing, and R-squared.
-- [Multiple Linear Regression in R | R Tutorial 5.3 | MarinStatsLectures](https://www.youtube.com/watch?v=q1RD5ECsSB0): This video tutorial shows how to fit a multiple linear regression model in R, produce summaries, and interpret the coefficients.
-- [Mastering Multiple Linear Regression: A Comprehensive Guide](https://www.analyticsvidhya.com/blog/2021/05/multiple-linear-regression-using-python-and-scikit-learn/): This article explains how to perform multiple linear regression using Python and scikit-learn, with examples and code snippets.
-
-:::

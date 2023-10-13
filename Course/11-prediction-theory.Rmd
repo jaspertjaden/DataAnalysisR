@@ -1,6 +1,6 @@
 # Prediction {#pm-t}
 
-**Still WIP!*
+**Still WIP!**
 
 In prior weeks, you learned how to build a linear regression model. The main interest
 we pursued so far was to arrive at a good estimate of one independent variable (points scored in NBA basketball league) on an outcome (salary of NBA players).

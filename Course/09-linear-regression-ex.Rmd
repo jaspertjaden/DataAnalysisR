@@ -1,6 +1,6 @@
 # Linear Regression - Exercise {#lin-e}
 
-\*\*Still WIP!\*
+**Still WIP!**
 
 ## Exercises
 

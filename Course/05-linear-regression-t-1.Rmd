@@ -1,6 +1,6 @@
 # Linear Regression - Theory I: Simple Linear Regression {#lin-t-1}
 
-The next three sessions will be an introduction for linear regressions.
+The next three sessions will comprise an introduction for linear regressions.
 We will look at the theoretical underpinnings, the interpretation of results
 and the underlying assumptions of these models. For this introduction we will
 keep the NBA data aside and use some simulated data that plays nice with us.
@@ -33,20 +33,21 @@ variables and one dependent variable. We try to predict the latter for actual
 or hypothetical cases based on their values for the independent variables.
 This approach lies at the heart of *machine learning* and drives many of the
 technologies we use on a daily basis from E-Mail spam filters to ChatGPT.
-Returning to the example above, we are not interested in measuring the effect
-of money on life satisfaction, but in predicting the value for life satisfaction
+Returning to the example above, we are not interested in measuring the *effect*
+of money on life satisfaction, but in *predicting* the value for life satisfaction
 based on money and a host of other variables as accurately as possible.
 
 Linear regression is one of the many available modelling techniques and it can
 serve both approaches. Over the next sessions we will focus on using 
 linear regression for estimating an effect of interest but we will return to
-prediction in session 11 & 12.
+prediction in [session 11](#pm-t).
 
 How do we know if we should choose linear regression for a specific task?
 This is not easy to answer as there are many alternatives and even variations of
 linear regression which may be better suited for a specific empirical problem.
 As this is an introduction to modelling and time is of the essence we opted to
-solely focus on linear regression. This technique is suited for many problems and
+mainly focus on an in-depth introduction to linear regression. 
+This technique is suited for many problems and
 is comparably easy to understand and use. Also, after learning the ins and outs 
 of linear regression, we are in a good position to build upon that knowledge and
 learn all of those more complex and specific models that we will encounter in
@@ -55,16 +56,18 @@ textbooks and scientific papers.
 With the pool of options trimmed down to one, the central question remains unanswered.
 Should I use linear regression for my task? As we have no alternatives to chose
 from, we can change the question to: Can I use linear regression for my task?
-The answer no mostly depends on what type of dependent variable we want to use.
-If it is metric, we can use linear regression. In our cases, the simulated data
-and our NBA data, our dependent variables both are metric. If we had other types
-of dependent variables, e.g. binary or categorical, we would have to use different
-models. We will give you some pointers for these at a later point.
+The answer mainly depends on what type of dependent variable we want to use.
+If it is metric, we can use linear regression. 
+In our cases the dependent variable is metric, as you will find out below.
+If we had other types of dependent variables we would have to use different
+models.
+For example a common choice for binary or categorical dependent variables is
+logistic regression, which we will introduce at a [later point in the course](#log-est).
 
 ## Examplary research question & data
 
-For this introduction, et us imagine that we are interested in a research 
-question that asks what makes a good grade in a seminar paper. In particular we 
+For this introduction, let us imagine that we are interested in a research 
+question that asks: *What makes a good grade in a seminar paper?* In particular we 
 are interested in the effect that the hours a student invests in working on it
 has on the grade. Based on some theoretical considerations, and maybe some 
 idealistic views, we derive our main hypotheses that putting in more hours will
@@ -130,12 +133,11 @@ save(grades, file = "../datasets/grades.RData")
 
 
 Let us have a first look on the data:
-XXX ALIGN WITH EDA XXX
 
-``` {r grades_skim, echo = FALSE}
+``` {r grades_skim, echo = FALSE, render = knitr::normal_print}
 library(skimr)
-library(knitr)
-kable(skim(grades))
+
+skim(grades)
 ```
 
 Right now, the observations are ordered by the grade of the seminar paper which
@@ -157,7 +159,7 @@ the imaginary question on how much contact the student had to the lecturer
 before starting the writing process. Besides `No contact` the students could 
 have had `E-Mail` contact to state their research question and get some short
 written feedback or meet the lecturer `In Person` to achieve a deeper discussion
-of the question and laid out plan for writing the paper.
+of the question and the laid out plan for writing the paper.
 The two additional variables are versions of `previous_grades` and `hours` that
 are centered on their respective means. They will come into play at a later 
 point in this session.
@@ -198,7 +200,7 @@ of these effects is, we now turn to linear regression.
 
 In a *simple linear regression*, the model is used to describe the relationship
 between *one* dependent and *one* independent or explanatory variable. The
-question this model can answer for us is, by how much does the dependent
+question this model can answer for us is: By how much does the dependent
 variable increase or decrease, when the explanatory variable increases by $1$?
 
 Returning to our exemplary research question on what makes a good grade in a
@@ -213,7 +215,6 @@ regression model, let us first have a look on this relationship by plotting the
 variables against each other.
 
 ``` {r plot_grade_hours, echo = FALSE}
-grade_vector <- c(1.0, 1.3, 1.7, 2.0, 2.3, 2.7, 3.0, 3.3, 3.7, 4.0, 4.3, 4.7, 5.0)
 grade_vector_small_lbl <- c("1.0", "2.0", "3.0", "4.0", "5.0")
 
 grades %>% 
@@ -227,7 +228,7 @@ grades %>%
 ```
 
 When we are talking about dependent and independent variables, there is the
-convention to plot former on the x-axis and the latter on the y-axis. So the
+convention to plot the former on the y-axis and the latter on the x-axis. So the
 *y-variable* is to be explained and the *x-variable* is used to explain it.
 This convention will also be used in all formulas in this seminar.
 
@@ -254,7 +255,7 @@ grades %>%
        y = "Grade achieved")
 ```
 
-This describes the realtionship between the two variables as linear. Each hour
+This describes the relationship between the two variables as linear. Each hour
 invested decreases the grade by a certain amount, for this proposed line by
 exactly $0.08$ points. Remember that decreasing the value of the grade actually
 means getting a better grade.
@@ -402,11 +403,6 @@ random observations but in reality the distance of every data point from the
 regression line is taken into account.
 
 ``` {r plot_grade_hours_wild_guess_expl_residuals, echo = FALSE}
-set.seed(123456)
-
-grades %>% 
-  slice_sample(n = 5)
-
 grades %>% 
   ggplot(aes(x = hours, y = grade)) +
   geom_point() +
@@ -435,11 +431,11 @@ for sure, but there are two common main reasons.
 
 For one, there may be other variables that also influence the relationship
 between invested hours and achieved grade, something that we will return to
-in the next session, when we expand the idea of linear regression to multiple
+in the [next session](#lin-t-2), when we expand the idea of linear regression to multiple
 independent variables. 
 
 But there is also random variation present in every bit of real world data.
-While our data is simulated we also added random variation on purpose. Because
+While our data is simulated, we also added random variation on purpose. Because
 this is what real world data is, it is messy and it is noisy.
 
 Not every seminar paper that had the same time investment, e.g. 40 hours, will
@@ -511,7 +507,7 @@ lm(grade ~ hours, grades) %>%
 This is the output from a simple linear regression for `grade` on `hours` R 
 returns to us.
 How we can do this in practice and what the first two lines mean will be the
-topic of session 8. For now we will focus on the estimates in the coefficient
+topic of [session 8](#lin-a). For now we will focus on the estimates in the coefficient
 block and introduce the additional elements of the output on by one over the
 next sessions.
 
@@ -563,7 +559,7 @@ with zero hours of time invested, the grade would be a firm $5.0$ and the same
 would be true for low single digits, i.e. turning in a two-pager as a seminar
 paper. The takeaway is, that the model is highly dependent on the data that it
 is trained on. If the data would have included such cases we could expect a
-higher intercept and a steeper slope, i.e. stronger negative coefficient.
+higher intercept and a steeper slope, i.e. a stronger negative coefficient.
 
 Luckily all our simulated students have put in at least some hours. But as we do
 not have data for zero to $22$ hours, we can not really make reliable estimates
@@ -614,15 +610,5 @@ their work, i.e. $40.33$.
 Based on our simple linear regression model we achieved an estimate for our
 effect of interest. Working more hours results in receiving a better grade.
 But there could be other variables that influence this relationship. In the
-next session we learn how we can include these in our model, when we move from
+[next session](#lin-t-2) we learn how we can include these in our model, when we move from
 simple to multiple linear regression.
-
-## Further resources
-::: {.resources}
-1. [Linear Regression in R Tutorial](https://www.datacamp.com/tutorial/linear-regression-R): This tutorial covers the basics of linear regression in R, such as how to use the lm function, how to interpret the results, and how to visualize the relationship between variables.
-2. [Linear Regression in R | How to intrepret Linear Regression with Examples](https://www.educba.com/linear-regression-in-r/): This article explains the concept of linear regression, the assumptions and limitations of the model, and how to perform and evaluate a linear regression in R with examples.
-3. [Multiple Linear Regression in R (With Graphs & Examples)](https://www.upgrad.com/blog/multiple-linear-regression-in-r/): This guide shows how to extend the linear regression model to include more than one explanatory variable, how to use the caret package to train and test the model, and how to plot the results with ggplot2.
-4. [Linear Models in R](https://moderndive.com/5-regression.html#model1table): This chapter from the book ModernDive provides a comprehensive introduction to linear models in R, including simple and multiple linear regression, model selection, inference, diagnostics, and prediction.
-
-:::
-

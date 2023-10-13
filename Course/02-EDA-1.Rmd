@@ -183,10 +183,10 @@ save(data_nba, file ="../datasets/nba/data_nba.RData")
 
 Now, let us look at some packages which help us in exploring the data set as a whole. Let's start with the `skimr` package:
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, render = knitr::normal_print}
 library("skimr")
 
-knitr::kable(skim(data_nba))
+skim(data_nba)
 ```
 
 The `skim()` function provides a very handy overview of the whole data set including the types of columns (i.e. variables), a summary of all variables, the extent of missing data etc. One advantage is that the output is `tidy` which means it is easy to work with further if needed, for example to plot the resulting summary.
