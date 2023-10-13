@@ -145,7 +145,7 @@ There are many options available but most are not needed when starting out. The 
 
 ## EDA - Exercise
 
-In this exercise, we will work with the **Boston Housing Data**. The data set contains information on 506 census tracts in the US city of Boston from the 1970 census. It contains information on the median value of owner-occupied homes and additional statistics on houses and socio-demographics for each tract.
+In this and all following exercises, we will work with the **Boston Housing Data**. The data set contains information on 506 census tracts in the US city of Boston from the 1970 census. It contains information on the median value of owner-occupied homes and additional statistics on houses and socio-demographics for each tract.
 
 This is an overview of all variables included in the data set:
 
@@ -182,91 +182,16 @@ data(BostonHousing)
 
 3.  **Inspect the dataset**: Use the proper functions to inspect the structure and contents of the data set. How many categorical variables are there? How many numerical variables are there? Are there any missing values?
 
-```{r, include=FALSE}
-str(BostonHousing)
-glimpse(BostonHousing)
-# Check for missing values in all columns
-colSums(is.na(BostonHousing))
-```
-
 4.  **Summarize categorical variables**: Create a frequency table for the categorical variable `chas` (Charles River dummy variable).
-
-```{r, include=FALSE}
-table(BostonHousing$chas)
-```
 
 5.  **Summarize numerical variables**: Generate summary statistics for the numerical variables crim (per capita crime rate by town), rm (average number of rooms per dwelling) and dis (weighted distances to five Boston employment centres).
 
-```{r, include=FALSE}
-summary(BostonHousing$crim)
-summary(BostonHousing$rm)
-summary(BostonHousing$dis)
-```
-
 6.  **Create new variables**: Create a new variable that groups houses by their proximity to employment centers as indicated in the variable `dis`. Create the three categories `Near`, `Medium` and `Far` based on the value of `dis`. Choose appropriate cutoff values based on the summary statistics you computed above. Briefly describe your decision.
-
-```{r, include=FALSE}
-BostonHousing <- BostonHousing %>%
-  mutate(distance_group = case_when(
-    dis < 2 ~ "Near",
-    dis >= 2 & dis < 5 ~ "Medium",
-    dis >= 5 ~ "Far"
-  ))
-```
 
 7.  **Compare distributions**: Compare the distribution of `ptratio` by the newly created variable `distance_group` using boxplots. Briefly interpret the results.
 
-```{r, include=FALSE}
-# Create a boxplot of PTRATIO grouped by distance_group
-BostonHousing %>% ggplot() + 
-geom_boxplot(aes(y=ptratio)) +
-  facet_wrap(~distance_group) +
-  theme_light()
-```
-
 8.  **Visualize relationships**: Create scatter plots with an added regression line to explore the relationship between housing prices (`medv`) and the numeric variables : `rm`, `age`, `dis`, `lstat`. Briefly interpret the plots.
-
-```{r, message=FALSE, warning=FALSE, include=FALSE}
-# Create a list of numeric variables to plot against MEDV
-vars <- c("rm", "age", "dis", "lstat")
-
-# Create a scatter plot for each variable
-#rm
-rm_sp <- BostonHousing %>% 
-  ggplot(aes(y=rm, x=medv)) +
-    geom_point() + 
-     stat_smooth(method = "lm") + 
-       theme_minimal()
-#age
-age_sp <- BostonHousing %>% 
-  ggplot(aes(y=age, x=medv)) +
-    geom_point() + 
-     stat_smooth(method = "lm") + 
-       theme_minimal()
-#dis
-dis_sp <- BostonHousing %>% 
-  ggplot(aes(y=dis, x=medv)) +
-    geom_point() + 
-     stat_smooth(method = "lm") + 
-       theme_minimal()
-#lstat
-lstat_sp <- BostonHousing %>% 
-  ggplot(aes(y=lstat, x=medv)) +
-    geom_point() + 
-     stat_smooth(method = "lm") + 
-       theme_minimal()
-#adding all plots in one
-library("ggpubr")
-ggarrange(rm_sp, age_sp,
-          dis_sp, lstat_sp,
-          ncol = 2, nrow = 2)
-```
 
 9.  **Correlation analysis**: Calculate correlation coefficients between housing prices (`medv`), the average number of rooms per dwelling (`rm`) and the crime rate (`crim`). Display the correlations as a matrix or as a plot. Interpret the result.
 
-```{r, include=FALSE}
-library(corrplot)
-corr_matrix <- cor(BostonHousing[, c("medv", "rm", "crim")])
-corrplot(corr_matrix)
-```
 :::

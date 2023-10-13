@@ -1,4 +1,4 @@
-# Linear Regression Theory I: Simple Linear Regression {#lin-t-1}
+# Linear Regression - Theory I: Simple Linear Regression {#lin-t-1}
 
 The next three sessions will be an introduction for linear regressions.
 We will look at the theoretical underpinnings, the interpretation of results

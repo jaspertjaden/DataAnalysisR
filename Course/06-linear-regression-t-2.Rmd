@@ -1,4 +1,4 @@
-# Linear Regression Theory II: Multiple Linear Regression {#lin-t-2}
+# Linear Regression - Theory II: Multiple Linear Regression {#lin-t-2}
 
 ``` {r init_0, include = FALSE}
 library(tidyverse)

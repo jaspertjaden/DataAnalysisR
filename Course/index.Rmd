@@ -13,11 +13,9 @@ link-citations: yes
 github-repo: jaspertjaden/DataAnalysisR
 ---
 
-# Intro {.unnumbered}
-
 This course offers an accessible and easy introduction to one of the fastest growing statistical packages used in social science and data science more generally.
 
-## About the Authors
+# About the Authors  {.unnumbered}
 
 ::: preface
 -   Prof. Dr. Jasper Tjaden (Professor for Applied Social Research and Public Policy at the University of Potsdam)

@@ -1,6 +1,6 @@
 # Prediction - Exercise {#pm-a}
-Here goes some texts.
 
+**Still WIP!*
 
 ## Exercises
 
@@ -8,83 +8,13 @@ Here goes some texts.
 
 - **Task 1:** How the number of rooms in a house affects its price, you also have to consider how the crime rate might be influencing this relationship. Estimate and report the average causal mediation effect (ACME), the average direct effect (ADE), the total effect, and the proportion mediated. Explain what these effects mean and how to interpret them.
 
-
-```{r task_1_p, warning=FALSE, include=FALSE}
-# Load the mediation package
-library(mediation)
-
-# Fit a linear regression model with crim as the mediator variable
-fit3 <- lm(crim ~ rm, data = BostonHousing)
-
-# Fit a linear regression model with price as the outcome variable
-fit4 <- lm(medv ~ rm + crim, data = BostonHousing)
-
-# Perform a mediation analysis with price as the outcome variable, rm as the treatment variable, and crim as the mediator variable
-med.out <- mediate(fit3, fit4, treat = "rm", mediator = "crim", sims = 1000)
-
-# Estimate and report the average causal mediation effect (ACME), the average direct effect (ADE), the total effect, and the proportion mediated
-summary(med.out)
-
-#The ACME is estimated to be 0.7042, with a 95% confidence interval of [0.4170, 1.06]. This means that `crim` is estimated to increase price by 0.7042 units on average, for each unit increase in `rm`. The p-value is less than 2e-16, indicating that this effect is statistically significant at the 5% level.
-
-#The ADE is estimated to be 8.3994, with a 95% confidence interval of [7.5494, 9.14]. This means that `rm` is estimated to increase price by 8.3994 units on average, after controlling for `crim`. The p-value is less than 2e-16, indicating that this effect is also statistically significant at the 5% level.
-
-#The total effect is estimated to be 9.1036, with a 95% confidence interval of [8.2886, 9.91]. This means that `rm` is estimated to increase price by 9.1036 units on average, without controlling for `crim`. The p-value is less than 2e-16, indicating that this effect is also statistically significant at the 5% level.
-
-#The proportion mediated is estimated to be 0.0765, with a 95% confidence interval of [0.0465, 0.11]. This means that about 7.65% of the total effect of `rm` on price is mediated by `crim`. The p-value is less than 2e-16, indicating that this proportion is also statistically significant at the 5% level.
-```
-
-
 - **Task 2:** Create or show a data frame with the coefficients, standard errors, p-values, and confidence intervals of a linear regression model that predicts the median value of a home (`MEDV`) based on the nitric oxides concentration (`NOX`) and the average number of rooms per dwelling (`RM`).
-
-```{r task_2_p, warning=FALSE, include=FALSE}
-library(broom)
-model <- lm(medv ~ nox + rm, data = BostonHousing)
-tidy(model, conf.int = TRUE)
-
-#The results show that both NOX and RM are significant predictors of MEDV, with `RM` having a positive effect and `NOX` having a negative effect.
-```
-
-
 
 - **Task 3:** Create a data frame with the R-squared, adjusted R-squared, root mean squared error, and other summary statistics of the linear regression model from task 1. Explain the output.
 
-
-```{r task_3_p, warning=FALSE, include=FALSE}
-glance(model)
-
-#The results show that the model has an R-squared value of 0.535, indicating that it explains about 53.5% of the variance in the median value of a home (MEDV). The adjusted R-squared value is slightly lower at 0.533, indicating that the model is not overfitting.
-
-```
-
 - **Task 4:** Generate predicted values and prediction intervals for the median value of a home (`MEDV`) based on the linear regression model from task 1, and add them as new columns to the test data set. Create a train-test split of the data set with 70% of the data for training and 30% for testing.
 
-
-```{r task_4_p, warning=FALSE, include=FALSE}
-library(caret)
-set.seed(123)
-trainIndex <- createDataPartition(BostonHousing$medv, p = .7, list = FALSE)
-trainData <- BostonHousing[trainIndex,]
-testData <- BostonHousing[-trainIndex,]
-model <- lm(medv ~ nox + rm, data = trainData)
-testData$predicted_MEDV <- predict(model, testData)
-testData$pred_interval <- predict(model, testData, interval = "prediction")
-
-```
-
-
 - **Task 5:** Create a data frame with the observed and predicted values, residuals, and other diagnostic measures for the linear regression model from task 1. Create a plot of the predicted values versus the observed values, with prediction intervals as ribbons. Calculate the root mean squared error of the predictions on the test data set.
-
-```{r task_5_p, warning=FALSE, include=FALSE}
-augmented_data <- augment(model, interval= "prediction")
-
-  ggplot(aes(x=.fitted,y=medv), data=augmented_data)+
-  geom_point()+
-  geom_line(aes(x=.fitted,y=medv))+
-  geom_ribbon(aes(ymax=.upper,ymin=.lower),color="red",alpha=0.7)
-RMSE(testData$medv, augmented_data$.fitted)
-
-```
 
 :::
 

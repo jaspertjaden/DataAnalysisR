@@ -1,129 +1,34 @@
 # Linear Regression - Exercise {#lin-e}
 
+\*\*Still WIP!\*
+
 ## Exercises
-In this exercise, you will use the Boston Housing Dataset to explore the relationship between housing prices and various features of the houses and their surroundings. The dataset contains 506 observations and 15 columns. The last column, MEDV, is the median value of owner-occupied homes in $1000’s. This is the target variable that you will try to predict using linear regression models. The other 14 columns represent different features of the houses and their surroundings, such as crime rate, nitric oxides concentration, pupil-teacher ratio, etc.
 
-::: {.assignx}
+In this exercise, you will use the Boston Housing Dataset to explore the relationship between housing prices and various features of the houses and their surroundings. The dataset contains 506 observations and 15 columns. The last column, MEDV, is the median value of owner-occupied homes in \$1000's. This is the target variable that you will try to predict using linear regression models. The other 14 columns represent different features of the houses and their surroundings, such as crime rate, nitric oxides concentration, pupil-teacher ratio, etc.
 
-- **Task 1:** Fit a simple linear regression model with price as the dependent variable and rm as the independent variable. Interpret the estimated coefficients and the R-squared value.
+::: assignx
+-   **Task 1:** Fit a simple linear regression model with price as the dependent variable and rm as the independent variable. Interpret the estimated coefficients and the R-squared value.
 
 **[We start by looking at the relationship between the number of rooms in a house and its price. We notice a pattern - houses with more rooms tend to be more expensive. But how strong is this relationship? Can we predict the price of a house just by knowing the number of rooms?]**
-```{r task_1, include=FALSE}
-# Load the Boston housing dataset
 
 
-# Fit a simple linear regression model
-fit1 <- lm(medv ~ rm, data = BostonHousing)
+-   **Task 2:** Check the assumptions of the linear regression model from Task 1. Identify any potential problems such as non-linearity, heteroscedasticity, outliers, or multicollinearity; and suggest potential solutions. Hint: `plot()`
 
-# Display the estimated coefficients and R-squared value
-summary(fit1)
-
-#The output shows that the estimated intercept is -34.67 and the estimated slope is 9.10. This means that for each additional room, the median value of owner-occupied homes increases by $9,100. The R-squared value is 0.484, which means that about 48% of the variation in price can be explained by rm.
-```
-
-- **Task 2:** Check the assumptions of the linear regression model from Task 1. Identify any potential problems such as non-linearity, heteroscedasticity, outliers, or multicollinearity; and suggest potential solutions. Hint: `plot()`
-
-**[start investigating if our model is reliable. Are there any hidden factors we’re not considering? Are there any unusual cases that don’t fit the pattern?]**
-
-```{r task_2_0, include=FALSE}
-# Plot the residuals vs. fitted values
-plot(fit1, which = 1)
-
-#The plot shows that there is a slight non-linearity in the relationship between rm and price, as well as some heteroscedasticity (unequal variance) in the residuals. There are also a few outliers with large residuals.
-```
+**[start investigating if our model is reliable. Are there any hidden factors we're not considering? Are there any unusual cases that don't fit the pattern?]**
 
 
-```{r task_2_1, include=FALSE}
-# Plot the Q-Q plot of standardized residuals
-plot(fit1, which = 2)
-
-#The Q-Q plot shows that the residuals are approximately normally distributed, with some deviation in the tails.
-```
-
-
-```{r task_2_2, include=FALSE}
-# Plot the scale-location plot of standardized residuals
-plot(fit1, which = 3)
-
-#The scale-location plot confirms that there is some heteroscedasticity in the residuals.
-```
-
-
-```{r task_2_3, include=FALSE}
-# Plot the residuals vs. leverage values
-plot(fit1, which = 5)
-
-#The plot shows that there are no influential observations with high leverage values.
-```
-
-
-- **Task 3:** Draw a directed acyclic graph (DAG) to represent the causal relationships among the variables in the Boston housing dataset. 
+-   **Task 3:** Draw a directed acyclic graph (DAG) to represent the causal relationships among the variables in the Boston housing dataset.
 
 **[To better understand the housing market, we draw a map showing how different factors like crime rate, proximity to the river, and average number of rooms are related to each other and to the price of houses.]**
 
-```{r task_3, include=FALSE}
-# Draw a directed acyclic graph (DAG)
-# Note: This is just an example DAG, students should draw their own based on their understanding of the causal relationships among the variables
-library(dagitty)
-dag <- dagitty("dag {
-  crim -> nox
-  crim -> price
-  zn -> price
-  indus -> nox
-  indus -> price
-  chas -> price
-  nox -> price
-  rm -> price
-  age -> dis
-  age -> price
-  dis -> price
-  rad -> tax
-  rad -> price
-  tax -> price
-  ptratio -> price
-  b -> price
-  lstat -> price
-}") %>% 
-  plot()
 
-```
-
-- **Task 4:** Fit a multiple linear regression model with price as the dependent variable and the relevant variables (`rm`, `crim`, `chas`) as the independent variables. Interpret the estimated coefficients and their statistical significance.
+-   **Task 4:** Fit a multiple linear regression model with price as the dependent variable and the relevant variables (`rm`, `crim`, `chas`) as the independent variables. Interpret the estimated coefficients and their statistical significance.
 
 **[we decide to create a more sophisticated model that considers multiple factors (`RM`, `CRIM` and `CHAS`) at once. Can we predict the price more accurately now? Which factors are more significant?]**
 
 
-```{r task_4_0, include=FALSE}
-# Fit a multiple linear regression model with price as the dependent variable and the relevant variables
-fit2 <- lm(medv ~ rm + crim + chas , data = BostonHousing)
+-   **Task 5:** Convert rad into a categorical variable and add it to the linear regression model from Task 4. Compare the results with the model from Task 1 and explain how adding a categorical variable affects the estimation and interpretation of the coefficients.
 
-# Display the estimated coefficients and their statistical significance
-summary(fit2)
-
-#All the coefficients are statistically significant at the 5% level, as indicated by their p-values being less than 0.05. This means that there is strong evidence that each of the independent variables has a `non-zero` effect on the dependent variable.
-
-#The intercept is estimated to be -28.81068, which represents the predicted value of `medv` when all the independent variables are equal to zero. The coefficient for `rm` is 8.27818, which means that for each additional room, the median value of owner-occupied homes increases by \$8,278.18. The coefficient for `crim` is -0.26072, which means that for each additional unit of per capita crime rate, the median value decreases by \$260.72. The coefficient for `chas1` is 3.76304, which means that for tracts that bound Charles River, the median value increases by \$3,763.04.
-
-#The residual standard error is 6.17, which measures the typical deviation of the observed values from the predicted values. The R-squared value is 0.5527, which means that about 55% of the variation in `medv` can be explained by `rm`, `crim`, and `chas`. 
-```
-
-
-- **Task 5:** Convert rad into a categorical variable and add it to the linear regression model from Task 4. Compare the results with the model from Task 1 and explain how adding a categorical variable affects the estimation and interpretation of the coefficients.
-
-**[Finally, we decide to consider the accessibility to radial highways as a categorical factor - either a house has easy access or it doesn’t. How does this new factor change our predictions from task 4?]**
-
-```{r task_5, include=FALSE}
-# Convert rad into a categorical variable and add it to the linear regression model from Task 4
-fit3 <- lm(medv ~ rm + crim + chas + factor(rad), data = BostonHousing)
-
-# Display the estimated coefficients and their statistical significance
-summary(fit3)
-
-#Comparing this output with the previous one, we can see that adding `rad` as a categorical variable improves the model fit, as indicated by an increase in R-squared value from 0.5527 to 0.5844. The estimated coefficients of `rm`, `crim`, and `chas` remain similar to those in the previous model.
-
-#Overall, this output suggests that adding `rad` as a categorical variable improves the model fit and provides additional information about the relationship between rad and medv. However, it’s important to note that this model still does not account for any potential confounding variables or interactions among the independent variables.
-```
+**[Finally, we decide to consider the accessibility to radial highways as a categorical factor - either a house has easy access or it doesn't. How does this new factor change our predictions from task 4?]**
 
 :::
-
-
