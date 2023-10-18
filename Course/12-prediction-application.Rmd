@@ -1,4 +1,4 @@
-# Prediction - Exercise {#pm-a}
+# Prediction & Machine Learning - Exercise {#pm-a}
 
 **Still WIP!**
 
