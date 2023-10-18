@@ -104,30 +104,6 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
-\usepackage{booktabs}
-\usepackage{longtable}
-\usepackage{array}
-\usepackage{multirow}
-\usepackage{wrapfig}
-\usepackage{float}
-\usepackage{colortbl}
-\usepackage{pdflscape}
-\usepackage{tabu}
-\usepackage{threeparttable}
-\usepackage{threeparttablex}
-\usepackage[normalem]{ulem}
-\usepackage{makecell}
-\usepackage{xcolor}
-\usepackage{siunitx}
-
-  \newcolumntype{d}{S[
-    input-open-uncertainty=,
-    input-close-uncertainty=,
-    parse-numbers = false,
-    table-align-text-pre=false,
-    table-align-text-post=false
-  ]}
-  
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -144,7 +120,7 @@
 
 \title{Data Analysis with R for Social Scientists}
 \author{Jakob Tures \& Jasper Tjaden}
-\date{2023-10-13}
+\date{2023-10-18}
 
 \begin{document}
 \maketitle
@@ -198,7 +174,7 @@ You can access the GitHub repository that contains the R Markdown files used in 
 
 In this course, students will learn the basics of data analysis using the R programming language. At the end of the course, students will be able to write an empirical seminar paper or BA-thesis using quantitative statistical modeling techniques. To achieve this, we will not only focus on how to apply this techniques in R, but also why certain approaches are chosen for certain problems and how to use them correctly with the aim of producing reliable statistical results.
 
-The course starts with an introduction to exploratory data analysis; getting to know your data, your variables and the relationships between them. After this we will we go into statistical modeling. Before we can even start to model, we have to understand what modeling is, what approaches do exist and what we should and should not include in our model. You will learn how to use acyclical directed graphs (DAGs) to construct a model based on theoretical assumptions. We continue with a thorough introduction to simple and multiple linear regression. This will be the basis for more advanced topics that conclude the course, including introductions to logistic regression, mediation analysis and prediction. The course also includes a brief introduction to fundamentals of machine learning.
+The course starts with an introduction to exploratory data analysis; getting to know your data, your variables and the relationships between them. After this we will we go into statistical modeling. Before we can even start to model, we have to understand what modeling is, what approaches do exist and what we should and should not include in our model. You will learn how to use acyclical directed graphs (DAGs) to construct a model based on theoretical assumptions. We continue with a thorough introduction to simple and multiple linear regression. This will be the basis for more advanced topics that conclude the course, including introductions to logistic regression, prediction and machine learning.
 
 \hypertarget{prerequisites}{%
 \section{Prerequisites}\label{prerequisites}}
@@ -1449,7 +1425,7 @@ This is an overview of all variables included in the data set:
 10. tax - full-value property-tax rate per $10,000
 11. ptratio - pupil-teacher ratio by town
 12. b - 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town
-13. lstat - % lower status of the population
+13. lstat - % of lower status of the population
 14. medv - Median value of owner-occupied homes in $1000's
 \end{verbatim}
 
@@ -1741,8 +1717,7 @@ Drawing a DAG based on our assumptions helps us to prevent this pitfall.
 \hypertarget{mediation}{%
 \paragraph{Mediation}\label{mediation}}
 
-A special case of pipes is \emph{mediation}. We will only take about this
-briefly here and return to the topic in \protect\hyperlink{med}{session 10}.
+A special case of pipes is \emph{mediation}.
 
 Consider this DAG:
 
@@ -2138,7 +2113,7 @@ based on money and a host of other variables as accurately as possible.
 Linear regression is one of the many available modelling techniques and it can
 serve both approaches. Over the next sessions we will focus on using
 linear regression for estimating an effect of interest but we will return to
-prediction in \protect\hyperlink{pm-t}{session 11}.
+prediction in \protect\hyperlink{pm-t}{session 10}.
 
 How do we know if we should choose linear regression for a specific task?
 This is not easy to answer as there are many alternatives and even variations of
@@ -3567,16 +3542,14 @@ Manderscheid, Katharina (2017). Sozialwissenschaftliche Datenanalyse mit R. Eine
 \hypertarget{lin-a}{%
 \chapter{Linear Regression - Application}\label{lin-a}}
 
-\textbf{Still WIP!}
-
 After we have learned the ins and outs of linear regression we will now
-return to our NBA data.
-We already saw, that there was an interesting relationship between the
-points a player makes per game and the salary he receives in \protect\hyperlink{eda-1}{session 2}. In
-\protect\hyperlink{dags-1}{session 4} we also built a DAG that reflects our assumptions about the data
-generating process. Based on the DAGs implications we can now build a linear
-regression model and try to estimate the effect of interest as accurately as
-possible.
+return to our NBA data. We already saw, that there was an interesting
+relationship between the points a player makes per game and the salary
+he receives in \protect\hyperlink{eda-1}{session 2}. In \protect\hyperlink{dags-1}{session 4} we also
+built a DAG that reflects our assumptions about the data generating
+process. Based on the DAGs implications we can now build a linear
+regression model and try to estimate the effect of interest as
+accurately as possible.
 
 \hypertarget{objectives-5}{%
 \section{Objectives}\label{objectives-5}}
@@ -3584,7 +3557,8 @@ possible.
 \begin{itemize}
 \tightlist
 \item
-  Estimate the effect of interest, scored point on salary, using a linear regression
+  Estimate the effect of interest, scored point on salary, using a
+  linear regression
 \item
   Applying diagnostics to the model and correct mistakes
 \item
@@ -3597,46 +3571,72 @@ possible.
 \begin{itemize}
 \tightlist
 \item
-  \texttt{lm()} : This function is used to fit a linear model to the data. It takes a formula that specifies the dependent and independent variables, and a data frame that contains the variables. It returns a model object that can be used for further analysis.
+  \texttt{lm()} : Fits a linear regression model. It takes a regression
+  formula and the data to be modelled on. It returns a model object
+  that is used by the functions below.
 \item
-  \texttt{summary()} : This function is used to get a summary of a model object, such as the coefficients, standard errors, t-values, p-values, R-squared, and F-statistic. It also provides information on the residuals, such as the minimum, maximum, median, and quartiles.
+  Displaying regression results
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{summary()} : Base R function for summaries on different kinds
+    of objects. Used on a linear regression model object,
+    information on the coefficients and associated measures, the
+    model fit as well as on the distribution of residuals is
+    returned.
+  \item
+    \texttt{tidy()} \& \texttt{glance()}: Functions from \textbf{broom} package. They
+    return model information as tibbles. The former returns the
+    coefficients and associated measures, the latter the model fit.
+  \end{itemize}
 \item
-  \texttt{tidy()} : This function is from the \textbf{broom} package. It is used to convert a model object into a tidy tibble that contains one row per parameter estimate and columns for the term, estimate, standard error, statistic, and p-value.
+  Regression diagnostics
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{plot()} : Base R function for plotting. Used an a model object,
+    plots used in regression diagnostics are returned.
+  \item
+    \texttt{autoplot()} : From the \textbf{ggfortify} package. Returns the same
+    plots on regression diagonstics, but in the style of
+    \textbf{ggplot2}.
+  \item
+    \texttt{vif()} : From the \textbf{car} package. Used on a model object, it
+    returns the variance inflation factors (VIF) used in regression
+    diagnostics.
+  \end{itemize}
 \item
-  \texttt{plot()} : This function is used to create various plots for a model object, such as the residuals vs fitted values, the Q-Q plot, the scale-location plot, and the residuals vs leverage plot. These plots are useful for checking the assumptions of linear regression, such as linearity, normality, homoscedasticity, and outliers¹{[}1{]}.
+  \texttt{log()} \& \texttt{exp()}: Base R functions. The former computes the
+  \emph{logarithmus naturalis} of a variable, the latter the exponential
+  function. Both can be used in transforming skewed variables or in
+  reversing each others transformations.
 \item
-  \texttt{autoplot()} : This function is from the \textbf{ggfortify} package. It is used to create the same plots as \texttt{plot()} but in the style of \textbf{ggplot2}. It returns a list of four plots that can be customized further with \textbf{ggplot2} functions.
-\item
-  \texttt{vif()} : This function is from the \textbf{car} package. It is used to compute the variance inflation factors (VIF) for each independent variable in a linear model. The VIF measures how much the variance of a coefficient estimate is inflated due to multicollinearity. A high VIF indicates a potential problem of multicollinearity.
-\item
-  \texttt{log()} : This function is used to compute the natural logarithm of a numeric vector. It can be used to transform a skewed dependent variable into a more normal distribution²{[}2{]}.
-\item
-  \texttt{I()} : This function is used to indicate that an expression should be evaluated as it is in a formula. It can be used to include non-linear transformations or interactions of independent variables in a linear model³{[}3{]}.
-\item
-  \texttt{exp()} : This function is used to compute the exponential function of a numeric vector. It can be used to reverse the logarithmic transformation of a dependent variable.
-\item
-  \texttt{ggplot()}: It's a key function from the \emph{ggplot2} package and is used to create a wide variety of static, dynamic, and interactive graphics in R. The function allows you to specify a mapping from data to aesthetics (color, shape, size) and geometric objects (points, lines, bars). It also allows you to add statistical transformations, coordinate systems, faceting, and themes.
-\item
-  \texttt{glance()} : This function is from the \textbf{broom} package. It is used to get a summary of a model object, such as the R-squared, adjusted R-squared, RMSE, p-value, etc. It takes a model object and returns a tibble with one row per model and one column per statistic.
+  \texttt{I()} : Base R function. Used in a regression formula it indicates
+  that an expression should be evaluated as is, instead of in the
+  formula syntax. Can for example be used to square a variable in a
+  regression formula.
 \end{itemize}
 
 \hypertarget{research-question}{%
 \section{Research question}\label{research-question}}
 
-Picking up from session 2 \& 4, our research question is still to get an unbiased
-estimate for the effect from points scored on the salary a NBA player receives.
-We already constructed a DAG that reflects our assumptions for the underlying
-data generating process. Let us revisit this briefly:
+Picking up from session 2 \& 4, our research question is still to get an
+unbiased estimate for the effect from points scored on the salary a NBA
+player receives. We already constructed a DAG that reflects our
+assumptions for the underlying data generating process. Let us revisit
+this briefly:
 
 \includegraphics{_main_files/figure-latex/dag_final-1.pdf}
 
-The implications of our DAG were that we only have to control for the position
-a player occupies to get an unbiased estimate for our effect of interest.
-The path that passes the body height is already closed by controlling for
-position and the team a player plays for as well as the season an observation
-was recorded in do not lie on an paths from our main independent to our
-dependent variable.
-Based on this we construct our model.
+The implications of our DAG were that we only have to control for the
+position a player occupies to get an unbiased estimate for our effect of
+interest. The path that passes the body height is already closed by
+controlling for position and the team a player plays for as well as the
+season an observation was recorded in do not lie on an paths from our
+main independent to our dependent variable. Based on this we construct
+our model.
 
 Now let us get to it and load the NBA data we prepared in week 2.
 
@@ -3650,24 +3650,25 @@ Now let us get to it and load the NBA data we prepared in week 2.
 \hypertarget{simple-linear-regression-in-r}{%
 \section{Simple linear regression in R}\label{simple-linear-regression-in-r}}
 
-To conduct a multiple linear regression in R, we can use the built-in \emph{base R}
-function \texttt{lm()}, short for \emph{linear model}.
-The function is straightforward to use. As the first argument
-we write the regression formula in R's \emph{formula syntax}.
+To conduct a multiple linear regression in R, we can use the built-in
+\emph{base R} function \texttt{lm()}, short for \emph{linear model}. The function is
+straightforward to use. As the first argument we write the regression
+formula in R's \emph{formula syntax}.
 
-We start building the formula by writing the name of our \texttt{dependent\_variable}
-followed by a \emph{tilde} \texttt{\textasciitilde{}}. You can read this as an \(=\) or as ``regress the
-dependent variable on''. After the tilde we add our first \texttt{indepedent\ variable}
-by again writing out its name. If we have multiple independent variables in our
-model - when we are running a \emph{multiple linear regression} - we can add those by
-writing a \texttt{+} followed by the name of the variable to be added.
+We start building the formula by writing the name of our
+\texttt{dependent\_variable} followed by a \emph{tilde} \texttt{\textasciitilde{}}. You can read this as an
+\(=\) or as ``regress the dependent variable on''. After the tilde we add
+our first \texttt{indepedent\ variable} by again writing out its name. If we
+have multiple independent variables in our model - when we are running a
+\emph{multiple linear regression} - we can add those by writing a \texttt{+}
+followed by the name of the variable to be added.
 
-As an additional argument, the function needs the name of the object that holds our
-data.
+As an additional argument, the function needs the name of the object
+that holds our data.
 
-The goal of our research question is to estimate the effect of the points per
-game on the received salary. So to regress \texttt{salary} on \texttt{career\_PTS}, we just
-write:
+The goal of our research question is to estimate the effect of the
+points per game on the received salary. So to regress \texttt{salary} on
+\texttt{career\_PTS}, we just write:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3685,23 +3686,25 @@ write:
 ##     -851914       552843
 \end{verbatim}
 
-This gives us a short output. The first line just echoes our code used to run
-the regression. We have seen this in the last session already, but now we know
-what the meaning was. After this we have a short block with the estimated
-coefficients. As we have run a simple linear regression, we only get the
-intercept and the coefficient for the sole independent variable used in the
-model. If we would have run a multiple linear regression, the result would
-basically look the same, only with more coefficients to display.
+This gives us a short output. The first line just echoes our code used
+to run the regression. We have seen this in the last session already,
+but now we know what the meaning was. After this we have a short block
+with the estimated coefficients. As we have run a simple linear
+regression, we only get the intercept and the coefficient for the sole
+independent variable used in the model. If we would have run a multiple
+linear regression, the result would basically look the same, only with
+more coefficients to display.
 
-Before we dive into the results, we should talk about how to receive a more
-verbose output that does not hide all the other vital information that is
-associated with the model.
+Before we dive into the results, we should talk about how to receive a
+more verbose output that does not hide all the other vital information
+that is associated with the model.
 
-The easiest way is to use the base R function \texttt{summary()}. This is a generic R
-function that returns different summaries, depending on the object it is used
-on. We can for example use it on a data frame or tibble to get some descriptive
-statistics for the included variables. For example, we can get information on the
-distribution of points per game by writing:
+The easiest way is to use the base R function \texttt{summary()}. This is a
+generic R function that returns different summaries, depending on the
+object it is used on. We can for example use it on a data frame or
+tibble to get some descriptive statistics for the included variables.
+For example, we can get information on the distribution of points per
+game by writing:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3714,11 +3717,11 @@ distribution of points per game by writing:
 ##   0.000   5.100   8.000   8.908  12.000  30.100
 \end{verbatim}
 
-When we use \texttt{summary()} on a model object, like the one created by \texttt{lm()}, we
-get a different output. Before we apply this we should save our model in an
-object. This is good practice in most cases, as we can now apply all additional
-analysis of the model on this object and we do not have to rerun the model
-every time.
+When we use \texttt{summary()} on a model object, like the one created by
+\texttt{lm()}, we get a different output. Before we apply this we should save
+our model in an object. This is good practice in most cases, as we can
+now apply all additional analysis of the model on this object and we do
+not have to rerun the model every time.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3755,12 +3758,12 @@ We can now apply \texttt{summary()} on the object \texttt{m1}, short for ``model
 ## F-statistic:  5502 on 1 and 9726 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
-This is the output we saw over the last weeks and it includes an extended and
-better readable coefficient block as well as the information on the residuals
-and the model fit.
+This is the output we saw over the last weeks and it includes an
+extended and better readable coefficient block as well as the
+information on the residuals and the model fit.
 
-An alternative method of displaying the coefficients in a regular tibble format
-is to use \texttt{tidy()} from the \texttt{broom} package.
+An alternative method of displaying the coefficients in a regular tibble
+format is to use \texttt{tidy()} from the \texttt{broom} package.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3781,13 +3784,13 @@ is to use \texttt{tidy()} from the \texttt{broom} package.
 \hypertarget{interpretation}{%
 \subsection{Interpretation}\label{interpretation}}
 
-While we know our model is not complete yet, let us still inspect the results.
-For each point a player scores per game, his salary rises by about \(552,000\$\).
-We see a clear positive and substantial effect. Let us also inspect the
-intercept. This tells us that a player who makes no points per game has to pay
-the team about \(850,000\). Wait, this does not make sense\ldots{}
-To make the intercept more readily interpretable we should again center our
-metric dependent variable \texttt{career\_PTS} on its mean.
+While we know our model is not complete yet, let us still inspect the
+results. For each point a player scores per game, his salary rises by
+about \(552,000\$\). We see a clear positive and substantial effect. Let
+us also inspect the intercept. This tells us that a player who makes no
+points per game has to pay the team about \(850,000\). Wait, this does not
+make sense\ldots{} To make the intercept more readily interpretable we should
+again center our metric dependent variable \texttt{career\_PTS} on its mean.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3806,8 +3809,8 @@ metric dependent variable \texttt{career\_PTS} on its mean.
 \end{Highlighting}
 \end{Shaded}
 
-As we have now centered the independent variable of interest on its mean of \(8.9\)
-we can rerun the model.
+As we have now centered the independent variable of interest on its mean
+of \(8.9\) we can rerun the model.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3838,18 +3841,20 @@ we can rerun the model.
 ## F-statistic:  5502 on 1 and 9726 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
-The coefficient for points per game has not changed but its interpretation has.
-For each point per game over the mean of \(8.9\) points per game, the salary is
-estimated to increase by about \(552,000\$\). At the same time, for each point
-below the mean the salary is estimated to decrease by the same amount.
-The intercept now shows us the estimated salary of a player who scores \(8.9\)
-points per game, which is slightly upwards of \(4,000,000\$\). This makes way more
-sense.
+The coefficient for points per game has not changed but its
+interpretation has. For each point per game over the mean of \(8.9\)
+points per game, the salary is estimated to increase by about
+\(552,000\$\). At the same time, for each point below the mean the salary
+is estimated to decrease by the same amount. The intercept now shows us
+the estimated salary of a player who scores \(8.9\) points per game, which
+is slightly upwards of \(4,000,000\$\). This makes way more sense.
 
-This model model already achieved a considerable \(R^2\) of \(0.36\). About \(36\%\)
-of the variance in salaries is explained by points per game.
+This model model already achieved a considerable \(R^2\) of \(0.36\). About
+\(36\%\) of the variance in salaries is explained by points per game.
 
-Another way to get the model statistics, such as \(r^2\), F-statistic, and p-value, is to use the \texttt{glance()} function from the broom package. This function returns a tibble with one row of model summaries.
+Another way to get the model statistics, such as \(r^2\), F-statistic, and
+p-value, is to use the \texttt{glance()} function from the broom package. This
+function returns a tibble with one row of model summaries.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3865,17 +3870,22 @@ Another way to get the model statistics, such as \(r^2\), F-statistic, and p-val
 ## # i 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 \end{verbatim}
 
-We can see that the output includes the same information as the summary of \texttt{m1}, but in a different format. The advantage of using \texttt{glance()} is that it is easier to manipulate and compare the model statistics using tidyverse functions. For example, we can use \texttt{bind\_rows()} to combine the outputs of different models and compare their performance.
+We can see that the output includes the same information as the summary
+of \texttt{m1}, but in a different format. The advantage of using \texttt{glance()} is
+that it is easier to manipulate and compare the model statistics using
+tidyverse functions. For example, we can use \texttt{bind\_rows()} to combine
+the outputs of different models and compare their performance.
 
 \hypertarget{multiple-linear-regression-in-r}{%
 \section{Multiple linear regression in R}\label{multiple-linear-regression-in-r}}
 
-The DAG we have constructed above based on our research question indicated that
-we also have to include the position a player occupies in our model.
-We can add additional independent variables to the formula used in \texttt{lm()} with a
-\texttt{+} and the name of the additional variable(s). This works the same way for all
-types of variables, i.e.~metric, dummies or categorical variables.
-So let us do this now by adding the 5 dummies we constructed for the positions:
+The DAG we have constructed above based on our research question
+indicated that we also have to include the position a player occupies in
+our model. We can add additional independent variables to the formula
+used in \texttt{lm()} with a \texttt{+} and the name of the additional variable(s).
+This works the same way for all types of variables, i.e.~metric, dummies
+or categorical variables. So let us do this now by adding the 5 dummies
+we constructed for the positions:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3915,38 +3925,42 @@ So let us do this now by adding the 5 dummies we constructed for the positions:
 \hypertarget{interpretation-1}{%
 \subsection{Interpretation}\label{interpretation-1}}
 
-We still see a clear positive effect of points per game on the received salary
-after controlling for the position a player occupies. Among those centers are by
-far the top earners, making about \(1,400,00\$\) more than players on other
-positions. Most other positions show relatively small effects on the earnings.
-Power and small forwards earn somewhat more than other positions on average
-while point and especially shooting guards earn less.
+We still see a clear positive effect of points per game on the received
+salary after controlling for the position a player occupies. Among those
+centers are by far the top earners, making about \(1,400,00\$\) more than
+players on other positions. Most other positions show relatively small
+effects on the earnings. Power and small forwards earn somewhat more
+than other positions on average while point and especially shooting
+guards earn less.
 
-We can now compare two fictive cases of a center and a point guard who each make
-about \(20\) points per game. What is the estimated salary for them?
+We can now compare two fictive cases of a center and a point guard who
+each make about \(20\) points per game. What is the estimated salary for
+them?
 
-As we have extensively worked with the formulas over the last sessions, we can
-now keep it short and calculate the estimate directly. Remember that we
-centered the points per game on the mean of about \(8.9\), so making \(20\) per game
-would mean scoring about \(11.1\) more compared to the average player. We will keep it simple
-here and calculate with \(11\).
+As we have extensively worked with the formulas over the last sessions,
+we can now keep it short and calculate the estimate directly. Remember
+that we centered the points per game on the mean of about \(8.9\), so
+making \(20\) per game would mean scoring about \(11.1\) more compared to
+the average player. We will keep it simple here and calculate with \(11\).
 
 \[\hat{y_{center\_20}} = 3679728 + 568019 * 11 + 1380246 = 11,308,183\]
 
 \[\hat{y_{pg\_20}} = 3679728 + 568019 * 11 - 114552 = 9,813,385\]
 
-Despite making the same amount of points per game for their team, the model
-estimates that a point guard earns about \(1,500,000\$\) less compared to a center.
+Despite making the same amount of points per game for their team, the
+model estimates that a point guard earns about \(1,500,000\$\) less
+compared to a center.
 
 \hypertarget{sidenote-adding-interactions}{%
 \subsection{Sidenote: Adding interactions}\label{sidenote-adding-interactions}}
 
-We will not use interactions in this session but we briefly want to state how we
-could add them in the formula syntax.
+We will not use interactions in this session but we briefly want to
+state how we could add them in the formula syntax.
 
-Remember that interactions are multiplicative terms in our regression formula.
-Adding them to the R formula syntax works the same way. We add the new term with
-a \texttt{+} and use a \texttt{*} between the two variables that we want to interact.
+Remember that interactions are multiplicative terms in our regression
+formula. Adding them to the R formula syntax works the same way. We add
+the new term with a \texttt{+} and use a \texttt{*} between the two variables that we
+want to interact.
 
 Here is a non running toy example where we interact two x-variables:
 
@@ -3957,20 +3971,21 @@ lm(y ~ x1 + x2 + x1 * x2, data = some_data)
 \hypertarget{regression-diagnostics-1}{%
 \section{Regression Diagnostics}\label{regression-diagnostics-1}}
 
-So how does our model perform? Did we meet all the regression assumptions that
-were introduced last week?
+So how does our model perform? Did we meet all the regression
+assumptions that were introduced last week?
 
-To access the visual tests we used last session, we can just use the base R
-function \texttt{plot()}, applied to the model object. If we write \texttt{plot(m2)}, the
-console asks us to press \texttt{ENTER} to go through each plot one by one. We can also
-add a number as a second argument, specifying which plot we want to see. For
-example, \texttt{plot(m2,\ 1)} gives us the residuals vs.~fitted plot.
+To access the visual tests we used last session, we can just use the
+base R function \texttt{plot()}, applied to the model object. If we write
+\texttt{plot(m2)}, the console asks us to press \texttt{ENTER} to go through each plot
+one by one. We can also add a number as a second argument, specifying
+which plot we want to see. For example, \texttt{plot(m2,\ 1)} gives us the
+residuals vs.~fitted plot.
 
 But there is an easier way to see all four plots at once. The package
-\texttt{ggfortify} expands the functionalities of \texttt{ggplot2} so that we can use it's
-\texttt{autoplot()} function to automatically plot all four visual tests of interest.
-An added benefit, depending on your taste, is that the plots are rendered in the
-style of \texttt{ggplot2}.
+\texttt{ggfortify} expands the functionalities of \texttt{ggplot2} so that we can use
+it's \texttt{autoplot()} function to automatically plot all four visual tests
+of interest. An added benefit, depending on your taste, is that the
+plots are rendered in the style of \texttt{ggplot2}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3982,35 +3997,39 @@ style of \texttt{ggplot2}.
 
 \includegraphics{_main_files/figure-latex/m2_diag-1.pdf}
 
-The residuals vs.~fitted does not show us a more or less straight line but
-starts mildly positive, then dips below \(0\) and rises again for higher estimated
-salaries. This could indicate at least two thing. Either we have missed an
-important independent variable, like in the last session, or we are actually
-dealing with some amount on non-linearity. If it is non-linearity, it is still
-\emph{mild} non-linearity, but maybe we should still inspect this.
+The residuals vs.~fitted does not show us a more or less straight line
+but starts mildly positive, then dips below \(0\) and rises again for
+higher estimated salaries. This could indicate at least two thing.
+Either we have missed an important independent variable, like in the
+last session, or we are actually dealing with some amount on
+non-linearity. If it is non-linearity, it is still \emph{mild} non-linearity,
+but maybe we should still inspect this.
 
-The Q-Q plot this time shows that the actual residuals are far from being
-distributed normally. While we can never expect a perfectly normal distribution,
-here the deviations are striking, especially for high residuals.
+The Q-Q plot this time shows that the actual residuals are far from
+being distributed normally. While we can never expect a perfectly normal
+distribution, here the deviations are striking, especially for high
+residuals.
 
-The scale-location plot is used to address the assumption of homoscedasticity.
-What we want to see, is a straight line with data points equally distributed
-around it. This clearly is not the case here. As it is, the plot indicates
-that we may be able to estimate small salaries reasonably well but that the
-higher the estimate, the more unreliable our model gets.
+The scale-location plot is used to address the assumption of
+homoscedasticity. What we want to see, is a straight line with data
+points equally distributed around it. This clearly is not the case here.
+As it is, the plot indicates that we may be able to estimate small
+salaries reasonably well but that the higher the estimate, the more
+unreliable our model gets.
 
-The residuals vs.~leverage plot also indicates some problems. There are some
-observations that have larger or smaller standardized residuals compared to the
-thresholds of \(3\) and \(-3\). The threshold for leverage is computed as
-\(2 * (6 + 1) / 9728 = 0.001439145\). We also see some observations with higher
-values. While both are rules of thumb and may not necessarily point to severe
-problems by themselves, things can get problematic when there are observations
-that do not meet the thresholds for both measures at the same time. This is
-indicated by clusters in the lower or upper right corners. This time we can
-observe this in the lower right.
+The residuals vs.~leverage plot also indicates some problems. There are
+some observations that have larger or smaller standardized residuals
+compared to the thresholds of \(3\) and \(-3\). The threshold for leverage
+is computed as \(2 * (6 + 1) / 9728 = 0.001439145\). We also see some
+observations with higher values. While both are rules of thumb and may
+not necessarily point to severe problems by themselves, things can get
+problematic when there are observations that do not meet the thresholds
+for both measures at the same time. This is indicated by clusters in the
+lower or upper right corners. This time we can observe this in the lower
+right.
 
-We should also test for multicollinearity. We can compute the VIF measures using
-a function from the package \texttt{car}.
+We should also test for multicollinearity. We can compute the VIF
+measures using a function from the package \texttt{car}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4027,31 +4046,33 @@ a function from the package \texttt{car}.
 ##        1.916933
 \end{verbatim}
 
-The values for any variable should not exceed \(5\) and should be closer to \(1\).
-Our value for points shows no signs of multicollinearity. The values for the
-position dummies have somewhat higher values, which makes sense. While there are
-some players that play multiple positions, for most a value of \(1\) on one
-position predicts the other positions as having a value of \(0\). But as we are
-still far away from the threshold of \(5\), there is no need for concern here.
+The values for any variable should not exceed \(5\) and should be closer
+to \(1\). Our value for points shows no signs of multicollinearity. The
+values for the position dummies have somewhat higher values, which makes
+sense. While there are some players that play multiple positions, for
+most a value of \(1\) on one position predicts the other positions as
+having a value of \(0\). But as we are still far away from the threshold
+of \(5\), there is no need for concern here.
 
 Overall, we have problems! While we do not see signs of problematic
-multicollinearity, all other tests indicated clear and in parts severe problems.
-We have to put in some more work before we can be confident that our model
-accurately estimates the effect of points per game on the received salary.
+multicollinearity, all other tests indicated clear and in parts severe
+problems. We have to put in some more work before we can be confident
+that our model accurately estimates the effect of points per game on the
+received salary.
 
-Before we start addressing the problems, we should note that the four plots are
-highly interactive. It is entirely possible that solving one of the problems
-also solves the others or, for added fun, even generates new ones. This means
-that we should refrain from turning too many dials at once and rather change the
-model one step at a time, see if it improves things and then address remaining
-problems in the same way.
+Before we start addressing the problems, we should note that the four
+plots are highly interactive. It is entirely possible that solving one
+of the problems also solves the others or, for added fun, even generates
+new ones. This means that we should refrain from turning too many dials
+at once and rather change the model one step at a time, see if it
+improves things and then address remaining problems in the same way.
 
 \hypertarget{skewed-outcome-variable}{%
 \subsection{Skewed outcome variable}\label{skewed-outcome-variable}}
 
-The deviation from normality and the clearly present heteroscedasticity could
-both point to the same problem, namely a skewed dependent variable. Let us
-examine its distribution first.
+The deviation from normality and the clearly present heteroscedasticity
+could both point to the same problem, namely a skewed dependent
+variable. Let us examine its distribution first.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4063,25 +4084,26 @@ examine its distribution first.
 
 \includegraphics{_main_files/figure-latex/distribution_dv_before-1.pdf}
 
-Our outcome variable is not only skewed, it is \textbf{highly skewed}. While there
-are many salaries in the ``lower'' six to seven digits regions, we also see some
-extremely high wages up to about \(35,000,000\$\). The higher the salary the fewer
-observations we have. That is why we see such a long flat tail to the right.
+Our outcome variable is not only skewed, it is \textbf{highly skewed}. While
+there are many salaries in the ``lower'' six to seven digits regions, we
+also see some extremely high wages up to about \(35,000,000\$\). The
+higher the salary the fewer observations we have. That is why we see
+such a long flat tail to the right.
 
-This distribution actually is relatively common for income data. In most surveys
-of the general population we have many people receiving relatively low incomes
-while fewer individuals receive higher or extremely high incomes. It is still
-interesting that this also holds true for a population of high earners such as
-NBA players. Inequality is relative. Compared to the general
-population almost all our players would be somewhere in the long tail to the
-right. Compared to their own population we still see highly substantial
-differences in outcomes.
+This distribution actually is relatively common for income data. In most
+surveys of the general population we have many people receiving
+relatively low incomes while fewer individuals receive higher or
+extremely high incomes. It is still interesting that this also holds
+true for a population of high earners such as NBA players. Inequality is
+relative. Compared to the general population almost all our players
+would be somewhere in the long tail to the right. Compared to their own
+population we still see highly substantial differences in outcomes.
 
-We can transform the dependent variable to a different scale to get a less
-skewed distribution. A common transformation for income data is to take the
-\emph{logarithmus naturalis} of the actual value and then use this as our
-dependent variable. To achieve the transformation we can simply use the base R
-function \texttt{log()} which as its default computes the \(ln\).
+We can transform the dependent variable to a different scale to get a
+less skewed distribution. A common transformation for income data is to
+take the \emph{logarithmus naturalis} of the actual value and then use this
+as our dependent variable. To achieve the transformation we can simply
+use the base R function \texttt{log()} which as its default computes the \(ln\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4096,8 +4118,8 @@ function \texttt{log()} which as its default computes the \(ln\).
 
 \includegraphics{_main_files/figure-latex/transform_dv_log-1.pdf}
 
-While the distribution of the transformed variable also is somewhat skewed, now
-to the left, overall it is much more evenly distributed.
+While the distribution of the transformed variable also is somewhat
+skewed, now to the left, overall it is much more evenly distributed.
 
 We should use the new variable as our outcome an check the tests again.
 
@@ -4111,39 +4133,41 @@ We should use the new variable as our outcome an check the tests again.
 
 \includegraphics{_main_files/figure-latex/m3-1.pdf}
 
-Looking at the scale-location plot first, we can now see a straight line with
-our residuals fairly evenly distributed around it. Thus we now longer see any
-signs of heteroscedasticity. The Q-Q plot now also indicates a somewhat more
-normal distribution of our residuals but there are substantial deviations still.
-While high residuals now appear to more or less follow the normal distribution,
-small residuals now deviate stronger than they have before. This reflects the
-transformation and its distribution, which now has long tail on the left instead of
-on the right, as before. Turning to the residuals vs.~leverage plot we still see
-some observations that do not meet the respective thresholds. At the same time,
-there appear to be less that simultaneously have high absolute standardized
-residuals and high leverage. The residuals vs.~fitted plot now also shows a more
-even distribution while the signs on non-linearity remain. We do not have to
-recompute the VIF measure as we did not change any independent variables in the
-model.
+Looking at the scale-location plot first, we can now see a straight line
+with our residuals fairly evenly distributed around it. Thus we now
+longer see any signs of heteroscedasticity. The Q-Q plot now also
+indicates a somewhat more normal distribution of our residuals but there
+are substantial deviations still. While high residuals now appear to
+more or less follow the normal distribution, small residuals now deviate
+stronger than they have before. This reflects the transformation and its
+distribution, which now has long tail on the left instead of on the
+right, as before. Turning to the residuals vs.~leverage plot we still
+see some observations that do not meet the respective thresholds. At the
+same time, there appear to be less that simultaneously have high
+absolute standardized residuals and high leverage. The residuals vs.
+fitted plot now also shows a more even distribution while the signs on
+non-linearity remain. We do not have to recompute the VIF measure as we
+did not change any independent variables in the model.
 
 \hypertarget{non-linearity}{%
 \subsection{Non-linearity}\label{non-linearity}}
 
-Let us now address the non-linearity that is still indicated in the first plot.
-We can approach non-linear relationships in our inherently linear model by
-adding non-linear transformations of a dependent variable to the model. But
-before we start squaring random variables, we should think about what could be
-non-linear in our case. We can rule out our dummy variables for position. This
-leaves the points scored. The model already indicates that our suspicion that
-salary rises with the points scored could be true. But maybe this relationship
-is not linear over its whole range. If you already are among high scorers,
-scoring one or two points more than your peers may not be such a substantial
+Let us now address the non-linearity that is still indicated in the
+first plot. We can approach non-linear relationships in our inherently
+linear model by adding non-linear transformations of a dependent
+variable to the model. But before we start squaring random variables, we
+should think about what could be non-linear in our case. We can rule out
+our dummy variables for position. This leaves the points scored. The
+model already indicates that our suspicion that salary rises with the
+points scored could be true. But maybe this relationship is not linear
+over its whole range. If you already are among high scorers, scoring one
+or two points more than your peers may not be such a substantial
 difference and thus may not have the same strong effect on salary.
 
-We should first inspect the relationship between both variables again. This time
-we add a LOWESS curve to the plot. This is often helpful in detecting
-non-linearity as the curve can change its slope over the range of the dependent
-variable. This is also the default for \texttt{geom\_smooth()}.
+We should first inspect the relationship between both variables again.
+This time we add a LOWESS curve to the plot. This is often helpful in
+detecting non-linearity as the curve can change its slope over the range
+of the dependent variable. This is also the default for \texttt{geom\_smooth()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4156,10 +4180,10 @@ variable. This is also the default for \texttt{geom\_smooth()}.
 
 \includegraphics{_main_files/figure-latex/non_linearity-1.pdf}
 
-While this is not as clear as we hoped, the line may still indicate some mild
-non-linearity as it flattens somewhat for really high point values. Also we have
-to keep in mind that the non-linearity may be stronger when we control for
-additional variables, as our position dummies.
+While this is not as clear as we hoped, the line may still indicate some
+mild non-linearity as it flattens somewhat for really high point values.
+Also we have to keep in mind that the non-linearity may be stronger when
+we control for additional variables, as our position dummies.
 
 One common way to address the non-linearity is taking the square of the
 dependent variable in question. We should not square our centered points
@@ -4176,16 +4200,17 @@ variable though. Let us inspect what would happen if we squared it.
 
 \includegraphics{_main_files/figure-latex/centered_squared-1.pdf}
 
-As the square of negative values is positive, we would basically introduce the
-assumption into the model that there is non-linearity for low and high scorers
-and that the effect will be in the same direction. While our assumption is that
-there are diminishing returns between being a high scorer and a \textbf{really} high
-scorer, we do not assume that making more points if you are among the lower
-scorers should have the same effect. If at all, in these regions additional
-points could have an even larger effect.
+As the square of negative values is positive, we would basically
+introduce the assumption into the model that there is non-linearity for
+low and high scorers and that the effect will be in the same direction.
+While our assumption is that there are diminishing returns between being
+a high scorer and a \textbf{really} high scorer, we do not assume that making
+more points if you are among the lower scorers should have the same
+effect. If at all, in these regions additional points could have an even
+larger effect.
 
-Because of this we should return to the uncentred version of our variable. What
-happens if we square this?
+Because of this we should return to the uncentred version of our
+variable. What happens if we square this?
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4198,18 +4223,20 @@ happens if we square this?
 
 \includegraphics{_main_files/figure-latex/career_pts_squared-1.pdf}
 
-This is what we wanted, a transformation that expects a stronger difference the
-higher the score value is. For the final model we will thus work with the
-uncentered variable. We included the centered version because it is more
-straightforward to interpret. This is not really a concern anymore because
-dreams of easy interpretability have long passed after transforming two variables.
+This is what we wanted, a transformation that expects a stronger
+difference the higher the score value is. For the final model we will
+thus work with the uncentered variable. We included the centered version
+because it is more straightforward to interpret. This is not really a
+concern anymore because dreams of easy interpretability have long passed
+after transforming two variables.
 
-We could again transform the variable in our data and thus add a second version,
-but we can also do so directly in the formula syntax. When we use the function
-\texttt{I()} we tell R to interpret anything within the parentheses as a mathematical
-expression. This is what we will do below. Note that we add the point variable
-as its untransformed and transformed versions. The first represents the linear
-parts and the second the non-linear parts of the effect.
+We could again transform the variable in our data and thus add a second
+version, but we can also do so directly in the formula syntax. When we
+use the function \texttt{I()} we tell R to interpret anything within the
+parentheses as a mathematical expression. This is what we will do below.
+Note that we add the point variable as its untransformed and transformed
+versions. The first represents the linear parts and the second the
+non-linear parts of the effect.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4227,17 +4254,19 @@ We can now reassess the tests for the last model.
 
 \includegraphics{_main_files/figure-latex/m4_diag-1.pdf}
 
-The line in the residuals vs.~fitted plot got more straight. It seems that we
-actually captured the mild non-linearity that was present before by adding the
-squared points value to our model. The scale-location plot also still indicates
-no more problems of heteroscedasticity. Contrary, the data points now are even
-more evenly distributed compared to \texttt{m3}. The Q-Q plot has not substantially changed,
-still showing non-normally distributed residuals. We can not really fix this
-now, but we also learned that this test is less consequential if we have a
-large \(n\). Turning to the residuals vs.~leverage plot, we still see several points
-that do not meet the thresholds but at the same time we do not see any points
-with high values for both. Overall there seem to be no overly influential points
-which we had to address. Let us also reexamine the VIF.
+The line in the residuals vs.~fitted plot got more straight. It seems
+that we actually captured the mild non-linearity that was present before
+by adding the squared points value to our model. The scale-location plot
+also still indicates no more problems of heteroscedasticity. Contrary,
+the data points now are even more evenly distributed compared to \texttt{m3}.
+The Q-Q plot has not substantially changed, still showing non-normally
+distributed residuals. We can not really fix this now, but we also
+learned that this test is less consequential if we have a large \(n\).
+Turning to the residuals vs.~leverage plot, we still see several points
+that do not meet the thresholds but at the same time we do not see any
+points with high values for both. Overall there seem to be no overly
+influential points which we had to address. Let us also reexamine the
+VIF.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4252,22 +4281,23 @@ which we had to address. Let us also reexamine the VIF.
 ##        1.569463        1.949078
 \end{verbatim}
 
-We now see high VIF values for both versions of our point variable, which is the
-only substantial change. Did we introduce a
-new problem? If we take the measure at face value, yes. But if we think about
-it, no. All this means is that both versions of our variable are highly
+We now see high VIF values for both versions of our point variable,
+which is the only substantial change. Did we introduce a new problem? If
+we take the measure at face value, yes. But if we think about it, no.
+All this means is that both versions of our variable are highly
 correlated. Of course they are. One is computed from the other. We can
-perfectly predict the value of \texttt{career\_PTS\^{}2} from \texttt{career\_PTS}. There is
-collinearity by design. If we want to assess multicollinearity we should apply
-the function to \texttt{m3}. If we would have used interactions, the situation would be
-similar. This is just a small reminder that all our tests do not work without
-thinking about what we are actually doing.
+perfectly predict the value of \texttt{career\_PTS\^{}2} from \texttt{career\_PTS}. There
+is collinearity by design. If we want to assess multicollinearity we
+should apply the function to \texttt{m3}. If we would have used interactions,
+the situation would be similar. This is just a small reminder that all
+our tests do not work without thinking about what we are actually doing.
 
 \hypertarget{returning-to-our-research-question-2}{%
 \section{Returning to our research question}\label{returning-to-our-research-question-2}}
 
-As we now settled on \texttt{m4} as our best model, it is time to discuss what we
-actually found out about the effect of scored points on the received salary.
+As we now settled on \texttt{m4} as our best model, it is time to discuss what
+we actually found out about the effect of scored points on the received
+salary.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4303,21 +4333,22 @@ actually found out about the effect of scored points on the received salary.
 ## F-statistic: 917.1 on 7 and 9720 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
-The more points a player scores, the higher the salary is estimated. At the same
-time we have identified a non-linear aspect to this relationship. The non-linear
-effect is small but negative. This indicates diminishing returns for high
-scorers. The higher the score, the less positive the effect of additional points
-is.
+The more points a player scores, the higher the salary is estimated. At
+the same time we have identified a non-linear aspect to this
+relationship. The non-linear effect is small but negative. This
+indicates diminishing returns for high scorers. The higher the score,
+the less positive the effect of additional points is.
 
 The problem after two transformations of involved variables is, that
-interpretation has lost all its intuitiveness. The effects now describe the
-change in logarithmised salaries. While we can still easily assess if an effect
-is positive or negative we do not really know what the magnitude of an effect is.
-For this we have to reverse the transformation.
+interpretation has lost all its intuitiveness. The effects now describe
+the change in logarithmised salaries. While we can still easily assess
+if an effect is positive or negative we do not really know what the
+magnitude of an effect is. For this we have to reverse the
+transformation.
 
-Let us revisit our example of a center and a point guard making \(20\) points
-per game from above. Note that we also have to take the square of points for the
-non-linear term.
+Let us revisit our example of a center and a point guard making \(20\)
+points per game from above. Note that we also have to take the square of
+points for the non-linear term.
 
 \[\hat{y_{center\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.5482072 \\
 = 16.17654\]
@@ -4325,9 +4356,9 @@ non-linear term.
 \[\hat{y_{pg\_20}} = 12.2544680 + 0.3124511 * 20 - 0.0071879 * 20^2 + 0.0312286 \\
 = 15.659565\]
 
-To find out what this means in hard dollars, we have to reverse the logarithmus
-naturalis. We can do this by calculating \(e^{\hat{y}}\). R gives us the function
-\texttt{exp()} to do just that.
+To find out what this means in hard dollars, we have to reverse the
+logarithmus naturalis. We can do this by calculating \(e^{\hat{y}}\). R
+gives us the function \texttt{exp()} to do just that.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4350,97 +4381,105 @@ naturalis. We can do this by calculating \(e^{\hat{y}}\). R gives us the functio
 \end{verbatim}
 
 For our center who scored \(20\) points we thus estimate a salary of
-\(10,601,860\$\), for a point guard with the same amounts of points \(6,322,119\$\).
-These estimates are not only lower than the ones derived above, the difference
-between the positions is also more pronounced. For a point guard, scoring
-additional hoops does not have the same payoff compared to a center. While the
-latter receive a higher pay in general they also receive more per additional
-point scored.
+\(10,601,860\$\), for a point guard with the same amounts of points
+\(6,322,119\$\). These estimates are not only lower than the ones derived
+above, the difference between the positions is also more pronounced. For
+a point guard, scoring additional hoops does not have the same payoff
+compared to a center. While the latter receive a higher pay in general
+they also receive more per additional point scored.
 
-As the name suggests and as we have seen in our exploratory data analysis,
-point guards make a lot of points. At the same time they earn considerable less.
-Above we see an estimated difference of over \(4,000,000\$\) between high scoring
-centers and point guards. The question remains why this is the case.
-Maybe there are some additional variables we had to consider to fully unravel
-this.
-For example it is reasonable to expect some effects on salary that are not
-connected to the performance in terms of scoring. Both positions fill different
-roles in basketball game. Centers, besides scoring, have to get rebounds and
-facilitate turnarounds. Point guards on the other hand have the role to build
-opportunities for their team and pass to other players. Both measures of
-performance were not considered in our model but are highly valuable to any team.
-Also there is something we can call ``starfactor'' or ``flashiness''. A center is
-much more visible in the game, takes big jumps and dunks. Maybe a center is not
-only more valuable in terms of performance but also in being an attracting force
-for fans. This could change the relationship between points and salary for
-players with a high ``starpower''. Such a variable would be hard to measure,
-but could maybe solve the parts of the puzzle that still remain.
+As the name suggests and as we have seen in our exploratory data
+analysis, point guards make a lot of points. At the same time they earn
+considerable less. Above we see an estimated difference of over
+\(4,000,000\$\) between high scoring centers and point guards. The
+question remains why this is the case. Maybe there are some additional
+variables we had to consider to fully unravel this. For example it is
+reasonable to expect some effects on salary that are not connected to
+the performance in terms of scoring. Both positions fill different roles
+in basketball game. Centers, besides scoring, have to get rebounds and
+facilitate turnarounds. Point guards on the other hand have the role to
+build opportunities for their team and pass to other players. Both
+measures of performance were not considered in our model but are highly
+valuable to any team. Also there is something we can call ``starfactor''
+or ``flashiness''. A center is much more visible in the game, takes big
+jumps and dunks. Maybe a center is not only more valuable in terms of
+performance but also in being an attracting force for fans. This could
+change the relationship between points and salary for players with a
+high ``starpower''. Such a variable would be hard to measure, but could
+maybe solve the parts of the puzzle that still remain.
 
 \hypertarget{moving-on-3}{%
 \section{Moving on}\label{moving-on-3}}
 
-But there is another possibility. We built the best model based on our DAG, but
-maybe the DAG is not entirely correct. Maybe we made some faulty assumptions or
-maybe we missed a variable with an important role in the data generating
-process. In the \protect\hyperlink{med}{session 10} we will see, how we can come up with a different
-DAG that incorporates the same variables but makes some different assumptions.
+In this session our goal was to achieve an unbiased estimate for the effect
+from points per game on the received salary. As we have already mentioned,
+we could have chosen a different approach. Our goal could have been to predict
+the value of salary to the highest possible accuracy. We will tackle this
+second approach in in \protect\hyperlink{pm-t}{session 10}.
 
 \hypertarget{lin-e}{%
 \chapter{Linear Regression - Exercise}\label{lin-e}}
 
+\hypertarget{linear-regression---exercise}{%
+\section{Linear Regression - Exercise}\label{linear-regression---exercise}}
+
+In this exercise, you will again use the Boston Housing data set to explore the
+relationship between housing prices and various features of the houses and their
+surroundings.
+
+For an overview on the data set see \protect\hyperlink{eda-2}{session 3}.
+
+Prepare by creating a new R Markdown file.
+Write all solutions in this file using code chunks as well as text to structure
+the file (headers) and answer the questions. Do not forget to save the file in
+the format \texttt{your\_name\_exercise\_2.Rmd}.
+You will have to turn in this file to the lecturers through Moodle.
+Write a first code chunk in which you load
+all necessary packages and import the data. For a reminder see
+\protect\hyperlink{eda-2}{tasks 1 \& 2 from the first exercise}.
+
+\begin{itemize}
+\item
+  \textbf{Task 1:} We start out by analysing at the relationship between the
+  distance to employement centers and the median price of houses.
+  To explore this relationship, fit a simple linear regression model with
+  \texttt{medv} as the dependent variable and \texttt{dis} as the independent variable.
+  Interpret the estimated coefficients and the R-squared value.
+\item
+  \textbf{Task 2:} Conduct regression diagnostics on the model from task 1.
+  Identify any potential problems such as non-linearity, heteroscedasticity,
+  outliers, or multicollinearity; and suggest potential solutions.
+\item
+  \textbf{Task 3:} We now explore which other variables may be relevant in
+  estimating the effect from distance to employment centers on the price of a
+  house.
+  Examine the variables present in the data set. You can see them listed in
+  the \protect\hyperlink{eda-2}{first exercise}.
+  Which variables do you suspect to be relevant?
+  Draw a directed acyclic graph (DAG) using \texttt{dagitty()} to represent the
+  relationships among the variables you deem relevant.
+\item
+  \textbf{Task 4:} Use the DAG you constructed above to decide on further variables
+  to include in the model. Briefly describe your decision.
+  Now fit a multiple linear regression model based on this.
+  Interpret the estimated coefficients and the R-squared value. What changed
+  compared to the first model?
+\item
+  \textbf{Task 5:} Rerun the regression diagnostics for the second model. What
+  changed? Have some problems been solved? Have new problems emerged?
+  What steps could be undertaken to solve remaining problems?
+\item
+  \textbf{Bonus Task} Implement changes you suggested in task 5 and rerun the
+  model as well as the diagnostics. Did it help?
+\end{itemize}
+
+\hypertarget{pm-t}{%
+\chapter{Prediction}\label{pm-t}}
+
 \textbf{Still WIP!}
 
-\hypertarget{exercises}{%
-\section{Exercises}\label{exercises}}
-
-In this exercise, you will use the Boston Housing Dataset to explore the relationship between housing prices and various features of the houses and their surroundings. The dataset contains 506 observations and 15 columns. The last column, MEDV, is the median value of owner-occupied homes in \$1000's. This is the target variable that you will try to predict using linear regression models. The other 14 columns represent different features of the houses and their surroundings, such as crime rate, nitric oxides concentration, pupil-teacher ratio, etc.
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Task 1:} Fit a simple linear regression model with price as the dependent variable and rm as the independent variable. Interpret the estimated coefficients and the R-squared value.
-\end{itemize}
-
-\textbf{{[}We start by looking at the relationship between the number of rooms in a house and its price. We notice a pattern - houses with more rooms tend to be more expensive. But how strong is this relationship? Can we predict the price of a house just by knowing the number of rooms?{]}}
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Task 2:} Check the assumptions of the linear regression model from Task 1. Identify any potential problems such as non-linearity, heteroscedasticity, outliers, or multicollinearity; and suggest potential solutions. Hint: \texttt{plot()}
-\end{itemize}
-
-\textbf{{[}start investigating if our model is reliable. Are there any hidden factors we're not considering? Are there any unusual cases that don't fit the pattern?{]}}
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Task 3:} Draw a directed acyclic graph (DAG) to represent the causal relationships among the variables in the Boston housing dataset.
-\end{itemize}
-
-\textbf{{[}To better understand the housing market, we draw a map showing how different factors like crime rate, proximity to the river, and average number of rooms are related to each other and to the price of houses.{]}}
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Task 4:} Fit a multiple linear regression model with price as the dependent variable and the relevant variables (\texttt{rm}, \texttt{crim}, \texttt{chas}) as the independent variables. Interpret the estimated coefficients and their statistical significance.
-\end{itemize}
-
-\textbf{{[}we decide to create a more sophisticated model that considers multiple factors (\texttt{RM}, \texttt{CRIM} and \texttt{CHAS}) at once. Can we predict the price more accurately now? Which factors are more significant?{]}}
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Task 5:} Convert rad into a categorical variable and add it to the linear regression model from Task 4. Compare the results with the model from Task 1 and explain how adding a categorical variable affects the estimation and interpretation of the coefficients.
-\end{itemize}
-
-\textbf{{[}Finally, we decide to consider the accessibility to radial highways as a categorical factor - either a house has easy access or it doesn't. How does this new factor change our predictions from task 4?{]}}
-
-\hypertarget{med}{%
-\chapter{Mediation}\label{med}}
-
-\textbf{Still WIP!}
-
-In this week, we will introduce to the concept of mediation analysis.
+In prior weeks, you learned how to build a linear regression model. The main interest
+we pursued so far was to arrive at a good estimate of one independent variable (points scored in NBA basketball league) on an outcome (salary of NBA players).
 
 \hypertarget{objectives-6}{%
 \section{Objectives}\label{objectives-6}}
@@ -4453,468 +4492,6 @@ In this week, we will introduce to the concept of mediation analysis.
 
 \hypertarget{r-functions-covered-this-week-2}{%
 \section{R functions covered this week}\label{r-functions-covered-this-week-2}}
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{dagitty()} : This function creates and analyzes Directed Acyclic Graphs (DAGs).
-\item
-  \texttt{load()} : This function is used to load an R object from a file. It takes a file name as an argument and returns the object stored in the file.
-\item
-  \texttt{mutate()} : This function is from the \textbf{dplyr} package. It is used to add new columns or modify existing columns in a data frame. It takes a data frame and one or more expressions that define the new or modified columns. It returns a modified data frame.
-\item
-  \texttt{case\_when()} : This function is from the \textbf{dplyr} package. It is used to perform multiple conditional operations in a vectorized way. It takes one or more logical expressions and corresponding values, and returns a vector with the values that match the first true expression.
-\item
-  \texttt{group\_by()} : This function is from the \textbf{dplyr} package. It is used to group a data frame by one or more variables. It takes a data frame and one or more grouping variables, and returns a grouped data frame that can be further manipulated with other \textbf{dplyr} functions.
-\item
-  \texttt{summarize()} : This function is from the \textbf{dplyr} package. It is used to summarize multiple values into a single value. It takes a grouped data frame and one or more expressions that calculate summary statistics, and returns a summarized data frame.
-\item
-  \texttt{ggplot()} : This function is from the \textbf{ggplot2} package. It is used to create a wide variety of static, dynamic, and interactive graphics in R. The function allows you to specify a mapping from data to aesthetics (color, shape, size) and geometric objects (points, lines, bars). It also allows you to add statistical transformations, coordinate systems, faceting, and themes.
-\item
-  \texttt{geom\_bar()} : This function is from the \textbf{ggplot2} package. It is used to create bar charts in R. It takes a mapping from data to aesthetics and other arguments that control the appearance of the bars, such as stat, width, position, fill, color, etc. It returns a layer that can be added to a ggplot object.
-\item
-  \texttt{ylim()} : This function is from the \textbf{ggplot2} package. It is used to set the limits of the y-axis in a plot. It takes two numeric values that define the lower and upper limits of the y-axis. It returns a scale object that can be added to a ggplot object.
-\item
-  \texttt{theme\_minimal()} : This function is from the \textbf{ggplot2} package. It is used to apply a minimal theme to a plot. It takes no arguments and returns a theme object that can be added to a ggplot object.
-\item
-  \texttt{lm()} : This function is used to fit a linear model to the data. It takes a formula that specifies the dependent and independent variables, and a data frame that contains the variables. It returns a model object that can be used for further analysis.
-\item
-  \texttt{summary()} : This function is used to get a summary of a model object, such as the coefficients, standard errors, t-values, p-values, R-squared, and F-statistic. It also provides information on the residuals, such as the minimum, maximum, median, and quartiles.
-\item
-  \texttt{modelsummary()} : This function is from the \textbf{modelsummary} package. It is used to create tables that summarize multiple models side by side. It takes a list of model objects and other arguments that control the appearance of the table, such as output format, statistics to include, variable labels, etc. It returns an object that can be printed or saved as an image or file.
-\item
-  \texttt{mediate()} : This function is from the \textbf{mediation} package. It is used to perform causal mediation analysis in R. It takes two model objects that specify the relationship between treatment and mediator (path\_a), and between treatment, mediator and outcome (path\_b), as well as other arguments that specify the treatment variable, mediator variable, treatment value, etc. It returns an object that contains the results of mediation analysis.
-\item
-  \texttt{summary.mediator()} : This function is from the \textbf{mediation} package. It is used to get a summary of an object returned by \texttt{mediate()}. It takes an object of class mediator and other arguments that control the confidence intervals and p-values for mediation effects. It prints out a summary of mediation effects.
-\end{itemize}
-
-\emph{Mediation} is a way of using (linear) regression with a different interest in mind.
-So far, we have been interested in estimating the effect of an x variable on a
-y variable. In our example using NBA data, we were interested in the effect of
-`points scored' by a player on player salary. We learned how to ``adjust'' or ``condition''
-the effect by adding covariates to the model (i.e.~control variables). Going back to
-our week on DAGs, we saw that we want to control for so-called confounders, i.e.
-those variables which have an effect on both x and y. The ``adjusted'' effect is the
-``total causal effect'' of x on y.
-
-Mediation now is all about trying to explain ``how'' x affects y. Mediation analysis
-is about identifying the mechanism between x and y. In other words, what share
-of the total effect can be explained by something else (i.e.~the mediator). When
-considering mediation, we can distinguish 3 types of effects:
-
-\begin{itemize}
-\tightlist
-\item
-  total effect (Effect of x on y (conditional on z), without mediator)
-\item
-  direct effect (Effect of x on y (conditional on z), left after also adjusting for the mediator))
-\item
-  indirect effect (The effect of x on y (conditional on z) which only goes through the mediator.
-\end{itemize}
-
-Go back to week X for a refresher.
-
-Let's turn to our NBA data to make this more tangible. Let's assume now that we are interested in how a player's position on the team affects his salary. Maybe guards feel
-discriminated because they earn less.
-
-First, we identify the year of the season as a confounder which we want to adjust.
-Tactics over the years changed, so the year when games took place had an influence on
-whether a player would be assigned to the guard or forward position, for example.
-Also, the NBA become more popular, more fans means more money, and higher salaries
-for players. As a result, we will include ``season\_year'' as a control variable.
-
-Second, we have a hypothesis that the points scored on average affect the salaries.
-In the end, fans come to see spectacular dunks and shots, not rebounds and passes.
-Certain positions play further away from the basket (e.g.~guards) and thus have a harder time scoring. They also are supposed to pass the ball to the big guys (usually centers).
-So maybe, the fact guards and forwards simply score less than centers explains their salary gap. We can test this using mediation.
-
-To visualize this mini-theory and identification strategy, let's have a look at this DAG.
-
-\includegraphics{_main_files/figure-latex/dag_final_m-1.pdf}
-
-Now let's test this out using R.
-
-\begin{itemize}
-\tightlist
-\item
-  First, we load the data.
-\item
-  Second, we reduce the position variable to 4 categories: Center, Guards, Forwards, and Mixed. As we will see, it is actually not common that players take on several roles even within the same season. This likely affects their \texttt{salary} as well. Players that can play multiple positions may get more playing time and as a result, score more. We are interested, however, in the difference between ``pure'' guards, forwards and centers, so we will run the analysis excluding ``mixed'' position players.
-\item
-  Third, we check whether there are any differences in average salaries by position using a graph and a table
-\item
-  Fourth, we run a linear regression, regressing position (as factor variable) on \texttt{salary} while adjusting for year of season.
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# load packages}
-
-\FunctionTok{load}\NormalTok{(}\AttributeTok{file =} \StringTok{"../datasets/nba/data\_nba.RData"}\NormalTok{)}
-
-
-
-\CommentTok{\# recode "position" variables"}
-\NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{position\_num =} \FunctionTok{rowSums}\NormalTok{(}\FunctionTok{across}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"position\_center"}\NormalTok{, }\StringTok{"position\_pf"}\NormalTok{, }\StringTok{"position\_sf"}\NormalTok{,}
-                                         \StringTok{"position\_pg"}\NormalTok{, }\StringTok{"position\_sg"}\NormalTok{))),}
-         \AttributeTok{position\_rec =} 
-           \FunctionTok{case\_when}\NormalTok{(}
-\NormalTok{             position\_center}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"center"}\NormalTok{,}
-\NormalTok{             position\_pf}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"Forward"}\NormalTok{,}
-\NormalTok{             position\_sf}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"Forward"}\NormalTok{,}
-\NormalTok{             position\_pg}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"Guard"}\NormalTok{,}
-\NormalTok{             position\_sg}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"Guard"}\NormalTok{,}
-\NormalTok{             position\_sg}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_pg}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{2} \SpecialCharTok{\textasciitilde{}} \StringTok{"Guard"}\NormalTok{,}
-\NormalTok{             position\_pf}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_sf}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{2} \SpecialCharTok{\textasciitilde{}} \StringTok{"Forward"}\NormalTok{,}
-             \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \StringTok{"Mixed"}\NormalTok{))}
-
-\CommentTok{\# pot mean salary by position}
-\NormalTok{data\_nba }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(position\_rec) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{salary\_mean =} \FunctionTok{mean}\NormalTok{(salary, }\AttributeTok{rm.na =}\NormalTok{T)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{position\_rec, }\AttributeTok{y=}\NormalTok{salary\_mean), }\AttributeTok{stat=}\StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{ylim}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{6000000}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme\_minimal}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/med_0-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# linear regression}
-\FunctionTok{summary}\NormalTok{(}\FunctionTok{lm}\NormalTok{(salary }\SpecialCharTok{\textasciitilde{}} \FunctionTok{as.factor}\NormalTok{(position\_rec), }\AttributeTok{data=}\NormalTok{data\_nba, }\AttributeTok{subset=}\NormalTok{(position\_rec}\SpecialCharTok{!=}\StringTok{"Mixed"}\NormalTok{)))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = salary ~ as.factor(position_rec), data = data_nba, 
-##     subset = (position_rec != "Mixed"))
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -4011485 -2826365 -1708014  1102456 31105006 
-## 
-## Coefficients:
-##                                Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                     4016014     126850  31.659  < 2e-16 ***
-## as.factor(position_rec)Forward  -439249     158703  -2.768  0.00566 ** 
-## as.factor(position_rec)Guard    -438470     149803  -2.927  0.00343 ** 
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 4402000 on 6382 degrees of freedom
-## Multiple R-squared:  0.001519,   Adjusted R-squared:  0.001206 
-## F-statistic: 4.855 on 2 and 6382 DF,  p-value: 0.007821
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# adjust for confounder }
-\FunctionTok{summary}\NormalTok{(}\FunctionTok{lm}\NormalTok{(salary }\SpecialCharTok{\textasciitilde{}} \FunctionTok{as.factor}\NormalTok{(position\_rec) }\SpecialCharTok{+} \FunctionTok{as.factor}\NormalTok{(season\_start), }\AttributeTok{data=}\NormalTok{data\_nba, }\AttributeTok{subset=}\NormalTok{(position\_rec}\SpecialCharTok{!=}\StringTok{"Mixed"}\NormalTok{)))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = salary ~ as.factor(position_rec) + as.factor(season_start), 
-##     data = data_nba, subset = (position_rec != "Mixed"))
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -5983717 -2733737 -1557867  1229567 29209309 
-## 
-## Coefficients:
-##                                Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                     2614310     272704   9.587  < 2e-16 ***
-## as.factor(position_rec)Forward  -510295     156308  -3.265 0.001102 ** 
-## as.factor(position_rec)Guard    -523632     147538  -3.549 0.000389 ***
-## as.factor(season_start)1999       22191     334992   0.066 0.947186    
-## as.factor(season_start)2000      705147     348782   2.022 0.043245 *  
-## as.factor(season_start)2001      818596     352465   2.322 0.020238 *  
-## as.factor(season_start)2002     1035391     354870   2.918 0.003539 ** 
-## as.factor(season_start)2003     1069793     359704   2.974 0.002950 ** 
-## as.factor(season_start)2004     1117189     358397   3.117 0.001834 ** 
-## as.factor(season_start)2005     1090880     354570   3.077 0.002102 ** 
-## as.factor(season_start)2006      958637     352167   2.722 0.006504 ** 
-## as.factor(season_start)2007     1654377     357706   4.625 3.82e-06 ***
-## as.factor(season_start)2008     1944946     357392   5.442 5.46e-08 ***
-## as.factor(season_start)2009     1832838     359404   5.100 3.50e-07 ***
-## as.factor(season_start)2010     1748651     360028   4.857 1.22e-06 ***
-## as.factor(season_start)2011     1582423     353355   4.478 7.66e-06 ***
-## as.factor(season_start)2012     1651497     346695   4.764 1.94e-06 ***
-## as.factor(season_start)2013     2121273     361746   5.864 4.75e-09 ***
-## as.factor(season_start)2014     1243733     331916   3.747 0.000180 ***
-## as.factor(season_start)2015     1804493     332700   5.424 6.05e-08 ***
-## as.factor(season_start)2016     2645083     326043   8.113 5.89e-16 ***
-## as.factor(season_start)2017     3382563     324615  10.420  < 2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 4327000 on 6363 degrees of freedom
-## Multiple R-squared:  0.03774,    Adjusted R-squared:  0.03456 
-## F-statistic: 11.88 on 21 and 6363 DF,  p-value: < 2.2e-16
-\end{verbatim}
-
-Looking at the regression output, we see that, indeed, centers make more than guards and forwards. Actually, a lot less, approx. 500.000 USD less on average.
-
-Let's ignore for the moment that this is a terrible model. The r-squared is only 0.03 which means that position and season only explain \textasciitilde{} 3\% of variation in salaries.
-
-Now, we want to know whether scoring explain this salary penalty. Here is a simple mediation.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# let\textquotesingle{}S compare models side by side in a regression table}
-
-\CommentTok{\#install.packages("modelsummary")}
-\FunctionTok{library}\NormalTok{(modelsummary)}
-\NormalTok{models }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}
-  \AttributeTok{m1 =} \FunctionTok{lm}\NormalTok{(salary }\SpecialCharTok{\textasciitilde{}} \FunctionTok{as.factor}\NormalTok{(position\_rec) }\SpecialCharTok{+} \FunctionTok{as.factor}\NormalTok{(season\_start), }\AttributeTok{data=}\NormalTok{data\_nba, }\AttributeTok{subset=}\NormalTok{(position\_rec}\SpecialCharTok{!=}\StringTok{"Mixed"}\NormalTok{)),}
-\NormalTok{  m2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(salary }\SpecialCharTok{\textasciitilde{}} \FunctionTok{as.factor}\NormalTok{(position\_rec) }\SpecialCharTok{+}\NormalTok{ career\_PTS }\SpecialCharTok{+} \FunctionTok{as.factor}\NormalTok{(season\_start), }\AttributeTok{data=}\NormalTok{data\_nba, }\AttributeTok{subset=}\NormalTok{(position\_rec}\SpecialCharTok{!=}\StringTok{"Mixed"}\NormalTok{))}
-\NormalTok{)}
-
-\FunctionTok{modelsummary}\NormalTok{(models)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}
-\centering
-\begin{tabular}[t]{lll}
-\toprule
-  & m1 &   \\
-\midrule
-(Intercept) & \num{2614309.605} & \num{-939410.632}\\
- & (\num{272704.206}) & (\num{221569.259})\\
-as.factor(position\_rec)Forward & \num{-510295.017} & \num{-1413516.300}\\
- & (\num{156308.018}) & (\num{123630.475})\\
-as.factor(position\_rec)Guard & \num{-523632.304} & \num{-2000142.285}\\
- & (\num{147537.586}) & (\num{118260.027})\\
-as.factor(season\_start)1999 & \num{22190.937} & \num{302958.632}\\
- & (\num{334991.928}) & (\num{263200.021})\\
-as.factor(season\_start)2000 & \num{705146.970} & \num{685025.470}\\
- & (\num{348782.404}) & (\num{273995.766})\\
-as.factor(season\_start)2001 & \num{818595.739} & \num{860051.794}\\
- & (\num{352464.794}) & (\num{276889.168})\\
-as.factor(season\_start)2002 & \num{1035390.857} & \num{1185765.987}\\
- & (\num{354869.752}) & (\num{278787.933})\\
-as.factor(season\_start)2003 & \num{1069793.041} & \num{1154734.396}\\
- & (\num{359704.108}) & (\num{282578.656})\\
-as.factor(season\_start)2004 & \num{1117189.300} & \num{1335647.564}\\
- & (\num{358397.141}) & (\num{281570.162})\\
-as.factor(season\_start)2005 & \num{1090880.186} & \num{1408951.168}\\
- & (\num{354570.248}) & (\num{278588.367})\\
-as.factor(season\_start)2006 & \num{958636.479} & \num{1404509.355}\\
- & (\num{352166.838}) & (\num{276745.293})\\
-as.factor(season\_start)2007 & \num{1654377.014} & \num{1740042.609}\\
- & (\num{357705.703}) & (\num{281008.828})\\
-as.factor(season\_start)2008 & \num{1944945.963} & \num{1844901.044}\\
- & (\num{357392.398}) & (\num{280763.910})\\
-as.factor(season\_start)2009 & \num{1832838.212} & \num{1469738.620}\\
- & (\num{359403.707}) & (\num{282398.558})\\
-as.factor(season\_start)2010 & \num{1748650.500} & \num{1381348.241}\\
- & (\num{360027.993}) & (\num{282890.255})\\
-as.factor(season\_start)2011 & \num{1582423.228} & \num{1261385.859}\\
- & (\num{353354.876}) & (\num{277634.621})\\
-as.factor(season\_start)2012 & \num{1651497.174} & \num{1339040.290}\\
- & (\num{346694.638}) & (\num{272400.865})\\
-as.factor(season\_start)2013 & \num{2121273.316} & \num{1360644.125}\\
- & (\num{361745.546}) & (\num{284436.812})\\
-as.factor(season\_start)2014 & \num{1243732.606} & \num{1141626.786}\\
- & (\num{331915.955}) & (\num{260750.740})\\
-as.factor(season\_start)2015 & \num{1804493.065} & \num{1543464.545}\\
- & (\num{332699.559}) & (\num{261394.268})\\
-as.factor(season\_start)2016 & \num{2645083.101} & \num{2527969.077}\\
- & (\num{326042.835}) & (\num{256138.668})\\
-as.factor(season\_start)2017 & \num{3382563.347} & \num{3172576.179}\\
- & (\num{324614.892}) & (\num{255032.022})\\
-career\_PTS &  & \num{545303.023}\\
- &  & (\num{8677.934})\\
-\midrule
-Num.Obs. & \num{6385} & \num{6385}\\
-R2 & \num{0.038} & \num{0.406}\\
-R2 Adj. & \num{0.035} & \num{0.404}\\
-AIC & \num{213275.6} & \num{210194.7}\\
-BIC & \num{213431.1} & \num{210357.0}\\
-Log.Lik. & \num{-106614.789} & \num{-105073.355}\\
-F & \num{11.882} & \num{197.861}\\
-RMSE & \num{4319963.19} & \num{3393398.83}\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-At first look, our hypothesis actually does not seem to hold. When we adjust for
-points scored, the gap between centers, forwards and guards. This means that
-guards don't make less because they make less points. Guards and forwards with
-average points, compared to centers with average points, make even less than centers, compared to when we do not account for points at all. This could mean that teams know that guards
-are important despite the fact that they score less.
-
-Let's use a new package for \emph{causal mediation analysis}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# now let\textquotesingle{}s try a dedidcated package for mediation}
-\FunctionTok{library}\NormalTok{(mediation)}
-
-\NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{position\_rec =} \FunctionTok{as.factor}\NormalTok{(position\_rec),}
-                                \AttributeTok{season\_start =} \FunctionTok{as.factor}\NormalTok{(season\_start),}
-                                \AttributeTok{salary =}\NormalTok{ salary}\SpecialCharTok{/}\DecValTok{10}\NormalTok{)}
-
-\FunctionTok{mean}\NormalTok{(data\_nba}\SpecialCharTok{$}\NormalTok{salary)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 407263.3
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# first path from x to mediator}
-\NormalTok{path\_a }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(career\_PTS }\SpecialCharTok{\textasciitilde{}}\NormalTok{ position\_rec }\SpecialCharTok{+}\NormalTok{ season\_start, }\AttributeTok{data=}\NormalTok{data\_nba, }\AttributeTok{subset=}\NormalTok{(position\_rec}\SpecialCharTok{!=}\StringTok{"Mixed"}\NormalTok{))}
-
-\CommentTok{\# Now full model, x to mediator to y}
-\NormalTok{path\_b }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(salary }\SpecialCharTok{\textasciitilde{}}\NormalTok{ position\_rec }\SpecialCharTok{+}\NormalTok{ career\_PTS }\SpecialCharTok{+}\NormalTok{ season\_start, }\AttributeTok{data=}\NormalTok{data\_nba, }\AttributeTok{subset=}\NormalTok{(position\_rec}\SpecialCharTok{!=}\StringTok{"Mixed"}\NormalTok{))}
-
-\CommentTok{\# centers vs. forwards}
-\NormalTok{results\_mediation\_forwards }\OtherTok{\textless{}{-}} \FunctionTok{mediate}\NormalTok{(path\_a, path\_b,}
-                             \AttributeTok{treat =} \StringTok{"position\_rec"}\NormalTok{, }\CommentTok{\# x or main independent variable}
-                             \AttributeTok{mediator =} \StringTok{"career\_PTS"}\NormalTok{,}
-                             \AttributeTok{treat.value =} \DecValTok{1}\NormalTok{)}
-
-\CommentTok{\# centers vs. guards}
-\NormalTok{results\_mediation\_guards }\OtherTok{\textless{}{-}} \FunctionTok{mediate}\NormalTok{(path\_a, path\_b,}
-                             \AttributeTok{treat =} \StringTok{"position\_rec"}\NormalTok{, }\CommentTok{\# x or main independent variable}
-                             \AttributeTok{mediator =} \StringTok{"career\_PTS"}\NormalTok{,}
-                             \AttributeTok{treat.value =} \DecValTok{2}\NormalTok{)}
-
-\FunctionTok{summary}\NormalTok{(results\_mediation\_forwards)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Causal Mediation Analysis 
-## 
-## Quasi-Bayesian Confidence Intervals
-## 
-##                 Estimate 95% CI Lower 95% CI Upper p-value    
-## ACME            9.01e+04     7.21e+04     1.10e+05  <2e-16 ***
-## ADE            -1.41e+05    -1.65e+05    -1.17e+05  <2e-16 ***
-## Total Effect   -5.07e+04    -8.09e+04    -1.91e+04  <2e-16 ***
-## Prop. Mediated -1.77e+00    -5.40e+00    -9.60e-01  <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Sample Size Used: 6385 
-## 
-## 
-## Simulations: 1000
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{summary}\NormalTok{(results\_mediation\_guards)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Causal Mediation Analysis 
-## 
-## Quasi-Bayesian Confidence Intervals
-## 
-##                 Estimate 95% CI Lower 95% CI Upper p-value    
-## ACME            8.99e+04     6.90e+04     1.07e+05  <2e-16 ***
-## ADE            -1.42e+05    -1.67e+05    -1.19e+05  <2e-16 ***
-## Total Effect   -5.20e+04    -8.34e+04    -2.34e+04   0.002 ** 
-## Prop. Mediated -1.73e+00    -4.15e+00    -8.80e-01   0.002 ** 
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Sample Size Used: 6385 
-## 
-## 
-## Simulations: 1000
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# note: this dies not yet work. FOrwads and guards are the same. CHeck how to }
-\CommentTok{\# take different groups of the treatment variable. Problem is that the treatment}
-\CommentTok{\# variable is categorical.}
-\end{Highlighting}
-\end{Shaded}
-
-The output looks different. Let's go through it step by step:
-
-\begin{itemize}
-\tightlist
-\item
-  ACME: Average Causal Mediation Effect - \emph{indirect effect}, this is the effect of position through points on salary.\\
-\item
-  ADE: Average Direct Effect - This is the direct effect of position on salary. + Total Effect: ADE and ACME together are the ``total effect''\\
-\item
-  Prop. Mediated. This is the proportion of the total effect that is ``explained'' by the indirect effect.
-\end{itemize}
-
-Let's interpret this for our model:
-
-\begin{itemize}
-\tightlist
-\item
-  ACME: If only points could explain \texttt{salaries}, Guards would make, on average 900.000 USD more than centers (because they actually score more points)
-\item
-  ADE: Adjusting for points, guards would make 1.4 Million USD less than centers
-\item
-  Total Effect: Overall, guards actually make 500.000 USD less.
-\item
-  Prop. Mediated. This is actually a negative value which makes no sense in this case. If points scored really ``mediated'' part of the total effect and had some explanatory power here, then we would see a positive percentage.
-\end{itemize}
-
-When you take a look at our first approach, where we just estimated both regression models side by side. The coefficient for position is the total effect when we don't include the
-mediator in the model. The coefficient is the direct effect when we do include the mediator.
-The indirect effect is the total effect minus the direct effect (-1.400.000 - (-500.000) = -900.000).
-
-In sum, Guards are disadvantaged. They receive less money than center, although, if the points were considered, they should make even more. There must be other reasons why guards earn less. We need to go back to theory and come up with new hypothesis.
-
-\hypertarget{further-resources-2}{%
-\section{Further Resources}\label{further-resources-2}}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://cran.r-project.org/web/packages/mediation/vignettes/mediation.pdf}{mediation: R Package for Causal Mediation Analysis}: This article describes the mediation package for conducting causal mediation analysis in R. It explains how to use the mediate() function to estimate various quantities of interest, such as average causal mediation effects, average direct effects, total effects, and proportions mediated. It also shows how to perform sensitivity analysis and deal with multiple mediators and treatment noncompliance.
-\item
-  \href{https://advstats.psychstat.org/book/mediation/index.php}{Mediation Analysis -- Advanced Statistics using R}: This web page provides an introduction to mediation analysis using R. It covers the basic concepts, how to draw path diagrams, how to test mediation effects using different methods, such as Baron and Kenny (1986) method, Sobel test, and bootstrapping. It also provides code examples and exercises.
-\item
-  \href{https://tidypython.com/mediation-analysis-in-r-from-scratch-with-r-code/}{Mediation Analysis in R from Scratch (with R code)}: This tutorial shows how to do mediation analysis in R from scratch. It demonstrates how to fit linear regression models for the mediator and the outcome, how to calculate the mediation effect and its standard error, and how to test its significance using a normal approximation or a bootstrap method.
-\item
-  \href{https://rdocumentation.org/packages/mediation/versions/4.5.0/topics/mediate}{mediate function - RDocumentation}: This web page documents the mediate() function from the mediation package. It provides a detailed description of the arguments, values, and methods of the function. It also gives some examples of how to use the function for different types of data and models.
-\end{itemize}
-
-\hypertarget{pm-t}{%
-\chapter{Prediction}\label{pm-t}}
-
-\textbf{Still WIP!}
-
-In prior weeks, you learned how to build a linear regression model. The main interest
-we pursued so far was to arrive at a good estimate of one independent variable (points scored in NBA basketball league) on an outcome (salary of NBA players).
-
-\hypertarget{objectives-7}{%
-\section{Objectives}\label{objectives-7}}
-
-\begin{itemize}
-\tightlist
-\item
-  here to be filled
-\end{itemize}
-
-\hypertarget{r-functions-covered-this-week-3}{%
-\section{R functions covered this week}\label{r-functions-covered-this-week-3}}
 
 \begin{itemize}
 \tightlist
@@ -4974,6 +4551,21 @@ Machine learning is basically predicting outcomes that are no known based on ver
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# recode "position" variables"}
+\NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{position\_num =} \FunctionTok{rowSums}\NormalTok{(}\FunctionTok{across}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"position\_center"}\NormalTok{, }\StringTok{"position\_pf"}\NormalTok{, }\StringTok{"position\_sf"}\NormalTok{,}
+                                         \StringTok{"position\_pg"}\NormalTok{, }\StringTok{"position\_sg"}\NormalTok{))),}
+         \AttributeTok{position\_rec =} 
+           \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{             position\_center}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"center"}\NormalTok{,}
+\NormalTok{             position\_pf}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"Forward"}\NormalTok{,}
+\NormalTok{             position\_sf}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"Forward"}\NormalTok{,}
+\NormalTok{             position\_pg}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"Guard"}\NormalTok{,}
+\NormalTok{             position\_sg}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"Guard"}\NormalTok{,}
+\NormalTok{             position\_sg}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_pg}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{2} \SpecialCharTok{\textasciitilde{}} \StringTok{"Guard"}\NormalTok{,}
+\NormalTok{             position\_pf}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_sf}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{2} \SpecialCharTok{\textasciitilde{}} \StringTok{"Forward"}\NormalTok{,}
+             \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \StringTok{"Mixed"}\NormalTok{))}
+
 \NormalTok{model1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(salary }\SpecialCharTok{\textasciitilde{}}\NormalTok{ career\_PTS }\SpecialCharTok{+}\NormalTok{ position\_rec }\SpecialCharTok{+}\NormalTok{ season\_start }\SpecialCharTok{+}
 \NormalTok{             age, }\AttributeTok{data =}\NormalTok{ data\_nba)}
 
@@ -5003,20 +4595,16 @@ Machine learning is basically predicting outcomes that are no known based on ver
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 25 x 5
-##    term                estimate std.error statistic  p.value
-##    <chr>                  <dbl>     <dbl>     <dbl>    <dbl>
-##  1 (Intercept)         -568370.    29308.    -19.4  3.15e-82
-##  2 career_PTS            53791.      731.     73.6  0       
-##  3 position_recForward -140645.    12779.    -11.0  5.24e-28
-##  4 position_recGuard   -208234.    12166.    -17.1  9.89e-65
-##  5 position_recMixed   -103661.    12104.     -8.56 1.26e-17
-##  6 season_start1999      29357.    22884.      1.28 2.00e- 1
-##  7 season_start2000      77209.    23559.      3.28 1.05e- 3
-##  8 season_start2001     106436.    23625.      4.51 6.71e- 6
-##  9 season_start2002     130348.    23627.      5.52 3.54e- 8
-## 10 season_start2003     135221.    23648.      5.72 1.11e- 8
-## # i 15 more rows
+## # A tibble: 7 x 5
+##   term                   estimate std.error statistic  p.value
+##   <chr>                     <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)         -249332849. 12481898.    -20.0  4.94e-87
+## 2 career_PTS              535519.     7339.     73.0  0       
+## 3 position_recForward   -1427352.   128521.    -11.1  1.74e-28
+## 4 position_recGuard     -2087971.   122372.    -17.1  2.43e-64
+## 5 position_recMixed     -1018362.   121431.     -8.39 5.71e-17
+## 6 season_start            122253.     6210.     19.7  1.23e-84
+## 7 age                     167093.     8251.     20.3  2.33e-89
 \end{verbatim}
 
 \begin{Shaded}
@@ -5028,9 +4616,9 @@ Machine learning is basically predicting outcomes that are no known based on ver
 
 \begin{verbatim}
 ## # A tibble: 1 x 12
-##   r.squared adj.r.squared   sigma statistic p.value    df   logLik    AIC    BIC
-##       <dbl>         <dbl>   <dbl>     <dbl>   <dbl> <dbl>    <dbl>  <dbl>  <dbl>
-## 1     0.432         0.431 352361.      308.       0    24 -138041. 2.76e5 2.76e5
+##   r.squared adj.r.squared    sigma statistic p.value    df  logLik    AIC    BIC
+##       <dbl>         <dbl>    <dbl>     <dbl>   <dbl> <dbl>   <dbl>  <dbl>  <dbl>
+## 1     0.424         0.424 3545558.     1192.       0     6 -1.61e5 3.21e5 3.21e5
 ## # i 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 \end{verbatim}
 
@@ -5065,7 +4653,7 @@ Now, let's predict the salary of hypothetical players:
   \AttributeTok{position\_rec =} \FunctionTok{c}\NormalTok{(}\StringTok{"center"}\NormalTok{, }\StringTok{"center"}\NormalTok{, }\StringTok{"Guard"}\NormalTok{, }\StringTok{"Guard"}\NormalTok{),}
   \AttributeTok{career\_PTS =} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{14}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{14}\NormalTok{),}
   \AttributeTok{age =} \FunctionTok{c}\NormalTok{(}\DecValTok{20}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{20}\NormalTok{),}
-  \AttributeTok{season\_start =} \FunctionTok{c}\NormalTok{(}\StringTok{"2017"}\NormalTok{, }\StringTok{"2017"}\NormalTok{, }\StringTok{"2017"}\NormalTok{, }\StringTok{"2017"}\NormalTok{)}
+  \AttributeTok{season\_start =} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"2017"}\NormalTok{, }\StringTok{"2017"}\NormalTok{, }\StringTok{"2017"}\NormalTok{, }\StringTok{"2017"}\NormalTok{))}
 \NormalTok{)}
 
 \CommentTok{\# apply the model to the "new" dataset}
@@ -5075,8 +4663,8 @@ Now, let's predict the salary of hypothetical players:
 \end{Shaded}
 
 \begin{verbatim}
-##        1        2        3        4 
-## 675129.3 890294.2 466895.1 682059.9
+##       1       2       3       4 
+## 5948066 8090141 3860094 6002170
 \end{verbatim}
 
 \begin{Shaded}
@@ -5108,18 +4696,10 @@ There is another way to get predicted values using the \texttt{margins()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##  career_PTS   age position_recForward position_recGuard position_recMixed
-##       53791 16809             -140645           -208234           -103661
-##  season_start1999 season_start2000 season_start2001 season_start2002
-##             29357            77209           106436           130348
-##  season_start2003 season_start2004 season_start2005 season_start2006
-##            135221           150576           174625           183653
-##  season_start2007 season_start2008 season_start2009 season_start2010
-##            206434           231505           204116           192220
-##  season_start2011 season_start2012 season_start2013 season_start2014
-##            183026           182509           199072           174359
-##  season_start2015 season_start2016 season_start2017
-##            206791           305228           369398
+##  career_PTS season_start    age position_recForward position_recGuard
+##      535519       122253 167093            -1427352          -2087971
+##  position_recMixed
+##           -1018362
 \end{verbatim}
 
 \begin{Shaded}
@@ -5130,184 +4710,40 @@ There is another way to get predicted values using the \texttt{margins()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##              factor position_rec career_PTS         AME         SE       z
-##                 age       1.0000    10.0000  16809.4290   822.1461 20.4458
-##                 age       1.0000    14.0000  16809.4290   821.2659 20.4677
-##                 age       2.0000    10.0000  16809.4290   821.3697 20.4651
-##                 age       2.0000    14.0000  16809.4290   810.1705 20.7480
-##          career_PTS       1.0000    10.0000  53791.2088   673.5739 79.8594
-##          career_PTS       1.0000    14.0000  53791.2088   777.6596 69.1706
-##          career_PTS       2.0000    10.0000  53791.2088   672.1461 80.0290
-##          career_PTS       2.0000    14.0000  53791.2088   869.2152 61.8848
-##  position_reccenter       1.0000    10.0000 208234.2670 12165.6828 17.1165
-##  position_reccenter       1.0000    14.0000 208234.2670 12165.6828 17.1165
-##  position_reccenter       2.0000    10.0000 208234.2670 12165.6828 17.1165
-##  position_reccenter       2.0000    14.0000 208234.2670 12165.6828 17.1165
-##    season_start1999       1.0000    10.0000  29356.8409 22884.2755  1.2828
-##    season_start1999       1.0000    14.0000  29356.8409 22884.2755  1.2828
-##    season_start1999       2.0000    10.0000  29356.8409 22884.2755  1.2828
-##    season_start1999       2.0000    14.0000  29356.8409 22884.3468  1.2828
-##    season_start2000       1.0000    10.0000  77209.1717 23559.4567  3.2772
-##    season_start2000       1.0000    14.0000  77209.1717 23559.4567  3.2772
-##    season_start2000       2.0000    10.0000  77209.1717 23559.4567  3.2772
-##    season_start2000       2.0000    14.0000  77209.1717 23559.4567  3.2772
-##    season_start2001       1.0000    10.0000 106435.5787 23624.8634  4.5052
-##    season_start2001       1.0000    14.0000 106435.5787 23624.8634  4.5052
-##    season_start2001       2.0000    10.0000 106435.5787 23624.8634  4.5052
-##    season_start2001       2.0000    14.0000 106435.5787 23624.8621  4.5052
-##    season_start2002       1.0000    10.0000 130348.2150 23627.2203  5.5169
-##    season_start2002       1.0000    14.0000 130348.2150 23627.2203  5.5169
-##    season_start2002       2.0000    10.0000 130348.2150 23627.2203  5.5169
-##    season_start2002       2.0000    14.0000 130348.2150 23627.2203  5.5169
-##    season_start2003       1.0000    10.0000 135220.5712 23648.3086  5.7180
-##    season_start2003       1.0000    14.0000 135220.5712 23648.3086  5.7180
-##    season_start2003       2.0000    10.0000 135220.5712 23648.3086  5.7180
-##    season_start2003       2.0000    14.0000 135220.5712 23648.3047  5.7180
-##    season_start2004       1.0000    10.0000 150575.6148 23423.7814  6.4283
-##    season_start2004       1.0000    14.0000 150575.6148 23423.7814  6.4283
-##    season_start2004       2.0000    10.0000 150575.6148 23423.7814  6.4283
-##    season_start2004       2.0000    14.0000 150575.6148 23416.9662  6.4302
-##    season_start2005       1.0000    10.0000 174625.3789 23247.7154  7.5115
-##    season_start2005       1.0000    14.0000 174625.3789 23247.7154  7.5115
-##    season_start2005       2.0000    10.0000 174625.3789 23247.7154  7.5115
-##    season_start2005       2.0000    14.0000 174625.3789 23240.9439  7.5137
-##    season_start2006       1.0000    10.0000 183653.2187 23057.8278  7.9649
-##    season_start2006       1.0000    14.0000 183653.2187 23071.2667  7.9603
-##    season_start2006       2.0000    10.0000 183653.2187 23071.2569  7.9603
-##    season_start2006       2.0000    14.0000 183653.2187 23071.2471  7.9603
-##    season_start2007       1.0000    10.0000 206434.1344 23336.8298  8.8459
-##    season_start2007       1.0000    14.0000 206434.1344 23336.8298  8.8459
-##    season_start2007       2.0000    10.0000 206434.1344 23336.8298  8.8459
-##    season_start2007       2.0000    14.0000 206434.1344 23330.0326  8.8484
-##    season_start2008       1.0000    10.0000 231505.0635 23507.2919  9.8482
-##    season_start2008       1.0000    14.0000 231505.0635 23507.2919  9.8482
-##    season_start2008       2.0000    10.0000 231505.0635 23507.2919  9.8482
-##    season_start2008       2.0000    14.0000 231505.0635 23500.4440  9.8511
-##    season_start2009       1.0000    10.0000 204115.6638 23475.4934  8.6948
-##    season_start2009       1.0000    14.0000 204115.6638 23489.1731  8.6898
-##    season_start2009       2.0000    10.0000 204115.6638 23489.1731  8.6898
-##    season_start2009       2.0000    14.0000 204115.6638 23489.1586  8.6898
-##    season_start2010       1.0000    10.0000 192219.8545 23548.5054  8.1627
-##    season_start2010       1.0000    14.0000 192219.8545 23548.5054  8.1627
-##    season_start2010       2.0000    10.0000 192219.8545 23548.5054  8.1627
-##    season_start2010       2.0000    14.0000 192219.8545 23555.3511  8.1603
-##    season_start2011       1.0000    10.0000 183025.8381 23534.7356  7.7768
-##    season_start2011       1.0000    14.0000 183025.8381 23534.7356  7.7768
-##    season_start2011       2.0000    10.0000 183025.8381 23534.7356  7.7768
-##    season_start2011       2.0000    14.0000 183025.8381 23534.7356  7.7768
-##    season_start2012       1.0000    10.0000 182509.4584 23219.2518  7.8603
-##    season_start2012       1.0000    14.0000 182509.4584 23219.2518  7.8603
-##    season_start2012       2.0000    10.0000 182509.4584 23219.2518  7.8603
-##    season_start2012       2.0000    14.0000 182509.4584 23212.4961  7.8626
-##    season_start2013       1.0000    10.0000 199072.4713 24314.5882  8.1874
-##    season_start2013       1.0000    14.0000 199072.4713 24314.5882  8.1874
-##    season_start2013       2.0000    10.0000 199072.4713 24314.5882  8.1874
-##    season_start2013       2.0000    14.0000 199072.4713 24321.6667  8.1850
-##    season_start2014       1.0000    10.0000 174358.9208 22746.2703  7.6654
-##    season_start2014       1.0000    14.0000 174358.9208 22733.0380  7.6698
-##    season_start2014       2.0000    10.0000 174358.9208 22733.0380  7.6698
-##    season_start2014       2.0000    14.0000 174358.9208 22733.0380  7.6698
-##    season_start2015       1.0000    10.0000 206791.4964 22900.6232  9.0300
-##    season_start2015       1.0000    14.0000 206791.4964 22887.2931  9.0352
-##    season_start2015       2.0000    10.0000 206791.4964 22887.2931  9.0352
-##    season_start2015       2.0000    14.0000 206791.4964 22887.3012  9.0352
-##    season_start2016       1.0000    10.0000 305227.6577 22617.9191 13.4949
-##    season_start2016       1.0000    14.0000 305227.6577 22617.9191 13.4949
-##    season_start2016       2.0000    10.0000 305227.6577 22617.9191 13.4949
-##    season_start2016       2.0000    14.0000 305227.6577 22617.9191 13.4949
-##    season_start2017       1.0000    10.0000 369398.3511 22665.9479 16.2975
-##    season_start2017       1.0000    14.0000 369398.3511 22665.9479 16.2975
-##    season_start2017       2.0000    10.0000 369398.3511 22665.9479 16.2975
-##    season_start2017       2.0000    14.0000 369398.3511 22655.0335 16.3054
-##       p       lower       upper
-##  0.0000  15198.0523  18420.8057
-##  0.0000  15199.7774  18419.0806
-##  0.0000  15199.5740  18419.2841
-##  0.0000  15221.5240  18397.3341
-##  0.0000  52471.0281  55111.3895
-##  0.0000  52267.0240  55315.3936
-##  0.0000  52473.8267  55108.5909
-##  0.0000  52087.5784  55494.8392
-##  0.0000 184389.9668 232078.5671
-##  0.0000 184389.9668 232078.5671
-##  0.0000 184389.9668 232078.5671
-##  0.0000 184389.9668 232078.5671
-##  0.1995 -15495.5149  74209.1967
-##  0.1995 -15495.5149  74209.1967
-##  0.1995 -15495.5149  74209.1967
-##  0.1995 -15495.6546  74209.3364
-##  0.0010  31033.4850 123384.8584
-##  0.0010  31033.4850 123384.8584
-##  0.0010  31033.4850 123384.8584
-##  0.0010  31033.4850 123384.8584
-##  0.0000  60131.6973 152739.4600
-##  0.0000  60131.6973 152739.4600
-##  0.0000  60131.6973 152739.4600
-##  0.0000  60131.6998 152739.4575
-##  0.0000  84039.7141 176656.7158
-##  0.0000  84039.7141 176656.7158
-##  0.0000  84039.7141 176656.7158
-##  0.0000  84039.7141 176656.7158
-##  0.0000  88870.7382 181570.4043
-##  0.0000  88870.7382 181570.4043
-##  0.0000  88870.7382 181570.4043
-##  0.0000  88870.7457 181570.3968
-##  0.0000 104665.8469 196485.3827
-##  0.0000 104665.8469 196485.3827
-##  0.0000 104665.8469 196485.3827
-##  0.0000 104679.2044 196472.0252
-##  0.0000 129060.6941 220190.0637
-##  0.0000 129060.6941 220190.0637
-##  0.0000 129060.6941 220190.0637
-##  0.0000 129073.9659 220176.7919
-##  0.0000 138460.7067 228845.7307
-##  0.0000 138434.3670 228872.0704
-##  0.0000 138434.3861 228872.0513
-##  0.0000 138434.4052 228872.0322
-##  0.0000 160694.7885 252173.4804
-##  0.0000 160694.7885 252173.4804
-##  0.0000 160694.7885 252173.4804
-##  0.0000 160708.1107 252160.1581
-##  0.0000 185431.6180 277578.5090
-##  0.0000 185431.6180 277578.5090
-##  0.0000 185431.6180 277578.5090
-##  0.0000 185445.0396 277565.0874
-##  0.0000 158104.5422 250126.7855
-##  0.0000 158077.7306 250153.5971
-##  0.0000 158077.7306 250153.5971
-##  0.0000 158077.7590 250153.5687
-##  0.0000 146065.6320 238374.0769
-##  0.0000 146065.6320 238374.0769
-##  0.0000 146065.6320 238374.0769
-##  0.0000 146052.2146 238387.4943
-##  0.0000 136898.6039 229153.0723
-##  0.0000 136898.6039 229153.0723
-##  0.0000 136898.6039 229153.0723
-##  0.0000 136898.6039 229153.0723
-##  0.0000 137000.5611 228018.3557
-##  0.0000 137000.5611 228018.3557
-##  0.0000 137000.5611 228018.3557
-##  0.0000 137013.8020 228005.1148
-##  0.0000 151416.7540 246728.1885
-##  0.0000 151416.7540 246728.1885
-##  0.0000 151416.7540 246728.1885
-##  0.0000 151402.8805 246742.0621
-##  0.0000 129777.0502 218940.7913
-##  0.0000 129802.9850 218914.8566
-##  0.0000 129802.9850 218914.8566
-##  0.0000 129802.9850 218914.8566
-##  0.0000 161907.0996 251675.8931
-##  0.0000 161933.2262 251649.7666
-##  0.0000 161933.2262 251649.7666
-##  0.0000 161933.2103 251649.7824
-##  0.0000 260897.3510 349557.9645
-##  0.0000 260897.3510 349557.9645
-##  0.0000 260897.3510 349557.9645
-##  0.0000 260897.3510 349557.9645
-##  0.0000 324973.9095 413822.7927
-##  0.0000 324973.9095 413822.7927
-##  0.0000 324973.9095 413822.7927
-##  0.0000 324995.3013 413801.4009
+##              factor position_rec career_PTS          AME          SE       z
+##                 age       1.0000    10.0000  167093.1892   7741.6172 21.5838
+##                 age       1.0000    14.0000  167093.1892   7840.0683 21.3127
+##                 age       2.0000    10.0000  167093.1892   7842.4696 21.3062
+##                 age       2.0000    14.0000  167093.1892   8000.9518 20.8842
+##          career_PTS       1.0000    10.0000  535518.9282      0.0000     Inf
+##          career_PTS       1.0000    14.0000  535518.9282      0.0000     Inf
+##          career_PTS       2.0000    10.0000  535518.9282      0.0000     Inf
+##          career_PTS       2.0000    14.0000  535518.9282      0.0000     Inf
+##  position_reccenter       1.0000    10.0000 2087971.3723 109409.2415 19.0840
+##  position_reccenter       1.0000    14.0000 2087971.3723 109409.2415 19.0840
+##  position_reccenter       2.0000    10.0000 2087971.3723 109409.2415 19.0840
+##  position_reccenter       2.0000    14.0000 2087971.3723 109409.2415 19.0840
+##        season_start       1.0000    10.0000  122252.7820   6263.2564 19.5190
+##        season_start       1.0000    14.0000  122252.7820   6263.2564 19.5190
+##        season_start       2.0000    10.0000  122252.7820   6263.2564 19.5190
+##        season_start       2.0000    14.0000  122252.7820   6263.2564 19.5190
+##       p        lower        upper
+##  0.0000  151919.8982  182266.4801
+##  0.0000  151726.9376  182459.4407
+##  0.0000  151722.2313  182464.1471
+##  0.0000  151411.6118  182774.7666
+##  0.0000  535518.9282  535518.9282
+##  0.0000  535518.9282  535518.9282
+##  0.0000  535518.9282  535518.9282
+##  0.0000  535518.9282  535518.9282
+##  0.0000 1873533.1994 2302409.5452
+##  0.0000 1873533.1994 2302409.5452
+##  0.0000 1873533.1994 2302409.5452
+##  0.0000 1873533.1994 2302409.5452
+##  0.0000  109977.0250  134528.5390
+##  0.0000  109977.0250  134528.5390
+##  0.0000  109977.0250  134528.5390
+##  0.0000  109977.0250  134528.5390
 \end{verbatim}
 
 The margins function is handy to calculate predictions for different groups.
@@ -5335,10 +4771,8 @@ Let's apply this to our data.
 \end{Shaded}
 
 \begin{verbatim}
-##        1        2        3        4        5        6        7        8 
-## 721959.3 346026.1 346026.1 346026.1 346026.1 346026.1 346026.1 346026.1 
-##        9       10 
-## 346026.1 346026.1
+##       1       2       3       4       5       6       7       8       9      10 
+## 7219593 3460261 3460261 3460261 3460261 3460261 3460261 3460261 3460261 3460261
 \end{verbatim}
 
 \begin{Shaded}
@@ -5398,10 +4832,10 @@ Let's apply this to our data.
 
 \begin{verbatim}
 ## # A tibble: 2 x 7
-##   term        estimate std.error statistic  p.value conf.low conf.high
-##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>
-## 1 (Intercept)  -85191.     7642.     -11.1 1.09e-28 -100171.   -70212.
-## 2 career_PTS    55284.      745.      74.2 0          53823.    56745.
+##   term        estimate std.error statistic  p.value  conf.low conf.high
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>     <dbl>     <dbl>
+## 1 (Intercept) -851914.    76417.     -11.1 1.09e-28 -1001708.  -702121.
+## 2 career_PTS   552843.     7453.      74.2 0          538233.   567453.
 \end{verbatim}
 
 \begin{Shaded}
@@ -5434,9 +4868,9 @@ The Mean squared error (MSE) represents the error of the estimator or predictive
 
 \begin{verbatim}
 ## # A tibble: 1 x 12
-##   r.squared adj.r.squared   sigma statistic p.value    df   logLik    AIC    BIC
-##       <dbl>         <dbl>   <dbl>     <dbl>   <dbl> <dbl>    <dbl>  <dbl>  <dbl>
-## 1     0.432         0.431 352361.      308.       0    24 -138041. 2.76e5 2.76e5
+##   r.squared adj.r.squared    sigma statistic p.value    df  logLik    AIC    BIC
+##       <dbl>         <dbl>    <dbl>     <dbl>   <dbl> <dbl>   <dbl>  <dbl>  <dbl>
+## 1     0.424         0.424 3545558.     1192.       0     6 -1.61e5 3.21e5 3.21e5
 ## # i 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 \end{verbatim}
 
@@ -5448,9 +4882,9 @@ The Mean squared error (MSE) represents the error of the estimator or predictive
 
 \begin{verbatim}
 ## # A tibble: 1 x 12
-##   r.squared adj.r.squared   sigma statistic p.value    df   logLik    AIC    BIC
-##       <dbl>         <dbl>   <dbl>     <dbl>   <dbl> <dbl>    <dbl>  <dbl>  <dbl>
-## 1     0.361         0.361 373217.     5502.       0     1 -138612. 2.77e5 2.77e5
+##   r.squared adj.r.squared    sigma statistic p.value    df  logLik    AIC    BIC
+##       <dbl>         <dbl>    <dbl>     <dbl>   <dbl> <dbl>   <dbl>  <dbl>  <dbl>
+## 1     0.361         0.361 3732168.     5502.       0     1 -1.61e5 3.22e5 3.22e5
 ## # i 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 \end{verbatim}
 
@@ -5490,7 +4924,7 @@ The Mean squared error (MSE) represents the error of the estimator or predictive
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 351908.3
+## [1] 3544282
 \end{verbatim}
 
 \begin{Shaded}
@@ -5500,10 +4934,42 @@ The Mean squared error (MSE) represents the error of the estimator or predictive
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 373178.4
+## [1] 3731784
 \end{verbatim}
 
 Looking at \texttt{r2}, the \texttt{prediction\ intervals} and \texttt{rmse}, model 1 clearly performs better than model 2.
+
+\hypertarget{further-resources-2}{%
+\section{Further resources}\label{further-resources-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.dataquest.io/blog/statistical-learning-for-predictive-modeling-r/}{Linear Regression for Predictive Modeling in R - Dataquest}: This is a blog post that explains how to use linear regression for predictive modeling in R, using the trees data set as an example. It covers how to fit, visualize, and evaluate linear regression models, as well as how to calculate confidence and prediction intervals.
+\item
+  \href{https://www.tidyverse.org/}{Tidyverse}: This is a collection of R packages designed for data science. It includes packages for data manipulation, visualization, modeling, and more. It also provides a consistent and coherent syntax and data structures for working with data in R.
+\item
+  \href{http://www.sthda.com/english/articles/40-regression-analysis/166-predict-in-r-model-predictions-and-confidence-intervals/}{Predict in R: Model Predictions and Confidence Intervals - STHDA}: This is a web page that shows how to use the predict() function in R to make predictions from a fitted model object. It also explains the difference between confidence intervals and prediction intervals, and how to calculate them using base R or the broom package.
+\end{itemize}
+
+\hypertarget{ml}{%
+\chapter{Machine Learning}\label{ml}}
+
+\textbf{Still WIP!}
+
+\hypertarget{objectives-7}{%
+\section{Objectives}\label{objectives-7}}
+
+\begin{itemize}
+\tightlist
+\item
+  here to be filled
+\end{itemize}
+
+\hypertarget{r-functions-covered-this-week-3}{%
+\section{R functions covered this week}\label{r-functions-covered-this-week-3}}
+
+TBD
 
 \hypertarget{intro-to-machine-learning}{%
 \section{Intro to Machine learning}\label{intro-to-machine-learning}}
@@ -5563,7 +5029,7 @@ Let's use the \texttt{caret} package, a common package for machine learning.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 341746.4
+## [1] 3417602
 \end{verbatim}
 
 \begin{Shaded}
@@ -5573,7 +5039,7 @@ Let's use the \texttt{caret} package, a common package for machine learning.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 360297.3
+## [1] 3602973
 \end{verbatim}
 
 Let us create a similar model from week \protect\hyperlink{lin-a}{8} where we have applied \texttt{log} transformation on \texttt{salary}, centered and squared on \texttt{career\_PTS} .
@@ -5594,7 +5060,7 @@ Let us create a similar model from week \protect\hyperlink{lin-a}{8} where we ha
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 608450.3
+## [1] 6084578
 \end{verbatim}
 
 We can compare the \(R^2\) for all these 3 models:
@@ -5606,8 +5072,8 @@ We can compare the \(R^2\) for all these 3 models:
 \end{Shaded}
 
 \begin{verbatim}
-##   intercept     RMSE  Rsquared      MAE   RMSESD RsquaredSD    MAESD
-## 1      TRUE 357678.7 0.4269381 255031.8 13553.71 0.04805627 7978.429
+##   intercept    RMSE  Rsquared     MAE   RMSESD RsquaredSD    MAESD
+## 1      TRUE 3601123 0.4193535 2549809 146015.8 0.04638596 81079.79
 \end{verbatim}
 
 \begin{Shaded}
@@ -5617,8 +5083,8 @@ We can compare the \(R^2\) for all these 3 models:
 \end{Shaded}
 
 \begin{verbatim}
-##   intercept   RMSE  Rsquared      MAE   RMSESD RsquaredSD   MAESD
-## 1      TRUE 378428 0.3573984 263345.1 14136.21 0.02909487 7617.53
+##   intercept    RMSE  Rsquared     MAE   RMSESD RsquaredSD   MAESD
+## 1      TRUE 3784280 0.3573984 2633451 141362.1 0.02909487 76175.3
 \end{verbatim}
 
 \begin{Shaded}
@@ -5628,8 +5094,8 @@ We can compare the \(R^2\) for all these 3 models:
 \end{Shaded}
 
 \begin{verbatim}
-##   intercept     RMSE  Rsquared       MAE     RMSESD RsquaredSD      MAESD
-## 1      TRUE 1.033246 0.4146554 0.7875945 0.03299419 0.02357306 0.01866733
+##   intercept     RMSE  Rsquared       MAE     RMSESD RsquaredSD     MAESD
+## 1      TRUE 1.043284 0.4033095 0.7920122 0.03552623 0.02326883 0.0216699
 \end{verbatim}
 
 \emph{\(R^2\) is a measure of how well a model fits the data. It ranges from 0 to 1, with higher values indicating better fit.}
@@ -5666,12 +5132,6 @@ Now machine learning usually involves several more steps:
 \begin{itemize}
 \tightlist
 \item
-  \href{https://www.dataquest.io/blog/statistical-learning-for-predictive-modeling-r/}{Linear Regression for Predictive Modeling in R - Dataquest}: This is a blog post that explains how to use linear regression for predictive modeling in R, using the trees data set as an example. It covers how to fit, visualize, and evaluate linear regression models, as well as how to calculate confidence and prediction intervals.
-\item
-  \href{https://www.tidyverse.org/}{Tidyverse}: This is a collection of R packages designed for data science. It includes packages for data manipulation, visualization, modeling, and more. It also provides a consistent and coherent syntax and data structures for working with data in R.
-\item
-  \href{http://www.sthda.com/english/articles/40-regression-analysis/166-predict-in-r-model-predictions-and-confidence-intervals/}{Predict in R: Model Predictions and Confidence Intervals - STHDA}: This is a web page that shows how to use the predict() function in R to make predictions from a fitted model object. It also explains the difference between confidence intervals and prediction intervals, and how to calculate them using base R or the broom package.
-\item
   \href{https://lgatto.github.io/IntroMachineLearningWithR/}{An Introduction to Machine Learning with R}: This is an online book that introduces the basic concepts and techniques of machine learning with R. It covers topics such as supervised and unsupervised learning, classification, regression, clustering, dimensionality reduction, and model evaluation. It also provides examples of applying machine learning methods to real-world data sets.
 \end{itemize}
 
@@ -5680,8 +5140,8 @@ Now machine learning usually involves several more steps:
 
 \textbf{Still WIP!}
 
-\hypertarget{exercises-1}{%
-\section{Exercises}\label{exercises-1}}
+\hypertarget{exercises}{%
+\section{Exercises}\label{exercises}}
 
 \begin{itemize}
 \item

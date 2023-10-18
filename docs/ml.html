@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title> 3 Exploratory Data Analysis - Exercise | Data Analysis with R for Social Scientists</title>
+  <title> 11 Machine Learning | Data Analysis with R for Social Scientists</title>
   <meta name="description" content="In this course, you will learn how to analyse data using regression in R." />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content=" 3 Exploratory Data Analysis - Exercise | Data Analysis with R for Social Scientists" />
+  <meta property="og:title" content=" 11 Machine Learning | Data Analysis with R for Social Scientists" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="In this course, you will learn how to analyse data using regression in R." />
   <meta name="github-repo" content="jaspertjaden/DataAnalysisR" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content=" 3 Exploratory Data Analysis - Exercise | Data Analysis with R for Social Scientists" />
+  <meta name="twitter:title" content=" 11 Machine Learning | Data Analysis with R for Social Scientists" />
   
   <meta name="twitter:description" content="In this course, you will learn how to analyse data using regression in R." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="eda-1.html"/>
-<link rel="next" href="dags-1.html"/>
+<link rel="prev" href="pm-t.html"/>
+<link rel="next" href="pm-a.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -326,170 +326,119 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="eda-2" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number"> 3</span> Exploratory Data Analysis - Exercise<a href="eda-2.html#eda-2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This week we will apply the concepts from last week in an exercise where you will conduct an exploratory data analysis on a different data set. To document your work on these exercises, you will use <em>R Markdown</em>.</p>
-<div id="what-is-r-markdown" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> What is R Markdown?<a href="eda-2.html#what-is-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>R Markdown allows you to combine written text that is easy to format with R Code that is executed when <em>knitting</em> or <em>compiling</em> the document into the chosen output format. This allows us to describe our research, analyse our data, display results as tables or plots and interpret these, all in one file. In this way we can not only create reports on seminar exercises but also write websites - like the one your are looking at in this very moment -, seminar papers, articles or create presentations.</p>
-<p>It is also a great notebook for projects you are working on. More often than not, our work on a specific analysis will span multiple days, weeks or even months and it is often hard to remember what we were thinking the last time we worked on our code.</p>
-<blockquote>
-<p>“I am sure I had my reasons for writing this piece of code, but I can not for the life of me remember any of them…”</p>
-<p>— Anonymous Coder 2023</p>
-</blockquote>
-<p>If we use R Markdown to document our work we can add text that explains our reasons, thoughts, ideas and plans at that very moment and pick up our work from there the next time we open the file.</p>
-<p>R Markdown allows output to different file formats, including <code>html</code>, <code>docx</code>, <code>pptx</code> and <code>pdf</code>. Note that you need a LaTeX installation to knit to <code>pdf</code>. LaTeX is a typesetting language and used for producing high quality <code>pdf</code> documents. For simple <code>pdf</code> reports or presentations - sidenote: if you bring a <code>pptx</code> to a talk something will most probably go wrong or stop working… - you do not really need to know how LaTeX works, you just need an installed distribution. For these purposes the package <code>tinytex</code> gives you all you need and is easy to install from within R. <a href="https://bookdown.org/yihui/rmarkdown/installation.html#installation">This site</a> explains how to install it. You can also get an overview of all possible output formats <a href="https://rmarkdown.rstudio.com/lesson-9.html">here</a>.</p>
-</div>
-<div id="creating-a-r-markdown-file" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Creating a R Markdown file<a href="eda-2.html#creating-a-r-markdown-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Before you can create and compile R Markdown documents, you first have to install the package by writing <code>install.packages("rmarkdown")</code> in your console.</p>
-<p>Creating a new R Markdown file is as straightforward as it can be. In RStudio you can click of <code>File &gt; New File &gt; R Markdown...</code>. In the new window you can set up some basic information on the document - which will be displayed in the output - and chose your desired format. You can basically write R Markdown files in any text editor, just make sure that the file extension is saved as <code>.Rmd</code>. We still recommend using RStudio because it gives you some convenient options that a text editor will not, e.g. displaying a preview of your document and easy knitting of the final file.</p>
-</div>
-<div id="writing-in-r-markdown" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Writing in R Markdown<a href="eda-2.html#writing-in-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="document-components" class="section level3 hasAnchor" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Document components<a href="eda-2.html#document-components" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>When you followed the steps above, a new R Markdown file will have been created. It basically consists of two main parts:</p>
+<div id="ml" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number"> 11</span> Machine Learning<a href="ml.html#ml" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Still WIP!</strong></p>
+<div id="objectives-7" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Objectives<a href="ml.html#objectives-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="objectives">
 <ul>
-<li><p>A <code>YAML</code> header - surrounded by three dashes <code>---</code> - where options for the document can be set. The good news is that you do not have to do anything here until you get more profound with using R Markdown. For now it is enough that all the options you set when creating the new file - the title, author, date and format of the output - are present and will be included in your output file.</p></li>
-<li><p>A body that contains the actual content of your document. Text is directly written in the body at the location where it is to be displayed in the output. We can use the simple Markdown syntax for formatting using a set of symbols, some of which we will explain below. We can also include R code in so called <code>chunks</code>, specifying if we also want it and/or the results to be displayed or “just” to be executed in the background. The code chunks will be executed when we compile the final document and everything that we want to include in the output - e.g. tables, plots or code examples - will be displayed where it occurs.</p></li>
-</ul>
-</div>
-<div id="formatting" class="section level3 hasAnchor" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Formatting<a href="eda-2.html#formatting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Here are some of the more common formatting elements you will need when starting out using R Markdown:</p>
-<div id="headers" class="section level4 hasAnchor" number="3.3.2.1">
-<h4><span class="header-section-number">3.3.2.1</span> Headers<a href="eda-2.html#headers" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>To include sections in a document we use <code>#</code> followed by the header we want to be displayed. We can define levels for sections by using multiple <code>#</code> in this way:</p>
-<pre><code># Section 1
-## Section 1.1
-## Section 1.2
-### Section 1.2.1
-### Section 1.2.2
-## Section 1.3
-# Section 2</code></pre>
-</div>
-<div id="text" class="section level4 hasAnchor" number="3.3.2.2">
-<h4><span class="header-section-number">3.3.2.2</span> Text<a href="eda-2.html#text" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>We write the text between the section headers at the place where it should be displayed in the final document. We can insert line breaks at any point but these will not be rendered in the output. To include an actual paragraph we will have to include a blank line between between two blocks of text. Two emphasize certain words or phrases, we can wrap them in <code>*</code> for italics or <code>**</code> for bold face.</p>
-<p>Consider this Markdown code:</p>
-<pre><code>This is the first paragraph.
-This still is the first paragraph.
-
-Here begins the second paragraph.
-It includes emphasis, by using *italics* and also **bold face** words.</code></pre>
-<p>It is rendered as:</p>
-<p>This is the first paragraph. This still is the first paragraph.</p>
-<p>Here begins the second paragraph. It includes emphasis, by using <em>italics</em> and also <strong>bold face</strong> words.</p>
-</div>
-<div id="lists" class="section level4 hasAnchor" number="3.3.2.3">
-<h4><span class="header-section-number">3.3.2.3</span> Lists<a href="eda-2.html#lists" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Unordered lists or bullet points can be inserted by adding a <code>-</code>, <code>*</code> or <code>+</code> at the beginning of a line. To create levels, we have to indent lines using tab stops.</p>
-<pre><code>* Level 1
-* Level 1
-  * Level 2
-    * Level 3
-  * Level 2
-    * Level 3
-* Level 1</code></pre>
-<p>The above will be rendered as:</p>
-<ul>
-<li>Level 1</li>
-<li>Level 1
-<ul>
-<li>Level 2
-<ul>
-<li>Level 3</li>
-</ul></li>
-<li>Level 2
-<ul>
-<li>Level 3</li>
-</ul></li>
-</ul></li>
-<li>Level 1</li>
-</ul>
-<p>We can also create ordered lists by using numbers followed by a <code>.</code> instead of the <code>*</code> etc.</p>
-<pre><code>1.  Bulletpoint 1
-2.  Bulletpoint 2
-3.  Bulletpoint 3</code></pre>
-<ol style="list-style-type: decimal">
-<li>Bulletpoint 1</li>
-<li>Bulletpoint 2</li>
-<li>Bulletpoint 3</li>
-</ol>
-</div>
-<div id="hyperlinks" class="section level4 hasAnchor" number="3.3.2.4">
-<h4><span class="header-section-number">3.3.2.4</span> Hyperlinks<a href="eda-2.html#hyperlinks" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Hyperlinks can be included as <code>&lt;url&gt;</code> or <code>[text](url)</code>.</p>
-<pre><code>To include a plain url we can use &lt;https://jaspertjaden.github.io/DataAnalysisR/&gt;.
-We can also [link](https://jaspertjaden.github.io/DataAnalysisR/) in this way.</code></pre>
-<p>To include a plain url we can use <a href="https://jaspertjaden.github.io/DataAnalysisR/" class="uri">https://jaspertjaden.github.io/DataAnalysisR/</a>. We can also <a href="https://jaspertjaden.github.io/DataAnalysisR/">link</a> in this way.</p>
-</div>
-</div>
-<div id="code-chunks" class="section level3 hasAnchor" number="3.3.3">
-<h3><span class="header-section-number">3.3.3</span> Code chunks<a href="eda-2.html#code-chunks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Codechunks have to be started and ended with three backticks <code>```</code>. After the first set of backticks we also have to include <code>{r}</code> to let Markdown know that we want to run the code as R code. The code that is written after this and up to the second set of backticks will be executed when knitting the file.</p>
-<p>You can see some examples of this in the newly created R Markdown file if you followed the steps above.</p>
-<p>We can also always run the code in a chunk before knitting by clicking on the green arrow in the upper right corner of the chunk. We can also execute individual lines of code by placing our keyboard cursor in the line and pressing <code>Shift + Enter</code>.</p>
-<div id="chunk-options" class="section level4 hasAnchor" number="3.3.3.1">
-<h4><span class="header-section-number">3.3.3.1</span> Chunk options<a href="eda-2.html#chunk-options" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>We can change the way code chunks are handled when knitting by adding one or multiple chunk options between the curly brackets like this: <code>{r option=value}</code>. If we want to use multiple options they have to be written like this: <code>{r option1=value1, option2=value2}</code>.</p>
-<p>There are many options available but most are not needed when starting out. The ones that may be of interest to you are:</p>
-<ul>
-<li><code>{r echo=FALSE}</code>: This prevents the code to be displayed in the output while the results will be included. This is useful if you want to show the results of a computation or a plot but do not want the document to be cluttered with the underlying code.</li>
-<li><code>{r include=FALSE}</code>: This prevents the code as well as the output from being displayed. The code is still run in the background.</li>
-<li><code>{r eval=FALSE}</code>: This prevents the code from being run but displays it. This can be useful if you want to show code examples for illustrative purposes.</li>
+<li>here to be filled</li>
 </ul>
 </div>
 </div>
+<div id="r-functions-covered-this-week-3" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> R functions covered this week<a href="ml.html#r-functions-covered-this-week-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="functions">
+<p>TBD</p>
 </div>
-<div id="further-resources-1" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Further resources<a href="eda-2.html#further-resources-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="intro-to-machine-learning" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Intro to Machine learning<a href="ml.html#intro-to-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We have now arrived at the entry gates to machine learning. We will conduct a very basic and simple machine learning routine using linear regression. The main difference between simple prediction and Machine Learning is that the sample is first divided into a training and a test dataset at random. The model is than tuned based on, let’s say, 80% of the sample. When the model is ready, it is tested based on the 20% remaining sample. The prediction produced with the model are then compared with the actual values in the test dataset. There is of course more nuance to all this, but this is basically the idea.</p>
+<p>Let’s use the <code>caret</code> package, a common package for machine learning.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="ml.html#cb155-1" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb155-2"><a href="ml.html#cb155-2" tabindex="-1"></a><span class="co">#data transformation</span></span>
+<span id="cb155-3"><a href="ml.html#cb155-3" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb155-4"><a href="ml.html#cb155-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">salary_log =</span> <span class="fu">log</span>(salary))</span>
+<span id="cb155-5"><a href="ml.html#cb155-5" tabindex="-1"></a></span>
+<span id="cb155-6"><a href="ml.html#cb155-6" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb155-7"><a href="ml.html#cb155-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PTS_centered =</span> career_PTS <span class="sc">-</span> <span class="fu">mean</span>(career_PTS))</span>
+<span id="cb155-8"><a href="ml.html#cb155-8" tabindex="-1"></a></span>
+<span id="cb155-9"><a href="ml.html#cb155-9" tabindex="-1"></a><span class="co"># Create a train and test split</span></span>
+<span id="cb155-10"><a href="ml.html#cb155-10" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb155-11"><a href="ml.html#cb155-11" tabindex="-1"></a>train_indices <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(data_nba<span class="sc">$</span>salary, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb155-12"><a href="ml.html#cb155-12" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> data_nba[train_indices, ]</span>
+<span id="cb155-13"><a href="ml.html#cb155-13" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> data_nba[<span class="sc">-</span>train_indices, ]</span>
+<span id="cb155-14"><a href="ml.html#cb155-14" tabindex="-1"></a></span>
+<span id="cb155-15"><a href="ml.html#cb155-15" tabindex="-1"></a><span class="co"># Create a train control object with &quot;cross-validation&quot; for comparing results</span></span>
+<span id="cb155-16"><a href="ml.html#cb155-16" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>) </span>
+<span id="cb155-17"><a href="ml.html#cb155-17" tabindex="-1"></a></span>
+<span id="cb155-18"><a href="ml.html#cb155-18" tabindex="-1"></a><span class="co"># Train a linear regression model using caret</span></span>
+<span id="cb155-19"><a href="ml.html#cb155-19" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
+<span id="cb155-20"><a href="ml.html#cb155-20" tabindex="-1"></a>  salary <span class="sc">~</span> career_PTS <span class="sc">+</span> position_rec <span class="sc">+</span> season_start <span class="sc">+</span> age,</span>
+<span id="cb155-21"><a href="ml.html#cb155-21" tabindex="-1"></a>  <span class="at">data =</span> train_data,</span>
+<span id="cb155-22"><a href="ml.html#cb155-22" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb155-23"><a href="ml.html#cb155-23" tabindex="-1"></a>  <span class="at">trControl =</span> ctrl</span>
+<span id="cb155-24"><a href="ml.html#cb155-24" tabindex="-1"></a>)</span>
+<span id="cb155-25"><a href="ml.html#cb155-25" tabindex="-1"></a></span>
+<span id="cb155-26"><a href="ml.html#cb155-26" tabindex="-1"></a></span>
+<span id="cb155-27"><a href="ml.html#cb155-27" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
+<span id="cb155-28"><a href="ml.html#cb155-28" tabindex="-1"></a>  salary <span class="sc">~</span> career_PTS,</span>
+<span id="cb155-29"><a href="ml.html#cb155-29" tabindex="-1"></a>  <span class="at">data =</span> train_data,</span>
+<span id="cb155-30"><a href="ml.html#cb155-30" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb155-31"><a href="ml.html#cb155-31" tabindex="-1"></a>  <span class="at">trControl =</span> ctrl</span>
+<span id="cb155-32"><a href="ml.html#cb155-32" tabindex="-1"></a>)</span>
+<span id="cb155-33"><a href="ml.html#cb155-33" tabindex="-1"></a></span>
+<span id="cb155-34"><a href="ml.html#cb155-34" tabindex="-1"></a></span>
+<span id="cb155-35"><a href="ml.html#cb155-35" tabindex="-1"></a><span class="co"># Make predictions on the test set</span></span>
+<span id="cb155-36"><a href="ml.html#cb155-36" tabindex="-1"></a>predicted_salaries_m1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model1, <span class="at">newdata =</span> test_data)</span>
+<span id="cb155-37"><a href="ml.html#cb155-37" tabindex="-1"></a>predicted_salaries_m2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model2, <span class="at">newdata =</span> test_data)</span>
+<span id="cb155-38"><a href="ml.html#cb155-38" tabindex="-1"></a></span>
+<span id="cb155-39"><a href="ml.html#cb155-39" tabindex="-1"></a></span>
+<span id="cb155-40"><a href="ml.html#cb155-40" tabindex="-1"></a><span class="co"># Calculate prediction errors (e.g., root mean squared error)</span></span>
+<span id="cb155-41"><a href="ml.html#cb155-41" tabindex="-1"></a>rmse1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted_salaries_m1 <span class="sc">-</span> test_data<span class="sc">$</span>salary)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb155-42"><a href="ml.html#cb155-42" tabindex="-1"></a>rmse2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted_salaries_m2 <span class="sc">-</span> test_data<span class="sc">$</span>salary)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb155-43"><a href="ml.html#cb155-43" tabindex="-1"></a></span>
+<span id="cb155-44"><a href="ml.html#cb155-44" tabindex="-1"></a><span class="co"># Print the prediction errors</span></span>
+<span id="cb155-45"><a href="ml.html#cb155-45" tabindex="-1"></a><span class="fu">print</span>(rmse1)</span></code></pre></div>
+<pre><code>## [1] 3417602</code></pre>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="ml.html#cb157-1" tabindex="-1"></a><span class="fu">print</span>(rmse2)</span></code></pre></div>
+<pre><code>## [1] 3602973</code></pre>
+<p>Let us create a similar model from week <a href="lin-a.html#lin-a">8</a> where we have applied <code>log</code> transformation on <code>salary</code>, centered and squared on <code>career_PTS</code> .</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="ml.html#cb159-1" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
+<span id="cb159-2"><a href="ml.html#cb159-2" tabindex="-1"></a>  salary_log <span class="sc">~</span> PTS_centered <span class="sc">+</span> <span class="fu">I</span>(career_PTS<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> position_rec <span class="sc">+</span> season_start <span class="sc">+</span> age,</span>
+<span id="cb159-3"><a href="ml.html#cb159-3" tabindex="-1"></a>  <span class="at">data =</span> train_data,</span>
+<span id="cb159-4"><a href="ml.html#cb159-4" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb159-5"><a href="ml.html#cb159-5" tabindex="-1"></a>  <span class="at">trControl =</span> ctrl</span>
+<span id="cb159-6"><a href="ml.html#cb159-6" tabindex="-1"></a>)</span>
+<span id="cb159-7"><a href="ml.html#cb159-7" tabindex="-1"></a></span>
+<span id="cb159-8"><a href="ml.html#cb159-8" tabindex="-1"></a>predicted_salaries_m3 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model3, <span class="at">newdata =</span> test_data)</span>
+<span id="cb159-9"><a href="ml.html#cb159-9" tabindex="-1"></a>rmse3 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted_salaries_m3 <span class="sc">-</span> test_data<span class="sc">$</span>salary)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb159-10"><a href="ml.html#cb159-10" tabindex="-1"></a><span class="fu">print</span>(rmse3)</span></code></pre></div>
+<pre><code>## [1] 6084578</code></pre>
+<p>We can compare the <span class="math inline">\(R^2\)</span> for all these 3 models:</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="ml.html#cb161-1" tabindex="-1"></a>model1<span class="sc">$</span>results</span></code></pre></div>
+<pre><code>##   intercept    RMSE  Rsquared     MAE   RMSESD RsquaredSD    MAESD
+## 1      TRUE 3601123 0.4193535 2549809 146015.8 0.04638596 81079.79</code></pre>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="ml.html#cb163-1" tabindex="-1"></a>model2<span class="sc">$</span>results</span></code></pre></div>
+<pre><code>##   intercept    RMSE  Rsquared     MAE   RMSESD RsquaredSD   MAESD
+## 1      TRUE 3784280 0.3573984 2633451 141362.1 0.02909487 76175.3</code></pre>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="ml.html#cb165-1" tabindex="-1"></a>model3<span class="sc">$</span>results</span></code></pre></div>
+<pre><code>##   intercept     RMSE  Rsquared       MAE     RMSESD RsquaredSD     MAESD
+## 1      TRUE 1.043284 0.4033095 0.7920122 0.03552623 0.02326883 0.0216699</code></pre>
+<p><em><span class="math inline">\(R^2\)</span> is a measure of how well a model fits the data. It ranges from 0 to 1, with higher values indicating better fit.</em></p>
+<ul>
+<li><p><code>model1</code> is a linear regression model that uses <code>career_PTS</code>, <code>position_rec</code>, <code>season_start</code> and <code>age</code> as predictors of <code>salary</code>. It has an <span class="math inline">\(R^2\)</span> value of <em>0.432</em>, which means that it explains about <em>43%</em> of the variation in salary.</p></li>
+<li><p><code>model2</code> is a linear regression model that uses only <code>career_PTS</code> as a predictor of <code>salary</code>. It has an <span class="math inline">\(R^2\)</span> value of <em>0.361</em>, which means that it explains about <em>36%</em> of the variation in salary.</p></li>
+<li><p><code>model3</code> is a machine learning model that uses the caret package to train a predictive model using <code>log</code> transformation on <code>salary</code>, centered and squared on <code>career_PTS</code>. It has an <span class="math inline">\(R^2\)</span> value of <em>0.415</em>, which means that it explains about <em>41%</em> of the variation in salary.</p></li>
+</ul>
+<p>Based on these results, we can see that <code>model1</code> has the highest <span class="math inline">\(R^2\)</span> value among the three models, followed by <code>model3</code> and then <code>model2</code>. This suggests that <code>model1</code> is the best model for predicting salary based on the given data.</p>
+<p>Now machine learning usually involves several more steps:</p>
+<ul>
+<li><p>we can optimize how the variables (in ML language called <em>features</em>) enter the model (Pre-processing; transformations; diagnostics, see week <a href="eda-1.html#eda-1">2</a>)</p></li>
+<li><p>we can optimize which variables should even enter the model (<em>feature selection</em>, see e.g. <code>lasso regression</code>)</p></li>
+<li><p>we can optimize how the predictions of the model get evaluated (<em>training</em>)</p></li>
+<li><p>we can optimize which estimator or algorithm best predicts the outcome (<code>lm</code> model is just one option among many)</p></li>
+<li><p>for other algorithms (e.g. <code>random forests</code>), we can also <em>tune</em> the model using <em>hyper-parameters</em>.</p></li>
+</ul>
+</div>
+<div id="further-resources-3" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Further resources<a href="ml.html#further-resources-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="resources">
 <ul>
-<li><a href="https://rmarkdown.rstudio.com/lesson-1.html">R Markdown Website by RStudio</a>: A comprehensive introduction to using R Markdown from within RStudio</li>
-<li><a href="https://bookdown.org/yihui/rmarkdown/">Yihui Xie, J. J. Allaire, Garrett Grolemund. R Markdown: The Definitive Guide</a>: An in-depth overview over basically everything R Markdown can do</li>
-<li><a href="https://rstudio.github.io/cheatsheets/rmarkdown.pdf">R Markdown Cheat Sheet</a>: A cheat sheet for R Markdown, those are always helpful</li>
+<li><a href="https://lgatto.github.io/IntroMachineLearningWithR/">An Introduction to Machine Learning with R</a>: This is an online book that introduces the basic concepts and techniques of machine learning with R. It covers topics such as supervised and unsupervised learning, classification, regression, clustering, dimensionality reduction, and model evaluation. It also provides examples of applying machine learning methods to real-world data sets.</li>
 </ul>
-</div>
-</div>
-<div id="eda---exercise" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> EDA - Exercise<a href="eda-2.html#eda---exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In this and all following exercises, we will work with the <strong>Boston Housing Data</strong>. The data set contains information on 506 census tracts in the US city of Boston from the 1970 census. It contains information on the median value of owner-occupied homes and additional statistics on houses and socio-demographics for each tract.</p>
-<p>This is an overview of all variables included in the data set:</p>
-<pre><code>1. crim - per capita crime rate by town
-2. zn - proportion of residential land zoned for lots over 25,000 sq.ft.
-3. indus - proportion of non-retail business acres per town.
-4. chas - Charles River dummy variable (1 if tract bounds river; 0 otherwise)
-5. nox - nitric oxides concentration (parts per 10 million)
-6. rm - average number of rooms per dwelling
-7. age - proportion of owner-occupied units built prior to 1940
-8. dis - weighted distances to five Boston employment centres
-9. rad - index of accessibility to radial highways
-10. tax - full-value property-tax rate per $10,000
-11. ptratio - pupil-teacher ratio by town
-12. b - 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town
-13. lstat - % of lower status of the population
-14. medv - Median value of owner-occupied homes in $1000&#39;s</code></pre>
-<p>For more information on the data set and its implementation in <code>mlbench</code> please follow this <a href="https://search.r-project.org/CRAN/refmans/mlbench/html/BostonHousing.html">link</a>.</p>
-<div class="assignx">
-<ol style="list-style-type: decimal">
-<li><p><strong>Prepare your R Markdown File</strong>: Create a new R Markdown file setting the output format to <code>html</code> or <code>pdf</code> (if you have a LaTeX distribution installed) and setting the title, author and date to appropriate values. Remove the sample text and code chunks taking care to not remove the <code>YAML</code> header. Write all solutions in this file using code chunks as well as text to structure the file (headers) and answer the questions. Do not forget to save the file in the format <code>your_name_exercise_1.Rmd</code>. You will have to turn in this file to the lecturers through Moodle.</p></li>
-<li><p><strong>Import the dataset</strong>: Import the data set by using the code below. The package <code>mlbench</code> conveniently includes the data set. You have to install the package beforehand by writing: <code>install.packages("mlbench")</code>. You should also load the <code>tidyverse</code> package to ease the further analysis. Not that this code also has to be included in your R Markdown file.</p></li>
-</ol>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="eda-2.html#cb60-1" tabindex="-1"></a><span class="fu">library</span>(mlbench)</span>
-<span id="cb60-2"><a href="eda-2.html#cb60-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb60-3"><a href="eda-2.html#cb60-3" tabindex="-1"></a></span>
-<span id="cb60-4"><a href="eda-2.html#cb60-4" tabindex="-1"></a><span class="fu">data</span>(BostonHousing)</span></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li><p><strong>Inspect the dataset</strong>: Use the proper functions to inspect the structure and contents of the data set. How many categorical variables are there? How many numerical variables are there? Are there any missing values?</p></li>
-<li><p><strong>Summarize categorical variables</strong>: Create a frequency table for the categorical variable <code>chas</code> (Charles River dummy variable).</p></li>
-<li><p><strong>Summarize numerical variables</strong>: Generate summary statistics for the numerical variables crim (per capita crime rate by town), rm (average number of rooms per dwelling) and dis (weighted distances to five Boston employment centres).</p></li>
-<li><p><strong>Create new variables</strong>: Create a new variable that groups houses by their proximity to employment centers as indicated in the variable <code>dis</code>. Create the three categories <code>Near</code>, <code>Medium</code> and <code>Far</code> based on the value of <code>dis</code>. Choose appropriate cutoff values based on the summary statistics you computed above. Briefly describe your decision.</p></li>
-<li><p><strong>Compare distributions</strong>: Compare the distribution of <code>ptratio</code> by the newly created variable <code>distance_group</code> using boxplots. Briefly interpret the results.</p></li>
-<li><p><strong>Visualize relationships</strong>: Create scatter plots with an added regression line to explore the relationship between housing prices (<code>medv</code>) and the numeric variables : <code>rm</code>, <code>age</code>, <code>dis</code>, <code>lstat</code>. Briefly interpret the plots.</p></li>
-<li><p><strong>Correlation analysis</strong>: Calculate correlation coefficients between housing prices (<code>medv</code>), the average number of rooms per dwelling (<code>rm</code>) and the crime rate (<code>crim</code>). Display the correlations as a matrix or as a plot. Interpret the result.</p></li>
-</ol>
 </div>
 
 </div>
@@ -499,8 +448,8 @@ We can also [link](https://jaspertjaden.github.io/DataAnalysisR/) in this way.</
           </div>
         </div>
       </div>
-<a href="eda-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dags-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pm-t.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pm-a.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -531,7 +480,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-EDA-2.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/11-ml.Rmd",
 "text": "Edit"
 },
 "history": {

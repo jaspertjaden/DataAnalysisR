@@ -56,6 +56,21 @@ Now, you may rightfully ask: "Why do we want to predict salaries if we already k
 Machine learning is basically predicting outcomes that are no known based on very large datasets. You provide R with a million photos of animals, you build a model to explain which animal is a cat. The you apply the model to new data and the model predicts whether there is a cat in the photo. Of course, machine learning gets much more complicated quickly, however, the basic logic is the logic of prediction. 
 
 ```{r pred_th_0, warning=FALSE, message=FALSE}
+# recode "position" variables"
+data_nba <- data_nba %>%
+  mutate(position_num = rowSums(across(c("position_center", "position_pf", "position_sf",
+                                         "position_pg", "position_sg"))),
+         position_rec = 
+           case_when(
+             position_center==1 & position_num==1 ~ "center",
+             position_pf==1 & position_num==1 ~ "Forward",
+             position_sf==1 & position_num==1 ~ "Forward",
+             position_pg==1 & position_num==1 ~ "Guard",
+             position_sg==1 & position_num==1 ~ "Guard",
+             position_sg==1 & position_pg==1 & position_num==2 ~ "Guard",
+             position_pf==1 & position_sf==1 & position_num==2 ~ "Forward",
+             TRUE ~ "Mixed"))
+
 model1 <- lm(salary ~ career_PTS + position_rec + season_start +
              age, data = data_nba)
 
@@ -97,7 +112,7 @@ prediction.data <- tibble(
   position_rec = c("center", "center", "Guard", "Guard"),
   career_PTS = c(10, 14, 10, 14),
   age = c(20,20,20,20),
-  season_start = c("2017", "2017", "2017", "2017")
+  season_start = as.numeric(c("2017", "2017", "2017", "2017"))
 )
 
 # apply the model to the "new" dataset
