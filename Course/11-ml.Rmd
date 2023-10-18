@@ -1,0 +1,132 @@
+# Machine Learning {#ml}
+
+**Still WIP!**
+
+
+## Objectives
+::: {.objectives}
+
+- here to be filled
+
+:::
+
+
+## R functions covered this week
+::: {.functions}
+TBD
+
+:::
+
+
+
+## Intro to Machine learning
+
+We have now arrived at the entry gates to machine learning. We will conduct a very basic and simple machine learning routine using linear regression. The main difference between simple prediction and Machine Learning is that the sample is first divided into a training and a test dataset at random. The model is than tuned based on, let's say, 80% of the sample. When the model is ready, it is tested based on the 20% remaining sample. The prediction produced with the model are then compared with the actual values in the test dataset. There is of course more nuance to all this, but this is basically the idea. 
+
+Let's use the `caret` package, a common package for machine learning.
+
+
+```{r pred_th_5, warning=FALSE, message=FALSE}
+library(caret)
+#data transformation
+data_nba <- data_nba %>% 
+  mutate(salary_log = log(salary))
+
+data_nba <- data_nba %>% 
+  mutate(PTS_centered = career_PTS - mean(career_PTS))
+
+# Create a train and test split
+set.seed(123)  # For reproducibility
+train_indices <- createDataPartition(data_nba$salary, p = 0.7, list = FALSE)
+train_data <- data_nba[train_indices, ]
+test_data <- data_nba[-train_indices, ]
+
+# Create a train control object with "cross-validation" for comparing results
+ctrl <- trainControl(method = "cv") 
+
+# Train a linear regression model using caret
+model1 <- train(
+  salary ~ career_PTS + position_rec + season_start + age,
+  data = train_data,
+  method = "lm",
+  trControl = ctrl
+)
+
+
+model2 <- train(
+  salary ~ career_PTS,
+  data = train_data,
+  method = "lm",
+  trControl = ctrl
+)
+
+
+# Make predictions on the test set
+predicted_salaries_m1 <- predict(model1, newdata = test_data)
+predicted_salaries_m2 <- predict(model2, newdata = test_data)
+
+
+# Calculate prediction errors (e.g., root mean squared error)
+rmse1 <- sqrt(mean((predicted_salaries_m1 - test_data$salary)^2))
+rmse2 <- sqrt(mean((predicted_salaries_m2 - test_data$salary)^2))
+
+# Print the prediction errors
+print(rmse1)
+print(rmse2)
+```
+
+Let us create a similar model from week [8](#lin-a) where we have applied `log` transformation on `salary`, centered and squared on `career_PTS` . 
+
+``` {r pred_th_log, warning=FALSE, message=FALSE}
+model3 <- train(
+  salary_log ~ PTS_centered + I(career_PTS^2) + position_rec + season_start + age,
+  data = train_data,
+  method = "lm",
+  trControl = ctrl
+)
+
+predicted_salaries_m3 <- predict(model3, newdata = test_data)
+rmse3 <- sqrt(mean((predicted_salaries_m3 - test_data$salary)^2))
+print(rmse3)
+```
+
+We can compare the $R^2$ for all these 3 models:
+
+```{r model_r2}
+model1$results
+model2$results
+model3$results
+```
+
+
+*$R^2$ is a measure of how well a model fits the data. It ranges from 0 to 1, with higher values indicating better fit.*
+
+- `model1` is a linear regression model that uses `career_PTS`, `position_rec`, `season_start` and `age` as predictors of `salary`. It has an $R^2$ value of *0.432*, which means that it explains about *43%* of the variation in salary.
+
+- `model2` is a linear regression model that uses only `career_PTS` as a predictor of `salary`. It has an $R^2$ value of *0.361*, which means that it explains about *36%* of the variation in salary.
+
+- `model3` is a machine learning model that uses the caret package to train a predictive model using `log` transformation on `salary`, centered and squared on `career_PTS`. It has an $R^2$ value of *0.415*, which means that it explains about *41%* of the variation in salary.
+
+Based on these results, we can see that `model1` has the highest $R^2$ value among the three models, followed by `model3` and then `model2`. This suggests that `model1` is the best model for predicting salary based on the given data.
+
+
+Now machine learning usually involves several more steps:
+
++ we can optimize how the variables (in ML language called *features*) enter the model  (Pre-processing; transformations; diagnostics, see week [2](#eda-1)) 
+
++ we can optimize which variables should even enter the model (*feature selection*, see e.g. `lasso regression`)
+
++ we can optimize how the predictions of the model get evaluated (*training*)
+
++ we can optimize which estimator or algorithm best predicts the outcome (`lm` model is just one option among many)
+
++ for other algorithms (e.g. `random forests`), we can also *tune* the model using *hyper-parameters*.
+
+
+
+
+## Further resources
+::: {.resources}
+- [An Introduction to Machine Learning with R](https://lgatto.github.io/IntroMachineLearningWithR/): This is an online book that introduces the basic concepts and techniques of machine learning with R. It covers topics such as supervised and unsupervised learning, classification, regression, clustering, dimensionality reduction, and model evaluation. It also provides examples of applying machine learning methods to real-world data sets.
+
+:::
