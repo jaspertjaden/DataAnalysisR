@@ -275,8 +275,7 @@ Drawing a DAG based on our assumptions helps us to prevent this pitfall.
 
 ##### Mediation
 
-A special case of pipes is *mediation*. We will only take about this
-briefly here and return to the topic in [session 10](#med).
+A special case of pipes is *mediation*.
 
 Consider this DAG:
 

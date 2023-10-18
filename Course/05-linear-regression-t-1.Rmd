@@ -40,7 +40,7 @@ based on money and a host of other variables as accurately as possible.
 Linear regression is one of the many available modelling techniques and it can
 serve both approaches. Over the next sessions we will focus on using 
 linear regression for estimating an effect of interest but we will return to
-prediction in [session 11](#pm-t).
+prediction in [session 10](#pm-t).
 
 How do we know if we should choose linear regression for a specific task?
 This is not easy to answer as there are many alternatives and even variations of
