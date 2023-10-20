@@ -1,7 +1,5 @@
 # Prediction {#pm-t}
 
-**Still WIP!**
-
 In prior weeks, you learned how to build a linear regression model. The main
 interest we pursued so far was to arrive at an unbiased estimate for the effect
 of one independent variable (in our case the average points a NBA player scored
@@ -9,7 +7,7 @@ per game) on an outcome (here the salary of NBA players).
 With the help of a DAG, we identified relevant variables we have to include in
 our model, and ones we are not allowed to include, to "isolate' the effect of 
 points as much as possible and reduce bias.
-All what we have done so far can be considered as part of classical statistical
+All what we have done so far can be considered part of classical statistical
 inference, i.e.understanding why an outcome varies and what the magnitude and
 direction of effects is.
 This is one approach to modelling.
@@ -17,41 +15,36 @@ This is one approach to modelling.
 Another approach is *predicition*.
 In this scenario, we build regression models (or other models) solely to predict
 an outcome to the highest accuracy. The main interest is not to learn more about
-how the outcome can be explained but to predict something with it which we want
-to know. 
-Making predictions based on a computed model is hardly a new approach, still it
+how the outcome can be explained but to predict something which we are
+interested in.
+Making predictions based on a computed model is hardly new, still it
 lies at the heart of more modern approaches to analysing data, i.e. "data 
 science" and "machine learning". We will return to the latter [next week](#ml).
 
 In this week we will focus on how to predict values based on a linear regression
-model like the ones we have computed so far.
+model, like the ones we have computed so far.
 
 
 ## Objectives
 ::: {.objectives}
-
-- here to be filled
+-   Making predictions using a linear regression model
+-   Assessing the quality of the predictions
+-   Predicting the outcome for hypothetical cases
 
 :::
 
 
 ## R functions covered this week
 ::: {.functions}
-- `lm()` : This function is used to fit a linear model to the data. It takes a formula that specifies the dependent and independent variables, and a data frame that contains the variables. It returns a model object that can be used for further analysis.
-- `predict()` : This function is used to make predictions from a fitted model object. It takes a model object and a new data frame that contains the values of the independent variables for which predictions are desired. It returns a vector of predicted values for the dependent variable.
-- `sqrt()` : This function is used to compute the square root of a numeric vector. It can be used to calculate the root mean squared error (RMSE) as a measure of prediction accuracy.
-- `mean()` : This function is used to compute the arithmetic mean of a numeric vector. It can be used to calculate the mean squared error (MSE) as a measure of prediction error.
-- `createDataPartition()` : This function is from the **caret** package. It is used to create a random split of the data into training and testing sets. It takes a vector of outcomes, a proportion of data to be assigned to the training set, and an option to return a list or not. It returns a vector or list of indices for the training set.
-- `train()` : This function is from the **caret** package. It is used to train a predictive model using different methods and tuning parameters. It takes a formula that specifies the dependent and independent variables, a data frame that contains the training data, a method that specifies the type of model, and a train control object that specifies how to train the model. It returns a model object that can be used for prediction and evaluation.
-- `trainControl()` : This function is from the **caret** package. It is used to create a train control object that controls how the model is trained. It takes various arguments that specify the resampling method, the number of resamples, the selection metric, etc. It returns a train control object that can be passed to `train()`.
-- `glance()` : This function is from the **broom** package. It is used to get a summary of a model object, such as the R-squared, adjusted R-squared, RMSE, p-value, etc. It takes a model object and returns a tibble with one row per model and one column per statistic.
-- `augment()` : This function is from the **broom** package. It is used to add columns with predictions, residuals, and other information to the original data frame. It takes a model object and an optional new data frame for prediction. It returns a tibble with one row per observation and one column per variable or statistic.
-- `ggplot()` : This function is from the **ggplot2** package. It is used to create a wide variety of static, dynamic, and interactive graphics in R. The function allows you to specify a mapping from data to aesthetics (color, shape, size) and geometric objects (points, lines, bars). It also allows you to add statistical transformations, coordinate systems, faceting, and themes.
-- `geom_point()` : This function is from the **ggplot2** package. It is used to create scatter plots in R. It takes a mapping from data to aesthetics and other arguments that control the appearance of the points, such as shape, size, color, alpha, etc. It returns a layer that can be added to a ggplot object.
-- `geom_smooth()` : This function is from the **ggplot2** package. It is used to add a smoothed conditional mean or regression line to a plot. It takes a mapping from data to aesthetics and other arguments that control the appearance of the line or curve, such as method, formula, color, linetype, etc. It returns a layer that can be added to a ggplot object.
-- `geom_line()` : This function is from the **ggplot2** package. It is used to create line charts in R. It takes a mapping from data to aesthetics and other arguments that control the appearance of the lines, such as color, line-type, size, alpha, etc. It returns a layer that can be added to a ggplot object.
-- `geom_ribbon()` : This function is from the **ggplot2** package. It is used to create shaded regions between two y-values in R. It takes a mapping from data to aesthetics and other arguments that control the appearance of the ribbon, such as fill color, alpha value, line-type etc. It returns a layer that can be added to a ggplot object.
-- `library()` : This function is used to load an installed package into R session so that its functions can be used. It takes one or more package names as arguments and loads them into memory.
+-   Making predictions
+    -   `predict()` : Base R function used to make predictions from a fitted model object. It takes a model object and a new data frame that contains the values of the independent variables for which predictions are desired. It returns a vector of predicted values for the dependent variable. Optionally it can also return confidence and prediction intervals.
+    -   `augment()` : Function from the `broom` package. It is used to add columns with predictions, residuals, and other information to the original data frame. It takes a model object and an optional new data frame for prediction. It returns a tibble with one row per observation and one column per variable or statistic. Optionally it can also return confidence and prediction intervals.
+-   Assessing the quality of predictions
+    -   `mse()`: Function from the `Metrics` package. It is used to compute the *mean squared error* (MSE), the average of the squared differences between predicted and actual values.
+    -   `rmse()`: Function from the `Metrics` package. It is used to compute the *root mean squared error* (RMSE), the root of the MSE. This gives us the average difference between predicted and actual values on the original scale of the outcome variable, which is easier to interpret.
+-   `bind_cols()`: A `dplyr` function that adds additional columns to an existing tibble. Used here to add predictions and confidence/prediction intervals to a tiblle containing hypothetical cases we want to predict for. 
+-   New `ggplot()` geoms
+    -   `geom_abline()` & `geom_segment()`
 
 :::
 
@@ -66,7 +59,7 @@ $$\hat{y} = b_0 +b_1*x_1$$
 
 Our goal was estimating $b_0$ and especially $b_1$ in a way that describes the
 relationship between the x- and y-variables with the least error. Here we were
-centered on $x$ because our main interest was understanding how the x-variable
+centered on $x$ because our main interest was understanding how the $x$ variable
 influences the outcome $y$ as expressed by the coefficient $b_1$.
 
 Moving on to prediction, the formula for a linear regression stays the same.
@@ -81,8 +74,8 @@ Luckily this is very straightforward as we already know all the moving parts we
 need from our session on linear regression.
 Remember that linear regression is all about finding a straight line through a
 cloud of points that describes the relationship between two or more variables
-with as little error as possible. The line will have an an intercept, i.e. where
-the line crosses the Y-Axis, $b_0$ in our formula, and a slope, $b_1$.
+with as little error as possible. The line will have an an intercept, i.e. 
+the value of $y$ when $x = 0$, $b_0$ in our formula, and a slope, $b_1$.
 The latter describes the change in $y$ for an increase of one unit in $x$.
 
 
@@ -130,8 +123,8 @@ and the coefficient into our formula:
 
 $$\hat{y} = -851914 + 552843 * x_1$$
 
-For every $x$ value on our axis, the formula describes the corresponding $y$
-value. We can for example compute the $y$ values our model assumes for $x = 10$
+For every $x$ value, the formula describes the corresponding $y$
+value. For example, we can compute the $y$ values our model assumes for $x = 10$
 and $x = 20$.
 
 ``` {r glorified_calculator}
@@ -141,8 +134,8 @@ and $x = 20$.
 
 We can also visualise these points in our plot. Note that here we used
 `geom_smooth(method = "lm")` to draw the regression line for us. What this
-function does is computing a linear regression for the two variables in the plot
-and drawing the corresponding regression line.
+function does is to compute a linear regression for the two variables in the
+background and then draw the corresponding regression line.
 
 ```{r plot_salary_pts_lm_two_points, warning=FALSE, message=FALSE}
 data_nba %>% 
@@ -157,7 +150,7 @@ data_nba %>%
   geom_point(x = 20, y = 10204946, colour = "red")
 ```
 
-The two marked points are the values for $y$ our model estimates for $x = 10$
+The two marked points are the $y$ values our model estimates for $x = 10$
 and $x = 20$ respectively. These are the $y$ values the model *predicts* for
 specific values of $x$. We were already predicting above; predicting the salary
 for a player that scores $10$ or $20$ points per game on average.
@@ -199,7 +192,7 @@ interest and compare the predictions. Here you can see how it could get
 scientifically interesting. We could for example systematically vary the ethnic
 background of fictitious NBA players to assess any race related pay gaps. While
 this question sounds interesting, remember that we can only use variables that
-are in the data used to compute the model. The model simply does not know what
+were in the data used to compute the model. The model simply does not know what
 effect the ethnic background has on the salary, as no data was presented to it
 to estimate the relationship.
 
@@ -243,13 +236,13 @@ m1 <- lm(salary_log ~ career_PTS + I(career_PTS^2) +
 
 We now could start plugging in some $x$ values into our formula and using the
 coefficients computed in the model to predict some $y$ values. Nothing is
-stopping us from doing so. In fact we have done so [before0](#lin-a). 
+stopping us from doing so. In fact we have done so [before](#lin-a). 
 But there are more convenient ways to approach this.
 
 We can for one extract the *fitted values* from our model object and add them to
 the data. These fitted values are the $y$ values the model estimated for each
 observation; the values falling on the regression line the model assumed as the
-best fir. They are saved as a variable in the model object and can be extracted
+best fit. They are saved as a variable in the model object and can be extracted
 with the syntax `model$fitted.values`. When we add them to our original data,
 we can compare the actual salaries to the predicted ones. As we have used a
 logarithmic transformation on our outcome, the predicted values will also be on
@@ -292,7 +285,7 @@ One alternative, and more *tidyversy*, way is to use `augment()` from `broom`.
 `augment()` takes all observation related values, including the fitted values,
 from the model object and presents them as a tibble. If we add the optional
 argument `data = ...`, we can specify the tibble containing the actual data
-and have `augment()` add the values from the model to the original data.
+and have `augment()` add the values from the model to it.
 
 ``` {r pred_m1_broom, warning=FALSE, message=FALSE}
 library(broom)
@@ -325,8 +318,8 @@ before moving on.
 
 From our DAG we concluded that the variables used in `m1` are the correct
 adjustment set to estimate the effect from points per game on salary. But there
-the goal was just that, estimatiom of an effect. Now the goal has changed. We
-want to make accurate predictions and thus we should reconsider our decisions.
+the goal was just that, *estimation* of an effect. Now the goal has changed. We
+want to make accurate *predictions* and thus we should reconsider our decisions.
 There may be further variables of which we think that they explain a part of the
 variation in salaries. The better we can capture variation in salaries between
 players, and thus by the values of their variables, the more precise our
@@ -361,13 +354,13 @@ the points per game. This was correct, but for prediction we want to consider
 all the other factors that have an effect on salary. Different teams may be ably
 to pay different salaries, so this should be included. There may also be a 
 general increase of wages over time, so we should include a variable on the
-season an observation, and thus their salary, was recorded. We also added an age
-variable to the DAG. This was not present before, but should also have an impact
-on the salary as it represents the time a player has already spent playing and 
-thus their experience.
+season an observation, and thus their salary, was recorded in.
+We also added an age variable to the DAG. This was not present before, but 
+should also have an impact on the salary as it represents the time a player has
+already spent playing and thus their experience.
 
 We can now run a new model including these additional variables. We also 
-construct a new objext holding the original data and the predictions made by
+construct a new object holding the original data and the predictions made by
 `m2`.
 
 ```{r m2:model, warning=FALSE, message=FALSE}
@@ -385,14 +378,14 @@ to look at techniques to actually compare two models to each other.
 
 ### Comparing models
 
-There are mutltiple approaches to comparing the accuracy of two linear regression
+There are multiple approaches to comparing the accuracy of linear regression
 models, two of which we will address here.
 
 One approach is already familiar to you: comparing the $R^2$ values. 
 If you remember [session 7](#lin-t-3), this measures how much of the variation
-in the outcome can be explained by your set of independent variables.
+in the outcome can be explained by our set of independent variables.
 
-We can of course access the values by using `summary()` but `glance()` may be
+We can of course access the values by using `summary()`, but `glance()` may be
 more convenient here, as we do not want to see all coefficients but only the
 model fit statistics.
 
@@ -403,8 +396,9 @@ glance(m2)
 
 We can see the $R^2$ actually increased, but not by that much. While `m1` was
 able to explain about $39.8\%$ of the variation in salaries, `m2` can explain
-about $42.8\%$, an increase of $3\%$. Not much but the $R^2$ indicates that `m2`
-will be able to make somewhat better predictions compared to `m2`.
+about $42.8\%$, an increase of $3\%$. While the increase is small, the $R^2$
+indicates that `m2` will be able to make somewhat better predictions compared to
+`m1`.
 
 An additional common measure for comparing linear regression models is the
 *mean squared error* (MSE). The MSE represents the average error of our
@@ -425,12 +419,12 @@ mse(data_nba_m2$.fitted, data_nba_m2$salary_log)
 ``` 
 
 In computing the MSE, the square of the differences between predicted and actual
-values is in computing the mean. Without going into the reasons, this makes
+values is used in computing the mean. Without going into the reasons, this makes
 sense mathematically. The only problem is, that the resulting measure is not
 as readily interpretable anymore. We can solve this by using the 
 *root mean squared error* (RMSE) instead. This is just the square root of the
-MSE but it presents us a measure that is interpretable in the units of the
-outcome variable.
+MSE but it presents us a measure that is interpretable in units of
+the outcome variable.
 
 We can use `rmse` from `Metrics` to do just that. As we had logarithmised our
 outcome and thus our predictions are as well, we should construct a variable
@@ -448,17 +442,16 @@ data_nba_m2 <- data_nba_m2 %>%
 
 rmse(data_nba_m1$predicted, data_nba_m1$salary)
 rmse(data_nba_m2$predicted, data_nba_m2$salary)
-  
 ```
 
 Both measures tell the same story, `m2` performs somewhat better compared to
 `m2`. THe RMSE can even tell us what "somewhat" means. Model 1 is on average
 $3,946,193\$$ off, model 2 $3,813,271\$$. Using model 2, we make predictions
 which are on average $132,922\$$ less wrong, compared to model 1. This is nice,
-but if we compare it ti the overall RMSE of model 2, our predictions are still
+but if we compare it to the overall RMSE of model 2, our predictions are still
 substantially off.
 
-We could try to improve our model by thinking about further variables to include
+We could try to improve our model by including further variables
 that also explain parts of the variation of `salary`. We will keep this for the
 [next session on machine learning](#ml). For now we will accept the quality of
 predictions we have gained and use the `m2` to predict salaries for imaginary
@@ -474,7 +467,7 @@ is that we can systematically manipulate those variables of interest to us
 while keeping all others at the same value.
 
 Before we were interested in the difference the point average and the position
-played on make for the salary received. We can approach this by using 
+played make for the salary received. We can approach this by using 
 predictions too. For this we will have to construct some hypothetical cases and
 enter their data into a new tibble or data frame. Let us once again compare
 centers and point guards who in this case score $10$ or $14$ points per game on
@@ -514,7 +507,7 @@ prediction.data %>%
 ```
 
 We can see that the model predicts a substantial salary increase for making two
-more baskets (i.e. 4 points) on average each game, for both guards and centers.
+more baskets, i.e. 4 points, on average each game, for both guards and centers.
 We also see that this increase is even stepper for centers, who make more money
 given the same amount of points anyway.
 
@@ -531,13 +524,13 @@ We can assess this by looking at the confidence and prediction intervals.
 
 Confidence intervals basically tell you the following: "If we repeated our study
 on different samples of people many times, then $95\%$ of confidence intervals
-would include the true population value." This leaves $5\%$ of repetitions
-where the confidecne intervals does not include the true value. If we are in the
-$95\%$ or the $5\%$ is unknown to us. But what we can say, is that we are $95\%$
-confident that our confidence interval includes the true value.
+would include the true mean population value." This leaves $5\%$ of repetitions
+where the confidecne intervals do not include the true value. If we are in the
+$95\%$ or the $5\%$ is unknown to us. But what we can say is that we are $95\%$
+confident that our confidence interval includes the true mean value.
 In practice the confidence interval tells us the range of values for which we
-have this confidence of $95\%$, without knowing if it is actually true in our 
-case.
+have this confidence of $95\%$, without knowing if our interval actually
+includes the true mean value.
 
 We can instruct `predict()` to return the confidence intervals for our 
 predictions by adding the argument `interval = "confidence"`. In this code we
@@ -555,35 +548,68 @@ prediction.data %>%
 ```
 
 We can see that the range of values for which we can be $95\%$ confident that
-the true value is included differs by observation. For example, instead of
+the true mean value is included differs by observation. For example, instead of
 stating that a center who scores $10$ points per game, is 20 years
-of age and plays for the Knicks in 2017 will most definitely make $4,474,038\$$,
-we would state that we are $95\%$ confident that the true population value for
-such a player lies between $3,920,882\$$ and $5,105,234\$$.
+of age and plays for the Knicks in 2017 will most definitely make $4,474,038\$$
+on average we would state that we are $95\%$ confident that the true mean
+population value for such a player lies between $3,920,882\$$ and $5,105,234\$$.
 
-Prediction intervals are very similar but only apply to predictions for specfific values. It gives us a measure for "confident" we can be that our prediction would be within the prediction interval (95% of times).
+But what confidence intervals present to us is the uncertainty around a mean
+value. We can be $95\%$ confident that the true population mean for the
+described player lies between the lower and upper bounds of this interval.
+If we are more interested in the uncertainty of the specific predicted salary
+for our hypothetical player, we can use prediction intervals instead. These do
+not give us the confidence for the mean of all players with these
+characteristics but around the specific prediction we made for this one player,
+so for a specific value.
 
+We can access prediction intervals with the same code as above, only changing
+the argument to `interval = "prediction"`.
 
 ```{r prediction_intervals, warning=FALSE, message=FALSE}
 prediction.data %>% 
-  bind_cols(predict(m2, prediction.data, interval = "confidence")) %>% 
+  bind_cols(predict(m2, prediction.data, interval = "prediction")) %>% 
   mutate(predicted_values = exp(fit)) %>%
   mutate(ci_lwr = exp(lwr)) %>%
   mutate(ci_upr = exp(upr)) %>%
   select(position_center, position_pg, career_PTS, predicted_values, ci_lwr, ci_upr)
 ```
 
-The 95% is an arbitrarily set value which is a standard in research. However, we can also set it at 99% or 90%. 
+We can see that the prediction intervals are much, in our case very much, wider
+compared to the confidence intervals. The range were we expect, with $95\%$
+confidence, the true population mean to lie is much narrower than the range of
+salaries any individual player with the same characteristics can expect.
+Our model has a confidence of $95\%$ that centers who scored $10$ points per
+game, are $20$ years of age and played for the Knicks in 2017 receive a salary
+between $609,748\$$ and $32,828,335\$$. That is quite the range. 
+
+What does this imply for our model and our quality of predictions?
+The confidence intervals tell us that we can be somewhat certain that we have a
+good measure of the mean value for all players with the characteristics we have
+defined, while the interval still indicates that our measure could be about
+$500,000\$$ of in any direction.
+Our individual prediction for this specific hypothetical player on the other 
+hand is very uncertain.
+The actual salary could be way lower and especially way higher than we have
+predicted. This indicates that our model is still not very good in making
+accurate predictions. We will address this and try to further improve our model
+when we turn to machine learning in the [next session](#ml).
+
+One last note on confidence and prediction intervals: That they are set to
+$95\%$ is a scientific convention. It is basically an arbitrarily chosen value
+that many scientists agreed upon, at least in the social sciences. In some other
+fields other thresholds are used, e.g. $99\%$. We can tell `predict()` to
+use a different threshold by adding the argument `level = 0.99` with any
+value of your choosing. Still, if you have no clear justification for using a
+different value to $95\%$, it makes sense to stick to the standard, as your 
+research will be more comparable to other research using the same threshold.
+
 
 
 ## Further resources
 ::: {.resources}
 - [Linear Regression for Predictive Modeling in R - Dataquest](https://www.dataquest.io/blog/statistical-learning-for-predictive-modeling-r/): This is a blog post that explains how to use linear regression for predictive modeling in R, using the trees data set as an example. It covers how to fit, visualize, and evaluate linear regression models, as well as how to calculate confidence and prediction intervals.
-- [Tidyverse](https://www.tidyverse.org/): This is a collection of R packages designed for data science. It includes packages for data manipulation, visualization, modeling, and more. It also provides a consistent and coherent syntax and data structures for working with data in R.
 - [Predict in R: Model Predictions and Confidence Intervals - STHDA](http://www.sthda.com/english/articles/40-regression-analysis/166-predict-in-r-model-predictions-and-confidence-intervals/): This is a web page that shows how to use the predict() function in R to make predictions from a fitted model object. It also explains the difference between confidence intervals and prediction intervals, and how to calculate them using base R or the broom package.
-
-[here](https://vitalflux.com/mean-square-error-r-squared-which-one-to-use/)
-
-
+- [Mean Squared Error or R-Squared – Which one to use? - Analytics Yogi](https://vitalflux.com/mean-square-error-r-squared-which-one-to-use/): A blog post that expands on using $R^2$ and MSE for comparing the performance of linear regression models. 
 
 :::
