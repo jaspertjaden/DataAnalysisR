@@ -35,6 +35,21 @@ data_nba <- data_nba %>%
 data_nba <- data_nba %>% 
   mutate(PTS_centered = career_PTS - mean(career_PTS))
 
+# recode "position" variables"
+data_nba <- data_nba %>%
+  mutate(position_num = rowSums(across(c("position_center", "position_pf", "position_sf",
+                                         "position_pg", "position_sg"))),
+         position_rec = 
+           case_when(
+             position_center==1 & position_num==1 ~ "center",
+             position_pf==1 & position_num==1 ~ "Forward",
+             position_sf==1 & position_num==1 ~ "Forward",
+             position_pg==1 & position_num==1 ~ "Guard",
+             position_sg==1 & position_num==1 ~ "Guard",
+             position_sg==1 & position_pg==1 & position_num==2 ~ "Guard",
+             position_pf==1 & position_sf==1 & position_num==2 ~ "Forward",
+             TRUE ~ "Mixed"))
+
 # Create a train and test split
 set.seed(123)  # For reproducibility
 train_indices <- createDataPartition(data_nba$salary, p = 0.7, list = FALSE)

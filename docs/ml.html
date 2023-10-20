@@ -23,7 +23,7 @@
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-10-18" />
+<meta name="date" content="2023-10-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -277,8 +277,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="10.1" data-path="pm-t.html"><a href="pm-t.html#objectives-6"><i class="fa fa-check"></i><b>10.1</b> Objectives</a></li>
 <li class="chapter" data-level="10.2" data-path="pm-t.html"><a href="pm-t.html#r-functions-covered-this-week-2"><i class="fa fa-check"></i><b>10.2</b> R functions covered this week</a></li>
-<li class="chapter" data-level="10.3" data-path="pm-t.html"><a href="pm-t.html#how-prediction-works"><i class="fa fa-check"></i><b>10.3</b> How prediction works</a></li>
-<li class="chapter" data-level="10.4" data-path="pm-t.html"><a href="pm-t.html#further-resources-2"><i class="fa fa-check"></i><b>10.4</b> Further resources</a></li>
+<li class="chapter" data-level="10.3" data-path="pm-t.html"><a href="pm-t.html#making-predictions"><i class="fa fa-check"></i><b>10.3</b> Making predictions</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="pm-t.html"><a href="pm-t.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>10.3.1</b> Simple linear regression</a></li>
+<li class="chapter" data-level="10.3.2" data-path="pm-t.html"><a href="pm-t.html#why-predict-at-all"><i class="fa fa-check"></i><b>10.3.2</b> Why predict at all?</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="pm-t.html"><a href="pm-t.html#making-better-predictions"><i class="fa fa-check"></i><b>10.4</b> Making better predictions</a></li>
+<li class="chapter" data-level="10.5" data-path="pm-t.html"><a href="pm-t.html#making-even-better-predictions"><i class="fa fa-check"></i><b>10.5</b> Making even better predictions?</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="pm-t.html"><a href="pm-t.html#comparing-models"><i class="fa fa-check"></i><b>10.5.1</b> Comparing models</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="pm-t.html"><a href="pm-t.html#predicting-hypotheticals"><i class="fa fa-check"></i><b>10.6</b> Predicting hypotheticals</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="pm-t.html"><a href="pm-t.html#adressing-uncertainty"><i class="fa fa-check"></i><b>10.6.1</b> Adressing uncertainty</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="pm-t.html"><a href="pm-t.html#further-resources-2"><i class="fa fa-check"></i><b>10.7</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i><b>11</b> Machine Learning</a>
 <ul>
@@ -287,7 +300,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.3" data-path="ml.html"><a href="ml.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.3</b> Intro to Machine learning</a></li>
 <li class="chapter" data-level="11.4" data-path="ml.html"><a href="ml.html#further-resources-3"><i class="fa fa-check"></i><b>11.4</b> Further resources</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="pm-a.html"><a href="pm-a.html"><i class="fa fa-check"></i><b>12</b> Prediction - Exercise</a>
+<li class="chapter" data-level="12" data-path="pm-a.html"><a href="pm-a.html"><i class="fa fa-check"></i><b>12</b> Prediction &amp; Machine Learning - Exercise</a>
 <ul>
 <li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
 </ul></li>
@@ -347,74 +360,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">11.3</span> Intro to Machine learning<a href="ml.html#intro-to-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We have now arrived at the entry gates to machine learning. We will conduct a very basic and simple machine learning routine using linear regression. The main difference between simple prediction and Machine Learning is that the sample is first divided into a training and a test dataset at random. The model is than tuned based on, let’s say, 80% of the sample. When the model is ready, it is tested based on the 20% remaining sample. The prediction produced with the model are then compared with the actual values in the test dataset. There is of course more nuance to all this, but this is basically the idea.</p>
 <p>Let’s use the <code>caret</code> package, a common package for machine learning.</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="ml.html#cb155-1" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
-<span id="cb155-2"><a href="ml.html#cb155-2" tabindex="-1"></a><span class="co">#data transformation</span></span>
-<span id="cb155-3"><a href="ml.html#cb155-3" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb155-4"><a href="ml.html#cb155-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">salary_log =</span> <span class="fu">log</span>(salary))</span>
-<span id="cb155-5"><a href="ml.html#cb155-5" tabindex="-1"></a></span>
-<span id="cb155-6"><a href="ml.html#cb155-6" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb155-7"><a href="ml.html#cb155-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PTS_centered =</span> career_PTS <span class="sc">-</span> <span class="fu">mean</span>(career_PTS))</span>
-<span id="cb155-8"><a href="ml.html#cb155-8" tabindex="-1"></a></span>
-<span id="cb155-9"><a href="ml.html#cb155-9" tabindex="-1"></a><span class="co"># Create a train and test split</span></span>
-<span id="cb155-10"><a href="ml.html#cb155-10" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
-<span id="cb155-11"><a href="ml.html#cb155-11" tabindex="-1"></a>train_indices <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(data_nba<span class="sc">$</span>salary, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb155-12"><a href="ml.html#cb155-12" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> data_nba[train_indices, ]</span>
-<span id="cb155-13"><a href="ml.html#cb155-13" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> data_nba[<span class="sc">-</span>train_indices, ]</span>
-<span id="cb155-14"><a href="ml.html#cb155-14" tabindex="-1"></a></span>
-<span id="cb155-15"><a href="ml.html#cb155-15" tabindex="-1"></a><span class="co"># Create a train control object with &quot;cross-validation&quot; for comparing results</span></span>
-<span id="cb155-16"><a href="ml.html#cb155-16" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>) </span>
-<span id="cb155-17"><a href="ml.html#cb155-17" tabindex="-1"></a></span>
-<span id="cb155-18"><a href="ml.html#cb155-18" tabindex="-1"></a><span class="co"># Train a linear regression model using caret</span></span>
-<span id="cb155-19"><a href="ml.html#cb155-19" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
-<span id="cb155-20"><a href="ml.html#cb155-20" tabindex="-1"></a>  salary <span class="sc">~</span> career_PTS <span class="sc">+</span> position_rec <span class="sc">+</span> season_start <span class="sc">+</span> age,</span>
-<span id="cb155-21"><a href="ml.html#cb155-21" tabindex="-1"></a>  <span class="at">data =</span> train_data,</span>
-<span id="cb155-22"><a href="ml.html#cb155-22" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb155-23"><a href="ml.html#cb155-23" tabindex="-1"></a>  <span class="at">trControl =</span> ctrl</span>
-<span id="cb155-24"><a href="ml.html#cb155-24" tabindex="-1"></a>)</span>
-<span id="cb155-25"><a href="ml.html#cb155-25" tabindex="-1"></a></span>
-<span id="cb155-26"><a href="ml.html#cb155-26" tabindex="-1"></a></span>
-<span id="cb155-27"><a href="ml.html#cb155-27" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
-<span id="cb155-28"><a href="ml.html#cb155-28" tabindex="-1"></a>  salary <span class="sc">~</span> career_PTS,</span>
-<span id="cb155-29"><a href="ml.html#cb155-29" tabindex="-1"></a>  <span class="at">data =</span> train_data,</span>
-<span id="cb155-30"><a href="ml.html#cb155-30" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb155-31"><a href="ml.html#cb155-31" tabindex="-1"></a>  <span class="at">trControl =</span> ctrl</span>
-<span id="cb155-32"><a href="ml.html#cb155-32" tabindex="-1"></a>)</span>
-<span id="cb155-33"><a href="ml.html#cb155-33" tabindex="-1"></a></span>
-<span id="cb155-34"><a href="ml.html#cb155-34" tabindex="-1"></a></span>
-<span id="cb155-35"><a href="ml.html#cb155-35" tabindex="-1"></a><span class="co"># Make predictions on the test set</span></span>
-<span id="cb155-36"><a href="ml.html#cb155-36" tabindex="-1"></a>predicted_salaries_m1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model1, <span class="at">newdata =</span> test_data)</span>
-<span id="cb155-37"><a href="ml.html#cb155-37" tabindex="-1"></a>predicted_salaries_m2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model2, <span class="at">newdata =</span> test_data)</span>
-<span id="cb155-38"><a href="ml.html#cb155-38" tabindex="-1"></a></span>
-<span id="cb155-39"><a href="ml.html#cb155-39" tabindex="-1"></a></span>
-<span id="cb155-40"><a href="ml.html#cb155-40" tabindex="-1"></a><span class="co"># Calculate prediction errors (e.g., root mean squared error)</span></span>
-<span id="cb155-41"><a href="ml.html#cb155-41" tabindex="-1"></a>rmse1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted_salaries_m1 <span class="sc">-</span> test_data<span class="sc">$</span>salary)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb155-42"><a href="ml.html#cb155-42" tabindex="-1"></a>rmse2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted_salaries_m2 <span class="sc">-</span> test_data<span class="sc">$</span>salary)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb155-43"><a href="ml.html#cb155-43" tabindex="-1"></a></span>
-<span id="cb155-44"><a href="ml.html#cb155-44" tabindex="-1"></a><span class="co"># Print the prediction errors</span></span>
-<span id="cb155-45"><a href="ml.html#cb155-45" tabindex="-1"></a><span class="fu">print</span>(rmse1)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="ml.html#cb158-1" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb158-2"><a href="ml.html#cb158-2" tabindex="-1"></a><span class="co">#data transformation</span></span>
+<span id="cb158-3"><a href="ml.html#cb158-3" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb158-4"><a href="ml.html#cb158-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">salary_log =</span> <span class="fu">log</span>(salary))</span>
+<span id="cb158-5"><a href="ml.html#cb158-5" tabindex="-1"></a></span>
+<span id="cb158-6"><a href="ml.html#cb158-6" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb158-7"><a href="ml.html#cb158-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PTS_centered =</span> career_PTS <span class="sc">-</span> <span class="fu">mean</span>(career_PTS))</span>
+<span id="cb158-8"><a href="ml.html#cb158-8" tabindex="-1"></a></span>
+<span id="cb158-9"><a href="ml.html#cb158-9" tabindex="-1"></a><span class="co"># recode &quot;position&quot; variables&quot;</span></span>
+<span id="cb158-10"><a href="ml.html#cb158-10" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
+<span id="cb158-11"><a href="ml.html#cb158-11" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">position_num =</span> <span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">&quot;position_center&quot;</span>, <span class="st">&quot;position_pf&quot;</span>, <span class="st">&quot;position_sf&quot;</span>,</span>
+<span id="cb158-12"><a href="ml.html#cb158-12" tabindex="-1"></a>                                         <span class="st">&quot;position_pg&quot;</span>, <span class="st">&quot;position_sg&quot;</span>))),</span>
+<span id="cb158-13"><a href="ml.html#cb158-13" tabindex="-1"></a>         <span class="at">position_rec =</span> </span>
+<span id="cb158-14"><a href="ml.html#cb158-14" tabindex="-1"></a>           <span class="fu">case_when</span>(</span>
+<span id="cb158-15"><a href="ml.html#cb158-15" tabindex="-1"></a>             position_center<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;center&quot;</span>,</span>
+<span id="cb158-16"><a href="ml.html#cb158-16" tabindex="-1"></a>             position_pf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
+<span id="cb158-17"><a href="ml.html#cb158-17" tabindex="-1"></a>             position_sf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
+<span id="cb158-18"><a href="ml.html#cb158-18" tabindex="-1"></a>             position_pg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
+<span id="cb158-19"><a href="ml.html#cb158-19" tabindex="-1"></a>             position_sg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
+<span id="cb158-20"><a href="ml.html#cb158-20" tabindex="-1"></a>             position_sg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_pg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
+<span id="cb158-21"><a href="ml.html#cb158-21" tabindex="-1"></a>             position_pf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_sf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
+<span id="cb158-22"><a href="ml.html#cb158-22" tabindex="-1"></a>             <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Mixed&quot;</span>))</span>
+<span id="cb158-23"><a href="ml.html#cb158-23" tabindex="-1"></a></span>
+<span id="cb158-24"><a href="ml.html#cb158-24" tabindex="-1"></a><span class="co"># Create a train and test split</span></span>
+<span id="cb158-25"><a href="ml.html#cb158-25" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb158-26"><a href="ml.html#cb158-26" tabindex="-1"></a>train_indices <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(data_nba<span class="sc">$</span>salary, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb158-27"><a href="ml.html#cb158-27" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> data_nba[train_indices, ]</span>
+<span id="cb158-28"><a href="ml.html#cb158-28" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> data_nba[<span class="sc">-</span>train_indices, ]</span>
+<span id="cb158-29"><a href="ml.html#cb158-29" tabindex="-1"></a></span>
+<span id="cb158-30"><a href="ml.html#cb158-30" tabindex="-1"></a><span class="co"># Create a train control object with &quot;cross-validation&quot; for comparing results</span></span>
+<span id="cb158-31"><a href="ml.html#cb158-31" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>) </span>
+<span id="cb158-32"><a href="ml.html#cb158-32" tabindex="-1"></a></span>
+<span id="cb158-33"><a href="ml.html#cb158-33" tabindex="-1"></a><span class="co"># Train a linear regression model using caret</span></span>
+<span id="cb158-34"><a href="ml.html#cb158-34" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
+<span id="cb158-35"><a href="ml.html#cb158-35" tabindex="-1"></a>  salary <span class="sc">~</span> career_PTS <span class="sc">+</span> position_rec <span class="sc">+</span> season_start <span class="sc">+</span> age,</span>
+<span id="cb158-36"><a href="ml.html#cb158-36" tabindex="-1"></a>  <span class="at">data =</span> train_data,</span>
+<span id="cb158-37"><a href="ml.html#cb158-37" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb158-38"><a href="ml.html#cb158-38" tabindex="-1"></a>  <span class="at">trControl =</span> ctrl</span>
+<span id="cb158-39"><a href="ml.html#cb158-39" tabindex="-1"></a>)</span>
+<span id="cb158-40"><a href="ml.html#cb158-40" tabindex="-1"></a></span>
+<span id="cb158-41"><a href="ml.html#cb158-41" tabindex="-1"></a></span>
+<span id="cb158-42"><a href="ml.html#cb158-42" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
+<span id="cb158-43"><a href="ml.html#cb158-43" tabindex="-1"></a>  salary <span class="sc">~</span> career_PTS,</span>
+<span id="cb158-44"><a href="ml.html#cb158-44" tabindex="-1"></a>  <span class="at">data =</span> train_data,</span>
+<span id="cb158-45"><a href="ml.html#cb158-45" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb158-46"><a href="ml.html#cb158-46" tabindex="-1"></a>  <span class="at">trControl =</span> ctrl</span>
+<span id="cb158-47"><a href="ml.html#cb158-47" tabindex="-1"></a>)</span>
+<span id="cb158-48"><a href="ml.html#cb158-48" tabindex="-1"></a></span>
+<span id="cb158-49"><a href="ml.html#cb158-49" tabindex="-1"></a></span>
+<span id="cb158-50"><a href="ml.html#cb158-50" tabindex="-1"></a><span class="co"># Make predictions on the test set</span></span>
+<span id="cb158-51"><a href="ml.html#cb158-51" tabindex="-1"></a>predicted_salaries_m1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model1, <span class="at">newdata =</span> test_data)</span>
+<span id="cb158-52"><a href="ml.html#cb158-52" tabindex="-1"></a>predicted_salaries_m2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model2, <span class="at">newdata =</span> test_data)</span>
+<span id="cb158-53"><a href="ml.html#cb158-53" tabindex="-1"></a></span>
+<span id="cb158-54"><a href="ml.html#cb158-54" tabindex="-1"></a></span>
+<span id="cb158-55"><a href="ml.html#cb158-55" tabindex="-1"></a><span class="co"># Calculate prediction errors (e.g., root mean squared error)</span></span>
+<span id="cb158-56"><a href="ml.html#cb158-56" tabindex="-1"></a>rmse1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted_salaries_m1 <span class="sc">-</span> test_data<span class="sc">$</span>salary)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb158-57"><a href="ml.html#cb158-57" tabindex="-1"></a>rmse2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted_salaries_m2 <span class="sc">-</span> test_data<span class="sc">$</span>salary)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb158-58"><a href="ml.html#cb158-58" tabindex="-1"></a></span>
+<span id="cb158-59"><a href="ml.html#cb158-59" tabindex="-1"></a><span class="co"># Print the prediction errors</span></span>
+<span id="cb158-60"><a href="ml.html#cb158-60" tabindex="-1"></a><span class="fu">print</span>(rmse1)</span></code></pre></div>
 <pre><code>## [1] 3417602</code></pre>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="ml.html#cb157-1" tabindex="-1"></a><span class="fu">print</span>(rmse2)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="ml.html#cb160-1" tabindex="-1"></a><span class="fu">print</span>(rmse2)</span></code></pre></div>
 <pre><code>## [1] 3602973</code></pre>
 <p>Let us create a similar model from week <a href="lin-a.html#lin-a">8</a> where we have applied <code>log</code> transformation on <code>salary</code>, centered and squared on <code>career_PTS</code> .</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="ml.html#cb159-1" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
-<span id="cb159-2"><a href="ml.html#cb159-2" tabindex="-1"></a>  salary_log <span class="sc">~</span> PTS_centered <span class="sc">+</span> <span class="fu">I</span>(career_PTS<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> position_rec <span class="sc">+</span> season_start <span class="sc">+</span> age,</span>
-<span id="cb159-3"><a href="ml.html#cb159-3" tabindex="-1"></a>  <span class="at">data =</span> train_data,</span>
-<span id="cb159-4"><a href="ml.html#cb159-4" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb159-5"><a href="ml.html#cb159-5" tabindex="-1"></a>  <span class="at">trControl =</span> ctrl</span>
-<span id="cb159-6"><a href="ml.html#cb159-6" tabindex="-1"></a>)</span>
-<span id="cb159-7"><a href="ml.html#cb159-7" tabindex="-1"></a></span>
-<span id="cb159-8"><a href="ml.html#cb159-8" tabindex="-1"></a>predicted_salaries_m3 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model3, <span class="at">newdata =</span> test_data)</span>
-<span id="cb159-9"><a href="ml.html#cb159-9" tabindex="-1"></a>rmse3 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted_salaries_m3 <span class="sc">-</span> test_data<span class="sc">$</span>salary)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb159-10"><a href="ml.html#cb159-10" tabindex="-1"></a><span class="fu">print</span>(rmse3)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="ml.html#cb162-1" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
+<span id="cb162-2"><a href="ml.html#cb162-2" tabindex="-1"></a>  salary_log <span class="sc">~</span> PTS_centered <span class="sc">+</span> <span class="fu">I</span>(career_PTS<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> position_rec <span class="sc">+</span> season_start <span class="sc">+</span> age,</span>
+<span id="cb162-3"><a href="ml.html#cb162-3" tabindex="-1"></a>  <span class="at">data =</span> train_data,</span>
+<span id="cb162-4"><a href="ml.html#cb162-4" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb162-5"><a href="ml.html#cb162-5" tabindex="-1"></a>  <span class="at">trControl =</span> ctrl</span>
+<span id="cb162-6"><a href="ml.html#cb162-6" tabindex="-1"></a>)</span>
+<span id="cb162-7"><a href="ml.html#cb162-7" tabindex="-1"></a></span>
+<span id="cb162-8"><a href="ml.html#cb162-8" tabindex="-1"></a>predicted_salaries_m3 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model3, <span class="at">newdata =</span> test_data)</span>
+<span id="cb162-9"><a href="ml.html#cb162-9" tabindex="-1"></a>rmse3 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted_salaries_m3 <span class="sc">-</span> test_data<span class="sc">$</span>salary)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb162-10"><a href="ml.html#cb162-10" tabindex="-1"></a><span class="fu">print</span>(rmse3)</span></code></pre></div>
 <pre><code>## [1] 6084578</code></pre>
 <p>We can compare the <span class="math inline">\(R^2\)</span> for all these 3 models:</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="ml.html#cb161-1" tabindex="-1"></a>model1<span class="sc">$</span>results</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="ml.html#cb164-1" tabindex="-1"></a>model1<span class="sc">$</span>results</span></code></pre></div>
 <pre><code>##   intercept    RMSE  Rsquared     MAE   RMSESD RsquaredSD    MAESD
 ## 1      TRUE 3601123 0.4193535 2549809 146015.8 0.04638596 81079.79</code></pre>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="ml.html#cb163-1" tabindex="-1"></a>model2<span class="sc">$</span>results</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="ml.html#cb166-1" tabindex="-1"></a>model2<span class="sc">$</span>results</span></code></pre></div>
 <pre><code>##   intercept    RMSE  Rsquared     MAE   RMSESD RsquaredSD   MAESD
 ## 1      TRUE 3784280 0.3573984 2633451 141362.1 0.02909487 76175.3</code></pre>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="ml.html#cb165-1" tabindex="-1"></a>model3<span class="sc">$</span>results</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="ml.html#cb168-1" tabindex="-1"></a>model3<span class="sc">$</span>results</span></code></pre></div>
 <pre><code>##   intercept     RMSE  Rsquared       MAE     RMSESD RsquaredSD     MAESD
 ## 1      TRUE 1.043284 0.4033095 0.7920122 0.03552623 0.02326883 0.0216699</code></pre>
 <p><em><span class="math inline">\(R^2\)</span> is a measure of how well a model fits the data. It ranges from 0 to 1, with higher values indicating better fit.</em></p>
