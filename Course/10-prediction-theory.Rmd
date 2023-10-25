@@ -37,8 +37,8 @@ model, like the ones we have computed so far.
 ## R functions covered this week
 ::: {.functions}
 -   Making predictions
-    -   `predict()` : Base R function used to make predictions from a fitted model object. It takes a model object and a new data frame that contains the values of the independent variables for which predictions are desired. It returns a vector of predicted values for the dependent variable. Optionally it can also return confidence and prediction intervals.
-    -   `augment()` : Function from the `broom` package. It is used to add columns with predictions, residuals, and other information to the original data frame. It takes a model object and an optional new data frame for prediction. It returns a tibble with one row per observation and one column per variable or statistic. Optionally it can also return confidence and prediction intervals.
+    -   `predict()`: Base R function used to make predictions from a fitted model object. It takes a model object and a new data frame that contains the values of the independent variables for which predictions are desired. It returns a vector of predicted values for the dependent variable. Optionally it can also return confidence and prediction intervals.
+    -   `augment()`: Function from the `broom` package. It is used to add columns with predictions, residuals, and other information to the original data frame. It takes a model object and an optional new data frame for prediction. It returns a tibble with one row per observation and one column per variable or statistic. Optionally it can also return confidence and prediction intervals.
 -   Assessing the quality of predictions
     -   `mse()`: Function from the `Metrics` package. It is used to compute the *mean squared error* (MSE), the average of the squared differences between predicted and actual values.
     -   `rmse()`: Function from the `Metrics` package. It is used to compute the *root mean squared error* (RMSE), the root of the MSE. This gives us the average difference between predicted and actual values on the original scale of the outcome variable, which is easier to interpret.
