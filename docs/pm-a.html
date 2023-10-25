@@ -23,7 +23,7 @@
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-10-20" />
+<meta name="date" content="2023-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -297,12 +297,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="ml.html"><a href="ml.html#objectives-7"><i class="fa fa-check"></i><b>11.1</b> Objectives</a></li>
 <li class="chapter" data-level="11.2" data-path="ml.html"><a href="ml.html#r-functions-covered-this-week-3"><i class="fa fa-check"></i><b>11.2</b> R functions covered this week</a></li>
-<li class="chapter" data-level="11.3" data-path="ml.html"><a href="ml.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.3</b> Intro to Machine learning</a></li>
-<li class="chapter" data-level="11.4" data-path="ml.html"><a href="ml.html#further-resources-3"><i class="fa fa-check"></i><b>11.4</b> Further resources</a></li>
+<li class="chapter" data-level="11.3" data-path="ml.html"><a href="ml.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.3</b> Intro to Machine Learning</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="ml.html"><a href="ml.html#training--and-testset"><i class="fa fa-check"></i><b>11.3.1</b> Training- and testset</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="ml.html"><a href="ml.html#our-baseline-model"><i class="fa fa-check"></i><b>11.4</b> Our baseline model</a></li>
+<li class="chapter" data-level="11.5" data-path="ml.html"><a href="ml.html#setting-up-tidymodels"><i class="fa fa-check"></i><b>11.5</b> Setting up tidymodels</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="ml.html"><a href="ml.html#splitting-the-data"><i class="fa fa-check"></i><b>11.5.1</b> Splitting the data</a></li>
+<li class="chapter" data-level="11.5.2" data-path="ml.html"><a href="ml.html#defining-the-recipe"><i class="fa fa-check"></i><b>11.5.2</b> Defining the recipe</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="ml.html"><a href="ml.html#linear-regression"><i class="fa fa-check"></i><b>11.6</b> Linear regression</a></li>
+<li class="chapter" data-level="11.7" data-path="ml.html"><a href="ml.html#random-forest"><i class="fa fa-check"></i><b>11.7</b> Random forest</a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="ml.html"><a href="ml.html#tuning-the-forest"><i class="fa fa-check"></i><b>11.7.1</b> Tuning the forest</a></li>
+</ul></li>
+<li class="chapter" data-level="11.8" data-path="ml.html"><a href="ml.html#last-fit"><i class="fa fa-check"></i><b>11.8</b> Last fit</a></li>
+<li class="chapter" data-level="11.9" data-path="ml.html"><a href="ml.html#going-forward"><i class="fa fa-check"></i><b>11.9</b> Going forward</a></li>
+<li class="chapter" data-level="11.10" data-path="ml.html"><a href="ml.html#further-resources-3"><i class="fa fa-check"></i><b>11.10</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="pm-a.html"><a href="pm-a.html"><i class="fa fa-check"></i><b>12</b> Prediction &amp; Machine Learning - Exercise</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#prediction-machine-learning---exercise"><i class="fa fa-check"></i><b>12.1</b> Prediction &amp; Machine Learning - Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="log-est.html"><a href="log-est.html"><i class="fa fa-check"></i><b>13</b> Logistic regression</a>
 <ul>
@@ -341,16 +357,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="pm-a" class="section level1 hasAnchor" number="12">
 <h1><span class="header-section-number"> 12</span> Prediction &amp; Machine Learning - Exercise<a href="pm-a.html#pm-a" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><strong>Still WIP!</strong></p>
-<div id="exercises" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> Exercises<a href="pm-a.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="prediction-machine-learning---exercise" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Prediction &amp; Machine Learning - Exercise<a href="pm-a.html#prediction-machine-learning---exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this exercise, you will again use the Boston Housing data set. This
+time the goal is to make accurate predictions for the median value of
+houses based on various features of the houses and their surroundings.</p>
+<p>For an overview on the data set see <a href="eda-2.html#eda-2">session 3</a>.</p>
+<p>Prepare by creating a new R Markdown file. Write all solutions in this
+file using code chunks as well as text to structure the file (headers)
+and answer the questions. Do not forget to save the file in the format
+<code>your_name_exercise_3.Rmd</code>. You will have to turn in this file to the
+lecturers through Moodle. Write a first code chunk in which you load all
+necessary packages and import the data. For a reminder see <a href="eda-2.html#eda-2">tasks 1 &amp; 2
+from the first exercise</a>.</p>
 <div class="assignx">
 <ul>
-<li><p><strong>Task 1:</strong> How the number of rooms in a house affects its price, you also have to consider how the crime rate might be influencing this relationship. Estimate and report the average causal mediation effect (ACME), the average direct effect (ADE), the total effect, and the proportion mediated. Explain what these effects mean and how to interpret them.</p></li>
-<li><p><strong>Task 2:</strong> Create or show a data frame with the coefficients, standard errors, p-values, and confidence intervals of a linear regression model that predicts the median value of a home (<code>MEDV</code>) based on the nitric oxides concentration (<code>NOX</code>) and the average number of rooms per dwelling (<code>RM</code>).</p></li>
-<li><p><strong>Task 3:</strong> Create a data frame with the R-squared, adjusted R-squared, root mean squared error, and other summary statistics of the linear regression model from task 1. Explain the output.</p></li>
-<li><p><strong>Task 4:</strong> Generate predicted values and prediction intervals for the median value of a home (<code>MEDV</code>) based on the linear regression model from task 1, and add them as new columns to the test data set. Create a train-test split of the data set with 70% of the data for training and 30% for testing.</p></li>
-<li><p><strong>Task 5:</strong> Create a data frame with the observed and predicted values, residuals, and other diagnostic measures for the linear regression model from task 1. Create a plot of the predicted values versus the observed values, with prediction intervals as ribbons. Calculate the root mean squared error of the predictions on the test data set.</p></li>
+<li><p><strong>Task 1:</strong> Rerun your best linear regression model from exercise 2
+with <code>medv</code> as the outcome variable.</p></li>
+<li><p><strong>Task 2:</strong> Use <code>augment()</code> from the <code>broom</code> package to add the
+predicted value for each observation.</p></li>
+<li><p><strong>Task 3:</strong> Calculate the <span class="math inline">\(R^2\)</span> and RSME values for your model. What
+do these values tell you about the quality of your predictions?</p></li>
+<li><p><strong>Task 4:</strong> Prepare the data set for machine learning with
+<code>tidymodels</code> by dividing the data into training and test set. Then
+set up folds for a k-fold crossvalidation.</p></li>
+<li><p><strong>Task 5:</strong> Think about additional variables that could be useful
+for making accurate predictions on the median value of a house.
+Define a <code>recipe()</code> containing your expanded model formula.</p></li>
+<li><p><strong>Task 6:</strong> Prepare a random forest algorithm using the default
+values for all hyperparameters, i.e. just using <code>rand_forest()</code>
+without any arguments. Set the engine to <code>ranger</code> and the mode to
+<code>"regression"</code>. Combine the recipe and the prepared algorithm
+into a workflow object.</p></li>
+<li><p><strong>Task 7:</strong> Run the model using <code>fit_resamples()</code>. Inspect the
+performance metrics. Compare them to the metrics from task 3. Can
+the new model make better predictions?</p></li>
+<li><p><strong>Bonus task:</strong> Tune the <code>min_n</code> hyperparameter for your random
+forest model. Inspect the results and select a sensible value. Use
+this for your last fit. What do the performance metrics tell you?
+were you able to improve on the results from task 7? Did you overfit?</p></li>
 </ul>
 </div>
 

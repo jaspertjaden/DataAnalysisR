@@ -23,7 +23,7 @@
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-10-20" />
+<meta name="date" content="2023-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -297,12 +297,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="ml.html"><a href="ml.html#objectives-7"><i class="fa fa-check"></i><b>11.1</b> Objectives</a></li>
 <li class="chapter" data-level="11.2" data-path="ml.html"><a href="ml.html#r-functions-covered-this-week-3"><i class="fa fa-check"></i><b>11.2</b> R functions covered this week</a></li>
-<li class="chapter" data-level="11.3" data-path="ml.html"><a href="ml.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.3</b> Intro to Machine learning</a></li>
-<li class="chapter" data-level="11.4" data-path="ml.html"><a href="ml.html#further-resources-3"><i class="fa fa-check"></i><b>11.4</b> Further resources</a></li>
+<li class="chapter" data-level="11.3" data-path="ml.html"><a href="ml.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.3</b> Intro to Machine Learning</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="ml.html"><a href="ml.html#training--and-testset"><i class="fa fa-check"></i><b>11.3.1</b> Training- and testset</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="ml.html"><a href="ml.html#our-baseline-model"><i class="fa fa-check"></i><b>11.4</b> Our baseline model</a></li>
+<li class="chapter" data-level="11.5" data-path="ml.html"><a href="ml.html#setting-up-tidymodels"><i class="fa fa-check"></i><b>11.5</b> Setting up tidymodels</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="ml.html"><a href="ml.html#splitting-the-data"><i class="fa fa-check"></i><b>11.5.1</b> Splitting the data</a></li>
+<li class="chapter" data-level="11.5.2" data-path="ml.html"><a href="ml.html#defining-the-recipe"><i class="fa fa-check"></i><b>11.5.2</b> Defining the recipe</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="ml.html"><a href="ml.html#linear-regression"><i class="fa fa-check"></i><b>11.6</b> Linear regression</a></li>
+<li class="chapter" data-level="11.7" data-path="ml.html"><a href="ml.html#random-forest"><i class="fa fa-check"></i><b>11.7</b> Random forest</a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="ml.html"><a href="ml.html#tuning-the-forest"><i class="fa fa-check"></i><b>11.7.1</b> Tuning the forest</a></li>
+</ul></li>
+<li class="chapter" data-level="11.8" data-path="ml.html"><a href="ml.html#last-fit"><i class="fa fa-check"></i><b>11.8</b> Last fit</a></li>
+<li class="chapter" data-level="11.9" data-path="ml.html"><a href="ml.html#going-forward"><i class="fa fa-check"></i><b>11.9</b> Going forward</a></li>
+<li class="chapter" data-level="11.10" data-path="ml.html"><a href="ml.html#further-resources-3"><i class="fa fa-check"></i><b>11.10</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="pm-a.html"><a href="pm-a.html"><i class="fa fa-check"></i><b>12</b> Prediction &amp; Machine Learning - Exercise</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#prediction-machine-learning---exercise"><i class="fa fa-check"></i><b>12.1</b> Prediction &amp; Machine Learning - Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="log-est.html"><a href="log-est.html"><i class="fa fa-check"></i><b>13</b> Logistic regression</a>
 <ul>
@@ -378,8 +394,8 @@ model, like the ones we have computed so far.</p>
 <ul>
 <li>Making predictions
 <ul>
-<li><code>predict()</code> : Base R function used to make predictions from a fitted model object. It takes a model object and a new data frame that contains the values of the independent variables for which predictions are desired. It returns a vector of predicted values for the dependent variable. Optionally it can also return confidence and prediction intervals.</li>
-<li><code>augment()</code> : Function from the <code>broom</code> package. It is used to add columns with predictions, residuals, and other information to the original data frame. It takes a model object and an optional new data frame for prediction. It returns a tibble with one row per observation and one column per variable or statistic. Optionally it can also return confidence and prediction intervals.</li>
+<li><code>predict()</code>: Base R function used to make predictions from a fitted model object. It takes a model object and a new data frame that contains the values of the independent variables for which predictions are desired. It returns a vector of predicted values for the dependent variable. Optionally it can also return confidence and prediction intervals.</li>
+<li><code>augment()</code>: Function from the <code>broom</code> package. It is used to add columns with predictions, residuals, and other information to the original data frame. It takes a model object and an optional new data frame for prediction. It returns a tibble with one row per observation and one column per variable or statistic. Optionally it can also return confidence and prediction intervals.</li>
 </ul></li>
 <li>Assessing the quality of predictions
 <ul>

@@ -120,7 +120,7 @@
 
 \title{Data Analysis with R for Social Scientists}
 \author{Jakob Tures \& Jasper Tjaden}
-\date{2023-10-20}
+\date{2023-10-26}
 
 \begin{document}
 \maketitle
@@ -4524,9 +4524,9 @@ model, like the ones we have computed so far.
   \begin{itemize}
   \tightlist
   \item
-    \texttt{predict()} : Base R function used to make predictions from a fitted model object. It takes a model object and a new data frame that contains the values of the independent variables for which predictions are desired. It returns a vector of predicted values for the dependent variable. Optionally it can also return confidence and prediction intervals.
+    \texttt{predict()}: Base R function used to make predictions from a fitted model object. It takes a model object and a new data frame that contains the values of the independent variables for which predictions are desired. It returns a vector of predicted values for the dependent variable. Optionally it can also return confidence and prediction intervals.
   \item
-    \texttt{augment()} : Function from the \texttt{broom} package. It is used to add columns with predictions, residuals, and other information to the original data frame. It takes a model object and an optional new data frame for prediction. It returns a tibble with one row per observation and one column per variable or statistic. Optionally it can also return confidence and prediction intervals.
+    \texttt{augment()}: Function from the \texttt{broom} package. It is used to add columns with predictions, residuals, and other information to the original data frame. It takes a model object and an optional new data frame for prediction. It returns a tibble with one row per observation and one column per variable or statistic. Optionally it can also return confidence and prediction intervals.
   \end{itemize}
 \item
   Assessing the quality of predictions
@@ -5284,7 +5284,13 @@ research will be more comparable to other research using the same threshold.
 \hypertarget{ml}{%
 \chapter{Machine Learning}\label{ml}}
 
-\textbf{Still WIP!}
+In the \protect\hyperlink{pm-t}{last session} our goal was to predict the salary a NBA player
+receives based on the position they play, the points they make per game on
+average, their age, their team and the season. While we were able to make some
+predictions, the results indicated that the model can and should be improved on.
+We have now arrived at the entry gates to machine learning (ML). ML is also all
+about prediction. The goal is to train a model that can predict an outcome with
+the highest accuracy, a natural fit for our endeavour.
 
 \hypertarget{objectives-7}{%
 \section{Objectives}\label{objectives-7}}
@@ -5292,212 +5298,949 @@ research will be more comparable to other research using the same threshold.
 \begin{itemize}
 \tightlist
 \item
-  here to be filled
+  Understanding the Machine Learning approach to data analysis
+\item
+  Using the \emph{tidymodels} framework to run a linear regression and a random forest model
+\item
+  Assessing and comparing model performance
+\item
+  Tuning and choosing a sensible model
 \end{itemize}
 
 \hypertarget{r-functions-covered-this-week-3}{%
 \section{R functions covered this week}\label{r-functions-covered-this-week-3}}
 
-TBD
+\begin{itemize}
+\tightlist
+\item
+  \texttt{set.seed()}: A base R function that sets the starting point for the \emph{Random Number Generator} (RNG). Used to make steps that involve random elements as sampling or computing a random forest model reproducible.
+\item
+  \texttt{tidymodels} functions used for handling the data:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{initial\_split()}: Splis the data into training and test set.
+  \item
+    \texttt{training()} \& \texttt{testing()}: Extracts the training and test set from a split object.
+  \item
+    \texttt{vfold\_cv()}: Creates a training set with k-fold cross validation.
+  \end{itemize}
+\item
+  \texttt{recipe()}: \texttt{tidymodels} function that creates a recipe used in the machine learning workflow. Holds the model formula and additional optional pre-processing steps.
+\item
+  \texttt{tidymodels} functions used to set up an algorithm:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{linear\_reg()}: Sets up a linear regression algorithm to be used in the machine learning workflow.
+  \item
+    \texttt{rand\_forest()}: Sets up a random forest algorithm to be used in the machine learning workflow.
+  \item
+    \texttt{set\_engine()}: Chooses the function/package that actually implements the algorithm.
+  \item
+    \texttt{set\_mode()}: Chooses between ``regression'' and ``classification'' mode for the chosen algorithm.
+  \end{itemize}
+\item
+  \texttt{tidymodels} functions used to set up a workflow:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{worfklow()}: Creates an empty workflow.
+  \item
+    \texttt{add\_recipe()} \& \texttt{add\_model()}: Used for adding the recipe and algorithm to the workflow.
+  \end{itemize}
+\item
+  \texttt{fit\_resamples()}: \texttt{tidymodels} function used to fit a model with k-fold cross validation.
+\item
+  \texttt{collect\_metrics()}: \texttt{tidymodels} function used to output the performance metrics for a fitted model.
+\item
+  \texttt{collect\_predictions()}: \texttt{tidymodels} function used to output the predictions a fitted model made for the data.
+\item
+  \texttt{tidymodels} functions used for tuning a model:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{tune()}: Sets up a hyperparameter to be tuned.
+  \item
+    \texttt{grid\_regular()}: Creates a grid with values to be used during tuning.
+  \item
+    \texttt{tune\_grid()}: Fits the model using the specified values for chosen hyperparameters.
+  \item
+    \texttt{show\_best()}: Outputs the fitted models and their hyperparameter values by a chosen performance metric.
+  \item
+    \texttt{autoplot()}: Used on an object containing fitted models from tuning, it automatically plots the performance metrics by hyperparameter values.
+  \end{itemize}
+\item
+  \texttt{last\_fit()}: \texttt{tidymodels} function used to fit the model on the training data and predict on the testing data.
+\item
+  \texttt{extract\_fit\_parsnip()}: \texttt{tidymodels} function used to extract the model object from a fitted model, e.g.~from \texttt{final\_fit()}, for further use, i.e.~predictig on new data.
+\end{itemize}
 
 \hypertarget{intro-to-machine-learning}{%
-\section{Intro to Machine learning}\label{intro-to-machine-learning}}
+\section{Intro to Machine Learning}\label{intro-to-machine-learning}}
 
-We have now arrived at the entry gates to machine learning. We will conduct a very basic and simple machine learning routine using linear regression. The main difference between simple prediction and Machine Learning is that the sample is first divided into a training and a test dataset at random. The model is than tuned based on, let's say, 80\% of the sample. When the model is ready, it is tested based on the 20\% remaining sample. The prediction produced with the model are then compared with the actual values in the test dataset. There is of course more nuance to all this, but this is basically the idea.
+In general there are two types of machine learning - there are actually more,
+but let us not overcomplicate things for now - \emph{supervised} and \emph{unsupervised}
+ML. In unsupervised machine learning the algorithm tries to identify structures
+and patterns in the data and group them. We do not have an outcome variable
+with known values. Rather the outcome variable is the grouping and it is
+learned from the data itself. For our NBA data we could for example
+try to find groups of players that are similar to each other based on several
+characteristics. This grouping may go beyond the position they play on and shed
+further light on commonalities of players that receive comparable salaries. But
+this is not what we are going to do today. We are going to use supervised ML.
 
-Let's use the \texttt{caret} package, a common package for machine learning.
+In supervised machine learning we work with a known outcome variable, salary in
+our case. The goal of the algorithm is to learn the relationship between the
+independent and the outcome variables from the data where the true value is
+known and then predict the outcome for new cases where the true value is not
+known. This is basically the same we tried to achieve last week.
+
+Let us inspect an example to clear up some of the confusion. Spam filters are
+machine learning models. Based on a large number of examples, many many E-mails
+for which we know if they are spam or not, the model learns which words in a
+mail increase the chance of it being spam and which increase the chance of it
+being a regular E-mail.
+If we now present a new mail to the model, it examines all the
+words in the text and computes the probability of this being a spam mail based
+on the learned relationships between the words and the outcome, spam or no spam.
+If the probability is high enough, the model flags the mail as spam. This is a
+\emph{classification} problem. Deciding whether an observation belongs to a specific
+group or not.
+
+Supervised machine learning can also be applied to \emph{regression} problems,
+predicting the actual value of an outcome. This is what we need when we want to
+predict the salary of NBA players based on their characteristics.
+
+At this point, it is still unclear what the actual differences between using a
+linear regression and a supervised machine learning algorithm for a regression
+problem are.
+
+While there are some differences in the way a ML algorithm achieves its best
+solution to how a linear regression does, this is not important to us here.
+The key differences for us lie in the available algorithms, of which some are
+exclusive for machine learning, and in the approach machine learning takes to
+preparing and analysing the data.
+
+There are many machine learning algorithms available today and they are getting
+more. Some are exclusive to classification problems, some to regression problems
+and some can do both. All have their advantages and disadvantages so it is
+important to choose wisely. In this introduction we will limit ourselves to two
+algorithms. First we will use \emph{linear regression}. Wait, that is what we have
+been doing all along! You are right. Linear regression actually works the same
+in the machine learning context but the logic of applying it differs, as we will
+see below. The second algorithm we will use is called a \emph{random forest}. This
+will work very differently from linear regression, but more on that later.
+Among the other common algorithms used for regression problems are
+\emph{support vector machines} (SVM) and different variants of linear regression like
+\emph{lasso-} and \emph{ridge-regression}.
+
+This leaves the second key difference, the approach we take to preparing and
+analysing the data in the machine learning context.
+
+\hypertarget{training--and-testset}{%
+\subsection{Training- and testset}\label{training--and-testset}}
+
+When we conducted our linear regressions over the last sessions our approach was
+to take the whole of the data and compute the model based on all observations.
+In supervised machine learning we take a different approach.
+We will take our data and split it into a \emph{training} and a \emph{test set}.
+
+The training set will be used to actually \emph{train} the model. It will learn the
+relationships between the outcome and the independent variable based solely on
+this subset of observations.
+
+The test set is held back until our model is ready. Only then we can use it to
+assess the quality of our predictions. As we know the true values for the
+outcome variable in the test set, we can compare the predictions with the
+actual values. Why do we go this extra route? In the last week we tested the
+quality of our predictions on the same data the model learned from, why do we
+not do this now?
+
+The ultimate goal of machine learning is to predict the outcome for new
+observations for which we do not know the true values. We have no way to assess
+if these predictions were correct because we do not know the correct value.
+So we do have to test our model on data for which we know the true value.
+But if we now train and test our model on the same data, we can potentially run
+into a problem called \emph{overfitting}.
+The more sophisticated our algorithm, the more we may be
+able to perfectly or near perfectly describe all the relationships in our data.
+Imagine a regression line that goes exactly through every data point. The
+problem with this is that in the new data we want to predict on, the data points
+will not fall exactly as they did in the data the model was trained on. They
+will distribute differently and our overfitted model that is super-specific to
+the training data fails to make accurate predictions for the new data. What we
+want is a model that describes the relationships in the data accurately,
+but that is not overly specific to the training data; that is able to generalise
+to new data.
+
+For this reason the data is split into training and test set. We train the model
+on the training data and when we are done, we test it \emph{one time}, read
+\textbf{ONE TIME}, on the test set.
+The test set is essentially new data to the model; it has not seen it before. If
+it performs well on this new data for which we know the true values, we can be
+confident that it will perform comparably well on completely new data.
+
+This also means that the test set can only be used once. If we see that the
+performance on the test set is lacking, change some parts of the model and apply
+it to the test set again, we are essentially training on the test set.
+But what if we still want to optimise our model? We could for example change the
+algorithm, add variables or tune \emph{hyperparameters} (more on that later). We can
+not do this with the simple training/test split, as the test set shall not be
+used for optimising. What we can do instead is use \emph{k-fold crossvalidation}.
+With this method we split up our training set into \(k\), often \(10\), folds.
+During model training \(9\) of these \(10\) folds are used for training and \(1\) is
+left out to evaluate the performance of the model, i.e.~the quality of its
+predictions. This is then repeated \(9\) times with a different fold that is held
+back for evaluation. In this way we can train and evaluate the model on the
+training set, leaving the test set untouched.
+
+This was a lot, but we believe it will get clearer once we actually apply it.
+
+\hypertarget{our-baseline-model}{%
+\section{Our baseline model}\label{our-baseline-model}}
+
+In the last session we constructed a linear regression model with the goal of
+making predictions. Can we improve on this model? To assess this we should
+recompute it here and again inspect the measures for model comparison.
+
+First we have to load the data and preprocess it. Here we transform \texttt{salary} to
+a logarithmic scale and now also bake the squared version of the point average
+into the data set. As we are planning to use all the performance stats for the
+players in the later models, we also transform those statistics that are still
+saved as character variables into numerical ones. \texttt{team} is transformed into a
+factor variable because some algorithms are not good in handling character
+variables. We will also need complete observations, i.e.~observations without
+any missing values. As the variables relating to college and the draft contain
+many missings, we remove them before using \texttt{na.omit()} to delete all
+observations that have any missings left.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(caret)}
-\CommentTok{\#data transformation}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{load}\NormalTok{(}\StringTok{"../datasets/nba/data\_nba.RData"}\NormalTok{)}
+
 \NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{salary\_log =} \FunctionTok{log}\NormalTok{(salary))}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{salary\_log =} \FunctionTok{log}\NormalTok{(salary),}
+         \AttributeTok{career\_PTS\_2 =}\NormalTok{ career\_PTS }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{,}
+         \StringTok{\textasciigrave{}}\AttributeTok{career\_FG\%}\StringTok{\textasciigrave{}} \OtherTok{=} \FunctionTok{as.numeric}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{career\_FG\%}\StringTok{\textasciigrave{}}\NormalTok{),}
+         \StringTok{\textasciigrave{}}\AttributeTok{career\_FG3\%}\StringTok{\textasciigrave{}} \OtherTok{=} \FunctionTok{as.numeric}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{career\_FG3\%}\StringTok{\textasciigrave{}}\NormalTok{),}
+         \StringTok{\textasciigrave{}}\AttributeTok{career\_FT\%}\StringTok{\textasciigrave{}} \OtherTok{=} \FunctionTok{as.numeric}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{career\_FT\%}\StringTok{\textasciigrave{}}\NormalTok{),}
+         \AttributeTok{career\_PER =} \FunctionTok{as.numeric}\NormalTok{(career\_PER),}
+         \AttributeTok{career\_TRB =} \FunctionTok{as.numeric}\NormalTok{(career\_TRB),}
+         \StringTok{\textasciigrave{}}\AttributeTok{career\_eFG\%}\StringTok{\textasciigrave{}} \OtherTok{=} \FunctionTok{as.numeric}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{career\_eFG\%}\StringTok{\textasciigrave{}}\NormalTok{),}
+         \AttributeTok{team =} \FunctionTok{as.factor}\NormalTok{(team)}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(college}\SpecialCharTok{:}\NormalTok{draft\_year)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{na.omit}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
 
-\NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{PTS\_centered =}\NormalTok{ career\_PTS }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(career\_PTS))}
+We can now recompute our best model from last session.
 
-\CommentTok{\# recode "position" variables"}
-\NormalTok{data\_nba }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{position\_num =} \FunctionTok{rowSums}\NormalTok{(}\FunctionTok{across}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"position\_center"}\NormalTok{, }\StringTok{"position\_pf"}\NormalTok{, }\StringTok{"position\_sf"}\NormalTok{,}
-                                         \StringTok{"position\_pg"}\NormalTok{, }\StringTok{"position\_sg"}\NormalTok{))),}
-         \AttributeTok{position\_rec =} 
-           \FunctionTok{case\_when}\NormalTok{(}
-\NormalTok{             position\_center}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"center"}\NormalTok{,}
-\NormalTok{             position\_pf}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"Forward"}\NormalTok{,}
-\NormalTok{             position\_sf}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"Forward"}\NormalTok{,}
-\NormalTok{             position\_pg}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"Guard"}\NormalTok{,}
-\NormalTok{             position\_sg}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"Guard"}\NormalTok{,}
-\NormalTok{             position\_sg}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_pg}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{2} \SpecialCharTok{\textasciitilde{}} \StringTok{"Guard"}\NormalTok{,}
-\NormalTok{             position\_pf}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_sf}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ position\_num}\SpecialCharTok{==}\DecValTok{2} \SpecialCharTok{\textasciitilde{}} \StringTok{"Forward"}\NormalTok{,}
-             \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \StringTok{"Mixed"}\NormalTok{))}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{last\_week }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(salary\_log }\SpecialCharTok{\textasciitilde{}}\NormalTok{ career\_PTS }\SpecialCharTok{+}\NormalTok{ career\_PTS\_2 }\SpecialCharTok{+} 
+\NormalTok{                  position\_center }\SpecialCharTok{+}\NormalTok{ position\_sf }\SpecialCharTok{+}\NormalTok{ position\_pf }\SpecialCharTok{+}\NormalTok{ position\_sg }\SpecialCharTok{+}\NormalTok{ position\_pg }\SpecialCharTok{+}
+\NormalTok{                  age }\SpecialCharTok{+}\NormalTok{ team }\SpecialCharTok{+}\NormalTok{ season\_start,}
+                \AttributeTok{data =}\NormalTok{ data\_nba)}
+\end{Highlighting}
+\end{Shaded}
 
-\CommentTok{\# Create a train and test split}
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)  }\CommentTok{\# For reproducibility}
-\NormalTok{train\_indices }\OtherTok{\textless{}{-}} \FunctionTok{createDataPartition}\NormalTok{(data\_nba}\SpecialCharTok{$}\NormalTok{salary, }\AttributeTok{p =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{list =} \ConstantTok{FALSE}\NormalTok{)}
-\NormalTok{train\_data }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba[train\_indices, ]}
-\NormalTok{test\_data }\OtherTok{\textless{}{-}}\NormalTok{ data\_nba[}\SpecialCharTok{{-}}\NormalTok{train\_indices, ]}
+We are not interested in any coefficients right now and only want to inspect the
+model fit statistics to have a baseline we can compare our machine learning
+models to. In particular we are interested in the \(R^2\) and the RSME. Both
+measures are easily obtainable in the machine learning framework we will use and
+serve our purpose well.
 
-\CommentTok{\# Create a train control object with "cross{-}validation" for comparing results}
-\NormalTok{ctrl }\OtherTok{\textless{}{-}} \FunctionTok{trainControl}\NormalTok{(}\AttributeTok{method =} \StringTok{"cv"}\NormalTok{) }
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(broom)}
 
-\CommentTok{\# Train a linear regression model using caret}
-\NormalTok{model1 }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(}
-\NormalTok{  salary }\SpecialCharTok{\textasciitilde{}}\NormalTok{ career\_PTS }\SpecialCharTok{+}\NormalTok{ position\_rec }\SpecialCharTok{+}\NormalTok{ season\_start }\SpecialCharTok{+}\NormalTok{ age,}
-  \AttributeTok{data =}\NormalTok{ train\_data,}
-  \AttributeTok{method =} \StringTok{"lm"}\NormalTok{,}
-  \AttributeTok{trControl =}\NormalTok{ ctrl}
+\FunctionTok{glance}\NormalTok{(last\_week)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 12
+##   r.squared adj.r.squared sigma statistic p.value    df  logLik    AIC    BIC
+##       <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>   <dbl>  <dbl>  <dbl>
+## 1     0.407         0.405 0.999      145.       0    44 -13172. 26435. 26764.
+## # i 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(Metrics)}
+
+\NormalTok{data\_nba\_last\_week }\OtherTok{\textless{}{-}} \FunctionTok{augment}\NormalTok{(last\_week, }\AttributeTok{data =}\NormalTok{ data\_nba)}
+
+\FunctionTok{rmse}\NormalTok{(data\_nba\_last\_week}\SpecialCharTok{$}\NormalTok{.fitted, data\_nba\_last\_week}\SpecialCharTok{$}\NormalTok{salary\_log)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9966217
+\end{verbatim}
+
+We achieved an \(R^2\) of about \(40.7\) and an RSME just shy of \(1\). This will be
+our baseline to compare all further models to.
+
+\hypertarget{setting-up-tidymodels}{%
+\section{Setting up tidymodels}\label{setting-up-tidymodels}}
+
+For this introduction to machine learning we will use the \texttt{tidymodels}
+framework. There are many packages for machine learning available, often
+specific to one algorithm. The beauty of \texttt{tidymodels} is that it brings them
+all together under one framework. This means that we do not have to learn the
+syntax for each of these packages. We just have to swap out the algorithm in
+our code and everything else can stay the same when switching between those.
+\texttt{tidymodels} also handles the split into training and test set as well as the
+crossvalidation for us and all output is presented in the same reliable way.
+
+\hypertarget{splitting-the-data}{%
+\subsection{Splitting the data}\label{splitting-the-data}}
+
+Let us start by splitting our data into both sets. This split is random, meaning
+that every time we repeat the split, different observations will be placed in
+the sets. As we want our work to be reproducible, one of the pillars of good
+scientific work, we have to ensure that the split always places the same
+observations in each set. We can do this by setting a seed right before
+splitting. \texttt{set.seed()}, with an arbitrarily chosen number between the
+brackets, sets the starting point of the \emph{random number generator} in R. If we
+set the seed and then split, then set the seed and split again, we will have the
+exact same result every time. The split itself is conducted with
+\texttt{initial\_split()} applied to our data object. As a default the function places
+\(75\%\) of observations into training and the remainder into the test set. We
+could change this ratio via an argument, but for our purposes the split looks
+good. We then extract the actual sets using \texttt{training()} and \texttt{testing()} on the
+split respectively.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidymodels)}
+
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{nba\_split }\OtherTok{\textless{}{-}} \FunctionTok{initial\_split}\NormalTok{(data\_nba)}
+
+\NormalTok{nba\_train }\OtherTok{\textless{}{-}} \FunctionTok{training}\NormalTok{(nba\_split)}
+\NormalTok{nba\_test }\OtherTok{\textless{}{-}} \FunctionTok{testing}\NormalTok{(nba\_split)}
+\end{Highlighting}
+\end{Shaded}
+
+To set up the folds for crossvalidation, we use \texttt{vfold\_cv()} applied to the
+training set. The default number of folds is \(10\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nba\_folds }\OtherTok{\textless{}{-}} \FunctionTok{vfold\_cv}\NormalTok{(nba\_train)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{defining-the-recipe}{%
+\subsection{Defining the recipe}\label{defining-the-recipe}}
+
+We also have to write a \texttt{recipe()} for the model. At the very least the recipe
+has to include the model formula and the data it should be applied to. The
+syntax for the model formula works the same way as it does with \texttt{lm()}. We could
+also add additional so called ``steps'' to the model. These mainly are used to
+transform variables that are used in the recipe. For example we could use
+\texttt{step\_log()} to logarithmise our outcome variable or \texttt{step\_string2factor()} to
+transform \texttt{team} into a factor variable. We have already taken care of all
+transformations above
+but the possibility to include them in the recipe is there. This can be
+especially helpful when we want to include these steps in some models but not in
+others. If we were not already sure that we want \texttt{salary} to be logarithmised,
+we could set up one recipe were the step is included and one were it is not and
+see what happens in our models using different recipes.
+
+While the syntax is the same as with \texttt{lm()}, we expanded our formula somewhat.
+Besides the variables we are already familiar with, we also included all
+additional performance stats the data set offers. The performance of a player
+will be relevant to the salary they receive. In general better players should
+earn more. Up to now we only included the point average as a measure of
+performance in our models. While points will be a central measure, other
+measures of performance may also substantially impact the received salary,
+especially for positions that do not score much but fill other roles in the
+team.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nba\_rec }\OtherTok{\textless{}{-}} \FunctionTok{recipe}\NormalTok{(salary\_log }\SpecialCharTok{\textasciitilde{}}\NormalTok{ age }\SpecialCharTok{+}\NormalTok{ career\_PTS }\SpecialCharTok{+}\NormalTok{ career\_PTS\_2 }\SpecialCharTok{+} 
+\NormalTok{                    career\_AST }\SpecialCharTok{+} \StringTok{\textasciigrave{}}\AttributeTok{career\_FG\%}\StringTok{\textasciigrave{}} \SpecialCharTok{+} \StringTok{\textasciigrave{}}\AttributeTok{career\_FG3\%}\StringTok{\textasciigrave{}} \SpecialCharTok{+} \StringTok{\textasciigrave{}}\AttributeTok{career\_FT\%}\StringTok{\textasciigrave{}} \SpecialCharTok{+}
+\NormalTok{                    career\_TRB }\SpecialCharTok{+}\NormalTok{ career\_WS }\SpecialCharTok{+} \StringTok{\textasciigrave{}}\AttributeTok{career\_eFG\%}\StringTok{\textasciigrave{}} \SpecialCharTok{+}
+\NormalTok{                    season\_start }\SpecialCharTok{+}\NormalTok{ team }\SpecialCharTok{+}
+\NormalTok{                    position\_center }\SpecialCharTok{+}\NormalTok{ position\_sf }\SpecialCharTok{+}\NormalTok{ position\_pf }\SpecialCharTok{+}\NormalTok{ position\_sg }\SpecialCharTok{+}\NormalTok{ position\_pg,}
+                  \AttributeTok{data =}\NormalTok{ nba\_train)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{linear-regression}{%
+\section{Linear regression}\label{linear-regression}}
+
+Having built a recipe, we also have to specify the algorithm to be used.
+The first algorithm we want to use here is linear regression. Linear regression
+basically works the same way in machine learning as you have gotten to know and
+love it over the last sessions. So we do not need to go into the details again
+and can just set up our algorithm.
+The function \texttt{linear\_reg()} specifies that we want to
+compute a linear regression. We also have to specify the ``engine'' we want to
+use. This is the function or package that is used for the actual computation of
+the model.
+\texttt{tidymodels} is just the framework, it does not provide any model computations
+itself. These are always conducted by functions from other packages. In this
+case we use the well known \texttt{lm()} function from base R. What \texttt{tidymodels}
+actually does, is to sent our model specification to \texttt{lm()}, let the function do
+the crunching and return the results to us.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lr\_spec }\OtherTok{\textless{}{-}} \FunctionTok{linear\_reg}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{set\_engine}\NormalTok{(}\StringTok{"lm"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now that we have a recipe and specified an algorithm we still have to neatly
+pack up both of them in a \texttt{workflow()}. We can add the recipe using
+\texttt{add\_recipe()} and the chosen algorithm using \texttt{add\_model()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lr\_wf }\OtherTok{\textless{}{-}} \FunctionTok{workflow}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{add\_recipe}\NormalTok{(nba\_rec) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{add\_model}\NormalTok{(lr\_spec)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can finally run our first machine learning model. \texttt{fit\_resamples()} is
+used to fit a model using cross validation. We have to supply it with our
+workflow, the object holding the folds and some optional arguments as written
+below. \texttt{save\_pred\ =\ TRUE} ensures that the predictions from the models are saved
+with it so that we can later access them. We could add \texttt{verbose\ =\ TRUE} to
+\texttt{control\_resamples()}, making the function put out
+its progress in the console. This is especially useful when we run more
+complicated models that may take minutes or even hours to complete. Luckily
+linear regression is really fast and this will be done in moments.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lr\_m }\OtherTok{\textless{}{-}} \FunctionTok{fit\_resamples}\NormalTok{(}
+\NormalTok{  lr\_wf,}
+\NormalTok{  nba\_folds,}
+  \AttributeTok{control =} \FunctionTok{control\_resamples}\NormalTok{(}\AttributeTok{save\_pred =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now that the model is completed we can access the performance metrics using the
+convenient \texttt{collect\_metrics()}. We could have specified additional metrics to
+be collected when we ran the model, but the defaults include all we need here.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{collect\_metrics}\NormalTok{(lr\_m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 6
+##   .metric .estimator  mean     n std_err .config             
+##   <chr>   <chr>      <dbl> <int>   <dbl> <chr>               
+## 1 rmse    standard   0.985    10 0.00979 Preprocessor1_Model1
+## 2 rsq     standard   0.429    10 0.00693 Preprocessor1_Model1
+\end{verbatim}
+
+We can now compare this linear regression with additional variables to our
+baseline from above. We actually did improve but only very little. The \(R^2\) is
+about \(2\%\) higher and the RMSE about \(0.01\) lower compared to the baseline.
+That is nice but not the big improvement we would have hoped for.
+
+Before we move on, further trying to improve our model, we should quickly learn
+how to access the predictions the model actually made. There is another handy
+function in \texttt{tidymodels} that does just that, \texttt{collect\_predictions()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{collect\_predictions}\NormalTok{(lr\_m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6,978 x 5
+##    id     .pred  .row salary_log .config             
+##    <chr>  <dbl> <int>      <dbl> <chr>               
+##  1 Fold01  13.8     7       12.8 Preprocessor1_Model1
+##  2 Fold01  13.3    22       12.6 Preprocessor1_Model1
+##  3 Fold01  13.9    40       15.0 Preprocessor1_Model1
+##  4 Fold01  14.1    53       13.8 Preprocessor1_Model1
+##  5 Fold01  13.7    55       14.7 Preprocessor1_Model1
+##  6 Fold01  14.1    65       14.7 Preprocessor1_Model1
+##  7 Fold01  12.2    81       12.2 Preprocessor1_Model1
+##  8 Fold01  12.8    83       14.7 Preprocessor1_Model1
+##  9 Fold01  14.8    91       15.7 Preprocessor1_Model1
+## 10 Fold01  14.9   108       14.3 Preprocessor1_Model1
+## # i 6,968 more rows
+\end{verbatim}
+
+\hypertarget{random-forest}{%
+\section{Random forest}\label{random-forest}}
+
+Another widely used machine learning algorithm, and one that moves away from
+regression as we know it, is the \emph{random forest}.
+But what is a random forest? A random forest is an ensemble of
+\emph{decision trees}. Ok, nice\ldots{} But that did not really help. So let us
+rephrase: What is a decision tree?
+
+You may already know the basics of what a decision tree is if you have ever
+seen a flowchart. Consider this for example:
+
+\begin{figure}
+\centering
+\includegraphics{90s_flowchart.png}
+\caption{\emph{Taken from: \url{https://xkcd.com/210/}}}
+\end{figure}
+
+Imagine a new data point entering the flowchart from the above. At the first
+fork the data is divided by being from the 90s or not. If the data is not from
+the 90s the decision tree concludes and the observation is placed in the group
+``Stop''. If the observation is from the 90s it takes the other route and is
+either placed in ``Stop, Hammertime!'' or ``All right stop, Collaborate and
+listen'' based on another, here not displayed, variable, maybe the taste in
+music.
+
+While this is obviously a joke, the idea behind a real decision tree as they
+are used in machine learning is the same. Data enters the tree from the stem and
+is more and more subdivided by the observations' values on their associated
+variables into different branches. At each fork one variable is considered and
+the data set is divided in a way that best divides the two groups based on their
+values on this one variable. At the next fork another variable is considered and
+another division takes place, and so on. When the tree can not make any more
+sensible divisions a branch ends in a leaf or node and the observation gets
+assigned an outcome value.
+
+In our NBA example the decision tree may first divide the data by the
+points scored. Maybe players who make more than \(10\) points go in one group and
+players that make less go into another. At the next fork the position may be
+considered, dividing centers and others and so on. At some point certain
+branches end and the model can assess the outcome values of the observations in
+this leaf. If everything worked out, players with similar salaries and
+characteristics should be grouped in similar leafs at the ends of similar
+branches. If we now put a new observation into the tree, the model can predict
+their salary by making the observation follow the path through the tree based on
+their characteristics.
+
+While decision treed are fast and efficient they lean towards overfitting and
+are very unstable, as small changes to the training data can produce a
+completely different tree. This is where random forests come back in. In a
+random forest many decision trees are combined into one large model. At the same
+time, for each tree the algorithm at random picks a subset of the variables that
+are part of the complete model and only uses these in building this single tree.
+This ensures that each tree is build differently. When all trees are build, they
+are combined into one model. In this way and by introducing the random element,
+random forests can combine the strengths of many trees while mitigating the
+weaknesses of the same.
+
+Now let us build our one random forest. We do not have to specify the recipe
+again as nothing has changed, we only have to specify the algorithm we want to
+use. We can set up a random forest using \texttt{rand\_forest()}. Here we can also
+set how many trees our forest should consist of. The default value of \(500\)
+serves for our purpose. We again have to set an engine,
+with \texttt{ranger} being a common choice. As random forests can tackle regression as
+well as classification problems, we also have to specify what our problem is,
+using \texttt{set\_mode("regression")}. We then build a new workflow with the old recipe
+and the new model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rf\_spec }\OtherTok{\textless{}{-}} \FunctionTok{rand\_forest}\NormalTok{(}\AttributeTok{trees =} \DecValTok{500}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{set\_engine}\NormalTok{(}\StringTok{"ranger"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{set\_mode}\NormalTok{(}\StringTok{"regression"}\NormalTok{)}
+
+\NormalTok{rf\_wf }\OtherTok{\textless{}{-}} \FunctionTok{workflow}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{add\_recipe}\NormalTok{(nba\_rec) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{add\_model}\NormalTok{(rf\_spec)}
+\end{Highlighting}
+\end{Shaded}
+
+We can now run the random forest model exactly as we ran the linear regression
+above. The only thing that has changed is the workflow used. Please take note
+that computing a random forest is somewhat more computationally involved and may
+take some time, depending on your machine.
+As we are using crossvalidation we are
+also actually computing 10 models in each run, so that adds up. We are still
+below a running time of one minute here, but more complex algorithms can take
+several minutes or even hours.
+We should also not forget to set a seed again. As the \emph{random} forest has a
+\emph{random} element, setting the seed ensures that we will get the same model
+every time we run the code below. Without the seed, we would end up with
+different trees in our forest, each time we rerun the code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+
+\NormalTok{rf\_m }\OtherTok{\textless{}{-}} \FunctionTok{fit\_resamples}\NormalTok{(}
+\NormalTok{  rf\_wf,}
+\NormalTok{  nba\_folds,}
+  \AttributeTok{control =} \FunctionTok{control\_resamples}\NormalTok{(}\AttributeTok{save\_pred =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Let us look at the central metrics.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{collect\_metrics}\NormalTok{(rf\_m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 6
+##   .metric .estimator  mean     n std_err .config             
+##   <chr>   <chr>      <dbl> <int>   <dbl> <chr>               
+## 1 rmse    standard   0.775    10 0.0106  Preprocessor1_Model1
+## 2 rsq     standard   0.647    10 0.00375 Preprocessor1_Model1
+\end{verbatim}
+
+The random forest model we computed shows a considerably higher
+performance compared to our linear regression model. The \(R^2\) of \(64.7\)
+is a substantial improvement over the \(42.9\) we achieved before. The same goes
+for the RMSE which dropped to \(0.775\) compared to \(0.985\). This is all going in
+the right direction.
+
+\hypertarget{tuning-the-forest}{%
+\subsection{Tuning the forest}\label{tuning-the-forest}}
+
+While the random forest algorithm already performed substantially better
+compared to our linear regression out of the box, we may be able to improve it
+even more. Many algorithms have so called \emph{hyperparameters}. These are
+parameters of the model that can not be learned from the data itself but that we
+have to \emph{tune} in our code. While a linear regression has no hyperparameters,
+random forests have three. For one we can increase the number of trees that are
+used in building the forest. We will put this aside for now. We could also
+change the number of randomly selected variables that are considered for each
+tree, but we will not do this here. What we will tune is the minimal node size.
+
+The minimal node size tells the algorithm how small each ending for each branch
+is allowed to be. The default value for regression problems in \emph{ranger} is \(5\).
+This means that the algorithm stops if it can not further subdivide our data
+into groups that contain at least \(5\) observations. If we allow the model to
+create subdivisions with smaller groups, the model will get more fine grained
+leading to potentially more accurate predictions. At the same time this will
+lead to a model that is not as general, i.e.~that is more prone to overfitting
+to the specificities of our data and that will be less able to also make
+accurate predictions for new data. We should keep this in mind when choosing
+the best model later.
+
+We could now move forward by just trying out smaller values than \(5\) for the
+minimal node size, but \texttt{tidymodels} again gives us a more convenient way.
+When creating our model specification, we can tell \texttt{tidymodels} that we want to
+tune a hyperparameter instead of setting it manually. We do this here by
+including the argument \texttt{min\_n\ =\ tune()}, with \texttt{min\_n} being the hyperparameter
+for minimal node size in ranger. After creating the model specification, we
+again create a workflow including it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rf\_spec\_tune }\OtherTok{\textless{}{-}} \FunctionTok{rand\_forest}\NormalTok{(}\AttributeTok{min\_n =} \FunctionTok{tune}\NormalTok{(), }\AttributeTok{trees =} \DecValTok{500}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{set\_engine}\NormalTok{(}\StringTok{"ranger"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{set\_mode}\NormalTok{(}\StringTok{"regression"}\NormalTok{)}
+
+\NormalTok{rf\_wf\_tune }\OtherTok{\textless{}{-}} \FunctionTok{workflow}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{add\_recipe}\NormalTok{(nba\_rec) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{add\_model}\NormalTok{(rf\_spec\_tune)}
+\end{Highlighting}
+\end{Shaded}
+
+We also have to give \emph{tidymodels} a tibble that includes the values for the
+hyperparameter that we want to try out during tuning.
+The function \texttt{grid\_regular()} helps us with this. Inside the brackets we have to
+tell it which hyperparameter we want to tune, in this case \texttt{min\_n()}. For some
+hyperparameters \texttt{tidymodels} can automatically choose sensible values; for
+\texttt{min\_n} we have to set these ourselves, specifying a range we want to tune in.
+The argument \texttt{levels} sets how many values should be
+created in the specified range. Setting the grid up as below will lead to each
+integer between \(1\) and \(5\) being considered.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rf\_grid }\OtherTok{\textless{}{-}} \FunctionTok{grid\_regular}\NormalTok{(}
+  \FunctionTok{min\_n}\NormalTok{(}\AttributeTok{range =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{)),}
+  \AttributeTok{levels =} \DecValTok{5}
 \NormalTok{)}
 
+\NormalTok{rf\_grid}
+\end{Highlighting}
+\end{Shaded}
 
-\NormalTok{model2 }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(}
-\NormalTok{  salary }\SpecialCharTok{\textasciitilde{}}\NormalTok{ career\_PTS,}
-  \AttributeTok{data =}\NormalTok{ train\_data,}
-  \AttributeTok{method =} \StringTok{"lm"}\NormalTok{,}
-  \AttributeTok{trControl =}\NormalTok{ ctrl}
+\begin{verbatim}
+## # A tibble: 5 x 1
+##   min_n
+##   <int>
+## 1     1
+## 2     2
+## 3     3
+## 4     4
+## 5     5
+\end{verbatim}
+
+Everything is prepared and we can start tuning. For this we use the function
+\texttt{tune\_grid()}. We have to give it the new tunable workflow and also the grid of
+values we want to tune for. This will again take more time to complete. We still
+have \(10\) folds, but now we also try \(5\) different values for \texttt{min\_n} for each
+fold. That is \(5 * 10 = 50\) models that have to be computed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+
+\NormalTok{rf\_tune }\OtherTok{\textless{}{-}} \FunctionTok{tune\_grid}\NormalTok{(}
+\NormalTok{  rf\_wf\_tune,}
+\NormalTok{  nba\_folds,}
+  \AttributeTok{control =} \FunctionTok{control\_resamples}\NormalTok{(}\AttributeTok{save\_pred =} \ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{grid =}\NormalTok{ rf\_grid}
 \NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
+We can now compare the performance of the models with different values for
+\texttt{min\_n}. We could use \texttt{collect\_metrics()}, but the more models there are to be
+compared, the less practical this gets. \texttt{show\_best()} gives us an ordered output
+of the models performance for a specified metric. We can also use the
+\texttt{autoplot()} function which automatically plots us the same values.
 
-\CommentTok{\# Make predictions on the test set}
-\NormalTok{predicted\_salaries\_m1 }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model1, }\AttributeTok{newdata =}\NormalTok{ test\_data)}
-\NormalTok{predicted\_salaries\_m2 }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model2, }\AttributeTok{newdata =}\NormalTok{ test\_data)}
-
-
-\CommentTok{\# Calculate prediction errors (e.g., root mean squared error)}
-\NormalTok{rmse1 }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{mean}\NormalTok{((predicted\_salaries\_m1 }\SpecialCharTok{{-}}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{salary)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
-\NormalTok{rmse2 }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{mean}\NormalTok{((predicted\_salaries\_m2 }\SpecialCharTok{{-}}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{salary)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
-
-\CommentTok{\# Print the prediction errors}
-\FunctionTok{print}\NormalTok{(rmse1)}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{show\_best}\NormalTok{(rf\_tune, }\AttributeTok{metric =} \StringTok{"rmse"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3417602
+## # A tibble: 5 x 7
+##   min_n .metric .estimator  mean     n std_err .config             
+##   <int> <chr>   <chr>      <dbl> <int>   <dbl> <chr>               
+## 1     1 rmse    standard   0.767    10  0.0104 Preprocessor1_Model1
+## 2     2 rmse    standard   0.768    10  0.0103 Preprocessor1_Model2
+## 3     3 rmse    standard   0.770    10  0.0104 Preprocessor1_Model3
+## 4     4 rmse    standard   0.771    10  0.0107 Preprocessor1_Model4
+## 5     5 rmse    standard   0.776    10  0.0107 Preprocessor1_Model5
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{print}\NormalTok{(rmse2)}
+\FunctionTok{show\_best}\NormalTok{(rf\_tune, }\AttributeTok{metric =} \StringTok{"rsq"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3602973
-\end{verbatim}
-
-Let us create a similar model from week \protect\hyperlink{lin-a}{8} where we have applied \texttt{log} transformation on \texttt{salary}, centered and squared on \texttt{career\_PTS} .
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{model3 }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(}
-\NormalTok{  salary\_log }\SpecialCharTok{\textasciitilde{}}\NormalTok{ PTS\_centered }\SpecialCharTok{+} \FunctionTok{I}\NormalTok{(career\_PTS}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ position\_rec }\SpecialCharTok{+}\NormalTok{ season\_start }\SpecialCharTok{+}\NormalTok{ age,}
-  \AttributeTok{data =}\NormalTok{ train\_data,}
-  \AttributeTok{method =} \StringTok{"lm"}\NormalTok{,}
-  \AttributeTok{trControl =}\NormalTok{ ctrl}
-\NormalTok{)}
-
-\NormalTok{predicted\_salaries\_m3 }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model3, }\AttributeTok{newdata =}\NormalTok{ test\_data)}
-\NormalTok{rmse3 }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{mean}\NormalTok{((predicted\_salaries\_m3 }\SpecialCharTok{{-}}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{salary)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
-\FunctionTok{print}\NormalTok{(rmse3)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 6084578
-\end{verbatim}
-
-We can compare the \(R^2\) for all these 3 models:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{model1}\SpecialCharTok{$}\NormalTok{results}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##   intercept    RMSE  Rsquared     MAE   RMSESD RsquaredSD    MAESD
-## 1      TRUE 3601123 0.4193535 2549809 146015.8 0.04638596 81079.79
+## # A tibble: 5 x 7
+##   min_n .metric .estimator  mean     n std_err .config             
+##   <int> <chr>   <chr>      <dbl> <int>   <dbl> <chr>               
+## 1     1 rsq     standard   0.654    10 0.00319 Preprocessor1_Model1
+## 2     2 rsq     standard   0.653    10 0.00387 Preprocessor1_Model2
+## 3     3 rsq     standard   0.651    10 0.00370 Preprocessor1_Model3
+## 4     4 rsq     standard   0.650    10 0.00384 Preprocessor1_Model4
+## 5     5 rsq     standard   0.646    10 0.00391 Preprocessor1_Model5
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{model2}\SpecialCharTok{$}\NormalTok{results}
+\FunctionTok{autoplot}\NormalTok{(rf\_tune)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-##   intercept    RMSE  Rsquared     MAE   RMSESD RsquaredSD   MAESD
-## 1      TRUE 3784280 0.3573984 2633451 141362.1 0.02909487 76175.3
-\end{verbatim}
+\includegraphics{_main_files/figure-latex/metrics_tuned_rf-1.pdf}
+
+We can clearly see, that the lower we set \texttt{min\_n}, the better our model
+performance gets. The best results are actually achieved with \texttt{min\_n\ =\ 1}.
+But what does a minimal node size of \(1\) imply? Our trees are then build in a
+way that subdivides the data until some groups will only include one
+observation. So they are in part tailor made for single observations.
+That sounds a lot like overfitting! Our forest may be able to make very
+good predictions for these single observations but potentially may have problems
+generalising to new observations. So we should not get greedy and just focus on
+the model with the best performance and instead choose a more balanced option.
+Looking at the plot we can see that the largest gain in performance is made when
+switching from a minimum value of \(5\) to \(4\). For lower values the gains are
+relatively minor. \(4\) seems like a sensible choice.
+
+We can now set up our final model specification, using \texttt{min\_n\ =\ 4}. Here we also
+increase the number of trees used to \(1000\). We also build a workflow using this
+final specification.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{model3}\SpecialCharTok{$}\NormalTok{results}
+\NormalTok{rf\_spec\_final }\OtherTok{\textless{}{-}} \FunctionTok{rand\_forest}\NormalTok{(}\AttributeTok{min\_n =} \DecValTok{4}\NormalTok{, }\AttributeTok{trees =} \DecValTok{1000}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{set\_engine}\NormalTok{(}\StringTok{"ranger"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{set\_mode}\NormalTok{(}\StringTok{"regression"}\NormalTok{)}
+
+\NormalTok{rf\_wf\_final }\OtherTok{\textless{}{-}} \FunctionTok{workflow}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{add\_recipe}\NormalTok{(nba\_rec) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{add\_model}\NormalTok{(rf\_spec\_final)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{last-fit}{%
+\section{Last fit}\label{last-fit}}
+
+We could of course go on and tune the other hyper parameters or try completely
+different algorithms, but for this introduction we can be content with the level
+of performance we have achieved so far, and which is already a substantial
+improvement over the quality of predictions from \protect\hyperlink{pm-t}{last week}.
+
+So far we have set aside our test data. We will now use it for a final test of
+our model. Does our model perform equally well with new data or did we overfit?
+If it does perform well on the test data, we can be confident that it will do
+the same with completely new data. If it does not, we have overfit to the
+training data.
+
+The function \texttt{last\_fit()} does just that. It recalculates the model on the
+complete training data and makes predictions based on this on the test data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+
+\NormalTok{best\_model\_test }\OtherTok{\textless{}{-}}\NormalTok{ rf\_wf\_final }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{last\_fit}\NormalTok{(nba\_split)}
+\end{Highlighting}
+\end{Shaded}
+
+We can than check the quality of these predictions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{collect\_metrics}\NormalTok{(best\_model\_test)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   intercept     RMSE  Rsquared       MAE     RMSESD RsquaredSD     MAESD
-## 1      TRUE 1.043284 0.4033095 0.7920122 0.03552623 0.02326883 0.0216699
+## # A tibble: 2 x 4
+##   .metric .estimator .estimate .config             
+##   <chr>   <chr>          <dbl> <chr>               
+## 1 rmse    standard       0.765 Preprocessor1_Model1
+## 2 rsq     standard       0.636 Preprocessor1_Model1
 \end{verbatim}
 
-\emph{\(R^2\) is a measure of how well a model fits the data. It ranges from 0 to 1, with higher values indicating better fit.}
+This look very good. We would have a problem if the metrics were considerably
+worse compared to what we achieved during training and tuning. In this case we
+would have overfitted to the training data. As our metrics from the last fit are
+comparable to what we have achieved during training, we can be confident that
+our model generalises well to new data. The metrics still indicate that there
+will be an error. Our predictions are not perfect, but it is the best we can
+achieve right now.
 
-\begin{itemize}
-\item
-  \texttt{model1} is a linear regression model that uses \texttt{career\_PTS}, \texttt{position\_rec}, \texttt{season\_start} and \texttt{age} as predictors of \texttt{salary}. It has an \(R^2\) value of \emph{0.432}, which means that it explains about \emph{43\%} of the variation in salary.
-\item
-  \texttt{model2} is a linear regression model that uses only \texttt{career\_PTS} as a predictor of \texttt{salary}. It has an \(R^2\) value of \emph{0.361}, which means that it explains about \emph{36\%} of the variation in salary.
-\item
-  \texttt{model3} is a machine learning model that uses the caret package to train a predictive model using \texttt{log} transformation on \texttt{salary}, centered and squared on \texttt{career\_PTS}. It has an \(R^2\) value of \emph{0.415}, which means that it explains about \emph{41\%} of the variation in salary.
-\end{itemize}
+All that is left to do is to save the fitted model in an object using
+\texttt{extract\_fit\_parsnip()}.
 
-Based on these results, we can see that \texttt{model1} has the highest \(R^2\) value among the three models, followed by \texttt{model3} and then \texttt{model2}. This suggests that \texttt{model1} is the best model for predicting salary based on the given data.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{best\_model }\OtherTok{\textless{}{-}} \FunctionTok{extract\_fit\_parsnip}\NormalTok{(best\_model\_test)}
+\end{Highlighting}
+\end{Shaded}
 
-Now machine learning usually involves several more steps:
+We will not do this here, but we could now for example use this model object
+to make predictions for new data, as we have done for hypothetical players
+\protect\hyperlink{pm-t}{last week}. If you want to try this, remember that you also have to
+set up values for the additional variables used in computing this week's model
+in the new data.
 
-\begin{itemize}
-\item
-  we can optimize how the variables (in ML language called \emph{features}) enter the model (Pre-processing; transformations; diagnostics, see week \protect\hyperlink{eda-1}{2})
-\item
-  we can optimize which variables should even enter the model (\emph{feature selection}, see e.g.~\texttt{lasso\ regression})
-\item
-  we can optimize how the predictions of the model get evaluated (\emph{training})
-\item
-  we can optimize which estimator or algorithm best predicts the outcome (\texttt{lm} model is just one option among many)
-\item
-  for other algorithms (e.g.~\texttt{random\ forests}), we can also \emph{tune} the model using \emph{hyper-parameters}.
-\end{itemize}
+\hypertarget{going-forward}{%
+\section{Going forward}\label{going-forward}}
+
+If we wanted to further improve our model, we could try different things.
+We could reconsider which variables we use in the model. Maybe we used to many
+performance metrics, maybe there are other relevant variables we missed.
+Algorithms like \emph{lasso regression} can for example help with selecting relevant
+variables from a large number by applying \emph{feature selection}.
+
+We could also potentially alter our pre-processing steps.
+While we have included a measure for the non-linear
+relationship between points and salary, we have not done so for other
+performance metrics. Maybe their relationship is also non-linear in part, which
+we may be able to capture using additional transformations.
+
+There are many more algorithms, some of which we have already alluded to above,
+which may be more suited to the task at hand.
+Depending on the algorithm used, we can also tune the available hyperparameters
+and see how this affects performance.
+
+Every machine learning problem is different and there are no ready made gold
+standard solutions. Experience helps, but sometimes trying different algorithms,
+tuning them and comparing their performance is the way to go.
 
 \hypertarget{further-resources-3}{%
 \section{Further resources}\label{further-resources-3}}
 
 \begin{itemize}
-\tightlist
 \item
-  \href{https://lgatto.github.io/IntroMachineLearningWithR/}{An Introduction to Machine Learning with R}: This is an online book that introduces the basic concepts and techniques of machine learning with R. It covers topics such as supervised and unsupervised learning, classification, regression, clustering, dimensionality reduction, and model evaluation. It also provides examples of applying machine learning methods to real-world data sets.
+  Lantz, Brett (2019). Machine Learning with R. Expert techniques for predictive modeling. Third Edition. Packt: Birminghan: An introduction to machine learning using R. Covers different algorithms for supervised and unsupervised learning as well as topics that are more general like approaches to model improvement.
+\item
+  \href{https://lgatto.github.io/IntroMachineLearningWithR/}{Gatto, Laurent (2020). An Introduction to Machine Learning with R}: This is an online book that introduces the basic concepts and techniques of machine learning with R. It covers topics such as supervised and unsupervised learning, classification, regression, clustering, dimensionality reduction, and model evaluation. It also provides examples of applying machine learning methods to real-world data sets.
+\item
+  Bzdok, Danilo, Naomi Altman \& Martin Krzywinski (2018). Statistics versus Machine Learning. Nature Methods, 15(4). 233-234. Available under: \url{https://www.nature.com/articles/nmeth.4642}: The authors define what machine learning is by comparing it to ``classical'' statistics.
+\item
+  Hvitfeldt, Emil \& Julia Silge (2021). Supervised Machine Learning for Text Analysis in R. Available under: \url{https://smltar.com/}: A book on using ML in text analysis. This is a more specific use case compared to the resources above but well worth the read if you are interested in quantitative text analysis.
 \end{itemize}
 
 \hypertarget{pm-a}{%
 \chapter{Prediction \& Machine Learning - Exercise}\label{pm-a}}
 
-\textbf{Still WIP!}
+\hypertarget{prediction-machine-learning---exercise}{%
+\section{Prediction \& Machine Learning - Exercise}\label{prediction-machine-learning---exercise}}
 
-\hypertarget{exercises}{%
-\section{Exercises}\label{exercises}}
+In this exercise, you will again use the Boston Housing data set. This
+time the goal is to make accurate predictions for the median value of
+houses based on various features of the houses and their surroundings.
+
+For an overview on the data set see \protect\hyperlink{eda-2}{session 3}.
+
+Prepare by creating a new R Markdown file. Write all solutions in this
+file using code chunks as well as text to structure the file (headers)
+and answer the questions. Do not forget to save the file in the format
+\texttt{your\_name\_exercise\_3.Rmd}. You will have to turn in this file to the
+lecturers through Moodle. Write a first code chunk in which you load all
+necessary packages and import the data. For a reminder see \protect\hyperlink{eda-2}{tasks 1 \& 2
+from the first exercise}.
 
 \begin{itemize}
 \item
-  \textbf{Task 1:} How the number of rooms in a house affects its price, you also have to consider how the crime rate might be influencing this relationship. Estimate and report the average causal mediation effect (ACME), the average direct effect (ADE), the total effect, and the proportion mediated. Explain what these effects mean and how to interpret them.
+  \textbf{Task 1:} Rerun your best linear regression model from exercise 2
+  with \texttt{medv} as the outcome variable.
 \item
-  \textbf{Task 2:} Create or show a data frame with the coefficients, standard errors, p-values, and confidence intervals of a linear regression model that predicts the median value of a home (\texttt{MEDV}) based on the nitric oxides concentration (\texttt{NOX}) and the average number of rooms per dwelling (\texttt{RM}).
+  \textbf{Task 2:} Use \texttt{augment()} from the \texttt{broom} package to add the
+  predicted value for each observation.
 \item
-  \textbf{Task 3:} Create a data frame with the R-squared, adjusted R-squared, root mean squared error, and other summary statistics of the linear regression model from task 1. Explain the output.
+  \textbf{Task 3:} Calculate the \(R^2\) and RSME values for your model. What
+  do these values tell you about the quality of your predictions?
 \item
-  \textbf{Task 4:} Generate predicted values and prediction intervals for the median value of a home (\texttt{MEDV}) based on the linear regression model from task 1, and add them as new columns to the test data set. Create a train-test split of the data set with 70\% of the data for training and 30\% for testing.
+  \textbf{Task 4:} Prepare the data set for machine learning with
+  \texttt{tidymodels} by dividing the data into training and test set. Then
+  set up folds for a k-fold crossvalidation.
 \item
-  \textbf{Task 5:} Create a data frame with the observed and predicted values, residuals, and other diagnostic measures for the linear regression model from task 1. Create a plot of the predicted values versus the observed values, with prediction intervals as ribbons. Calculate the root mean squared error of the predictions on the test data set.
+  \textbf{Task 5:} Think about additional variables that could be useful
+  for making accurate predictions on the median value of a house.
+  Define a \texttt{recipe()} containing your expanded model formula.
+\item
+  \textbf{Task 6:} Prepare a random forest algorithm using the default
+  values for all hyperparameters, i.e.~just using \texttt{rand\_forest()}
+  without any arguments. Set the engine to \texttt{ranger} and the mode to
+  \texttt{"regression"}. Combine the recipe and the prepared algorithm
+  into a workflow object.
+\item
+  \textbf{Task 7:} Run the model using \texttt{fit\_resamples()}. Inspect the
+  performance metrics. Compare them to the metrics from task 3. Can
+  the new model make better predictions?
+\item
+  \textbf{Bonus task:} Tune the \texttt{min\_n} hyperparameter for your random
+  forest model. Inspect the results and select a sensible value. Use
+  this for your last fit. What do the performance metrics tell you?
+  were you able to improve on the results from task 7? Did you overfit?
 \end{itemize}
 
 \hypertarget{log-est}{%

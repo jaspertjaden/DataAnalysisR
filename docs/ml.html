@@ -23,7 +23,7 @@
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-10-20" />
+<meta name="date" content="2023-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -297,12 +297,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="ml.html"><a href="ml.html#objectives-7"><i class="fa fa-check"></i><b>11.1</b> Objectives</a></li>
 <li class="chapter" data-level="11.2" data-path="ml.html"><a href="ml.html#r-functions-covered-this-week-3"><i class="fa fa-check"></i><b>11.2</b> R functions covered this week</a></li>
-<li class="chapter" data-level="11.3" data-path="ml.html"><a href="ml.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.3</b> Intro to Machine learning</a></li>
-<li class="chapter" data-level="11.4" data-path="ml.html"><a href="ml.html#further-resources-3"><i class="fa fa-check"></i><b>11.4</b> Further resources</a></li>
+<li class="chapter" data-level="11.3" data-path="ml.html"><a href="ml.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.3</b> Intro to Machine Learning</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="ml.html"><a href="ml.html#training--and-testset"><i class="fa fa-check"></i><b>11.3.1</b> Training- and testset</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="ml.html"><a href="ml.html#our-baseline-model"><i class="fa fa-check"></i><b>11.4</b> Our baseline model</a></li>
+<li class="chapter" data-level="11.5" data-path="ml.html"><a href="ml.html#setting-up-tidymodels"><i class="fa fa-check"></i><b>11.5</b> Setting up tidymodels</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="ml.html"><a href="ml.html#splitting-the-data"><i class="fa fa-check"></i><b>11.5.1</b> Splitting the data</a></li>
+<li class="chapter" data-level="11.5.2" data-path="ml.html"><a href="ml.html#defining-the-recipe"><i class="fa fa-check"></i><b>11.5.2</b> Defining the recipe</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="ml.html"><a href="ml.html#linear-regression"><i class="fa fa-check"></i><b>11.6</b> Linear regression</a></li>
+<li class="chapter" data-level="11.7" data-path="ml.html"><a href="ml.html#random-forest"><i class="fa fa-check"></i><b>11.7</b> Random forest</a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="ml.html"><a href="ml.html#tuning-the-forest"><i class="fa fa-check"></i><b>11.7.1</b> Tuning the forest</a></li>
+</ul></li>
+<li class="chapter" data-level="11.8" data-path="ml.html"><a href="ml.html#last-fit"><i class="fa fa-check"></i><b>11.8</b> Last fit</a></li>
+<li class="chapter" data-level="11.9" data-path="ml.html"><a href="ml.html#going-forward"><i class="fa fa-check"></i><b>11.9</b> Going forward</a></li>
+<li class="chapter" data-level="11.10" data-path="ml.html"><a href="ml.html#further-resources-3"><i class="fa fa-check"></i><b>11.10</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="pm-a.html"><a href="pm-a.html"><i class="fa fa-check"></i><b>12</b> Prediction &amp; Machine Learning - Exercise</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#prediction-machine-learning---exercise"><i class="fa fa-check"></i><b>12.1</b> Prediction &amp; Machine Learning - Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="log-est.html"><a href="log-est.html"><i class="fa fa-check"></i><b>13</b> Logistic regression</a>
 <ul>
@@ -341,131 +357,651 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="ml" class="section level1 hasAnchor" number="11">
 <h1><span class="header-section-number"> 11</span> Machine Learning<a href="ml.html#ml" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><strong>Still WIP!</strong></p>
+<p>In the <a href="pm-t.html#pm-t">last session</a> our goal was to predict the salary a NBA player
+receives based on the position they play, the points they make per game on
+average, their age, their team and the season. While we were able to make some
+predictions, the results indicated that the model can and should be improved on.
+We have now arrived at the entry gates to machine learning (ML). ML is also all
+about prediction. The goal is to train a model that can predict an outcome with
+the highest accuracy, a natural fit for our endeavour.</p>
 <div id="objectives-7" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> Objectives<a href="ml.html#objectives-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="objectives">
 <ul>
-<li>here to be filled</li>
+<li>Understanding the Machine Learning approach to data analysis</li>
+<li>Using the <em>tidymodels</em> framework to run a linear regression and a random forest model</li>
+<li>Assessing and comparing model performance</li>
+<li>Tuning and choosing a sensible model</li>
 </ul>
 </div>
 </div>
 <div id="r-functions-covered-this-week-3" class="section level2 hasAnchor" number="11.2">
 <h2><span class="header-section-number">11.2</span> R functions covered this week<a href="ml.html#r-functions-covered-this-week-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="functions">
-<p>TBD</p>
+<ul>
+<li><code>set.seed()</code>: A base R function that sets the starting point for the <em>Random Number Generator</em> (RNG). Used to make steps that involve random elements as sampling or computing a random forest model reproducible.</li>
+<li><code>tidymodels</code> functions used for handling the data:
+<ul>
+<li><code>initial_split()</code>: Splis the data into training and test set.</li>
+<li><code>training()</code> &amp; <code>testing()</code>: Extracts the training and test set from a split object.</li>
+<li><code>vfold_cv()</code>: Creates a training set with k-fold cross validation.</li>
+</ul></li>
+<li><code>recipe()</code>: <code>tidymodels</code> function that creates a recipe used in the machine learning workflow. Holds the model formula and additional optional pre-processing steps.</li>
+<li><code>tidymodels</code> functions used to set up an algorithm:
+<ul>
+<li><code>linear_reg()</code>: Sets up a linear regression algorithm to be used in the machine learning workflow.</li>
+<li><code>rand_forest()</code>: Sets up a random forest algorithm to be used in the machine learning workflow.</li>
+<li><code>set_engine()</code>: Chooses the function/package that actually implements the algorithm.</li>
+<li><code>set_mode()</code>: Chooses between “regression” and “classification” mode for the chosen algorithm.</li>
+</ul></li>
+<li><code>tidymodels</code> functions used to set up a workflow:
+<ul>
+<li><code>worfklow()</code>: Creates an empty workflow.</li>
+<li><code>add_recipe()</code> &amp; <code>add_model()</code>: Used for adding the recipe and algorithm to the workflow.</li>
+</ul></li>
+<li><code>fit_resamples()</code>: <code>tidymodels</code> function used to fit a model with k-fold cross validation.</li>
+<li><code>collect_metrics()</code>: <code>tidymodels</code> function used to output the performance metrics for a fitted model.</li>
+<li><code>collect_predictions()</code>: <code>tidymodels</code> function used to output the predictions a fitted model made for the data.</li>
+<li><code>tidymodels</code> functions used for tuning a model:
+<ul>
+<li><code>tune()</code>: Sets up a hyperparameter to be tuned.</li>
+<li><code>grid_regular()</code>: Creates a grid with values to be used during tuning.</li>
+<li><code>tune_grid()</code>: Fits the model using the specified values for chosen hyperparameters.</li>
+<li><code>show_best()</code>: Outputs the fitted models and their hyperparameter values by a chosen performance metric.</li>
+<li><code>autoplot()</code>: Used on an object containing fitted models from tuning, it automatically plots the performance metrics by hyperparameter values.</li>
+</ul></li>
+<li><code>last_fit()</code>: <code>tidymodels</code> function used to fit the model on the training data and predict on the testing data.</li>
+<li><code>extract_fit_parsnip()</code>: <code>tidymodels</code> function used to extract the model object from a fitted model, e.g. from <code>final_fit()</code>, for further use, i.e. predictig on new data.</li>
+</ul>
 </div>
 </div>
 <div id="intro-to-machine-learning" class="section level2 hasAnchor" number="11.3">
-<h2><span class="header-section-number">11.3</span> Intro to Machine learning<a href="ml.html#intro-to-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We have now arrived at the entry gates to machine learning. We will conduct a very basic and simple machine learning routine using linear regression. The main difference between simple prediction and Machine Learning is that the sample is first divided into a training and a test dataset at random. The model is than tuned based on, let’s say, 80% of the sample. When the model is ready, it is tested based on the 20% remaining sample. The prediction produced with the model are then compared with the actual values in the test dataset. There is of course more nuance to all this, but this is basically the idea.</p>
-<p>Let’s use the <code>caret</code> package, a common package for machine learning.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="ml.html#cb158-1" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
-<span id="cb158-2"><a href="ml.html#cb158-2" tabindex="-1"></a><span class="co">#data transformation</span></span>
-<span id="cb158-3"><a href="ml.html#cb158-3" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb158-4"><a href="ml.html#cb158-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">salary_log =</span> <span class="fu">log</span>(salary))</span>
-<span id="cb158-5"><a href="ml.html#cb158-5" tabindex="-1"></a></span>
-<span id="cb158-6"><a href="ml.html#cb158-6" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
-<span id="cb158-7"><a href="ml.html#cb158-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PTS_centered =</span> career_PTS <span class="sc">-</span> <span class="fu">mean</span>(career_PTS))</span>
-<span id="cb158-8"><a href="ml.html#cb158-8" tabindex="-1"></a></span>
-<span id="cb158-9"><a href="ml.html#cb158-9" tabindex="-1"></a><span class="co"># recode &quot;position&quot; variables&quot;</span></span>
-<span id="cb158-10"><a href="ml.html#cb158-10" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span></span>
-<span id="cb158-11"><a href="ml.html#cb158-11" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">position_num =</span> <span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">&quot;position_center&quot;</span>, <span class="st">&quot;position_pf&quot;</span>, <span class="st">&quot;position_sf&quot;</span>,</span>
-<span id="cb158-12"><a href="ml.html#cb158-12" tabindex="-1"></a>                                         <span class="st">&quot;position_pg&quot;</span>, <span class="st">&quot;position_sg&quot;</span>))),</span>
-<span id="cb158-13"><a href="ml.html#cb158-13" tabindex="-1"></a>         <span class="at">position_rec =</span> </span>
-<span id="cb158-14"><a href="ml.html#cb158-14" tabindex="-1"></a>           <span class="fu">case_when</span>(</span>
-<span id="cb158-15"><a href="ml.html#cb158-15" tabindex="-1"></a>             position_center<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;center&quot;</span>,</span>
-<span id="cb158-16"><a href="ml.html#cb158-16" tabindex="-1"></a>             position_pf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
-<span id="cb158-17"><a href="ml.html#cb158-17" tabindex="-1"></a>             position_sf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
-<span id="cb158-18"><a href="ml.html#cb158-18" tabindex="-1"></a>             position_pg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
-<span id="cb158-19"><a href="ml.html#cb158-19" tabindex="-1"></a>             position_sg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
-<span id="cb158-20"><a href="ml.html#cb158-20" tabindex="-1"></a>             position_sg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_pg<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Guard&quot;</span>,</span>
-<span id="cb158-21"><a href="ml.html#cb158-21" tabindex="-1"></a>             position_pf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_sf<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> position_num<span class="sc">==</span><span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Forward&quot;</span>,</span>
-<span id="cb158-22"><a href="ml.html#cb158-22" tabindex="-1"></a>             <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Mixed&quot;</span>))</span>
-<span id="cb158-23"><a href="ml.html#cb158-23" tabindex="-1"></a></span>
-<span id="cb158-24"><a href="ml.html#cb158-24" tabindex="-1"></a><span class="co"># Create a train and test split</span></span>
-<span id="cb158-25"><a href="ml.html#cb158-25" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
-<span id="cb158-26"><a href="ml.html#cb158-26" tabindex="-1"></a>train_indices <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(data_nba<span class="sc">$</span>salary, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb158-27"><a href="ml.html#cb158-27" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> data_nba[train_indices, ]</span>
-<span id="cb158-28"><a href="ml.html#cb158-28" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> data_nba[<span class="sc">-</span>train_indices, ]</span>
-<span id="cb158-29"><a href="ml.html#cb158-29" tabindex="-1"></a></span>
-<span id="cb158-30"><a href="ml.html#cb158-30" tabindex="-1"></a><span class="co"># Create a train control object with &quot;cross-validation&quot; for comparing results</span></span>
-<span id="cb158-31"><a href="ml.html#cb158-31" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>) </span>
-<span id="cb158-32"><a href="ml.html#cb158-32" tabindex="-1"></a></span>
-<span id="cb158-33"><a href="ml.html#cb158-33" tabindex="-1"></a><span class="co"># Train a linear regression model using caret</span></span>
-<span id="cb158-34"><a href="ml.html#cb158-34" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
-<span id="cb158-35"><a href="ml.html#cb158-35" tabindex="-1"></a>  salary <span class="sc">~</span> career_PTS <span class="sc">+</span> position_rec <span class="sc">+</span> season_start <span class="sc">+</span> age,</span>
-<span id="cb158-36"><a href="ml.html#cb158-36" tabindex="-1"></a>  <span class="at">data =</span> train_data,</span>
-<span id="cb158-37"><a href="ml.html#cb158-37" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb158-38"><a href="ml.html#cb158-38" tabindex="-1"></a>  <span class="at">trControl =</span> ctrl</span>
-<span id="cb158-39"><a href="ml.html#cb158-39" tabindex="-1"></a>)</span>
-<span id="cb158-40"><a href="ml.html#cb158-40" tabindex="-1"></a></span>
-<span id="cb158-41"><a href="ml.html#cb158-41" tabindex="-1"></a></span>
-<span id="cb158-42"><a href="ml.html#cb158-42" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
-<span id="cb158-43"><a href="ml.html#cb158-43" tabindex="-1"></a>  salary <span class="sc">~</span> career_PTS,</span>
-<span id="cb158-44"><a href="ml.html#cb158-44" tabindex="-1"></a>  <span class="at">data =</span> train_data,</span>
-<span id="cb158-45"><a href="ml.html#cb158-45" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb158-46"><a href="ml.html#cb158-46" tabindex="-1"></a>  <span class="at">trControl =</span> ctrl</span>
-<span id="cb158-47"><a href="ml.html#cb158-47" tabindex="-1"></a>)</span>
-<span id="cb158-48"><a href="ml.html#cb158-48" tabindex="-1"></a></span>
-<span id="cb158-49"><a href="ml.html#cb158-49" tabindex="-1"></a></span>
-<span id="cb158-50"><a href="ml.html#cb158-50" tabindex="-1"></a><span class="co"># Make predictions on the test set</span></span>
-<span id="cb158-51"><a href="ml.html#cb158-51" tabindex="-1"></a>predicted_salaries_m1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model1, <span class="at">newdata =</span> test_data)</span>
-<span id="cb158-52"><a href="ml.html#cb158-52" tabindex="-1"></a>predicted_salaries_m2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model2, <span class="at">newdata =</span> test_data)</span>
-<span id="cb158-53"><a href="ml.html#cb158-53" tabindex="-1"></a></span>
-<span id="cb158-54"><a href="ml.html#cb158-54" tabindex="-1"></a></span>
-<span id="cb158-55"><a href="ml.html#cb158-55" tabindex="-1"></a><span class="co"># Calculate prediction errors (e.g., root mean squared error)</span></span>
-<span id="cb158-56"><a href="ml.html#cb158-56" tabindex="-1"></a>rmse1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted_salaries_m1 <span class="sc">-</span> test_data<span class="sc">$</span>salary)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb158-57"><a href="ml.html#cb158-57" tabindex="-1"></a>rmse2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted_salaries_m2 <span class="sc">-</span> test_data<span class="sc">$</span>salary)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb158-58"><a href="ml.html#cb158-58" tabindex="-1"></a></span>
-<span id="cb158-59"><a href="ml.html#cb158-59" tabindex="-1"></a><span class="co"># Print the prediction errors</span></span>
-<span id="cb158-60"><a href="ml.html#cb158-60" tabindex="-1"></a><span class="fu">print</span>(rmse1)</span></code></pre></div>
-<pre><code>## [1] 3417602</code></pre>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="ml.html#cb160-1" tabindex="-1"></a><span class="fu">print</span>(rmse2)</span></code></pre></div>
-<pre><code>## [1] 3602973</code></pre>
-<p>Let us create a similar model from week <a href="lin-a.html#lin-a">8</a> where we have applied <code>log</code> transformation on <code>salary</code>, centered and squared on <code>career_PTS</code> .</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="ml.html#cb162-1" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
-<span id="cb162-2"><a href="ml.html#cb162-2" tabindex="-1"></a>  salary_log <span class="sc">~</span> PTS_centered <span class="sc">+</span> <span class="fu">I</span>(career_PTS<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> position_rec <span class="sc">+</span> season_start <span class="sc">+</span> age,</span>
-<span id="cb162-3"><a href="ml.html#cb162-3" tabindex="-1"></a>  <span class="at">data =</span> train_data,</span>
-<span id="cb162-4"><a href="ml.html#cb162-4" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb162-5"><a href="ml.html#cb162-5" tabindex="-1"></a>  <span class="at">trControl =</span> ctrl</span>
-<span id="cb162-6"><a href="ml.html#cb162-6" tabindex="-1"></a>)</span>
-<span id="cb162-7"><a href="ml.html#cb162-7" tabindex="-1"></a></span>
-<span id="cb162-8"><a href="ml.html#cb162-8" tabindex="-1"></a>predicted_salaries_m3 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model3, <span class="at">newdata =</span> test_data)</span>
-<span id="cb162-9"><a href="ml.html#cb162-9" tabindex="-1"></a>rmse3 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted_salaries_m3 <span class="sc">-</span> test_data<span class="sc">$</span>salary)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb162-10"><a href="ml.html#cb162-10" tabindex="-1"></a><span class="fu">print</span>(rmse3)</span></code></pre></div>
-<pre><code>## [1] 6084578</code></pre>
-<p>We can compare the <span class="math inline">\(R^2\)</span> for all these 3 models:</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="ml.html#cb164-1" tabindex="-1"></a>model1<span class="sc">$</span>results</span></code></pre></div>
-<pre><code>##   intercept    RMSE  Rsquared     MAE   RMSESD RsquaredSD    MAESD
-## 1      TRUE 3601123 0.4193535 2549809 146015.8 0.04638596 81079.79</code></pre>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="ml.html#cb166-1" tabindex="-1"></a>model2<span class="sc">$</span>results</span></code></pre></div>
-<pre><code>##   intercept    RMSE  Rsquared     MAE   RMSESD RsquaredSD   MAESD
-## 1      TRUE 3784280 0.3573984 2633451 141362.1 0.02909487 76175.3</code></pre>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="ml.html#cb168-1" tabindex="-1"></a>model3<span class="sc">$</span>results</span></code></pre></div>
-<pre><code>##   intercept     RMSE  Rsquared       MAE     RMSESD RsquaredSD     MAESD
-## 1      TRUE 1.043284 0.4033095 0.7920122 0.03552623 0.02326883 0.0216699</code></pre>
-<p><em><span class="math inline">\(R^2\)</span> is a measure of how well a model fits the data. It ranges from 0 to 1, with higher values indicating better fit.</em></p>
-<ul>
-<li><p><code>model1</code> is a linear regression model that uses <code>career_PTS</code>, <code>position_rec</code>, <code>season_start</code> and <code>age</code> as predictors of <code>salary</code>. It has an <span class="math inline">\(R^2\)</span> value of <em>0.432</em>, which means that it explains about <em>43%</em> of the variation in salary.</p></li>
-<li><p><code>model2</code> is a linear regression model that uses only <code>career_PTS</code> as a predictor of <code>salary</code>. It has an <span class="math inline">\(R^2\)</span> value of <em>0.361</em>, which means that it explains about <em>36%</em> of the variation in salary.</p></li>
-<li><p><code>model3</code> is a machine learning model that uses the caret package to train a predictive model using <code>log</code> transformation on <code>salary</code>, centered and squared on <code>career_PTS</code>. It has an <span class="math inline">\(R^2\)</span> value of <em>0.415</em>, which means that it explains about <em>41%</em> of the variation in salary.</p></li>
-</ul>
-<p>Based on these results, we can see that <code>model1</code> has the highest <span class="math inline">\(R^2\)</span> value among the three models, followed by <code>model3</code> and then <code>model2</code>. This suggests that <code>model1</code> is the best model for predicting salary based on the given data.</p>
-<p>Now machine learning usually involves several more steps:</p>
-<ul>
-<li><p>we can optimize how the variables (in ML language called <em>features</em>) enter the model (Pre-processing; transformations; diagnostics, see week <a href="eda-1.html#eda-1">2</a>)</p></li>
-<li><p>we can optimize which variables should even enter the model (<em>feature selection</em>, see e.g. <code>lasso regression</code>)</p></li>
-<li><p>we can optimize how the predictions of the model get evaluated (<em>training</em>)</p></li>
-<li><p>we can optimize which estimator or algorithm best predicts the outcome (<code>lm</code> model is just one option among many)</p></li>
-<li><p>for other algorithms (e.g. <code>random forests</code>), we can also <em>tune</em> the model using <em>hyper-parameters</em>.</p></li>
-</ul>
+<h2><span class="header-section-number">11.3</span> Intro to Machine Learning<a href="ml.html#intro-to-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In general there are two types of machine learning - there are actually more,
+but let us not overcomplicate things for now - <em>supervised</em> and <em>unsupervised</em>
+ML. In unsupervised machine learning the algorithm tries to identify structures
+and patterns in the data and group them. We do not have an outcome variable
+with known values. Rather the outcome variable is the grouping and it is
+learned from the data itself. For our NBA data we could for example
+try to find groups of players that are similar to each other based on several
+characteristics. This grouping may go beyond the position they play on and shed
+further light on commonalities of players that receive comparable salaries. But
+this is not what we are going to do today. We are going to use supervised ML.</p>
+<p>In supervised machine learning we work with a known outcome variable, salary in
+our case. The goal of the algorithm is to learn the relationship between the
+independent and the outcome variables from the data where the true value is
+known and then predict the outcome for new cases where the true value is not
+known. This is basically the same we tried to achieve last week.</p>
+<p>Let us inspect an example to clear up some of the confusion. Spam filters are
+machine learning models. Based on a large number of examples, many many E-mails
+for which we know if they are spam or not, the model learns which words in a
+mail increase the chance of it being spam and which increase the chance of it
+being a regular E-mail.
+If we now present a new mail to the model, it examines all the
+words in the text and computes the probability of this being a spam mail based
+on the learned relationships between the words and the outcome, spam or no spam.
+If the probability is high enough, the model flags the mail as spam. This is a
+<em>classification</em> problem. Deciding whether an observation belongs to a specific
+group or not.</p>
+<p>Supervised machine learning can also be applied to <em>regression</em> problems,
+predicting the actual value of an outcome. This is what we need when we want to
+predict the salary of NBA players based on their characteristics.</p>
+<p>At this point, it is still unclear what the actual differences between using a
+linear regression and a supervised machine learning algorithm for a regression
+problem are.</p>
+<p>While there are some differences in the way a ML algorithm achieves its best
+solution to how a linear regression does, this is not important to us here.
+The key differences for us lie in the available algorithms, of which some are
+exclusive for machine learning, and in the approach machine learning takes to
+preparing and analysing the data.</p>
+<p>There are many machine learning algorithms available today and they are getting
+more. Some are exclusive to classification problems, some to regression problems
+and some can do both. All have their advantages and disadvantages so it is
+important to choose wisely. In this introduction we will limit ourselves to two
+algorithms. First we will use <em>linear regression</em>. Wait, that is what we have
+been doing all along! You are right. Linear regression actually works the same
+in the machine learning context but the logic of applying it differs, as we will
+see below. The second algorithm we will use is called a <em>random forest</em>. This
+will work very differently from linear regression, but more on that later.
+Among the other common algorithms used for regression problems are
+<em>support vector machines</em> (SVM) and different variants of linear regression like
+<em>lasso-</em> and <em>ridge-regression</em>.</p>
+<p>This leaves the second key difference, the approach we take to preparing and
+analysing the data in the machine learning context.</p>
+<div id="training--and-testset" class="section level3 hasAnchor" number="11.3.1">
+<h3><span class="header-section-number">11.3.1</span> Training- and testset<a href="ml.html#training--and-testset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When we conducted our linear regressions over the last sessions our approach was
+to take the whole of the data and compute the model based on all observations.
+In supervised machine learning we take a different approach.
+We will take our data and split it into a <em>training</em> and a <em>test set</em>.</p>
+<p>The training set will be used to actually <em>train</em> the model. It will learn the
+relationships between the outcome and the independent variable based solely on
+this subset of observations.</p>
+<p>The test set is held back until our model is ready. Only then we can use it to
+assess the quality of our predictions. As we know the true values for the
+outcome variable in the test set, we can compare the predictions with the
+actual values. Why do we go this extra route? In the last week we tested the
+quality of our predictions on the same data the model learned from, why do we
+not do this now?</p>
+<p>The ultimate goal of machine learning is to predict the outcome for new
+observations for which we do not know the true values. We have no way to assess
+if these predictions were correct because we do not know the correct value.
+So we do have to test our model on data for which we know the true value.
+But if we now train and test our model on the same data, we can potentially run
+into a problem called <em>overfitting</em>.
+The more sophisticated our algorithm, the more we may be
+able to perfectly or near perfectly describe all the relationships in our data.
+Imagine a regression line that goes exactly through every data point. The
+problem with this is that in the new data we want to predict on, the data points
+will not fall exactly as they did in the data the model was trained on. They
+will distribute differently and our overfitted model that is super-specific to
+the training data fails to make accurate predictions for the new data. What we
+want is a model that describes the relationships in the data accurately,
+but that is not overly specific to the training data; that is able to generalise
+to new data.</p>
+<p>For this reason the data is split into training and test set. We train the model
+on the training data and when we are done, we test it <em>one time</em>, read
+<strong>ONE TIME</strong>, on the test set.
+The test set is essentially new data to the model; it has not seen it before. If
+it performs well on this new data for which we know the true values, we can be
+confident that it will perform comparably well on completely new data.</p>
+<p>This also means that the test set can only be used once. If we see that the
+performance on the test set is lacking, change some parts of the model and apply
+it to the test set again, we are essentially training on the test set.
+But what if we still want to optimise our model? We could for example change the
+algorithm, add variables or tune <em>hyperparameters</em> (more on that later). We can
+not do this with the simple training/test split, as the test set shall not be
+used for optimising. What we can do instead is use <em>k-fold crossvalidation</em>.
+With this method we split up our training set into <span class="math inline">\(k\)</span>, often <span class="math inline">\(10\)</span>, folds.
+During model training <span class="math inline">\(9\)</span> of these <span class="math inline">\(10\)</span> folds are used for training and <span class="math inline">\(1\)</span> is
+left out to evaluate the performance of the model, i.e. the quality of its
+predictions. This is then repeated <span class="math inline">\(9\)</span> times with a different fold that is held
+back for evaluation. In this way we can train and evaluate the model on the
+training set, leaving the test set untouched.</p>
+<p>This was a lot, but we believe it will get clearer once we actually apply it.</p>
 </div>
-<div id="further-resources-3" class="section level2 hasAnchor" number="11.4">
-<h2><span class="header-section-number">11.4</span> Further resources<a href="ml.html#further-resources-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="our-baseline-model" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Our baseline model<a href="ml.html#our-baseline-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the last session we constructed a linear regression model with the goal of
+making predictions. Can we improve on this model? To assess this we should
+recompute it here and again inspect the measures for model comparison.</p>
+<p>First we have to load the data and preprocess it. Here we transform <code>salary</code> to
+a logarithmic scale and now also bake the squared version of the point average
+into the data set. As we are planning to use all the performance stats for the
+players in the later models, we also transform those statistics that are still
+saved as character variables into numerical ones. <code>team</code> is transformed into a
+factor variable because some algorithms are not good in handling character
+variables. We will also need complete observations, i.e. observations without
+any missing values. As the variables relating to college and the draft contain
+many missings, we remove them before using <code>na.omit()</code> to delete all
+observations that have any missings left.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="ml.html#cb158-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb158-2"><a href="ml.html#cb158-2" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;../datasets/nba/data_nba.RData&quot;</span>)</span>
+<span id="cb158-3"><a href="ml.html#cb158-3" tabindex="-1"></a></span>
+<span id="cb158-4"><a href="ml.html#cb158-4" tabindex="-1"></a>data_nba <span class="ot">&lt;-</span> data_nba <span class="sc">%&gt;%</span> </span>
+<span id="cb158-5"><a href="ml.html#cb158-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">salary_log =</span> <span class="fu">log</span>(salary),</span>
+<span id="cb158-6"><a href="ml.html#cb158-6" tabindex="-1"></a>         <span class="at">career_PTS_2 =</span> career_PTS <span class="sc">^</span> <span class="dv">2</span>,</span>
+<span id="cb158-7"><a href="ml.html#cb158-7" tabindex="-1"></a>         <span class="st">`</span><span class="at">career_FG%</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="st">`</span><span class="at">career_FG%</span><span class="st">`</span>),</span>
+<span id="cb158-8"><a href="ml.html#cb158-8" tabindex="-1"></a>         <span class="st">`</span><span class="at">career_FG3%</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="st">`</span><span class="at">career_FG3%</span><span class="st">`</span>),</span>
+<span id="cb158-9"><a href="ml.html#cb158-9" tabindex="-1"></a>         <span class="st">`</span><span class="at">career_FT%</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="st">`</span><span class="at">career_FT%</span><span class="st">`</span>),</span>
+<span id="cb158-10"><a href="ml.html#cb158-10" tabindex="-1"></a>         <span class="at">career_PER =</span> <span class="fu">as.numeric</span>(career_PER),</span>
+<span id="cb158-11"><a href="ml.html#cb158-11" tabindex="-1"></a>         <span class="at">career_TRB =</span> <span class="fu">as.numeric</span>(career_TRB),</span>
+<span id="cb158-12"><a href="ml.html#cb158-12" tabindex="-1"></a>         <span class="st">`</span><span class="at">career_eFG%</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="st">`</span><span class="at">career_eFG%</span><span class="st">`</span>),</span>
+<span id="cb158-13"><a href="ml.html#cb158-13" tabindex="-1"></a>         <span class="at">team =</span> <span class="fu">as.factor</span>(team)</span>
+<span id="cb158-14"><a href="ml.html#cb158-14" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb158-15"><a href="ml.html#cb158-15" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(college<span class="sc">:</span>draft_year)) <span class="sc">%&gt;%</span> </span>
+<span id="cb158-16"><a href="ml.html#cb158-16" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code></pre></div>
+<p>We can now recompute our best model from last session.</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="ml.html#cb159-1" tabindex="-1"></a>last_week <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary_log <span class="sc">~</span> career_PTS <span class="sc">+</span> career_PTS_2 <span class="sc">+</span> </span>
+<span id="cb159-2"><a href="ml.html#cb159-2" tabindex="-1"></a>                  position_center <span class="sc">+</span> position_sf <span class="sc">+</span> position_pf <span class="sc">+</span> position_sg <span class="sc">+</span> position_pg <span class="sc">+</span></span>
+<span id="cb159-3"><a href="ml.html#cb159-3" tabindex="-1"></a>                  age <span class="sc">+</span> team <span class="sc">+</span> season_start,</span>
+<span id="cb159-4"><a href="ml.html#cb159-4" tabindex="-1"></a>                <span class="at">data =</span> data_nba)</span></code></pre></div>
+<p>We are not interested in any coefficients right now and only want to inspect the
+model fit statistics to have a baseline we can compare our machine learning
+models to. In particular we are interested in the <span class="math inline">\(R^2\)</span> and the RSME. Both
+measures are easily obtainable in the machine learning framework we will use and
+serve our purpose well.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="ml.html#cb160-1" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb160-2"><a href="ml.html#cb160-2" tabindex="-1"></a></span>
+<span id="cb160-3"><a href="ml.html#cb160-3" tabindex="-1"></a><span class="fu">glance</span>(last_week)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 12
+##   r.squared adj.r.squared sigma statistic p.value    df  logLik    AIC    BIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1     0.407         0.405 0.999      145.       0    44 -13172. 26435. 26764.
+## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="ml.html#cb162-1" tabindex="-1"></a><span class="fu">library</span>(Metrics)</span>
+<span id="cb162-2"><a href="ml.html#cb162-2" tabindex="-1"></a></span>
+<span id="cb162-3"><a href="ml.html#cb162-3" tabindex="-1"></a>data_nba_last_week <span class="ot">&lt;-</span> <span class="fu">augment</span>(last_week, <span class="at">data =</span> data_nba)</span>
+<span id="cb162-4"><a href="ml.html#cb162-4" tabindex="-1"></a></span>
+<span id="cb162-5"><a href="ml.html#cb162-5" tabindex="-1"></a><span class="fu">rmse</span>(data_nba_last_week<span class="sc">$</span>.fitted, data_nba_last_week<span class="sc">$</span>salary_log)</span></code></pre></div>
+<pre><code>## [1] 0.9966217</code></pre>
+<p>We achieved an <span class="math inline">\(R^2\)</span> of about <span class="math inline">\(40.7\)</span> and an RSME just shy of <span class="math inline">\(1\)</span>. This will be
+our baseline to compare all further models to.</p>
+</div>
+<div id="setting-up-tidymodels" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Setting up tidymodels<a href="ml.html#setting-up-tidymodels" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For this introduction to machine learning we will use the <code>tidymodels</code>
+framework. There are many packages for machine learning available, often
+specific to one algorithm. The beauty of <code>tidymodels</code> is that it brings them
+all together under one framework. This means that we do not have to learn the
+syntax for each of these packages. We just have to swap out the algorithm in
+our code and everything else can stay the same when switching between those.
+<code>tidymodels</code> also handles the split into training and test set as well as the
+crossvalidation for us and all output is presented in the same reliable way.</p>
+<div id="splitting-the-data" class="section level3 hasAnchor" number="11.5.1">
+<h3><span class="header-section-number">11.5.1</span> Splitting the data<a href="ml.html#splitting-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let us start by splitting our data into both sets. This split is random, meaning
+that every time we repeat the split, different observations will be placed in
+the sets. As we want our work to be reproducible, one of the pillars of good
+scientific work, we have to ensure that the split always places the same
+observations in each set. We can do this by setting a seed right before
+splitting. <code>set.seed()</code>, with an arbitrarily chosen number between the
+brackets, sets the starting point of the <em>random number generator</em> in R. If we
+set the seed and then split, then set the seed and split again, we will have the
+exact same result every time. The split itself is conducted with
+<code>initial_split()</code> applied to our data object. As a default the function places
+<span class="math inline">\(75\%\)</span> of observations into training and the remainder into the test set. We
+could change this ratio via an argument, but for our purposes the split looks
+good. We then extract the actual sets using <code>training()</code> and <code>testing()</code> on the
+split respectively.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="ml.html#cb164-1" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb164-2"><a href="ml.html#cb164-2" tabindex="-1"></a></span>
+<span id="cb164-3"><a href="ml.html#cb164-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb164-4"><a href="ml.html#cb164-4" tabindex="-1"></a>nba_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(data_nba)</span>
+<span id="cb164-5"><a href="ml.html#cb164-5" tabindex="-1"></a></span>
+<span id="cb164-6"><a href="ml.html#cb164-6" tabindex="-1"></a>nba_train <span class="ot">&lt;-</span> <span class="fu">training</span>(nba_split)</span>
+<span id="cb164-7"><a href="ml.html#cb164-7" tabindex="-1"></a>nba_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(nba_split)</span></code></pre></div>
+<p>To set up the folds for crossvalidation, we use <code>vfold_cv()</code> applied to the
+training set. The default number of folds is <span class="math inline">\(10\)</span>.</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="ml.html#cb165-1" tabindex="-1"></a>nba_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(nba_train)</span></code></pre></div>
+</div>
+<div id="defining-the-recipe" class="section level3 hasAnchor" number="11.5.2">
+<h3><span class="header-section-number">11.5.2</span> Defining the recipe<a href="ml.html#defining-the-recipe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We also have to write a <code>recipe()</code> for the model. At the very least the recipe
+has to include the model formula and the data it should be applied to. The
+syntax for the model formula works the same way as it does with <code>lm()</code>. We could
+also add additional so called “steps” to the model. These mainly are used to
+transform variables that are used in the recipe. For example we could use
+<code>step_log()</code> to logarithmise our outcome variable or <code>step_string2factor()</code> to
+transform <code>team</code> into a factor variable. We have already taken care of all
+transformations above
+but the possibility to include them in the recipe is there. This can be
+especially helpful when we want to include these steps in some models but not in
+others. If we were not already sure that we want <code>salary</code> to be logarithmised,
+we could set up one recipe were the step is included and one were it is not and
+see what happens in our models using different recipes.</p>
+<p>While the syntax is the same as with <code>lm()</code>, we expanded our formula somewhat.
+Besides the variables we are already familiar with, we also included all
+additional performance stats the data set offers. The performance of a player
+will be relevant to the salary they receive. In general better players should
+earn more. Up to now we only included the point average as a measure of
+performance in our models. While points will be a central measure, other
+measures of performance may also substantially impact the received salary,
+especially for positions that do not score much but fill other roles in the
+team.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="ml.html#cb166-1" tabindex="-1"></a>nba_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(salary_log <span class="sc">~</span> age <span class="sc">+</span> career_PTS <span class="sc">+</span> career_PTS_2 <span class="sc">+</span> </span>
+<span id="cb166-2"><a href="ml.html#cb166-2" tabindex="-1"></a>                    career_AST <span class="sc">+</span> <span class="st">`</span><span class="at">career_FG%</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">career_FG3%</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">career_FT%</span><span class="st">`</span> <span class="sc">+</span></span>
+<span id="cb166-3"><a href="ml.html#cb166-3" tabindex="-1"></a>                    career_TRB <span class="sc">+</span> career_WS <span class="sc">+</span> <span class="st">`</span><span class="at">career_eFG%</span><span class="st">`</span> <span class="sc">+</span></span>
+<span id="cb166-4"><a href="ml.html#cb166-4" tabindex="-1"></a>                    season_start <span class="sc">+</span> team <span class="sc">+</span></span>
+<span id="cb166-5"><a href="ml.html#cb166-5" tabindex="-1"></a>                    position_center <span class="sc">+</span> position_sf <span class="sc">+</span> position_pf <span class="sc">+</span> position_sg <span class="sc">+</span> position_pg,</span>
+<span id="cb166-6"><a href="ml.html#cb166-6" tabindex="-1"></a>                  <span class="at">data =</span> nba_train)</span></code></pre></div>
+</div>
+</div>
+<div id="linear-regression" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> Linear regression<a href="ml.html#linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Having built a recipe, we also have to specify the algorithm to be used.
+The first algorithm we want to use here is linear regression. Linear regression
+basically works the same way in machine learning as you have gotten to know and
+love it over the last sessions. So we do not need to go into the details again
+and can just set up our algorithm.
+The function <code>linear_reg()</code> specifies that we want to
+compute a linear regression. We also have to specify the “engine” we want to
+use. This is the function or package that is used for the actual computation of
+the model.
+<code>tidymodels</code> is just the framework, it does not provide any model computations
+itself. These are always conducted by functions from other packages. In this
+case we use the well known <code>lm()</code> function from base R. What <code>tidymodels</code>
+actually does, is to sent our model specification to <code>lm()</code>, let the function do
+the crunching and return the results to us.</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="ml.html#cb167-1" tabindex="-1"></a>lr_spec <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb167-2"><a href="ml.html#cb167-2" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<p>Now that we have a recipe and specified an algorithm we still have to neatly
+pack up both of them in a <code>workflow()</code>. We can add the recipe using
+<code>add_recipe()</code> and the chosen algorithm using <code>add_model()</code>.</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="ml.html#cb168-1" tabindex="-1"></a>lr_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb168-2"><a href="ml.html#cb168-2" tabindex="-1"></a>  <span class="fu">add_recipe</span>(nba_rec) <span class="sc">%&gt;%</span> </span>
+<span id="cb168-3"><a href="ml.html#cb168-3" tabindex="-1"></a>  <span class="fu">add_model</span>(lr_spec)</span></code></pre></div>
+<p>Now we can finally run our first machine learning model. <code>fit_resamples()</code> is
+used to fit a model using cross validation. We have to supply it with our
+workflow, the object holding the folds and some optional arguments as written
+below. <code>save_pred = TRUE</code> ensures that the predictions from the models are saved
+with it so that we can later access them. We could add <code>verbose = TRUE</code> to
+<code>control_resamples()</code>, making the function put out
+its progress in the console. This is especially useful when we run more
+complicated models that may take minutes or even hours to complete. Luckily
+linear regression is really fast and this will be done in moments.</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="ml.html#cb169-1" tabindex="-1"></a>lr_m <span class="ot">&lt;-</span> <span class="fu">fit_resamples</span>(</span>
+<span id="cb169-2"><a href="ml.html#cb169-2" tabindex="-1"></a>  lr_wf,</span>
+<span id="cb169-3"><a href="ml.html#cb169-3" tabindex="-1"></a>  nba_folds,</span>
+<span id="cb169-4"><a href="ml.html#cb169-4" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">control_resamples</span>(<span class="at">save_pred =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb169-5"><a href="ml.html#cb169-5" tabindex="-1"></a>)</span></code></pre></div>
+<p>Now that the model is completed we can access the performance metrics using the
+convenient <code>collect_metrics()</code>. We could have specified additional metrics to
+be collected when we ran the model, but the defaults include all we need here.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="ml.html#cb170-1" tabindex="-1"></a><span class="fu">collect_metrics</span>(lr_m)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 6
+##   .metric .estimator  mean     n std_err .config             
+##   &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
+## 1 rmse    standard   0.985    10 0.00979 Preprocessor1_Model1
+## 2 rsq     standard   0.429    10 0.00693 Preprocessor1_Model1</code></pre>
+<p>We can now compare this linear regression with additional variables to our
+baseline from above. We actually did improve but only very little. The <span class="math inline">\(R^2\)</span> is
+about <span class="math inline">\(2\%\)</span> higher and the RMSE about <span class="math inline">\(0.01\)</span> lower compared to the baseline.
+That is nice but not the big improvement we would have hoped for.</p>
+<p>Before we move on, further trying to improve our model, we should quickly learn
+how to access the predictions the model actually made. There is another handy
+function in <code>tidymodels</code> that does just that, <code>collect_predictions()</code>.</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="ml.html#cb172-1" tabindex="-1"></a><span class="fu">collect_predictions</span>(lr_m)</span></code></pre></div>
+<pre><code>## # A tibble: 6,978 × 5
+##    id     .pred  .row salary_log .config             
+##    &lt;chr&gt;  &lt;dbl&gt; &lt;int&gt;      &lt;dbl&gt; &lt;chr&gt;               
+##  1 Fold01  13.8     7       12.8 Preprocessor1_Model1
+##  2 Fold01  13.3    22       12.6 Preprocessor1_Model1
+##  3 Fold01  13.9    40       15.0 Preprocessor1_Model1
+##  4 Fold01  14.1    53       13.8 Preprocessor1_Model1
+##  5 Fold01  13.7    55       14.7 Preprocessor1_Model1
+##  6 Fold01  14.1    65       14.7 Preprocessor1_Model1
+##  7 Fold01  12.2    81       12.2 Preprocessor1_Model1
+##  8 Fold01  12.8    83       14.7 Preprocessor1_Model1
+##  9 Fold01  14.8    91       15.7 Preprocessor1_Model1
+## 10 Fold01  14.9   108       14.3 Preprocessor1_Model1
+## # ℹ 6,968 more rows</code></pre>
+</div>
+<div id="random-forest" class="section level2 hasAnchor" number="11.7">
+<h2><span class="header-section-number">11.7</span> Random forest<a href="ml.html#random-forest" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Another widely used machine learning algorithm, and one that moves away from
+regression as we know it, is the <em>random forest</em>.
+But what is a random forest? A random forest is an ensemble of
+<em>decision trees</em>. Ok, nice… But that did not really help. So let us
+rephrase: What is a decision tree?</p>
+<p>You may already know the basics of what a decision tree is if you have ever
+seen a flowchart. Consider this for example:</p>
+<div class="float">
+<img src="90s_flowchart.png" alt="Taken from: https://xkcd.com/210/" />
+<div class="figcaption"><em>Taken from: <a href="https://xkcd.com/210/" class="uri">https://xkcd.com/210/</a></em></div>
+</div>
+<p>Imagine a new data point entering the flowchart from the above. At the first
+fork the data is divided by being from the 90s or not. If the data is not from
+the 90s the decision tree concludes and the observation is placed in the group
+“Stop”. If the observation is from the 90s it takes the other route and is
+either placed in “Stop, Hammertime!” or “All right stop, Collaborate and
+listen” based on another, here not displayed, variable, maybe the taste in
+music.</p>
+<p>While this is obviously a joke, the idea behind a real decision tree as they
+are used in machine learning is the same. Data enters the tree from the stem and
+is more and more subdivided by the observations’ values on their associated
+variables into different branches. At each fork one variable is considered and
+the data set is divided in a way that best divides the two groups based on their
+values on this one variable. At the next fork another variable is considered and
+another division takes place, and so on. When the tree can not make any more
+sensible divisions a branch ends in a leaf or node and the observation gets
+assigned an outcome value.</p>
+<p>In our NBA example the decision tree may first divide the data by the
+points scored. Maybe players who make more than <span class="math inline">\(10\)</span> points go in one group and
+players that make less go into another. At the next fork the position may be
+considered, dividing centers and others and so on. At some point certain
+branches end and the model can assess the outcome values of the observations in
+this leaf. If everything worked out, players with similar salaries and
+characteristics should be grouped in similar leafs at the ends of similar
+branches. If we now put a new observation into the tree, the model can predict
+their salary by making the observation follow the path through the tree based on
+their characteristics.</p>
+<p>While decision treed are fast and efficient they lean towards overfitting and
+are very unstable, as small changes to the training data can produce a
+completely different tree. This is where random forests come back in. In a
+random forest many decision trees are combined into one large model. At the same
+time, for each tree the algorithm at random picks a subset of the variables that
+are part of the complete model and only uses these in building this single tree.
+This ensures that each tree is build differently. When all trees are build, they
+are combined into one model. In this way and by introducing the random element,
+random forests can combine the strengths of many trees while mitigating the
+weaknesses of the same.</p>
+<p>Now let us build our one random forest. We do not have to specify the recipe
+again as nothing has changed, we only have to specify the algorithm we want to
+use. We can set up a random forest using <code>rand_forest()</code>. Here we can also
+set how many trees our forest should consist of. The default value of <span class="math inline">\(500\)</span>
+serves for our purpose. We again have to set an engine,
+with <code>ranger</code> being a common choice. As random forests can tackle regression as
+well as classification problems, we also have to specify what our problem is,
+using <code>set_mode("regression")</code>. We then build a new workflow with the old recipe
+and the new model.</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="ml.html#cb174-1" tabindex="-1"></a>rf_spec <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>(<span class="at">trees =</span> <span class="dv">500</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb174-2"><a href="ml.html#cb174-2" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;ranger&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb174-3"><a href="ml.html#cb174-3" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
+<span id="cb174-4"><a href="ml.html#cb174-4" tabindex="-1"></a></span>
+<span id="cb174-5"><a href="ml.html#cb174-5" tabindex="-1"></a>rf_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb174-6"><a href="ml.html#cb174-6" tabindex="-1"></a>  <span class="fu">add_recipe</span>(nba_rec) <span class="sc">%&gt;%</span> </span>
+<span id="cb174-7"><a href="ml.html#cb174-7" tabindex="-1"></a>  <span class="fu">add_model</span>(rf_spec)</span></code></pre></div>
+<p>We can now run the random forest model exactly as we ran the linear regression
+above. The only thing that has changed is the workflow used. Please take note
+that computing a random forest is somewhat more computationally involved and may
+take some time, depending on your machine.
+As we are using crossvalidation we are
+also actually computing 10 models in each run, so that adds up. We are still
+below a running time of one minute here, but more complex algorithms can take
+several minutes or even hours.
+We should also not forget to set a seed again. As the <em>random</em> forest has a
+<em>random</em> element, setting the seed ensures that we will get the same model
+every time we run the code below. Without the seed, we would end up with
+different trees in our forest, each time we rerun the code.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="ml.html#cb175-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb175-2"><a href="ml.html#cb175-2" tabindex="-1"></a></span>
+<span id="cb175-3"><a href="ml.html#cb175-3" tabindex="-1"></a>rf_m <span class="ot">&lt;-</span> <span class="fu">fit_resamples</span>(</span>
+<span id="cb175-4"><a href="ml.html#cb175-4" tabindex="-1"></a>  rf_wf,</span>
+<span id="cb175-5"><a href="ml.html#cb175-5" tabindex="-1"></a>  nba_folds,</span>
+<span id="cb175-6"><a href="ml.html#cb175-6" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">control_resamples</span>(<span class="at">save_pred =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb175-7"><a href="ml.html#cb175-7" tabindex="-1"></a>)</span></code></pre></div>
+<p>Let us look at the central metrics.</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="ml.html#cb176-1" tabindex="-1"></a><span class="fu">collect_metrics</span>(rf_m)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 6
+##   .metric .estimator  mean     n std_err .config             
+##   &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
+## 1 rmse    standard   0.775    10 0.0106  Preprocessor1_Model1
+## 2 rsq     standard   0.647    10 0.00375 Preprocessor1_Model1</code></pre>
+<p>The random forest model we computed shows a considerably higher
+performance compared to our linear regression model. The <span class="math inline">\(R^2\)</span> of <span class="math inline">\(64.7\)</span>
+is a substantial improvement over the <span class="math inline">\(42.9\)</span> we achieved before. The same goes
+for the RMSE which dropped to <span class="math inline">\(0.775\)</span> compared to <span class="math inline">\(0.985\)</span>. This is all going in
+the right direction.</p>
+<div id="tuning-the-forest" class="section level3 hasAnchor" number="11.7.1">
+<h3><span class="header-section-number">11.7.1</span> Tuning the forest<a href="ml.html#tuning-the-forest" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While the random forest algorithm already performed substantially better
+compared to our linear regression out of the box, we may be able to improve it
+even more. Many algorithms have so called <em>hyperparameters</em>. These are
+parameters of the model that can not be learned from the data itself but that we
+have to <em>tune</em> in our code. While a linear regression has no hyperparameters,
+random forests have three. For one we can increase the number of trees that are
+used in building the forest. We will put this aside for now. We could also
+change the number of randomly selected variables that are considered for each
+tree, but we will not do this here. What we will tune is the minimal node size.</p>
+<p>The minimal node size tells the algorithm how small each ending for each branch
+is allowed to be. The default value for regression problems in <em>ranger</em> is <span class="math inline">\(5\)</span>.
+This means that the algorithm stops if it can not further subdivide our data
+into groups that contain at least <span class="math inline">\(5\)</span> observations. If we allow the model to
+create subdivisions with smaller groups, the model will get more fine grained
+leading to potentially more accurate predictions. At the same time this will
+lead to a model that is not as general, i.e. that is more prone to overfitting
+to the specificities of our data and that will be less able to also make
+accurate predictions for new data. We should keep this in mind when choosing
+the best model later.</p>
+<p>We could now move forward by just trying out smaller values than <span class="math inline">\(5\)</span> for the
+minimal node size, but <code>tidymodels</code> again gives us a more convenient way.
+When creating our model specification, we can tell <code>tidymodels</code> that we want to
+tune a hyperparameter instead of setting it manually. We do this here by
+including the argument <code>min_n = tune()</code>, with <code>min_n</code> being the hyperparameter
+for minimal node size in ranger. After creating the model specification, we
+again create a workflow including it.</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="ml.html#cb178-1" tabindex="-1"></a>rf_spec_tune <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>(<span class="at">min_n =</span> <span class="fu">tune</span>(), <span class="at">trees =</span> <span class="dv">500</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb178-2"><a href="ml.html#cb178-2" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;ranger&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb178-3"><a href="ml.html#cb178-3" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
+<span id="cb178-4"><a href="ml.html#cb178-4" tabindex="-1"></a></span>
+<span id="cb178-5"><a href="ml.html#cb178-5" tabindex="-1"></a>rf_wf_tune <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb178-6"><a href="ml.html#cb178-6" tabindex="-1"></a>  <span class="fu">add_recipe</span>(nba_rec) <span class="sc">%&gt;%</span> </span>
+<span id="cb178-7"><a href="ml.html#cb178-7" tabindex="-1"></a>  <span class="fu">add_model</span>(rf_spec_tune)</span></code></pre></div>
+<p>We also have to give <em>tidymodels</em> a tibble that includes the values for the
+hyperparameter that we want to try out during tuning.
+The function <code>grid_regular()</code> helps us with this. Inside the brackets we have to
+tell it which hyperparameter we want to tune, in this case <code>min_n()</code>. For some
+hyperparameters <code>tidymodels</code> can automatically choose sensible values; for
+<code>min_n</code> we have to set these ourselves, specifying a range we want to tune in.
+The argument <code>levels</code> sets how many values should be
+created in the specified range. Setting the grid up as below will lead to each
+integer between <span class="math inline">\(1\)</span> and <span class="math inline">\(5\)</span> being considered.</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="ml.html#cb179-1" tabindex="-1"></a>rf_grid <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(</span>
+<span id="cb179-2"><a href="ml.html#cb179-2" tabindex="-1"></a>  <span class="fu">min_n</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)),</span>
+<span id="cb179-3"><a href="ml.html#cb179-3" tabindex="-1"></a>  <span class="at">levels =</span> <span class="dv">5</span></span>
+<span id="cb179-4"><a href="ml.html#cb179-4" tabindex="-1"></a>)</span>
+<span id="cb179-5"><a href="ml.html#cb179-5" tabindex="-1"></a></span>
+<span id="cb179-6"><a href="ml.html#cb179-6" tabindex="-1"></a>rf_grid</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 1
+##   min_n
+##   &lt;int&gt;
+## 1     1
+## 2     2
+## 3     3
+## 4     4
+## 5     5</code></pre>
+<p>Everything is prepared and we can start tuning. For this we use the function
+<code>tune_grid()</code>. We have to give it the new tunable workflow and also the grid of
+values we want to tune for. This will again take more time to complete. We still
+have <span class="math inline">\(10\)</span> folds, but now we also try <span class="math inline">\(5\)</span> different values for <code>min_n</code> for each
+fold. That is <span class="math inline">\(5 * 10 = 50\)</span> models that have to be computed.</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="ml.html#cb181-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb181-2"><a href="ml.html#cb181-2" tabindex="-1"></a></span>
+<span id="cb181-3"><a href="ml.html#cb181-3" tabindex="-1"></a>rf_tune <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb181-4"><a href="ml.html#cb181-4" tabindex="-1"></a>  rf_wf_tune,</span>
+<span id="cb181-5"><a href="ml.html#cb181-5" tabindex="-1"></a>  nba_folds,</span>
+<span id="cb181-6"><a href="ml.html#cb181-6" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">control_resamples</span>(<span class="at">save_pred =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb181-7"><a href="ml.html#cb181-7" tabindex="-1"></a>  <span class="at">grid =</span> rf_grid</span>
+<span id="cb181-8"><a href="ml.html#cb181-8" tabindex="-1"></a>)</span></code></pre></div>
+<p>We can now compare the performance of the models with different values for
+<code>min_n</code>. We could use <code>collect_metrics()</code>, but the more models there are to be
+compared, the less practical this gets. <code>show_best()</code> gives us an ordered output
+of the models performance for a specified metric. We can also use the
+<code>autoplot()</code> function which automatically plots us the same values.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="ml.html#cb182-1" tabindex="-1"></a><span class="fu">show_best</span>(rf_tune, <span class="at">metric =</span> <span class="st">&quot;rmse&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 7
+##   min_n .metric .estimator  mean     n std_err .config             
+##   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
+## 1     1 rmse    standard   0.767    10  0.0104 Preprocessor1_Model1
+## 2     2 rmse    standard   0.768    10  0.0103 Preprocessor1_Model2
+## 3     3 rmse    standard   0.770    10  0.0104 Preprocessor1_Model3
+## 4     4 rmse    standard   0.771    10  0.0107 Preprocessor1_Model4
+## 5     5 rmse    standard   0.776    10  0.0107 Preprocessor1_Model5</code></pre>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="ml.html#cb184-1" tabindex="-1"></a><span class="fu">show_best</span>(rf_tune, <span class="at">metric =</span> <span class="st">&quot;rsq&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 7
+##   min_n .metric .estimator  mean     n std_err .config             
+##   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
+## 1     1 rsq     standard   0.654    10 0.00319 Preprocessor1_Model1
+## 2     2 rsq     standard   0.653    10 0.00387 Preprocessor1_Model2
+## 3     3 rsq     standard   0.651    10 0.00370 Preprocessor1_Model3
+## 4     4 rsq     standard   0.650    10 0.00384 Preprocessor1_Model4
+## 5     5 rsq     standard   0.646    10 0.00391 Preprocessor1_Model5</code></pre>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="ml.html#cb186-1" tabindex="-1"></a><span class="fu">autoplot</span>(rf_tune)</span></code></pre></div>
+<p><img src="_main_files/figure-html/metrics_tuned_rf-1.png" width="672" /></p>
+<p>We can clearly see, that the lower we set <code>min_n</code>, the better our model
+performance gets. The best results are actually achieved with <code>min_n = 1</code>.
+But what does a minimal node size of <span class="math inline">\(1\)</span> imply? Our trees are then build in a
+way that subdivides the data until some groups will only include one
+observation. So they are in part tailor made for single observations.
+That sounds a lot like overfitting! Our forest may be able to make very
+good predictions for these single observations but potentially may have problems
+generalising to new observations. So we should not get greedy and just focus on
+the model with the best performance and instead choose a more balanced option.
+Looking at the plot we can see that the largest gain in performance is made when
+switching from a minimum value of <span class="math inline">\(5\)</span> to <span class="math inline">\(4\)</span>. For lower values the gains are
+relatively minor. <span class="math inline">\(4\)</span> seems like a sensible choice.</p>
+<p>We can now set up our final model specification, using <code>min_n = 4</code>. Here we also
+increase the number of trees used to <span class="math inline">\(1000\)</span>. We also build a workflow using this
+final specification.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="ml.html#cb187-1" tabindex="-1"></a>rf_spec_final <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>(<span class="at">min_n =</span> <span class="dv">4</span>, <span class="at">trees =</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb187-2"><a href="ml.html#cb187-2" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;ranger&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb187-3"><a href="ml.html#cb187-3" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span>
+<span id="cb187-4"><a href="ml.html#cb187-4" tabindex="-1"></a></span>
+<span id="cb187-5"><a href="ml.html#cb187-5" tabindex="-1"></a>rf_wf_final <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb187-6"><a href="ml.html#cb187-6" tabindex="-1"></a>  <span class="fu">add_recipe</span>(nba_rec) <span class="sc">%&gt;%</span> </span>
+<span id="cb187-7"><a href="ml.html#cb187-7" tabindex="-1"></a>  <span class="fu">add_model</span>(rf_spec_final)</span></code></pre></div>
+</div>
+</div>
+<div id="last-fit" class="section level2 hasAnchor" number="11.8">
+<h2><span class="header-section-number">11.8</span> Last fit<a href="ml.html#last-fit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We could of course go on and tune the other hyper parameters or try completely
+different algorithms, but for this introduction we can be content with the level
+of performance we have achieved so far, and which is already a substantial
+improvement over the quality of predictions from <a href="pm-t.html#pm-t">last week</a>.</p>
+<p>So far we have set aside our test data. We will now use it for a final test of
+our model. Does our model perform equally well with new data or did we overfit?
+If it does perform well on the test data, we can be confident that it will do
+the same with completely new data. If it does not, we have overfit to the
+training data.</p>
+<p>The function <code>last_fit()</code> does just that. It recalculates the model on the
+complete training data and makes predictions based on this on the test data.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="ml.html#cb188-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb188-2"><a href="ml.html#cb188-2" tabindex="-1"></a></span>
+<span id="cb188-3"><a href="ml.html#cb188-3" tabindex="-1"></a>best_model_test <span class="ot">&lt;-</span> rf_wf_final <span class="sc">%&gt;%</span> </span>
+<span id="cb188-4"><a href="ml.html#cb188-4" tabindex="-1"></a>  <span class="fu">last_fit</span>(nba_split)</span></code></pre></div>
+<p>We can than check the quality of these predictions.</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="ml.html#cb189-1" tabindex="-1"></a><span class="fu">collect_metrics</span>(best_model_test)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 4
+##   .metric .estimator .estimate .config             
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
+## 1 rmse    standard       0.765 Preprocessor1_Model1
+## 2 rsq     standard       0.636 Preprocessor1_Model1</code></pre>
+<p>This look very good. We would have a problem if the metrics were considerably
+worse compared to what we achieved during training and tuning. In this case we
+would have overfitted to the training data. As our metrics from the last fit are
+comparable to what we have achieved during training, we can be confident that
+our model generalises well to new data. The metrics still indicate that there
+will be an error. Our predictions are not perfect, but it is the best we can
+achieve right now.</p>
+<p>All that is left to do is to save the fitted model in an object using
+<code>extract_fit_parsnip()</code>.</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="ml.html#cb191-1" tabindex="-1"></a>best_model <span class="ot">&lt;-</span> <span class="fu">extract_fit_parsnip</span>(best_model_test)</span></code></pre></div>
+<p>We will not do this here, but we could now for example use this model object
+to make predictions for new data, as we have done for hypothetical players
+<a href="pm-t.html#pm-t">last week</a>. If you want to try this, remember that you also have to
+set up values for the additional variables used in computing this week’s model
+in the new data.</p>
+</div>
+<div id="going-forward" class="section level2 hasAnchor" number="11.9">
+<h2><span class="header-section-number">11.9</span> Going forward<a href="ml.html#going-forward" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If we wanted to further improve our model, we could try different things.
+We could reconsider which variables we use in the model. Maybe we used to many
+performance metrics, maybe there are other relevant variables we missed.
+Algorithms like <em>lasso regression</em> can for example help with selecting relevant
+variables from a large number by applying <em>feature selection</em>.</p>
+<p>We could also potentially alter our pre-processing steps.
+While we have included a measure for the non-linear
+relationship between points and salary, we have not done so for other
+performance metrics. Maybe their relationship is also non-linear in part, which
+we may be able to capture using additional transformations.</p>
+<p>There are many more algorithms, some of which we have already alluded to above,
+which may be more suited to the task at hand.
+Depending on the algorithm used, we can also tune the available hyperparameters
+and see how this affects performance.</p>
+<p>Every machine learning problem is different and there are no ready made gold
+standard solutions. Experience helps, but sometimes trying different algorithms,
+tuning them and comparing their performance is the way to go.</p>
+</div>
+<div id="further-resources-3" class="section level2 hasAnchor" number="11.10">
+<h2><span class="header-section-number">11.10</span> Further resources<a href="ml.html#further-resources-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="resources">
 <ul>
-<li><a href="https://lgatto.github.io/IntroMachineLearningWithR/">An Introduction to Machine Learning with R</a>: This is an online book that introduces the basic concepts and techniques of machine learning with R. It covers topics such as supervised and unsupervised learning, classification, regression, clustering, dimensionality reduction, and model evaluation. It also provides examples of applying machine learning methods to real-world data sets.</li>
+<li><p>Lantz, Brett (2019). Machine Learning with R. Expert techniques for predictive modeling. Third Edition. Packt: Birminghan: An introduction to machine learning using R. Covers different algorithms for supervised and unsupervised learning as well as topics that are more general like approaches to model improvement.</p></li>
+<li><p><a href="https://lgatto.github.io/IntroMachineLearningWithR/">Gatto, Laurent (2020). An Introduction to Machine Learning with R</a>: This is an online book that introduces the basic concepts and techniques of machine learning with R. It covers topics such as supervised and unsupervised learning, classification, regression, clustering, dimensionality reduction, and model evaluation. It also provides examples of applying machine learning methods to real-world data sets.</p></li>
+<li><p>Bzdok, Danilo, Naomi Altman &amp; Martin Krzywinski (2018). Statistics versus Machine Learning. Nature Methods, 15(4). 233-234. Available under: <a href="https://www.nature.com/articles/nmeth.4642" class="uri">https://www.nature.com/articles/nmeth.4642</a>: The authors define what machine learning is by comparing it to “classical” statistics.</p></li>
+<li><p>Hvitfeldt, Emil &amp; Julia Silge (2021). Supervised Machine Learning for Text Analysis in R. Available under: <a href="https://smltar.com/" class="uri">https://smltar.com/</a>: A book on using ML in text analysis. This is a more specific use case compared to the resources above but well worth the read if you are interested in quantitative text analysis.</p></li>
 </ul>
 </div>
 

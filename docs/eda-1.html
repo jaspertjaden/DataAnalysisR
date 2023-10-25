@@ -23,7 +23,7 @@
 <meta name="author" content="Jakob Tures &amp; Jasper Tjaden" />
 
 
-<meta name="date" content="2023-10-20" />
+<meta name="date" content="2023-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -297,12 +297,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="ml.html"><a href="ml.html#objectives-7"><i class="fa fa-check"></i><b>11.1</b> Objectives</a></li>
 <li class="chapter" data-level="11.2" data-path="ml.html"><a href="ml.html#r-functions-covered-this-week-3"><i class="fa fa-check"></i><b>11.2</b> R functions covered this week</a></li>
-<li class="chapter" data-level="11.3" data-path="ml.html"><a href="ml.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.3</b> Intro to Machine learning</a></li>
-<li class="chapter" data-level="11.4" data-path="ml.html"><a href="ml.html#further-resources-3"><i class="fa fa-check"></i><b>11.4</b> Further resources</a></li>
+<li class="chapter" data-level="11.3" data-path="ml.html"><a href="ml.html#intro-to-machine-learning"><i class="fa fa-check"></i><b>11.3</b> Intro to Machine Learning</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="ml.html"><a href="ml.html#training--and-testset"><i class="fa fa-check"></i><b>11.3.1</b> Training- and testset</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="ml.html"><a href="ml.html#our-baseline-model"><i class="fa fa-check"></i><b>11.4</b> Our baseline model</a></li>
+<li class="chapter" data-level="11.5" data-path="ml.html"><a href="ml.html#setting-up-tidymodels"><i class="fa fa-check"></i><b>11.5</b> Setting up tidymodels</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="ml.html"><a href="ml.html#splitting-the-data"><i class="fa fa-check"></i><b>11.5.1</b> Splitting the data</a></li>
+<li class="chapter" data-level="11.5.2" data-path="ml.html"><a href="ml.html#defining-the-recipe"><i class="fa fa-check"></i><b>11.5.2</b> Defining the recipe</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="ml.html"><a href="ml.html#linear-regression"><i class="fa fa-check"></i><b>11.6</b> Linear regression</a></li>
+<li class="chapter" data-level="11.7" data-path="ml.html"><a href="ml.html#random-forest"><i class="fa fa-check"></i><b>11.7</b> Random forest</a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="ml.html"><a href="ml.html#tuning-the-forest"><i class="fa fa-check"></i><b>11.7.1</b> Tuning the forest</a></li>
+</ul></li>
+<li class="chapter" data-level="11.8" data-path="ml.html"><a href="ml.html#last-fit"><i class="fa fa-check"></i><b>11.8</b> Last fit</a></li>
+<li class="chapter" data-level="11.9" data-path="ml.html"><a href="ml.html#going-forward"><i class="fa fa-check"></i><b>11.9</b> Going forward</a></li>
+<li class="chapter" data-level="11.10" data-path="ml.html"><a href="ml.html#further-resources-3"><i class="fa fa-check"></i><b>11.10</b> Further resources</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="pm-a.html"><a href="pm-a.html"><i class="fa fa-check"></i><b>12</b> Prediction &amp; Machine Learning - Exercise</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#exercises"><i class="fa fa-check"></i><b>12.1</b> Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="pm-a.html"><a href="pm-a.html#prediction-machine-learning---exercise"><i class="fa fa-check"></i><b>12.1</b> Prediction &amp; Machine Learning - Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="log-est.html"><a href="log-est.html"><i class="fa fa-check"></i><b>13</b> Logistic regression</a>
 <ul>
@@ -741,23 +757,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb30-4"><a href="eda-1.html#cb30-4" tabindex="-1"></a>  <span class="fu">select</span>(age, seasons_played, shoots, career_PTS, salary, <span class="fu">contains</span>(<span class="st">&quot;position&quot;</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb30-5"><a href="eda-1.html#cb30-5" tabindex="-1"></a>         <span class="fu">tbl_summary</span>(</span>
 <span id="cb30-6"><a href="eda-1.html#cb30-6" tabindex="-1"></a>           <span class="at">statistic =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="st">&quot;{mean} ({min}, {max})&quot;</span>)) </span></code></pre></div>
-<div id="olbnnlcycd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#olbnnlcycd table {
+<div id="iqwzlnximd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iqwzlnximd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#olbnnlcycd thead, #olbnnlcycd tbody, #olbnnlcycd tfoot, #olbnnlcycd tr, #olbnnlcycd td, #olbnnlcycd th {
+#iqwzlnximd thead, #iqwzlnximd tbody, #iqwzlnximd tfoot, #iqwzlnximd tr, #iqwzlnximd td, #iqwzlnximd th {
   border-style: none;
 }
 
-#olbnnlcycd p {
+#iqwzlnximd p {
   margin: 0;
   padding: 0;
 }
 
-#olbnnlcycd .gt_table {
+#iqwzlnximd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -783,12 +799,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#olbnnlcycd .gt_caption {
+#iqwzlnximd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#olbnnlcycd .gt_title {
+#iqwzlnximd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -800,7 +816,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-#olbnnlcycd .gt_subtitle {
+#iqwzlnximd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -812,7 +828,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-#olbnnlcycd .gt_heading {
+#iqwzlnximd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -824,13 +840,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#olbnnlcycd .gt_bottom_border {
+#iqwzlnximd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#olbnnlcycd .gt_col_headings {
+#iqwzlnximd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -845,7 +861,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#olbnnlcycd .gt_col_heading {
+#iqwzlnximd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -865,7 +881,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#olbnnlcycd .gt_column_spanner_outer {
+#iqwzlnximd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -877,15 +893,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-#olbnnlcycd .gt_column_spanner_outer:first-child {
+#iqwzlnximd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#olbnnlcycd .gt_column_spanner_outer:last-child {
+#iqwzlnximd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#olbnnlcycd .gt_column_spanner {
+#iqwzlnximd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -897,11 +913,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-#olbnnlcycd .gt_spanner_row {
+#iqwzlnximd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#olbnnlcycd .gt_group_heading {
+#iqwzlnximd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -927,7 +943,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-align: left;
 }
 
-#olbnnlcycd .gt_empty_group_heading {
+#iqwzlnximd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -942,15 +958,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#olbnnlcycd .gt_from_md > :first-child {
+#iqwzlnximd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#olbnnlcycd .gt_from_md > :last-child {
+#iqwzlnximd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#olbnnlcycd .gt_row {
+#iqwzlnximd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -969,7 +985,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#olbnnlcycd .gt_stub {
+#iqwzlnximd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -982,7 +998,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#olbnnlcycd .gt_stub_row_group {
+#iqwzlnximd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -996,15 +1012,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-#olbnnlcycd .gt_row_group_first td {
+#iqwzlnximd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#olbnnlcycd .gt_row_group_first th {
+#iqwzlnximd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#olbnnlcycd .gt_summary_row {
+#iqwzlnximd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1014,16 +1030,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#olbnnlcycd .gt_first_summary_row {
+#iqwzlnximd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#olbnnlcycd .gt_first_summary_row.thick {
+#iqwzlnximd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#olbnnlcycd .gt_last_summary_row {
+#iqwzlnximd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1033,7 +1049,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#olbnnlcycd .gt_grand_summary_row {
+#iqwzlnximd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1043,7 +1059,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#olbnnlcycd .gt_first_grand_summary_row {
+#iqwzlnximd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1053,7 +1069,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-#olbnnlcycd .gt_last_grand_summary_row_top {
+#iqwzlnximd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1063,11 +1079,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#olbnnlcycd .gt_striped {
+#iqwzlnximd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#olbnnlcycd .gt_table_body {
+#iqwzlnximd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1076,7 +1092,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#olbnnlcycd .gt_footnotes {
+#iqwzlnximd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1090,7 +1106,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#olbnnlcycd .gt_footnote {
+#iqwzlnximd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1099,7 +1115,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#olbnnlcycd .gt_sourcenotes {
+#iqwzlnximd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1113,7 +1129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#olbnnlcycd .gt_sourcenote {
+#iqwzlnximd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1121,63 +1137,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#olbnnlcycd .gt_left {
+#iqwzlnximd .gt_left {
   text-align: left;
 }
 
-#olbnnlcycd .gt_center {
+#iqwzlnximd .gt_center {
   text-align: center;
 }
 
-#olbnnlcycd .gt_right {
+#iqwzlnximd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#olbnnlcycd .gt_font_normal {
+#iqwzlnximd .gt_font_normal {
   font-weight: normal;
 }
 
-#olbnnlcycd .gt_font_bold {
+#iqwzlnximd .gt_font_bold {
   font-weight: bold;
 }
 
-#olbnnlcycd .gt_font_italic {
+#iqwzlnximd .gt_font_italic {
   font-style: italic;
 }
 
-#olbnnlcycd .gt_super {
+#iqwzlnximd .gt_super {
   font-size: 65%;
 }
 
-#olbnnlcycd .gt_footnote_marks {
+#iqwzlnximd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#olbnnlcycd .gt_asterisk {
+#iqwzlnximd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#olbnnlcycd .gt_indent_1 {
+#iqwzlnximd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#olbnnlcycd .gt_indent_2 {
+#iqwzlnximd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#olbnnlcycd .gt_indent_3 {
+#iqwzlnximd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#olbnnlcycd .gt_indent_4 {
+#iqwzlnximd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#olbnnlcycd .gt_indent_5 {
+#iqwzlnximd .gt_indent_5 {
   text-indent: 25px;
 }
 </style>

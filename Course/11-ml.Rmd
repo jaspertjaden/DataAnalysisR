@@ -349,7 +349,7 @@ lr_wf <- workflow() %>%
 ```
 
 Now we can finally run our first machine learning model. `fit_resamples()` is
-used to fit a model using crossvalidation. We have to supply it with our
+used to fit a model using cross validation. We have to supply it with our
 workflow, the object holding the folds and some optional arguments as written
 below. `save_pred = TRUE` ensures that the predictions from the models are saved
 with it so that we can later access them. We could add `verbose = TRUE` to
@@ -631,7 +631,7 @@ complete training data and makes predictions based on this on the test data.
 ```{r last_fit, warning=FALSE, message=FALSE}
 set.seed(1234)
 
-best_model_test <- rf_wf_best %>% 
+best_model_test <- rf_wf_final %>% 
   last_fit(nba_split)
 ```
 
