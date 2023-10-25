@@ -1,22 +1,51 @@
 # Prediction & Machine Learning - Exercise {#pm-a}
 
-**Still WIP!**
+## Prediction & Machine Learning - Exercise
 
-## Exercises
+In this exercise, you will again use the Boston Housing data set. This
+time the goal is to make accurate predictions for the median value of
+houses based on various features of the houses and their surroundings.
 
-::: {.assignx}
+For an overview on the data set see [session 3](#eda-2).
 
-- **Task 1:** How the number of rooms in a house affects its price, you also have to consider how the crime rate might be influencing this relationship. Estimate and report the average causal mediation effect (ACME), the average direct effect (ADE), the total effect, and the proportion mediated. Explain what these effects mean and how to interpret them.
+Prepare by creating a new R Markdown file. Write all solutions in this
+file using code chunks as well as text to structure the file (headers)
+and answer the questions. Do not forget to save the file in the format
+`your_name_exercise_3.Rmd`. You will have to turn in this file to the
+lecturers through Moodle. Write a first code chunk in which you load all
+necessary packages and import the data. For a reminder see [tasks 1 & 2
+from the first exercise](#eda-2).
 
-- **Task 2:** Create or show a data frame with the coefficients, standard errors, p-values, and confidence intervals of a linear regression model that predicts the median value of a home (`MEDV`) based on the nitric oxides concentration (`NOX`) and the average number of rooms per dwelling (`RM`).
+::: assignx
+-   **Task 1:** Rerun your best linear regression model from exercise 2
+    with `medv` as the outcome variable.
 
-- **Task 3:** Create a data frame with the R-squared, adjusted R-squared, root mean squared error, and other summary statistics of the linear regression model from task 1. Explain the output.
+-   **Task 2:** Use `augment()` from the `broom` package to add the
+    predicted value for each observation.
 
-- **Task 4:** Generate predicted values and prediction intervals for the median value of a home (`MEDV`) based on the linear regression model from task 1, and add them as new columns to the test data set. Create a train-test split of the data set with 70% of the data for training and 30% for testing.
+-   **Task 3:** Calculate the $R^2$ and RSME values for your model. What
+    do these values tell you about the quality of your predictions?
 
-- **Task 5:** Create a data frame with the observed and predicted values, residuals, and other diagnostic measures for the linear regression model from task 1. Create a plot of the predicted values versus the observed values, with prediction intervals as ribbons. Calculate the root mean squared error of the predictions on the test data set.
+-   **Task 4:** Prepare the data set for machine learning with
+    `tidymodels` by dividing the data into training and test set. Then
+    set up folds for a k-fold crossvalidation.
 
+-   **Task 5:** Think about additional variables that could be useful
+    for making accurate predictions on the median value of a house.
+    Define a `recipe()` containing your expanded model formula.
+
+-   **Task 6:** Prepare a random forest algorithm using the default
+    values for all hyperparameters, i.e. just using `rand_forest()`
+    without any arguments. Set the engine to `ranger` and the mode to
+    `"regression"`. Combine the recipe and the prepared algorithm
+    into a workflow object.
+
+-   **Task 7:** Run the model using `fit_resamples()`. Inspect the
+    performance metrics. Compare them to the metrics from task 3. Can
+    the new model make better predictions?
+
+-   **Bonus task:** Tune the `min_n` hyperparameter for your random
+    forest model. Inspect the results and select a sensible value. Use
+    this for your last fit. What do the performance metrics tell you?
+    were you able to improve on the results from task 7? Did you overfit?
 :::
-
-
-
